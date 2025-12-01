@@ -1,414 +1,500 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
 
-class QueryParam {
-  String name;
-  String value;
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
 
-  QueryParam(this.name, this.value);
-}
+part of openapi.api;
 
 class ApiClient {
+  ApiClient({this.basePath = 'https://localhost:8084', this.authentication,});
 
-  String basePath;
-  var client = new BrowserClient();
+  final String basePath;
+  final Authentication? authentication;
 
-  Map<String, String> _defaultHeaderMap = {};
-  Map<String, Authentication> _authentications = {};
+  var _client = Client();
+  final _defaultHeaderMap = <String, String>{};
 
-  final _RegList = new RegExp(r'^List<(.*)>$');
-  final _RegMap = new RegExp(r'^Map<String,(.*)>$');
+  /// Returns the current HTTP [Client] instance to use in this class.
+  ///
+  /// The return value is guaranteed to never be null.
+  Client get client => _client;
 
-  ApiClient({this.basePath: "https://localhost:8084"}) {
-    // Setup authentications (key: authentication name, value: authentication).
+  /// Requests to use a new HTTP [Client] in this class.
+  set client(Client newClient) {
+    _client = newClient;
   }
+
+  Map<String, String> get defaultHeaderMap => _defaultHeaderMap;
 
   void addDefaultHeader(String key, String value) {
      _defaultHeaderMap[key] = value;
   }
 
-  dynamic _deserialize(dynamic value, String targetType) {
+  // We don't use a Map<String, String> for queryParams.
+  // If collectionFormat is 'multi', a key might appear multiple times.
+  Future<Response> invokeAPI(
+    String path,
+    String method,
+    List<QueryParam> queryParams,
+    Object? body,
+    Map<String, String> headerParams,
+    Map<String, String> formParams,
+    String? contentType,
+  ) async {
+    await authentication?.applyToParams(queryParams, headerParams);
+
+    headerParams.addAll(_defaultHeaderMap);
+    if (contentType != null) {
+      headerParams['Content-Type'] = contentType;
+    }
+
+    final urlEncodedQueryParams = queryParams.map((param) => '$param');
+    final queryString = urlEncodedQueryParams.isNotEmpty ? '?${urlEncodedQueryParams.join('&')}' : '';
+    final uri = Uri.parse('$basePath$path$queryString');
+
+    try {
+      // Special case for uploading a single file which isn't a 'multipart/form-data'.
+      if (
+        body is MultipartFile && (contentType == null ||
+        !contentType.toLowerCase().startsWith('multipart/form-data'))
+      ) {
+        final request = StreamedRequest(method, uri);
+        request.headers.addAll(headerParams);
+        request.contentLength = body.length;
+        body.finalize().listen(
+          request.sink.add,
+          onDone: request.sink.close,
+          // ignore: avoid_types_on_closure_parameters
+          onError: (Object error, StackTrace trace) => request.sink.close(),
+          cancelOnError: true,
+        );
+        final response = await _client.send(request);
+        return Response.fromStream(response);
+      }
+
+      if (body is MultipartRequest) {
+        final request = MultipartRequest(method, uri);
+        request.fields.addAll(body.fields);
+        request.files.addAll(body.files);
+        request.headers.addAll(body.headers);
+        request.headers.addAll(headerParams);
+        final response = await _client.send(request);
+        return Response.fromStream(response);
+      }
+
+      final msgBody = contentType == 'application/x-www-form-urlencoded'
+        ? formParams
+        : await serializeAsync(body);
+      final nullableHeaderParams = headerParams.isEmpty ? null : headerParams;
+
+      switch(method) {
+        case 'POST': return await _client.post(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'PUT': return await _client.put(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'DELETE': return await _client.delete(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'PATCH': return await _client.patch(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'HEAD': return await _client.head(uri, headers: nullableHeaderParams,);
+        case 'GET': return await _client.get(uri, headers: nullableHeaderParams,);
+      }
+    } on SocketException catch (error, trace) {
+      throw ApiException.withInner(
+        HttpStatus.badRequest,
+        'Socket operation failed: $method $path',
+        error,
+        trace,
+      );
+    } on TlsException catch (error, trace) {
+      throw ApiException.withInner(
+        HttpStatus.badRequest,
+        'TLS/SSL communication failed: $method $path',
+        error,
+        trace,
+      );
+    } on IOException catch (error, trace) {
+      throw ApiException.withInner(
+        HttpStatus.badRequest,
+        'I/O operation failed: $method $path',
+        error,
+        trace,
+      );
+    } on ClientException catch (error, trace) {
+      throw ApiException.withInner(
+        HttpStatus.badRequest,
+        'HTTP connection failed: $method $path',
+        error,
+        trace,
+      );
+    } on Exception catch (error, trace) {
+      throw ApiException.withInner(
+        HttpStatus.badRequest,
+        'Exception occurred: $method $path',
+        error,
+        trace,
+      );
+    }
+
+    throw ApiException(
+      HttpStatus.badRequest,
+      'Invalid HTTP operation: $method $path',
+    );
+  }
+
+  Future<dynamic> deserializeAsync(String value, String targetType, {bool growable = false,}) async =>
+    // ignore: deprecated_member_use_from_same_package
+    deserialize(value, targetType, growable: growable);
+
+  @Deprecated('Scheduled for removal in OpenAPI Generator 6.x. Use deserializeAsync() instead.')
+  dynamic deserialize(String value, String targetType, {bool growable = false,}) {
+    // Remove all spaces. Necessary for regular expressions as well.
+    targetType = targetType.replaceAll(' ', ''); // ignore: parameter_assignments
+
+    // If the expected target type is String, nothing to do...
+    return targetType == 'String'
+      ? value
+      : fromJson(json.decode(value), targetType, growable: growable);
+  }
+
+  // ignore: deprecated_member_use_from_same_package
+  Future<String> serializeAsync(Object? value) async => serialize(value);
+
+  @Deprecated('Scheduled for removal in OpenAPI Generator 6.x. Use serializeAsync() instead.')
+  String serialize(Object? value) => value == null ? '' : json.encode(value);
+
+  /// Returns a native instance of an OpenAPI class matching the [specified type][targetType].
+  static dynamic fromJson(dynamic value, String targetType, {bool growable = false,}) {
     try {
       switch (targetType) {
         case 'String':
-          return '$value';
+          return value is String ? value : value.toString();
         case 'int':
           return value is int ? value : int.parse('$value');
-        case 'bool':
-          return value is bool ? value : '$value'.toLowerCase() == 'true';
         case 'double':
           return value is double ? value : double.parse('$value');
+        case 'bool':
+          if (value is bool) {
+            return value;
+          }
+          final valueString = '$value'.toLowerCase();
+          return valueString == 'true' || valueString == '1';
+        case 'DateTime':
+          return value is DateTime ? value : DateTime.tryParse(value);
         case 'Asset':
-          return new Asset.fromJson(value);
+          return Asset.fromJson(value);
         case 'AssetKind':
-           return new AssetKind.fromJson(value);
+          return AssetKindTypeTransformer().decode(value);
         case 'AssetPrice':
-          return new AssetPrice.fromJson(value);
+          return AssetPrice.fromJson(value);
         case 'AssetRequestError':
-          return new AssetRequestError.fromJson(value);
+          return AssetRequestError.fromJson(value);
         case 'BalanceTransfer':
-          return new BalanceTransfer.fromJson(value);
+          return BalanceTransfer.fromJson(value);
         case 'BalancesResponse':
-          return new BalancesResponse.fromJson(value);
+          return BalancesResponse.fromJson(value);
         case 'Bond':
-          return new Bond.fromJson(value);
+          return Bond.fromJson(value);
         case 'BondKind':
-           return new BondKind.fromJson(value);
-        case 'BorrowRequest':
-          return new BorrowRequest.fromJson(value);
-        case 'BorrowResponse':
-          return new BorrowResponse.fromJson(value);
+          return BondKindTypeTransformer().decode(value);
         case 'CancelOrderResponse':
-          return new CancelOrderResponse.fromJson(value);
+          return CancelOrderResponse.fromJson(value);
         case 'Candle':
-          return new Candle.fromJson(value);
+          return Candle.fromJson(value);
         case 'CandleResolution':
-           return new CandleResolution.fromJson(value);
+          return CandleResolutionTypeTransformer().decode(value);
         case 'Collateral':
-          return new Collateral.fromJson(value);
+          return Collateral.fromJson(value);
         case 'CouponPayment':
-          return new CouponPayment.fromJson(value);
+          return CouponPayment.fromJson(value);
         case 'CreateOrUpdateUserResponse':
-          return new CreateOrUpdateUserResponse.fromJson(value);
+          return CreateOrUpdateUserResponse.fromJson(value);
         case 'CreateOrderRequest':
-          return new CreateOrderRequest.fromJson(value);
+          return CreateOrderRequest.fromJson(value);
         case 'CreateOrderResponse':
-          return new CreateOrderResponse.fromJson(value);
+          return CreateOrderResponse.fromJson(value);
         case 'GetAssetByIDResponse':
-          return new GetAssetByIDResponse.fromJson(value);
+          return GetAssetByIDResponse.fromJson(value);
         case 'GetAssetPriceResponse':
-          return new GetAssetPriceResponse.fromJson(value);
+          return GetAssetPriceResponse.fromJson(value);
         case 'GetOrderBookResponse':
-          return new GetOrderBookResponse.fromJson(value);
+          return GetOrderBookResponse.fromJson(value);
         case 'GetOrderBookSummaryResponse':
-          return new GetOrderBookSummaryResponse.fromJson(value);
+          return GetOrderBookSummaryResponse.fromJson(value);
         case 'GetOrderResponse':
-          return new GetOrderResponse.fromJson(value);
+          return GetOrderResponse.fromJson(value);
         case 'GetPoolPriceResponse':
-          return new GetPoolPriceResponse.fromJson(value);
+          return GetPoolPriceResponse.fromJson(value);
         case 'GetTopOfBookResponse':
-          return new GetTopOfBookResponse.fromJson(value);
+          return GetTopOfBookResponse.fromJson(value);
         case 'GetTransactionResponse':
-          return new GetTransactionResponse.fromJson(value);
+          return GetTransactionResponse.fromJson(value);
         case 'GetUserConfigResponse':
-          return new GetUserConfigResponse.fromJson(value);
+          return GetUserConfigResponse.fromJson(value);
         case 'GetUserResponse':
-          return new GetUserResponse.fromJson(value);
+          return GetUserResponse.fromJson(value);
         case 'IsolateCollateralRequest':
-          return new IsolateCollateralRequest.fromJson(value);
+          return IsolateCollateralRequest.fromJson(value);
         case 'IsolateCollateralResponse':
-          return new IsolateCollateralResponse.fromJson(value);
+          return IsolateCollateralResponse.fromJson(value);
         case 'IsolatedCollateral':
-          return new IsolatedCollateral.fromJson(value);
+          return IsolatedCollateral.fromJson(value);
         case 'IsolatedPosition':
-          return new IsolatedPosition.fromJson(value);
+          return IsolatedPosition.fromJson(value);
         case 'LedgerModuleByAssetResponse':
-          return new LedgerModuleByAssetResponse.fromJson(value);
+          return LedgerModuleByAssetResponse.fromJson(value);
         case 'LedgerModuleResponse':
-          return new LedgerModuleResponse.fromJson(value);
+          return LedgerModuleResponse.fromJson(value);
         case 'LeverageBalanceResponse':
-          return new LeverageBalanceResponse.fromJson(value);
+          return LeverageBalanceResponse.fromJson(value);
         case 'LeverageModuleResponse':
-          return new LeverageModuleResponse.fromJson(value);
+          return LeverageModuleResponse.fromJson(value);
         case 'LeverageRequestError':
-          return new LeverageRequestError.fromJson(value);
+          return LeverageRequestError.fromJson(value);
         case 'LeverageType':
-           return new LeverageType.fromJson(value);
+          return LeverageTypeTypeTransformer().decode(value);
         case 'LiquidationTargetsResponse':
-          return new LiquidationTargetsResponse.fromJson(value);
+          return LiquidationTargetsResponse.fromJson(value);
         case 'Liquidity':
-          return new Liquidity.fromJson(value);
+          return Liquidity.fromJson(value);
         case 'LiquidityRequest':
-          return new LiquidityRequest.fromJson(value);
+          return LiquidityRequest.fromJson(value);
         case 'LiquidityResponse':
-          return new LiquidityResponse.fromJson(value);
+          return LiquidityResponse.fromJson(value);
         case 'ListAssetPriceResponse':
-          return new ListAssetPriceResponse.fromJson(value);
+          return ListAssetPriceResponse.fromJson(value);
         case 'ListAssetsResponse':
-          return new ListAssetsResponse.fromJson(value);
+          return ListAssetsResponse.fromJson(value);
         case 'ListCandlesResponse':
-          return new ListCandlesResponse.fromJson(value);
+          return ListCandlesResponse.fromJson(value);
         case 'ListCouponPaymentsResponse':
-          return new ListCouponPaymentsResponse.fromJson(value);
+          return ListCouponPaymentsResponse.fromJson(value);
         case 'ListOrderBookDepthResponse':
-          return new ListOrderBookDepthResponse.fromJson(value);
+          return ListOrderBookDepthResponse.fromJson(value);
         case 'ListOrderBooksResponse':
-          return new ListOrderBooksResponse.fromJson(value);
+          return ListOrderBooksResponse.fromJson(value);
         case 'ListOrdersResponse':
-          return new ListOrdersResponse.fromJson(value);
+          return ListOrdersResponse.fromJson(value);
         case 'ListPositionsResponse':
-          return new ListPositionsResponse.fromJson(value);
+          return ListPositionsResponse.fromJson(value);
         case 'ListTradeResponse':
-          return new ListTradeResponse.fromJson(value);
+          return ListTradeResponse.fromJson(value);
         case 'ListTransactionsResponse':
-          return new ListTransactionsResponse.fromJson(value);
+          return ListTransactionsResponse.fromJson(value);
         case 'LiveOrderbook':
-          return new LiveOrderbook.fromJson(value);
+          return LiveOrderbook.fromJson(value);
         case 'Metadata':
-          return new Metadata.fromJson(value);
+          return Metadata.fromJson(value);
         case 'ModuleBalance':
-          return new ModuleBalance.fromJson(value);
+          return ModuleBalance.fromJson(value);
         case 'NewIsolatedPositionRequest':
-          return new NewIsolatedPositionRequest.fromJson(value);
+          return NewIsolatedPositionRequest.fromJson(value);
         case 'NewIsolatedPositionResponse':
-          return new NewIsolatedPositionResponse.fromJson(value);
+          return NewIsolatedPositionResponse.fromJson(value);
         case 'Order':
-          return new Order.fromJson(value);
+          return Order.fromJson(value);
         case 'OrderBook':
-          return new OrderBook.fromJson(value);
+          return OrderBook.fromJson(value);
         case 'OrderBookBalance':
-          return new OrderBookBalance.fromJson(value);
+          return OrderBookBalance.fromJson(value);
         case 'OrderBookDepth':
-          return new OrderBookDepth.fromJson(value);
+          return OrderBookDepth.fromJson(value);
         case 'OrderBookHaltResponse':
-          return new OrderBookHaltResponse.fromJson(value);
+          return OrderBookHaltResponse.fromJson(value);
         case 'OrderBookResumeResponse':
-          return new OrderBookResumeResponse.fromJson(value);
+          return OrderBookResumeResponse.fromJson(value);
         case 'OrderBookStatus':
-           return new OrderBookStatus.fromJson(value);
+          return OrderBookStatusTypeTransformer().decode(value);
         case 'OrderBookSummary':
-          return new OrderBookSummary.fromJson(value);
+          return OrderBookSummary.fromJson(value);
         case 'OrderBookTerminateResponse':
-          return new OrderBookTerminateResponse.fromJson(value);
+          return OrderBookTerminateResponse.fromJson(value);
         case 'OrderBookTop':
-          return new OrderBookTop.fromJson(value);
+          return OrderBookTop.fromJson(value);
         case 'OrderId':
-          return new OrderId.fromJson(value);
+          return OrderId.fromJson(value);
         case 'OrderKind':
-           return new OrderKind.fromJson(value);
+          return OrderKindTypeTransformer().decode(value);
         case 'OrderModifierKind':
-           return new OrderModifierKind.fromJson(value);
+          return OrderModifierKindTypeTransformer().decode(value);
         case 'OrderStatus':
-           return new OrderStatus.fromJson(value);
+          return OrderStatusTypeTransformer().decode(value);
         case 'PoolPrice':
-          return new PoolPrice.fromJson(value);
+          return PoolPrice.fromJson(value);
         case 'PoolRequestError':
-          return new PoolRequestError.fromJson(value);
+          return PoolRequestError.fromJson(value);
         case 'Portfolio':
-          return new Portfolio.fromJson(value);
+          return Portfolio.fromJson(value);
         case 'Position':
-          return new Position.fromJson(value);
+          return Position.fromJson(value);
         case 'PositionResponse':
-          return new PositionResponse.fromJson(value);
+          return PositionResponse.fromJson(value);
         case 'PositionType':
-           return new PositionType.fromJson(value);
+          return PositionTypeTypeTransformer().decode(value);
         case 'PriceLevel':
-          return new PriceLevel.fromJson(value);
-        case 'RepayRequest':
-          return new RepayRequest.fromJson(value);
-        case 'RepayResponse':
-          return new RepayResponse.fromJson(value);
+          return PriceLevel.fromJson(value);
         case 'ResponseEnvelope':
-          return new ResponseEnvelope.fromJson(value);
+          return ResponseEnvelope.fromJson(value);
         case 'Side':
-           return new Side.fromJson(value);
-        case 'StreamAssetPricesResponse':
-          return new StreamAssetPricesResponse.fromJson(value);
+          return SideTypeTransformer().decode(value);
+        case 'StreamAssetPricesResponseValue':
+          return StreamAssetPricesResponseValue.fromJson(value);
         case 'StreamAssetsEntry':
-          return new StreamAssetsEntry.fromJson(value);
-        case 'StreamAssetsResponse':
-          return new StreamAssetsResponse.fromJson(value);
+          return StreamAssetsEntry.fromJson(value);
         case 'StreamCandlesEntry':
-          return new StreamCandlesEntry.fromJson(value);
-        case 'StreamCandlesResponse':
-          return new StreamCandlesResponse.fromJson(value);
+          return StreamCandlesEntry.fromJson(value);
         case 'StreamEntry':
-          return new StreamEntry.fromJson(value);
+          return StreamEntry.fromJson(value);
         case 'StreamOrderBookBalanceEntry':
-          return new StreamOrderBookBalanceEntry.fromJson(value);
-        case 'StreamOrderBookBalancesResponse':
-          return new StreamOrderBookBalancesResponse.fromJson(value);
+          return StreamOrderBookBalanceEntry.fromJson(value);
         case 'StreamOrderUpdatesEntry':
-          return new StreamOrderUpdatesEntry.fromJson(value);
-        case 'StreamOrderUpdatesResponse':
-          return new StreamOrderUpdatesResponse.fromJson(value);
+          return StreamOrderUpdatesEntry.fromJson(value);
         case 'StreamOrdersEntry':
-          return new StreamOrdersEntry.fromJson(value);
-        case 'StreamOrdersResponse':
-          return new StreamOrdersResponse.fromJson(value);
+          return StreamOrdersEntry.fromJson(value);
         case 'StreamPositionsEntry':
-          return new StreamPositionsEntry.fromJson(value);
-        case 'StreamPositionsResponse':
-          return new StreamPositionsResponse.fromJson(value);
+          return StreamPositionsEntry.fromJson(value);
         case 'StreamTradesEntry':
-          return new StreamTradesEntry.fromJson(value);
-        case 'StreamTradesResponse':
-          return new StreamTradesResponse.fromJson(value);
+          return StreamTradesEntry.fromJson(value);
         case 'StreamTransactionsEntry':
-          return new StreamTransactionsEntry.fromJson(value);
-        case 'StreamTransactionsResponse':
-          return new StreamTransactionsResponse.fromJson(value);
+          return StreamTransactionsEntry.fromJson(value);
         case 'Supply':
-          return new Supply.fromJson(value);
+          return Supply.fromJson(value);
         case 'SupplyRequest':
-          return new SupplyRequest.fromJson(value);
+          return SupplyRequest.fromJson(value);
         case 'SupplyResponse':
-          return new SupplyResponse.fromJson(value);
+          return SupplyResponse.fromJson(value);
         case 'Trade':
-          return new Trade.fromJson(value);
+          return Trade.fromJson(value);
         case 'TradeRequestError':
-          return new TradeRequestError.fromJson(value);
+          return TradeRequestError.fromJson(value);
         case 'TradeResponse':
-          return new TradeResponse.fromJson(value);
+          return TradeResponse.fromJson(value);
         case 'Transaction':
-          return new Transaction.fromJson(value);
+          return Transaction.fromJson(value);
         case 'TransactionKind':
-           return new TransactionKind.fromJson(value);
+          return TransactionKindTypeTransformer().decode(value);
         case 'TransactionRequestError':
-          return new TransactionRequestError.fromJson(value);
+          return TransactionRequestError.fromJson(value);
         case 'TransferBalancesRequest':
-          return new TransferBalancesRequest.fromJson(value);
+          return TransferBalancesRequest.fromJson(value);
         case 'TransferBalancesResponse':
-          return new TransferBalancesResponse.fromJson(value);
+          return TransferBalancesResponse.fromJson(value);
         case 'TransformedAssets':
-          return new TransformedAssets.fromJson(value);
+          return TransformedAssets.fromJson(value);
         case 'UnitePositionRequest':
-          return new UnitePositionRequest.fromJson(value);
+          return UnitePositionRequest.fromJson(value);
         case 'UnitePositionResponse':
-          return new UnitePositionResponse.fromJson(value);
+          return UnitePositionResponse.fromJson(value);
         case 'UnitedPosition':
-          return new UnitedPosition.fromJson(value);
+          return UnitedPosition.fromJson(value);
         case 'UpdateFieldString':
-          return new UpdateFieldString.fromJson(value);
+          return UpdateFieldString.fromJson(value);
         case 'UpdateRolesString':
-          return new UpdateRolesString.fromJson(value);
+          return UpdateRolesString.fromJson(value);
         case 'UpdateUserConfigRequest':
-          return new UpdateUserConfigRequest.fromJson(value);
+          return UpdateUserConfigRequest.fromJson(value);
         case 'User':
-          return new User.fromJson(value);
+          return User.fromJson(value);
         case 'UserBalanceResponse':
-          return new UserBalanceResponse.fromJson(value);
+          return UserBalanceResponse.fromJson(value);
         case 'UserConfig':
-          return new UserConfig.fromJson(value);
+          return UserConfig.fromJson(value);
         case 'UserDeletedResponse':
-          return new UserDeletedResponse.fromJson(value);
+          return UserDeletedResponse.fromJson(value);
         case 'UserInterest':
-          return new UserInterest.fromJson(value);
+          return UserInterest.fromJson(value);
         case 'UserInterestResponse':
-          return new UserInterestResponse.fromJson(value);
+          return UserInterestResponse.fromJson(value);
         case 'UserPositionResponse':
-          return new UserPositionResponse.fromJson(value);
+          return UserPositionResponse.fromJson(value);
         case 'UserRole':
-           return new UserRole.fromJson(value);
+          return UserRoleTypeTransformer().decode(value);
         case 'UserUpdatedResponse':
-          return new UserUpdatedResponse.fromJson(value);
+          return UserUpdatedResponse.fromJson(value);
         case 'UserValue':
-          return new UserValue.fromJson(value);
+          return UserValue.fromJson(value);
         case 'UserValueResponse':
-          return new UserValueResponse.fromJson(value);
+          return UserValueResponse.fromJson(value);
         case 'ValidateSubmitOrderRequest':
-          return new ValidateSubmitOrderRequest.fromJson(value);
+          return ValidateSubmitOrderRequest.fromJson(value);
         case 'ValidateSubmitOrderResponse':
-          return new ValidateSubmitOrderResponse.fromJson(value);
+          return ValidateSubmitOrderResponse.fromJson(value);
         case 'Withdraw':
-          return new Withdraw.fromJson(value);
+          return Withdraw.fromJson(value);
         case 'WithdrawRequest':
-          return new WithdrawRequest.fromJson(value);
+          return WithdrawRequest.fromJson(value);
         case 'WithdrawResponse':
-          return new WithdrawResponse.fromJson(value);
+          return WithdrawResponse.fromJson(value);
         default:
-          {
-            Match match;
-            if (value is List &&
-                (match = _RegList.firstMatch(targetType)) != null) {
-              var newTargetType = match[1];
-              return value.map((v) => _deserialize(v, newTargetType)).toList();
-            } else if (value is Map &&
-                (match = _RegMap.firstMatch(targetType)) != null) {
-              var newTargetType = match[1];
-              return new Map.fromIterables(value.keys,
-                  value.values.map((v) => _deserialize(v, newTargetType)));
-            }
+          dynamic match;
+          if (value is List && (match = _regList.firstMatch(targetType)?.group(1)) != null) {
+            return value
+              .map<dynamic>((dynamic v) => fromJson(v, match, growable: growable,))
+              .toList(growable: growable);
+          }
+          if (value is Set && (match = _regSet.firstMatch(targetType)?.group(1)) != null) {
+            return value
+              .map<dynamic>((dynamic v) => fromJson(v, match, growable: growable,))
+              .toSet();
+          }
+          if (value is Map && (match = _regMap.firstMatch(targetType)?.group(1)) != null) {
+            return Map<String, dynamic>.fromIterables(
+              value.keys.cast<String>(),
+              value.values.map<dynamic>((dynamic v) => fromJson(v, match, growable: growable,)),
+            );
           }
       }
-    } catch (e, stack) {
-      throw new ApiException.withInner(500, 'Exception during deserialization.', e, stack);
+    } on Exception catch (error, trace) {
+      throw ApiException.withInner(HttpStatus.internalServerError, 'Exception during deserialization.', error, trace,);
     }
-    throw new ApiException(500, 'Could not find a suitable class for deserialization');
-  }
-
-  dynamic deserialize(String jsonVal, String targetType) {
-    // Remove all spaces.  Necessary for reg expressions as well.
-    targetType = targetType.replaceAll(' ', '');
-
-    if (targetType == 'String') return jsonVal;
-
-    var decodedJson = json.decode(jsonVal);
-    return _deserialize(decodedJson, targetType);
-  }
-
-  String serialize(Object obj) {
-    String serialized = '';
-    if (obj == null) {
-      serialized = '';
-    } else {
-      serialized = json.encode(obj);
-    }
-    return serialized;
-  }
-
-  // We don't use a Map<String, String> for queryParams.
-  // If collectionFormat is 'multi' a key might appear multiple times.
-  Future<Response> invokeAPI(String path,
-                             String method,
-                             Iterable<QueryParam> queryParams,
-                             Object body,
-                             Map<String, String> headerParams,
-                             Map<String, String> formParams,
-                             String contentType,
-                             List<String> authNames) async {
-
-    _updateParamsForAuth(authNames, queryParams, headerParams);
-
-    var ps = queryParams.where((p) => p.value != null).map((p) => '${Uri.encodeComponent(p.name)}=${Uri.encodeComponent(p.value)}');
-    String queryString = ps.isNotEmpty ?
-                         '?' + ps.join('&') :
-                         '';
-
-    String url = basePath + path + queryString;
-
-    headerParams.addAll(_defaultHeaderMap);
-    headerParams['Content-Type'] = contentType;
-
-    if(body is MultipartRequest) {
-      var request = new MultipartRequest(method, Uri.parse(url));
-      request.fields.addAll(body.fields);
-      request.files.addAll(body.files);
-      request.headers.addAll(body.headers);
-      request.headers.addAll(headerParams);
-      var response = await client.send(request);
-      return Response.fromStream(response);
-    } else {
-      var msgBody = contentType == "application/x-www-form-urlencoded" ? formParams : serialize(body);
-      switch(method) {
-        case "POST":
-          return client.post(url, headers: headerParams, body: msgBody);
-        case "PUT":
-          return client.put(url, headers: headerParams, body: msgBody);
-        case "DELETE":
-          return client.delete(url, headers: headerParams);
-        case "PATCH":
-          return client.patch(url, headers: headerParams, body: msgBody);
-        default:
-          return client.get(url, headers: headerParams);
-      }
-    }
-  }
-
-  /// Update query and header parameters based on authentication settings.
-  /// @param authNames The authentications to apply
-  void _updateParamsForAuth(List<String> authNames, List<QueryParam> queryParams, Map<String, String> headerParams) {
-    authNames.forEach((authName) {
-      Authentication auth = _authentications[authName];
-      if (auth == null) throw new ArgumentError("Authentication undefined: " + authName);
-      auth.applyToParams(queryParams, headerParams);
-    });
-  }
-
-  void setAccessToken(String accessToken) {
-    _authentications.forEach((key, auth) {
-      if (auth is OAuth) {
-        auth.setAccessToken(accessToken);
-      }
-    });
+    throw ApiException(HttpStatus.internalServerError, 'Could not find a suitable class for deserialization',);
   }
 }
+
+/// Primarily intended for use in an isolate.
+class DeserializationMessage {
+  const DeserializationMessage({
+    required this.json,
+    required this.targetType,
+    this.growable = false,
+  });
+
+  /// The JSON value to deserialize.
+  final String json;
+
+  /// Target type to deserialize to.
+  final String targetType;
+
+  /// Whether to make deserialized lists or maps growable.
+  final bool growable;
+}
+
+/// Primarily intended for use in an isolate.
+Future<dynamic> decodeAsync(DeserializationMessage message) async {
+  // Remove all spaces. Necessary for regular expressions as well.
+  final targetType = message.targetType.replaceAll(' ', '');
+
+  // If the expected target type is String, nothing to do...
+  return targetType == 'String'
+    ? message.json
+    : json.decode(message.json);
+}
+
+/// Primarily intended for use in an isolate.
+Future<dynamic> deserializeAsync(DeserializationMessage message) async {
+  // Remove all spaces. Necessary for regular expressions as well.
+  final targetType = message.targetType.replaceAll(' ', '');
+
+  // If the expected target type is String, nothing to do...
+  return targetType == 'String'
+    ? message.json
+    : ApiClient.fromJson(
+        json.decode(message.json),
+        targetType,
+        growable: message.growable,
+      );
+}
+
+/// Primarily intended for use in an isolate.
+Future<String> serializeAsync(Object? value) async => value == null ? '' : json.encode(value);

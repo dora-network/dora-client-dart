@@ -1,44 +1,143 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class ListTransactionsResponse {
-  
-  List<Transaction> data = [];
-/* The error message. Present for error (non-2xx) responses. */
-  String error = null;
+  /// Returns a new [ListTransactionsResponse] instance.
+  ListTransactionsResponse({
+    this.data = const [],
+    this.error,
+    this.metadata,
+  });
 
-  Metadata metadata = null;
+  List<Transaction> data;
 
-  ListTransactionsResponse();
+  /// The error message. Present for error (non-2xx) responses.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? error;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Metadata? metadata;
 
   @override
-  String toString() {
-    return 'ListTransactionsResponse[data=$data, error=$error, metadata=$metadata, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is ListTransactionsResponse &&
+    _deepEquality.equals(other.data, data) &&
+    other.error == error &&
+    other.metadata == metadata;
 
-  ListTransactionsResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    data = Transaction.listFromJson(json['data']);
-    error = json['error'];
-    metadata = new Metadata.fromJson(json['metadata']);
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (data.hashCode) +
+    (error == null ? 0 : error!.hashCode) +
+    (metadata == null ? 0 : metadata!.hashCode);
+
+  @override
+  String toString() => 'ListTransactionsResponse[data=$data, error=$error, metadata=$metadata]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'data': data,
-      'error': error,
-      'metadata': metadata
-     };
+    final json = <String, dynamic>{};
+      json[r'data'] = this.data;
+    if (this.error != null) {
+      json[r'error'] = this.error;
+    } else {
+      json[r'error'] = null;
+    }
+    if (this.metadata != null) {
+      json[r'metadata'] = this.metadata;
+    } else {
+      json[r'metadata'] = null;
+    }
+    return json;
   }
 
-  static List<ListTransactionsResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ListTransactionsResponse>() : json.map((value) => new ListTransactionsResponse.fromJson(value)).toList();
+  /// Returns a new [ListTransactionsResponse] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static ListTransactionsResponse? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ListTransactionsResponse[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ListTransactionsResponse[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return ListTransactionsResponse(
+        data: Transaction.listFromJson(json[r'data']),
+        error: mapValueOfType<String>(json, r'error'),
+        metadata: Metadata.fromJson(json[r'metadata']),
+      );
+    }
+    return null;
   }
 
-  static Map<String, ListTransactionsResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ListTransactionsResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ListTransactionsResponse.fromJson(value));
+  static List<ListTransactionsResponse> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ListTransactionsResponse>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = ListTransactionsResponse.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, ListTransactionsResponse> mapFromJson(dynamic json) {
+    final map = <String, ListTransactionsResponse>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ListTransactionsResponse.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of ListTransactionsResponse-objects as value to a dart map
+  static Map<String, List<ListTransactionsResponse>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ListTransactionsResponse>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = ListTransactionsResponse.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
+

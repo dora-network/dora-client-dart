@@ -1,9 +1,23 @@
-library dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+library openapi.api;
 
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/browser_client.dart';
+import 'dart:io';
+
+import 'package:collection/collection.dart';
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
+import 'package:meta/meta.dart';
 
 part 'api_client.dart';
 part 'api_helper.dart';
@@ -12,8 +26,10 @@ part 'auth/authentication.dart';
 part 'auth/api_key_auth.dart';
 part 'auth/oauth.dart';
 part 'auth/http_basic_auth.dart';
+part 'auth/http_bearer_auth.dart';
 
 part 'api/default_api.dart';
+
 part 'model/asset.dart';
 part 'model/asset_kind.dart';
 part 'model/asset_price.dart';
@@ -22,8 +38,6 @@ part 'model/balance_transfer.dart';
 part 'model/balances_response.dart';
 part 'model/bond.dart';
 part 'model/bond_kind.dart';
-part 'model/borrow_request.dart';
-part 'model/borrow_response.dart';
 part 'model/cancel_order_response.dart';
 part 'model/candle.dart';
 part 'model/candle_resolution.dart';
@@ -92,28 +106,18 @@ part 'model/position.dart';
 part 'model/position_response.dart';
 part 'model/position_type.dart';
 part 'model/price_level.dart';
-part 'model/repay_request.dart';
-part 'model/repay_response.dart';
 part 'model/response_envelope.dart';
 part 'model/side.dart';
-part 'model/stream_asset_prices_response.dart';
+part 'model/stream_asset_prices_response_value.dart';
 part 'model/stream_assets_entry.dart';
-part 'model/stream_assets_response.dart';
 part 'model/stream_candles_entry.dart';
-part 'model/stream_candles_response.dart';
 part 'model/stream_entry.dart';
 part 'model/stream_order_book_balance_entry.dart';
-part 'model/stream_order_book_balances_response.dart';
 part 'model/stream_order_updates_entry.dart';
-part 'model/stream_order_updates_response.dart';
 part 'model/stream_orders_entry.dart';
-part 'model/stream_orders_response.dart';
 part 'model/stream_positions_entry.dart';
-part 'model/stream_positions_response.dart';
 part 'model/stream_trades_entry.dart';
-part 'model/stream_trades_response.dart';
 part 'model/stream_transactions_entry.dart';
-part 'model/stream_transactions_response.dart';
 part 'model/supply.dart';
 part 'model/supply_request.dart';
 part 'model/supply_response.dart';
@@ -149,4 +153,17 @@ part 'model/withdraw.dart';
 part 'model/withdraw_request.dart';
 part 'model/withdraw_response.dart';
 
-ApiClient defaultApiClient = new ApiClient();
+
+/// An [ApiClient] instance that uses the default values obtained from
+/// the OpenAPI specification file.
+var defaultApiClient = ApiClient();
+
+const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};
+const _dateEpochMarker = 'epoch';
+const _deepEquality = DeepCollectionEquality();
+final _dateFormatter = DateFormat('yyyy-MM-dd');
+final _regList = RegExp(r'^List<(.*)>$');
+final _regSet = RegExp(r'^Set<(.*)>$');
+final _regMap = RegExp(r'^Map<String,(.*)>$');
+
+bool _isEpochMarker(String? pattern) => pattern == _dateEpochMarker || pattern == '/$_dateEpochMarker/';

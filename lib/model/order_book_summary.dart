@@ -1,52 +1,186 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class OrderBookSummary {
-  
-  String orderBookId = null;
+  /// Returns a new [OrderBookSummary] instance.
+  OrderBookSummary({
+    this.orderBookId,
+    this.midPrice,
+    this.spread,
+    this.bestBid,
+    this.bestAsk,
+  });
 
-  String midPrice = null;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? orderBookId;
 
-  String spread = null;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? midPrice;
 
-  String bestBid = null;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? spread;
 
-  String bestAsk = null;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? bestBid;
 
-  OrderBookSummary();
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? bestAsk;
 
   @override
-  String toString() {
-    return 'OrderBookSummary[orderBookId=$orderBookId, midPrice=$midPrice, spread=$spread, bestBid=$bestBid, bestAsk=$bestAsk, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is OrderBookSummary &&
+    other.orderBookId == orderBookId &&
+    other.midPrice == midPrice &&
+    other.spread == spread &&
+    other.bestBid == bestBid &&
+    other.bestAsk == bestAsk;
 
-  OrderBookSummary.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    orderBookId = json['order_book_id'];
-    midPrice = json['mid_price'];
-    spread = json['spread'];
-    bestBid = json['best_bid'];
-    bestAsk = json['best_ask'];
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (orderBookId == null ? 0 : orderBookId!.hashCode) +
+    (midPrice == null ? 0 : midPrice!.hashCode) +
+    (spread == null ? 0 : spread!.hashCode) +
+    (bestBid == null ? 0 : bestBid!.hashCode) +
+    (bestAsk == null ? 0 : bestAsk!.hashCode);
+
+  @override
+  String toString() => 'OrderBookSummary[orderBookId=$orderBookId, midPrice=$midPrice, spread=$spread, bestBid=$bestBid, bestAsk=$bestAsk]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'order_book_id': orderBookId,
-      'mid_price': midPrice,
-      'spread': spread,
-      'best_bid': bestBid,
-      'best_ask': bestAsk
-     };
+    final json = <String, dynamic>{};
+    if (this.orderBookId != null) {
+      json[r'order_book_id'] = this.orderBookId;
+    } else {
+      json[r'order_book_id'] = null;
+    }
+    if (this.midPrice != null) {
+      json[r'mid_price'] = this.midPrice;
+    } else {
+      json[r'mid_price'] = null;
+    }
+    if (this.spread != null) {
+      json[r'spread'] = this.spread;
+    } else {
+      json[r'spread'] = null;
+    }
+    if (this.bestBid != null) {
+      json[r'best_bid'] = this.bestBid;
+    } else {
+      json[r'best_bid'] = null;
+    }
+    if (this.bestAsk != null) {
+      json[r'best_ask'] = this.bestAsk;
+    } else {
+      json[r'best_ask'] = null;
+    }
+    return json;
   }
 
-  static List<OrderBookSummary> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OrderBookSummary>() : json.map((value) => new OrderBookSummary.fromJson(value)).toList();
+  /// Returns a new [OrderBookSummary] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static OrderBookSummary? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "OrderBookSummary[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "OrderBookSummary[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return OrderBookSummary(
+        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
+        midPrice: mapValueOfType<double>(json, r'mid_price'),
+        spread: mapValueOfType<double>(json, r'spread'),
+        bestBid: mapValueOfType<double>(json, r'best_bid'),
+        bestAsk: mapValueOfType<double>(json, r'best_ask'),
+      );
+    }
+    return null;
   }
 
-  static Map<String, OrderBookSummary> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OrderBookSummary>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OrderBookSummary.fromJson(value));
+  static List<OrderBookSummary> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <OrderBookSummary>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = OrderBookSummary.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, OrderBookSummary> mapFromJson(dynamic json) {
+    final map = <String, OrderBookSummary>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = OrderBookSummary.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of OrderBookSummary-objects as value to a dart map
+  static Map<String, List<OrderBookSummary>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<OrderBookSummary>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = OrderBookSummary.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
+

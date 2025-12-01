@@ -1,33 +1,100 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
+
 
 class UserRole {
+  /// Instantiate a new enum with the provided [value].
+  const UserRole._(this.value);
+
   /// The underlying value of this enum member.
-  String value;
+  final String value;
 
-  UserRole._internal(this.value);
+  @override
+  String toString() => value;
 
-  static UserRole pUBLIC_ = UserRole._internal("PUBLIC");
-  static UserRole sELF_ = UserRole._internal("SELF");
-  static UserRole aDMIN_ = UserRole._internal("ADMIN");
-  static UserRole bONDPROVIDER_ = UserRole._internal("BOND_PROVIDER");
-  static UserRole lIQUIDITYPROVIDER_ = UserRole._internal("LIQUIDITY_PROVIDER");
-  static UserRole tRADER_ = UserRole._internal("TRADER");
-  static UserRole iNTEGRATOR_ = UserRole._internal("INTEGRATOR");
+  String toJson() => value;
 
-  UserRole.fromJson(dynamic data) {
-    switch (data) {
-          case "PUBLIC": value = data; break;
-          case "SELF": value = data; break;
-          case "ADMIN": value = data; break;
-          case "BOND_PROVIDER": value = data; break;
-          case "LIQUIDITY_PROVIDER": value = data; break;
-          case "TRADER": value = data; break;
-          case "INTEGRATOR": value = data; break;
-    default: throw('Unknown enum value to decode: $data');
+  static const PUBLIC = UserRole._(r'PUBLIC');
+  static const SELF = UserRole._(r'SELF');
+  static const ADMIN = UserRole._(r'ADMIN');
+  static const BOND_PROVIDER = UserRole._(r'BOND_PROVIDER');
+  static const LIQUIDITY_PROVIDER = UserRole._(r'LIQUIDITY_PROVIDER');
+  static const TRADER = UserRole._(r'TRADER');
+  static const INTEGRATOR = UserRole._(r'INTEGRATOR');
+
+  /// List of all possible values in this [enum][UserRole].
+  static const values = <UserRole>[
+    PUBLIC,
+    SELF,
+    ADMIN,
+    BOND_PROVIDER,
+    LIQUIDITY_PROVIDER,
+    TRADER,
+    INTEGRATOR,
+  ];
+
+  static UserRole? fromJson(dynamic value) => UserRoleTypeTransformer().decode(value);
+
+  static List<UserRole> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UserRole>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UserRole.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
     }
-  }
-
-  static dynamic encode(UserRole data) {
-    return data.value;
+    return result.toList(growable: growable);
   }
 }
+
+/// Transformation class that can [encode] an instance of [UserRole] to String,
+/// and [decode] dynamic data back to [UserRole].
+class UserRoleTypeTransformer {
+  factory UserRoleTypeTransformer() => _instance ??= const UserRoleTypeTransformer._();
+
+  const UserRoleTypeTransformer._();
+
+  String encode(UserRole data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a UserRole.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  UserRole? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data) {
+        case r'PUBLIC': return UserRole.PUBLIC;
+        case r'SELF': return UserRole.SELF;
+        case r'ADMIN': return UserRole.ADMIN;
+        case r'BOND_PROVIDER': return UserRole.BOND_PROVIDER;
+        case r'LIQUIDITY_PROVIDER': return UserRole.LIQUIDITY_PROVIDER;
+        case r'TRADER': return UserRole.TRADER;
+        case r'INTEGRATOR': return UserRole.INTEGRATOR;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [UserRoleTypeTransformer] instance.
+  static UserRoleTypeTransformer? _instance;
+}
+

@@ -1,65 +1,148 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
+
 
 class TransactionKind {
+  /// Instantiate a new enum with the provided [value].
+  const TransactionKind._(this.value);
+
   /// The underlying value of this enum member.
-  String value;
+  final String value;
 
-  TransactionKind._internal(this.value);
+  @override
+  String toString() => value;
 
-  static TransactionKind aCCRUEINTEREST_ = TransactionKind._internal("ACCRUE_INTEREST");
-  static TransactionKind aDDLIQUIDITY_ = TransactionKind._internal("ADD_LIQUIDITY");
-  static TransactionKind bONDMATURE_ = TransactionKind._internal("BOND_MATURE");
-  static TransactionKind cLAIMINTEREST_ = TransactionKind._internal("CLAIM_INTEREST");
-  static TransactionKind cREDIT_ = TransactionKind._internal("CREDIT");
-  static TransactionKind dEBIT_ = TransactionKind._internal("DEBIT");
-  static TransactionKind eXTERNALDEPOSIT_ = TransactionKind._internal("EXTERNAL_DEPOSIT");
-  static TransactionKind eXTERNALWITHDRAW_ = TransactionKind._internal("EXTERNAL_WITHDRAW");
-  static TransactionKind fILL_ = TransactionKind._internal("FILL");
-  static TransactionKind lENDINGINTERESTACCRUAL_ = TransactionKind._internal("LENDING_INTEREST_ACCRUAL");
-  static TransactionKind lIQUIDATE_ = TransactionKind._internal("LIQUIDATE");
-  static TransactionKind mATCHORDER_ = TransactionKind._internal("MATCH_ORDER");
-  static TransactionKind pAYINTEREST_ = TransactionKind._internal("PAY_INTEREST");
-  static TransactionKind sUBTRACTLIQUIDITY_ = TransactionKind._internal("SUBTRACT_LIQUIDITY");
-  static TransactionKind rEPAY_ = TransactionKind._internal("REPAY");
-  static TransactionKind sUPPLY_ = TransactionKind._internal("SUPPLY");
-  static TransactionKind wITHDRAW_ = TransactionKind._internal("WITHDRAW");
-  static TransactionKind iSOLATECOLLATERAL_ = TransactionKind._internal("ISOLATE_COLLATERAL");
-  static TransactionKind iSOLATEPOSITION_ = TransactionKind._internal("ISOLATE_POSITION");
-  static TransactionKind uNITEPOSITION_ = TransactionKind._internal("UNITE_POSITION");
-  static TransactionKind cOLLATERALIZE_ = TransactionKind._internal("COLLATERALIZE");
-  static TransactionKind dECOLLATERALIZE_ = TransactionKind._internal("DE-COLLATERALIZE");
-  static TransactionKind cOUPONPAYMENT_ = TransactionKind._internal("COUPON_PAYMENT");
+  String toJson() => value;
 
-  TransactionKind.fromJson(dynamic data) {
-    switch (data) {
-          case "ACCRUE_INTEREST": value = data; break;
-          case "ADD_LIQUIDITY": value = data; break;
-          case "BOND_MATURE": value = data; break;
-          case "CLAIM_INTEREST": value = data; break;
-          case "CREDIT": value = data; break;
-          case "DEBIT": value = data; break;
-          case "EXTERNAL_DEPOSIT": value = data; break;
-          case "EXTERNAL_WITHDRAW": value = data; break;
-          case "FILL": value = data; break;
-          case "LENDING_INTEREST_ACCRUAL": value = data; break;
-          case "LIQUIDATE": value = data; break;
-          case "MATCH_ORDER": value = data; break;
-          case "PAY_INTEREST": value = data; break;
-          case "SUBTRACT_LIQUIDITY": value = data; break;
-          case "REPAY": value = data; break;
-          case "SUPPLY": value = data; break;
-          case "WITHDRAW": value = data; break;
-          case "ISOLATE_COLLATERAL": value = data; break;
-          case "ISOLATE_POSITION": value = data; break;
-          case "UNITE_POSITION": value = data; break;
-          case "COLLATERALIZE": value = data; break;
-          case "DE-COLLATERALIZE": value = data; break;
-          case "COUPON_PAYMENT": value = data; break;
-    default: throw('Unknown enum value to decode: $data');
+  static const ACCRUE_INTEREST = TransactionKind._(r'ACCRUE_INTEREST');
+  static const ADD_LIQUIDITY = TransactionKind._(r'ADD_LIQUIDITY');
+  static const BOND_MATURE = TransactionKind._(r'BOND_MATURE');
+  static const CLAIM_INTEREST = TransactionKind._(r'CLAIM_INTEREST');
+  static const CREDIT = TransactionKind._(r'CREDIT');
+  static const DEBIT = TransactionKind._(r'DEBIT');
+  static const EXTERNAL_DEPOSIT = TransactionKind._(r'EXTERNAL_DEPOSIT');
+  static const EXTERNAL_WITHDRAW = TransactionKind._(r'EXTERNAL_WITHDRAW');
+  static const FILL = TransactionKind._(r'FILL');
+  static const LENDING_INTEREST_ACCRUAL = TransactionKind._(r'LENDING_INTEREST_ACCRUAL');
+  static const LIQUIDATE = TransactionKind._(r'LIQUIDATE');
+  static const MATCH_ORDER = TransactionKind._(r'MATCH_ORDER');
+  static const PAY_INTEREST = TransactionKind._(r'PAY_INTEREST');
+  static const SUBTRACT_LIQUIDITY = TransactionKind._(r'SUBTRACT_LIQUIDITY');
+  static const REPAY = TransactionKind._(r'REPAY');
+  static const SUPPLY = TransactionKind._(r'SUPPLY');
+  static const WITHDRAW = TransactionKind._(r'WITHDRAW');
+  static const ISOLATE_COLLATERAL = TransactionKind._(r'ISOLATE_COLLATERAL');
+  static const ISOLATE_POSITION = TransactionKind._(r'ISOLATE_POSITION');
+  static const UNITE_POSITION = TransactionKind._(r'UNITE_POSITION');
+  static const COLLATERALIZE = TransactionKind._(r'COLLATERALIZE');
+  static const DE_COLLATERALIZE = TransactionKind._(r'DE-COLLATERALIZE');
+  static const COUPON_PAYMENT = TransactionKind._(r'COUPON_PAYMENT');
+
+  /// List of all possible values in this [enum][TransactionKind].
+  static const values = <TransactionKind>[
+    ACCRUE_INTEREST,
+    ADD_LIQUIDITY,
+    BOND_MATURE,
+    CLAIM_INTEREST,
+    CREDIT,
+    DEBIT,
+    EXTERNAL_DEPOSIT,
+    EXTERNAL_WITHDRAW,
+    FILL,
+    LENDING_INTEREST_ACCRUAL,
+    LIQUIDATE,
+    MATCH_ORDER,
+    PAY_INTEREST,
+    SUBTRACT_LIQUIDITY,
+    REPAY,
+    SUPPLY,
+    WITHDRAW,
+    ISOLATE_COLLATERAL,
+    ISOLATE_POSITION,
+    UNITE_POSITION,
+    COLLATERALIZE,
+    DE_COLLATERALIZE,
+    COUPON_PAYMENT,
+  ];
+
+  static TransactionKind? fromJson(dynamic value) => TransactionKindTypeTransformer().decode(value);
+
+  static List<TransactionKind> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <TransactionKind>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = TransactionKind.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
     }
-  }
-
-  static dynamic encode(TransactionKind data) {
-    return data.value;
+    return result.toList(growable: growable);
   }
 }
+
+/// Transformation class that can [encode] an instance of [TransactionKind] to String,
+/// and [decode] dynamic data back to [TransactionKind].
+class TransactionKindTypeTransformer {
+  factory TransactionKindTypeTransformer() => _instance ??= const TransactionKindTypeTransformer._();
+
+  const TransactionKindTypeTransformer._();
+
+  String encode(TransactionKind data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a TransactionKind.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  TransactionKind? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data) {
+        case r'ACCRUE_INTEREST': return TransactionKind.ACCRUE_INTEREST;
+        case r'ADD_LIQUIDITY': return TransactionKind.ADD_LIQUIDITY;
+        case r'BOND_MATURE': return TransactionKind.BOND_MATURE;
+        case r'CLAIM_INTEREST': return TransactionKind.CLAIM_INTEREST;
+        case r'CREDIT': return TransactionKind.CREDIT;
+        case r'DEBIT': return TransactionKind.DEBIT;
+        case r'EXTERNAL_DEPOSIT': return TransactionKind.EXTERNAL_DEPOSIT;
+        case r'EXTERNAL_WITHDRAW': return TransactionKind.EXTERNAL_WITHDRAW;
+        case r'FILL': return TransactionKind.FILL;
+        case r'LENDING_INTEREST_ACCRUAL': return TransactionKind.LENDING_INTEREST_ACCRUAL;
+        case r'LIQUIDATE': return TransactionKind.LIQUIDATE;
+        case r'MATCH_ORDER': return TransactionKind.MATCH_ORDER;
+        case r'PAY_INTEREST': return TransactionKind.PAY_INTEREST;
+        case r'SUBTRACT_LIQUIDITY': return TransactionKind.SUBTRACT_LIQUIDITY;
+        case r'REPAY': return TransactionKind.REPAY;
+        case r'SUPPLY': return TransactionKind.SUPPLY;
+        case r'WITHDRAW': return TransactionKind.WITHDRAW;
+        case r'ISOLATE_COLLATERAL': return TransactionKind.ISOLATE_COLLATERAL;
+        case r'ISOLATE_POSITION': return TransactionKind.ISOLATE_POSITION;
+        case r'UNITE_POSITION': return TransactionKind.UNITE_POSITION;
+        case r'COLLATERALIZE': return TransactionKind.COLLATERALIZE;
+        case r'DE-COLLATERALIZE': return TransactionKind.DE_COLLATERALIZE;
+        case r'COUPON_PAYMENT': return TransactionKind.COUPON_PAYMENT;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [TransactionKindTypeTransformer] instance.
+  static TransactionKindTypeTransformer? _instance;
+}
+

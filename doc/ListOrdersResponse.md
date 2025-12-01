@@ -1,0 +1,17 @@
+# dora_client.model.ListOrdersResponse
+
+## Load the model package
+```dart
+import 'package:dora_client/api.dart';
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**data** | [**List<Order>**](Order.md) |  | [optional] [default to const []]
+**error** | **String** | The error message. Present for error (non-2xx) responses. | [optional] 
+**metadata** | [**Metadata**](Metadata.md) |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

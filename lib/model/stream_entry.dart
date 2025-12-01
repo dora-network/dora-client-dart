@@ -1,40 +1,137 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class StreamEntry {
-  /* The data being streamed */
-  Object val = null;
-/* The timestamp when the data was created */
-  DateTime time = null;
+  /// Returns a new [StreamEntry] instance.
+  StreamEntry({
+    this.val,
+    this.time,
+  });
 
-  StreamEntry();
+  /// The data being streamed
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Object? val;
+
+  /// The timestamp when the data was created
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? time;
 
   @override
-  String toString() {
-    return 'StreamEntry[val=$val, time=$time, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is StreamEntry &&
+    other.val == val &&
+    other.time == time;
 
-  StreamEntry.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    val = new Object.fromJson(json['Val']);
-    time = json['Time'] == null ? null : DateTime.parse(json['Time']);
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (val == null ? 0 : val!.hashCode) +
+    (time == null ? 0 : time!.hashCode);
+
+  @override
+  String toString() => 'StreamEntry[val=$val, time=$time]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'Val': val,
-      'Time': time == null ? '' : time.toUtc().toIso8601String()
-     };
+    final json = <String, dynamic>{};
+    if (this.val != null) {
+      json[r'Val'] = this.val;
+    } else {
+      json[r'Val'] = null;
+    }
+    if (this.time != null) {
+      json[r'Time'] = this.time!.toUtc().toIso8601String();
+    } else {
+      json[r'Time'] = null;
+    }
+    return json;
   }
 
-  static List<StreamEntry> listFromJson(List<dynamic> json) {
-    return json == null ? new List<StreamEntry>() : json.map((value) => new StreamEntry.fromJson(value)).toList();
+  /// Returns a new [StreamEntry] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static StreamEntry? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "StreamEntry[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "StreamEntry[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return StreamEntry(
+        val: mapValueOfType<Object>(json, r'Val'),
+        time: mapDateTime(json, r'Time', r''),
+      );
+    }
+    return null;
   }
 
-  static Map<String, StreamEntry> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, StreamEntry>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new StreamEntry.fromJson(value));
+  static List<StreamEntry> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <StreamEntry>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = StreamEntry.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, StreamEntry> mapFromJson(dynamic json) {
+    final map = <String, StreamEntry>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = StreamEntry.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of StreamEntry-objects as value to a dart map
+  static Map<String, List<StreamEntry>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<StreamEntry>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = StreamEntry.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
+

@@ -1,48 +1,173 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class OrderBookBalance {
-  /* The ID of the order book. */
-  String orderBookId = null;
-/* The quantity of the base asset. */
-  double baseQuantity = null;
-/* The quantity of the quote asset. */
-  double quoteQuantity = null;
-/* The quantity of pool shares. */
-  double sharesQuantity = null;
+  /// Returns a new [OrderBookBalance] instance.
+  OrderBookBalance({
+    this.orderBookId,
+    this.baseQuantity,
+    this.quoteQuantity,
+    this.sharesQuantity,
+  });
 
-  OrderBookBalance();
+  /// The ID of the order book.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? orderBookId;
+
+  /// The quantity of the base asset.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? baseQuantity;
+
+  /// The quantity of the quote asset.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? quoteQuantity;
+
+  /// The quantity of pool shares.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? sharesQuantity;
 
   @override
-  String toString() {
-    return 'OrderBookBalance[orderBookId=$orderBookId, baseQuantity=$baseQuantity, quoteQuantity=$quoteQuantity, sharesQuantity=$sharesQuantity, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is OrderBookBalance &&
+    other.orderBookId == orderBookId &&
+    other.baseQuantity == baseQuantity &&
+    other.quoteQuantity == quoteQuantity &&
+    other.sharesQuantity == sharesQuantity;
 
-  OrderBookBalance.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    orderBookId = json['order_book_id'];
-    baseQuantity = json['base_quantity'];
-    quoteQuantity = json['quote_quantity'];
-    sharesQuantity = json['shares_quantity'];
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (orderBookId == null ? 0 : orderBookId!.hashCode) +
+    (baseQuantity == null ? 0 : baseQuantity!.hashCode) +
+    (quoteQuantity == null ? 0 : quoteQuantity!.hashCode) +
+    (sharesQuantity == null ? 0 : sharesQuantity!.hashCode);
+
+  @override
+  String toString() => 'OrderBookBalance[orderBookId=$orderBookId, baseQuantity=$baseQuantity, quoteQuantity=$quoteQuantity, sharesQuantity=$sharesQuantity]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'order_book_id': orderBookId,
-      'base_quantity': baseQuantity,
-      'quote_quantity': quoteQuantity,
-      'shares_quantity': sharesQuantity
-     };
+    final json = <String, dynamic>{};
+    if (this.orderBookId != null) {
+      json[r'order_book_id'] = this.orderBookId;
+    } else {
+      json[r'order_book_id'] = null;
+    }
+    if (this.baseQuantity != null) {
+      json[r'base_quantity'] = this.baseQuantity;
+    } else {
+      json[r'base_quantity'] = null;
+    }
+    if (this.quoteQuantity != null) {
+      json[r'quote_quantity'] = this.quoteQuantity;
+    } else {
+      json[r'quote_quantity'] = null;
+    }
+    if (this.sharesQuantity != null) {
+      json[r'shares_quantity'] = this.sharesQuantity;
+    } else {
+      json[r'shares_quantity'] = null;
+    }
+    return json;
   }
 
-  static List<OrderBookBalance> listFromJson(List<dynamic> json) {
-    return json == null ? new List<OrderBookBalance>() : json.map((value) => new OrderBookBalance.fromJson(value)).toList();
+  /// Returns a new [OrderBookBalance] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static OrderBookBalance? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "OrderBookBalance[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "OrderBookBalance[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return OrderBookBalance(
+        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
+        baseQuantity: mapValueOfType<double>(json, r'base_quantity'),
+        quoteQuantity: mapValueOfType<double>(json, r'quote_quantity'),
+        sharesQuantity: mapValueOfType<double>(json, r'shares_quantity'),
+      );
+    }
+    return null;
   }
 
-  static Map<String, OrderBookBalance> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, OrderBookBalance>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new OrderBookBalance.fromJson(value));
+  static List<OrderBookBalance> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <OrderBookBalance>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = OrderBookBalance.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, OrderBookBalance> mapFromJson(dynamic json) {
+    final map = <String, OrderBookBalance>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = OrderBookBalance.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of OrderBookBalance-objects as value to a dart map
+  static Map<String, List<OrderBookBalance>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<OrderBookBalance>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = OrderBookBalance.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
+

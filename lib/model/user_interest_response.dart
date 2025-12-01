@@ -1,44 +1,153 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class UserInterestResponse {
-  
-  UserInterest data = null;
-/* The error message. Present for error (non-2xx) responses. */
-  String error = null;
+  /// Returns a new [UserInterestResponse] instance.
+  UserInterestResponse({
+    this.data,
+    this.error,
+    this.metadata,
+  });
 
-  Metadata metadata = null;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UserInterest? data;
 
-  UserInterestResponse();
+  /// The error message. Present for error (non-2xx) responses.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? error;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Metadata? metadata;
 
   @override
-  String toString() {
-    return 'UserInterestResponse[data=$data, error=$error, metadata=$metadata, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is UserInterestResponse &&
+    other.data == data &&
+    other.error == error &&
+    other.metadata == metadata;
 
-  UserInterestResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    data = new UserInterest.fromJson(json['data']);
-    error = json['error'];
-    metadata = new Metadata.fromJson(json['metadata']);
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (data == null ? 0 : data!.hashCode) +
+    (error == null ? 0 : error!.hashCode) +
+    (metadata == null ? 0 : metadata!.hashCode);
+
+  @override
+  String toString() => 'UserInterestResponse[data=$data, error=$error, metadata=$metadata]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'data': data,
-      'error': error,
-      'metadata': metadata
-     };
+    final json = <String, dynamic>{};
+    if (this.data != null) {
+      json[r'data'] = this.data;
+    } else {
+      json[r'data'] = null;
+    }
+    if (this.error != null) {
+      json[r'error'] = this.error;
+    } else {
+      json[r'error'] = null;
+    }
+    if (this.metadata != null) {
+      json[r'metadata'] = this.metadata;
+    } else {
+      json[r'metadata'] = null;
+    }
+    return json;
   }
 
-  static List<UserInterestResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<UserInterestResponse>() : json.map((value) => new UserInterestResponse.fromJson(value)).toList();
+  /// Returns a new [UserInterestResponse] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static UserInterestResponse? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UserInterestResponse[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UserInterestResponse[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return UserInterestResponse(
+        data: UserInterest.fromJson(json[r'data']),
+        error: mapValueOfType<String>(json, r'error'),
+        metadata: Metadata.fromJson(json[r'metadata']),
+      );
+    }
+    return null;
   }
 
-  static Map<String, UserInterestResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, UserInterestResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new UserInterestResponse.fromJson(value));
+  static List<UserInterestResponse> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UserInterestResponse>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UserInterestResponse.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, UserInterestResponse> mapFromJson(dynamic json) {
+    final map = <String, UserInterestResponse>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UserInterestResponse.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of UserInterestResponse-objects as value to a dart map
+  static Map<String, List<UserInterestResponse>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UserInterestResponse>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = UserInterestResponse.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
+

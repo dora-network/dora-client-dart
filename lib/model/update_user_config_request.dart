@@ -1,40 +1,117 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class UpdateUserConfigRequest {
-  
-  UpdateFieldString photoUrl = null;
+  /// Returns a new [UpdateUserConfigRequest] instance.
+  UpdateUserConfigRequest({
+    required this.photoUrl,
+    required this.timezone,
+  });
 
-  UpdateFieldString timezone = null;
+  UpdateFieldString photoUrl;
 
-  UpdateUserConfigRequest();
+  UpdateFieldString timezone;
 
   @override
-  String toString() {
-    return 'UpdateUserConfigRequest[photoUrl=$photoUrl, timezone=$timezone, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is UpdateUserConfigRequest &&
+    other.photoUrl == photoUrl &&
+    other.timezone == timezone;
 
-  UpdateUserConfigRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    photoUrl = new UpdateFieldString.fromJson(json['photo_url']);
-    timezone = new UpdateFieldString.fromJson(json['timezone']);
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (photoUrl.hashCode) +
+    (timezone.hashCode);
+
+  @override
+  String toString() => 'UpdateUserConfigRequest[photoUrl=$photoUrl, timezone=$timezone]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'photo_url': photoUrl,
-      'timezone': timezone
-     };
+    final json = <String, dynamic>{};
+      json[r'photo_url'] = this.photoUrl;
+      json[r'timezone'] = this.timezone;
+    return json;
   }
 
-  static List<UpdateUserConfigRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<UpdateUserConfigRequest>() : json.map((value) => new UpdateUserConfigRequest.fromJson(value)).toList();
+  /// Returns a new [UpdateUserConfigRequest] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static UpdateUserConfigRequest? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UpdateUserConfigRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UpdateUserConfigRequest[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return UpdateUserConfigRequest(
+        photoUrl: UpdateFieldString.fromJson(json[r'photo_url'])!,
+        timezone: UpdateFieldString.fromJson(json[r'timezone'])!,
+      );
+    }
+    return null;
   }
 
-  static Map<String, UpdateUserConfigRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, UpdateUserConfigRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new UpdateUserConfigRequest.fromJson(value));
+  static List<UpdateUserConfigRequest> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UpdateUserConfigRequest>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = UpdateUserConfigRequest.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, UpdateUserConfigRequest> mapFromJson(dynamic json) {
+    final map = <String, UpdateUserConfigRequest>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = UpdateUserConfigRequest.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of UpdateUserConfigRequest-objects as value to a dart map
+  static Map<String, List<UpdateUserConfigRequest>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UpdateUserConfigRequest>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = UpdateUserConfigRequest.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'photo_url',
+    'timezone',
+  };
 }
+

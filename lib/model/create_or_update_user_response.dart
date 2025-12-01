@@ -1,36 +1,119 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class CreateOrUpdateUserResponse {
-  /* The ID of the created or updated user. */
-  String id = null;
+  /// Returns a new [CreateOrUpdateUserResponse] instance.
+  CreateOrUpdateUserResponse({
+    this.id,
+  });
 
-  CreateOrUpdateUserResponse();
+  /// The ID of the created or updated user.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? id;
 
   @override
-  String toString() {
-    return 'CreateOrUpdateUserResponse[id=$id, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is CreateOrUpdateUserResponse &&
+    other.id == id;
 
-  CreateOrUpdateUserResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    id = json['id'];
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (id == null ? 0 : id!.hashCode);
+
+  @override
+  String toString() => 'CreateOrUpdateUserResponse[id=$id]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id
-     };
+    final json = <String, dynamic>{};
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
+    }
+    return json;
   }
 
-  static List<CreateOrUpdateUserResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<CreateOrUpdateUserResponse>() : json.map((value) => new CreateOrUpdateUserResponse.fromJson(value)).toList();
+  /// Returns a new [CreateOrUpdateUserResponse] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static CreateOrUpdateUserResponse? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "CreateOrUpdateUserResponse[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "CreateOrUpdateUserResponse[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return CreateOrUpdateUserResponse(
+        id: mapValueOfType<String>(json, r'id'),
+      );
+    }
+    return null;
   }
 
-  static Map<String, CreateOrUpdateUserResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, CreateOrUpdateUserResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new CreateOrUpdateUserResponse.fromJson(value));
+  static List<CreateOrUpdateUserResponse> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <CreateOrUpdateUserResponse>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = CreateOrUpdateUserResponse.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, CreateOrUpdateUserResponse> mapFromJson(dynamic json) {
+    final map = <String, CreateOrUpdateUserResponse>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = CreateOrUpdateUserResponse.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of CreateOrUpdateUserResponse-objects as value to a dart map
+  static Map<String, List<CreateOrUpdateUserResponse>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<CreateOrUpdateUserResponse>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = CreateOrUpdateUserResponse.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
+

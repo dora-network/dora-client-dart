@@ -1,0 +1,2481 @@
+# dora_client.api.DefaultApi
+
+## Load the API package
+```dart
+import 'package:dora_client/api.dart';
+```
+
+All URIs are relative to *https://localhost:8084*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**cancelAllOpenOrders**](DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+[**cancelOrderById**](DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
+[**checkUserEmailExists**](DefaultApi.md#checkuseremailexists) | **GET** /v1/user/{email}/exists | Check whether a user email exists
+[**createNewIsolatedPosition**](DefaultApi.md#createnewisolatedposition) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
+[**createOrder**](DefaultApi.md#createorder) | **POST** /v1/orders | Create a new order
+[**deleteUser**](DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
+[**getAllAssetPrices**](DefaultApi.md#getallassetprices) | **GET** /v1/price | Get the current price of all assets
+[**getAssetById**](DefaultApi.md#getassetbyid) | **GET** /v1/assets/{asset_id} | Get asset by ID
+[**getAssetPrice**](DefaultApi.md#getassetprice) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
+[**getAssetsStream**](DefaultApi.md#getassetsstream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
+[**getCandleData**](DefaultApi.md#getcandledata) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
+[**getCouponPaymentsByAssetId**](DefaultApi.md#getcouponpaymentsbyassetid) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
+[**getL1Depth**](DefaultApi.md#getl1depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
+[**getL2Depth**](DefaultApi.md#getl2depth) | **GET** /v1/orderbooks/{order_book_id}/L2 | Get the aggregated price levels for a specific orderbook (L2 market depth)
+[**getL3Depth**](DefaultApi.md#getl3depth) | **GET** /v1/orderbooks/{order_book_id}/L3 | Get all open orders for a specific orderbook (L3 market depth)
+[**getLedgerBalancesSelf**](DefaultApi.md#getledgerbalancesself) | **GET** /v1/ledger/balances/self | Get your own available, locked, and borrowed assets
+[**getLedgerInterestSelf**](DefaultApi.md#getledgerinterestself) | **GET** /v1/ledger/interest/self | Get your own interest
+[**getLedgerModule**](DefaultApi.md#getledgermodule) | **GET** /v1/ledger/module | Get the entire module object, including unborrowed leverage assets and total leverage trackers
+[**getLedgerModuleByAsset**](DefaultApi.md#getledgermodulebyasset) | **GET** /v1/ledger/module/{asset_id} | Get the module object for a single asset ID
+[**getLedgerPositionsSelf**](DefaultApi.md#getledgerpositionsself) | **GET** /v1/ledger/positions/self | Get your own positions
+[**getLedgerValueSelf**](DefaultApi.md#getledgervalueself) | **GET** /v1/ledger/value/self | Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
+[**getOrderById**](DefaultApi.md#getorderbyid) | **GET** /v1/orders/{order_id} | Get order by ID
+[**getOrderbookById**](DefaultApi.md#getorderbookbyid) | **GET** /v1/orderbooks/{order_book_id} | Get orderbook by ID
+[**getOrderbookDepth**](DefaultApi.md#getorderbookdepth) | **GET** /v1/orderbooks/{order_book_id}/depth | Get the aggregated price levels for a specific orderbook (L2 market depth)
+[**getOrderbookOrders**](DefaultApi.md#getorderbookorders) | **GET** /v1/orderbooks/{order_book_id}/orders | Get all open orders for a specific orderbook (L3 market depth)
+[**getOrderbookSummary**](DefaultApi.md#getorderbooksummary) | **GET** /v1/orderbooks/{order_book_id}/summary | Get summary of an orderbook
+[**getOrderbookTop**](DefaultApi.md#getorderbooktop) | **GET** /v1/orderbooks/{order_book_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
+[**getPoolPrice**](DefaultApi.md#getpoolprice) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
+[**getTradeById**](DefaultApi.md#gettradebyid) | **GET** /v1/trades/{trade_id} | Get a trade by ID
+[**getTrades**](DefaultApi.md#gettrades) | **GET** /v1/trades | Get a filtered, paginated list of trades
+[**getTransactionById**](DefaultApi.md#gettransactionbyid) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
+[**getTransactions**](DefaultApi.md#gettransactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
+[**getUserById**](DefaultApi.md#getuserbyid) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
+[**getUserLedgerStream**](DefaultApi.md#getuserledgerstream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
+[**getUserOrderUpdatesStream**](DefaultApi.md#getuserorderupdatesstream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
+[**getUserOrdersUpdatesStreamAll**](DefaultApi.md#getuserordersupdatesstreamall) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
+[**getUserSelf**](DefaultApi.md#getuserself) | **GET** /v1/user/self | Get user details for the authenticated user
+[**getUserTransactionsStream**](DefaultApi.md#getusertransactionsstream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
+[**leverageIsolateCollateral**](DefaultApi.md#leverageisolatecollateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user's global collateral
+[**leverageSupply**](DefaultApi.md#leveragesupply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
+[**leverageUnite**](DefaultApi.md#leverageunite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
+[**leverageWithdraw**](DefaultApi.md#leveragewithdraw) | **POST** /v1/leverage/withdraw | Withdraw leverage for a specific asset
+[**liquidityAdd**](DefaultApi.md#liquidityadd) | **POST** /v1/liquidity/pool/{pool_id}/add | Add liquidity to a pool
+[**liquiditySubtract**](DefaultApi.md#liquiditysubtract) | **POST** /v1/liquidity/pool/{pool_id}/remove | Subtract liquidity from a pool
+[**listAssets**](DefaultApi.md#listassets) | **GET** /v1/assets | List assets
+[**listOrderBooks**](DefaultApi.md#listorderbooks) | **GET** /v1/orderbooks | List order books
+[**listOrders**](DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
+[**streamAssetPrices**](DefaultApi.md#streamassetprices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
+[**streamCandleData**](DefaultApi.md#streamcandledata) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
+[**streamOrderBookBalances**](DefaultApi.md#streamorderbookbalances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
+[**streamOrderbookOpenOrders**](DefaultApi.md#streamorderbookopenorders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
+[**streamTrades**](DefaultApi.md#streamtrades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+[**transferAvailableBalances**](DefaultApi.md#transferavailablebalances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user's accounts (e.g. global to isolated position)
+[**updateUserConfig**](DefaultApi.md#updateuserconfig) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
+[**updateUserConfigSelf**](DefaultApi.md#updateuserconfigself) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
+[**validateSubmitOrder**](DefaultApi.md#validatesubmitorder) | **POST** /v1/orders/validate | Validate submit order request data
+[**verifyUser**](DefaultApi.md#verifyuser) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
+
+
+# **cancelAllOpenOrders**
+> ListOrdersResponse cancelAllOpenOrders(orderBookId, userId, orderKind)
+
+Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = orderBookId_example; // String | 
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final orderKind = ; // OrderKind | 
+
+try {
+    final result = api_instance.cancelAllOpenOrders(orderBookId, userId, orderKind);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->cancelAllOpenOrders: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | [optional] 
+ **userId** | **String**|  | [optional] 
+ **orderKind** | [**OrderKind**](.md)|  | [optional] 
+
+### Return type
+
+[**ListOrdersResponse**](ListOrdersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **cancelOrderById**
+> CancelOrderResponse cancelOrderById(orderId)
+
+Cancel an order by ID
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.cancelOrderById(orderId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->cancelOrderById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**|  | 
+
+### Return type
+
+[**CancelOrderResponse**](CancelOrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **checkUserEmailExists**
+> bool checkUserEmailExists(email)
+
+Check whether a user email exists
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final email = email_example; // String | 
+
+try {
+    final result = api_instance.checkUserEmailExists(email);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->checkUserEmailExists: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **String**|  | 
+
+### Return type
+
+**bool**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createNewIsolatedPosition**
+> NewIsolatedPositionResponse createNewIsolatedPosition(newIsolatedPositionRequest)
+
+Create a new isolated position for a user transferring available assets into the position
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final newIsolatedPositionRequest = NewIsolatedPositionRequest(); // NewIsolatedPositionRequest | 
+
+try {
+    final result = api_instance.createNewIsolatedPosition(newIsolatedPositionRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->createNewIsolatedPosition: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **newIsolatedPositionRequest** | [**NewIsolatedPositionRequest**](NewIsolatedPositionRequest.md)|  | 
+
+### Return type
+
+[**NewIsolatedPositionResponse**](NewIsolatedPositionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createOrder**
+> CreateOrderResponse createOrder(createOrderRequest)
+
+Create a new order
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final createOrderRequest = CreateOrderRequest(); // CreateOrderRequest | 
+
+try {
+    final result = api_instance.createOrder(createOrderRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->createOrder: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createOrderRequest** | [**CreateOrderRequest**](CreateOrderRequest.md)|  | 
+
+### Return type
+
+[**CreateOrderResponse**](CreateOrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteUser**
+> UserDeletedResponse deleteUser(userId)
+
+Delete user by ID
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.deleteUser(userId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->deleteUser: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+
+### Return type
+
+[**UserDeletedResponse**](UserDeletedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAllAssetPrices**
+> ListAssetPriceResponse getAllAssetPrices()
+
+Get the current price of all assets
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+
+try {
+    final result = api_instance.getAllAssetPrices();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getAllAssetPrices: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListAssetPriceResponse**](ListAssetPriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAssetById**
+> GetAssetByIDResponse getAssetById(assetId)
+
+Get asset by ID
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final assetId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getAssetById(assetId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getAssetById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetId** | **String**|  | 
+
+### Return type
+
+[**GetAssetByIDResponse**](GetAssetByIDResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAssetPrice**
+> GetAssetPriceResponse getAssetPrice(assetId)
+
+Get the current price of an asset
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final assetId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getAssetPrice(assetId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getAssetPrice: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetId** | **String**|  | 
+
+### Return type
+
+[**GetAssetPriceResponse**](GetAssetPriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAssetsStream**
+> List<StreamAssetsEntry> getAssetsStream(since, until)
+
+Get all inserts or updates for assets
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final since = 2013-10-20T19:20:30+01:00; // DateTime | 
+final until = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final result = api_instance.getAssetsStream(since, until);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getAssetsStream: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **since** | **DateTime**|  | [optional] 
+ **until** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**List<StreamAssetsEntry>**](StreamAssetsEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getCandleData**
+> ListCandlesResponse getCandleData(orderBookId, start, end, resolution)
+
+Get candlestick data for an orderbook
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = orderBookId_example; // String | 
+final start = 2013-10-20T19:20:30+01:00; // DateTime | 
+final end = 2013-10-20T19:20:30+01:00; // DateTime | 
+final resolution = ; // CandleResolution | 
+
+try {
+    final result = api_instance.getCandleData(orderBookId, start, end, resolution);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getCandleData: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+ **start** | **DateTime**|  | [optional] 
+ **end** | **DateTime**|  | [optional] 
+ **resolution** | [**CandleResolution**](.md)|  | [optional] 
+
+### Return type
+
+[**ListCandlesResponse**](ListCandlesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getCouponPaymentsByAssetId**
+> ListCouponPaymentsResponse getCouponPaymentsByAssetId(assetId)
+
+Get coupon payments for a bond asset
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final assetId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getCouponPaymentsByAssetId(assetId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getCouponPaymentsByAssetId: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetId** | **String**|  | 
+
+### Return type
+
+[**ListCouponPaymentsResponse**](ListCouponPaymentsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getL1Depth**
+> GetTopOfBookResponse getL1Depth(orderBookId)
+
+Get the top price levels for a specific orderbook (L1 market depth)
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getL1Depth(orderBookId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getL1Depth: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+
+### Return type
+
+[**GetTopOfBookResponse**](GetTopOfBookResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getL2Depth**
+> ListOrderBookDepthResponse getL2Depth(orderBookId)
+
+Get the aggregated price levels for a specific orderbook (L2 market depth)
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getL2Depth(orderBookId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getL2Depth: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+
+### Return type
+
+[**ListOrderBookDepthResponse**](ListOrderBookDepthResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getL3Depth**
+> ListOrdersResponse getL3Depth(orderBookId)
+
+Get all open orders for a specific orderbook (L3 market depth)
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getL3Depth(orderBookId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getL3Depth: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+
+### Return type
+
+[**ListOrdersResponse**](ListOrdersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getLedgerBalancesSelf**
+> UserBalanceResponse getLedgerBalancesSelf()
+
+Get your own available, locked, and borrowed assets
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+
+try {
+    final result = api_instance.getLedgerBalancesSelf();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getLedgerBalancesSelf: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UserBalanceResponse**](UserBalanceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getLedgerInterestSelf**
+> UserInterestResponse getLedgerInterestSelf()
+
+Get your own interest
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+
+try {
+    final result = api_instance.getLedgerInterestSelf();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getLedgerInterestSelf: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UserInterestResponse**](UserInterestResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getLedgerModule**
+> LedgerModuleResponse getLedgerModule()
+
+Get the entire module object, including unborrowed leverage assets and total leverage trackers
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+
+try {
+    final result = api_instance.getLedgerModule();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getLedgerModule: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**LedgerModuleResponse**](LedgerModuleResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getLedgerModuleByAsset**
+> LedgerModuleByAssetResponse getLedgerModuleByAsset(assetId)
+
+Get the module object for a single asset ID
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final assetId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getLedgerModuleByAsset(assetId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getLedgerModuleByAsset: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetId** | **String**|  | 
+
+### Return type
+
+[**LedgerModuleByAssetResponse**](LedgerModuleByAssetResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getLedgerPositionsSelf**
+> UserPositionResponse getLedgerPositionsSelf()
+
+Get your own positions
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+
+try {
+    final result = api_instance.getLedgerPositionsSelf();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getLedgerPositionsSelf: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UserPositionResponse**](UserPositionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getLedgerValueSelf**
+> UserValueResponse getLedgerValueSelf()
+
+Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+
+try {
+    final result = api_instance.getLedgerValueSelf();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getLedgerValueSelf: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UserValueResponse**](UserValueResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getOrderById**
+> GetOrderResponse getOrderById(orderId)
+
+Get order by ID
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderById(orderId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getOrderById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderId** | **String**|  | 
+
+### Return type
+
+[**GetOrderResponse**](GetOrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getOrderbookById**
+> GetOrderBookResponse getOrderbookById(orderBookId)
+
+Get orderbook by ID
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderbookById(orderBookId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getOrderbookById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+
+### Return type
+
+[**GetOrderBookResponse**](GetOrderBookResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getOrderbookDepth**
+> ListOrderBookDepthResponse getOrderbookDepth(orderBookId)
+
+Get the aggregated price levels for a specific orderbook (L2 market depth)
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderbookDepth(orderBookId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getOrderbookDepth: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+
+### Return type
+
+[**ListOrderBookDepthResponse**](ListOrderBookDepthResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getOrderbookOrders**
+> ListOrdersResponse getOrderbookOrders(orderBookId)
+
+Get all open orders for a specific orderbook (L3 market depth)
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderbookOrders(orderBookId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getOrderbookOrders: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+
+### Return type
+
+[**ListOrdersResponse**](ListOrdersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getOrderbookSummary**
+> GetOrderBookSummaryResponse getOrderbookSummary(orderBookId)
+
+Get summary of an orderbook
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderbookSummary(orderBookId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getOrderbookSummary: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+
+### Return type
+
+[**GetOrderBookSummaryResponse**](GetOrderBookSummaryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getOrderbookTop**
+> GetTopOfBookResponse getOrderbookTop(orderBookId)
+
+Get the top price levels for a specific orderbook (L1 market depth)
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getOrderbookTop(orderBookId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getOrderbookTop: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+
+### Return type
+
+[**GetTopOfBookResponse**](GetTopOfBookResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getPoolPrice**
+> GetPoolPriceResponse getPoolPrice(poolId)
+
+Get the current price of a pool
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final poolId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getPoolPrice(poolId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getPoolPrice: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **poolId** | **String**|  | 
+
+### Return type
+
+[**GetPoolPriceResponse**](GetPoolPriceResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getTradeById**
+> TradeResponse getTradeById(tradeId)
+
+Get a trade by ID
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final tradeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getTradeById(tradeId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getTradeById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tradeId** | **String**|  | 
+
+### Return type
+
+[**TradeResponse**](TradeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getTrades**
+> ListTradeResponse getTrades(orderBookIds, userIds, start, end, page, limit)
+
+Get a filtered, paginated list of trades
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookIds = []; // List<String> | 
+final userIds = []; // List<String> | 
+final start = 2013-10-20T19:20:30+01:00; // DateTime | 
+final end = 2013-10-20T19:20:30+01:00; // DateTime | 
+final page = 56; // int | 
+final limit = 56; // int | 
+
+try {
+    final result = api_instance.getTrades(orderBookIds, userIds, start, end, page, limit);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getTrades: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookIds** | [**List<String>**](String.md)|  | [optional] [default to const []]
+ **userIds** | [**List<String>**](String.md)|  | [optional] [default to const []]
+ **start** | **DateTime**|  | [optional] 
+ **end** | **DateTime**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **limit** | **int**|  | [optional] [default to 100]
+
+### Return type
+
+[**ListTradeResponse**](ListTradeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getTransactionById**
+> GetTransactionResponse getTransactionById(transactionId)
+
+Get a transaction by ID
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final transactionId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getTransactionById(transactionId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getTransactionById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactionId** | **String**|  | 
+
+### Return type
+
+[**GetTransactionResponse**](GetTransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getTransactions**
+> ListTransactionsResponse getTransactions(pools, userIds, txKinds, start, end, page, limit)
+
+Get a filtered, paginated list of transactions
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final pools = []; // List<String> | 
+final userIds = []; // List<String> | 
+final txKinds = []; // List<TransactionKind> | 
+final start = 2013-10-20T19:20:30+01:00; // DateTime | 
+final end = 2013-10-20T19:20:30+01:00; // DateTime | 
+final page = 56; // int | 
+final limit = 56; // int | 
+
+try {
+    final result = api_instance.getTransactions(pools, userIds, txKinds, start, end, page, limit);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getTransactions: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pools** | [**List<String>**](String.md)|  | [optional] [default to const []]
+ **userIds** | [**List<String>**](String.md)|  | [optional] [default to const []]
+ **txKinds** | [**List<TransactionKind>**](TransactionKind.md)|  | [optional] [default to const []]
+ **start** | **DateTime**|  | [optional] 
+ **end** | **DateTime**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **limit** | **int**|  | [optional] [default to 100]
+
+### Return type
+
+[**ListTransactionsResponse**](ListTransactionsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUserById**
+> GetUserResponse getUserById(userId)
+
+Get user by ID (admin only)
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getUserById(userId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getUserById: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+
+### Return type
+
+[**GetUserResponse**](GetUserResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUserLedgerStream**
+> List<StreamPositionsEntry> getUserLedgerStream(userId)
+
+Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getUserLedgerStream(userId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getUserLedgerStream: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+
+### Return type
+
+[**List<StreamPositionsEntry>**](StreamPositionsEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUserOrderUpdatesStream**
+> List<StreamOrderUpdatesEntry> getUserOrderUpdatesStream(userId, orderBookId, since)
+
+Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final since = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final result = api_instance.getUserOrderUpdatesStream(userId, orderBookId, since);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getUserOrderUpdatesStream: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+ **orderBookId** | **String**|  | 
+ **since** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**List<StreamOrderUpdatesEntry>**](StreamOrderUpdatesEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUserOrdersUpdatesStreamAll**
+> List<StreamOrderUpdatesEntry> getUserOrdersUpdatesStreamAll(userId, since)
+
+Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final since = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final result = api_instance.getUserOrdersUpdatesStreamAll(userId, since);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getUserOrdersUpdatesStreamAll: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+ **since** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**List<StreamOrderUpdatesEntry>**](StreamOrderUpdatesEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUserSelf**
+> GetUserResponse getUserSelf()
+
+Get user details for the authenticated user
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+
+try {
+    final result = api_instance.getUserSelf();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getUserSelf: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetUserResponse**](GetUserResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUserTransactionsStream**
+> List<StreamTransactionsEntry> getUserTransactionsStream(userId, since)
+
+Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final since = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final result = api_instance.getUserTransactionsStream(userId, since);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getUserTransactionsStream: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+ **since** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**List<StreamTransactionsEntry>**](StreamTransactionsEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leverageIsolateCollateral**
+> IsolateCollateralResponse leverageIsolateCollateral(isolateCollateralRequest)
+
+Create an isolated position by transferring collateral to the position from the user's global collateral
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final isolateCollateralRequest = IsolateCollateralRequest(); // IsolateCollateralRequest | 
+
+try {
+    final result = api_instance.leverageIsolateCollateral(isolateCollateralRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->leverageIsolateCollateral: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **isolateCollateralRequest** | [**IsolateCollateralRequest**](IsolateCollateralRequest.md)|  | 
+
+### Return type
+
+[**IsolateCollateralResponse**](IsolateCollateralResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leverageSupply**
+> SupplyResponse leverageSupply(supplyRequest)
+
+Supply leverage for a specific asset
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final supplyRequest = SupplyRequest(); // SupplyRequest | 
+
+try {
+    final result = api_instance.leverageSupply(supplyRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->leverageSupply: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **supplyRequest** | [**SupplyRequest**](SupplyRequest.md)|  | 
+
+### Return type
+
+[**SupplyResponse**](SupplyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leverageUnite**
+> UnitePositionResponse leverageUnite(unitePositionRequest)
+
+Combines all isolated positions into a single global position
+
+Combines all isolated positions into a single global position
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final unitePositionRequest = UnitePositionRequest(); // UnitePositionRequest | 
+
+try {
+    final result = api_instance.leverageUnite(unitePositionRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->leverageUnite: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **unitePositionRequest** | [**UnitePositionRequest**](UnitePositionRequest.md)|  | 
+
+### Return type
+
+[**UnitePositionResponse**](UnitePositionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leverageWithdraw**
+> WithdrawResponse leverageWithdraw(withdrawRequest)
+
+Withdraw leverage for a specific asset
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final withdrawRequest = WithdrawRequest(); // WithdrawRequest | 
+
+try {
+    final result = api_instance.leverageWithdraw(withdrawRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->leverageWithdraw: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **withdrawRequest** | [**WithdrawRequest**](WithdrawRequest.md)|  | 
+
+### Return type
+
+[**WithdrawResponse**](WithdrawResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **liquidityAdd**
+> LiquidityResponse liquidityAdd(poolId, liquidityRequest)
+
+Add liquidity to a pool
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final poolId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final liquidityRequest = LiquidityRequest(); // LiquidityRequest | 
+
+try {
+    final result = api_instance.liquidityAdd(poolId, liquidityRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->liquidityAdd: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **poolId** | **String**|  | 
+ **liquidityRequest** | [**LiquidityRequest**](LiquidityRequest.md)|  | 
+
+### Return type
+
+[**LiquidityResponse**](LiquidityResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **liquiditySubtract**
+> LiquidityResponse liquiditySubtract(poolId, liquidityRequest)
+
+Subtract liquidity from a pool
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final poolId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final liquidityRequest = LiquidityRequest(); // LiquidityRequest | 
+
+try {
+    final result = api_instance.liquiditySubtract(poolId, liquidityRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->liquiditySubtract: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **poolId** | **String**|  | 
+ **liquidityRequest** | [**LiquidityRequest**](LiquidityRequest.md)|  | 
+
+### Return type
+
+[**LiquidityResponse**](LiquidityResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listAssets**
+> ListAssetsResponse listAssets(createdAfter, createdBefore, assetKind, canAddLiquidity, canDirectBorrow, canOnboard, canTrade, canVirtualBorrow, page, limit)
+
+List assets
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final createdAfter = 2013-10-20T19:20:30+01:00; // DateTime | 
+final createdBefore = 2013-10-20T19:20:30+01:00; // DateTime | 
+final assetKind = ; // AssetKind | Asset kind (BOND, CURRENCY, INTEREST, POOL_SHARE)
+final canAddLiquidity = true; // bool | 
+final canDirectBorrow = true; // bool | 
+final canOnboard = true; // bool | 
+final canTrade = true; // bool | 
+final canVirtualBorrow = true; // bool | 
+final page = 56; // int | 
+final limit = 56; // int | 
+
+try {
+    final result = api_instance.listAssets(createdAfter, createdBefore, assetKind, canAddLiquidity, canDirectBorrow, canOnboard, canTrade, canVirtualBorrow, page, limit);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listAssets: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createdAfter** | **DateTime**|  | [optional] 
+ **createdBefore** | **DateTime**|  | [optional] 
+ **assetKind** | [**AssetKind**](.md)| Asset kind (BOND, CURRENCY, INTEREST, POOL_SHARE) | [optional] 
+ **canAddLiquidity** | **bool**|  | [optional] 
+ **canDirectBorrow** | **bool**|  | [optional] 
+ **canOnboard** | **bool**|  | [optional] 
+ **canTrade** | **bool**|  | [optional] 
+ **canVirtualBorrow** | **bool**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **limit** | **int**|  | [optional] [default to 100]
+
+### Return type
+
+[**ListAssetsResponse**](ListAssetsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listOrderBooks**
+> ListOrderBooksResponse listOrderBooks(status, baseAssetId, quoteAssetId, page, limit)
+
+List order books
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final status = ; // OrderBookStatus | 
+final baseAssetId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final quoteAssetId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final page = 56; // int | 
+final limit = 56; // int | 
+
+try {
+    final result = api_instance.listOrderBooks(status, baseAssetId, quoteAssetId, page, limit);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listOrderBooks: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | [**OrderBookStatus**](.md)|  | [optional] 
+ **baseAssetId** | **String**|  | [optional] 
+ **quoteAssetId** | **String**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **limit** | **int**|  | [optional] [default to 100]
+
+### Return type
+
+[**ListOrderBooksResponse**](ListOrderBooksResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listOrders**
+> ListOrdersResponse listOrders(orderBookId, kind, status, side, from, to, page, limit)
+
+List all orders
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = []; // List<String> | 
+final kind = []; // List<OrderKind> | 
+final status = []; // List<OrderStatus> | 
+final side = ; // Side | 
+final from = 2013-10-20T19:20:30+01:00; // DateTime | 
+final to = 2013-10-20T19:20:30+01:00; // DateTime | 
+final page = 56; // int | 
+final limit = 56; // int | 
+
+try {
+    final result = api_instance.listOrders(orderBookId, kind, status, side, from, to, page, limit);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listOrders: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | [**List<String>**](String.md)|  | [optional] [default to const []]
+ **kind** | [**List<OrderKind>**](OrderKind.md)|  | [optional] [default to const []]
+ **status** | [**List<OrderStatus>**](OrderStatus.md)|  | [optional] [default to const []]
+ **side** | [**Side**](.md)|  | [optional] 
+ **from** | **DateTime**|  | [optional] 
+ **to** | **DateTime**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **limit** | **int**|  | [optional] [default to 100]
+
+### Return type
+
+[**ListOrdersResponse**](ListOrdersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **streamAssetPrices**
+> Map<String, StreamAssetPricesResponseValue> streamAssetPrices(since)
+
+Stream real-time asset prices as map objects
+
+Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final since = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final result = api_instance.streamAssetPrices(since);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->streamAssetPrices: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **since** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**Map<String, StreamAssetPricesResponseValue>**](StreamAssetPricesResponseValue.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **streamCandleData**
+> List<StreamCandlesEntry> streamCandleData(orderBookId, since, resolution)
+
+Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = orderBookId_example; // String | 
+final since = 2013-10-20T19:20:30+01:00; // DateTime | 
+final resolution = ; // CandleResolution | 
+
+try {
+    final result = api_instance.streamCandleData(orderBookId, since, resolution);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->streamCandleData: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+ **since** | **DateTime**|  | [optional] 
+ **resolution** | [**CandleResolution**](.md)|  | [optional] 
+
+### Return type
+
+[**List<StreamCandlesEntry>**](StreamCandlesEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **streamOrderBookBalances**
+> List<StreamOrderBookBalanceEntry> streamOrderBookBalances(orderBookId, since)
+
+Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final since = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final result = api_instance.streamOrderBookBalances(orderBookId, since);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->streamOrderBookBalances: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+ **since** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**List<StreamOrderBookBalanceEntry>**](StreamOrderBookBalanceEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **streamOrderbookOpenOrders**
+> LiveOrderbook streamOrderbookOpenOrders(orderBookId, since)
+
+Get a snapshot of open orders in an order book and open a stream for real-time updates
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final since = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final result = api_instance.streamOrderbookOpenOrders(orderBookId, since);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->streamOrderbookOpenOrders: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+ **since** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**LiveOrderbook**](LiveOrderbook.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **streamTrades**
+> List<StreamTradesEntry> streamTrades(orderBookId, since)
+
+Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final orderBookId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final since = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final result = api_instance.streamTrades(orderBookId, since);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->streamTrades: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **orderBookId** | **String**|  | 
+ **since** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**List<StreamTradesEntry>**](StreamTradesEntry.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **transferAvailableBalances**
+> TransferBalancesResponse transferAvailableBalances(transferBalancesRequest)
+
+Transfer available balance between a user's accounts (e.g. global to isolated position)
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final transferBalancesRequest = TransferBalancesRequest(); // TransferBalancesRequest | 
+
+try {
+    final result = api_instance.transferAvailableBalances(transferBalancesRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->transferAvailableBalances: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transferBalancesRequest** | [**TransferBalancesRequest**](TransferBalancesRequest.md)|  | 
+
+### Return type
+
+[**TransferBalancesResponse**](TransferBalancesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateUserConfig**
+> UserUpdatedResponse updateUserConfig(userId, updateUserConfigRequest)
+
+Update user configuration by ID
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final updateUserConfigRequest = UpdateUserConfigRequest(); // UpdateUserConfigRequest | 
+
+try {
+    final result = api_instance.updateUserConfig(userId, updateUserConfigRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->updateUserConfig: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+ **updateUserConfigRequest** | [**UpdateUserConfigRequest**](UpdateUserConfigRequest.md)|  | 
+
+### Return type
+
+[**UserUpdatedResponse**](UserUpdatedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateUserConfigSelf**
+> UserUpdatedResponse updateUserConfigSelf(updateUserConfigRequest)
+
+Update user configuration for the authenticated user
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final updateUserConfigRequest = UpdateUserConfigRequest(); // UpdateUserConfigRequest | 
+
+try {
+    final result = api_instance.updateUserConfigSelf(updateUserConfigRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->updateUserConfigSelf: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **updateUserConfigRequest** | [**UpdateUserConfigRequest**](UpdateUserConfigRequest.md)|  | 
+
+### Return type
+
+[**UserUpdatedResponse**](UserUpdatedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **validateSubmitOrder**
+> ValidateSubmitOrderResponse validateSubmitOrder(validateSubmitOrderRequest)
+
+Validate submit order request data
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final validateSubmitOrderRequest = ValidateSubmitOrderRequest(); // ValidateSubmitOrderRequest | 
+
+try {
+    final result = api_instance.validateSubmitOrder(validateSubmitOrderRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->validateSubmitOrder: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **validateSubmitOrderRequest** | [**ValidateSubmitOrderRequest**](ValidateSubmitOrderRequest.md)|  | 
+
+### Return type
+
+[**ValidateSubmitOrderResponse**](ValidateSubmitOrderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **verifyUser**
+> UserUpdatedResponse verifyUser(userId)
+
+Verify a user by ID
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.verifyUser(userId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->verifyUser: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+
+### Return type
+
+[**UserUpdatedResponse**](UserUpdatedResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

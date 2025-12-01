@@ -1,44 +1,125 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class IsolateCollateralRequest {
-  
-  String globalPositionId = null;
+  /// Returns a new [IsolateCollateralRequest] instance.
+  IsolateCollateralRequest({
+    required this.globalPositionId,
+    required this.assetId,
+    required this.quantity,
+  });
 
-  String assetId = null;
+  String globalPositionId;
 
-  String quantity = null;
+  String assetId;
 
-  IsolateCollateralRequest();
+  double quantity;
 
   @override
-  String toString() {
-    return 'IsolateCollateralRequest[globalPositionId=$globalPositionId, assetId=$assetId, quantity=$quantity, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is IsolateCollateralRequest &&
+    other.globalPositionId == globalPositionId &&
+    other.assetId == assetId &&
+    other.quantity == quantity;
 
-  IsolateCollateralRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    globalPositionId = json['global_position_id'];
-    assetId = json['asset_id'];
-    quantity = json['quantity'];
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (globalPositionId.hashCode) +
+    (assetId.hashCode) +
+    (quantity.hashCode);
+
+  @override
+  String toString() => 'IsolateCollateralRequest[globalPositionId=$globalPositionId, assetId=$assetId, quantity=$quantity]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'global_position_id': globalPositionId,
-      'asset_id': assetId,
-      'quantity': quantity
-     };
+    final json = <String, dynamic>{};
+      json[r'global_position_id'] = this.globalPositionId;
+      json[r'asset_id'] = this.assetId;
+      json[r'quantity'] = this.quantity;
+    return json;
   }
 
-  static List<IsolateCollateralRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<IsolateCollateralRequest>() : json.map((value) => new IsolateCollateralRequest.fromJson(value)).toList();
+  /// Returns a new [IsolateCollateralRequest] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static IsolateCollateralRequest? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "IsolateCollateralRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "IsolateCollateralRequest[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return IsolateCollateralRequest(
+        globalPositionId: mapValueOfType<String>(json, r'global_position_id')!,
+        assetId: mapValueOfType<String>(json, r'asset_id')!,
+        quantity: mapValueOfType<double>(json, r'quantity')!,
+      );
+    }
+    return null;
   }
 
-  static Map<String, IsolateCollateralRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, IsolateCollateralRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new IsolateCollateralRequest.fromJson(value));
+  static List<IsolateCollateralRequest> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <IsolateCollateralRequest>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = IsolateCollateralRequest.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, IsolateCollateralRequest> mapFromJson(dynamic json) {
+    final map = <String, IsolateCollateralRequest>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = IsolateCollateralRequest.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of IsolateCollateralRequest-objects as value to a dart map
+  static Map<String, List<IsolateCollateralRequest>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<IsolateCollateralRequest>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = IsolateCollateralRequest.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'global_position_id',
+    'asset_id',
+    'quantity',
+  };
 }
+

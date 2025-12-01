@@ -1,72 +1,209 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class CreateOrderRequest {
-  
-  String quantity = null;
+  /// Returns a new [CreateOrderRequest] instance.
+  CreateOrderRequest({
+    required this.quantity,
+    required this.inverseLeverage,
+    this.price,
+    required this.kind,
+    required this.side,
+    required this.positionId,
+    required this.orderBookId,
+    this.orderModifiers = const [],
+    this.goodTillDate,
+    this.triggerPrice,
+  });
 
-  String inverseLeverage = null;
+  double quantity;
 
-  String price = null;
+  double inverseLeverage;
 
-  OrderKind kind = null;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? price;
 
-  Side side = null;
-/* position ID to use for the order. required. */
-  String positionId = null;
-/* Required: the order book to submit the order to */
-  String orderBookId = null;
+  OrderKind kind;
 
-  List<OrderModifierKind> orderModifiers = [];
+  Side side;
 
-  DateTime goodTillDate = null;
+  /// position ID to use for the order. required.
+  String positionId;
 
-  String triggerPrice = null;
+  /// Required: the order book to submit the order to
+  String orderBookId;
 
-  CreateOrderRequest();
+  List<OrderModifierKind> orderModifiers;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? goodTillDate;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? triggerPrice;
 
   @override
-  String toString() {
-    return 'CreateOrderRequest[quantity=$quantity, inverseLeverage=$inverseLeverage, price=$price, kind=$kind, side=$side, positionId=$positionId, orderBookId=$orderBookId, orderModifiers=$orderModifiers, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is CreateOrderRequest &&
+    other.quantity == quantity &&
+    other.inverseLeverage == inverseLeverage &&
+    other.price == price &&
+    other.kind == kind &&
+    other.side == side &&
+    other.positionId == positionId &&
+    other.orderBookId == orderBookId &&
+    _deepEquality.equals(other.orderModifiers, orderModifiers) &&
+    other.goodTillDate == goodTillDate &&
+    other.triggerPrice == triggerPrice;
 
-  CreateOrderRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    quantity = json['quantity'];
-    inverseLeverage = json['inverse_leverage'];
-    price = json['price'];
-    kind = new OrderKind.fromJson(json['kind']);
-    side = new Side.fromJson(json['side']);
-    positionId = json['position_id'];
-    orderBookId = json['order_book_id'];
-    orderModifiers = OrderModifierKind.listFromJson(json['order_modifiers']);
-    goodTillDate = json['good_till_date'] == null ? null : DateTime.parse(json['good_till_date']);
-    triggerPrice = json['trigger_price'];
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (quantity.hashCode) +
+    (inverseLeverage.hashCode) +
+    (price == null ? 0 : price!.hashCode) +
+    (kind.hashCode) +
+    (side.hashCode) +
+    (positionId.hashCode) +
+    (orderBookId.hashCode) +
+    (orderModifiers.hashCode) +
+    (goodTillDate == null ? 0 : goodTillDate!.hashCode) +
+    (triggerPrice == null ? 0 : triggerPrice!.hashCode);
+
+  @override
+  String toString() => 'CreateOrderRequest[quantity=$quantity, inverseLeverage=$inverseLeverage, price=$price, kind=$kind, side=$side, positionId=$positionId, orderBookId=$orderBookId, orderModifiers=$orderModifiers, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'quantity': quantity,
-      'inverse_leverage': inverseLeverage,
-      'price': price,
-      'kind': kind,
-      'side': side,
-      'position_id': positionId,
-      'order_book_id': orderBookId,
-      'order_modifiers': orderModifiers,
-      'good_till_date': goodTillDate == null ? '' : goodTillDate.toUtc().toIso8601String(),
-      'trigger_price': triggerPrice
-     };
+    final json = <String, dynamic>{};
+      json[r'quantity'] = this.quantity;
+      json[r'inverse_leverage'] = this.inverseLeverage;
+    if (this.price != null) {
+      json[r'price'] = this.price;
+    } else {
+      json[r'price'] = null;
+    }
+      json[r'kind'] = this.kind;
+      json[r'side'] = this.side;
+      json[r'position_id'] = this.positionId;
+      json[r'order_book_id'] = this.orderBookId;
+      json[r'order_modifiers'] = this.orderModifiers;
+    if (this.goodTillDate != null) {
+      json[r'good_till_date'] = this.goodTillDate!.toUtc().toIso8601String();
+    } else {
+      json[r'good_till_date'] = null;
+    }
+    if (this.triggerPrice != null) {
+      json[r'trigger_price'] = this.triggerPrice;
+    } else {
+      json[r'trigger_price'] = null;
+    }
+    return json;
   }
 
-  static List<CreateOrderRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<CreateOrderRequest>() : json.map((value) => new CreateOrderRequest.fromJson(value)).toList();
+  /// Returns a new [CreateOrderRequest] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static CreateOrderRequest? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "CreateOrderRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "CreateOrderRequest[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return CreateOrderRequest(
+        quantity: mapValueOfType<double>(json, r'quantity')!,
+        inverseLeverage: mapValueOfType<double>(json, r'inverse_leverage')!,
+        price: mapValueOfType<double>(json, r'price'),
+        kind: OrderKind.fromJson(json[r'kind'])!,
+        side: Side.fromJson(json[r'side'])!,
+        positionId: mapValueOfType<String>(json, r'position_id')!,
+        orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
+        orderModifiers: OrderModifierKind.listFromJson(json[r'order_modifiers']),
+        goodTillDate: mapDateTime(json, r'good_till_date', r''),
+        triggerPrice: mapValueOfType<double>(json, r'trigger_price'),
+      );
+    }
+    return null;
   }
 
-  static Map<String, CreateOrderRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, CreateOrderRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new CreateOrderRequest.fromJson(value));
+  static List<CreateOrderRequest> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <CreateOrderRequest>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = CreateOrderRequest.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, CreateOrderRequest> mapFromJson(dynamic json) {
+    final map = <String, CreateOrderRequest>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = CreateOrderRequest.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of CreateOrderRequest-objects as value to a dart map
+  static Map<String, List<CreateOrderRequest>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<CreateOrderRequest>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = CreateOrderRequest.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'quantity',
+    'inverse_leverage',
+    'kind',
+    'side',
+    'position_id',
+    'order_book_id',
+  };
 }
+

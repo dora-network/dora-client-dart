@@ -1,25 +1,88 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
+
 
 class OrderBookStatus {
+  /// Instantiate a new enum with the provided [value].
+  const OrderBookStatus._(this.value);
+
   /// The underlying value of this enum member.
-  String value;
+  final String value;
 
-  OrderBookStatus._internal(this.value);
+  @override
+  String toString() => value;
 
-  static OrderBookStatus cLOSED_ = OrderBookStatus._internal("CLOSED");
-  static OrderBookStatus oPEN_ = OrderBookStatus._internal("OPEN");
-  static OrderBookStatus sUSPENDED_ = OrderBookStatus._internal("SUSPENDED");
+  String toJson() => value;
 
-  OrderBookStatus.fromJson(dynamic data) {
-    switch (data) {
-          case "CLOSED": value = data; break;
-          case "OPEN": value = data; break;
-          case "SUSPENDED": value = data; break;
-    default: throw('Unknown enum value to decode: $data');
+  static const CLOSED = OrderBookStatus._(r'CLOSED');
+  static const OPEN = OrderBookStatus._(r'OPEN');
+  static const SUSPENDED = OrderBookStatus._(r'SUSPENDED');
+
+  /// List of all possible values in this [enum][OrderBookStatus].
+  static const values = <OrderBookStatus>[
+    CLOSED,
+    OPEN,
+    SUSPENDED,
+  ];
+
+  static OrderBookStatus? fromJson(dynamic value) => OrderBookStatusTypeTransformer().decode(value);
+
+  static List<OrderBookStatus> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <OrderBookStatus>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = OrderBookStatus.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
     }
-  }
-
-  static dynamic encode(OrderBookStatus data) {
-    return data.value;
+    return result.toList(growable: growable);
   }
 }
+
+/// Transformation class that can [encode] an instance of [OrderBookStatus] to String,
+/// and [decode] dynamic data back to [OrderBookStatus].
+class OrderBookStatusTypeTransformer {
+  factory OrderBookStatusTypeTransformer() => _instance ??= const OrderBookStatusTypeTransformer._();
+
+  const OrderBookStatusTypeTransformer._();
+
+  String encode(OrderBookStatus data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a OrderBookStatus.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  OrderBookStatus? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data) {
+        case r'CLOSED': return OrderBookStatus.CLOSED;
+        case r'OPEN': return OrderBookStatus.OPEN;
+        case r'SUSPENDED': return OrderBookStatus.SUSPENDED;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [OrderBookStatusTypeTransformer] instance.
+  static OrderBookStatusTypeTransformer? _instance;
+}
+

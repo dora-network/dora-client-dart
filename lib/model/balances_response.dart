@@ -1,36 +1,108 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class BalancesResponse {
-  
-  List<Position> balances = [];
+  /// Returns a new [BalancesResponse] instance.
+  BalancesResponse({
+    this.balances = const [],
+  });
 
-  BalancesResponse();
+  List<Position> balances;
 
   @override
-  String toString() {
-    return 'BalancesResponse[balances=$balances, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is BalancesResponse &&
+    _deepEquality.equals(other.balances, balances);
 
-  BalancesResponse.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    balances = Position.listFromJson(json['balances']);
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (balances.hashCode);
+
+  @override
+  String toString() => 'BalancesResponse[balances=$balances]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'balances': balances
-     };
+    final json = <String, dynamic>{};
+      json[r'balances'] = this.balances;
+    return json;
   }
 
-  static List<BalancesResponse> listFromJson(List<dynamic> json) {
-    return json == null ? new List<BalancesResponse>() : json.map((value) => new BalancesResponse.fromJson(value)).toList();
+  /// Returns a new [BalancesResponse] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static BalancesResponse? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "BalancesResponse[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "BalancesResponse[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return BalancesResponse(
+        balances: Position.listFromJson(json[r'balances']),
+      );
+    }
+    return null;
   }
 
-  static Map<String, BalancesResponse> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, BalancesResponse>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new BalancesResponse.fromJson(value));
+  static List<BalancesResponse> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <BalancesResponse>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = BalancesResponse.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, BalancesResponse> mapFromJson(dynamic json) {
+    final map = <String, BalancesResponse>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = BalancesResponse.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of BalancesResponse-objects as value to a dart map
+  static Map<String, List<BalancesResponse>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<BalancesResponse>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = BalancesResponse.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
+

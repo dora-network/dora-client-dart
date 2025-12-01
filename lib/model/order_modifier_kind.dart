@@ -1,23 +1,85 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
+
 
 class OrderModifierKind {
+  /// Instantiate a new enum with the provided [value].
+  const OrderModifierKind._(this.value);
+
   /// The underlying value of this enum member.
-  String value;
+  final String value;
 
-  OrderModifierKind._internal(this.value);
+  @override
+  String toString() => value;
 
-  static OrderModifierKind lIQUIDATION_ = OrderModifierKind._internal("LIQUIDATION");
-  static OrderModifierKind mAXBUY_ = OrderModifierKind._internal("MAX_BUY");
+  String toJson() => value;
 
-  OrderModifierKind.fromJson(dynamic data) {
-    switch (data) {
-          case "LIQUIDATION": value = data; break;
-          case "MAX_BUY": value = data; break;
-    default: throw('Unknown enum value to decode: $data');
+  static const LIQUIDATION = OrderModifierKind._(r'LIQUIDATION');
+  static const MAX_BUY = OrderModifierKind._(r'MAX_BUY');
+
+  /// List of all possible values in this [enum][OrderModifierKind].
+  static const values = <OrderModifierKind>[
+    LIQUIDATION,
+    MAX_BUY,
+  ];
+
+  static OrderModifierKind? fromJson(dynamic value) => OrderModifierKindTypeTransformer().decode(value);
+
+  static List<OrderModifierKind> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <OrderModifierKind>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = OrderModifierKind.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
     }
-  }
-
-  static dynamic encode(OrderModifierKind data) {
-    return data.value;
+    return result.toList(growable: growable);
   }
 }
+
+/// Transformation class that can [encode] an instance of [OrderModifierKind] to String,
+/// and [decode] dynamic data back to [OrderModifierKind].
+class OrderModifierKindTypeTransformer {
+  factory OrderModifierKindTypeTransformer() => _instance ??= const OrderModifierKindTypeTransformer._();
+
+  const OrderModifierKindTypeTransformer._();
+
+  String encode(OrderModifierKind data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a OrderModifierKind.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  OrderModifierKind? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data) {
+        case r'LIQUIDATION': return OrderModifierKind.LIQUIDATION;
+        case r'MAX_BUY': return OrderModifierKind.MAX_BUY;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [OrderModifierKindTypeTransformer] instance.
+  static OrderModifierKindTypeTransformer? _instance;
+}
+

@@ -1,64 +1,186 @@
-part of dora_client.api;
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
 
 class ValidateSubmitOrderRequest {
-  
-  String quantity = null;
-/* Minimum tradable increment for the selected order book */
-  String tick = null;
+  /// Returns a new [ValidateSubmitOrderRequest] instance.
+  ValidateSubmitOrderRequest({
+    required this.quantity,
+    required this.tick,
+    required this.kind,
+    this.side,
+    required this.price,
+    this.goodTillDate,
+    required this.inverseLeverage,
+    required this.userBalance,
+  });
 
-  OrderKind kind = null;
+  double quantity;
 
-  Side side = null;
-/* If kind is LIMIT, must be > 0; if MARKET it must be 0 or omitted */
-  String price = null;
+  /// Minimum tradable increment for the selected order book
+  double tick;
 
-  DateTime goodTillDate = null;
+  OrderKind kind;
 
-  String inverseLeverage = null;
-/* User balance used to ensure they can afford the requested quantity */
-  String userBalance = null;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Side? side;
 
-  ValidateSubmitOrderRequest();
+  /// If kind is LIMIT, must be > 0; if MARKET it must be 0 or omitted
+  double price;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? goodTillDate;
+
+  double inverseLeverage;
+
+  /// User balance used to ensure they can afford the requested quantity
+  double userBalance;
 
   @override
-  String toString() {
-    return 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is ValidateSubmitOrderRequest &&
+    other.quantity == quantity &&
+    other.tick == tick &&
+    other.kind == kind &&
+    other.side == side &&
+    other.price == price &&
+    other.goodTillDate == goodTillDate &&
+    other.inverseLeverage == inverseLeverage &&
+    other.userBalance == userBalance;
 
-  ValidateSubmitOrderRequest.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    quantity = json['quantity'];
-    tick = json['tick'];
-    kind = new OrderKind.fromJson(json['kind']);
-    side = new Side.fromJson(json['side']);
-    price = json['price'];
-    goodTillDate = json['good_till_date'] == null ? null : DateTime.parse(json['good_till_date']);
-    inverseLeverage = json['inverse_leverage'];
-    userBalance = json['user_balance'];
-  }
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (quantity.hashCode) +
+    (tick.hashCode) +
+    (kind.hashCode) +
+    (side == null ? 0 : side!.hashCode) +
+    (price.hashCode) +
+    (goodTillDate == null ? 0 : goodTillDate!.hashCode) +
+    (inverseLeverage.hashCode) +
+    (userBalance.hashCode);
+
+  @override
+  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'quantity': quantity,
-      'tick': tick,
-      'kind': kind,
-      'side': side,
-      'price': price,
-      'good_till_date': goodTillDate == null ? '' : goodTillDate.toUtc().toIso8601String(),
-      'inverse_leverage': inverseLeverage,
-      'user_balance': userBalance
-     };
+    final json = <String, dynamic>{};
+      json[r'quantity'] = this.quantity;
+      json[r'tick'] = this.tick;
+      json[r'kind'] = this.kind;
+    if (this.side != null) {
+      json[r'side'] = this.side;
+    } else {
+      json[r'side'] = null;
+    }
+      json[r'price'] = this.price;
+    if (this.goodTillDate != null) {
+      json[r'good_till_date'] = this.goodTillDate!.toUtc().toIso8601String();
+    } else {
+      json[r'good_till_date'] = null;
+    }
+      json[r'inverse_leverage'] = this.inverseLeverage;
+      json[r'user_balance'] = this.userBalance;
+    return json;
   }
 
-  static List<ValidateSubmitOrderRequest> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ValidateSubmitOrderRequest>() : json.map((value) => new ValidateSubmitOrderRequest.fromJson(value)).toList();
+  /// Returns a new [ValidateSubmitOrderRequest] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static ValidateSubmitOrderRequest? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ValidateSubmitOrderRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ValidateSubmitOrderRequest[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
+      return ValidateSubmitOrderRequest(
+        quantity: mapValueOfType<double>(json, r'quantity')!,
+        tick: mapValueOfType<double>(json, r'tick')!,
+        kind: OrderKind.fromJson(json[r'kind'])!,
+        side: Side.fromJson(json[r'side']),
+        price: mapValueOfType<double>(json, r'price')!,
+        goodTillDate: mapDateTime(json, r'good_till_date', r''),
+        inverseLeverage: mapValueOfType<double>(json, r'inverse_leverage')!,
+        userBalance: mapValueOfType<double>(json, r'user_balance')!,
+      );
+    }
+    return null;
   }
 
-  static Map<String, ValidateSubmitOrderRequest> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ValidateSubmitOrderRequest>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ValidateSubmitOrderRequest.fromJson(value));
+  static List<ValidateSubmitOrderRequest> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ValidateSubmitOrderRequest>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = ValidateSubmitOrderRequest.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, ValidateSubmitOrderRequest> mapFromJson(dynamic json) {
+    final map = <String, ValidateSubmitOrderRequest>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = ValidateSubmitOrderRequest.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  // maps a json object with a list of ValidateSubmitOrderRequest-objects as value to a dart map
+  static Map<String, List<ValidateSubmitOrderRequest>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ValidateSubmitOrderRequest>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = ValidateSubmitOrderRequest.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'quantity',
+    'tick',
+    'kind',
+    'price',
+    'inverse_leverage',
+    'user_balance',
+  };
 }
+

@@ -7,9 +7,9 @@ void main() {
   var instance = new DefaultApi();
 
   group('tests for DefaultApi', () {
-    // Cancel all open orders
+    // Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
     //
-    //Future<ListOrdersResponse> cancelAllOpenOrders() async
+    //Future<ListOrdersResponse> cancelAllOpenOrders({ String orderBookId, String userId, OrderKind orderKind }) async
     test('test cancelAllOpenOrders', () async {
       // TODO
     });
@@ -18,6 +18,20 @@ void main() {
     //
     //Future<CancelOrderResponse> cancelOrderById(String orderId) async
     test('test cancelOrderById', () async {
+      // TODO
+    });
+
+    // Check whether a user email exists
+    //
+    //Future<bool> checkUserEmailExists(String email) async
+    test('test checkUserEmailExists', () async {
+      // TODO
+    });
+
+    // Create a new isolated position for a user transferring available assets into the position
+    //
+    //Future<NewIsolatedPositionResponse> createNewIsolatedPosition(NewIsolatedPositionRequest body) async
+    test('test createNewIsolatedPosition', () async {
       // TODO
     });
 
@@ -198,7 +212,7 @@ void main() {
 
     // Get a filtered, paginated list of trades
     //
-    //Future<ListTradeResponse> getTrades({ List<String> pools, List<String> userIds, DateTime start, DateTime end, int page, int limit }) async
+    //Future<ListTradeResponse> getTrades({ List<String> orderBookIds, List<String> userIds, DateTime start, DateTime end, int page, int limit }) async
     test('test getTrades', () async {
       // TODO
     });
@@ -259,49 +273,10 @@ void main() {
       // TODO
     });
 
-    // Deposit assets into your account from the outside world
-    //
-    // TODO: finish this when implementation has been completed
-    //
-    //Future<FundUserResponse> ledgerDeposit(FundUserRequest body) async
-    test('test ledgerDeposit', () async {
-      // TODO
-    });
-
-    // Withdraw assets from your account to the outside world
-    //
-    // TODO: Finish this when implementation has been completed
-    //
-    //Future<FundUserResponse> ledgerWithdraw(FundUserRequest body) async
-    test('test ledgerWithdraw', () async {
-      // TODO
-    });
-
-    // Move supplied and available to supplied_collateral and collateral, for a specified position
-    //
-    //Future<CollateralizeResponse> leverageCollateralize(CollateralizeRequest body) async
-    test('test leverageCollateralize', () async {
-      // TODO
-    });
-
-    // Move collateral and supplied_collateral to available and supplied, for a specified position.
-    //
-    //Future<DeCollateralizeResponse> leverageDeCollateralize(DeCollateralizeRequest body) async
-    test('test leverageDeCollateralize', () async {
-      // TODO
-    });
-
     // Create an isolated position by transferring collateral to the position from the user's global collateral
     //
     //Future<IsolateCollateralResponse> leverageIsolateCollateral(IsolateCollateralRequest body) async
     test('test leverageIsolateCollateral', () async {
-      // TODO
-    });
-
-    // Create an isolated position using all collateral, supplied_collateral, and borrows from the user's global position
-    //
-    //Future<IsolatePositionResponse> leverageIsolatePosition(IsolatePositionRequest body) async
-    test('test leverageIsolatePosition', () async {
       // TODO
     });
 
@@ -400,6 +375,13 @@ void main() {
       // TODO
     });
 
+    // Transfer available balance between a user's accounts (e.g. global to isolated position)
+    //
+    //Future<TransferBalancesResponse> transferAvailableBalances(TransferBalancesRequest body) async
+    test('test transferAvailableBalances', () async {
+      // TODO
+    });
+
     // Update user configuration by ID
     //
     //Future<UserUpdatedResponse> updateUserConfig(UpdateUserConfigRequest body, String userId) async
@@ -411,6 +393,13 @@ void main() {
     //
     //Future<UserUpdatedResponse> updateUserConfigSelf(UpdateUserConfigRequest body) async
     test('test updateUserConfigSelf', () async {
+      // TODO
+    });
+
+    // Validate submit order request data
+    //
+    //Future<ValidateSubmitOrderResponse> validateSubmitOrder(ValidateSubmitOrderRequest body) async
+    test('test validateSubmitOrder', () async {
       // TODO
     });
 

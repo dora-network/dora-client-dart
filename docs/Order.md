@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **openQuantity** | **String** | Quantity that is still open, i.e., not filled or cancelled. | [optional] [default to null]
 **originalQuantity** | **String** | The original quantity of the order when it was created. | [optional] [default to null]
 **filledQuantity** | **String** | Quantity that has been filled so far. | [optional] [default to null]
+**filledNotional** | **String** | Quote quantity that has been filled so far. | [optional] [default to null]
 **lastUpdateAt** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
 **openedAt** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
 **inverseLeverage** | **String** |  | [optional] [default to null]
@@ -25,6 +26,9 @@ Name | Type | Description | Notes
 **userId** | **String** |  | [optional] [default to null]
 **orderModifiers** | [**List&lt;OrderModifierKind&gt;**](OrderModifierKind.md) |  | [optional] [default to []]
 **positionId** | **String** |  | [optional] [default to null]
+**orderInfo** | **String** |  | [optional] [default to null]
+**goodTillDate** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
+**triggerPrice** | **String** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

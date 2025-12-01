@@ -45,6 +45,8 @@ class ApiClient {
           return new AssetPrice.fromJson(value);
         case 'AssetRequestError':
           return new AssetRequestError.fromJson(value);
+        case 'BalanceTransfer':
+          return new BalanceTransfer.fromJson(value);
         case 'BalancesResponse':
           return new BalancesResponse.fromJson(value);
         case 'Bond':
@@ -63,10 +65,6 @@ class ApiClient {
            return new CandleResolution.fromJson(value);
         case 'Collateral':
           return new Collateral.fromJson(value);
-        case 'CollateralizeRequest':
-          return new CollateralizeRequest.fromJson(value);
-        case 'CollateralizeResponse':
-          return new CollateralizeResponse.fromJson(value);
         case 'CouponPayment':
           return new CouponPayment.fromJson(value);
         case 'CreateOrUpdateUserResponse':
@@ -75,16 +73,6 @@ class ApiClient {
           return new CreateOrderRequest.fromJson(value);
         case 'CreateOrderResponse':
           return new CreateOrderResponse.fromJson(value);
-        case 'DeCollateralizeRequest':
-          return new DeCollateralizeRequest.fromJson(value);
-        case 'DeCollateralizeResponse':
-          return new DeCollateralizeResponse.fromJson(value);
-        case 'FundUser':
-          return new FundUser.fromJson(value);
-        case 'FundUserRequest':
-          return new FundUserRequest.fromJson(value);
-        case 'FundUserResponse':
-          return new FundUserResponse.fromJson(value);
         case 'GetAssetByIDResponse':
           return new GetAssetByIDResponse.fromJson(value);
         case 'GetAssetPriceResponse':
@@ -109,10 +97,6 @@ class ApiClient {
           return new IsolateCollateralRequest.fromJson(value);
         case 'IsolateCollateralResponse':
           return new IsolateCollateralResponse.fromJson(value);
-        case 'IsolatePositionRequest':
-          return new IsolatePositionRequest.fromJson(value);
-        case 'IsolatePositionResponse':
-          return new IsolatePositionResponse.fromJson(value);
         case 'IsolatedCollateral':
           return new IsolatedCollateral.fromJson(value);
         case 'IsolatedPosition':
@@ -163,6 +147,10 @@ class ApiClient {
           return new Metadata.fromJson(value);
         case 'ModuleBalance':
           return new ModuleBalance.fromJson(value);
+        case 'NewIsolatedPositionRequest':
+          return new NewIsolatedPositionRequest.fromJson(value);
+        case 'NewIsolatedPositionResponse':
+          return new NewIsolatedPositionResponse.fromJson(value);
         case 'Order':
           return new Order.fromJson(value);
         case 'OrderBook':
@@ -267,6 +255,10 @@ class ApiClient {
            return new TransactionKind.fromJson(value);
         case 'TransactionRequestError':
           return new TransactionRequestError.fromJson(value);
+        case 'TransferBalancesRequest':
+          return new TransferBalancesRequest.fromJson(value);
+        case 'TransferBalancesResponse':
+          return new TransferBalancesResponse.fromJson(value);
         case 'TransformedAssets':
           return new TransformedAssets.fromJson(value);
         case 'UnitePositionRequest':
@@ -303,6 +295,10 @@ class ApiClient {
           return new UserValue.fromJson(value);
         case 'UserValueResponse':
           return new UserValueResponse.fromJson(value);
+        case 'ValidateSubmitOrderRequest':
+          return new ValidateSubmitOrderRequest.fromJson(value);
+        case 'ValidateSubmitOrderResponse':
+          return new ValidateSubmitOrderResponse.fromJson(value);
         case 'Withdraw':
           return new Withdraw.fromJson(value);
         case 'WithdrawRequest':

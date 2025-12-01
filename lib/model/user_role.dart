@@ -12,6 +12,7 @@ class UserRole {
   static UserRole bONDPROVIDER_ = UserRole._internal("BOND_PROVIDER");
   static UserRole lIQUIDITYPROVIDER_ = UserRole._internal("LIQUIDITY_PROVIDER");
   static UserRole tRADER_ = UserRole._internal("TRADER");
+  static UserRole iNTEGRATOR_ = UserRole._internal("INTEGRATOR");
 
   UserRole.fromJson(dynamic data) {
     switch (data) {
@@ -21,6 +22,7 @@ class UserRole {
           case "BOND_PROVIDER": value = data; break;
           case "LIQUIDITY_PROVIDER": value = data; break;
           case "TRADER": value = data; break;
+          case "INTEGRATOR": value = data; break;
     default: throw('Unknown enum value to decode: $data');
     }
   }

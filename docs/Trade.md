@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **price** | **String** |  | [optional] [default to null]
 **quantity0** | **String** |  | [optional] [default to null]
 **userId** | **String** |  | [optional] [default to null]
+**side** | [**Side**](Side.md) |  | [optional] [default to null]
+**aggressorIndicator** | **bool** | If true, then this order is the aggressor (taker); otherwise it is the maker. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

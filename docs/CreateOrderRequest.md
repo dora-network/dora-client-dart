@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **positionId** | **String** | position ID to use for the order. required. | [default to null]
 **orderBookId** | **String** | Required: the order book to submit the order to | [default to null]
 **orderModifiers** | [**List&lt;OrderModifierKind&gt;**](OrderModifierKind.md) |  | [optional] [default to []]
+**goodTillDate** | [**DateTime**](DateTime.md) |  | [optional] [default to null]
+**triggerPrice** | **String** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

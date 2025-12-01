@@ -10,6 +10,7 @@ class OrderStatus {
   static OrderStatus fILLED_ = OrderStatus._internal("FILLED");
   static OrderStatus pARTIALFILL_ = OrderStatus._internal("PARTIAL_FILL");
   static OrderStatus cANCELLED_ = OrderStatus._internal("CANCELLED");
+  static OrderStatus pENDING_ = OrderStatus._internal("PENDING");
 
   OrderStatus.fromJson(dynamic data) {
     switch (data) {
@@ -17,6 +18,7 @@ class OrderStatus {
           case "FILLED": value = data; break;
           case "PARTIAL_FILL": value = data; break;
           case "CANCELLED": value = data; break;
+          case "PENDING": value = data; break;
     default: throw('Unknown enum value to decode: $data');
     }
   }

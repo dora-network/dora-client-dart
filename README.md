@@ -44,9 +44,12 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import 'package:dora_client/api.dart';
 
 var api_instance = new DefaultApi();
+var orderBookId = orderBookId_example; // String | 
+var userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+var orderKind = ; // OrderKind | 
 
 try {
-    var result = api_instance.cancelAllOpenOrders();
+    var result = api_instance.cancelAllOpenOrders(orderBookId, userId, orderKind);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->cancelAllOpenOrders: $e\n");
@@ -59,8 +62,10 @@ All URIs are relative to *https://localhost:8084*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**cancelAllOpenOrders**](docs//DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders
+*DefaultApi* | [**cancelAllOpenOrders**](docs//DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
 *DefaultApi* | [**cancelOrderById**](docs//DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
+*DefaultApi* | [**checkUserEmailExists**](docs//DefaultApi.md#checkuseremailexists) | **GET** /v1/user/{email}/exists | Check whether a user email exists
+*DefaultApi* | [**createNewIsolatedPosition**](docs//DefaultApi.md#createnewisolatedposition) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 *DefaultApi* | [**createOrder**](docs//DefaultApi.md#createorder) | **POST** /v1/orders | Create a new order
 *DefaultApi* | [**deleteUser**](docs//DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
 *DefaultApi* | [**getAllAssetPrices**](docs//DefaultApi.md#getallassetprices) | **GET** /v1/price | Get the current price of all assets
@@ -95,12 +100,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getUserOrdersUpdatesStreamAll**](docs//DefaultApi.md#getuserordersupdatesstreamall) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user&#x27;s order updates across all order books since a specific time, and opens a stream for further updates
 *DefaultApi* | [**getUserSelf**](docs//DefaultApi.md#getuserself) | **GET** /v1/user/self | Get user details for the authenticated user
 *DefaultApi* | [**getUserTransactionsStream**](docs//DefaultApi.md#getusertransactionsstream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user&#x27;s executed transactions since a specific time, and opens a stream for further updates
-*DefaultApi* | [**ledgerDeposit**](docs//DefaultApi.md#ledgerdeposit) | **POST** /v1/ledger/deposit | Deposit assets into your account from the outside world
-*DefaultApi* | [**ledgerWithdraw**](docs//DefaultApi.md#ledgerwithdraw) | **POST** /v1/ledger/withdraw | Withdraw assets from your account to the outside world
-*DefaultApi* | [**leverageCollateralize**](docs//DefaultApi.md#leveragecollateralize) | **POST** /v1/leverage/collateralize | Move supplied and available to supplied_collateral and collateral, for a specified position
-*DefaultApi* | [**leverageDeCollateralize**](docs//DefaultApi.md#leveragedecollateralize) | **POST** /v1/leverage/de-collateralize | Move collateral and supplied_collateral to available and supplied, for a specified position.
 *DefaultApi* | [**leverageIsolateCollateral**](docs//DefaultApi.md#leverageisolatecollateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
-*DefaultApi* | [**leverageIsolatePosition**](docs//DefaultApi.md#leverageisolateposition) | **POST** /v1/leverage/isolate_position | Create an isolated position using all collateral, supplied_collateral, and borrows from the user&#x27;s global position
 *DefaultApi* | [**leverageSupply**](docs//DefaultApi.md#leveragesupply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 *DefaultApi* | [**leverageUnite**](docs//DefaultApi.md#leverageunite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
 *DefaultApi* | [**leverageWithdraw**](docs//DefaultApi.md#leveragewithdraw) | **POST** /v1/leverage/withdraw | Withdraw leverage for a specific asset
@@ -114,8 +114,10 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**streamOrderBookBalances**](docs//DefaultApi.md#streamorderbookbalances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 *DefaultApi* | [**streamOrderbookOpenOrders**](docs//DefaultApi.md#streamorderbookopenorders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 *DefaultApi* | [**streamTrades**](docs//DefaultApi.md#streamtrades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+*DefaultApi* | [**transferAvailableBalances**](docs//DefaultApi.md#transferavailablebalances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user&#x27;s accounts (e.g. global to isolated position)
 *DefaultApi* | [**updateUserConfig**](docs//DefaultApi.md#updateuserconfig) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 *DefaultApi* | [**updateUserConfigSelf**](docs//DefaultApi.md#updateuserconfigself) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
+*DefaultApi* | [**validateSubmitOrder**](docs//DefaultApi.md#validatesubmitorder) | **POST** /v1/orders/validate | Validate submit order request data
 *DefaultApi* | [**verifyUser**](docs//DefaultApi.md#verifyuser) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
 
 ## Documentation For Models
@@ -124,6 +126,7 @@ Class | Method | HTTP request | Description
  - [AssetKind](docs//AssetKind.md)
  - [AssetPrice](docs//AssetPrice.md)
  - [AssetRequestError](docs//AssetRequestError.md)
+ - [BalanceTransfer](docs//BalanceTransfer.md)
  - [BalancesResponse](docs//BalancesResponse.md)
  - [Bond](docs//Bond.md)
  - [BondKind](docs//BondKind.md)
@@ -133,17 +136,10 @@ Class | Method | HTTP request | Description
  - [Candle](docs//Candle.md)
  - [CandleResolution](docs//CandleResolution.md)
  - [Collateral](docs//Collateral.md)
- - [CollateralizeRequest](docs//CollateralizeRequest.md)
- - [CollateralizeResponse](docs//CollateralizeResponse.md)
  - [CouponPayment](docs//CouponPayment.md)
  - [CreateOrUpdateUserResponse](docs//CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](docs//CreateOrderRequest.md)
  - [CreateOrderResponse](docs//CreateOrderResponse.md)
- - [DeCollateralizeRequest](docs//DeCollateralizeRequest.md)
- - [DeCollateralizeResponse](docs//DeCollateralizeResponse.md)
- - [FundUser](docs//FundUser.md)
- - [FundUserRequest](docs//FundUserRequest.md)
- - [FundUserResponse](docs//FundUserResponse.md)
  - [GetAssetByIDResponse](docs//GetAssetByIDResponse.md)
  - [GetAssetPriceResponse](docs//GetAssetPriceResponse.md)
  - [GetOrderBookResponse](docs//GetOrderBookResponse.md)
@@ -156,8 +152,6 @@ Class | Method | HTTP request | Description
  - [GetUserResponse](docs//GetUserResponse.md)
  - [IsolateCollateralRequest](docs//IsolateCollateralRequest.md)
  - [IsolateCollateralResponse](docs//IsolateCollateralResponse.md)
- - [IsolatePositionRequest](docs//IsolatePositionRequest.md)
- - [IsolatePositionResponse](docs//IsolatePositionResponse.md)
  - [IsolatedCollateral](docs//IsolatedCollateral.md)
  - [IsolatedPosition](docs//IsolatedPosition.md)
  - [LedgerModuleByAssetResponse](docs//LedgerModuleByAssetResponse.md)
@@ -183,6 +177,8 @@ Class | Method | HTTP request | Description
  - [LiveOrderbook](docs//LiveOrderbook.md)
  - [Metadata](docs//Metadata.md)
  - [ModuleBalance](docs//ModuleBalance.md)
+ - [NewIsolatedPositionRequest](docs//NewIsolatedPositionRequest.md)
+ - [NewIsolatedPositionResponse](docs//NewIsolatedPositionResponse.md)
  - [Order](docs//Order.md)
  - [OrderBook](docs//OrderBook.md)
  - [OrderBookBalance](docs//OrderBookBalance.md)
@@ -235,6 +231,8 @@ Class | Method | HTTP request | Description
  - [Transaction](docs//Transaction.md)
  - [TransactionKind](docs//TransactionKind.md)
  - [TransactionRequestError](docs//TransactionRequestError.md)
+ - [TransferBalancesRequest](docs//TransferBalancesRequest.md)
+ - [TransferBalancesResponse](docs//TransferBalancesResponse.md)
  - [TransformedAssets](docs//TransformedAssets.md)
  - [UnitePositionRequest](docs//UnitePositionRequest.md)
  - [UnitePositionResponse](docs//UnitePositionResponse.md)
@@ -253,13 +251,17 @@ Class | Method | HTTP request | Description
  - [UserUpdatedResponse](docs//UserUpdatedResponse.md)
  - [UserValue](docs//UserValue.md)
  - [UserValueResponse](docs//UserValueResponse.md)
+ - [ValidateSubmitOrderRequest](docs//ValidateSubmitOrderRequest.md)
+ - [ValidateSubmitOrderResponse](docs//ValidateSubmitOrderResponse.md)
  - [Withdraw](docs//Withdraw.md)
  - [WithdrawRequest](docs//WithdrawRequest.md)
  - [WithdrawResponse](docs//WithdrawResponse.md)
 
 ## Documentation For Authorization
 
- All endpoints do not require authorization.
+
+## BearerAuth
+
 
 
 ## Author

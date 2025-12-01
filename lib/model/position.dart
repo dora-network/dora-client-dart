@@ -32,11 +32,13 @@ class Position {
 
   DateTime createdAt = null;
 
+  String positionName = null;
+
   Position();
 
   @override
   String toString() {
-    return 'Position[id=$id, assetId=$assetId, seq=$seq, isGlobal=$isGlobal, available=$available, locked=$locked, supplied=$supplied, collateral=$collateral, suppliedCollateral=$suppliedCollateral, borrowed=$borrowed, impendingBorrows=$impendingBorrows, avgEntryPrice=$avgEntryPrice, borrowLimit=$borrowLimit, liquidationThreshold=$liquidationThreshold, createdAt=$createdAt, ]';
+    return 'Position[id=$id, assetId=$assetId, seq=$seq, isGlobal=$isGlobal, available=$available, locked=$locked, supplied=$supplied, collateral=$collateral, suppliedCollateral=$suppliedCollateral, borrowed=$borrowed, impendingBorrows=$impendingBorrows, avgEntryPrice=$avgEntryPrice, borrowLimit=$borrowLimit, liquidationThreshold=$liquidationThreshold, createdAt=$createdAt, positionName=$positionName, ]';
   }
 
   Position.fromJson(Map<String, dynamic> json) {
@@ -56,6 +58,7 @@ class Position {
     borrowLimit = json['borrow_limit'];
     liquidationThreshold = json['liquidation_threshold'];
     createdAt = json['created_at'] == null ? null : DateTime.parse(json['created_at']);
+    positionName = json['position_name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -74,7 +77,8 @@ class Position {
       'avg_entry_price': avgEntryPrice,
       'borrow_limit': borrowLimit,
       'liquidation_threshold': liquidationThreshold,
-      'created_at': createdAt == null ? '' : createdAt.toUtc().toIso8601String()
+      'created_at': createdAt == null ? '' : createdAt.toUtc().toIso8601String(),
+      'position_name': positionName
      };
   }
 

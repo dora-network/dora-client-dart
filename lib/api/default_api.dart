@@ -7,10 +7,10 @@ class DefaultApi {
 
   DefaultApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
-  /// Cancel all open orders
+  /// Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user&#x27;s orders on specific orderbook
   ///
   /// 
-  Future<ListOrdersResponse> cancelAllOpenOrders() async {
+  Future<ListOrdersResponse> cancelAllOpenOrders({ String orderBookId, String userId, OrderKind orderKind }) async {
     Object postBody = null;
 
     // verify required params are set
@@ -22,6 +22,15 @@ class DefaultApi {
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
+    if(orderBookId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "order_book_id", orderBookId));
+    }
+    if(userId != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "user_id", userId));
+    }
+    if(orderKind != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "order_kind", orderKind));
+    }
     
     List<String> contentTypes = [];
 
@@ -102,6 +111,108 @@ class DefaultApi {
     } else if(response.body != null) {
       return
           apiClient.deserialize(response.body, 'CancelOrderResponse') as CancelOrderResponse ;
+    } else {
+      return null;
+    }
+  }
+  /// Check whether a user email exists
+  ///
+  /// 
+  Future<bool> checkUserEmailExists(String email) async {
+    Object postBody = null;
+
+    // verify required params are set
+    if(email == null) {
+     throw new ApiException(400, "Missing required param: email");
+    }
+
+    // create path and map variables
+    String path = "/v1/user/{email}/exists".replaceAll("{format}","json").replaceAll("{" + "email" + "}", email.toString());
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    
+    List<String> contentTypes = [];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+          }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'GET',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             contentType,
+                                             authNames);
+
+    if(response.statusCode >= 400) {
+      throw new ApiException(response.statusCode, response.body);
+    } else if(response.body != null) {
+      return
+          apiClient.deserialize(response.body, 'bool') as bool ;
+    } else {
+      return null;
+    }
+  }
+  /// Create a new isolated position for a user transferring available assets into the position
+  ///
+  /// 
+  Future<NewIsolatedPositionResponse> createNewIsolatedPosition(NewIsolatedPositionRequest body) async {
+    Object postBody = body;
+
+    // verify required params are set
+    if(body == null) {
+     throw new ApiException(400, "Missing required param: body");
+    }
+
+    // create path and map variables
+    String path = "/v1/positions/new_isolated".replaceAll("{format}","json");
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    
+    List<String> contentTypes = ["application/json"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+          }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'POST',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             contentType,
+                                             authNames);
+
+    if(response.statusCode >= 400) {
+      throw new ApiException(response.statusCode, response.body);
+    } else if(response.body != null) {
+      return
+          apiClient.deserialize(response.body, 'NewIsolatedPositionResponse') as NewIsolatedPositionResponse ;
     } else {
       return null;
     }
@@ -1378,7 +1489,7 @@ class DefaultApi {
   /// Get a filtered, paginated list of trades
   ///
   /// 
-  Future<ListTradeResponse> getTrades({ List<String> pools, List<String> userIds, DateTime start, DateTime end, int page, int limit }) async {
+  Future<ListTradeResponse> getTrades({ List<String> orderBookIds, List<String> userIds, DateTime start, DateTime end, int page, int limit }) async {
     Object postBody = null;
 
     // verify required params are set
@@ -1390,8 +1501,8 @@ class DefaultApi {
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    if(pools != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("multi", "pools", pools));
+    if(orderBookIds != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("multi", "order_book_ids", orderBookIds));
     }
     if(userIds != null) {
       queryParams.addAll(_convertParametersForCollectionFormat("multi", "user_ids", userIds));
@@ -1876,213 +1987,10 @@ class DefaultApi {
       return null;
     }
   }
-  /// Deposit assets into your account from the outside world
-  ///
-  /// TODO: finish this when implementation has been completed
-  Future<FundUserResponse> ledgerDeposit(FundUserRequest body) async {
-    Object postBody = body;
-
-    // verify required params are set
-    if(body == null) {
-     throw new ApiException(400, "Missing required param: body");
-    }
-
-    // create path and map variables
-    String path = "/v1/ledger/deposit".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return
-          apiClient.deserialize(response.body, 'FundUserResponse') as FundUserResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Withdraw assets from your account to the outside world
-  ///
-  /// TODO: Finish this when implementation has been completed
-  Future<FundUserResponse> ledgerWithdraw(FundUserRequest body) async {
-    Object postBody = body;
-
-    // verify required params are set
-    if(body == null) {
-     throw new ApiException(400, "Missing required param: body");
-    }
-
-    // create path and map variables
-    String path = "/v1/ledger/withdraw".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return
-          apiClient.deserialize(response.body, 'FundUserResponse') as FundUserResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Move supplied and available to supplied_collateral and collateral, for a specified position
-  ///
-  /// 
-  Future<CollateralizeResponse> leverageCollateralize(CollateralizeRequest body) async {
-    Object postBody = body;
-
-    // verify required params are set
-    if(body == null) {
-     throw new ApiException(400, "Missing required param: body");
-    }
-
-    // create path and map variables
-    String path = "/v1/leverage/collateralize".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return
-          apiClient.deserialize(response.body, 'CollateralizeResponse') as CollateralizeResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Move collateral and supplied_collateral to available and supplied, for a specified position.
-  ///
-  /// 
-  Future<DeCollateralizeResponse> leverageDeCollateralize(DeCollateralizeRequest body) async {
-    Object postBody = body;
-
-    // verify required params are set
-    if(body == null) {
-     throw new ApiException(400, "Missing required param: body");
-    }
-
-    // create path and map variables
-    String path = "/v1/leverage/de-collateralize".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return
-          apiClient.deserialize(response.body, 'DeCollateralizeResponse') as DeCollateralizeResponse ;
-    } else {
-      return null;
-    }
-  }
   /// Create an isolated position by transferring collateral to the position from the user&#x27;s global collateral
   ///
   /// 
+  @deprecated
   Future<IsolateCollateralResponse> leverageIsolateCollateral(IsolateCollateralRequest body) async {
     Object postBody = body;
 
@@ -2127,57 +2035,6 @@ class DefaultApi {
     } else if(response.body != null) {
       return
           apiClient.deserialize(response.body, 'IsolateCollateralResponse') as IsolateCollateralResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Create an isolated position using all collateral, supplied_collateral, and borrows from the user&#x27;s global position
-  ///
-  /// 
-  Future<IsolatePositionResponse> leverageIsolatePosition(IsolatePositionRequest body) async {
-    Object postBody = body;
-
-    // verify required params are set
-    if(body == null) {
-     throw new ApiException(400, "Missing required param: body");
-    }
-
-    // create path and map variables
-    String path = "/v1/leverage/isolate_position".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = [];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return
-          apiClient.deserialize(response.body, 'IsolatePositionResponse') as IsolatePositionResponse ;
     } else {
       return null;
     }
@@ -2926,6 +2783,57 @@ class DefaultApi {
       return null;
     }
   }
+  /// Transfer available balance between a user&#x27;s accounts (e.g. global to isolated position)
+  ///
+  /// 
+  Future<TransferBalancesResponse> transferAvailableBalances(TransferBalancesRequest body) async {
+    Object postBody = body;
+
+    // verify required params are set
+    if(body == null) {
+     throw new ApiException(400, "Missing required param: body");
+    }
+
+    // create path and map variables
+    String path = "/v1/positions/transfer_balances".replaceAll("{format}","json");
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    
+    List<String> contentTypes = ["application/json"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+          }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'POST',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             contentType,
+                                             authNames);
+
+    if(response.statusCode >= 400) {
+      throw new ApiException(response.statusCode, response.body);
+    } else if(response.body != null) {
+      return
+          apiClient.deserialize(response.body, 'TransferBalancesResponse') as TransferBalancesResponse ;
+    } else {
+      return null;
+    }
+  }
   /// Update user configuration by ID
   ///
   /// 
@@ -3027,6 +2935,57 @@ class DefaultApi {
     } else if(response.body != null) {
       return
           apiClient.deserialize(response.body, 'UserUpdatedResponse') as UserUpdatedResponse ;
+    } else {
+      return null;
+    }
+  }
+  /// Validate submit order request data
+  ///
+  /// 
+  Future<ValidateSubmitOrderResponse> validateSubmitOrder(ValidateSubmitOrderRequest body) async {
+    Object postBody = body;
+
+    // verify required params are set
+    if(body == null) {
+     throw new ApiException(400, "Missing required param: body");
+    }
+
+    // create path and map variables
+    String path = "/v1/orders/validate".replaceAll("{format}","json");
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    
+    List<String> contentTypes = ["application/json"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = [];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+          }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'POST',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             contentType,
+                                             authNames);
+
+    if(response.statusCode >= 400) {
+      throw new ApiException(response.statusCode, response.body);
+    } else if(response.body != null) {
+      return
+          apiClient.deserialize(response.body, 'ValidateSubmitOrderResponse') as ValidateSubmitOrderResponse ;
     } else {
       return null;
     }

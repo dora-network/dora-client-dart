@@ -18,11 +18,15 @@ class CreateOrderRequest {
 
   List<OrderModifierKind> orderModifiers = [];
 
+  DateTime goodTillDate = null;
+
+  String triggerPrice = null;
+
   CreateOrderRequest();
 
   @override
   String toString() {
-    return 'CreateOrderRequest[quantity=$quantity, inverseLeverage=$inverseLeverage, price=$price, kind=$kind, side=$side, positionId=$positionId, orderBookId=$orderBookId, orderModifiers=$orderModifiers, ]';
+    return 'CreateOrderRequest[quantity=$quantity, inverseLeverage=$inverseLeverage, price=$price, kind=$kind, side=$side, positionId=$positionId, orderBookId=$orderBookId, orderModifiers=$orderModifiers, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, ]';
   }
 
   CreateOrderRequest.fromJson(Map<String, dynamic> json) {
@@ -35,6 +39,8 @@ class CreateOrderRequest {
     positionId = json['position_id'];
     orderBookId = json['order_book_id'];
     orderModifiers = OrderModifierKind.listFromJson(json['order_modifiers']);
+    goodTillDate = json['good_till_date'] == null ? null : DateTime.parse(json['good_till_date']);
+    triggerPrice = json['trigger_price'];
   }
 
   Map<String, dynamic> toJson() {
@@ -46,7 +52,9 @@ class CreateOrderRequest {
       'side': side,
       'position_id': positionId,
       'order_book_id': orderBookId,
-      'order_modifiers': orderModifiers
+      'order_modifiers': orderModifiers,
+      'good_till_date': goodTillDate == null ? '' : goodTillDate.toUtc().toIso8601String(),
+      'trigger_price': triggerPrice
      };
   }
 

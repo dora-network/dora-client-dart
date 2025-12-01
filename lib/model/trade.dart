@@ -24,11 +24,15 @@ class Trade {
 
   String userId = null;
 
+  Side side = null;
+/* If true, then this order is the aggressor (taker); otherwise it is the maker. */
+  bool aggressorIndicator = null;
+
   Trade();
 
   @override
   String toString() {
-    return 'Trade[transactionId=$transactionId, asset0=$asset0, createdAt=$createdAt, feeAssetId=$feeAssetId, feeQuantity=$feeQuantity, orderBookId=$orderBookId, orderId=$orderId, orderSeq=$orderSeq, price=$price, quantity0=$quantity0, userId=$userId, ]';
+    return 'Trade[transactionId=$transactionId, asset0=$asset0, createdAt=$createdAt, feeAssetId=$feeAssetId, feeQuantity=$feeQuantity, orderBookId=$orderBookId, orderId=$orderId, orderSeq=$orderSeq, price=$price, quantity0=$quantity0, userId=$userId, side=$side, aggressorIndicator=$aggressorIndicator, ]';
   }
 
   Trade.fromJson(Map<String, dynamic> json) {
@@ -44,6 +48,8 @@ class Trade {
     price = json['price'];
     quantity0 = json['quantity_0'];
     userId = json['user_id'];
+    side = new Side.fromJson(json['side']);
+    aggressorIndicator = json['aggressor_indicator'];
   }
 
   Map<String, dynamic> toJson() {
@@ -58,7 +64,9 @@ class Trade {
       'order_seq': orderSeq,
       'price': price,
       'quantity_0': quantity0,
-      'user_id': userId
+      'user_id': userId,
+      'side': side,
+      'aggressor_indicator': aggressorIndicator
      };
   }
 

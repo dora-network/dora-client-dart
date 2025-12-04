@@ -69,7 +69,7 @@ Method | HTTP request | Description
 
 
 # **cancelAllOpenOrders**
-> ListOrdersResponse cancelAllOpenOrders(orderBookId, userId, orderKind)
+> ListOrdersResponseEnvelope cancelAllOpenOrders(orderBookId, userId, orderKind)
 
 Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
 
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListOrdersResponse**](ListOrdersResponse.md)
+[**ListOrdersResponseEnvelope**](ListOrdersResponseEnvelope.md)
 
 ### Authorization
 
@@ -114,7 +114,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **cancelOrderById**
-> CancelOrderResponse cancelOrderById(orderId)
+> CancelOrderResponseEnvelope cancelOrderById(orderId)
 
 Cancel an order by ID
 
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CancelOrderResponse**](CancelOrderResponse.md)
+[**CancelOrderResponseEnvelope**](CancelOrderResponseEnvelope.md)
 
 ### Authorization
 
@@ -155,7 +155,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **checkUserEmailExists**
-> bool checkUserEmailExists(email)
+> EmailExistsResponseEnvelope checkUserEmailExists(email)
 
 Check whether a user email exists
 
@@ -182,7 +182,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**bool**
+[**EmailExistsResponseEnvelope**](EmailExistsResponseEnvelope.md)
 
 ### Authorization
 
@@ -196,7 +196,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createNewIsolatedPosition**
-> NewIsolatedPositionResponse createNewIsolatedPosition(newIsolatedPositionRequest)
+> NewIsolatedPositionResponseEnvelope createNewIsolatedPosition(newIsolatedPositionRequest)
 
 Create a new isolated position for a user transferring available assets into the position
 
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NewIsolatedPositionResponse**](NewIsolatedPositionResponse.md)
+[**NewIsolatedPositionResponseEnvelope**](NewIsolatedPositionResponseEnvelope.md)
 
 ### Authorization
 
@@ -237,7 +237,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createOrder**
-> CreateOrderResponse createOrder(createOrderRequest)
+> CreateOrderResponseEnvelope createOrder(createOrderRequest)
 
 Create a new order
 
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateOrderResponse**](CreateOrderResponse.md)
+[**CreateOrderResponseEnvelope**](CreateOrderResponseEnvelope.md)
 
 ### Authorization
 
@@ -278,7 +278,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteUser**
-> UserDeletedResponse deleteUser(userId)
+> UserDeletedResponseEnvelope deleteUser(userId)
 
 Delete user by ID
 
@@ -305,7 +305,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserDeletedResponse**](UserDeletedResponse.md)
+[**UserDeletedResponseEnvelope**](UserDeletedResponseEnvelope.md)
 
 ### Authorization
 
@@ -319,7 +319,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getAllAssetPrices**
-> ListAssetPriceResponse getAllAssetPrices()
+> ListAssetPriceResponseEnvelope getAllAssetPrices()
 
 Get the current price of all assets
 
@@ -342,7 +342,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ListAssetPriceResponse**](ListAssetPriceResponse.md)
+[**ListAssetPriceResponseEnvelope**](ListAssetPriceResponseEnvelope.md)
 
 ### Authorization
 
@@ -356,7 +356,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getAssetById**
-> GetAssetByIDResponse getAssetById(assetId)
+> GetAssetByIDResponseEnvelope getAssetById(assetId)
 
 Get asset by ID
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetAssetByIDResponse**](GetAssetByIDResponse.md)
+[**GetAssetByIDResponseEnvelope**](GetAssetByIDResponseEnvelope.md)
 
 ### Authorization
 
@@ -397,7 +397,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getAssetPrice**
-> GetAssetPriceResponse getAssetPrice(assetId)
+> AssetPriceResponseEnvelope getAssetPrice(assetId)
 
 Get the current price of an asset
 
@@ -424,7 +424,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetAssetPriceResponse**](GetAssetPriceResponse.md)
+[**AssetPriceResponseEnvelope**](AssetPriceResponseEnvelope.md)
 
 ### Authorization
 
@@ -481,7 +481,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getCandleData**
-> ListCandlesResponse getCandleData(orderBookId, start, end, resolution)
+> ListCandlesResponseEnvelope getCandleData(orderBookId, start, end, resolution)
 
 Get candlestick data for an orderbook
 
@@ -514,7 +514,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListCandlesResponse**](ListCandlesResponse.md)
+[**ListCandlesResponseEnvelope**](ListCandlesResponseEnvelope.md)
 
 ### Authorization
 
@@ -528,7 +528,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getCouponPaymentsByAssetId**
-> ListCouponPaymentsResponse getCouponPaymentsByAssetId(assetId)
+> ListCouponPaymentsResponseEnvelope getCouponPaymentsByAssetId(assetId)
 
 Get coupon payments for a bond asset
 
@@ -555,7 +555,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListCouponPaymentsResponse**](ListCouponPaymentsResponse.md)
+[**ListCouponPaymentsResponseEnvelope**](ListCouponPaymentsResponseEnvelope.md)
 
 ### Authorization
 
@@ -569,7 +569,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getL1Depth**
-> GetTopOfBookResponse getL1Depth(orderBookId)
+> GetTopOfBookResponseEnvelope getL1Depth(orderBookId)
 
 Get the top price levels for a specific orderbook (L1 market depth)
 
@@ -596,7 +596,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetTopOfBookResponse**](GetTopOfBookResponse.md)
+[**GetTopOfBookResponseEnvelope**](GetTopOfBookResponseEnvelope.md)
 
 ### Authorization
 
@@ -610,7 +610,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getL2Depth**
-> ListOrderBookDepthResponse getL2Depth(orderBookId)
+> ListOrderBookDepthResponseEnvelope getL2Depth(orderBookId)
 
 Get the aggregated price levels for a specific orderbook (L2 market depth)
 
@@ -637,7 +637,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListOrderBookDepthResponse**](ListOrderBookDepthResponse.md)
+[**ListOrderBookDepthResponseEnvelope**](ListOrderBookDepthResponseEnvelope.md)
 
 ### Authorization
 
@@ -651,7 +651,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getL3Depth**
-> ListOrdersResponse getL3Depth(orderBookId)
+> ListOrdersResponseEnvelope getL3Depth(orderBookId)
 
 Get all open orders for a specific orderbook (L3 market depth)
 
@@ -678,7 +678,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListOrdersResponse**](ListOrdersResponse.md)
+[**ListOrdersResponseEnvelope**](ListOrdersResponseEnvelope.md)
 
 ### Authorization
 
@@ -692,7 +692,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getLedgerBalancesSelf**
-> UserBalanceResponse getLedgerBalancesSelf()
+> UserBalanceResponseEnvelope getLedgerBalancesSelf()
 
 Get your own available, locked, and borrowed assets
 
@@ -715,7 +715,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserBalanceResponse**](UserBalanceResponse.md)
+[**UserBalanceResponseEnvelope**](UserBalanceResponseEnvelope.md)
 
 ### Authorization
 
@@ -729,7 +729,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getLedgerInterestSelf**
-> UserInterestResponse getLedgerInterestSelf()
+> UserInterestResponseEnvelope getLedgerInterestSelf()
 
 Get your own interest
 
@@ -752,7 +752,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserInterestResponse**](UserInterestResponse.md)
+[**UserInterestResponseEnvelope**](UserInterestResponseEnvelope.md)
 
 ### Authorization
 
@@ -766,7 +766,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getLedgerModule**
-> LedgerModuleResponse getLedgerModule()
+> LedgerModuleResponseEnvelope getLedgerModule()
 
 Get the entire module object, including unborrowed leverage assets and total leverage trackers
 
@@ -789,7 +789,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**LedgerModuleResponse**](LedgerModuleResponse.md)
+[**LedgerModuleResponseEnvelope**](LedgerModuleResponseEnvelope.md)
 
 ### Authorization
 
@@ -803,7 +803,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getLedgerModuleByAsset**
-> LedgerModuleByAssetResponse getLedgerModuleByAsset(assetId)
+> LedgerModuleByAssetResponseEnvelope getLedgerModuleByAsset(assetId)
 
 Get the module object for a single asset ID
 
@@ -830,7 +830,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LedgerModuleByAssetResponse**](LedgerModuleByAssetResponse.md)
+[**LedgerModuleByAssetResponseEnvelope**](LedgerModuleByAssetResponseEnvelope.md)
 
 ### Authorization
 
@@ -844,7 +844,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getLedgerPositionsSelf**
-> UserPositionResponse getLedgerPositionsSelf()
+> UserPositionResponseEnvelope getLedgerPositionsSelf()
 
 Get your own positions
 
@@ -867,7 +867,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserPositionResponse**](UserPositionResponse.md)
+[**UserPositionResponseEnvelope**](UserPositionResponseEnvelope.md)
 
 ### Authorization
 
@@ -881,7 +881,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getLedgerValueSelf**
-> UserValueResponse getLedgerValueSelf()
+> UserValueResponseEnvelope getLedgerValueSelf()
 
 Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
 
@@ -904,7 +904,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UserValueResponse**](UserValueResponse.md)
+[**UserValueResponseEnvelope**](UserValueResponseEnvelope.md)
 
 ### Authorization
 
@@ -918,7 +918,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getOrderById**
-> GetOrderResponse getOrderById(orderId)
+> OrderResponseEnvelope getOrderById(orderId)
 
 Get order by ID
 
@@ -945,7 +945,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetOrderResponse**](GetOrderResponse.md)
+[**OrderResponseEnvelope**](OrderResponseEnvelope.md)
 
 ### Authorization
 
@@ -959,7 +959,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getOrderbookById**
-> GetOrderBookResponse getOrderbookById(orderBookId)
+> OrderBookResponseEnvelope getOrderbookById(orderBookId)
 
 Get orderbook by ID
 
@@ -986,7 +986,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetOrderBookResponse**](GetOrderBookResponse.md)
+[**OrderBookResponseEnvelope**](OrderBookResponseEnvelope.md)
 
 ### Authorization
 
@@ -1000,7 +1000,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getOrderbookDepth**
-> ListOrderBookDepthResponse getOrderbookDepth(orderBookId)
+> ListOrderBookDepthResponseEnvelope getOrderbookDepth(orderBookId)
 
 Get the aggregated price levels for a specific orderbook (L2 market depth)
 
@@ -1027,7 +1027,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListOrderBookDepthResponse**](ListOrderBookDepthResponse.md)
+[**ListOrderBookDepthResponseEnvelope**](ListOrderBookDepthResponseEnvelope.md)
 
 ### Authorization
 
@@ -1041,7 +1041,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getOrderbookOrders**
-> ListOrdersResponse getOrderbookOrders(orderBookId)
+> ListOrdersResponseEnvelope getOrderbookOrders(orderBookId)
 
 Get all open orders for a specific orderbook (L3 market depth)
 
@@ -1068,7 +1068,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListOrdersResponse**](ListOrdersResponse.md)
+[**ListOrdersResponseEnvelope**](ListOrdersResponseEnvelope.md)
 
 ### Authorization
 
@@ -1082,7 +1082,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getOrderbookSummary**
-> GetOrderBookSummaryResponse getOrderbookSummary(orderBookId)
+> OrderBookSummaryResponseEnvelope getOrderbookSummary(orderBookId)
 
 Get summary of an orderbook
 
@@ -1109,7 +1109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetOrderBookSummaryResponse**](GetOrderBookSummaryResponse.md)
+[**OrderBookSummaryResponseEnvelope**](OrderBookSummaryResponseEnvelope.md)
 
 ### Authorization
 
@@ -1123,7 +1123,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getOrderbookTop**
-> GetTopOfBookResponse getOrderbookTop(orderBookId)
+> GetTopOfBookResponseEnvelope getOrderbookTop(orderBookId)
 
 Get the top price levels for a specific orderbook (L1 market depth)
 
@@ -1150,7 +1150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetTopOfBookResponse**](GetTopOfBookResponse.md)
+[**GetTopOfBookResponseEnvelope**](GetTopOfBookResponseEnvelope.md)
 
 ### Authorization
 
@@ -1164,7 +1164,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getPoolPrice**
-> GetPoolPriceResponse getPoolPrice(poolId)
+> PoolPriceResponseEnvelope getPoolPrice(poolId)
 
 Get the current price of a pool
 
@@ -1191,7 +1191,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetPoolPriceResponse**](GetPoolPriceResponse.md)
+[**PoolPriceResponseEnvelope**](PoolPriceResponseEnvelope.md)
 
 ### Authorization
 
@@ -1205,7 +1205,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getTradeById**
-> TradeResponse getTradeById(tradeId)
+> TradeResponseEnvelope getTradeById(tradeId)
 
 Get a trade by ID
 
@@ -1232,7 +1232,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TradeResponse**](TradeResponse.md)
+[**TradeResponseEnvelope**](TradeResponseEnvelope.md)
 
 ### Authorization
 
@@ -1246,7 +1246,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getTrades**
-> ListTradeResponse getTrades(orderBookIds, userIds, start, end, page, limit)
+> ListTradeResponseEnvelope getTrades(orderBookIds, userIds, start, end, page, limit)
 
 Get a filtered, paginated list of trades
 
@@ -1283,7 +1283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListTradeResponse**](ListTradeResponse.md)
+[**ListTradeResponseEnvelope**](ListTradeResponseEnvelope.md)
 
 ### Authorization
 
@@ -1297,7 +1297,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getTransactionById**
-> GetTransactionResponse getTransactionById(transactionId)
+> TransactionResponseEnvelope getTransactionById(transactionId)
 
 Get a transaction by ID
 
@@ -1324,7 +1324,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetTransactionResponse**](GetTransactionResponse.md)
+[**TransactionResponseEnvelope**](TransactionResponseEnvelope.md)
 
 ### Authorization
 
@@ -1338,7 +1338,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getTransactions**
-> ListTransactionsResponse getTransactions(pools, userIds, txKinds, start, end, page, limit)
+> ListTransactionsResponseEnvelope getTransactions(pools, userIds, txKinds, start, end, page, limit)
 
 Get a filtered, paginated list of transactions
 
@@ -1377,7 +1377,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListTransactionsResponse**](ListTransactionsResponse.md)
+[**ListTransactionsResponseEnvelope**](ListTransactionsResponseEnvelope.md)
 
 ### Authorization
 
@@ -1391,7 +1391,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserById**
-> GetUserResponse getUserById(userId)
+> UserEnvelope getUserById(userId)
 
 Get user by ID (admin only)
 
@@ -1418,7 +1418,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetUserResponse**](GetUserResponse.md)
+[**UserEnvelope**](UserEnvelope.md)
 
 ### Authorization
 
@@ -1561,7 +1561,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserSelf**
-> GetUserResponse getUserSelf()
+> UserEnvelope getUserSelf()
 
 Get user details for the authenticated user
 
@@ -1584,7 +1584,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetUserResponse**](GetUserResponse.md)
+[**UserEnvelope**](UserEnvelope.md)
 
 ### Authorization
 
@@ -1682,7 +1682,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverageSupply**
-> SupplyResponse leverageSupply(supplyRequest)
+> SupplyResponseEnvelope leverageSupply(supplyRequest)
 
 Supply leverage for a specific asset
 
@@ -1709,7 +1709,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SupplyResponse**](SupplyResponse.md)
+[**SupplyResponseEnvelope**](SupplyResponseEnvelope.md)
 
 ### Authorization
 
@@ -1723,7 +1723,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverageUnite**
-> UnitePositionResponse leverageUnite(unitePositionRequest)
+> UnitePositionResponseEnvelope leverageUnite(unitePositionRequest)
 
 Combines all isolated positions into a single global position
 
@@ -1752,7 +1752,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UnitePositionResponse**](UnitePositionResponse.md)
+[**UnitePositionResponseEnvelope**](UnitePositionResponseEnvelope.md)
 
 ### Authorization
 
@@ -1766,7 +1766,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **leverageWithdraw**
-> WithdrawResponse leverageWithdraw(withdrawRequest)
+> WithdrawResponseEnvelope leverageWithdraw(withdrawRequest)
 
 Withdraw leverage for a specific asset
 
@@ -1793,7 +1793,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WithdrawResponse**](WithdrawResponse.md)
+[**WithdrawResponseEnvelope**](WithdrawResponseEnvelope.md)
 
 ### Authorization
 
@@ -1807,7 +1807,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **liquidityAdd**
-> LiquidityResponse liquidityAdd(poolId, liquidityRequest)
+> LiquidityResponseEnvelope liquidityAdd(poolId, liquidityRequest)
 
 Add liquidity to a pool
 
@@ -1836,7 +1836,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LiquidityResponse**](LiquidityResponse.md)
+[**LiquidityResponseEnvelope**](LiquidityResponseEnvelope.md)
 
 ### Authorization
 
@@ -1850,7 +1850,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **liquiditySubtract**
-> LiquidityResponse liquiditySubtract(poolId, liquidityRequest)
+> LiquidityResponseEnvelope liquiditySubtract(poolId, liquidityRequest)
 
 Subtract liquidity from a pool
 
@@ -1879,7 +1879,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LiquidityResponse**](LiquidityResponse.md)
+[**LiquidityResponseEnvelope**](LiquidityResponseEnvelope.md)
 
 ### Authorization
 
@@ -1893,7 +1893,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listAssets**
-> ListAssetsResponse listAssets(createdAfter, createdBefore, assetKind, canAddLiquidity, canDirectBorrow, canOnboard, canTrade, canVirtualBorrow, page, limit)
+> ResponseEnvelopeOfListAssets listAssets(createdAfter, createdBefore, assetKind, canAddLiquidity, canDirectBorrow, canOnboard, canTrade, canVirtualBorrow, page, limit)
 
 List assets
 
@@ -1938,7 +1938,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListAssetsResponse**](ListAssetsResponse.md)
+[**ResponseEnvelopeOfListAssets**](ResponseEnvelopeOfListAssets.md)
 
 ### Authorization
 
@@ -1952,7 +1952,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listOrderBooks**
-> ListOrderBooksResponse listOrderBooks(status, baseAssetId, quoteAssetId, page, limit)
+> ListOrderbookResponseEnvelope listOrderBooks(status, baseAssetId, quoteAssetId, page, limit)
 
 List order books
 
@@ -1987,7 +1987,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListOrderBooksResponse**](ListOrderBooksResponse.md)
+[**ListOrderbookResponseEnvelope**](ListOrderbookResponseEnvelope.md)
 
 ### Authorization
 
@@ -2001,7 +2001,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listOrders**
-> ListOrdersResponse listOrders(orderBookId, kind, status, side, from, to, page, limit)
+> ListOrdersResponseEnvelope listOrders(orderBookId, kind, status, side, from, to, page, limit)
 
 List all orders
 
@@ -2042,7 +2042,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListOrdersResponse**](ListOrdersResponse.md)
+[**ListOrdersResponseEnvelope**](ListOrdersResponseEnvelope.md)
 
 ### Authorization
 
@@ -2273,7 +2273,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transferAvailableBalances**
-> TransferBalancesResponse transferAvailableBalances(transferBalancesRequest)
+> TransferBalancesResponseEnvelope transferAvailableBalances(transferBalancesRequest)
 
 Transfer available balance between a user's accounts (e.g. global to isolated position)
 
@@ -2300,7 +2300,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransferBalancesResponse**](TransferBalancesResponse.md)
+[**TransferBalancesResponseEnvelope**](TransferBalancesResponseEnvelope.md)
 
 ### Authorization
 
@@ -2314,7 +2314,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateUserConfig**
-> UserUpdatedResponse updateUserConfig(userId, updateUserConfigRequest)
+> UserUpdatedResponseEnvelope updateUserConfig(userId, updateUserConfigRequest)
 
 Update user configuration by ID
 
@@ -2343,7 +2343,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserUpdatedResponse**](UserUpdatedResponse.md)
+[**UserUpdatedResponseEnvelope**](UserUpdatedResponseEnvelope.md)
 
 ### Authorization
 
@@ -2357,7 +2357,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateUserConfigSelf**
-> UserUpdatedResponse updateUserConfigSelf(updateUserConfigRequest)
+> UserUpdatedResponseEnvelope updateUserConfigSelf(updateUserConfigRequest)
 
 Update user configuration for the authenticated user
 
@@ -2384,7 +2384,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserUpdatedResponse**](UserUpdatedResponse.md)
+[**UserUpdatedResponseEnvelope**](UserUpdatedResponseEnvelope.md)
 
 ### Authorization
 
@@ -2439,7 +2439,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **verifyUser**
-> UserUpdatedResponse verifyUser(userId)
+> UserUpdatedResponseEnvelope verifyUser(userId)
 
 Verify a user by ID
 
@@ -2466,7 +2466,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserUpdatedResponse**](UserUpdatedResponse.md)
+[**UserUpdatedResponseEnvelope**](UserUpdatedResponseEnvelope.md)
 
 ### Authorization
 

@@ -10,12 +10,12 @@
 
 part of openapi.api;
 
-class CreateAPIKeyResponse {
-  /// Returns a new [CreateAPIKeyResponse] instance.
-  CreateAPIKeyResponse({
-    this.keyId,
-    this.apiKey,
-    this.label,
+class CreateAPIKeyResponseEnvelope {
+  /// Returns a new [CreateAPIKeyResponseEnvelope] instance.
+  CreateAPIKeyResponseEnvelope({
+    this.data,
+    this.error,
+    this.metadata,
   });
 
   ///
@@ -24,7 +24,16 @@ class CreateAPIKeyResponse {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? keyId;
+  Object? data;
+
+  /// The error message. Present for error (non-2xx) responses.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? error;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -32,56 +41,48 @@ class CreateAPIKeyResponse {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? apiKey;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? label;
+  Metadata? metadata;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CreateAPIKeyResponse &&
-    other.keyId == keyId &&
-    other.apiKey == apiKey &&
-    other.label == label;
+  bool operator ==(Object other) => identical(this, other) || other is CreateAPIKeyResponseEnvelope &&
+    other.data == data &&
+    other.error == error &&
+    other.metadata == metadata;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (keyId == null ? 0 : keyId!.hashCode) +
-    (apiKey == null ? 0 : apiKey!.hashCode) +
-    (label == null ? 0 : label!.hashCode);
+    (data == null ? 0 : data!.hashCode) +
+    (error == null ? 0 : error!.hashCode) +
+    (metadata == null ? 0 : metadata!.hashCode);
 
   @override
-  String toString() => 'CreateAPIKeyResponse[keyId=$keyId, apiKey=$apiKey, label=$label]';
+  String toString() => 'CreateAPIKeyResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.keyId != null) {
-      json[r'key_id'] = this.keyId;
+    if (this.data != null) {
+      json[r'data'] = this.data;
     } else {
-      json[r'key_id'] = null;
+      json[r'data'] = null;
     }
-    if (this.apiKey != null) {
-      json[r'api_key'] = this.apiKey;
+    if (this.error != null) {
+      json[r'error'] = this.error;
     } else {
-      json[r'api_key'] = null;
+      json[r'error'] = null;
     }
-    if (this.label != null) {
-      json[r'label'] = this.label;
+    if (this.metadata != null) {
+      json[r'metadata'] = this.metadata;
     } else {
-      json[r'label'] = null;
+      json[r'metadata'] = null;
     }
     return json;
   }
 
-  /// Returns a new [CreateAPIKeyResponse] instance and imports its values from
+  /// Returns a new [CreateAPIKeyResponseEnvelope] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static CreateAPIKeyResponse? fromJson(dynamic value) {
+  static CreateAPIKeyResponseEnvelope? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -90,26 +91,26 @@ class CreateAPIKeyResponse {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateAPIKeyResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateAPIKeyResponse[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "CreateAPIKeyResponseEnvelope[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "CreateAPIKeyResponseEnvelope[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return CreateAPIKeyResponse(
-        keyId: mapValueOfType<String>(json, r'key_id'),
-        apiKey: mapValueOfType<String>(json, r'api_key'),
-        label: mapValueOfType<String>(json, r'label'),
+      return CreateAPIKeyResponseEnvelope(
+        data: mapValueOfType<Object>(json, r'data'),
+        error: mapValueOfType<String>(json, r'error'),
+        metadata: Metadata.fromJson(json[r'metadata']),
       );
     }
     return null;
   }
 
-  static List<CreateAPIKeyResponse> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <CreateAPIKeyResponse>[];
+  static List<CreateAPIKeyResponseEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <CreateAPIKeyResponseEnvelope>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = CreateAPIKeyResponse.fromJson(row);
+        final value = CreateAPIKeyResponseEnvelope.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -118,12 +119,12 @@ class CreateAPIKeyResponse {
     return result.toList(growable: growable);
   }
 
-  static Map<String, CreateAPIKeyResponse> mapFromJson(dynamic json) {
-    final map = <String, CreateAPIKeyResponse>{};
+  static Map<String, CreateAPIKeyResponseEnvelope> mapFromJson(dynamic json) {
+    final map = <String, CreateAPIKeyResponseEnvelope>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = CreateAPIKeyResponse.fromJson(entry.value);
+        final value = CreateAPIKeyResponseEnvelope.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -132,14 +133,14 @@ class CreateAPIKeyResponse {
     return map;
   }
 
-  // maps a json object with a list of CreateAPIKeyResponse-objects as value to a dart map
-  static Map<String, List<CreateAPIKeyResponse>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<CreateAPIKeyResponse>>{};
+  // maps a json object with a list of CreateAPIKeyResponseEnvelope-objects as value to a dart map
+  static Map<String, List<CreateAPIKeyResponseEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<CreateAPIKeyResponseEnvelope>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = CreateAPIKeyResponse.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = CreateAPIKeyResponseEnvelope.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

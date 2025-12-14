@@ -40,7 +40,7 @@ void main() {
 
     // Create apikey for a user
     //
-    //Future<CreateAPIKeyResponse> createAPIKeyForUser(CreateAPIKeyRequest createAPIKeyRequest) async
+    //Future<CreateAPIKeyResponseEnvelope> createAPIKeyForUser(CreateAPIKeyRequest createAPIKeyRequest) async
     test('test createAPIKeyForUser', () async {
       // TODO
     });
@@ -371,7 +371,7 @@ void main() {
 
     // Revoke apikey for a user
     //
-    //Future<RevokeAPIKeyResponse> revokeAPIKeyForUser(String keyId) async
+    //Future<RevokeAPIKeyResponseEnvelope> revokeAPIKeyForUser(String keyId) async
     test('test revokeAPIKeyForUser', () async {
       // TODO
     });

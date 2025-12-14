@@ -11,28 +11,23 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for RevokeAPIKeyResponse
+// tests for CreateAPIKeyData
 void main() {
-  // final instance = RevokeAPIKeyResponse();
+  // final instance = CreateAPIKeyData();
 
-  group('test RevokeAPIKeyResponse', () {
-    // String userId
-    test('to test the property `userId`', () async {
-      // TODO
-    });
-
+  group('test CreateAPIKeyData', () {
     // String keyId
     test('to test the property `keyId`', () async {
       // TODO
     });
 
-    // String label
-    test('to test the property `label`', () async {
+    // String apiKey
+    test('to test the property `apiKey`', () async {
       // TODO
     });
 
-    // bool isActive
-    test('to test the property `isActive`', () async {
+    // String label
+    test('to test the property `label`', () async {
       // TODO
     });
 

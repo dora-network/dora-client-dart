@@ -11,23 +11,24 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for CreateAPIKeyResponse
+// tests for RevokeAPIKeyResponseEnvelope
 void main() {
-  // final instance = CreateAPIKeyResponse();
+  // final instance = RevokeAPIKeyResponseEnvelope();
 
-  group('test CreateAPIKeyResponse', () {
-    // String keyId
-    test('to test the property `keyId`', () async {
+  group('test RevokeAPIKeyResponseEnvelope', () {
+    // Object data
+    test('to test the property `data`', () async {
       // TODO
     });
 
-    // String apiKey
-    test('to test the property `apiKey`', () async {
+    // The error message. Present for error (non-2xx) responses.
+    // String error
+    test('to test the property `error`', () async {
       // TODO
     });
 
-    // String label
-    test('to test the property `label`', () async {
+    // Metadata metadata
+    test('to test the property `metadata`', () async {
       // TODO
     });
 

@@ -230,7 +230,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CreateAPIKeyRequest] createAPIKeyRequest (required):
-  Future<CreateAPIKeyResponse?> createAPIKeyForUser(CreateAPIKeyRequest createAPIKeyRequest,) async {
+  Future<CreateAPIKeyResponseEnvelope?> createAPIKeyForUser(CreateAPIKeyRequest createAPIKeyRequest,) async {
     final response = await createAPIKeyForUserWithHttpInfo(createAPIKeyRequest,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -239,7 +239,7 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateAPIKeyResponse',) as CreateAPIKeyResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateAPIKeyResponseEnvelope',) as CreateAPIKeyResponseEnvelope;
     
     }
     return null;
@@ -2956,7 +2956,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] keyId (required):
-  Future<RevokeAPIKeyResponse?> revokeAPIKeyForUser(String keyId,) async {
+  Future<RevokeAPIKeyResponseEnvelope?> revokeAPIKeyForUser(String keyId,) async {
     final response = await revokeAPIKeyForUserWithHttpInfo(keyId,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -2965,7 +2965,7 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RevokeAPIKeyResponse',) as RevokeAPIKeyResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RevokeAPIKeyResponseEnvelope',) as RevokeAPIKeyResponseEnvelope;
     
     }
     return null;

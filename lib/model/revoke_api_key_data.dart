@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-class RevokeAPIKeyResponse {
-  /// Returns a new [RevokeAPIKeyResponse] instance.
-  RevokeAPIKeyResponse({
+class RevokeAPIKeyData {
+  /// Returns a new [RevokeAPIKeyData] instance.
+  RevokeAPIKeyData({
     this.userId,
     this.keyId,
     this.label,
@@ -52,7 +52,7 @@ class RevokeAPIKeyResponse {
   bool? isActive;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is RevokeAPIKeyResponse &&
+  bool operator ==(Object other) => identical(this, other) || other is RevokeAPIKeyData &&
     other.userId == userId &&
     other.keyId == keyId &&
     other.label == label &&
@@ -67,7 +67,7 @@ class RevokeAPIKeyResponse {
     (isActive == null ? 0 : isActive!.hashCode);
 
   @override
-  String toString() => 'RevokeAPIKeyResponse[userId=$userId, keyId=$keyId, label=$label, isActive=$isActive]';
+  String toString() => 'RevokeAPIKeyData[userId=$userId, keyId=$keyId, label=$label, isActive=$isActive]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -94,10 +94,10 @@ class RevokeAPIKeyResponse {
     return json;
   }
 
-  /// Returns a new [RevokeAPIKeyResponse] instance and imports its values from
+  /// Returns a new [RevokeAPIKeyData] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static RevokeAPIKeyResponse? fromJson(dynamic value) {
+  static RevokeAPIKeyData? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -106,13 +106,13 @@ class RevokeAPIKeyResponse {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RevokeAPIKeyResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RevokeAPIKeyResponse[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "RevokeAPIKeyData[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "RevokeAPIKeyData[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return RevokeAPIKeyResponse(
+      return RevokeAPIKeyData(
         userId: mapValueOfType<String>(json, r'user_id'),
         keyId: mapValueOfType<String>(json, r'key_id'),
         label: mapValueOfType<String>(json, r'label'),
@@ -122,11 +122,11 @@ class RevokeAPIKeyResponse {
     return null;
   }
 
-  static List<RevokeAPIKeyResponse> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <RevokeAPIKeyResponse>[];
+  static List<RevokeAPIKeyData> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <RevokeAPIKeyData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = RevokeAPIKeyResponse.fromJson(row);
+        final value = RevokeAPIKeyData.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -135,12 +135,12 @@ class RevokeAPIKeyResponse {
     return result.toList(growable: growable);
   }
 
-  static Map<String, RevokeAPIKeyResponse> mapFromJson(dynamic json) {
-    final map = <String, RevokeAPIKeyResponse>{};
+  static Map<String, RevokeAPIKeyData> mapFromJson(dynamic json) {
+    final map = <String, RevokeAPIKeyData>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = RevokeAPIKeyResponse.fromJson(entry.value);
+        final value = RevokeAPIKeyData.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -149,14 +149,14 @@ class RevokeAPIKeyResponse {
     return map;
   }
 
-  // maps a json object with a list of RevokeAPIKeyResponse-objects as value to a dart map
-  static Map<String, List<RevokeAPIKeyResponse>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<RevokeAPIKeyResponse>>{};
+  // maps a json object with a list of RevokeAPIKeyData-objects as value to a dart map
+  static Map<String, List<RevokeAPIKeyData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<RevokeAPIKeyData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = RevokeAPIKeyResponse.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = RevokeAPIKeyData.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

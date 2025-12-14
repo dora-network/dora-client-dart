@@ -214,10 +214,12 @@ class ApiClient {
           return Collateral.fromJson(value);
         case 'CouponPayment':
           return CouponPayment.fromJson(value);
+        case 'CreateAPIKeyData':
+          return CreateAPIKeyData.fromJson(value);
         case 'CreateAPIKeyRequest':
           return CreateAPIKeyRequest.fromJson(value);
-        case 'CreateAPIKeyResponse':
-          return CreateAPIKeyResponse.fromJson(value);
+        case 'CreateAPIKeyResponseEnvelope':
+          return CreateAPIKeyResponseEnvelope.fromJson(value);
         case 'CreateOrUpdateUserResponse':
           return CreateOrUpdateUserResponse.fromJson(value);
         case 'CreateOrderRequest':
@@ -344,8 +346,10 @@ class ApiClient {
           return ResponseEnvelope.fromJson(value);
         case 'ResponseEnvelopeOfListAssets':
           return ResponseEnvelopeOfListAssets.fromJson(value);
-        case 'RevokeAPIKeyResponse':
-          return RevokeAPIKeyResponse.fromJson(value);
+        case 'RevokeAPIKeyData':
+          return RevokeAPIKeyData.fromJson(value);
+        case 'RevokeAPIKeyResponseEnvelope':
+          return RevokeAPIKeyResponseEnvelope.fromJson(value);
         case 'Side':
           return SideTypeTransformer().decode(value);
         case 'StreamAssetPricesResponseValue':

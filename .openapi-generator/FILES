@@ -18,8 +18,9 @@ doc/Candle.md
 doc/CandleResolution.md
 doc/Collateral.md
 doc/CouponPayment.md
+doc/CreateAPIKeyData.md
 doc/CreateAPIKeyRequest.md
-doc/CreateAPIKeyResponse.md
+doc/CreateAPIKeyResponseEnvelope.md
 doc/CreateOrUpdateUserResponse.md
 doc/CreateOrderRequest.md
 doc/CreateOrderResponseEnvelope.md
@@ -84,7 +85,8 @@ doc/PositionType.md
 doc/PriceLevel.md
 doc/ResponseEnvelope.md
 doc/ResponseEnvelopeOfListAssets.md
-doc/RevokeAPIKeyResponse.md
+doc/RevokeAPIKeyData.md
+doc/RevokeAPIKeyResponseEnvelope.md
 doc/Side.md
 doc/StreamAssetPricesResponseValue.md
 doc/StreamAssetsEntry.md
@@ -160,8 +162,9 @@ lib/model/candle.dart
 lib/model/candle_resolution.dart
 lib/model/collateral.dart
 lib/model/coupon_payment.dart
+lib/model/create_api_key_data.dart
 lib/model/create_api_key_request.dart
-lib/model/create_api_key_response.dart
+lib/model/create_api_key_response_envelope.dart
 lib/model/create_or_update_user_response.dart
 lib/model/create_order_request.dart
 lib/model/create_order_response_envelope.dart
@@ -225,7 +228,8 @@ lib/model/position_type.dart
 lib/model/price_level.dart
 lib/model/response_envelope.dart
 lib/model/response_envelope_of_list_assets.dart
-lib/model/revoke_api_key_response.dart
+lib/model/revoke_api_key_data.dart
+lib/model/revoke_api_key_response_envelope.dart
 lib/model/side.dart
 lib/model/stream_asset_prices_response_value.dart
 lib/model/stream_assets_entry.dart
@@ -291,8 +295,9 @@ test/candle_resolution_test.dart
 test/candle_test.dart
 test/collateral_test.dart
 test/coupon_payment_test.dart
+test/create_api_key_data_test.dart
 test/create_api_key_request_test.dart
-test/create_api_key_response_test.dart
+test/create_api_key_response_envelope_test.dart
 test/create_or_update_user_response_test.dart
 test/create_order_request_test.dart
 test/create_order_response_envelope_test.dart
@@ -357,7 +362,8 @@ test/position_type_test.dart
 test/price_level_test.dart
 test/response_envelope_of_list_assets_test.dart
 test/response_envelope_test.dart
-test/revoke_api_key_response_test.dart
+test/revoke_api_key_data_test.dart
+test/revoke_api_key_response_envelope_test.dart
 test/side_test.dart
 test/stream_asset_prices_response_value_test.dart
 test/stream_assets_entry_test.dart

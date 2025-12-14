@@ -63,7 +63,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**cancelAllOpenOrders**](doc//DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
 *DefaultApi* | [**cancelOrderById**](doc//DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
-*DefaultApi* | [**checkUserEmailExists**](doc//DefaultApi.md#checkuseremailexists) | **GET** /v1/user/{email}/exists | Check whether a user email exists
+*DefaultApi* | [**checkUserEmailExists**](doc//DefaultApi.md#checkuseremailexists) | **GET** /v1/user/exists | Check whether a user email exists
 *DefaultApi* | [**createNewIsolatedPosition**](doc//DefaultApi.md#createnewisolatedposition) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 *DefaultApi* | [**createOrder**](doc//DefaultApi.md#createorder) | **POST** /v1/orders | Create a new order
 *DefaultApi* | [**deleteUser**](doc//DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
@@ -108,6 +108,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**listAssets**](doc//DefaultApi.md#listassets) | **GET** /v1/assets | List assets
 *DefaultApi* | [**listOrderBooks**](doc//DefaultApi.md#listorderbooks) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**listOrders**](doc//DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
+*DefaultApi* | [**listPositionAccountsSelf**](doc//DefaultApi.md#listpositionaccountsself) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
 *DefaultApi* | [**streamAssetPrices**](doc//DefaultApi.md#streamassetprices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 *DefaultApi* | [**streamCandleData**](doc//DefaultApi.md#streamcandledata) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 *DefaultApi* | [**streamOrderBookBalances**](doc//DefaultApi.md#streamorderbookbalances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -162,6 +163,7 @@ Class | Method | HTTP request | Description
  - [ListOrderBookDepthResponseEnvelope](doc//ListOrderBookDepthResponseEnvelope.md)
  - [ListOrderbookResponseEnvelope](doc//ListOrderbookResponseEnvelope.md)
  - [ListOrdersResponseEnvelope](doc//ListOrdersResponseEnvelope.md)
+ - [ListPositionAccountsResponseEnvelope](doc//ListPositionAccountsResponseEnvelope.md)
  - [ListPositionsResponse](doc//ListPositionsResponse.md)
  - [ListTradeResponseEnvelope](doc//ListTradeResponseEnvelope.md)
  - [ListTransactionsResponseEnvelope](doc//ListTransactionsResponseEnvelope.md)
@@ -192,6 +194,7 @@ Class | Method | HTTP request | Description
  - [PoolRequestError](doc//PoolRequestError.md)
  - [Portfolio](doc//Portfolio.md)
  - [Position](doc//Position.md)
+ - [PositionAccount](doc//PositionAccount.md)
  - [PositionResponse](doc//PositionResponse.md)
  - [PositionType](doc//PositionType.md)
  - [PriceLevel](doc//PriceLevel.md)

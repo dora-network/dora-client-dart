@@ -10,21 +10,15 @@
 
 part of openapi.api;
 
-class CancelOrderResponseEnvelope {
-  /// Returns a new [CancelOrderResponseEnvelope] instance.
-  CancelOrderResponseEnvelope({
-    this.data,
+class ListPositionAccountsResponseEnvelope {
+  /// Returns a new [ListPositionAccountsResponseEnvelope] instance.
+  ListPositionAccountsResponseEnvelope({
+    this.data = const [],
     this.error,
     this.metadata,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  Order? data;
+  List<PositionAccount> data;
 
   /// The error message. Present for error (non-2xx) responses.
   ///
@@ -44,28 +38,24 @@ class CancelOrderResponseEnvelope {
   Metadata? metadata;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CancelOrderResponseEnvelope &&
-    other.data == data &&
+  bool operator ==(Object other) => identical(this, other) || other is ListPositionAccountsResponseEnvelope &&
+    _deepEquality.equals(other.data, data) &&
     other.error == error &&
     other.metadata == metadata;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (data == null ? 0 : data!.hashCode) +
+    (data.hashCode) +
     (error == null ? 0 : error!.hashCode) +
     (metadata == null ? 0 : metadata!.hashCode);
 
   @override
-  String toString() => 'CancelOrderResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
+  String toString() => 'ListPositionAccountsResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.data != null) {
       json[r'data'] = this.data;
-    } else {
-      json[r'data'] = null;
-    }
     if (this.error != null) {
       json[r'error'] = this.error;
     } else {
@@ -79,10 +69,10 @@ class CancelOrderResponseEnvelope {
     return json;
   }
 
-  /// Returns a new [CancelOrderResponseEnvelope] instance and imports its values from
+  /// Returns a new [ListPositionAccountsResponseEnvelope] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static CancelOrderResponseEnvelope? fromJson(dynamic value) {
+  static ListPositionAccountsResponseEnvelope? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -91,14 +81,14 @@ class CancelOrderResponseEnvelope {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CancelOrderResponseEnvelope[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CancelOrderResponseEnvelope[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "ListPositionAccountsResponseEnvelope[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ListPositionAccountsResponseEnvelope[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return CancelOrderResponseEnvelope(
-        data: Order.fromJson(json[r'data']),
+      return ListPositionAccountsResponseEnvelope(
+        data: PositionAccount.listFromJson(json[r'data']),
         error: mapValueOfType<String>(json, r'error'),
         metadata: Metadata.fromJson(json[r'metadata']),
       );
@@ -106,11 +96,11 @@ class CancelOrderResponseEnvelope {
     return null;
   }
 
-  static List<CancelOrderResponseEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <CancelOrderResponseEnvelope>[];
+  static List<ListPositionAccountsResponseEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ListPositionAccountsResponseEnvelope>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = CancelOrderResponseEnvelope.fromJson(row);
+        final value = ListPositionAccountsResponseEnvelope.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -119,12 +109,12 @@ class CancelOrderResponseEnvelope {
     return result.toList(growable: growable);
   }
 
-  static Map<String, CancelOrderResponseEnvelope> mapFromJson(dynamic json) {
-    final map = <String, CancelOrderResponseEnvelope>{};
+  static Map<String, ListPositionAccountsResponseEnvelope> mapFromJson(dynamic json) {
+    final map = <String, ListPositionAccountsResponseEnvelope>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = CancelOrderResponseEnvelope.fromJson(entry.value);
+        final value = ListPositionAccountsResponseEnvelope.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -133,14 +123,14 @@ class CancelOrderResponseEnvelope {
     return map;
   }
 
-  // maps a json object with a list of CancelOrderResponseEnvelope-objects as value to a dart map
-  static Map<String, List<CancelOrderResponseEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<CancelOrderResponseEnvelope>>{};
+  // maps a json object with a list of ListPositionAccountsResponseEnvelope-objects as value to a dart map
+  static Map<String, List<ListPositionAccountsResponseEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ListPositionAccountsResponseEnvelope>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = CancelOrderResponseEnvelope.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ListPositionAccountsResponseEnvelope.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

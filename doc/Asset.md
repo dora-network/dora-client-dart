@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **canOnboard** | **bool** |  | [optional] 
 **canTrade** | **bool** |  | [optional] 
 **canVirtualBorrow** | **bool** |  | [optional] 
+**maxLeverage** | **num** |  | [optional] 
 **bond** | [**Bond**](Bond.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

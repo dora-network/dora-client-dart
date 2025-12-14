@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancelAllOpenOrders**](DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
 [**cancelOrderById**](DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
-[**checkUserEmailExists**](DefaultApi.md#checkuseremailexists) | **GET** /v1/user/{email}/exists | Check whether a user email exists
+[**checkUserEmailExists**](DefaultApi.md#checkuseremailexists) | **GET** /v1/user/exists | Check whether a user email exists
 [**createNewIsolatedPosition**](DefaultApi.md#createnewisolatedposition) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 [**createOrder**](DefaultApi.md#createorder) | **POST** /v1/orders | Create a new order
 [**deleteUser**](DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
@@ -56,6 +56,7 @@ Method | HTTP request | Description
 [**listAssets**](DefaultApi.md#listassets) | **GET** /v1/assets | List assets
 [**listOrderBooks**](DefaultApi.md#listorderbooks) | **GET** /v1/orderbooks | List order books
 [**listOrders**](DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
+[**listPositionAccountsSelf**](DefaultApi.md#listpositionaccountsself) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
 [**streamAssetPrices**](DefaultApi.md#streamassetprices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 [**streamCandleData**](DefaultApi.md#streamcandledata) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 [**streamOrderBookBalances**](DefaultApi.md#streamorderbookbalances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -2043,6 +2044,43 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListOrdersResponseEnvelope**](ListOrdersResponseEnvelope.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listPositionAccountsSelf**
+> ListPositionAccountsResponseEnvelope listPositionAccountsSelf()
+
+List all position accounts for the authenticated user
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+
+try {
+    final result = api_instance.listPositionAccountsSelf();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listPositionAccountsSelf: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListPositionAccountsResponseEnvelope**](ListPositionAccountsResponseEnvelope.md)
 
 ### Authorization
 

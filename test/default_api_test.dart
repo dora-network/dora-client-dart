@@ -348,6 +348,13 @@ void main() {
       // TODO
     });
 
+    // List all position accounts for the authenticated user
+    //
+    //Future<ListPositionAccountsResponseEnvelope> listPositionAccountsSelf() async
+    test('test listPositionAccountsSelf', () async {
+      // TODO
+    });
+
     // Stream real-time asset prices as map objects
     //
     // Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.

@@ -262,6 +262,8 @@ class ApiClient {
           return ListOrderbookResponseEnvelope.fromJson(value);
         case 'ListOrdersResponseEnvelope':
           return ListOrdersResponseEnvelope.fromJson(value);
+        case 'ListPositionAccountsResponseEnvelope':
+          return ListPositionAccountsResponseEnvelope.fromJson(value);
         case 'ListPositionsResponse':
           return ListPositionsResponse.fromJson(value);
         case 'ListTradeResponseEnvelope':
@@ -322,6 +324,8 @@ class ApiClient {
           return Portfolio.fromJson(value);
         case 'Position':
           return Position.fromJson(value);
+        case 'PositionAccount':
+          return PositionAccount.fromJson(value);
         case 'PositionResponse':
           return PositionResponse.fromJson(value);
         case 'PositionType':

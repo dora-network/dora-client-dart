@@ -32,6 +32,7 @@ class Asset {
     this.canOnboard,
     this.canTrade,
     this.canVirtualBorrow,
+    this.maxLeverage,
     this.bond,
   });
 
@@ -187,6 +188,14 @@ class Asset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
+  num? maxLeverage;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   Bond? bond;
 
   @override
@@ -210,6 +219,7 @@ class Asset {
     other.canOnboard == canOnboard &&
     other.canTrade == canTrade &&
     other.canVirtualBorrow == canVirtualBorrow &&
+    other.maxLeverage == maxLeverage &&
     other.bond == bond;
 
   @override
@@ -234,10 +244,11 @@ class Asset {
     (canOnboard == null ? 0 : canOnboard!.hashCode) +
     (canTrade == null ? 0 : canTrade!.hashCode) +
     (canVirtualBorrow == null ? 0 : canVirtualBorrow!.hashCode) +
+    (maxLeverage == null ? 0 : maxLeverage!.hashCode) +
     (bond == null ? 0 : bond!.hashCode);
 
   @override
-  String toString() => 'Asset[id=$id, collateralWeight=$collateralWeight, createdAt=$createdAt, decimals=$decimals, fractionalizedUnits=$fractionalizedUnits, description=$description, liquidationThreshold=$liquidationThreshold, maturityId=$maturityId, maxSupply=$maxSupply, maxUtilization=$maxUtilization, name=$name, symbol=$symbol, kind=$kind, yield_=$yield_, canAddLiquidity=$canAddLiquidity, canDirectBorrow=$canDirectBorrow, canOnboard=$canOnboard, canTrade=$canTrade, canVirtualBorrow=$canVirtualBorrow, bond=$bond]';
+  String toString() => 'Asset[id=$id, collateralWeight=$collateralWeight, createdAt=$createdAt, decimals=$decimals, fractionalizedUnits=$fractionalizedUnits, description=$description, liquidationThreshold=$liquidationThreshold, maturityId=$maturityId, maxSupply=$maxSupply, maxUtilization=$maxUtilization, name=$name, symbol=$symbol, kind=$kind, yield_=$yield_, canAddLiquidity=$canAddLiquidity, canDirectBorrow=$canDirectBorrow, canOnboard=$canOnboard, canTrade=$canTrade, canVirtualBorrow=$canVirtualBorrow, maxLeverage=$maxLeverage, bond=$bond]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -336,6 +347,11 @@ class Asset {
     } else {
       json[r'can_virtual_borrow'] = null;
     }
+    if (this.maxLeverage != null) {
+      json[r'max_leverage'] = this.maxLeverage;
+    } else {
+      json[r'max_leverage'] = null;
+    }
     if (this.bond != null) {
       json[r'bond'] = this.bond;
     } else {
@@ -382,6 +398,7 @@ class Asset {
         canOnboard: mapValueOfType<bool>(json, r'can_onboard'),
         canTrade: mapValueOfType<bool>(json, r'can_trade'),
         canVirtualBorrow: mapValueOfType<bool>(json, r'can_virtual_borrow'),
+        maxLeverage: num.parse('${json[r'max_leverage']}'),
         bond: Bond.fromJson(json[r'bond']),
       );
     }

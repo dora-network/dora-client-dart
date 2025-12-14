@@ -111,6 +111,11 @@ void main() {
       // TODO
     });
 
+    // num maxLeverage
+    test('to test the property `maxLeverage`', () async {
+      // TODO
+    });
+
     // Bond bond
     test('to test the property `bond`', () async {
       // TODO

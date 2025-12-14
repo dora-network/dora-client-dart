@@ -77,6 +77,11 @@ void main() {
       // TODO
     });
 
+    // DateTime nextCouponPayment
+    test('to test the property `nextCouponPayment`', () async {
+      // TODO
+    });
+
 
   });
 

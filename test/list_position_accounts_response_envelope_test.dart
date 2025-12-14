@@ -11,12 +11,12 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for CancelOrderResponseEnvelope
+// tests for ListPositionAccountsResponseEnvelope
 void main() {
-  // final instance = CancelOrderResponseEnvelope();
+  // final instance = ListPositionAccountsResponseEnvelope();
 
-  group('test CancelOrderResponseEnvelope', () {
-    // Order data
+  group('test ListPositionAccountsResponseEnvelope', () {
+    // List<PositionAccount> data (default value: const [])
     test('to test the property `data`', () async {
       // TODO
     });

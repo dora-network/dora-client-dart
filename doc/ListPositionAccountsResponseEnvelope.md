@@ -1,4 +1,4 @@
-# dora_client.model.CancelOrderResponseEnvelope
+# dora_client.model.ListPositionAccountsResponseEnvelope
 
 ## Load the model package
 ```dart
@@ -8,7 +8,7 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Order**](Order.md) |  | [optional] 
+**data** | [**List<PositionAccount>**](PositionAccount.md) |  | [optional] [default to const []]
 **error** | **String** | The error message. Present for error (non-2xx) responses. | [optional] 
 **metadata** | [**Metadata**](Metadata.md) |  | [optional] 
 

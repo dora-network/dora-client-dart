@@ -25,6 +25,7 @@ class Bond {
     this.principalValue,
     this.paymentsPerYear,
     this.paymentsEvery,
+    this.nextCouponPayment,
   });
 
   ///
@@ -114,6 +115,14 @@ class Bond {
   ///
   int? paymentsEvery;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? nextCouponPayment;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is Bond &&
     other.id == id &&
@@ -127,7 +136,8 @@ class Bond {
     other.maturityAt == maturityAt &&
     other.principalValue == principalValue &&
     other.paymentsPerYear == paymentsPerYear &&
-    other.paymentsEvery == paymentsEvery;
+    other.paymentsEvery == paymentsEvery &&
+    other.nextCouponPayment == nextCouponPayment;
 
   @override
   int get hashCode =>
@@ -143,10 +153,11 @@ class Bond {
     (maturityAt == null ? 0 : maturityAt!.hashCode) +
     (principalValue == null ? 0 : principalValue!.hashCode) +
     (paymentsPerYear == null ? 0 : paymentsPerYear!.hashCode) +
-    (paymentsEvery == null ? 0 : paymentsEvery!.hashCode);
+    (paymentsEvery == null ? 0 : paymentsEvery!.hashCode) +
+    (nextCouponPayment == null ? 0 : nextCouponPayment!.hashCode);
 
   @override
-  String toString() => 'Bond[id=$id, kind=$kind, couponStartAt=$couponStartAt, createdAt=$createdAt, finalCouponAt=$finalCouponAt, isin=$isin, issuedAt=$issuedAt, issuer=$issuer, maturityAt=$maturityAt, principalValue=$principalValue, paymentsPerYear=$paymentsPerYear, paymentsEvery=$paymentsEvery]';
+  String toString() => 'Bond[id=$id, kind=$kind, couponStartAt=$couponStartAt, createdAt=$createdAt, finalCouponAt=$finalCouponAt, isin=$isin, issuedAt=$issuedAt, issuer=$issuer, maturityAt=$maturityAt, principalValue=$principalValue, paymentsPerYear=$paymentsPerYear, paymentsEvery=$paymentsEvery, nextCouponPayment=$nextCouponPayment]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -210,6 +221,11 @@ class Bond {
     } else {
       json[r'payments_every'] = null;
     }
+    if (this.nextCouponPayment != null) {
+      json[r'next_coupon_payment'] = this.nextCouponPayment!.toUtc().toIso8601String();
+    } else {
+      json[r'next_coupon_payment'] = null;
+    }
     return json;
   }
 
@@ -244,6 +260,7 @@ class Bond {
         principalValue: mapValueOfType<double>(json, r'principal_value'),
         paymentsPerYear: mapValueOfType<int>(json, r'payments_per_year'),
         paymentsEvery: mapValueOfType<int>(json, r'payments_every'),
+        nextCouponPayment: mapDateTime(json, r'next_coupon_payment', r''),
       );
     }
     return null;

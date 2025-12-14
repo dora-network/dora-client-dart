@@ -10,79 +10,81 @@
 
 part of openapi.api;
 
-class CancelOrderResponseEnvelope {
-  /// Returns a new [CancelOrderResponseEnvelope] instance.
-  CancelOrderResponseEnvelope({
-    this.data,
-    this.error,
-    this.metadata,
+class PositionAccount {
+  /// Returns a new [PositionAccount] instance.
+  PositionAccount({
+    this.positionId,
+    this.positionName,
+    this.isGlobal,
   });
 
+  /// The ID of the position account
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  Order? data;
+  String? positionId;
 
-  /// The error message. Present for error (non-2xx) responses.
+  /// The name of the position account
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? error;
+  String? positionName;
 
+  /// Whether the position account is the global or an isolated account
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  Metadata? metadata;
+  bool? isGlobal;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CancelOrderResponseEnvelope &&
-    other.data == data &&
-    other.error == error &&
-    other.metadata == metadata;
+  bool operator ==(Object other) => identical(this, other) || other is PositionAccount &&
+    other.positionId == positionId &&
+    other.positionName == positionName &&
+    other.isGlobal == isGlobal;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (data == null ? 0 : data!.hashCode) +
-    (error == null ? 0 : error!.hashCode) +
-    (metadata == null ? 0 : metadata!.hashCode);
+    (positionId == null ? 0 : positionId!.hashCode) +
+    (positionName == null ? 0 : positionName!.hashCode) +
+    (isGlobal == null ? 0 : isGlobal!.hashCode);
 
   @override
-  String toString() => 'CancelOrderResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
+  String toString() => 'PositionAccount[positionId=$positionId, positionName=$positionName, isGlobal=$isGlobal]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.data != null) {
-      json[r'data'] = this.data;
+    if (this.positionId != null) {
+      json[r'position_id'] = this.positionId;
     } else {
-      json[r'data'] = null;
+      json[r'position_id'] = null;
     }
-    if (this.error != null) {
-      json[r'error'] = this.error;
+    if (this.positionName != null) {
+      json[r'position_name'] = this.positionName;
     } else {
-      json[r'error'] = null;
+      json[r'position_name'] = null;
     }
-    if (this.metadata != null) {
-      json[r'metadata'] = this.metadata;
+    if (this.isGlobal != null) {
+      json[r'is_global'] = this.isGlobal;
     } else {
-      json[r'metadata'] = null;
+      json[r'is_global'] = null;
     }
     return json;
   }
 
-  /// Returns a new [CancelOrderResponseEnvelope] instance and imports its values from
+  /// Returns a new [PositionAccount] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static CancelOrderResponseEnvelope? fromJson(dynamic value) {
+  static PositionAccount? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -91,26 +93,26 @@ class CancelOrderResponseEnvelope {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CancelOrderResponseEnvelope[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CancelOrderResponseEnvelope[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "PositionAccount[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "PositionAccount[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return CancelOrderResponseEnvelope(
-        data: Order.fromJson(json[r'data']),
-        error: mapValueOfType<String>(json, r'error'),
-        metadata: Metadata.fromJson(json[r'metadata']),
+      return PositionAccount(
+        positionId: mapValueOfType<String>(json, r'position_id'),
+        positionName: mapValueOfType<String>(json, r'position_name'),
+        isGlobal: mapValueOfType<bool>(json, r'is_global'),
       );
     }
     return null;
   }
 
-  static List<CancelOrderResponseEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <CancelOrderResponseEnvelope>[];
+  static List<PositionAccount> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <PositionAccount>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = CancelOrderResponseEnvelope.fromJson(row);
+        final value = PositionAccount.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -119,12 +121,12 @@ class CancelOrderResponseEnvelope {
     return result.toList(growable: growable);
   }
 
-  static Map<String, CancelOrderResponseEnvelope> mapFromJson(dynamic json) {
-    final map = <String, CancelOrderResponseEnvelope>{};
+  static Map<String, PositionAccount> mapFromJson(dynamic json) {
+    final map = <String, PositionAccount>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = CancelOrderResponseEnvelope.fromJson(entry.value);
+        final value = PositionAccount.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -133,14 +135,14 @@ class CancelOrderResponseEnvelope {
     return map;
   }
 
-  // maps a json object with a list of CancelOrderResponseEnvelope-objects as value to a dart map
-  static Map<String, List<CancelOrderResponseEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<CancelOrderResponseEnvelope>>{};
+  // maps a json object with a list of PositionAccount-objects as value to a dart map
+  static Map<String, List<PositionAccount>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<PositionAccount>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = CancelOrderResponseEnvelope.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = PositionAccount.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

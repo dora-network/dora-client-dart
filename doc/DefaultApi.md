@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**cancelAllOpenOrders**](DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
 [**cancelOrderById**](DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 [**checkUserEmailExists**](DefaultApi.md#checkuseremailexists) | **GET** /v1/user/exists | Check whether a user email exists
+[**createAPIKeyForUser**](DefaultApi.md#createapikeyforuser) | **POST** /v1/user/apikey | Create apikey for a user
 [**createNewIsolatedPosition**](DefaultApi.md#createnewisolatedposition) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 [**createOrder**](DefaultApi.md#createorder) | **POST** /v1/orders | Create a new order
 [**deleteUser**](DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
@@ -47,6 +48,7 @@ Method | HTTP request | Description
 [**getUserOrdersUpdatesStreamAll**](DefaultApi.md#getuserordersupdatesstreamall) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 [**getUserSelf**](DefaultApi.md#getuserself) | **GET** /v1/user/self | Get user details for the authenticated user
 [**getUserTransactionsStream**](DefaultApi.md#getusertransactionsstream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
+[**getUsersAPIKeys**](DefaultApi.md#getusersapikeys) | **GET** /v1/user/apikey | Get user's api keys
 [**leverageIsolateCollateral**](DefaultApi.md#leverageisolatecollateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user's global collateral
 [**leverageSupply**](DefaultApi.md#leveragesupply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 [**leverageUnite**](DefaultApi.md#leverageunite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
@@ -57,6 +59,7 @@ Method | HTTP request | Description
 [**listOrderBooks**](DefaultApi.md#listorderbooks) | **GET** /v1/orderbooks | List order books
 [**listOrders**](DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
 [**listPositionAccountsSelf**](DefaultApi.md#listpositionaccountsself) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
+[**revokeAPIKeyForUser**](DefaultApi.md#revokeapikeyforuser) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 [**streamAssetPrices**](DefaultApi.md#streamassetprices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 [**streamCandleData**](DefaultApi.md#streamcandledata) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 [**streamOrderBookBalances**](DefaultApi.md#streamorderbookbalances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -192,6 +195,47 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createAPIKeyForUser**
+> CreateAPIKeyResponse createAPIKeyForUser(createAPIKeyRequest)
+
+Create apikey for a user
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final createAPIKeyRequest = CreateAPIKeyRequest(); // CreateAPIKeyRequest | 
+
+try {
+    final result = api_instance.createAPIKeyForUser(createAPIKeyRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->createAPIKeyForUser: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createAPIKeyRequest** | [**CreateAPIKeyRequest**](CreateAPIKeyRequest.md)|  | 
+
+### Return type
+
+[**CreateAPIKeyResponse**](CreateAPIKeyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1641,6 +1685,43 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getUsersAPIKeys**
+> APIKeyResponseEnvelope getUsersAPIKeys()
+
+Get user's api keys
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+
+try {
+    final result = api_instance.getUsersAPIKeys();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getUsersAPIKeys: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**APIKeyResponseEnvelope**](APIKeyResponseEnvelope.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **leverageIsolateCollateral**
 > IsolateCollateralResponse leverageIsolateCollateral(isolateCollateralRequest)
 
@@ -2081,6 +2162,47 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ListPositionAccountsResponseEnvelope**](ListPositionAccountsResponseEnvelope.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **revokeAPIKeyForUser**
+> RevokeAPIKeyResponse revokeAPIKeyForUser(keyId)
+
+Revoke apikey for a user
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final keyId = keyId_example; // String | 
+
+try {
+    final result = api_instance.revokeAPIKeyForUser(keyId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->revokeAPIKeyForUser: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **keyId** | **String**|  | 
+
+### Return type
+
+[**RevokeAPIKeyResponse**](RevokeAPIKeyResponse.md)
 
 ### Authorization
 

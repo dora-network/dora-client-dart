@@ -30,6 +30,8 @@ part 'auth/http_bearer_auth.dart';
 
 part 'api/default_api.dart';
 
+part 'model/api_key_response.dart';
+part 'model/api_key_response_envelope.dart';
 part 'model/asset.dart';
 part 'model/asset_kind.dart';
 part 'model/asset_price.dart';
@@ -44,6 +46,8 @@ part 'model/candle.dart';
 part 'model/candle_resolution.dart';
 part 'model/collateral.dart';
 part 'model/coupon_payment.dart';
+part 'model/create_api_key_request.dart';
+part 'model/create_api_key_response.dart';
 part 'model/create_or_update_user_response.dart';
 part 'model/create_order_request.dart';
 part 'model/create_order_response_envelope.dart';
@@ -107,6 +111,7 @@ part 'model/position_type.dart';
 part 'model/price_level.dart';
 part 'model/response_envelope.dart';
 part 'model/response_envelope_of_list_assets.dart';
+part 'model/revoke_api_key_response.dart';
 part 'model/side.dart';
 part 'model/stream_asset_prices_response_value.dart';
 part 'model/stream_assets_entry.dart';

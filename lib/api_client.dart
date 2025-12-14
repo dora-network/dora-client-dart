@@ -182,6 +182,10 @@ class ApiClient {
           return valueString == 'true' || valueString == '1';
         case 'DateTime':
           return value is DateTime ? value : DateTime.tryParse(value);
+        case 'APIKeyResponse':
+          return APIKeyResponse.fromJson(value);
+        case 'APIKeyResponseEnvelope':
+          return APIKeyResponseEnvelope.fromJson(value);
         case 'Asset':
           return Asset.fromJson(value);
         case 'AssetKind':
@@ -210,6 +214,10 @@ class ApiClient {
           return Collateral.fromJson(value);
         case 'CouponPayment':
           return CouponPayment.fromJson(value);
+        case 'CreateAPIKeyRequest':
+          return CreateAPIKeyRequest.fromJson(value);
+        case 'CreateAPIKeyResponse':
+          return CreateAPIKeyResponse.fromJson(value);
         case 'CreateOrUpdateUserResponse':
           return CreateOrUpdateUserResponse.fromJson(value);
         case 'CreateOrderRequest':
@@ -336,6 +344,8 @@ class ApiClient {
           return ResponseEnvelope.fromJson(value);
         case 'ResponseEnvelopeOfListAssets':
           return ResponseEnvelopeOfListAssets.fromJson(value);
+        case 'RevokeAPIKeyResponse':
+          return RevokeAPIKeyResponse.fromJson(value);
         case 'Side':
           return SideTypeTransformer().decode(value);
         case 'StreamAssetPricesResponseValue':

@@ -38,6 +38,13 @@ void main() {
       // TODO
     });
 
+    // Create apikey for a user
+    //
+    //Future<CreateAPIKeyResponse> createAPIKeyForUser(CreateAPIKeyRequest createAPIKeyRequest) async
+    test('test createAPIKeyForUser', () async {
+      // TODO
+    });
+
     // Create a new isolated position for a user transferring available assets into the position
     //
     //Future<NewIsolatedPositionResponseEnvelope> createNewIsolatedPosition(NewIsolatedPositionRequest newIsolatedPositionRequest) async
@@ -283,6 +290,13 @@ void main() {
       // TODO
     });
 
+    // Get user's api keys
+    //
+    //Future<APIKeyResponseEnvelope> getUsersAPIKeys() async
+    test('test getUsersAPIKeys', () async {
+      // TODO
+    });
+
     // Create an isolated position by transferring collateral to the position from the user's global collateral
     //
     //Future<IsolateCollateralResponse> leverageIsolateCollateral(IsolateCollateralRequest isolateCollateralRequest) async
@@ -352,6 +366,13 @@ void main() {
     //
     //Future<ListPositionAccountsResponseEnvelope> listPositionAccountsSelf() async
     test('test listPositionAccountsSelf', () async {
+      // TODO
+    });
+
+    // Revoke apikey for a user
+    //
+    //Future<RevokeAPIKeyResponse> revokeAPIKeyForUser(String keyId) async
+    test('test revokeAPIKeyForUser', () async {
       // TODO
     });
 

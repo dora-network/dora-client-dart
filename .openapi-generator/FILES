@@ -2,6 +2,8 @@
 .travis.yml
 README.md
 analysis_options.yaml
+doc/APIKeyResponse.md
+doc/APIKeyResponseEnvelope.md
 doc/Asset.md
 doc/AssetKind.md
 doc/AssetPrice.md
@@ -16,6 +18,8 @@ doc/Candle.md
 doc/CandleResolution.md
 doc/Collateral.md
 doc/CouponPayment.md
+doc/CreateAPIKeyRequest.md
+doc/CreateAPIKeyResponse.md
 doc/CreateOrUpdateUserResponse.md
 doc/CreateOrderRequest.md
 doc/CreateOrderResponseEnvelope.md
@@ -80,6 +84,7 @@ doc/PositionType.md
 doc/PriceLevel.md
 doc/ResponseEnvelope.md
 doc/ResponseEnvelopeOfListAssets.md
+doc/RevokeAPIKeyResponse.md
 doc/Side.md
 doc/StreamAssetPricesResponseValue.md
 doc/StreamAssetsEntry.md
@@ -139,6 +144,8 @@ lib/auth/authentication.dart
 lib/auth/http_basic_auth.dart
 lib/auth/http_bearer_auth.dart
 lib/auth/oauth.dart
+lib/model/api_key_response.dart
+lib/model/api_key_response_envelope.dart
 lib/model/asset.dart
 lib/model/asset_kind.dart
 lib/model/asset_price.dart
@@ -153,6 +160,8 @@ lib/model/candle.dart
 lib/model/candle_resolution.dart
 lib/model/collateral.dart
 lib/model/coupon_payment.dart
+lib/model/create_api_key_request.dart
+lib/model/create_api_key_response.dart
 lib/model/create_or_update_user_response.dart
 lib/model/create_order_request.dart
 lib/model/create_order_response_envelope.dart
@@ -216,6 +225,7 @@ lib/model/position_type.dart
 lib/model/price_level.dart
 lib/model/response_envelope.dart
 lib/model/response_envelope_of_list_assets.dart
+lib/model/revoke_api_key_response.dart
 lib/model/side.dart
 lib/model/stream_asset_prices_response_value.dart
 lib/model/stream_assets_entry.dart
@@ -265,6 +275,8 @@ lib/model/withdraw.dart
 lib/model/withdraw_request.dart
 lib/model/withdraw_response_envelope.dart
 pubspec.yaml
+test/api_key_response_envelope_test.dart
+test/api_key_response_test.dart
 test/asset_kind_test.dart
 test/asset_price_response_envelope_test.dart
 test/asset_price_test.dart
@@ -279,6 +291,8 @@ test/candle_resolution_test.dart
 test/candle_test.dart
 test/collateral_test.dart
 test/coupon_payment_test.dart
+test/create_api_key_request_test.dart
+test/create_api_key_response_test.dart
 test/create_or_update_user_response_test.dart
 test/create_order_request_test.dart
 test/create_order_response_envelope_test.dart
@@ -343,6 +357,7 @@ test/position_type_test.dart
 test/price_level_test.dart
 test/response_envelope_of_list_assets_test.dart
 test/response_envelope_test.dart
+test/revoke_api_key_response_test.dart
 test/side_test.dart
 test/stream_asset_prices_response_value_test.dart
 test/stream_assets_entry_test.dart

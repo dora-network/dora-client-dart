@@ -193,6 +193,58 @@ class DefaultApi {
     return null;
   }
 
+  /// Create apikey for a user
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateAPIKeyRequest] createAPIKeyRequest (required):
+  Future<Response> createAPIKeyForUserWithHttpInfo(CreateAPIKeyRequest createAPIKeyRequest,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/apikey';
+
+    // ignore: prefer_final_locals
+    Object? postBody = createAPIKeyRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Create apikey for a user
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateAPIKeyRequest] createAPIKeyRequest (required):
+  Future<CreateAPIKeyResponse?> createAPIKeyForUser(CreateAPIKeyRequest createAPIKeyRequest,) async {
+    final response = await createAPIKeyForUserWithHttpInfo(createAPIKeyRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateAPIKeyResponse',) as CreateAPIKeyResponse;
+    
+    }
+    return null;
+  }
+
   /// Create a new isolated position for a user transferring available assets into the position
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2142,6 +2194,50 @@ class DefaultApi {
     return null;
   }
 
+  /// Get user's api keys
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getUsersAPIKeysWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/apikey';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get user's api keys
+  Future<APIKeyResponseEnvelope?> getUsersAPIKeys() async {
+    final response = await getUsersAPIKeysWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'APIKeyResponseEnvelope',) as APIKeyResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Create an isolated position by transferring collateral to the position from the user's global collateral
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2817,6 +2913,59 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListPositionAccountsResponseEnvelope',) as ListPositionAccountsResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Revoke apikey for a user
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] keyId (required):
+  Future<Response> revokeAPIKeyForUserWithHttpInfo(String keyId,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/apikey/{key_id}/revoke'
+      .replaceAll('{key_id}', keyId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Revoke apikey for a user
+  ///
+  /// Parameters:
+  ///
+  /// * [String] keyId (required):
+  Future<RevokeAPIKeyResponse?> revokeAPIKeyForUser(String keyId,) async {
+    final response = await revokeAPIKeyForUserWithHttpInfo(keyId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RevokeAPIKeyResponse',) as RevokeAPIKeyResponse;
     
     }
     return null;

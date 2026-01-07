@@ -13,12 +13,12 @@ part of openapi.api;
 class LedgerModuleResponseEnvelope {
   /// Returns a new [LedgerModuleResponseEnvelope] instance.
   LedgerModuleResponseEnvelope({
-    this.data = const [],
+    this.data,
     this.error,
     this.metadata,
   });
 
-  List<LeverageModuleResponse> data;
+  Object? data;
 
   /// The error message. Present for error (non-2xx) responses.
   ///
@@ -29,6 +29,7 @@ class LedgerModuleResponseEnvelope {
   ///
   String? error;
 
+  /// Metadata about the response, including status code and trace information.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -39,14 +40,14 @@ class LedgerModuleResponseEnvelope {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is LedgerModuleResponseEnvelope &&
-    _deepEquality.equals(other.data, data) &&
+    other.data == data &&
     other.error == error &&
     other.metadata == metadata;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (data.hashCode) +
+    (data == null ? 0 : data!.hashCode) +
     (error == null ? 0 : error!.hashCode) +
     (metadata == null ? 0 : metadata!.hashCode);
 
@@ -55,7 +56,11 @@ class LedgerModuleResponseEnvelope {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (this.data != null) {
       json[r'data'] = this.data;
+    } else {
+      json[r'data'] = null;
+    }
     if (this.error != null) {
       json[r'error'] = this.error;
     } else {
@@ -88,7 +93,7 @@ class LedgerModuleResponseEnvelope {
       }());
 
       return LedgerModuleResponseEnvelope(
-        data: LeverageModuleResponse.listFromJson(json[r'data']),
+        data: mapValueOfType<Object>(json, r'data'),
         error: mapValueOfType<String>(json, r'error'),
         metadata: Metadata.fromJson(json[r'metadata']),
       );

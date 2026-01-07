@@ -21,12 +21,12 @@ void main() {
       // TODO
     });
 
-    // double bestBid
+    // String bestBid
     test('to test the property `bestBid`', () async {
       // TODO
     });
 
-    // double bestAsk
+    // String bestAsk
     test('to test the property `bestAsk`', () async {
       // TODO
     });

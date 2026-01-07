@@ -40,6 +40,16 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```dart
 import 'package:dora_client/api.dart';
 
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = DefaultApi();
 final orderBookId = orderBookId_example; // String | 
@@ -64,6 +74,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**cancelAllOpenOrders**](doc//DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
 *DefaultApi* | [**cancelOrderById**](doc//DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 *DefaultApi* | [**checkUserEmailExists**](doc//DefaultApi.md#checkuseremailexists) | **GET** /v1/user/exists | Check whether a user email exists
+*DefaultApi* | [**claimLeverageGetAccruedInterest**](doc//DefaultApi.md#claimleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
+*DefaultApi* | [**closeIsolatedPosition**](doc//DefaultApi.md#closeisolatedposition) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 *DefaultApi* | [**createAPIKeyForUser**](doc//DefaultApi.md#createapikeyforuser) | **POST** /v1/user/apikey | Create apikey for a user
 *DefaultApi* | [**createNewIsolatedPosition**](doc//DefaultApi.md#createnewisolatedposition) | **POST** /v1/positions/new_isolated | Create a new isolated position for a user transferring available assets into the position
 *DefaultApi* | [**createOrder**](doc//DefaultApi.md#createorder) | **POST** /v1/orders | Create a new order
@@ -87,6 +99,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getOrderbookById**](doc//DefaultApi.md#getorderbookbyid) | **GET** /v1/orderbooks/{order_book_id} | Get orderbook by ID
 *DefaultApi* | [**getOrderbookDepth**](doc//DefaultApi.md#getorderbookdepth) | **GET** /v1/orderbooks/{order_book_id}/depth | Get the aggregated price levels for a specific orderbook (L2 market depth)
 *DefaultApi* | [**getOrderbookOrders**](doc//DefaultApi.md#getorderbookorders) | **GET** /v1/orderbooks/{order_book_id}/orders | Get all open orders for a specific orderbook (L3 market depth)
+*DefaultApi* | [**getOrderbookStats**](doc//DefaultApi.md#getorderbookstats) | **GET** /v1/orderbooks/{order_book_id}/stats | Get orderbook stats
+*DefaultApi* | [**getOrderbookStatsStream**](doc//DefaultApi.md#getorderbookstatsstream) | **GET** /v1/orderbooks/{order_book_id}/stats/stream | Orderbook stats stream
 *DefaultApi* | [**getOrderbookSummary**](doc//DefaultApi.md#getorderbooksummary) | **GET** /v1/orderbooks/{order_book_id}/summary | Get summary of an orderbook
 *DefaultApi* | [**getOrderbookTop**](doc//DefaultApi.md#getorderbooktop) | **GET** /v1/orderbooks/{order_book_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
 *DefaultApi* | [**getPoolPrice**](doc//DefaultApi.md#getpoolprice) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
@@ -101,6 +115,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getUserSelf**](doc//DefaultApi.md#getuserself) | **GET** /v1/user/self | Get user details for the authenticated user
 *DefaultApi* | [**getUserTransactionsStream**](doc//DefaultApi.md#getusertransactionsstream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 *DefaultApi* | [**getUsersAPIKeys**](doc//DefaultApi.md#getusersapikeys) | **GET** /v1/user/apikey | Get user's api keys
+*DefaultApi* | [**leverageGetAccruedInterestByUser**](doc//DefaultApi.md#leveragegetaccruedinterestbyuser) | **GET** /v1/leverage/accrued_interest/self | Get current accrued leverage interest for the user
 *DefaultApi* | [**leverageIsolateCollateral**](doc//DefaultApi.md#leverageisolatecollateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user's global collateral
 *DefaultApi* | [**leverageSupply**](doc//DefaultApi.md#leveragesupply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 *DefaultApi* | [**leverageUnite**](doc//DefaultApi.md#leverageunite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
@@ -111,6 +126,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**listOrderBooks**](doc//DefaultApi.md#listorderbooks) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**listOrders**](doc//DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
 *DefaultApi* | [**listPositionAccountsSelf**](doc//DefaultApi.md#listpositionaccountsself) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
+*DefaultApi* | [**payLeverageGetAccruedInterest**](doc//DefaultApi.md#payleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 *DefaultApi* | [**revokeAPIKeyForUser**](doc//DefaultApi.md#revokeapikeyforuser) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 *DefaultApi* | [**streamAssetPrices**](doc//DefaultApi.md#streamassetprices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 *DefaultApi* | [**streamCandleData**](doc//DefaultApi.md#streamcandledata) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
@@ -128,7 +144,9 @@ Class | Method | HTTP request | Description
 
  - [APIKeyResponse](doc//APIKeyResponse.md)
  - [APIKeyResponseEnvelope](doc//APIKeyResponseEnvelope.md)
+ - [APIKeys](doc//APIKeys.md)
  - [Asset](doc//Asset.md)
+ - [AssetConfig](doc//AssetConfig.md)
  - [AssetKind](doc//AssetKind.md)
  - [AssetPrice](doc//AssetPrice.md)
  - [AssetPriceResponseEnvelope](doc//AssetPriceResponseEnvelope.md)
@@ -140,6 +158,13 @@ Class | Method | HTTP request | Description
  - [CancelOrderResponseEnvelope](doc//CancelOrderResponseEnvelope.md)
  - [Candle](doc//Candle.md)
  - [CandleResolution](doc//CandleResolution.md)
+ - [ClaimLeverageAccruedInterest](doc//ClaimLeverageAccruedInterest.md)
+ - [ClaimLeverageAccruedInterestReq](doc//ClaimLeverageAccruedInterestReq.md)
+ - [ClaimLeverageAccruedInterestRequest](doc//ClaimLeverageAccruedInterestRequest.md)
+ - [ClaimLeverageAccruedInterestResponseEnvelope](doc//ClaimLeverageAccruedInterestResponseEnvelope.md)
+ - [ClosePositionRequest](doc//ClosePositionRequest.md)
+ - [ClosePositionResp](doc//ClosePositionResp.md)
+ - [ClosePositionResponseEnvelope](doc//ClosePositionResponseEnvelope.md)
  - [Collateral](doc//Collateral.md)
  - [CouponPayment](doc//CouponPayment.md)
  - [CreateAPIKeyData](doc//CreateAPIKeyData.md)
@@ -148,6 +173,8 @@ Class | Method | HTTP request | Description
  - [CreateOrUpdateUserResponse](doc//CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](doc//CreateOrderRequest.md)
  - [CreateOrderResponseEnvelope](doc//CreateOrderResponseEnvelope.md)
+ - [CurrentLeverageAccruedInterest](doc//CurrentLeverageAccruedInterest.md)
+ - [CurrentLeverageAccruedInterestResponseEnvelope](doc//CurrentLeverageAccruedInterestResponseEnvelope.md)
  - [EmailExistsResponseEnvelope](doc//EmailExistsResponseEnvelope.md)
  - [GetAssetByIDResponseEnvelope](doc//GetAssetByIDResponseEnvelope.md)
  - [GetTopOfBookResponseEnvelope](doc//GetTopOfBookResponseEnvelope.md)
@@ -197,12 +224,20 @@ Class | Method | HTTP request | Description
  - [OrderModifierKind](doc//OrderModifierKind.md)
  - [OrderResponseEnvelope](doc//OrderResponseEnvelope.md)
  - [OrderStatus](doc//OrderStatus.md)
+ - [OrderbookStats](doc//OrderbookStats.md)
+ - [OrderbookStatsResponseEnvelope](doc//OrderbookStatsResponseEnvelope.md)
+ - [PayLeverageAccruedInterest](doc//PayLeverageAccruedInterest.md)
+ - [PayLeverageAccruedInterestReq](doc//PayLeverageAccruedInterestReq.md)
+ - [PayLeverageAccruedInterestRequest](doc//PayLeverageAccruedInterestRequest.md)
+ - [PayLeverageAccruedInterestResponseEnvelope](doc//PayLeverageAccruedInterestResponseEnvelope.md)
  - [PoolPrice](doc//PoolPrice.md)
  - [PoolPriceResponseEnvelope](doc//PoolPriceResponseEnvelope.md)
  - [PoolRequestError](doc//PoolRequestError.md)
  - [Portfolio](doc//Portfolio.md)
  - [Position](doc//Position.md)
  - [PositionAccount](doc//PositionAccount.md)
+ - [PositionAccounts](doc//PositionAccounts.md)
+ - [PositionAsset](doc//PositionAsset.md)
  - [PositionResponse](doc//PositionResponse.md)
  - [PositionType](doc//PositionType.md)
  - [PriceLevel](doc//PriceLevel.md)
@@ -211,16 +246,25 @@ Class | Method | HTTP request | Description
  - [RevokeAPIKeyData](doc//RevokeAPIKeyData.md)
  - [RevokeAPIKeyResponseEnvelope](doc//RevokeAPIKeyResponseEnvelope.md)
  - [Side](doc//Side.md)
- - [StreamAssetPricesResponseValue](doc//StreamAssetPricesResponseValue.md)
+ - [StreamAssetPricesResponse](doc//StreamAssetPricesResponse.md)
  - [StreamAssetsEntry](doc//StreamAssetsEntry.md)
+ - [StreamAssetsResponse](doc//StreamAssetsResponse.md)
  - [StreamCandlesEntry](doc//StreamCandlesEntry.md)
+ - [StreamCandlesResponse](doc//StreamCandlesResponse.md)
  - [StreamEntry](doc//StreamEntry.md)
  - [StreamOrderBookBalanceEntry](doc//StreamOrderBookBalanceEntry.md)
+ - [StreamOrderBookBalancesResponse](doc//StreamOrderBookBalancesResponse.md)
  - [StreamOrderUpdatesEntry](doc//StreamOrderUpdatesEntry.md)
+ - [StreamOrderUpdatesResponse](doc//StreamOrderUpdatesResponse.md)
  - [StreamOrdersEntry](doc//StreamOrdersEntry.md)
+ - [StreamOrdersResponse](doc//StreamOrdersResponse.md)
  - [StreamPositionsEntry](doc//StreamPositionsEntry.md)
+ - [StreamPositionsResponse](doc//StreamPositionsResponse.md)
  - [StreamTradesEntry](doc//StreamTradesEntry.md)
+ - [StreamTradesResponse](doc//StreamTradesResponse.md)
  - [StreamTransactionsEntry](doc//StreamTransactionsEntry.md)
+ - [StreamTransactionsResponse](doc//StreamTransactionsResponse.md)
+ - [StreamedAssetPrice](doc//StreamedAssetPrice.md)
  - [Supply](doc//Supply.md)
  - [SupplyRequest](doc//SupplyRequest.md)
  - [SupplyResponseEnvelope](doc//SupplyResponseEnvelope.md)
@@ -234,6 +278,7 @@ Class | Method | HTTP request | Description
  - [TransferBalancesRequest](doc//TransferBalancesRequest.md)
  - [TransferBalancesResponseEnvelope](doc//TransferBalancesResponseEnvelope.md)
  - [TransformedAssets](doc//TransformedAssets.md)
+ - [TriggerType](doc//TriggerType.md)
  - [UnitePositionRequest](doc//UnitePositionRequest.md)
  - [UnitePositionResponseEnvelope](doc//UnitePositionResponseEnvelope.md)
  - [UnitedPosition](doc//UnitedPosition.md)
@@ -264,9 +309,21 @@ Class | Method | HTTP request | Description
 
 
 Authentication schemes defined for the API:
-### BearerAuth
+### bearerAuth
 
 - **Type**: HTTP Bearer authentication
+
+### apiKeyAuthHeader
+
+- **Type**: API key
+- **API key parameter name**: Authorization
+- **Location**: HTTP header
+
+### apiKeyAuthQuery
+
+- **Type**: API key
+- **API key parameter name**: x-api-key
+- **Location**: URL query string
 
 
 ## Author

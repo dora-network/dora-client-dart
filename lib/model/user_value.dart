@@ -17,8 +17,6 @@ class UserValue {
     this.locked = const {},
     this.borrowed = const {},
     this.supplied = const {},
-    this.collateral = const {},
-    this.suppliedCollateral = const {},
     this.impendingBorrows = const {},
     this.borrowLimit = const {},
     this.liquidationThreshold = const {},
@@ -37,10 +35,6 @@ class UserValue {
   Map<String, String> borrowed;
 
   Map<String, String> supplied;
-
-  Map<String, String> collateral;
-
-  Map<String, String> suppliedCollateral;
 
   Map<String, String> impendingBorrows;
 
@@ -66,8 +60,6 @@ class UserValue {
     _deepEquality.equals(other.locked, locked) &&
     _deepEquality.equals(other.borrowed, borrowed) &&
     _deepEquality.equals(other.supplied, supplied) &&
-    _deepEquality.equals(other.collateral, collateral) &&
-    _deepEquality.equals(other.suppliedCollateral, suppliedCollateral) &&
     _deepEquality.equals(other.impendingBorrows, impendingBorrows) &&
     _deepEquality.equals(other.borrowLimit, borrowLimit) &&
     _deepEquality.equals(other.liquidationThreshold, liquidationThreshold) &&
@@ -85,8 +77,6 @@ class UserValue {
     (locked.hashCode) +
     (borrowed.hashCode) +
     (supplied.hashCode) +
-    (collateral.hashCode) +
-    (suppliedCollateral.hashCode) +
     (impendingBorrows.hashCode) +
     (borrowLimit.hashCode) +
     (liquidationThreshold.hashCode) +
@@ -98,7 +88,7 @@ class UserValue {
     (realizedPnl.hashCode);
 
   @override
-  String toString() => 'UserValue[available=$available, locked=$locked, borrowed=$borrowed, supplied=$supplied, collateral=$collateral, suppliedCollateral=$suppliedCollateral, impendingBorrows=$impendingBorrows, borrowLimit=$borrowLimit, liquidationThreshold=$liquidationThreshold, notionalLong=$notionalLong, notionalShort=$notionalShort, portfolioValue=$portfolioValue, netLiquidationValue=$netLiquidationValue, unrealizedPnl=$unrealizedPnl, realizedPnl=$realizedPnl]';
+  String toString() => 'UserValue[available=$available, locked=$locked, borrowed=$borrowed, supplied=$supplied, impendingBorrows=$impendingBorrows, borrowLimit=$borrowLimit, liquidationThreshold=$liquidationThreshold, notionalLong=$notionalLong, notionalShort=$notionalShort, portfolioValue=$portfolioValue, netLiquidationValue=$netLiquidationValue, unrealizedPnl=$unrealizedPnl, realizedPnl=$realizedPnl]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -106,8 +96,6 @@ class UserValue {
       json[r'locked'] = this.locked;
       json[r'borrowed'] = this.borrowed;
       json[r'supplied'] = this.supplied;
-      json[r'collateral'] = this.collateral;
-      json[r'supplied_collateral'] = this.suppliedCollateral;
       json[r'impending_borrows'] = this.impendingBorrows;
       json[r'borrow_limit'] = this.borrowLimit;
       json[r'liquidation_threshold'] = this.liquidationThreshold;
@@ -143,8 +131,6 @@ class UserValue {
         locked: mapCastOfType<String, String>(json, r'locked') ?? const {},
         borrowed: mapCastOfType<String, String>(json, r'borrowed') ?? const {},
         supplied: mapCastOfType<String, String>(json, r'supplied') ?? const {},
-        collateral: mapCastOfType<String, String>(json, r'collateral') ?? const {},
-        suppliedCollateral: mapCastOfType<String, String>(json, r'supplied_collateral') ?? const {},
         impendingBorrows: mapCastOfType<String, String>(json, r'impending_borrows') ?? const {},
         borrowLimit: mapCastOfType<String, String>(json, r'borrow_limit') ?? const {},
         liquidationThreshold: mapCastOfType<String, String>(json, r'liquidation_threshold') ?? const {},

@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **issuedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **issuer** | **String** |  | [optional] 
 **maturityAt** | [**DateTime**](DateTime.md) |  | [optional] 
-**principalValue** | **double** |  | [optional] 
+**principalValue** | **String** |  | [optional] 
 **paymentsPerYear** | **int** |  | [optional] 
 **paymentsEvery** | **int** | Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond) | [optional] 
 **nextCouponPayment** | [**DateTime**](DateTime.md) |  | [optional] 

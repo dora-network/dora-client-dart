@@ -11,9 +11,9 @@ Name | Type | Description | Notes
 **orderBookId** | **String** |  | [optional] 
 **positionId** | **String** |  | [optional] 
 **transactionId** | **String** |  | [optional] 
-**baseQuantity** | **double** |  | [optional] 
-**quoteQuantity** | **double** |  | [optional] 
-**sharesQuantity** | **double** |  | [optional] 
+**baseQuantity** | **String** |  | [optional] 
+**quoteQuantity** | **String** |  | [optional] 
+**sharesQuantity** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

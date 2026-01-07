@@ -58,7 +58,7 @@ class IsolatedCollateral {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? quantity;
+  String? quantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is IsolatedCollateral &&
@@ -133,7 +133,7 @@ class IsolatedCollateral {
         isolatedPositionId: mapValueOfType<String>(json, r'isolated_position_id'),
         transactionId: mapValueOfType<String>(json, r'transaction_id'),
         assetId: mapValueOfType<String>(json, r'asset_id'),
-        quantity: mapValueOfType<double>(json, r'quantity'),
+        quantity: mapValueOfType<String>(json, r'quantity'),
       );
     }
     return null;

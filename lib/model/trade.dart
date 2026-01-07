@@ -66,7 +66,7 @@ class Trade {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? feeQuantity;
+  String? feeQuantity;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -98,7 +98,7 @@ class Trade {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? price;
+  String? price;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -106,7 +106,7 @@ class Trade {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? quantity0;
+  String? quantity0;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -262,12 +262,12 @@ class Trade {
         asset0: mapValueOfType<String>(json, r'asset_0'),
         createdAt: mapDateTime(json, r'created_at', r''),
         feeAssetId: mapValueOfType<String>(json, r'fee_asset_id'),
-        feeQuantity: mapValueOfType<double>(json, r'fee_quantity'),
+        feeQuantity: mapValueOfType<String>(json, r'fee_quantity'),
         orderBookId: mapValueOfType<String>(json, r'order_book_id'),
         orderId: mapValueOfType<String>(json, r'order_id'),
         orderSeq: mapValueOfType<int>(json, r'order_seq'),
-        price: mapValueOfType<double>(json, r'price'),
-        quantity0: mapValueOfType<double>(json, r'quantity_0'),
+        price: mapValueOfType<String>(json, r'price'),
+        quantity0: mapValueOfType<String>(json, r'quantity_0'),
         userId: mapValueOfType<String>(json, r'user_id'),
         side: Side.fromJson(json[r'side']),
         aggressorIndicator: mapValueOfType<bool>(json, r'aggressor_indicator'),

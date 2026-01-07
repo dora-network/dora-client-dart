@@ -51,7 +51,7 @@ class Liquidity {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? baseQuantity;
+  String? baseQuantity;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -59,7 +59,7 @@ class Liquidity {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? quoteQuantity;
+  String? quoteQuantity;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -67,7 +67,7 @@ class Liquidity {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? sharesQuantity;
+  String? sharesQuantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Liquidity &&
@@ -148,9 +148,9 @@ class Liquidity {
         orderBookId: mapValueOfType<String>(json, r'order_book_id'),
         positionId: mapValueOfType<String>(json, r'position_id'),
         transactionId: mapValueOfType<String>(json, r'transaction_id'),
-        baseQuantity: mapValueOfType<double>(json, r'base_quantity'),
-        quoteQuantity: mapValueOfType<double>(json, r'quote_quantity'),
-        sharesQuantity: mapValueOfType<double>(json, r'shares_quantity'),
+        baseQuantity: mapValueOfType<String>(json, r'base_quantity'),
+        quoteQuantity: mapValueOfType<String>(json, r'quote_quantity'),
+        sharesQuantity: mapValueOfType<String>(json, r'shares_quantity'),
       );
     }
     return null;

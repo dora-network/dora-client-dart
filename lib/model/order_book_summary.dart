@@ -34,7 +34,7 @@ class OrderBookSummary {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? midPrice;
+  String? midPrice;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -42,7 +42,7 @@ class OrderBookSummary {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? spread;
+  String? spread;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -50,7 +50,7 @@ class OrderBookSummary {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? bestBid;
+  String? bestBid;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -58,7 +58,7 @@ class OrderBookSummary {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? bestAsk;
+  String? bestAsk;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderBookSummary &&
@@ -130,10 +130,10 @@ class OrderBookSummary {
 
       return OrderBookSummary(
         orderBookId: mapValueOfType<String>(json, r'order_book_id'),
-        midPrice: mapValueOfType<double>(json, r'mid_price'),
-        spread: mapValueOfType<double>(json, r'spread'),
-        bestBid: mapValueOfType<double>(json, r'best_bid'),
-        bestAsk: mapValueOfType<double>(json, r'best_ask'),
+        midPrice: mapValueOfType<String>(json, r'mid_price'),
+        spread: mapValueOfType<String>(json, r'spread'),
+        bestBid: mapValueOfType<String>(json, r'best_bid'),
+        bestAsk: mapValueOfType<String>(json, r'best_ask'),
       );
     }
     return null;

@@ -22,6 +22,7 @@ void main() {
       // TODO
     });
 
+    // The new value to set for the field.
     // UserRole value
     test('to test the property `value`', () async {
       // TODO

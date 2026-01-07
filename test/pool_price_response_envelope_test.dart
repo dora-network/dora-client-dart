@@ -16,7 +16,7 @@ void main() {
   // final instance = PoolPriceResponseEnvelope();
 
   group('test PoolPriceResponseEnvelope', () {
-    // Object data
+    // PoolPrice data
     test('to test the property `data`', () async {
       // TODO
     });
@@ -27,6 +27,7 @@ void main() {
       // TODO
     });
 
+    // Metadata about the response, including status code and trace information.
     // Metadata metadata
     test('to test the property `metadata`', () async {
       // TODO

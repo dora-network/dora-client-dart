@@ -44,6 +44,12 @@ class Bond {
   ///
   BondKind? kind;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   DateTime? couponStartAt;
 
   ///
@@ -54,6 +60,12 @@ class Bond {
   ///
   DateTime? createdAt;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   DateTime? finalCouponAt;
 
   ///
@@ -94,7 +106,7 @@ class Bond {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? principalValue;
+  String? principalValue;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -257,7 +269,7 @@ class Bond {
         issuedAt: mapDateTime(json, r'issued_at', r''),
         issuer: mapValueOfType<String>(json, r'issuer'),
         maturityAt: mapDateTime(json, r'maturity_at', r''),
-        principalValue: mapValueOfType<double>(json, r'principal_value'),
+        principalValue: mapValueOfType<String>(json, r'principal_value'),
         paymentsPerYear: mapValueOfType<int>(json, r'payments_per_year'),
         paymentsEvery: mapValueOfType<int>(json, r'payments_every'),
         nextCouponPayment: mapDateTime(json, r'next_coupon_payment', r''),

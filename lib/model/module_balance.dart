@@ -17,7 +17,6 @@ class ModuleBalance {
     this.seq,
     this.available,
     this.supplied,
-    this.suppliedCollateral,
     this.virtual,
     this.borrowed,
   });
@@ -45,7 +44,7 @@ class ModuleBalance {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? available;
+  String? available;
 
   /// The total amount supplied to the module for this asset
   ///
@@ -54,16 +53,7 @@ class ModuleBalance {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? supplied;
-
-  /// The amount supplied as collateral from user balances in the module for this asset
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  double? suppliedCollateral;
+  String? supplied;
 
   /// Assets minted by virtual-borrowing, but not yet repaid
   ///
@@ -72,7 +62,7 @@ class ModuleBalance {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? virtual;
+  String? virtual;
 
   /// The total amount borrowed from the supplied but not yet repaid
   ///
@@ -81,7 +71,7 @@ class ModuleBalance {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? borrowed;
+  String? borrowed;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ModuleBalance &&
@@ -89,7 +79,6 @@ class ModuleBalance {
     other.seq == seq &&
     other.available == available &&
     other.supplied == supplied &&
-    other.suppliedCollateral == suppliedCollateral &&
     other.virtual == virtual &&
     other.borrowed == borrowed;
 
@@ -100,12 +89,11 @@ class ModuleBalance {
     (seq == null ? 0 : seq!.hashCode) +
     (available == null ? 0 : available!.hashCode) +
     (supplied == null ? 0 : supplied!.hashCode) +
-    (suppliedCollateral == null ? 0 : suppliedCollateral!.hashCode) +
     (virtual == null ? 0 : virtual!.hashCode) +
     (borrowed == null ? 0 : borrowed!.hashCode);
 
   @override
-  String toString() => 'ModuleBalance[assetId=$assetId, seq=$seq, available=$available, supplied=$supplied, suppliedCollateral=$suppliedCollateral, virtual=$virtual, borrowed=$borrowed]';
+  String toString() => 'ModuleBalance[assetId=$assetId, seq=$seq, available=$available, supplied=$supplied, virtual=$virtual, borrowed=$borrowed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -128,11 +116,6 @@ class ModuleBalance {
       json[r'supplied'] = this.supplied;
     } else {
       json[r'supplied'] = null;
-    }
-    if (this.suppliedCollateral != null) {
-      json[r'supplied_collateral'] = this.suppliedCollateral;
-    } else {
-      json[r'supplied_collateral'] = null;
     }
     if (this.virtual != null) {
       json[r'virtual'] = this.virtual;
@@ -168,11 +151,10 @@ class ModuleBalance {
       return ModuleBalance(
         assetId: mapValueOfType<String>(json, r'asset_id'),
         seq: mapValueOfType<int>(json, r'seq'),
-        available: mapValueOfType<double>(json, r'available'),
-        supplied: mapValueOfType<double>(json, r'supplied'),
-        suppliedCollateral: mapValueOfType<double>(json, r'supplied_collateral'),
-        virtual: mapValueOfType<double>(json, r'virtual'),
-        borrowed: mapValueOfType<double>(json, r'borrowed'),
+        available: mapValueOfType<String>(json, r'available'),
+        supplied: mapValueOfType<String>(json, r'supplied'),
+        virtual: mapValueOfType<String>(json, r'virtual'),
+        borrowed: mapValueOfType<String>(json, r'borrowed'),
       );
     }
     return null;

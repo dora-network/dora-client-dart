@@ -23,7 +23,7 @@ class NewIsolatedPositionRequest {
 
   String assetId;
 
-  double quantity;
+  String quantity;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -85,7 +85,7 @@ class NewIsolatedPositionRequest {
       return NewIsolatedPositionRequest(
         globalPositionId: mapValueOfType<String>(json, r'global_position_id')!,
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        quantity: mapValueOfType<double>(json, r'quantity')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
         positionName: mapValueOfType<String>(json, r'position_name'),
       );
     }

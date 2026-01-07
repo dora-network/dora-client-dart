@@ -26,27 +26,27 @@ void main() {
       // TODO
     });
 
-    // double open
+    // String open
     test('to test the property `open`', () async {
       // TODO
     });
 
-    // double high
+    // String high
     test('to test the property `high`', () async {
       // TODO
     });
 
-    // double low
+    // String low
     test('to test the property `low`', () async {
       // TODO
     });
 
-    // double close
+    // String close
     test('to test the property `close`', () async {
       // TODO
     });
 
-    // double volume
+    // String volume
     test('to test the property `volume`', () async {
       // TODO
     });

@@ -36,16 +36,6 @@ void main() {
       // TODO
     });
 
-    // Map<String, String> collateral (default value: const {})
-    test('to test the property `collateral`', () async {
-      // TODO
-    });
-
-    // Map<String, String> suppliedCollateral (default value: const {})
-    test('to test the property `suppliedCollateral`', () async {
-      // TODO
-    });
-
     // Map<String, String> impendingBorrows (default value: const {})
     test('to test the property `impendingBorrows`', () async {
       // TODO

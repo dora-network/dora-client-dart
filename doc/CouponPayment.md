@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **startAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **endAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **payAt** | [**DateTime**](DateTime.md) |  | [optional] 
-**availableToPay** | **double** |  | [optional] 
+**availableToPay** | **String** |  | [optional] 
 **completedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **processEvery** | **int** | Number of nanoseconds to wait between coupon payment processing, must be at least 1000 (1 microsecond) | [optional] 

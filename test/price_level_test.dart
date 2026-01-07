@@ -16,12 +16,12 @@ void main() {
   // final instance = PriceLevel();
 
   group('test PriceLevel', () {
-    // double price
+    // String price
     test('to test the property `price`', () async {
       // TODO
     });
 
-    // double quantity
+    // String quantity
     test('to test the property `quantity`', () async {
       // TODO
     });

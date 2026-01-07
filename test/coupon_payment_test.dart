@@ -46,7 +46,7 @@ void main() {
       // TODO
     });
 
-    // double availableToPay
+    // String availableToPay
     test('to test the property `availableToPay`', () async {
       // TODO
     });

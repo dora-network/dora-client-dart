@@ -13,12 +13,20 @@ part of openapi.api;
 class UpdateUserConfigRequest {
   /// Returns a new [UpdateUserConfigRequest] instance.
   UpdateUserConfigRequest({
-    required this.photoUrl,
+    this.photoUrl,
     required this.timezone,
   });
 
-  UpdateFieldString photoUrl;
+  /// Optional: URL of the user's profile photo, optional.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UpdateFieldString? photoUrl;
 
+  /// User's timezone, e.g., 'America/New_York', or an offset.
   UpdateFieldString timezone;
 
   @override
@@ -29,7 +37,7 @@ class UpdateUserConfigRequest {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (photoUrl.hashCode) +
+    (photoUrl == null ? 0 : photoUrl!.hashCode) +
     (timezone.hashCode);
 
   @override
@@ -37,7 +45,11 @@ class UpdateUserConfigRequest {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (this.photoUrl != null) {
       json[r'photo_url'] = this.photoUrl;
+    } else {
+      json[r'photo_url'] = null;
+    }
       json[r'timezone'] = this.timezone;
     return json;
   }
@@ -61,7 +73,7 @@ class UpdateUserConfigRequest {
       }());
 
       return UpdateUserConfigRequest(
-        photoUrl: UpdateFieldString.fromJson(json[r'photo_url'])!,
+        photoUrl: UpdateFieldString.fromJson(json[r'photo_url']),
         timezone: UpdateFieldString.fromJson(json[r'timezone'])!,
       );
     }
@@ -110,7 +122,6 @@ class UpdateUserConfigRequest {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
-    'photo_url',
     'timezone',
   };
 }

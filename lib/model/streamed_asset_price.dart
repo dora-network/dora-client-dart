@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-class StreamAssetPricesResponseValue {
-  /// Returns a new [StreamAssetPricesResponseValue] instance.
-  StreamAssetPricesResponseValue({
+class StreamedAssetPrice {
+  /// Returns a new [StreamedAssetPrice] instance.
+  StreamedAssetPrice({
     required this.assetId,
     required this.price,
     required this.time,
@@ -20,12 +20,12 @@ class StreamAssetPricesResponseValue {
 
   String assetId;
 
-  double price;
+  String price;
 
   DateTime time;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is StreamAssetPricesResponseValue &&
+  bool operator ==(Object other) => identical(this, other) || other is StreamedAssetPrice &&
     other.assetId == assetId &&
     other.price == price &&
     other.time == time;
@@ -38,7 +38,7 @@ class StreamAssetPricesResponseValue {
     (time.hashCode);
 
   @override
-  String toString() => 'StreamAssetPricesResponseValue[assetId=$assetId, price=$price, time=$time]';
+  String toString() => 'StreamedAssetPrice[assetId=$assetId, price=$price, time=$time]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -48,10 +48,10 @@ class StreamAssetPricesResponseValue {
     return json;
   }
 
-  /// Returns a new [StreamAssetPricesResponseValue] instance and imports its values from
+  /// Returns a new [StreamedAssetPrice] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static StreamAssetPricesResponseValue? fromJson(dynamic value) {
+  static StreamedAssetPrice? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -60,26 +60,26 @@ class StreamAssetPricesResponseValue {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "StreamAssetPricesResponseValue[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "StreamAssetPricesResponseValue[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "StreamedAssetPrice[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "StreamedAssetPrice[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return StreamAssetPricesResponseValue(
+      return StreamedAssetPrice(
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        price: mapValueOfType<double>(json, r'price')!,
+        price: mapValueOfType<String>(json, r'price')!,
         time: mapDateTime(json, r'time', r'')!,
       );
     }
     return null;
   }
 
-  static List<StreamAssetPricesResponseValue> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <StreamAssetPricesResponseValue>[];
+  static List<StreamedAssetPrice> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <StreamedAssetPrice>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = StreamAssetPricesResponseValue.fromJson(row);
+        final value = StreamedAssetPrice.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -88,12 +88,12 @@ class StreamAssetPricesResponseValue {
     return result.toList(growable: growable);
   }
 
-  static Map<String, StreamAssetPricesResponseValue> mapFromJson(dynamic json) {
-    final map = <String, StreamAssetPricesResponseValue>{};
+  static Map<String, StreamedAssetPrice> mapFromJson(dynamic json) {
+    final map = <String, StreamedAssetPrice>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = StreamAssetPricesResponseValue.fromJson(entry.value);
+        final value = StreamedAssetPrice.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -102,14 +102,14 @@ class StreamAssetPricesResponseValue {
     return map;
   }
 
-  // maps a json object with a list of StreamAssetPricesResponseValue-objects as value to a dart map
-  static Map<String, List<StreamAssetPricesResponseValue>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<StreamAssetPricesResponseValue>>{};
+  // maps a json object with a list of StreamedAssetPrice-objects as value to a dart map
+  static Map<String, List<StreamedAssetPrice>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<StreamedAssetPrice>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = StreamAssetPricesResponseValue.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = StreamedAssetPrice.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

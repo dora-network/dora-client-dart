@@ -18,16 +18,17 @@ class CreateOrderRequest {
     this.price,
     required this.kind,
     required this.side,
-    required this.positionId,
+    required this.fromGlobalPosition,
     required this.orderBookId,
     this.orderModifiers = const [],
     this.goodTillDate,
     this.triggerPrice,
+    this.triggerType,
   });
 
-  double quantity;
+  String quantity;
 
-  double inverseLeverage;
+  String inverseLeverage;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -35,14 +36,15 @@ class CreateOrderRequest {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? price;
+  String? price;
 
   OrderKind kind;
 
+  /// Required: Must be either 'BUY' or 'SELL'
   Side side;
 
-  /// position ID to use for the order. required.
-  String positionId;
+  /// use global position for the order or isolated. required.
+  bool fromGlobalPosition;
 
   /// Required: the order book to submit the order to
   String orderBookId;
@@ -63,7 +65,15 @@ class CreateOrderRequest {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? triggerPrice;
+  String? triggerPrice;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  TriggerType? triggerType;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateOrderRequest &&
@@ -72,11 +82,12 @@ class CreateOrderRequest {
     other.price == price &&
     other.kind == kind &&
     other.side == side &&
-    other.positionId == positionId &&
+    other.fromGlobalPosition == fromGlobalPosition &&
     other.orderBookId == orderBookId &&
     _deepEquality.equals(other.orderModifiers, orderModifiers) &&
     other.goodTillDate == goodTillDate &&
-    other.triggerPrice == triggerPrice;
+    other.triggerPrice == triggerPrice &&
+    other.triggerType == triggerType;
 
   @override
   int get hashCode =>
@@ -86,14 +97,15 @@ class CreateOrderRequest {
     (price == null ? 0 : price!.hashCode) +
     (kind.hashCode) +
     (side.hashCode) +
-    (positionId.hashCode) +
+    (fromGlobalPosition.hashCode) +
     (orderBookId.hashCode) +
     (orderModifiers.hashCode) +
     (goodTillDate == null ? 0 : goodTillDate!.hashCode) +
-    (triggerPrice == null ? 0 : triggerPrice!.hashCode);
+    (triggerPrice == null ? 0 : triggerPrice!.hashCode) +
+    (triggerType == null ? 0 : triggerType!.hashCode);
 
   @override
-  String toString() => 'CreateOrderRequest[quantity=$quantity, inverseLeverage=$inverseLeverage, price=$price, kind=$kind, side=$side, positionId=$positionId, orderBookId=$orderBookId, orderModifiers=$orderModifiers, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice]';
+  String toString() => 'CreateOrderRequest[quantity=$quantity, inverseLeverage=$inverseLeverage, price=$price, kind=$kind, side=$side, fromGlobalPosition=$fromGlobalPosition, orderBookId=$orderBookId, orderModifiers=$orderModifiers, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -106,7 +118,7 @@ class CreateOrderRequest {
     }
       json[r'kind'] = this.kind;
       json[r'side'] = this.side;
-      json[r'position_id'] = this.positionId;
+      json[r'from_global_position'] = this.fromGlobalPosition;
       json[r'order_book_id'] = this.orderBookId;
       json[r'order_modifiers'] = this.orderModifiers;
     if (this.goodTillDate != null) {
@@ -118,6 +130,11 @@ class CreateOrderRequest {
       json[r'trigger_price'] = this.triggerPrice;
     } else {
       json[r'trigger_price'] = null;
+    }
+    if (this.triggerType != null) {
+      json[r'trigger_type'] = this.triggerType;
+    } else {
+      json[r'trigger_type'] = null;
     }
     return json;
   }
@@ -141,16 +158,17 @@ class CreateOrderRequest {
       }());
 
       return CreateOrderRequest(
-        quantity: mapValueOfType<double>(json, r'quantity')!,
-        inverseLeverage: mapValueOfType<double>(json, r'inverse_leverage')!,
-        price: mapValueOfType<double>(json, r'price'),
+        quantity: mapValueOfType<String>(json, r'quantity')!,
+        inverseLeverage: mapValueOfType<String>(json, r'inverse_leverage')!,
+        price: mapValueOfType<String>(json, r'price'),
         kind: OrderKind.fromJson(json[r'kind'])!,
         side: Side.fromJson(json[r'side'])!,
-        positionId: mapValueOfType<String>(json, r'position_id')!,
+        fromGlobalPosition: mapValueOfType<bool>(json, r'from_global_position')!,
         orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
         orderModifiers: OrderModifierKind.listFromJson(json[r'order_modifiers']),
         goodTillDate: mapDateTime(json, r'good_till_date', r''),
-        triggerPrice: mapValueOfType<double>(json, r'trigger_price'),
+        triggerPrice: mapValueOfType<String>(json, r'trigger_price'),
+        triggerType: TriggerType.fromJson(json[r'trigger_type']),
       );
     }
     return null;
@@ -202,7 +220,7 @@ class CreateOrderRequest {
     'inverse_leverage',
     'kind',
     'side',
-    'position_id',
+    'from_global_position',
     'order_book_id',
   };
 }

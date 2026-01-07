@@ -9,7 +9,7 @@ import 'package:dora_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **assetId** | **String** |  | [optional] 
-**price** | **double** |  | [optional] 
+**price** | **String** |  | [optional] 
 **time** | [**DateTime**](DateTime.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

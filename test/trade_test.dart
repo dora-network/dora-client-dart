@@ -36,7 +36,7 @@ void main() {
       // TODO
     });
 
-    // double feeQuantity
+    // String feeQuantity
     test('to test the property `feeQuantity`', () async {
       // TODO
     });
@@ -56,12 +56,12 @@ void main() {
       // TODO
     });
 
-    // double price
+    // String price
     test('to test the property `price`', () async {
       // TODO
     });
 
-    // double quantity0
+    // String quantity0
     test('to test the property `quantity0`', () async {
       // TODO
     });

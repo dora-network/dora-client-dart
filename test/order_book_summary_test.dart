@@ -21,22 +21,22 @@ void main() {
       // TODO
     });
 
-    // double midPrice
+    // String midPrice
     test('to test the property `midPrice`', () async {
       // TODO
     });
 
-    // double spread
+    // String spread
     test('to test the property `spread`', () async {
       // TODO
     });
 
-    // double bestBid
+    // String bestBid
     test('to test the property `bestBid`', () async {
       // TODO
     });
 
-    // double bestAsk
+    // String bestAsk
     test('to test the property `bestAsk`', () async {
       // TODO
     });

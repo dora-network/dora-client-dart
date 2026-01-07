@@ -16,17 +16,17 @@ void main() {
   // final instance = CreateOrderRequest();
 
   group('test CreateOrderRequest', () {
-    // double quantity
+    // String quantity
     test('to test the property `quantity`', () async {
       // TODO
     });
 
-    // double inverseLeverage
+    // String inverseLeverage
     test('to test the property `inverseLeverage`', () async {
       // TODO
     });
 
-    // double price
+    // String price
     test('to test the property `price`', () async {
       // TODO
     });
@@ -36,14 +36,15 @@ void main() {
       // TODO
     });
 
+    // Required: Must be either 'BUY' or 'SELL'
     // Side side
     test('to test the property `side`', () async {
       // TODO
     });
 
-    // position ID to use for the order. required.
-    // String positionId
-    test('to test the property `positionId`', () async {
+    // use global position for the order or isolated. required.
+    // bool fromGlobalPosition
+    test('to test the property `fromGlobalPosition`', () async {
       // TODO
     });
 
@@ -63,8 +64,13 @@ void main() {
       // TODO
     });
 
-    // double triggerPrice
+    // String triggerPrice
     test('to test the property `triggerPrice`', () async {
+      // TODO
+    });
+
+    // TriggerType triggerType
+    test('to test the property `triggerType`', () async {
       // TODO
     });
 

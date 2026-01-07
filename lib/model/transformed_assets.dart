@@ -18,10 +18,10 @@ class TransformedAssets {
   });
 
   /// Assets that have been gained by stablecoin equivalence transformations. They cannot be withdrawn from the platform until converted back to the original asset.
-  Map<String, double> gained;
+  Map<String, String> gained;
 
   /// Assets that have been lost by stablecoin equivalence transformations. They can be recovered by converting back any assets gained by stablecoin equivalence transformations.
-  Map<String, double> lost;
+  Map<String, String> lost;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is TransformedAssets &&
@@ -63,8 +63,8 @@ class TransformedAssets {
       }());
 
       return TransformedAssets(
-        gained: mapCastOfType<String, double>(json, r'gained') ?? const {},
-        lost: mapCastOfType<String, double>(json, r'lost') ?? const {},
+        gained: mapCastOfType<String, String>(json, r'gained') ?? const {},
+        lost: mapCastOfType<String, String>(json, r'lost') ?? const {},
       );
     }
     return null;

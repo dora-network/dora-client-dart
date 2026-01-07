@@ -20,8 +20,6 @@ class Position {
     this.available,
     this.locked,
     this.supplied,
-    this.collateral,
-    this.suppliedCollateral,
     this.borrowed,
     this.impendingBorrows,
     this.avgEntryPrice,
@@ -71,7 +69,7 @@ class Position {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? available;
+  String? available;
 
   /// The balance that has been reserved for a current order. If spent by the order, they are removed. If the order is cancelled, they are returned to the position's available balance.
   ///
@@ -80,7 +78,7 @@ class Position {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? locked;
+  String? locked;
 
   /// The balance that user has supplied to the leverage module. The user remains entitled to these assets and can withdraw them into their available balance.
   ///
@@ -89,34 +87,16 @@ class Position {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? supplied;
+  String? supplied;
 
-  /// The balance that has been locked or supplied, but are marked as collateral to support borrow limits and can be consumed in case of liquidation. When unmarked as collateral, the balance returns to the available balance.
+  /// The total amount of debt outstanding for this position. This position cannot be closed until all debt is fully repaid, i.e. borrowed = 0.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? collateral;
-
-  /// The balance that have been supplied to the leverage module and marked as collateral. The user remains entitled to this balance and can withdraw it into the collateral balance, or unmark them as collateral and move them to the supplied balance.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  double? suppliedCollateral;
-
-  /// The total amount of debt outstanding for this position. The position's collateral + supplied_collateral must support a borrow limit sufficient to cover all borrowed assets. This position cannot be closed until all debt is fully repaid, i.e. borrowed = 0.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  double? borrowed;
+  String? borrowed;
 
   /// The equivalent of locked balances, but for leveraged orders. If a user has an active order that would borrow assets as part of its input, then their borrow limit must be reduced until the order is executed or cancelled.
   ///
@@ -125,7 +105,7 @@ class Position {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? impendingBorrows;
+  String? impendingBorrows;
 
   /// average cost per unit quantity that was paid (long positions) or received (short positions) for this asset.
   ///
@@ -134,7 +114,7 @@ class Position {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? avgEntryPrice;
+  String? avgEntryPrice;
 
   /// The borrow limit
   ///
@@ -143,7 +123,7 @@ class Position {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? borrowLimit;
+  String? borrowLimit;
 
   /// The borrow limit
   ///
@@ -152,7 +132,7 @@ class Position {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? liquidationThreshold;
+  String? liquidationThreshold;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -179,8 +159,6 @@ class Position {
     other.available == available &&
     other.locked == locked &&
     other.supplied == supplied &&
-    other.collateral == collateral &&
-    other.suppliedCollateral == suppliedCollateral &&
     other.borrowed == borrowed &&
     other.impendingBorrows == impendingBorrows &&
     other.avgEntryPrice == avgEntryPrice &&
@@ -199,8 +177,6 @@ class Position {
     (available == null ? 0 : available!.hashCode) +
     (locked == null ? 0 : locked!.hashCode) +
     (supplied == null ? 0 : supplied!.hashCode) +
-    (collateral == null ? 0 : collateral!.hashCode) +
-    (suppliedCollateral == null ? 0 : suppliedCollateral!.hashCode) +
     (borrowed == null ? 0 : borrowed!.hashCode) +
     (impendingBorrows == null ? 0 : impendingBorrows!.hashCode) +
     (avgEntryPrice == null ? 0 : avgEntryPrice!.hashCode) +
@@ -210,7 +186,7 @@ class Position {
     (positionName == null ? 0 : positionName!.hashCode);
 
   @override
-  String toString() => 'Position[id=$id, assetId=$assetId, seq=$seq, isGlobal=$isGlobal, available=$available, locked=$locked, supplied=$supplied, collateral=$collateral, suppliedCollateral=$suppliedCollateral, borrowed=$borrowed, impendingBorrows=$impendingBorrows, avgEntryPrice=$avgEntryPrice, borrowLimit=$borrowLimit, liquidationThreshold=$liquidationThreshold, createdAt=$createdAt, positionName=$positionName]';
+  String toString() => 'Position[id=$id, assetId=$assetId, seq=$seq, isGlobal=$isGlobal, available=$available, locked=$locked, supplied=$supplied, borrowed=$borrowed, impendingBorrows=$impendingBorrows, avgEntryPrice=$avgEntryPrice, borrowLimit=$borrowLimit, liquidationThreshold=$liquidationThreshold, createdAt=$createdAt, positionName=$positionName]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -248,16 +224,6 @@ class Position {
       json[r'supplied'] = this.supplied;
     } else {
       json[r'supplied'] = null;
-    }
-    if (this.collateral != null) {
-      json[r'collateral'] = this.collateral;
-    } else {
-      json[r'collateral'] = null;
-    }
-    if (this.suppliedCollateral != null) {
-      json[r'supplied_collateral'] = this.suppliedCollateral;
-    } else {
-      json[r'supplied_collateral'] = null;
     }
     if (this.borrowed != null) {
       json[r'borrowed'] = this.borrowed;
@@ -320,16 +286,14 @@ class Position {
         assetId: mapValueOfType<String>(json, r'asset_id'),
         seq: mapValueOfType<int>(json, r'seq'),
         isGlobal: mapValueOfType<bool>(json, r'is_global'),
-        available: mapValueOfType<double>(json, r'available'),
-        locked: mapValueOfType<double>(json, r'locked'),
-        supplied: mapValueOfType<double>(json, r'supplied'),
-        collateral: mapValueOfType<double>(json, r'collateral'),
-        suppliedCollateral: mapValueOfType<double>(json, r'supplied_collateral'),
-        borrowed: mapValueOfType<double>(json, r'borrowed'),
-        impendingBorrows: mapValueOfType<double>(json, r'impending_borrows'),
-        avgEntryPrice: mapValueOfType<double>(json, r'avg_entry_price'),
-        borrowLimit: mapValueOfType<double>(json, r'borrow_limit'),
-        liquidationThreshold: mapValueOfType<double>(json, r'liquidation_threshold'),
+        available: mapValueOfType<String>(json, r'available'),
+        locked: mapValueOfType<String>(json, r'locked'),
+        supplied: mapValueOfType<String>(json, r'supplied'),
+        borrowed: mapValueOfType<String>(json, r'borrowed'),
+        impendingBorrows: mapValueOfType<String>(json, r'impending_borrows'),
+        avgEntryPrice: mapValueOfType<String>(json, r'avg_entry_price'),
+        borrowLimit: mapValueOfType<String>(json, r'borrow_limit'),
+        liquidationThreshold: mapValueOfType<String>(json, r'liquidation_threshold'),
         createdAt: mapDateTime(json, r'created_at', r''),
         positionName: mapValueOfType<String>(json, r'position_name'),
       );

@@ -88,6 +88,9 @@ String parameterToString(dynamic value) {
   if (value is TransactionKind) {
     return TransactionKindTypeTransformer().encode(value).toString();
   }
+  if (value is TriggerType) {
+    return TriggerTypeTypeTransformer().encode(value).toString();
+  }
   if (value is UserRole) {
     return UserRoleTypeTransformer().encode(value).toString();
   }

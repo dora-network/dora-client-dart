@@ -21,15 +21,21 @@ class ValidateSubmitOrderRequest {
     this.goodTillDate,
     required this.inverseLeverage,
     required this.userBalance,
+    this.baseAssetId,
+    this.quoteAssetId,
+    this.positionAssets = const [],
+    this.assetsConfig = const [],
   });
 
-  double quantity;
+  String quantity;
 
   /// Minimum tradable increment for the selected order book
-  double tick;
+  String tick;
 
+  /// Must be LIMIT or MARKET
   OrderKind kind;
 
+  /// Must be BUY or SELL
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -39,7 +45,7 @@ class ValidateSubmitOrderRequest {
   Side? side;
 
   /// If kind is LIMIT, must be > 0; if MARKET it must be 0 or omitted
-  double price;
+  String price;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -49,10 +55,34 @@ class ValidateSubmitOrderRequest {
   ///
   DateTime? goodTillDate;
 
-  double inverseLeverage;
+  String inverseLeverage;
 
   /// User balance used to ensure they can afford the requested quantity
-  double userBalance;
+  String userBalance;
+
+  /// base asset of orderbook
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? baseAssetId;
+
+  /// quote asset of orderbook
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? quoteAssetId;
+
+  /// Full list of assets in the position with their price and collateral weight, required when inverse_leverage < 1 for leverage health checks
+  List<PositionAsset> positionAssets;
+
+  /// Configuration for the assets in the order
+  List<AssetConfig> assetsConfig;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ValidateSubmitOrderRequest &&
@@ -63,7 +93,11 @@ class ValidateSubmitOrderRequest {
     other.price == price &&
     other.goodTillDate == goodTillDate &&
     other.inverseLeverage == inverseLeverage &&
-    other.userBalance == userBalance;
+    other.userBalance == userBalance &&
+    other.baseAssetId == baseAssetId &&
+    other.quoteAssetId == quoteAssetId &&
+    _deepEquality.equals(other.positionAssets, positionAssets) &&
+    _deepEquality.equals(other.assetsConfig, assetsConfig);
 
   @override
   int get hashCode =>
@@ -75,10 +109,14 @@ class ValidateSubmitOrderRequest {
     (price.hashCode) +
     (goodTillDate == null ? 0 : goodTillDate!.hashCode) +
     (inverseLeverage.hashCode) +
-    (userBalance.hashCode);
+    (userBalance.hashCode) +
+    (baseAssetId == null ? 0 : baseAssetId!.hashCode) +
+    (quoteAssetId == null ? 0 : quoteAssetId!.hashCode) +
+    (positionAssets.hashCode) +
+    (assetsConfig.hashCode);
 
   @override
-  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance]';
+  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance, baseAssetId=$baseAssetId, quoteAssetId=$quoteAssetId, positionAssets=$positionAssets, assetsConfig=$assetsConfig]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -98,6 +136,18 @@ class ValidateSubmitOrderRequest {
     }
       json[r'inverse_leverage'] = this.inverseLeverage;
       json[r'user_balance'] = this.userBalance;
+    if (this.baseAssetId != null) {
+      json[r'base_asset_id'] = this.baseAssetId;
+    } else {
+      json[r'base_asset_id'] = null;
+    }
+    if (this.quoteAssetId != null) {
+      json[r'quote_asset_id'] = this.quoteAssetId;
+    } else {
+      json[r'quote_asset_id'] = null;
+    }
+      json[r'position_assets'] = this.positionAssets;
+      json[r'assets_config'] = this.assetsConfig;
     return json;
   }
 
@@ -120,14 +170,18 @@ class ValidateSubmitOrderRequest {
       }());
 
       return ValidateSubmitOrderRequest(
-        quantity: mapValueOfType<double>(json, r'quantity')!,
-        tick: mapValueOfType<double>(json, r'tick')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
+        tick: mapValueOfType<String>(json, r'tick')!,
         kind: OrderKind.fromJson(json[r'kind'])!,
         side: Side.fromJson(json[r'side']),
-        price: mapValueOfType<double>(json, r'price')!,
+        price: mapValueOfType<String>(json, r'price')!,
         goodTillDate: mapDateTime(json, r'good_till_date', r''),
-        inverseLeverage: mapValueOfType<double>(json, r'inverse_leverage')!,
-        userBalance: mapValueOfType<double>(json, r'user_balance')!,
+        inverseLeverage: mapValueOfType<String>(json, r'inverse_leverage')!,
+        userBalance: mapValueOfType<String>(json, r'user_balance')!,
+        baseAssetId: mapValueOfType<String>(json, r'base_asset_id'),
+        quoteAssetId: mapValueOfType<String>(json, r'quote_asset_id'),
+        positionAssets: PositionAsset.listFromJson(json[r'position_assets']),
+        assetsConfig: AssetConfig.listFromJson(json[r'assets_config']),
       );
     }
     return null;

@@ -23,7 +23,7 @@ class PriceLevel {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? price;
+  String? price;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -31,7 +31,7 @@ class PriceLevel {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? quantity;
+  String? quantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PriceLevel &&
@@ -81,8 +81,8 @@ class PriceLevel {
       }());
 
       return PriceLevel(
-        price: mapValueOfType<double>(json, r'price'),
-        quantity: mapValueOfType<double>(json, r'quantity'),
+        price: mapValueOfType<String>(json, r'price'),
+        quantity: mapValueOfType<String>(json, r'quantity'),
       );
     }
     return null;

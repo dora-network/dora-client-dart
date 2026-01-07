@@ -32,7 +32,7 @@ class AssetPrice {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? price;
+  String? price;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -98,7 +98,7 @@ class AssetPrice {
 
       return AssetPrice(
         assetId: mapValueOfType<String>(json, r'asset_id'),
-        price: mapValueOfType<double>(json, r'price'),
+        price: mapValueOfType<String>(json, r'price'),
         time: mapDateTime(json, r'time', r''),
       );
     }

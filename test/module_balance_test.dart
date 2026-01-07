@@ -27,31 +27,25 @@ void main() {
     });
 
     // The available balance in the module for this asset
-    // double available
+    // String available
     test('to test the property `available`', () async {
       // TODO
     });
 
     // The total amount supplied to the module for this asset
-    // double supplied
+    // String supplied
     test('to test the property `supplied`', () async {
       // TODO
     });
 
-    // The amount supplied as collateral from user balances in the module for this asset
-    // double suppliedCollateral
-    test('to test the property `suppliedCollateral`', () async {
-      // TODO
-    });
-
     // Assets minted by virtual-borrowing, but not yet repaid
-    // double virtual
+    // String virtual
     test('to test the property `virtual`', () async {
       // TODO
     });
 
     // The total amount borrowed from the supplied but not yet repaid
-    // double borrowed
+    // String borrowed
     test('to test the property `borrowed`', () async {
       // TODO
     });

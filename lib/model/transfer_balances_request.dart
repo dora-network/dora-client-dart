@@ -25,7 +25,7 @@ class TransferBalancesRequest {
 
   String assetId;
 
-  double quantity;
+  String quantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is TransferBalancesRequest &&
@@ -76,7 +76,7 @@ class TransferBalancesRequest {
         fromPositionId: mapValueOfType<String>(json, r'from_position_id')!,
         toPositionId: mapValueOfType<String>(json, r'to_position_id')!,
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        quantity: mapValueOfType<double>(json, r'quantity')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
       );
     }
     return null;

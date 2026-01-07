@@ -33,7 +33,7 @@ class OrderBookTop {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? bestBid;
+  String? bestBid;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -41,7 +41,7 @@ class OrderBookTop {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? bestAsk;
+  String? bestAsk;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -114,8 +114,8 @@ class OrderBookTop {
 
       return OrderBookTop(
         orderBookId: mapValueOfType<String>(json, r'order_book_id'),
-        bestBid: mapValueOfType<double>(json, r'best_bid'),
-        bestAsk: mapValueOfType<double>(json, r'best_ask'),
+        bestBid: mapValueOfType<String>(json, r'best_bid'),
+        bestAsk: mapValueOfType<String>(json, r'best_ask'),
         timestamp: mapDateTime(json, r'timestamp', r''),
       );
     }

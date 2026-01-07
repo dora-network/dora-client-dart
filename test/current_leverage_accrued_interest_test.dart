@@ -11,23 +11,28 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for StreamAssetPricesResponseValue
+// tests for CurrentLeverageAccruedInterest
 void main() {
-  // final instance = StreamAssetPricesResponseValue();
+  // final instance = CurrentLeverageAccruedInterest();
 
-  group('test StreamAssetPricesResponseValue', () {
+  group('test CurrentLeverageAccruedInterest', () {
+    // String userId
+    test('to test the property `userId`', () async {
+      // TODO
+    });
+
     // String assetId
     test('to test the property `assetId`', () async {
       // TODO
     });
 
-    // double price
-    test('to test the property `price`', () async {
+    // String positionId
+    test('to test the property `positionId`', () async {
       // TODO
     });
 
-    // DateTime time
-    test('to test the property `time`', () async {
+    // String currentAccruedInterest
+    test('to test the property `currentAccruedInterest`', () async {
       // TODO
     });
 

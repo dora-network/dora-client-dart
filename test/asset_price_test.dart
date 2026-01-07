@@ -21,7 +21,7 @@ void main() {
       // TODO
     });
 
-    // double price
+    // String price
     test('to test the property `price`', () async {
       // TODO
     });

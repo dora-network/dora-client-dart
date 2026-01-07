@@ -26,7 +26,7 @@ void main() {
       // TODO
     });
 
-    // double quantity
+    // String quantity
     test('to test the property `quantity`', () async {
       // TODO
     });

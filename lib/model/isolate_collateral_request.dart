@@ -22,7 +22,7 @@ class IsolateCollateralRequest {
 
   String assetId;
 
-  double quantity;
+  String quantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is IsolateCollateralRequest &&
@@ -69,7 +69,7 @@ class IsolateCollateralRequest {
       return IsolateCollateralRequest(
         globalPositionId: mapValueOfType<String>(json, r'global_position_id')!,
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        quantity: mapValueOfType<double>(json, r'quantity')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
       );
     }
     return null;

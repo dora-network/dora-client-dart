@@ -186,8 +186,12 @@ class ApiClient {
           return APIKeyResponse.fromJson(value);
         case 'APIKeyResponseEnvelope':
           return APIKeyResponseEnvelope.fromJson(value);
+        case 'APIKeys':
+          return APIKeys.fromJson(value);
         case 'Asset':
           return Asset.fromJson(value);
+        case 'AssetConfig':
+          return AssetConfig.fromJson(value);
         case 'AssetKind':
           return AssetKindTypeTransformer().decode(value);
         case 'AssetPrice':
@@ -210,6 +214,20 @@ class ApiClient {
           return Candle.fromJson(value);
         case 'CandleResolution':
           return CandleResolutionTypeTransformer().decode(value);
+        case 'ClaimLeverageAccruedInterest':
+          return ClaimLeverageAccruedInterest.fromJson(value);
+        case 'ClaimLeverageAccruedInterestReq':
+          return ClaimLeverageAccruedInterestReq.fromJson(value);
+        case 'ClaimLeverageAccruedInterestRequest':
+          return ClaimLeverageAccruedInterestRequest.fromJson(value);
+        case 'ClaimLeverageAccruedInterestResponseEnvelope':
+          return ClaimLeverageAccruedInterestResponseEnvelope.fromJson(value);
+        case 'ClosePositionRequest':
+          return ClosePositionRequest.fromJson(value);
+        case 'ClosePositionResp':
+          return ClosePositionResp.fromJson(value);
+        case 'ClosePositionResponseEnvelope':
+          return ClosePositionResponseEnvelope.fromJson(value);
         case 'Collateral':
           return Collateral.fromJson(value);
         case 'CouponPayment':
@@ -226,6 +244,10 @@ class ApiClient {
           return CreateOrderRequest.fromJson(value);
         case 'CreateOrderResponseEnvelope':
           return CreateOrderResponseEnvelope.fromJson(value);
+        case 'CurrentLeverageAccruedInterest':
+          return CurrentLeverageAccruedInterest.fromJson(value);
+        case 'CurrentLeverageAccruedInterestResponseEnvelope':
+          return CurrentLeverageAccruedInterestResponseEnvelope.fromJson(value);
         case 'EmailExistsResponseEnvelope':
           return EmailExistsResponseEnvelope.fromJson(value);
         case 'GetAssetByIDResponseEnvelope':
@@ -324,6 +346,18 @@ class ApiClient {
           return OrderResponseEnvelope.fromJson(value);
         case 'OrderStatus':
           return OrderStatusTypeTransformer().decode(value);
+        case 'OrderbookStats':
+          return OrderbookStats.fromJson(value);
+        case 'OrderbookStatsResponseEnvelope':
+          return OrderbookStatsResponseEnvelope.fromJson(value);
+        case 'PayLeverageAccruedInterest':
+          return PayLeverageAccruedInterest.fromJson(value);
+        case 'PayLeverageAccruedInterestReq':
+          return PayLeverageAccruedInterestReq.fromJson(value);
+        case 'PayLeverageAccruedInterestRequest':
+          return PayLeverageAccruedInterestRequest.fromJson(value);
+        case 'PayLeverageAccruedInterestResponseEnvelope':
+          return PayLeverageAccruedInterestResponseEnvelope.fromJson(value);
         case 'PoolPrice':
           return PoolPrice.fromJson(value);
         case 'PoolPriceResponseEnvelope':
@@ -336,6 +370,10 @@ class ApiClient {
           return Position.fromJson(value);
         case 'PositionAccount':
           return PositionAccount.fromJson(value);
+        case 'PositionAccounts':
+          return PositionAccounts.fromJson(value);
+        case 'PositionAsset':
+          return PositionAsset.fromJson(value);
         case 'PositionResponse':
           return PositionResponse.fromJson(value);
         case 'PositionType':
@@ -352,26 +390,44 @@ class ApiClient {
           return RevokeAPIKeyResponseEnvelope.fromJson(value);
         case 'Side':
           return SideTypeTransformer().decode(value);
-        case 'StreamAssetPricesResponseValue':
-          return StreamAssetPricesResponseValue.fromJson(value);
+        case 'StreamAssetPricesResponse':
+          return StreamAssetPricesResponse.fromJson(value);
         case 'StreamAssetsEntry':
           return StreamAssetsEntry.fromJson(value);
+        case 'StreamAssetsResponse':
+          return StreamAssetsResponse.fromJson(value);
         case 'StreamCandlesEntry':
           return StreamCandlesEntry.fromJson(value);
+        case 'StreamCandlesResponse':
+          return StreamCandlesResponse.fromJson(value);
         case 'StreamEntry':
           return StreamEntry.fromJson(value);
         case 'StreamOrderBookBalanceEntry':
           return StreamOrderBookBalanceEntry.fromJson(value);
+        case 'StreamOrderBookBalancesResponse':
+          return StreamOrderBookBalancesResponse.fromJson(value);
         case 'StreamOrderUpdatesEntry':
           return StreamOrderUpdatesEntry.fromJson(value);
+        case 'StreamOrderUpdatesResponse':
+          return StreamOrderUpdatesResponse.fromJson(value);
         case 'StreamOrdersEntry':
           return StreamOrdersEntry.fromJson(value);
+        case 'StreamOrdersResponse':
+          return StreamOrdersResponse.fromJson(value);
         case 'StreamPositionsEntry':
           return StreamPositionsEntry.fromJson(value);
+        case 'StreamPositionsResponse':
+          return StreamPositionsResponse.fromJson(value);
         case 'StreamTradesEntry':
           return StreamTradesEntry.fromJson(value);
+        case 'StreamTradesResponse':
+          return StreamTradesResponse.fromJson(value);
         case 'StreamTransactionsEntry':
           return StreamTransactionsEntry.fromJson(value);
+        case 'StreamTransactionsResponse':
+          return StreamTransactionsResponse.fromJson(value);
+        case 'StreamedAssetPrice':
+          return StreamedAssetPrice.fromJson(value);
         case 'Supply':
           return Supply.fromJson(value);
         case 'SupplyRequest':
@@ -398,6 +454,8 @@ class ApiClient {
           return TransferBalancesResponseEnvelope.fromJson(value);
         case 'TransformedAssets':
           return TransformedAssets.fromJson(value);
+        case 'TriggerType':
+          return TriggerTypeTypeTransformer().decode(value);
         case 'UnitePositionRequest':
           return UnitePositionRequest.fromJson(value);
         case 'UnitePositionResponseEnvelope':

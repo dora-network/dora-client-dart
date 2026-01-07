@@ -32,42 +32,42 @@ void main() {
     });
 
     // If Kind is LIMIT, this is the original limit price. If Kind is MARKET, this may be 0 or omitted.
-    // double originalPrice
+    // String originalPrice
     test('to test the property `originalPrice`', () async {
       // TODO
     });
 
-    // double avgFillPrice
+    // String avgFillPrice
     test('to test the property `avgFillPrice`', () async {
       // TODO
     });
 
     // Quantity that was cancelled, if any.
-    // double cancelledQuantity
+    // String cancelledQuantity
     test('to test the property `cancelledQuantity`', () async {
       // TODO
     });
 
     // Quantity that is still open, i.e., not filled or cancelled.
-    // double openQuantity
+    // String openQuantity
     test('to test the property `openQuantity`', () async {
       // TODO
     });
 
     // The original quantity of the order when it was created.
-    // double originalQuantity
+    // String originalQuantity
     test('to test the property `originalQuantity`', () async {
       // TODO
     });
 
     // Quantity that has been filled so far.
-    // double filledQuantity
+    // String filledQuantity
     test('to test the property `filledQuantity`', () async {
       // TODO
     });
 
     // Quote quantity that has been filled so far.
-    // double filledNotional
+    // String filledNotional
     test('to test the property `filledNotional`', () async {
       // TODO
     });
@@ -82,7 +82,7 @@ void main() {
       // TODO
     });
 
-    // double inverseLeverage
+    // String inverseLeverage
     test('to test the property `inverseLeverage`', () async {
       // TODO
     });
@@ -122,8 +122,13 @@ void main() {
       // TODO
     });
 
-    // double triggerPrice
+    // String triggerPrice
     test('to test the property `triggerPrice`', () async {
+      // TODO
+    });
+
+    // TriggerType triggerType
+    test('to test the property `triggerType`', () async {
       // TODO
     });
 

@@ -16,11 +16,13 @@ void main() {
   // final instance = UpdateUserConfigRequest();
 
   group('test UpdateUserConfigRequest', () {
+    // Optional: URL of the user's profile photo, optional.
     // UpdateFieldString photoUrl
     test('to test the property `photoUrl`', () async {
       // TODO
     });
 
+    // User's timezone, e.g., 'America/New_York', or an offset.
     // UpdateFieldString timezone
     test('to test the property `timezone`', () async {
       // TODO

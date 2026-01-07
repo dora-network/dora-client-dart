@@ -22,7 +22,7 @@ class WithdrawRequest {
 
   String assetId;
 
-  double quantity;
+  String quantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is WithdrawRequest &&
@@ -69,7 +69,7 @@ class WithdrawRequest {
       return WithdrawRequest(
         positionId: mapValueOfType<String>(json, r'position_id')!,
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        quantity: mapValueOfType<double>(json, r'quantity')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
       );
     }
     return null;

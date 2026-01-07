@@ -31,17 +31,17 @@ void main() {
       // TODO
     });
 
-    // double baseQuantity
+    // String baseQuantity
     test('to test the property `baseQuantity`', () async {
       // TODO
     });
 
-    // double quoteQuantity
+    // String quoteQuantity
     test('to test the property `quoteQuantity`', () async {
       // TODO
     });
 
-    // double sharesQuantity
+    // String sharesQuantity
     test('to test the property `sharesQuantity`', () async {
       // TODO
     });

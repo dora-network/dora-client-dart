@@ -9,10 +9,10 @@ import 'package:dora_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **orderBookId** | **String** |  | [optional] 
-**midPrice** | **double** |  | [optional] 
-**spread** | **double** |  | [optional] 
-**bestBid** | **double** |  | [optional] 
-**bestAsk** | **double** |  | [optional] 
+**midPrice** | **String** |  | [optional] 
+**spread** | **String** |  | [optional] 
+**bestBid** | **String** |  | [optional] 
+**bestAsk** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

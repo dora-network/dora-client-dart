@@ -44,7 +44,7 @@ class Candle {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? open;
+  String? open;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -52,7 +52,7 @@ class Candle {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? high;
+  String? high;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -60,7 +60,7 @@ class Candle {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? low;
+  String? low;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -68,7 +68,7 @@ class Candle {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? close;
+  String? close;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -76,7 +76,7 @@ class Candle {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? volume;
+  String? volume;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Candle &&
@@ -163,11 +163,11 @@ class Candle {
       return Candle(
         orderBookId: mapValueOfType<String>(json, r'order_book_id'),
         startTimestamp: mapDateTime(json, r'start_timestamp', r''),
-        open: mapValueOfType<double>(json, r'open'),
-        high: mapValueOfType<double>(json, r'high'),
-        low: mapValueOfType<double>(json, r'low'),
-        close: mapValueOfType<double>(json, r'close'),
-        volume: mapValueOfType<double>(json, r'volume'),
+        open: mapValueOfType<String>(json, r'open'),
+        high: mapValueOfType<String>(json, r'high'),
+        low: mapValueOfType<String>(json, r'low'),
+        close: mapValueOfType<String>(json, r'close'),
+        volume: mapValueOfType<String>(json, r'volume'),
       );
     }
     return null;

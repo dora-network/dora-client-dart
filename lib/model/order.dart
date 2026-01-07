@@ -34,6 +34,7 @@ class Order {
     this.orderInfo,
     this.goodTillDate,
     this.triggerPrice,
+    this.triggerType,
   });
 
   ///
@@ -67,7 +68,7 @@ class Order {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? originalPrice;
+  String? originalPrice;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -75,7 +76,7 @@ class Order {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? avgFillPrice;
+  String? avgFillPrice;
 
   /// Quantity that was cancelled, if any.
   ///
@@ -84,7 +85,7 @@ class Order {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? cancelledQuantity;
+  String? cancelledQuantity;
 
   /// Quantity that is still open, i.e., not filled or cancelled.
   ///
@@ -93,7 +94,7 @@ class Order {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? openQuantity;
+  String? openQuantity;
 
   /// The original quantity of the order when it was created.
   ///
@@ -102,7 +103,7 @@ class Order {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? originalQuantity;
+  String? originalQuantity;
 
   /// Quantity that has been filled so far.
   ///
@@ -111,7 +112,7 @@ class Order {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? filledQuantity;
+  String? filledQuantity;
 
   /// Quote quantity that has been filled so far.
   ///
@@ -120,7 +121,7 @@ class Order {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? filledNotional;
+  String? filledNotional;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -144,7 +145,7 @@ class Order {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? inverseLeverage;
+  String? inverseLeverage;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -202,7 +203,15 @@ class Order {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? triggerPrice;
+  String? triggerPrice;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  TriggerType? triggerType;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Order &&
@@ -226,7 +235,8 @@ class Order {
     other.positionId == positionId &&
     other.orderInfo == orderInfo &&
     other.goodTillDate == goodTillDate &&
-    other.triggerPrice == triggerPrice;
+    other.triggerPrice == triggerPrice &&
+    other.triggerType == triggerType;
 
   @override
   int get hashCode =>
@@ -251,10 +261,11 @@ class Order {
     (positionId == null ? 0 : positionId!.hashCode) +
     (orderInfo == null ? 0 : orderInfo!.hashCode) +
     (goodTillDate == null ? 0 : goodTillDate!.hashCode) +
-    (triggerPrice == null ? 0 : triggerPrice!.hashCode);
+    (triggerPrice == null ? 0 : triggerPrice!.hashCode) +
+    (triggerType == null ? 0 : triggerType!.hashCode);
 
   @override
-  String toString() => 'Order[orderId=$orderId, orderBookId=$orderBookId, kind=$kind, originalPrice=$originalPrice, avgFillPrice=$avgFillPrice, cancelledQuantity=$cancelledQuantity, openQuantity=$openQuantity, originalQuantity=$originalQuantity, filledQuantity=$filledQuantity, filledNotional=$filledNotional, lastUpdateAt=$lastUpdateAt, openedAt=$openedAt, inverseLeverage=$inverseLeverage, side=$side, status=$status, userId=$userId, orderModifiers=$orderModifiers, positionId=$positionId, orderInfo=$orderInfo, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice]';
+  String toString() => 'Order[orderId=$orderId, orderBookId=$orderBookId, kind=$kind, originalPrice=$originalPrice, avgFillPrice=$avgFillPrice, cancelledQuantity=$cancelledQuantity, openQuantity=$openQuantity, originalQuantity=$originalQuantity, filledQuantity=$filledQuantity, filledNotional=$filledNotional, lastUpdateAt=$lastUpdateAt, openedAt=$openedAt, inverseLeverage=$inverseLeverage, side=$side, status=$status, userId=$userId, orderModifiers=$orderModifiers, positionId=$positionId, orderInfo=$orderInfo, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -359,6 +370,11 @@ class Order {
     } else {
       json[r'trigger_price'] = null;
     }
+    if (this.triggerType != null) {
+      json[r'trigger_type'] = this.triggerType;
+    } else {
+      json[r'trigger_type'] = null;
+    }
     return json;
   }
 
@@ -384,16 +400,16 @@ class Order {
         orderId: mapValueOfType<String>(json, r'order_id'),
         orderBookId: mapValueOfType<String>(json, r'order_book_id'),
         kind: OrderKind.fromJson(json[r'kind']),
-        originalPrice: mapValueOfType<double>(json, r'original_price'),
-        avgFillPrice: mapValueOfType<double>(json, r'avg_fill_price'),
-        cancelledQuantity: mapValueOfType<double>(json, r'cancelled_quantity'),
-        openQuantity: mapValueOfType<double>(json, r'open_quantity'),
-        originalQuantity: mapValueOfType<double>(json, r'original_quantity'),
-        filledQuantity: mapValueOfType<double>(json, r'filled_quantity'),
-        filledNotional: mapValueOfType<double>(json, r'filled_notional'),
+        originalPrice: mapValueOfType<String>(json, r'original_price'),
+        avgFillPrice: mapValueOfType<String>(json, r'avg_fill_price'),
+        cancelledQuantity: mapValueOfType<String>(json, r'cancelled_quantity'),
+        openQuantity: mapValueOfType<String>(json, r'open_quantity'),
+        originalQuantity: mapValueOfType<String>(json, r'original_quantity'),
+        filledQuantity: mapValueOfType<String>(json, r'filled_quantity'),
+        filledNotional: mapValueOfType<String>(json, r'filled_notional'),
         lastUpdateAt: mapDateTime(json, r'last_update_at', r''),
         openedAt: mapDateTime(json, r'opened_at', r''),
-        inverseLeverage: mapValueOfType<double>(json, r'inverse_leverage'),
+        inverseLeverage: mapValueOfType<String>(json, r'inverse_leverage'),
         side: Side.fromJson(json[r'side']),
         status: OrderStatus.fromJson(json[r'status']),
         userId: mapValueOfType<String>(json, r'user_id'),
@@ -401,7 +417,8 @@ class Order {
         positionId: mapValueOfType<String>(json, r'position_id'),
         orderInfo: mapValueOfType<String>(json, r'order_info'),
         goodTillDate: mapDateTime(json, r'good_till_date', r''),
-        triggerPrice: mapValueOfType<double>(json, r'trigger_price'),
+        triggerPrice: mapValueOfType<String>(json, r'trigger_price'),
+        triggerType: TriggerType.fromJson(json[r'trigger_type']),
       );
     }
     return null;

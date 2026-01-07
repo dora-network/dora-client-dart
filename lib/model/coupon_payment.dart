@@ -80,7 +80,7 @@ class CouponPayment {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? availableToPay;
+  String? availableToPay;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -234,7 +234,7 @@ class CouponPayment {
         startAt: mapDateTime(json, r'start_at', r''),
         endAt: mapDateTime(json, r'end_at', r''),
         payAt: mapDateTime(json, r'pay_at', r''),
-        availableToPay: mapValueOfType<double>(json, r'available_to_pay'),
+        availableToPay: mapValueOfType<String>(json, r'available_to_pay'),
         completedAt: mapDateTime(json, r'completed_at', r''),
         createdAt: mapDateTime(json, r'created_at', r''),
         processEvery: mapValueOfType<int>(json, r'process_every'),

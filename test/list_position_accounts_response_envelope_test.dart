@@ -16,7 +16,7 @@ void main() {
   // final instance = ListPositionAccountsResponseEnvelope();
 
   group('test ListPositionAccountsResponseEnvelope', () {
-    // PositionAccounts data
+    // List<PositionAccount> data (default value: const [])
     test('to test the property `data`', () async {
       // TODO
     });

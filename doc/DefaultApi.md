@@ -681,7 +681,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getAssetsStream**
-> StreamAssetsResponse getAssetsStream(since, until)
+> List<StreamAssetsEntry> getAssetsStream(since, until)
 
 Get all inserts or updates for assets
 
@@ -710,7 +710,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamAssetsResponse**](StreamAssetsResponse.md)
+[**List<StreamAssetsEntry>**](StreamAssetsEntry.md)
 
 ### Authorization
 
@@ -1887,7 +1887,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserLedgerStream**
-> StreamPositionsResponse getUserLedgerStream(userId)
+> List<StreamPositionsEntry> getUserLedgerStream(userId)
 
 Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 
@@ -1918,7 +1918,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamPositionsResponse**](StreamPositionsResponse.md)
+[**List<StreamPositionsEntry>**](StreamPositionsEntry.md)
 
 ### Authorization
 
@@ -1932,7 +1932,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserOrderUpdatesStream**
-> StreamOrderUpdatesResponse getUserOrderUpdatesStream(userId, orderBookId, since)
+> List<StreamOrderUpdatesEntry> getUserOrderUpdatesStream(userId, orderBookId, since)
 
 Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 
@@ -1967,7 +1967,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamOrderUpdatesResponse**](StreamOrderUpdatesResponse.md)
+[**List<StreamOrderUpdatesEntry>**](StreamOrderUpdatesEntry.md)
 
 ### Authorization
 
@@ -1981,7 +1981,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserOrdersUpdatesStreamAll**
-> StreamOrderUpdatesResponse getUserOrdersUpdatesStreamAll(userId, since)
+> List<StreamOrderUpdatesEntry> getUserOrdersUpdatesStreamAll(userId, since)
 
 Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 
@@ -2014,7 +2014,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamOrderUpdatesResponse**](StreamOrderUpdatesResponse.md)
+[**List<StreamOrderUpdatesEntry>**](StreamOrderUpdatesEntry.md)
 
 ### Authorization
 
@@ -2075,7 +2075,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserTransactionsStream**
-> StreamTransactionsResponse getUserTransactionsStream(userId, since)
+> List<StreamTransactionsEntry> getUserTransactionsStream(userId, since)
 
 Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 
@@ -2108,7 +2108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamTransactionsResponse**](StreamTransactionsResponse.md)
+[**List<StreamTransactionsEntry>**](StreamTransactionsEntry.md)
 
 ### Authorization
 
@@ -2866,7 +2866,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **streamAssetPrices**
-> StreamAssetPricesResponse streamAssetPrices(since, assetId)
+> Map<String, StreamedAssetPrice> streamAssetPrices(since, assetId)
 
 Stream real-time asset prices as map objects
 
@@ -2897,7 +2897,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamAssetPricesResponse**](StreamAssetPricesResponse.md)
+[**Map<String, StreamedAssetPrice>**](StreamedAssetPrice.md)
 
 ### Authorization
 
@@ -2911,7 +2911,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **streamCandleData**
-> StreamCandlesResponse streamCandleData(orderBookId, since, resolution)
+> List<StreamCandlesEntry> streamCandleData(orderBookId, since, resolution)
 
 Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 
@@ -2942,7 +2942,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamCandlesResponse**](StreamCandlesResponse.md)
+[**List<StreamCandlesEntry>**](StreamCandlesEntry.md)
 
 ### Authorization
 
@@ -2956,7 +2956,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **streamOrderBookBalances**
-> StreamOrderBookBalancesResponse streamOrderBookBalances(orderBookId, since)
+> List<StreamOrderBookBalanceEntry> streamOrderBookBalances(orderBookId, since)
 
 Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 
@@ -2985,7 +2985,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamOrderBookBalancesResponse**](StreamOrderBookBalancesResponse.md)
+[**List<StreamOrderBookBalanceEntry>**](StreamOrderBookBalanceEntry.md)
 
 ### Authorization
 
@@ -3042,7 +3042,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **streamTrades**
-> StreamTradesResponse streamTrades(orderBookId, since)
+> List<StreamTradesEntry> streamTrades(orderBookId, since)
 
 Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 
@@ -3071,7 +3071,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StreamTradesResponse**](StreamTradesResponse.md)
+[**List<StreamTradesEntry>**](StreamTradesEntry.md)
 
 ### Authorization
 

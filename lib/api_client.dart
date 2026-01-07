@@ -370,8 +370,6 @@ class ApiClient {
           return Position.fromJson(value);
         case 'PositionAccount':
           return PositionAccount.fromJson(value);
-        case 'PositionAccounts':
-          return PositionAccounts.fromJson(value);
         case 'PositionAsset':
           return PositionAsset.fromJson(value);
         case 'PositionResponse':
@@ -390,42 +388,24 @@ class ApiClient {
           return RevokeAPIKeyResponseEnvelope.fromJson(value);
         case 'Side':
           return SideTypeTransformer().decode(value);
-        case 'StreamAssetPricesResponse':
-          return StreamAssetPricesResponse.fromJson(value);
         case 'StreamAssetsEntry':
           return StreamAssetsEntry.fromJson(value);
-        case 'StreamAssetsResponse':
-          return StreamAssetsResponse.fromJson(value);
         case 'StreamCandlesEntry':
           return StreamCandlesEntry.fromJson(value);
-        case 'StreamCandlesResponse':
-          return StreamCandlesResponse.fromJson(value);
         case 'StreamEntry':
           return StreamEntry.fromJson(value);
         case 'StreamOrderBookBalanceEntry':
           return StreamOrderBookBalanceEntry.fromJson(value);
-        case 'StreamOrderBookBalancesResponse':
-          return StreamOrderBookBalancesResponse.fromJson(value);
         case 'StreamOrderUpdatesEntry':
           return StreamOrderUpdatesEntry.fromJson(value);
-        case 'StreamOrderUpdatesResponse':
-          return StreamOrderUpdatesResponse.fromJson(value);
         case 'StreamOrdersEntry':
           return StreamOrdersEntry.fromJson(value);
-        case 'StreamOrdersResponse':
-          return StreamOrdersResponse.fromJson(value);
         case 'StreamPositionsEntry':
           return StreamPositionsEntry.fromJson(value);
-        case 'StreamPositionsResponse':
-          return StreamPositionsResponse.fromJson(value);
         case 'StreamTradesEntry':
           return StreamTradesEntry.fromJson(value);
-        case 'StreamTradesResponse':
-          return StreamTradesResponse.fromJson(value);
         case 'StreamTransactionsEntry':
           return StreamTransactionsEntry.fromJson(value);
-        case 'StreamTransactionsResponse':
-          return StreamTransactionsResponse.fromJson(value);
         case 'StreamedAssetPrice':
           return StreamedAssetPrice.fromJson(value);
         case 'Supply':

@@ -11,23 +11,20 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for PayLeverageAccruedInterestReq
+// tests for UpdateFieldBoolean
 void main() {
-  // final instance = PayLeverageAccruedInterestReq();
+  // final instance = UpdateFieldBoolean();
 
-  group('test PayLeverageAccruedInterestReq', () {
-    // String positionId
-    test('to test the property `positionId`', () async {
+  group('test UpdateFieldBoolean', () {
+    // Whether to update the field.
+    // bool update
+    test('to test the property `update`', () async {
       // TODO
     });
 
-    // String assetId
-    test('to test the property `assetId`', () async {
-      // TODO
-    });
-
-    // String quantity
-    test('to test the property `quantity`', () async {
+    // The new value to set for the field.
+    // bool value
+    test('to test the property `value`', () async {
       // TODO
     });
 

@@ -11,22 +11,17 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for ClaimLeverageAccruedInterestReq
+// tests for FundUserRequest
 void main() {
-  // final instance = ClaimLeverageAccruedInterestReq();
+  // final instance = FundUserRequest();
 
-  group('test ClaimLeverageAccruedInterestReq', () {
-    // String positionId
-    test('to test the property `positionId`', () async {
-      // TODO
-    });
-
+  group('test FundUserRequest', () {
     // String assetId
     test('to test the property `assetId`', () async {
       // TODO
     });
 
-    // String quantity
+    // double quantity
     test('to test the property `quantity`', () async {
       // TODO
     });

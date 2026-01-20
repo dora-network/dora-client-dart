@@ -28,6 +28,18 @@ void main() {
       // TODO
     });
 
+    // Optional: Whether to show the tutorial.
+    // UpdateFieldBoolean showTutorialCards
+    test('to test the property `showTutorialCards`', () async {
+      // TODO
+    });
+
+    // Optional: Whether to show the notifications.
+    // UpdateFieldBoolean notificationsEnabled
+    test('to test the property `notificationsEnabled`', () async {
+      // TODO
+    });
+
 
   });
 

@@ -42,6 +42,16 @@ void main() {
       // TODO
     });
 
+    // bool showTutorialCards
+    test('to test the property `showTutorialCards`', () async {
+      // TODO
+    });
+
+    // bool notificationsEnabled
+    test('to test the property `notificationsEnabled`', () async {
+      // TODO
+    });
+
 
   });
 

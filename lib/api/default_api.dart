@@ -349,19 +349,22 @@ class DefaultApi {
     return null;
   }
 
-  /// Create a new isolated position for a user transferring available assets into the position
+  /// Create apikey for a user
   ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
   ///
-  /// * [NewIsolatedPositionRequest] newIsolatedPositionRequest (required):
-  Future<Response> createNewIsolatedPositionWithHttpInfo(NewIsolatedPositionRequest newIsolatedPositionRequest,) async {
+  /// * [String] userId (required):
+  ///
+  /// * [CreateAPIKeyRequest] createAPIKeyRequest (required):
+  Future<Response> createAPIKeyForUserIDWithHttpInfo(String userId, CreateAPIKeyRequest createAPIKeyRequest,) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/positions/new_isolated';
+    final path = r'/v1/user/{user_id}/apikey'
+      .replaceAll('{user_id}', userId);
 
     // ignore: prefer_final_locals
-    Object? postBody = newIsolatedPositionRequest;
+    Object? postBody = createAPIKeyRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -381,13 +384,15 @@ class DefaultApi {
     );
   }
 
-  /// Create a new isolated position for a user transferring available assets into the position
+  /// Create apikey for a user
   ///
   /// Parameters:
   ///
-  /// * [NewIsolatedPositionRequest] newIsolatedPositionRequest (required):
-  Future<NewIsolatedPositionResponseEnvelope?> createNewIsolatedPosition(NewIsolatedPositionRequest newIsolatedPositionRequest,) async {
-    final response = await createNewIsolatedPositionWithHttpInfo(newIsolatedPositionRequest,);
+  /// * [String] userId (required):
+  ///
+  /// * [CreateAPIKeyRequest] createAPIKeyRequest (required):
+  Future<CreateAPIKeyResponseEnvelope?> createAPIKeyForUserID(String userId, CreateAPIKeyRequest createAPIKeyRequest,) async {
+    final response = await createAPIKeyForUserIDWithHttpInfo(userId, createAPIKeyRequest,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -395,7 +400,7 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'NewIsolatedPositionResponseEnvelope',) as NewIsolatedPositionResponseEnvelope;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateAPIKeyResponseEnvelope',) as CreateAPIKeyResponseEnvelope;
     
     }
     return null;
@@ -453,6 +458,58 @@ class DefaultApi {
     return null;
   }
 
+  /// Create a new user
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateIntegratorUserRequest] createIntegratorUserRequest (required):
+  Future<Response> createUserWithHttpInfo(CreateIntegratorUserRequest createIntegratorUserRequest,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/integrators/user';
+
+    // ignore: prefer_final_locals
+    Object? postBody = createIntegratorUserRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Create a new user
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateIntegratorUserRequest] createIntegratorUserRequest (required):
+  Future<UserCreatedResponseEnvelope?> createUser(CreateIntegratorUserRequest createIntegratorUserRequest,) async {
+    final response = await createUserWithHttpInfo(createIntegratorUserRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserCreatedResponseEnvelope',) as UserCreatedResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Delete user by ID
   ///
   /// Note: This method returns the HTTP [Response].
@@ -501,6 +558,59 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserDeletedResponseEnvelope',) as UserDeletedResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get user's api keys: admin or integrator only
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<Response> getAPIKeysForUserIDWithHttpInfo(String userId,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/{user_id}/apikey'
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get user's api keys: admin or integrator only
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<APIKeyResponseEnvelope?> getAPIKeysForUserID(String userId,) async {
+    final response = await getAPIKeysForUserIDWithHttpInfo(userId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'APIKeyResponseEnvelope',) as APIKeyResponseEnvelope;
     
     }
     return null;
@@ -1706,6 +1816,50 @@ class DefaultApi {
     return null;
   }
 
+  /// Get account-by-account PL breakdown for the logged in user
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getPLForSelfByAccountWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/pl/self';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get account-by-account PL breakdown for the logged in user
+  Future<PLResponseEnvelope?> getPLForSelfByAccount() async {
+    final response = await getPLForSelfByAccountWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PLResponseEnvelope',) as PLResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Get the current price of a pool
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2107,6 +2261,62 @@ class DefaultApi {
     return null;
   }
 
+  /// Stream user's coupon payment accruals in real time
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<Response> getUserCouponPaymentsStreamWithHttpInfo(String userId,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/{user_id}/coupon_payments/stream'
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Stream user's coupon payment accruals in real time
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<List<StreamUserCouponPaymentsEntry>?> getUserCouponPaymentsStream(String userId,) async {
+    final response = await getUserCouponPaymentsStreamWithHttpInfo(userId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      final responseBody = await _decodeBodyBytes(response);
+      return (await apiClient.deserializeAsync(responseBody, 'List<StreamUserCouponPaymentsEntry>') as List)
+        .cast<StreamUserCouponPaymentsEntry>()
+        .toList(growable: false);
+
+    }
+    return null;
+  }
+
   /// Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2443,6 +2653,128 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'APIKeyResponseEnvelope',) as APIKeyResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Deposit assets into this user's account from the outside world
+  ///
+  /// Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [FundUserRequest] fundUserRequest (required):
+  Future<Response> ledgerDepositWithHttpInfo(String userId, FundUserRequest fundUserRequest,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/ledger/deposit/{user_id}'
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = fundUserRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Deposit assets into this user's account from the outside world
+  ///
+  /// Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [FundUserRequest] fundUserRequest (required):
+  Future<FundUserResponseEnvelope?> ledgerDeposit(String userId, FundUserRequest fundUserRequest,) async {
+    final response = await ledgerDepositWithHttpInfo(userId, fundUserRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'FundUserResponseEnvelope',) as FundUserResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Withdraw assets from this user to the outside world
+  ///
+  /// Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [DefundUserRequest] defundUserRequest (required):
+  Future<Response> ledgerWithdrawWithHttpInfo(String userId, DefundUserRequest defundUserRequest,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/ledger/withdraw/{user_id}'
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = defundUserRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Withdraw assets from this user to the outside world
+  ///
+  /// Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [DefundUserRequest] defundUserRequest (required):
+  Future<FundUserResponseEnvelope?> ledgerWithdraw(String userId, DefundUserRequest defundUserRequest,) async {
+    final response = await ledgerWithdrawWithHttpInfo(userId, defundUserRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'FundUserResponseEnvelope',) as FundUserResponseEnvelope;
     
     }
     return null;
@@ -3291,6 +3623,116 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RevokeAPIKeyResponseEnvelope',) as RevokeAPIKeyResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Revoke apikey for a user: admin or integrator only
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [String] keyId (required):
+  Future<Response> revokeAPIKeyForUserIDWithHttpInfo(String userId, String keyId,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/{user_id}/apikey/{key_id}/revoke'
+      .replaceAll('{user_id}', userId)
+      .replaceAll('{key_id}', keyId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Revoke apikey for a user: admin or integrator only
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [String] keyId (required):
+  Future<RevokeAPIKeyResponseEnvelope?> revokeAPIKeyForUserID(String userId, String keyId,) async {
+    final response = await revokeAPIKeyForUserIDWithHttpInfo(userId, keyId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RevokeAPIKeyResponseEnvelope',) as RevokeAPIKeyResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Settle current accrued leverage interest for a specific user
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [SettleLeverageAccruedInterestRequest] settleLeverageAccruedInterestRequest (required):
+  Future<Response> settleLeverageAccruedInterestWithHttpInfo(SettleLeverageAccruedInterestRequest settleLeverageAccruedInterestRequest,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/leverage/accrued_interest/settle';
+
+    // ignore: prefer_final_locals
+    Object? postBody = settleLeverageAccruedInterestRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Settle current accrued leverage interest for a specific user
+  ///
+  /// Parameters:
+  ///
+  /// * [SettleLeverageAccruedInterestRequest] settleLeverageAccruedInterestRequest (required):
+  Future<SettleLeverageAccruedInterestResponseEnvelope?> settleLeverageAccruedInterest(SettleLeverageAccruedInterestRequest settleLeverageAccruedInterestRequest,) async {
+    final response = await settleLeverageAccruedInterestWithHttpInfo(settleLeverageAccruedInterestRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SettleLeverageAccruedInterestResponseEnvelope',) as SettleLeverageAccruedInterestResponseEnvelope;
     
     }
     return null;

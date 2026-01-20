@@ -11,12 +11,12 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for NewIsolatedPositionResponseEnvelope
+// tests for SettleLeverageAccruedInterestResponseEnvelope
 void main() {
-  // final instance = NewIsolatedPositionResponseEnvelope();
+  // final instance = SettleLeverageAccruedInterestResponseEnvelope();
 
-  group('test NewIsolatedPositionResponseEnvelope', () {
-    // Position data
+  group('test SettleLeverageAccruedInterestResponseEnvelope', () {
+    // List<SettleLeverageAccruedInterest> data (default value: const [])
     test('to test the property `data`', () async {
       // TODO
     });

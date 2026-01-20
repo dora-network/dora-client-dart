@@ -1,4 +1,4 @@
-# dora_client.model.PayLeverageAccruedInterestReq
+# dora_client.model.DefundUserRequest
 
 ## Load the model package
 ```dart
@@ -8,9 +8,8 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**positionId** | **String** |  | 
 **assetId** | **String** |  | 
-**quantity** | **String** |  | 
+**quantity** | **double** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

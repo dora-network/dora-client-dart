@@ -26,6 +26,8 @@ class User {
     this.timezone,
     this.timezoneOffset,
     this.verifiedAt,
+    this.showTutorialCards,
+    this.notificationsEnabled,
   });
 
   ///
@@ -128,6 +130,22 @@ class User {
   ///
   DateTime? verifiedAt;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? showTutorialCards;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? notificationsEnabled;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is User &&
     other.id == id &&
@@ -142,7 +160,9 @@ class User {
     _deepEquality.equals(other.roles, roles) &&
     other.timezone == timezone &&
     other.timezoneOffset == timezoneOffset &&
-    other.verifiedAt == verifiedAt;
+    other.verifiedAt == verifiedAt &&
+    other.showTutorialCards == showTutorialCards &&
+    other.notificationsEnabled == notificationsEnabled;
 
   @override
   int get hashCode =>
@@ -159,10 +179,12 @@ class User {
     (roles.hashCode) +
     (timezone == null ? 0 : timezone!.hashCode) +
     (timezoneOffset == null ? 0 : timezoneOffset!.hashCode) +
-    (verifiedAt == null ? 0 : verifiedAt!.hashCode);
+    (verifiedAt == null ? 0 : verifiedAt!.hashCode) +
+    (showTutorialCards == null ? 0 : showTutorialCards!.hashCode) +
+    (notificationsEnabled == null ? 0 : notificationsEnabled!.hashCode);
 
   @override
-  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, name=$name, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt]';
+  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, name=$name, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -227,6 +249,16 @@ class User {
     } else {
       json[r'verified_at'] = null;
     }
+    if (this.showTutorialCards != null) {
+      json[r'show_tutorial_cards'] = this.showTutorialCards;
+    } else {
+      json[r'show_tutorial_cards'] = null;
+    }
+    if (this.notificationsEnabled != null) {
+      json[r'notifications_enabled'] = this.notificationsEnabled;
+    } else {
+      json[r'notifications_enabled'] = null;
+    }
     return json;
   }
 
@@ -262,6 +294,8 @@ class User {
         timezone: mapValueOfType<String>(json, r'timezone'),
         timezoneOffset: mapValueOfType<int>(json, r'timezone_offset'),
         verifiedAt: mapDateTime(json, r'verified_at', r''),
+        showTutorialCards: mapValueOfType<bool>(json, r'show_tutorial_cards'),
+        notificationsEnabled: mapValueOfType<bool>(json, r'notifications_enabled'),
       );
     }
     return null;

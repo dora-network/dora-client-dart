@@ -16,7 +16,7 @@ class ClaimLeverageAccruedInterest {
     this.transactionId,
     this.assetId,
     this.positionId,
-    this.currentAccruedInterest,
+    this.currentAccruedInterestUsd,
   });
 
   ///
@@ -49,14 +49,14 @@ class ClaimLeverageAccruedInterest {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? currentAccruedInterest;
+  String? currentAccruedInterestUsd;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ClaimLeverageAccruedInterest &&
     other.transactionId == transactionId &&
     other.assetId == assetId &&
     other.positionId == positionId &&
-    other.currentAccruedInterest == currentAccruedInterest;
+    other.currentAccruedInterestUsd == currentAccruedInterestUsd;
 
   @override
   int get hashCode =>
@@ -64,10 +64,10 @@ class ClaimLeverageAccruedInterest {
     (transactionId == null ? 0 : transactionId!.hashCode) +
     (assetId == null ? 0 : assetId!.hashCode) +
     (positionId == null ? 0 : positionId!.hashCode) +
-    (currentAccruedInterest == null ? 0 : currentAccruedInterest!.hashCode);
+    (currentAccruedInterestUsd == null ? 0 : currentAccruedInterestUsd!.hashCode);
 
   @override
-  String toString() => 'ClaimLeverageAccruedInterest[transactionId=$transactionId, assetId=$assetId, positionId=$positionId, currentAccruedInterest=$currentAccruedInterest]';
+  String toString() => 'ClaimLeverageAccruedInterest[transactionId=$transactionId, assetId=$assetId, positionId=$positionId, currentAccruedInterestUsd=$currentAccruedInterestUsd]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -86,10 +86,10 @@ class ClaimLeverageAccruedInterest {
     } else {
       json[r'position_id'] = null;
     }
-    if (this.currentAccruedInterest != null) {
-      json[r'current_accrued_interest'] = this.currentAccruedInterest;
+    if (this.currentAccruedInterestUsd != null) {
+      json[r'current_accrued_interest_usd'] = this.currentAccruedInterestUsd;
     } else {
-      json[r'current_accrued_interest'] = null;
+      json[r'current_accrued_interest_usd'] = null;
     }
     return json;
   }
@@ -116,7 +116,7 @@ class ClaimLeverageAccruedInterest {
         transactionId: mapValueOfType<String>(json, r'transaction_id'),
         assetId: mapValueOfType<String>(json, r'asset_id'),
         positionId: mapValueOfType<String>(json, r'position_id'),
-        currentAccruedInterest: mapValueOfType<String>(json, r'current_accrued_interest'),
+        currentAccruedInterestUsd: mapValueOfType<String>(json, r'current_accrued_interest_usd'),
       );
     }
     return null;

@@ -10,48 +10,42 @@
 
 part of openapi.api;
 
-class PayLeverageAccruedInterestReq {
-  /// Returns a new [PayLeverageAccruedInterestReq] instance.
-  PayLeverageAccruedInterestReq({
-    required this.positionId,
+class FundUserRequest {
+  /// Returns a new [FundUserRequest] instance.
+  FundUserRequest({
     required this.assetId,
     required this.quantity,
   });
 
-  String positionId;
-
   String assetId;
 
-  String quantity;
+  double quantity;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PayLeverageAccruedInterestReq &&
-    other.positionId == positionId &&
+  bool operator ==(Object other) => identical(this, other) || other is FundUserRequest &&
     other.assetId == assetId &&
     other.quantity == quantity;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (positionId.hashCode) +
     (assetId.hashCode) +
     (quantity.hashCode);
 
   @override
-  String toString() => 'PayLeverageAccruedInterestReq[positionId=$positionId, assetId=$assetId, quantity=$quantity]';
+  String toString() => 'FundUserRequest[assetId=$assetId, quantity=$quantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'position_id'] = this.positionId;
       json[r'asset_id'] = this.assetId;
       json[r'quantity'] = this.quantity;
     return json;
   }
 
-  /// Returns a new [PayLeverageAccruedInterestReq] instance and imports its values from
+  /// Returns a new [FundUserRequest] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static PayLeverageAccruedInterestReq? fromJson(dynamic value) {
+  static FundUserRequest? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -60,26 +54,25 @@ class PayLeverageAccruedInterestReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PayLeverageAccruedInterestReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PayLeverageAccruedInterestReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "FundUserRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "FundUserRequest[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return PayLeverageAccruedInterestReq(
-        positionId: mapValueOfType<String>(json, r'position_id')!,
+      return FundUserRequest(
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        quantity: mapValueOfType<String>(json, r'quantity')!,
+        quantity: mapValueOfType<double>(json, r'quantity')!,
       );
     }
     return null;
   }
 
-  static List<PayLeverageAccruedInterestReq> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <PayLeverageAccruedInterestReq>[];
+  static List<FundUserRequest> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <FundUserRequest>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = PayLeverageAccruedInterestReq.fromJson(row);
+        final value = FundUserRequest.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -88,12 +81,12 @@ class PayLeverageAccruedInterestReq {
     return result.toList(growable: growable);
   }
 
-  static Map<String, PayLeverageAccruedInterestReq> mapFromJson(dynamic json) {
-    final map = <String, PayLeverageAccruedInterestReq>{};
+  static Map<String, FundUserRequest> mapFromJson(dynamic json) {
+    final map = <String, FundUserRequest>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = PayLeverageAccruedInterestReq.fromJson(entry.value);
+        final value = FundUserRequest.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -102,14 +95,14 @@ class PayLeverageAccruedInterestReq {
     return map;
   }
 
-  // maps a json object with a list of PayLeverageAccruedInterestReq-objects as value to a dart map
-  static Map<String, List<PayLeverageAccruedInterestReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<PayLeverageAccruedInterestReq>>{};
+  // maps a json object with a list of FundUserRequest-objects as value to a dart map
+  static Map<String, List<FundUserRequest>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<FundUserRequest>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = PayLeverageAccruedInterestReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = FundUserRequest.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;
@@ -117,7 +110,6 @@ class PayLeverageAccruedInterestReq {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
-    'position_id',
     'asset_id',
     'quantity',
   };

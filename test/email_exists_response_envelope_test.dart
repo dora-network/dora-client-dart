@@ -16,7 +16,7 @@ void main() {
   // final instance = EmailExistsResponseEnvelope();
 
   group('test EmailExistsResponseEnvelope', () {
-    // bool data
+    // UserExistsResponse data
     test('to test the property `data`', () async {
       // TODO
     });

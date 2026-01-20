@@ -10,48 +10,42 @@
 
 part of openapi.api;
 
-class ClaimLeverageAccruedInterestReq {
-  /// Returns a new [ClaimLeverageAccruedInterestReq] instance.
-  ClaimLeverageAccruedInterestReq({
-    required this.positionId,
+class DefundUserRequest {
+  /// Returns a new [DefundUserRequest] instance.
+  DefundUserRequest({
     required this.assetId,
     required this.quantity,
   });
 
-  String positionId;
-
   String assetId;
 
-  String quantity;
+  double quantity;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ClaimLeverageAccruedInterestReq &&
-    other.positionId == positionId &&
+  bool operator ==(Object other) => identical(this, other) || other is DefundUserRequest &&
     other.assetId == assetId &&
     other.quantity == quantity;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (positionId.hashCode) +
     (assetId.hashCode) +
     (quantity.hashCode);
 
   @override
-  String toString() => 'ClaimLeverageAccruedInterestReq[positionId=$positionId, assetId=$assetId, quantity=$quantity]';
+  String toString() => 'DefundUserRequest[assetId=$assetId, quantity=$quantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'position_id'] = this.positionId;
       json[r'asset_id'] = this.assetId;
       json[r'quantity'] = this.quantity;
     return json;
   }
 
-  /// Returns a new [ClaimLeverageAccruedInterestReq] instance and imports its values from
+  /// Returns a new [DefundUserRequest] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static ClaimLeverageAccruedInterestReq? fromJson(dynamic value) {
+  static DefundUserRequest? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -60,26 +54,25 @@ class ClaimLeverageAccruedInterestReq {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ClaimLeverageAccruedInterestReq[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ClaimLeverageAccruedInterestReq[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "DefundUserRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "DefundUserRequest[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return ClaimLeverageAccruedInterestReq(
-        positionId: mapValueOfType<String>(json, r'position_id')!,
+      return DefundUserRequest(
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        quantity: mapValueOfType<String>(json, r'quantity')!,
+        quantity: mapValueOfType<double>(json, r'quantity')!,
       );
     }
     return null;
   }
 
-  static List<ClaimLeverageAccruedInterestReq> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <ClaimLeverageAccruedInterestReq>[];
+  static List<DefundUserRequest> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <DefundUserRequest>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = ClaimLeverageAccruedInterestReq.fromJson(row);
+        final value = DefundUserRequest.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -88,12 +81,12 @@ class ClaimLeverageAccruedInterestReq {
     return result.toList(growable: growable);
   }
 
-  static Map<String, ClaimLeverageAccruedInterestReq> mapFromJson(dynamic json) {
-    final map = <String, ClaimLeverageAccruedInterestReq>{};
+  static Map<String, DefundUserRequest> mapFromJson(dynamic json) {
+    final map = <String, DefundUserRequest>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = ClaimLeverageAccruedInterestReq.fromJson(entry.value);
+        final value = DefundUserRequest.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -102,14 +95,14 @@ class ClaimLeverageAccruedInterestReq {
     return map;
   }
 
-  // maps a json object with a list of ClaimLeverageAccruedInterestReq-objects as value to a dart map
-  static Map<String, List<ClaimLeverageAccruedInterestReq>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<ClaimLeverageAccruedInterestReq>>{};
+  // maps a json object with a list of DefundUserRequest-objects as value to a dart map
+  static Map<String, List<DefundUserRequest>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<DefundUserRequest>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ClaimLeverageAccruedInterestReq.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = DefundUserRequest.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;
@@ -117,7 +110,6 @@ class ClaimLeverageAccruedInterestReq {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
-    'position_id',
     'asset_id',
     'quantity',
   };

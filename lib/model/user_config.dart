@@ -18,6 +18,8 @@ class UserConfig {
     this.timezone,
     this.createdAt,
     this.updatedAt,
+    this.showTutorialCards,
+    this.notificationsEnabled,
   });
 
   ///
@@ -61,13 +63,31 @@ class UserConfig {
   ///
   DateTime? updatedAt;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? showTutorialCards;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? notificationsEnabled;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserConfig &&
     other.id == id &&
     other.photoUrl == photoUrl &&
     other.timezone == timezone &&
     other.createdAt == createdAt &&
-    other.updatedAt == updatedAt;
+    other.updatedAt == updatedAt &&
+    other.showTutorialCards == showTutorialCards &&
+    other.notificationsEnabled == notificationsEnabled;
 
   @override
   int get hashCode =>
@@ -76,10 +96,12 @@ class UserConfig {
     (photoUrl == null ? 0 : photoUrl!.hashCode) +
     (timezone == null ? 0 : timezone!.hashCode) +
     (createdAt == null ? 0 : createdAt!.hashCode) +
-    (updatedAt == null ? 0 : updatedAt!.hashCode);
+    (updatedAt == null ? 0 : updatedAt!.hashCode) +
+    (showTutorialCards == null ? 0 : showTutorialCards!.hashCode) +
+    (notificationsEnabled == null ? 0 : notificationsEnabled!.hashCode);
 
   @override
-  String toString() => 'UserConfig[id=$id, photoUrl=$photoUrl, timezone=$timezone, createdAt=$createdAt, updatedAt=$updatedAt]';
+  String toString() => 'UserConfig[id=$id, photoUrl=$photoUrl, timezone=$timezone, createdAt=$createdAt, updatedAt=$updatedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -108,6 +130,16 @@ class UserConfig {
     } else {
       json[r'updated_at'] = null;
     }
+    if (this.showTutorialCards != null) {
+      json[r'show_tutorial_cards'] = this.showTutorialCards;
+    } else {
+      json[r'show_tutorial_cards'] = null;
+    }
+    if (this.notificationsEnabled != null) {
+      json[r'notifications_enabled'] = this.notificationsEnabled;
+    } else {
+      json[r'notifications_enabled'] = null;
+    }
     return json;
   }
 
@@ -135,6 +167,8 @@ class UserConfig {
         timezone: mapValueOfType<String>(json, r'timezone'),
         createdAt: mapDateTime(json, r'created_at', r''),
         updatedAt: mapDateTime(json, r'updated_at', r''),
+        showTutorialCards: mapValueOfType<bool>(json, r'show_tutorial_cards'),
+        notificationsEnabled: mapValueOfType<bool>(json, r'notifications_enabled'),
       );
     }
     return null;

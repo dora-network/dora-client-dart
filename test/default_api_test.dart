@@ -59,10 +59,10 @@ void main() {
       // TODO
     });
 
-    // Create a new isolated position for a user transferring available assets into the position
+    // Create apikey for a user
     //
-    //Future<NewIsolatedPositionResponseEnvelope> createNewIsolatedPosition(NewIsolatedPositionRequest newIsolatedPositionRequest) async
-    test('test createNewIsolatedPosition', () async {
+    //Future<CreateAPIKeyResponseEnvelope> createAPIKeyForUserID(String userId, CreateAPIKeyRequest createAPIKeyRequest) async
+    test('test createAPIKeyForUserID', () async {
       // TODO
     });
 
@@ -73,10 +73,24 @@ void main() {
       // TODO
     });
 
+    // Create a new user
+    //
+    //Future<UserCreatedResponseEnvelope> createUser(CreateIntegratorUserRequest createIntegratorUserRequest) async
+    test('test createUser', () async {
+      // TODO
+    });
+
     // Delete user by ID
     //
     //Future<UserDeletedResponseEnvelope> deleteUser(String userId) async
     test('test deleteUser', () async {
+      // TODO
+    });
+
+    // Get user's api keys: admin or integrator only
+    //
+    //Future<APIKeyResponseEnvelope> getAPIKeysForUserID(String userId) async
+    test('test getAPIKeysForUserID', () async {
       // TODO
     });
 
@@ -241,6 +255,13 @@ void main() {
       // TODO
     });
 
+    // Get account-by-account PL breakdown for the logged in user
+    //
+    //Future<PLResponseEnvelope> getPLForSelfByAccount() async
+    test('test getPLForSelfByAccount', () async {
+      // TODO
+    });
+
     // Get the current price of a pool
     //
     //Future<PoolPriceResponseEnvelope> getPoolPrice(String poolId) async
@@ -283,6 +304,13 @@ void main() {
       // TODO
     });
 
+    // Stream user's coupon payment accruals in real time
+    //
+    //Future<List<StreamUserCouponPaymentsEntry>> getUserCouponPaymentsStream(String userId) async
+    test('test getUserCouponPaymentsStream', () async {
+      // TODO
+    });
+
     // Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
     //
     //Future<List<StreamPositionsEntry>> getUserLedgerStream(String userId) async
@@ -322,6 +350,24 @@ void main() {
     //
     //Future<APIKeyResponseEnvelope> getUsersAPIKeys() async
     test('test getUsersAPIKeys', () async {
+      // TODO
+    });
+
+    // Deposit assets into this user's account from the outside world
+    //
+    // Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+    //
+    //Future<FundUserResponseEnvelope> ledgerDeposit(String userId, FundUserRequest fundUserRequest) async
+    test('test ledgerDeposit', () async {
+      // TODO
+    });
+
+    // Withdraw assets from this user to the outside world
+    //
+    // Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+    //
+    //Future<FundUserResponseEnvelope> ledgerWithdraw(String userId, DefundUserRequest defundUserRequest) async
+    test('test ledgerWithdraw', () async {
       // TODO
     });
 
@@ -415,6 +461,20 @@ void main() {
     //
     //Future<RevokeAPIKeyResponseEnvelope> revokeAPIKeyForUser(String keyId) async
     test('test revokeAPIKeyForUser', () async {
+      // TODO
+    });
+
+    // Revoke apikey for a user: admin or integrator only
+    //
+    //Future<RevokeAPIKeyResponseEnvelope> revokeAPIKeyForUserID(String userId, String keyId) async
+    test('test revokeAPIKeyForUserID', () async {
+      // TODO
+    });
+
+    // Settle current accrued leverage interest for a specific user
+    //
+    //Future<SettleLeverageAccruedInterestResponseEnvelope> settleLeverageAccruedInterest(SettleLeverageAccruedInterestRequest settleLeverageAccruedInterestRequest) async
+    test('test settleLeverageAccruedInterest', () async {
       // TODO
     });
 

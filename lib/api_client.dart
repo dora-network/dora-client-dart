@@ -216,8 +216,6 @@ class ApiClient {
           return CandleResolutionTypeTransformer().decode(value);
         case 'ClaimLeverageAccruedInterest':
           return ClaimLeverageAccruedInterest.fromJson(value);
-        case 'ClaimLeverageAccruedInterestReq':
-          return ClaimLeverageAccruedInterestReq.fromJson(value);
         case 'ClaimLeverageAccruedInterestRequest':
           return ClaimLeverageAccruedInterestRequest.fromJson(value);
         case 'ClaimLeverageAccruedInterestResponseEnvelope':
@@ -238,6 +236,8 @@ class ApiClient {
           return CreateAPIKeyRequest.fromJson(value);
         case 'CreateAPIKeyResponseEnvelope':
           return CreateAPIKeyResponseEnvelope.fromJson(value);
+        case 'CreateIntegratorUserRequest':
+          return CreateIntegratorUserRequest.fromJson(value);
         case 'CreateOrUpdateUserResponse':
           return CreateOrUpdateUserResponse.fromJson(value);
         case 'CreateOrderRequest':
@@ -248,8 +248,16 @@ class ApiClient {
           return CurrentLeverageAccruedInterest.fromJson(value);
         case 'CurrentLeverageAccruedInterestResponseEnvelope':
           return CurrentLeverageAccruedInterestResponseEnvelope.fromJson(value);
+        case 'DefundUserRequest':
+          return DefundUserRequest.fromJson(value);
         case 'EmailExistsResponseEnvelope':
           return EmailExistsResponseEnvelope.fromJson(value);
+        case 'FundUser':
+          return FundUser.fromJson(value);
+        case 'FundUserRequest':
+          return FundUserRequest.fromJson(value);
+        case 'FundUserResponseEnvelope':
+          return FundUserResponseEnvelope.fromJson(value);
         case 'GetAssetByIDResponseEnvelope':
           return GetAssetByIDResponseEnvelope.fromJson(value);
         case 'GetTopOfBookResponseEnvelope':
@@ -304,14 +312,12 @@ class ApiClient {
           return ListTransactionsResponseEnvelope.fromJson(value);
         case 'LiveOrderbook':
           return LiveOrderbook.fromJson(value);
+        case 'Margin':
+          return Margin.fromJson(value);
         case 'Metadata':
           return Metadata.fromJson(value);
         case 'ModuleBalance':
           return ModuleBalance.fromJson(value);
-        case 'NewIsolatedPositionRequest':
-          return NewIsolatedPositionRequest.fromJson(value);
-        case 'NewIsolatedPositionResponseEnvelope':
-          return NewIsolatedPositionResponseEnvelope.fromJson(value);
         case 'Order':
           return Order.fromJson(value);
         case 'OrderBook':
@@ -350,10 +356,16 @@ class ApiClient {
           return OrderbookStats.fromJson(value);
         case 'OrderbookStatsResponseEnvelope':
           return OrderbookStatsResponseEnvelope.fromJson(value);
+        case 'PLAccount':
+          return PLAccount.fromJson(value);
+        case 'PLAsset':
+          return PLAsset.fromJson(value);
+        case 'PLResponseEnvelope':
+          return PLResponseEnvelope.fromJson(value);
+        case 'PLSummary':
+          return PLSummary.fromJson(value);
         case 'PayLeverageAccruedInterest':
           return PayLeverageAccruedInterest.fromJson(value);
-        case 'PayLeverageAccruedInterestReq':
-          return PayLeverageAccruedInterestReq.fromJson(value);
         case 'PayLeverageAccruedInterestRequest':
           return PayLeverageAccruedInterestRequest.fromJson(value);
         case 'PayLeverageAccruedInterestResponseEnvelope':
@@ -386,6 +398,12 @@ class ApiClient {
           return RevokeAPIKeyData.fromJson(value);
         case 'RevokeAPIKeyResponseEnvelope':
           return RevokeAPIKeyResponseEnvelope.fromJson(value);
+        case 'SettleLeverageAccruedInterest':
+          return SettleLeverageAccruedInterest.fromJson(value);
+        case 'SettleLeverageAccruedInterestRequest':
+          return SettleLeverageAccruedInterestRequest.fromJson(value);
+        case 'SettleLeverageAccruedInterestResponseEnvelope':
+          return SettleLeverageAccruedInterestResponseEnvelope.fromJson(value);
         case 'Side':
           return SideTypeTransformer().decode(value);
         case 'StreamAssetsEntry':
@@ -406,6 +424,8 @@ class ApiClient {
           return StreamTradesEntry.fromJson(value);
         case 'StreamTransactionsEntry':
           return StreamTransactionsEntry.fromJson(value);
+        case 'StreamUserCouponPaymentsEntry':
+          return StreamUserCouponPaymentsEntry.fromJson(value);
         case 'StreamedAssetPrice':
           return StreamedAssetPrice.fromJson(value);
         case 'Supply':
@@ -442,6 +462,8 @@ class ApiClient {
           return UnitePositionResponseEnvelope.fromJson(value);
         case 'UnitedPosition':
           return UnitedPosition.fromJson(value);
+        case 'UpdateFieldBoolean':
+          return UpdateFieldBoolean.fromJson(value);
         case 'UpdateFieldString':
           return UpdateFieldString.fromJson(value);
         case 'UpdateRolesString':
@@ -456,10 +478,16 @@ class ApiClient {
           return UserConfig.fromJson(value);
         case 'UserConfigResponseEnvelope':
           return UserConfigResponseEnvelope.fromJson(value);
+        case 'UserCouponPayment':
+          return UserCouponPayment.fromJson(value);
+        case 'UserCreatedResponseEnvelope':
+          return UserCreatedResponseEnvelope.fromJson(value);
         case 'UserDeletedResponseEnvelope':
           return UserDeletedResponseEnvelope.fromJson(value);
         case 'UserEnvelope':
           return UserEnvelope.fromJson(value);
+        case 'UserExistsResponse':
+          return UserExistsResponse.fromJson(value);
         case 'UserInterest':
           return UserInterest.fromJson(value);
         case 'UserInterestResponseEnvelope':

@@ -15,6 +15,8 @@ class UpdateUserConfigRequest {
   UpdateUserConfigRequest({
     this.photoUrl,
     required this.timezone,
+    this.showTutorialCards,
+    this.notificationsEnabled,
   });
 
   /// Optional: URL of the user's profile photo, optional.
@@ -29,19 +31,41 @@ class UpdateUserConfigRequest {
   /// User's timezone, e.g., 'America/New_York', or an offset.
   UpdateFieldString timezone;
 
+  /// Optional: Whether to show the tutorial.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UpdateFieldBoolean? showTutorialCards;
+
+  /// Optional: Whether to show the notifications.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UpdateFieldBoolean? notificationsEnabled;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is UpdateUserConfigRequest &&
     other.photoUrl == photoUrl &&
-    other.timezone == timezone;
+    other.timezone == timezone &&
+    other.showTutorialCards == showTutorialCards &&
+    other.notificationsEnabled == notificationsEnabled;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (photoUrl == null ? 0 : photoUrl!.hashCode) +
-    (timezone.hashCode);
+    (timezone.hashCode) +
+    (showTutorialCards == null ? 0 : showTutorialCards!.hashCode) +
+    (notificationsEnabled == null ? 0 : notificationsEnabled!.hashCode);
 
   @override
-  String toString() => 'UpdateUserConfigRequest[photoUrl=$photoUrl, timezone=$timezone]';
+  String toString() => 'UpdateUserConfigRequest[photoUrl=$photoUrl, timezone=$timezone, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -51,6 +75,16 @@ class UpdateUserConfigRequest {
       json[r'photo_url'] = null;
     }
       json[r'timezone'] = this.timezone;
+    if (this.showTutorialCards != null) {
+      json[r'show_tutorial_cards'] = this.showTutorialCards;
+    } else {
+      json[r'show_tutorial_cards'] = null;
+    }
+    if (this.notificationsEnabled != null) {
+      json[r'notifications_enabled'] = this.notificationsEnabled;
+    } else {
+      json[r'notifications_enabled'] = null;
+    }
     return json;
   }
 
@@ -75,6 +109,8 @@ class UpdateUserConfigRequest {
       return UpdateUserConfigRequest(
         photoUrl: UpdateFieldString.fromJson(json[r'photo_url']),
         timezone: UpdateFieldString.fromJson(json[r'timezone'])!,
+        showTutorialCards: UpdateFieldBoolean.fromJson(json[r'show_tutorial_cards']),
+        notificationsEnabled: UpdateFieldBoolean.fromJson(json[r'notifications_enabled']),
       );
     }
     return null;

@@ -10,12 +10,12 @@
 
 part of openapi.api;
 
-class NewIsolatedPositionResponseEnvelope {
-  /// Returns a new [NewIsolatedPositionResponseEnvelope] instance.
-  NewIsolatedPositionResponseEnvelope({
-    this.data,
-    this.error,
-    this.metadata,
+class UserExistsResponse {
+  /// Returns a new [UserExistsResponse] instance.
+  UserExistsResponse({
+    this.emailExists,
+    this.firebaseSet,
+    this.shouldCreateUser,
   });
 
   ///
@@ -24,66 +24,64 @@ class NewIsolatedPositionResponseEnvelope {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  Position? data;
+  bool? emailExists;
 
-  /// The error message. Present for error (non-2xx) responses.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? error;
+  bool? firebaseSet;
 
-  /// Metadata about the response, including status code and trace information.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  Metadata? metadata;
+  bool? shouldCreateUser;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is NewIsolatedPositionResponseEnvelope &&
-    other.data == data &&
-    other.error == error &&
-    other.metadata == metadata;
+  bool operator ==(Object other) => identical(this, other) || other is UserExistsResponse &&
+    other.emailExists == emailExists &&
+    other.firebaseSet == firebaseSet &&
+    other.shouldCreateUser == shouldCreateUser;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (data == null ? 0 : data!.hashCode) +
-    (error == null ? 0 : error!.hashCode) +
-    (metadata == null ? 0 : metadata!.hashCode);
+    (emailExists == null ? 0 : emailExists!.hashCode) +
+    (firebaseSet == null ? 0 : firebaseSet!.hashCode) +
+    (shouldCreateUser == null ? 0 : shouldCreateUser!.hashCode);
 
   @override
-  String toString() => 'NewIsolatedPositionResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
+  String toString() => 'UserExistsResponse[emailExists=$emailExists, firebaseSet=$firebaseSet, shouldCreateUser=$shouldCreateUser]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.data != null) {
-      json[r'data'] = this.data;
+    if (this.emailExists != null) {
+      json[r'email_exists'] = this.emailExists;
     } else {
-      json[r'data'] = null;
+      json[r'email_exists'] = null;
     }
-    if (this.error != null) {
-      json[r'error'] = this.error;
+    if (this.firebaseSet != null) {
+      json[r'firebase_set'] = this.firebaseSet;
     } else {
-      json[r'error'] = null;
+      json[r'firebase_set'] = null;
     }
-    if (this.metadata != null) {
-      json[r'metadata'] = this.metadata;
+    if (this.shouldCreateUser != null) {
+      json[r'should_create_user'] = this.shouldCreateUser;
     } else {
-      json[r'metadata'] = null;
+      json[r'should_create_user'] = null;
     }
     return json;
   }
 
-  /// Returns a new [NewIsolatedPositionResponseEnvelope] instance and imports its values from
+  /// Returns a new [UserExistsResponse] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static NewIsolatedPositionResponseEnvelope? fromJson(dynamic value) {
+  static UserExistsResponse? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -92,26 +90,26 @@ class NewIsolatedPositionResponseEnvelope {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "NewIsolatedPositionResponseEnvelope[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "NewIsolatedPositionResponseEnvelope[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "UserExistsResponse[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UserExistsResponse[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return NewIsolatedPositionResponseEnvelope(
-        data: Position.fromJson(json[r'data']),
-        error: mapValueOfType<String>(json, r'error'),
-        metadata: Metadata.fromJson(json[r'metadata']),
+      return UserExistsResponse(
+        emailExists: mapValueOfType<bool>(json, r'email_exists'),
+        firebaseSet: mapValueOfType<bool>(json, r'firebase_set'),
+        shouldCreateUser: mapValueOfType<bool>(json, r'should_create_user'),
       );
     }
     return null;
   }
 
-  static List<NewIsolatedPositionResponseEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <NewIsolatedPositionResponseEnvelope>[];
+  static List<UserExistsResponse> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UserExistsResponse>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = NewIsolatedPositionResponseEnvelope.fromJson(row);
+        final value = UserExistsResponse.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -120,12 +118,12 @@ class NewIsolatedPositionResponseEnvelope {
     return result.toList(growable: growable);
   }
 
-  static Map<String, NewIsolatedPositionResponseEnvelope> mapFromJson(dynamic json) {
-    final map = <String, NewIsolatedPositionResponseEnvelope>{};
+  static Map<String, UserExistsResponse> mapFromJson(dynamic json) {
+    final map = <String, UserExistsResponse>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = NewIsolatedPositionResponseEnvelope.fromJson(entry.value);
+        final value = UserExistsResponse.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -134,14 +132,14 @@ class NewIsolatedPositionResponseEnvelope {
     return map;
   }
 
-  // maps a json object with a list of NewIsolatedPositionResponseEnvelope-objects as value to a dart map
-  static Map<String, List<NewIsolatedPositionResponseEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<NewIsolatedPositionResponseEnvelope>>{};
+  // maps a json object with a list of UserExistsResponse-objects as value to a dart map
+  static Map<String, List<UserExistsResponse>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UserExistsResponse>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = NewIsolatedPositionResponseEnvelope.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserExistsResponse.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

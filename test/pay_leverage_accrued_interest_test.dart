@@ -31,8 +31,8 @@ void main() {
       // TODO
     });
 
-    // String currentAccruedInterest
-    test('to test the property `currentAccruedInterest`', () async {
+    // String currentAccruedInterestUsd
+    test('to test the property `currentAccruedInterestUsd`', () async {
       // TODO
     });
 

@@ -11,13 +11,13 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for NewIsolatedPositionRequest
+// tests for SettleLeverageAccruedInterest
 void main() {
-  // final instance = NewIsolatedPositionRequest();
+  // final instance = SettleLeverageAccruedInterest();
 
-  group('test NewIsolatedPositionRequest', () {
-    // String globalPositionId
-    test('to test the property `globalPositionId`', () async {
+  group('test SettleLeverageAccruedInterest', () {
+    // String transactionId
+    test('to test the property `transactionId`', () async {
       // TODO
     });
 
@@ -26,13 +26,13 @@ void main() {
       // TODO
     });
 
-    // String quantity
-    test('to test the property `quantity`', () async {
+    // String positionId
+    test('to test the property `positionId`', () async {
       // TODO
     });
 
-    // String positionName
-    test('to test the property `positionName`', () async {
+    // String currentAccruedInterestUsd
+    test('to test the property `currentAccruedInterestUsd`', () async {
       // TODO
     });
 

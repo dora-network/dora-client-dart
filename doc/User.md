@@ -21,6 +21,8 @@ Name | Type | Description | Notes
 **timezone** | **String** | User's timezone, e.g., 'America/New_York', or an offset. | [optional] 
 **timezoneOffset** | **int** | timezone offset in seconds | [optional] 
 **verifiedAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**showTutorialCards** | **bool** |  | [optional] 
+**notificationsEnabled** | **bool** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

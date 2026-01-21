@@ -20,6 +20,10 @@ Name | Type | Description | Notes
 **leverageLimit** | **double** | The leverage limit for the position | [optional] 
 **tp** | **double** | The take profit price set for the position, if any | [optional] 
 **sl** | **double** | The stop loss price set for the position, if any | [optional] 
+**initialCapital** | **double** | The initial capital of the position | [optional] 
+**impendingBorrows** | **double** | The impending borrows of the position | [optional] 
+**locked** | **double** | The locked amount of the position | [optional] 
+**unusedCollateral** | **double** | The unused collateral of the position | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

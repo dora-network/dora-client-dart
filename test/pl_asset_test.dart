@@ -87,6 +87,30 @@ void main() {
       // TODO
     });
 
+    // The initial capital of the position
+    // double initialCapital
+    test('to test the property `initialCapital`', () async {
+      // TODO
+    });
+
+    // The impending borrows of the position
+    // double impendingBorrows
+    test('to test the property `impendingBorrows`', () async {
+      // TODO
+    });
+
+    // The locked amount of the position
+    // double locked
+    test('to test the property `locked`', () async {
+      // TODO
+    });
+
+    // The unused collateral of the position
+    // double unusedCollateral
+    test('to test the property `unusedCollateral`', () async {
+      // TODO
+    });
+
 
   });
 

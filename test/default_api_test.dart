@@ -115,6 +115,13 @@ void main() {
       // TODO
     });
 
+    // Get annualized yield to maturity for a bond asset
+    //
+    //Future<GetAssetYTMByIDResponseEnvelope> getAssetYTMById(String assetId) async
+    test('test getAssetYTMById', () async {
+      // TODO
+    });
+
     // Get all inserts or updates for assets
     //
     //Future<List<StreamAssetsEntry>> getAssetsStream({ DateTime since, DateTime until }) async

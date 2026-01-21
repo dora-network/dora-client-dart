@@ -34,8 +34,8 @@ void main() {
       // TODO
     });
 
-    // List<PLAsset> rows (default value: const [])
-    test('to test the property `rows`', () async {
+    // List<PLAsset> assets (default value: const [])
+    test('to test the property `assets`', () async {
       // TODO
     });
 

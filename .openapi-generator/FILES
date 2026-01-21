@@ -11,6 +11,7 @@ doc/AssetKind.md
 doc/AssetPrice.md
 doc/AssetPriceResponseEnvelope.md
 doc/AssetRequestError.md
+doc/AssetYTM.md
 doc/BalanceTransfer.md
 doc/BalancesResponse.md
 doc/Bond.md
@@ -42,6 +43,7 @@ doc/FundUser.md
 doc/FundUserRequest.md
 doc/FundUserResponseEnvelope.md
 doc/GetAssetByIDResponseEnvelope.md
+doc/GetAssetYTMByIDResponseEnvelope.md
 doc/GetTopOfBookResponseEnvelope.md
 doc/IsolateCollateralRequest.md
 doc/IsolateCollateralResponse.md
@@ -188,6 +190,7 @@ lib/model/asset_kind.dart
 lib/model/asset_price.dart
 lib/model/asset_price_response_envelope.dart
 lib/model/asset_request_error.dart
+lib/model/asset_ytm.dart
 lib/model/balance_transfer.dart
 lib/model/balances_response.dart
 lib/model/bond.dart
@@ -218,6 +221,7 @@ lib/model/fund_user.dart
 lib/model/fund_user_request.dart
 lib/model/fund_user_response_envelope.dart
 lib/model/get_asset_by_id_response_envelope.dart
+lib/model/get_asset_ytmby_id_response_envelope.dart
 lib/model/get_top_of_book_response_envelope.dart
 lib/model/isolate_collateral_request.dart
 lib/model/isolate_collateral_response.dart
@@ -354,6 +358,7 @@ test/asset_price_response_envelope_test.dart
 test/asset_price_test.dart
 test/asset_request_error_test.dart
 test/asset_test.dart
+test/asset_ytm_test.dart
 test/balance_transfer_test.dart
 test/balances_response_test.dart
 test/bond_kind_test.dart
@@ -385,6 +390,7 @@ test/fund_user_request_test.dart
 test/fund_user_response_envelope_test.dart
 test/fund_user_test.dart
 test/get_asset_by_id_response_envelope_test.dart
+test/get_asset_ytmby_id_response_envelope_test.dart
 test/get_top_of_book_response_envelope_test.dart
 test/isolate_collateral_request_test.dart
 test/isolate_collateral_response_test.dart

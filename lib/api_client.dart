@@ -200,6 +200,8 @@ class ApiClient {
           return AssetPriceResponseEnvelope.fromJson(value);
         case 'AssetRequestError':
           return AssetRequestError.fromJson(value);
+        case 'AssetYTM':
+          return AssetYTM.fromJson(value);
         case 'BalanceTransfer':
           return BalanceTransfer.fromJson(value);
         case 'BalancesResponse':
@@ -260,6 +262,8 @@ class ApiClient {
           return FundUserResponseEnvelope.fromJson(value);
         case 'GetAssetByIDResponseEnvelope':
           return GetAssetByIDResponseEnvelope.fromJson(value);
+        case 'GetAssetYTMByIDResponseEnvelope':
+          return GetAssetYTMByIDResponseEnvelope.fromJson(value);
         case 'GetTopOfBookResponseEnvelope':
           return GetTopOfBookResponseEnvelope.fromJson(value);
         case 'IsolateCollateralRequest':

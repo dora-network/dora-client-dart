@@ -25,6 +25,10 @@ class PLAsset {
     this.leverageLimit,
     this.tp,
     this.sl,
+    this.initialCapital,
+    this.impendingBorrows,
+    this.locked,
+    this.unusedCollateral,
   });
 
   /// The symbol of the asset
@@ -128,6 +132,42 @@ class PLAsset {
   ///
   double? sl;
 
+  /// The initial capital of the position
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? initialCapital;
+
+  /// The impending borrows of the position
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? impendingBorrows;
+
+  /// The locked amount of the position
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? locked;
+
+  /// The unused collateral of the position
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  double? unusedCollateral;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is PLAsset &&
     other.symbol == symbol &&
@@ -141,7 +181,11 @@ class PLAsset {
     other.unrealizedPl == unrealizedPl &&
     other.leverageLimit == leverageLimit &&
     other.tp == tp &&
-    other.sl == sl;
+    other.sl == sl &&
+    other.initialCapital == initialCapital &&
+    other.impendingBorrows == impendingBorrows &&
+    other.locked == locked &&
+    other.unusedCollateral == unusedCollateral;
 
   @override
   int get hashCode =>
@@ -157,10 +201,14 @@ class PLAsset {
     (unrealizedPl == null ? 0 : unrealizedPl!.hashCode) +
     (leverageLimit == null ? 0 : leverageLimit!.hashCode) +
     (tp == null ? 0 : tp!.hashCode) +
-    (sl == null ? 0 : sl!.hashCode);
+    (sl == null ? 0 : sl!.hashCode) +
+    (initialCapital == null ? 0 : initialCapital!.hashCode) +
+    (impendingBorrows == null ? 0 : impendingBorrows!.hashCode) +
+    (locked == null ? 0 : locked!.hashCode) +
+    (unusedCollateral == null ? 0 : unusedCollateral!.hashCode);
 
   @override
-  String toString() => 'PLAsset[symbol=$symbol, side=$side, avgEntryPrice=$avgEntryPrice, markPrice=$markPrice, liquidationPrice=$liquidationPrice, available=$available, borrowed=$borrowed, margin=$margin, unrealizedPl=$unrealizedPl, leverageLimit=$leverageLimit, tp=$tp, sl=$sl]';
+  String toString() => 'PLAsset[symbol=$symbol, side=$side, avgEntryPrice=$avgEntryPrice, markPrice=$markPrice, liquidationPrice=$liquidationPrice, available=$available, borrowed=$borrowed, margin=$margin, unrealizedPl=$unrealizedPl, leverageLimit=$leverageLimit, tp=$tp, sl=$sl, initialCapital=$initialCapital, impendingBorrows=$impendingBorrows, locked=$locked, unusedCollateral=$unusedCollateral]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -224,6 +272,26 @@ class PLAsset {
     } else {
       json[r'sl'] = null;
     }
+    if (this.initialCapital != null) {
+      json[r'initial_capital'] = this.initialCapital;
+    } else {
+      json[r'initial_capital'] = null;
+    }
+    if (this.impendingBorrows != null) {
+      json[r'impending_borrows'] = this.impendingBorrows;
+    } else {
+      json[r'impending_borrows'] = null;
+    }
+    if (this.locked != null) {
+      json[r'locked'] = this.locked;
+    } else {
+      json[r'locked'] = null;
+    }
+    if (this.unusedCollateral != null) {
+      json[r'unused_collateral'] = this.unusedCollateral;
+    } else {
+      json[r'unused_collateral'] = null;
+    }
     return json;
   }
 
@@ -258,6 +326,10 @@ class PLAsset {
         leverageLimit: mapValueOfType<double>(json, r'leverage_limit'),
         tp: mapValueOfType<double>(json, r'tp'),
         sl: mapValueOfType<double>(json, r'sl'),
+        initialCapital: mapValueOfType<double>(json, r'initial_capital'),
+        impendingBorrows: mapValueOfType<double>(json, r'impending_borrows'),
+        locked: mapValueOfType<double>(json, r'locked'),
+        unusedCollateral: mapValueOfType<double>(json, r'unused_collateral'),
       );
     }
     return null;

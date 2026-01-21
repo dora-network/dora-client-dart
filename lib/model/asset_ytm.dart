@@ -10,44 +10,22 @@
 
 part of openapi.api;
 
-class PLAccount {
-  /// Returns a new [PLAccount] instance.
-  PLAccount({
-    this.accountId,
-    this.accountName,
-    this.isGlobal,
-    this.assets = const [],
-    this.summary,
+class AssetYTM {
+  /// Returns a new [AssetYTM] instance.
+  AssetYTM({
+    this.assetId,
+    this.currentTime,
+    this.currentPrice,
+    this.yieldToMaturity,
   });
 
-  /// The ID of the account holding the position
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? accountId;
-
-  /// The name of the account holding the position
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? accountName;
-
-  /// Whether the account is the global or an isolated account
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? isGlobal;
-
-  List<PLAsset> assets;
+  String? assetId;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -55,58 +33,71 @@ class PLAccount {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  PLSummary? summary;
+  DateTime? currentTime;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? currentPrice;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? yieldToMaturity;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PLAccount &&
-    other.accountId == accountId &&
-    other.accountName == accountName &&
-    other.isGlobal == isGlobal &&
-    _deepEquality.equals(other.assets, assets) &&
-    other.summary == summary;
+  bool operator ==(Object other) => identical(this, other) || other is AssetYTM &&
+    other.assetId == assetId &&
+    other.currentTime == currentTime &&
+    other.currentPrice == currentPrice &&
+    other.yieldToMaturity == yieldToMaturity;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (accountId == null ? 0 : accountId!.hashCode) +
-    (accountName == null ? 0 : accountName!.hashCode) +
-    (isGlobal == null ? 0 : isGlobal!.hashCode) +
-    (assets.hashCode) +
-    (summary == null ? 0 : summary!.hashCode);
+    (assetId == null ? 0 : assetId!.hashCode) +
+    (currentTime == null ? 0 : currentTime!.hashCode) +
+    (currentPrice == null ? 0 : currentPrice!.hashCode) +
+    (yieldToMaturity == null ? 0 : yieldToMaturity!.hashCode);
 
   @override
-  String toString() => 'PLAccount[accountId=$accountId, accountName=$accountName, isGlobal=$isGlobal, assets=$assets, summary=$summary]';
+  String toString() => 'AssetYTM[assetId=$assetId, currentTime=$currentTime, currentPrice=$currentPrice, yieldToMaturity=$yieldToMaturity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.accountId != null) {
-      json[r'account_id'] = this.accountId;
+    if (this.assetId != null) {
+      json[r'asset_id'] = this.assetId;
     } else {
-      json[r'account_id'] = null;
+      json[r'asset_id'] = null;
     }
-    if (this.accountName != null) {
-      json[r'account_name'] = this.accountName;
+    if (this.currentTime != null) {
+      json[r'current_time'] = this.currentTime!.toUtc().toIso8601String();
     } else {
-      json[r'account_name'] = null;
+      json[r'current_time'] = null;
     }
-    if (this.isGlobal != null) {
-      json[r'is_global'] = this.isGlobal;
+    if (this.currentPrice != null) {
+      json[r'current_price'] = this.currentPrice;
     } else {
-      json[r'is_global'] = null;
+      json[r'current_price'] = null;
     }
-      json[r'assets'] = this.assets;
-    if (this.summary != null) {
-      json[r'summary'] = this.summary;
+    if (this.yieldToMaturity != null) {
+      json[r'yield_to_maturity'] = this.yieldToMaturity;
     } else {
-      json[r'summary'] = null;
+      json[r'yield_to_maturity'] = null;
     }
     return json;
   }
 
-  /// Returns a new [PLAccount] instance and imports its values from
+  /// Returns a new [AssetYTM] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static PLAccount? fromJson(dynamic value) {
+  static AssetYTM? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -115,28 +106,27 @@ class PLAccount {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PLAccount[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PLAccount[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "AssetYTM[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "AssetYTM[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return PLAccount(
-        accountId: mapValueOfType<String>(json, r'account_id'),
-        accountName: mapValueOfType<String>(json, r'account_name'),
-        isGlobal: mapValueOfType<bool>(json, r'is_global'),
-        assets: PLAsset.listFromJson(json[r'assets']),
-        summary: PLSummary.fromJson(json[r'summary']),
+      return AssetYTM(
+        assetId: mapValueOfType<String>(json, r'asset_id'),
+        currentTime: mapDateTime(json, r'current_time', r''),
+        currentPrice: mapValueOfType<String>(json, r'current_price'),
+        yieldToMaturity: mapValueOfType<String>(json, r'yield_to_maturity'),
       );
     }
     return null;
   }
 
-  static List<PLAccount> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <PLAccount>[];
+  static List<AssetYTM> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <AssetYTM>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = PLAccount.fromJson(row);
+        final value = AssetYTM.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -145,12 +135,12 @@ class PLAccount {
     return result.toList(growable: growable);
   }
 
-  static Map<String, PLAccount> mapFromJson(dynamic json) {
-    final map = <String, PLAccount>{};
+  static Map<String, AssetYTM> mapFromJson(dynamic json) {
+    final map = <String, AssetYTM>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = PLAccount.fromJson(entry.value);
+        final value = AssetYTM.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -159,14 +149,14 @@ class PLAccount {
     return map;
   }
 
-  // maps a json object with a list of PLAccount-objects as value to a dart map
-  static Map<String, List<PLAccount>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<PLAccount>>{};
+  // maps a json object with a list of AssetYTM-objects as value to a dart map
+  static Map<String, List<AssetYTM>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<AssetYTM>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = PLAccount.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = AssetYTM.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

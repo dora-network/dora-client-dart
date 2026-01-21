@@ -766,6 +766,59 @@ class DefaultApi {
     return null;
   }
 
+  /// Get annualized yield to maturity for a bond asset
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] assetId (required):
+  Future<Response> getAssetYTMByIdWithHttpInfo(String assetId,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/assets/{asset_id}/ytm'
+      .replaceAll('{asset_id}', assetId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get annualized yield to maturity for a bond asset
+  ///
+  /// Parameters:
+  ///
+  /// * [String] assetId (required):
+  Future<GetAssetYTMByIDResponseEnvelope?> getAssetYTMById(String assetId,) async {
+    final response = await getAssetYTMByIdWithHttpInfo(assetId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetAssetYTMByIDResponseEnvelope',) as GetAssetYTMByIDResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Get all inserts or updates for assets
   ///
   /// Note: This method returns the HTTP [Response].

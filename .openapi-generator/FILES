@@ -69,6 +69,7 @@ doc/ListPositionAccountsResponseEnvelope.md
 doc/ListPositionsResponse.md
 doc/ListTradeResponseEnvelope.md
 doc/ListTransactionsResponseEnvelope.md
+doc/ListUserCouponPaymentsResponseEnvelope.md
 doc/LiveOrderbook.md
 doc/Margin.md
 doc/Metadata.md
@@ -127,6 +128,7 @@ doc/StreamPositionsEntry.md
 doc/StreamTradesEntry.md
 doc/StreamTransactionsEntry.md
 doc/StreamUserCouponPaymentsEntry.md
+doc/StreamUserCouponPaymentsResponse.md
 doc/StreamedAssetPrice.md
 doc/Supply.md
 doc/SupplyRequest.md
@@ -154,6 +156,8 @@ doc/UserBalanceResponseEnvelope.md
 doc/UserConfig.md
 doc/UserConfigResponseEnvelope.md
 doc/UserCouponPayment.md
+doc/UserCouponPaymentAssetSummary.md
+doc/UserCouponPaymentsResponseData.md
 doc/UserCreatedResponseEnvelope.md
 doc/UserDeletedResponseEnvelope.md
 doc/UserEnvelope.md
@@ -247,6 +251,7 @@ lib/model/list_position_accounts_response_envelope.dart
 lib/model/list_positions_response.dart
 lib/model/list_trade_response_envelope.dart
 lib/model/list_transactions_response_envelope.dart
+lib/model/list_user_coupon_payments_response_envelope.dart
 lib/model/live_orderbook.dart
 lib/model/margin.dart
 lib/model/metadata.dart
@@ -305,6 +310,7 @@ lib/model/stream_positions_entry.dart
 lib/model/stream_trades_entry.dart
 lib/model/stream_transactions_entry.dart
 lib/model/stream_user_coupon_payments_entry.dart
+lib/model/stream_user_coupon_payments_response.dart
 lib/model/streamed_asset_price.dart
 lib/model/supply.dart
 lib/model/supply_request.dart
@@ -332,6 +338,8 @@ lib/model/user_balance_response_envelope.dart
 lib/model/user_config.dart
 lib/model/user_config_response_envelope.dart
 lib/model/user_coupon_payment.dart
+lib/model/user_coupon_payment_asset_summary.dart
+lib/model/user_coupon_payments_response_data.dart
 lib/model/user_created_response_envelope.dart
 lib/model/user_deleted_response_envelope.dart
 lib/model/user_envelope.dart
@@ -416,6 +424,7 @@ test/list_position_accounts_response_envelope_test.dart
 test/list_positions_response_test.dart
 test/list_trade_response_envelope_test.dart
 test/list_transactions_response_envelope_test.dart
+test/list_user_coupon_payments_response_envelope_test.dart
 test/live_orderbook_test.dart
 test/margin_test.dart
 test/metadata_test.dart
@@ -474,6 +483,7 @@ test/stream_positions_entry_test.dart
 test/stream_trades_entry_test.dart
 test/stream_transactions_entry_test.dart
 test/stream_user_coupon_payments_entry_test.dart
+test/stream_user_coupon_payments_response_test.dart
 test/streamed_asset_price_test.dart
 test/supply_request_test.dart
 test/supply_response_envelope_test.dart
@@ -499,7 +509,9 @@ test/update_user_config_request_test.dart
 test/user_balance_response_envelope_test.dart
 test/user_config_response_envelope_test.dart
 test/user_config_test.dart
+test/user_coupon_payment_asset_summary_test.dart
 test/user_coupon_payment_test.dart
+test/user_coupon_payments_response_data_test.dart
 test/user_created_response_envelope_test.dart
 test/user_deleted_response_envelope_test.dart
 test/user_envelope_test.dart

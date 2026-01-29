@@ -313,7 +313,7 @@ void main() {
 
     // Stream user's coupon payment accruals in real time
     //
-    //Future<List<StreamUserCouponPaymentsEntry>> getUserCouponPaymentsStream(String userId) async
+    //Future<StreamUserCouponPaymentsResponse> getUserCouponPaymentsStream(String userId) async
     test('test getUserCouponPaymentsStream', () async {
       // TODO
     });

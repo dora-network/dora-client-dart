@@ -17,6 +17,7 @@ class PLSummary {
     this.accountEquity,
     this.available,
     this.health,
+    this.ltv,
   });
 
   /// The leverage used to obtain the position on the isolated account
@@ -26,7 +27,7 @@ class PLSummary {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? leverage;
+  String? leverage;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -34,7 +35,7 @@ class PLSummary {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? accountEquity;
+  String? accountEquity;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -42,7 +43,7 @@ class PLSummary {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? available;
+  String? available;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -50,14 +51,23 @@ class PLSummary {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? health;
+  String? health;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? ltv;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PLSummary &&
     other.leverage == leverage &&
     other.accountEquity == accountEquity &&
     other.available == available &&
-    other.health == health;
+    other.health == health &&
+    other.ltv == ltv;
 
   @override
   int get hashCode =>
@@ -65,10 +75,11 @@ class PLSummary {
     (leverage == null ? 0 : leverage!.hashCode) +
     (accountEquity == null ? 0 : accountEquity!.hashCode) +
     (available == null ? 0 : available!.hashCode) +
-    (health == null ? 0 : health!.hashCode);
+    (health == null ? 0 : health!.hashCode) +
+    (ltv == null ? 0 : ltv!.hashCode);
 
   @override
-  String toString() => 'PLSummary[leverage=$leverage, accountEquity=$accountEquity, available=$available, health=$health]';
+  String toString() => 'PLSummary[leverage=$leverage, accountEquity=$accountEquity, available=$available, health=$health, ltv=$ltv]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -92,6 +103,11 @@ class PLSummary {
     } else {
       json[r'health'] = null;
     }
+    if (this.ltv != null) {
+      json[r'ltv'] = this.ltv;
+    } else {
+      json[r'ltv'] = null;
+    }
     return json;
   }
 
@@ -114,10 +130,11 @@ class PLSummary {
       }());
 
       return PLSummary(
-        leverage: mapValueOfType<double>(json, r'leverage'),
-        accountEquity: mapValueOfType<double>(json, r'account_equity'),
-        available: mapValueOfType<double>(json, r'available'),
-        health: mapValueOfType<double>(json, r'health'),
+        leverage: mapValueOfType<String>(json, r'leverage'),
+        accountEquity: mapValueOfType<String>(json, r'account_equity'),
+        available: mapValueOfType<String>(json, r'available'),
+        health: mapValueOfType<String>(json, r'health'),
+        ltv: mapValueOfType<String>(json, r'ltv'),
       );
     }
     return null;

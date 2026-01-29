@@ -15,6 +15,7 @@ class StreamedAssetPrice {
   StreamedAssetPrice({
     required this.assetId,
     required this.price,
+    this.ytm,
     required this.time,
   });
 
@@ -22,12 +23,21 @@ class StreamedAssetPrice {
 
   String price;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? ytm;
+
   DateTime time;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is StreamedAssetPrice &&
     other.assetId == assetId &&
     other.price == price &&
+    other.ytm == ytm &&
     other.time == time;
 
   @override
@@ -35,15 +45,21 @@ class StreamedAssetPrice {
     // ignore: unnecessary_parenthesis
     (assetId.hashCode) +
     (price.hashCode) +
+    (ytm == null ? 0 : ytm!.hashCode) +
     (time.hashCode);
 
   @override
-  String toString() => 'StreamedAssetPrice[assetId=$assetId, price=$price, time=$time]';
+  String toString() => 'StreamedAssetPrice[assetId=$assetId, price=$price, ytm=$ytm, time=$time]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'asset_id'] = this.assetId;
       json[r'price'] = this.price;
+    if (this.ytm != null) {
+      json[r'ytm'] = this.ytm;
+    } else {
+      json[r'ytm'] = null;
+    }
       json[r'time'] = this.time.toUtc().toIso8601String();
     return json;
   }
@@ -69,6 +85,7 @@ class StreamedAssetPrice {
       return StreamedAssetPrice(
         assetId: mapValueOfType<String>(json, r'asset_id')!,
         price: mapValueOfType<String>(json, r'price')!,
+        ytm: mapValueOfType<String>(json, r'ytm'),
         time: mapDateTime(json, r'time', r'')!,
       );
     }

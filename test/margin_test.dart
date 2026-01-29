@@ -17,19 +17,19 @@ void main() {
 
   group('test Margin', () {
     // The total margin available from this position.
-    // double available
+    // String available
     test('to test the property `available`', () async {
       // TODO
     });
 
     // The amount of margin used from this position.
-    // double used
+    // String used
     test('to test the property `used`', () async {
       // TODO
     });
 
     // The margin remaining available from this position.
-    // double remaining
+    // String remaining
     test('to test the property `remaining`', () async {
       // TODO
     });

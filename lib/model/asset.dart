@@ -19,7 +19,7 @@ class Asset {
     this.decimals,
     this.fractionalizedUnits,
     this.description,
-    this.liquidationThreshold,
+    this.liquidationWeight,
     this.maturityId,
     this.maxSupply,
     this.maxUtilization,
@@ -90,7 +90,7 @@ class Asset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  num? liquidationThreshold;
+  num? liquidationWeight;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -212,7 +212,7 @@ class Asset {
     other.decimals == decimals &&
     other.fractionalizedUnits == fractionalizedUnits &&
     other.description == description &&
-    other.liquidationThreshold == liquidationThreshold &&
+    other.liquidationWeight == liquidationWeight &&
     other.maturityId == maturityId &&
     other.maxSupply == maxSupply &&
     other.maxUtilization == maxUtilization &&
@@ -237,7 +237,7 @@ class Asset {
     (decimals == null ? 0 : decimals!.hashCode) +
     (fractionalizedUnits == null ? 0 : fractionalizedUnits!.hashCode) +
     (description == null ? 0 : description!.hashCode) +
-    (liquidationThreshold == null ? 0 : liquidationThreshold!.hashCode) +
+    (liquidationWeight == null ? 0 : liquidationWeight!.hashCode) +
     (maturityId == null ? 0 : maturityId!.hashCode) +
     (maxSupply == null ? 0 : maxSupply!.hashCode) +
     (maxUtilization == null ? 0 : maxUtilization!.hashCode) +
@@ -254,7 +254,7 @@ class Asset {
     (bond == null ? 0 : bond!.hashCode);
 
   @override
-  String toString() => 'Asset[id=$id, collateralWeight=$collateralWeight, createdAt=$createdAt, decimals=$decimals, fractionalizedUnits=$fractionalizedUnits, description=$description, liquidationThreshold=$liquidationThreshold, maturityId=$maturityId, maxSupply=$maxSupply, maxUtilization=$maxUtilization, name=$name, symbol=$symbol, kind=$kind, yield_=$yield_, canAddLiquidity=$canAddLiquidity, canDirectBorrow=$canDirectBorrow, canOnboard=$canOnboard, canTrade=$canTrade, canVirtualBorrow=$canVirtualBorrow, maxLeverage=$maxLeverage, bond=$bond]';
+  String toString() => 'Asset[id=$id, collateralWeight=$collateralWeight, createdAt=$createdAt, decimals=$decimals, fractionalizedUnits=$fractionalizedUnits, description=$description, liquidationWeight=$liquidationWeight, maturityId=$maturityId, maxSupply=$maxSupply, maxUtilization=$maxUtilization, name=$name, symbol=$symbol, kind=$kind, yield_=$yield_, canAddLiquidity=$canAddLiquidity, canDirectBorrow=$canDirectBorrow, canOnboard=$canOnboard, canTrade=$canTrade, canVirtualBorrow=$canVirtualBorrow, maxLeverage=$maxLeverage, bond=$bond]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -288,10 +288,10 @@ class Asset {
     } else {
       json[r'description'] = null;
     }
-    if (this.liquidationThreshold != null) {
-      json[r'liquidation_threshold'] = this.liquidationThreshold;
+    if (this.liquidationWeight != null) {
+      json[r'liquidation_weight'] = this.liquidationWeight;
     } else {
-      json[r'liquidation_threshold'] = null;
+      json[r'liquidation_weight'] = null;
     }
     if (this.maturityId != null) {
       json[r'maturity_id'] = this.maturityId;
@@ -391,7 +391,7 @@ class Asset {
         decimals: mapValueOfType<int>(json, r'decimals'),
         fractionalizedUnits: mapValueOfType<int>(json, r'fractionalized_units'),
         description: mapValueOfType<String>(json, r'description'),
-        liquidationThreshold: num.parse('${json[r'liquidation_threshold']}'),
+        liquidationWeight: num.parse('${json[r'liquidation_weight']}'),
         maturityId: mapValueOfType<String>(json, r'maturity_id'),
         maxSupply: mapValueOfType<int>(json, r'max_supply'),
         maxUtilization: mapValueOfType<int>(json, r'max_utilization'),

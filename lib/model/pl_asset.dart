@@ -50,7 +50,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? avgEntryPrice;
+  String? avgEntryPrice;
 
   /// The current mark price for the asset to calculate daily PL. This is usually the close price of the previous day
   ///
@@ -59,7 +59,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? markPrice;
+  String? markPrice;
 
   /// The liquidation price of the position
   ///
@@ -68,7 +68,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? liquidationPrice;
+  String? liquidationPrice;
 
   /// The available quantity in units of the asset
   ///
@@ -77,7 +77,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? available;
+  String? available;
 
   /// The borrowed quantity in units of the asset
   ///
@@ -86,7 +86,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? borrowed;
+  String? borrowed;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -103,7 +103,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? unrealizedPl;
+  String? unrealizedPl;
 
   /// The leverage limit for the position
   ///
@@ -112,7 +112,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? leverageLimit;
+  String? leverageLimit;
 
   /// The take profit price set for the position, if any
   ///
@@ -121,7 +121,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? tp;
+  String? tp;
 
   /// The stop loss price set for the position, if any
   ///
@@ -130,7 +130,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? sl;
+  String? sl;
 
   /// The initial capital of the position
   ///
@@ -139,7 +139,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? initialCapital;
+  String? initialCapital;
 
   /// The impending borrows of the position
   ///
@@ -148,7 +148,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? impendingBorrows;
+  String? impendingBorrows;
 
   /// The locked amount of the position
   ///
@@ -157,7 +157,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? locked;
+  String? locked;
 
   /// The unused collateral of the position
   ///
@@ -166,7 +166,7 @@ class PLAsset {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? unusedCollateral;
+  String? unusedCollateral;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PLAsset &&
@@ -316,20 +316,20 @@ class PLAsset {
       return PLAsset(
         symbol: mapValueOfType<String>(json, r'symbol'),
         side: PLAssetSideEnum.fromJson(json[r'side']),
-        avgEntryPrice: mapValueOfType<double>(json, r'avg_entry_price'),
-        markPrice: mapValueOfType<double>(json, r'mark_price'),
-        liquidationPrice: mapValueOfType<double>(json, r'liquidation_price'),
-        available: mapValueOfType<double>(json, r'available'),
-        borrowed: mapValueOfType<double>(json, r'borrowed'),
+        avgEntryPrice: mapValueOfType<String>(json, r'avg_entry_price'),
+        markPrice: mapValueOfType<String>(json, r'mark_price'),
+        liquidationPrice: mapValueOfType<String>(json, r'liquidation_price'),
+        available: mapValueOfType<String>(json, r'available'),
+        borrowed: mapValueOfType<String>(json, r'borrowed'),
         margin: Margin.fromJson(json[r'margin']),
-        unrealizedPl: mapValueOfType<double>(json, r'unrealized_pl'),
-        leverageLimit: mapValueOfType<double>(json, r'leverage_limit'),
-        tp: mapValueOfType<double>(json, r'tp'),
-        sl: mapValueOfType<double>(json, r'sl'),
-        initialCapital: mapValueOfType<double>(json, r'initial_capital'),
-        impendingBorrows: mapValueOfType<double>(json, r'impending_borrows'),
-        locked: mapValueOfType<double>(json, r'locked'),
-        unusedCollateral: mapValueOfType<double>(json, r'unused_collateral'),
+        unrealizedPl: mapValueOfType<String>(json, r'unrealized_pl'),
+        leverageLimit: mapValueOfType<String>(json, r'leverage_limit'),
+        tp: mapValueOfType<String>(json, r'tp'),
+        sl: mapValueOfType<String>(json, r'sl'),
+        initialCapital: mapValueOfType<String>(json, r'initial_capital'),
+        impendingBorrows: mapValueOfType<String>(json, r'impending_borrows'),
+        locked: mapValueOfType<String>(json, r'locked'),
+        unusedCollateral: mapValueOfType<String>(json, r'unused_collateral'),
       );
     }
     return null;

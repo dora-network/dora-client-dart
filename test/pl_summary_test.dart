@@ -17,23 +17,28 @@ void main() {
 
   group('test PLSummary', () {
     // The leverage used to obtain the position on the isolated account
-    // double leverage
+    // String leverage
     test('to test the property `leverage`', () async {
       // TODO
     });
 
-    // double accountEquity
+    // String accountEquity
     test('to test the property `accountEquity`', () async {
       // TODO
     });
 
-    // double available
+    // String available
     test('to test the property `available`', () async {
       // TODO
     });
 
-    // double health
+    // String health
     test('to test the property `health`', () async {
+      // TODO
+    });
+
+    // String ltv
+    test('to test the property `ltv`', () async {
       // TODO
     });
 

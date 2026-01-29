@@ -2088,7 +2088,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserCouponPaymentsStream**
-> List<StreamUserCouponPaymentsEntry> getUserCouponPaymentsStream(userId)
+> StreamUserCouponPaymentsResponse getUserCouponPaymentsStream(userId)
 
 Stream user's coupon payment accruals in real time
 
@@ -2119,7 +2119,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StreamUserCouponPaymentsEntry>**](StreamUserCouponPaymentsEntry.md)
+[**StreamUserCouponPaymentsResponse**](StreamUserCouponPaymentsResponse.md)
 
 ### Authorization
 

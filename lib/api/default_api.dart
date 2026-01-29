@@ -2352,7 +2352,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<List<StreamUserCouponPaymentsEntry>?> getUserCouponPaymentsStream(String userId,) async {
+  Future<StreamUserCouponPaymentsResponse?> getUserCouponPaymentsStream(String userId,) async {
     final response = await getUserCouponPaymentsStreamWithHttpInfo(userId,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -2361,11 +2361,8 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<StreamUserCouponPaymentsEntry>') as List)
-        .cast<StreamUserCouponPaymentsEntry>()
-        .toList(growable: false);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamUserCouponPaymentsResponse',) as StreamUserCouponPaymentsResponse;
+    
     }
     return null;
   }

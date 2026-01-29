@@ -19,7 +19,7 @@ class DefundUserRequest {
 
   String assetId;
 
-  double quantity;
+  String quantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DefundUserRequest &&
@@ -62,7 +62,7 @@ class DefundUserRequest {
 
       return DefundUserRequest(
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        quantity: mapValueOfType<double>(json, r'quantity')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
       );
     }
     return null;

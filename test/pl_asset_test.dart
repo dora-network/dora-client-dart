@@ -29,31 +29,31 @@ void main() {
     });
 
     // The average entry price of the position
-    // double avgEntryPrice
+    // String avgEntryPrice
     test('to test the property `avgEntryPrice`', () async {
       // TODO
     });
 
     // The current mark price for the asset to calculate daily PL. This is usually the close price of the previous day
-    // double markPrice
+    // String markPrice
     test('to test the property `markPrice`', () async {
       // TODO
     });
 
     // The liquidation price of the position
-    // double liquidationPrice
+    // String liquidationPrice
     test('to test the property `liquidationPrice`', () async {
       // TODO
     });
 
     // The available quantity in units of the asset
-    // double available
+    // String available
     test('to test the property `available`', () async {
       // TODO
     });
 
     // The borrowed quantity in units of the asset
-    // double borrowed
+    // String borrowed
     test('to test the property `borrowed`', () async {
       // TODO
     });
@@ -64,49 +64,49 @@ void main() {
     });
 
     // The unrealized profit or loss of the position
-    // double unrealizedPl
+    // String unrealizedPl
     test('to test the property `unrealizedPl`', () async {
       // TODO
     });
 
     // The leverage limit for the position
-    // double leverageLimit
+    // String leverageLimit
     test('to test the property `leverageLimit`', () async {
       // TODO
     });
 
     // The take profit price set for the position, if any
-    // double tp
+    // String tp
     test('to test the property `tp`', () async {
       // TODO
     });
 
     // The stop loss price set for the position, if any
-    // double sl
+    // String sl
     test('to test the property `sl`', () async {
       // TODO
     });
 
     // The initial capital of the position
-    // double initialCapital
+    // String initialCapital
     test('to test the property `initialCapital`', () async {
       // TODO
     });
 
     // The impending borrows of the position
-    // double impendingBorrows
+    // String impendingBorrows
     test('to test the property `impendingBorrows`', () async {
       // TODO
     });
 
     // The locked amount of the position
-    // double locked
+    // String locked
     test('to test the property `locked`', () async {
       // TODO
     });
 
     // The unused collateral of the position
-    // double unusedCollateral
+    // String unusedCollateral
     test('to test the property `unusedCollateral`', () async {
       // TODO
     });

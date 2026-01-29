@@ -10,81 +10,78 @@
 
 part of openapi.api;
 
-class Margin {
-  /// Returns a new [Margin] instance.
-  Margin({
-    this.available,
-    this.used,
-    this.remaining,
+class UserCouponPaymentAssetSummary {
+  /// Returns a new [UserCouponPaymentAssetSummary] instance.
+  UserCouponPaymentAssetSummary({
+    this.assetId,
+    this.pending,
+    this.completed,
   });
 
-  /// The total margin available from this position.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? available;
+  String? assetId;
 
-  /// The amount of margin used from this position.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? used;
+  String? pending;
 
-  /// The margin remaining available from this position.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? remaining;
+  String? completed;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Margin &&
-    other.available == available &&
-    other.used == used &&
-    other.remaining == remaining;
+  bool operator ==(Object other) => identical(this, other) || other is UserCouponPaymentAssetSummary &&
+    other.assetId == assetId &&
+    other.pending == pending &&
+    other.completed == completed;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (available == null ? 0 : available!.hashCode) +
-    (used == null ? 0 : used!.hashCode) +
-    (remaining == null ? 0 : remaining!.hashCode);
+    (assetId == null ? 0 : assetId!.hashCode) +
+    (pending == null ? 0 : pending!.hashCode) +
+    (completed == null ? 0 : completed!.hashCode);
 
   @override
-  String toString() => 'Margin[available=$available, used=$used, remaining=$remaining]';
+  String toString() => 'UserCouponPaymentAssetSummary[assetId=$assetId, pending=$pending, completed=$completed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.available != null) {
-      json[r'available'] = this.available;
+    if (this.assetId != null) {
+      json[r'asset_id'] = this.assetId;
     } else {
-      json[r'available'] = null;
+      json[r'asset_id'] = null;
     }
-    if (this.used != null) {
-      json[r'used'] = this.used;
+    if (this.pending != null) {
+      json[r'pending'] = this.pending;
     } else {
-      json[r'used'] = null;
+      json[r'pending'] = null;
     }
-    if (this.remaining != null) {
-      json[r'remaining'] = this.remaining;
+    if (this.completed != null) {
+      json[r'completed'] = this.completed;
     } else {
-      json[r'remaining'] = null;
+      json[r'completed'] = null;
     }
     return json;
   }
 
-  /// Returns a new [Margin] instance and imports its values from
+  /// Returns a new [UserCouponPaymentAssetSummary] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static Margin? fromJson(dynamic value) {
+  static UserCouponPaymentAssetSummary? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -93,26 +90,26 @@ class Margin {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Margin[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Margin[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "UserCouponPaymentAssetSummary[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UserCouponPaymentAssetSummary[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return Margin(
-        available: mapValueOfType<String>(json, r'available'),
-        used: mapValueOfType<String>(json, r'used'),
-        remaining: mapValueOfType<String>(json, r'remaining'),
+      return UserCouponPaymentAssetSummary(
+        assetId: mapValueOfType<String>(json, r'asset_id'),
+        pending: mapValueOfType<String>(json, r'pending'),
+        completed: mapValueOfType<String>(json, r'completed'),
       );
     }
     return null;
   }
 
-  static List<Margin> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <Margin>[];
+  static List<UserCouponPaymentAssetSummary> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <UserCouponPaymentAssetSummary>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = Margin.fromJson(row);
+        final value = UserCouponPaymentAssetSummary.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -121,12 +118,12 @@ class Margin {
     return result.toList(growable: growable);
   }
 
-  static Map<String, Margin> mapFromJson(dynamic json) {
-    final map = <String, Margin>{};
+  static Map<String, UserCouponPaymentAssetSummary> mapFromJson(dynamic json) {
+    final map = <String, UserCouponPaymentAssetSummary>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = Margin.fromJson(entry.value);
+        final value = UserCouponPaymentAssetSummary.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -135,14 +132,14 @@ class Margin {
     return map;
   }
 
-  // maps a json object with a list of Margin-objects as value to a dart map
-  static Map<String, List<Margin>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<Margin>>{};
+  // maps a json object with a list of UserCouponPaymentAssetSummary-objects as value to a dart map
+  static Map<String, List<UserCouponPaymentAssetSummary>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<UserCouponPaymentAssetSummary>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Margin.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = UserCouponPaymentAssetSummary.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

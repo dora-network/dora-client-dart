@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **decimals** | **int** |  | [optional] 
 **fractionalizedUnits** | **int** |  | [optional] 
 **description** | **String** |  | [optional] 
-**liquidationThreshold** | **num** |  | [optional] 
+**liquidationWeight** | **num** |  | [optional] 
 **maturityId** | **String** |  | [optional] 
 **maxSupply** | **int** |  | [optional] 
 **maxUtilization** | **int** |  | [optional] 

@@ -46,8 +46,8 @@ void main() {
       // TODO
     });
 
-    // num liquidationThreshold
-    test('to test the property `liquidationThreshold`', () async {
+    // num liquidationWeight
+    test('to test the property `liquidationWeight`', () async {
       // TODO
     });
 

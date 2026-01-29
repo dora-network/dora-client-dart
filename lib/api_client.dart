@@ -314,6 +314,8 @@ class ApiClient {
           return ListTradeResponseEnvelope.fromJson(value);
         case 'ListTransactionsResponseEnvelope':
           return ListTransactionsResponseEnvelope.fromJson(value);
+        case 'ListUserCouponPaymentsResponseEnvelope':
+          return ListUserCouponPaymentsResponseEnvelope.fromJson(value);
         case 'LiveOrderbook':
           return LiveOrderbook.fromJson(value);
         case 'Margin':
@@ -430,6 +432,8 @@ class ApiClient {
           return StreamTransactionsEntry.fromJson(value);
         case 'StreamUserCouponPaymentsEntry':
           return StreamUserCouponPaymentsEntry.fromJson(value);
+        case 'StreamUserCouponPaymentsResponse':
+          return StreamUserCouponPaymentsResponse.fromJson(value);
         case 'StreamedAssetPrice':
           return StreamedAssetPrice.fromJson(value);
         case 'Supply':
@@ -484,6 +488,10 @@ class ApiClient {
           return UserConfigResponseEnvelope.fromJson(value);
         case 'UserCouponPayment':
           return UserCouponPayment.fromJson(value);
+        case 'UserCouponPaymentAssetSummary':
+          return UserCouponPaymentAssetSummary.fromJson(value);
+        case 'UserCouponPaymentsResponseData':
+          return UserCouponPaymentsResponseData.fromJson(value);
         case 'UserCreatedResponseEnvelope':
           return UserCreatedResponseEnvelope.fromJson(value);
         case 'UserDeletedResponseEnvelope':

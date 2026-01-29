@@ -41,12 +41,12 @@ void main() {
       // TODO
     });
 
-    // double pending
+    // String pending
     test('to test the property `pending`', () async {
       // TODO
     });
 
-    // double completed
+    // String completed
     test('to test the property `completed`', () async {
       // TODO
     });

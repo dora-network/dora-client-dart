@@ -11,28 +11,23 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for StreamedAssetPrice
+// tests for UserCouponPaymentAssetSummary
 void main() {
-  // final instance = StreamedAssetPrice();
+  // final instance = UserCouponPaymentAssetSummary();
 
-  group('test StreamedAssetPrice', () {
+  group('test UserCouponPaymentAssetSummary', () {
     // String assetId
     test('to test the property `assetId`', () async {
       // TODO
     });
 
-    // String price
-    test('to test the property `price`', () async {
+    // String pending
+    test('to test the property `pending`', () async {
       // TODO
     });
 
-    // String ytm
-    test('to test the property `ytm`', () async {
-      // TODO
-    });
-
-    // DateTime time
-    test('to test the property `time`', () async {
+    // String completed
+    test('to test the property `completed`', () async {
       // TODO
     });
 

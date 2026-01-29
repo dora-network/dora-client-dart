@@ -70,7 +70,7 @@ class UserCouponPayment {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? pending;
+  String? pending;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -78,7 +78,7 @@ class UserCouponPayment {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? completed;
+  String? completed;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -198,8 +198,8 @@ class UserCouponPayment {
         assetId: mapValueOfType<String>(json, r'asset_id'),
         couponPaymentId: mapValueOfType<String>(json, r'coupon_payment_id'),
         seq: mapValueOfType<int>(json, r'seq'),
-        pending: mapValueOfType<double>(json, r'pending'),
-        completed: mapValueOfType<double>(json, r'completed'),
+        pending: mapValueOfType<String>(json, r'pending'),
+        completed: mapValueOfType<String>(json, r'completed'),
         startedAt: mapDateTime(json, r'started_at', r''),
         endedAt: mapDateTime(json, r'ended_at', r''),
       );

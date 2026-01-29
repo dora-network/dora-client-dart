@@ -10,81 +10,80 @@
 
 part of openapi.api;
 
-class Margin {
-  /// Returns a new [Margin] instance.
-  Margin({
-    this.available,
-    this.used,
-    this.remaining,
+class ListUserCouponPaymentsResponseEnvelope {
+  /// Returns a new [ListUserCouponPaymentsResponseEnvelope] instance.
+  ListUserCouponPaymentsResponseEnvelope({
+    this.data,
+    this.error,
+    this.metadata,
   });
 
-  /// The total margin available from this position.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? available;
+  UserCouponPaymentsResponseData? data;
 
-  /// The amount of margin used from this position.
+  /// The error message. Present for error (non-2xx) responses.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? used;
+  String? error;
 
-  /// The margin remaining available from this position.
+  /// Metadata about the response, including status code and trace information.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? remaining;
+  Metadata? metadata;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Margin &&
-    other.available == available &&
-    other.used == used &&
-    other.remaining == remaining;
+  bool operator ==(Object other) => identical(this, other) || other is ListUserCouponPaymentsResponseEnvelope &&
+    other.data == data &&
+    other.error == error &&
+    other.metadata == metadata;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (available == null ? 0 : available!.hashCode) +
-    (used == null ? 0 : used!.hashCode) +
-    (remaining == null ? 0 : remaining!.hashCode);
+    (data == null ? 0 : data!.hashCode) +
+    (error == null ? 0 : error!.hashCode) +
+    (metadata == null ? 0 : metadata!.hashCode);
 
   @override
-  String toString() => 'Margin[available=$available, used=$used, remaining=$remaining]';
+  String toString() => 'ListUserCouponPaymentsResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.available != null) {
-      json[r'available'] = this.available;
+    if (this.data != null) {
+      json[r'data'] = this.data;
     } else {
-      json[r'available'] = null;
+      json[r'data'] = null;
     }
-    if (this.used != null) {
-      json[r'used'] = this.used;
+    if (this.error != null) {
+      json[r'error'] = this.error;
     } else {
-      json[r'used'] = null;
+      json[r'error'] = null;
     }
-    if (this.remaining != null) {
-      json[r'remaining'] = this.remaining;
+    if (this.metadata != null) {
+      json[r'metadata'] = this.metadata;
     } else {
-      json[r'remaining'] = null;
+      json[r'metadata'] = null;
     }
     return json;
   }
 
-  /// Returns a new [Margin] instance and imports its values from
+  /// Returns a new [ListUserCouponPaymentsResponseEnvelope] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static Margin? fromJson(dynamic value) {
+  static ListUserCouponPaymentsResponseEnvelope? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -93,26 +92,26 @@ class Margin {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Margin[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Margin[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "ListUserCouponPaymentsResponseEnvelope[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ListUserCouponPaymentsResponseEnvelope[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return Margin(
-        available: mapValueOfType<String>(json, r'available'),
-        used: mapValueOfType<String>(json, r'used'),
-        remaining: mapValueOfType<String>(json, r'remaining'),
+      return ListUserCouponPaymentsResponseEnvelope(
+        data: UserCouponPaymentsResponseData.fromJson(json[r'data']),
+        error: mapValueOfType<String>(json, r'error'),
+        metadata: Metadata.fromJson(json[r'metadata']),
       );
     }
     return null;
   }
 
-  static List<Margin> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <Margin>[];
+  static List<ListUserCouponPaymentsResponseEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ListUserCouponPaymentsResponseEnvelope>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = Margin.fromJson(row);
+        final value = ListUserCouponPaymentsResponseEnvelope.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -121,12 +120,12 @@ class Margin {
     return result.toList(growable: growable);
   }
 
-  static Map<String, Margin> mapFromJson(dynamic json) {
-    final map = <String, Margin>{};
+  static Map<String, ListUserCouponPaymentsResponseEnvelope> mapFromJson(dynamic json) {
+    final map = <String, ListUserCouponPaymentsResponseEnvelope>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = Margin.fromJson(entry.value);
+        final value = ListUserCouponPaymentsResponseEnvelope.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -135,14 +134,14 @@ class Margin {
     return map;
   }
 
-  // maps a json object with a list of Margin-objects as value to a dart map
-  static Map<String, List<Margin>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<Margin>>{};
+  // maps a json object with a list of ListUserCouponPaymentsResponseEnvelope-objects as value to a dart map
+  static Map<String, List<ListUserCouponPaymentsResponseEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ListUserCouponPaymentsResponseEnvelope>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Margin.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ListUserCouponPaymentsResponseEnvelope.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

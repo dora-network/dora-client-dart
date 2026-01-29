@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **assetId** | **String** |  | [optional] 
 **couponPaymentId** | **String** |  | [optional] 
 **seq** | **int** |  | [optional] 
-**pending** | **double** |  | [optional] 
-**completed** | **double** |  | [optional] 
+**pending** | **String** |  | [optional] 
+**completed** | **String** |  | [optional] 
 **startedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **endedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

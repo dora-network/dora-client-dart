@@ -13,43 +13,19 @@ part of openapi.api;
 class Withdraw {
   /// Returns a new [Withdraw] instance.
   Withdraw({
-    this.positionId,
-    this.transactionId,
-    this.assetId,
-    this.quantity,
+    required this.positionId,
+    required this.transactionId,
+    required this.assetId,
+    required this.quantity,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? positionId;
+  String positionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? transactionId;
+  String transactionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? assetId;
+  String assetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? quantity;
+  String quantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Withdraw &&
@@ -61,36 +37,20 @@ class Withdraw {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (positionId == null ? 0 : positionId!.hashCode) +
-    (transactionId == null ? 0 : transactionId!.hashCode) +
-    (assetId == null ? 0 : assetId!.hashCode) +
-    (quantity == null ? 0 : quantity!.hashCode);
+    (positionId.hashCode) +
+    (transactionId.hashCode) +
+    (assetId.hashCode) +
+    (quantity.hashCode);
 
   @override
   String toString() => 'Withdraw[positionId=$positionId, transactionId=$transactionId, assetId=$assetId, quantity=$quantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.positionId != null) {
       json[r'position_id'] = this.positionId;
-    } else {
-      json[r'position_id'] = null;
-    }
-    if (this.transactionId != null) {
       json[r'transaction_id'] = this.transactionId;
-    } else {
-      json[r'transaction_id'] = null;
-    }
-    if (this.assetId != null) {
       json[r'asset_id'] = this.assetId;
-    } else {
-      json[r'asset_id'] = null;
-    }
-    if (this.quantity != null) {
       json[r'quantity'] = this.quantity;
-    } else {
-      json[r'quantity'] = null;
-    }
     return json;
   }
 
@@ -113,10 +73,10 @@ class Withdraw {
       }());
 
       return Withdraw(
-        positionId: mapValueOfType<String>(json, r'position_id'),
-        transactionId: mapValueOfType<String>(json, r'transaction_id'),
-        assetId: mapValueOfType<String>(json, r'asset_id'),
-        quantity: mapValueOfType<String>(json, r'quantity'),
+        positionId: mapValueOfType<String>(json, r'position_id')!,
+        transactionId: mapValueOfType<String>(json, r'transaction_id')!,
+        assetId: mapValueOfType<String>(json, r'asset_id')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
       );
     }
     return null;
@@ -164,6 +124,10 @@ class Withdraw {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'position_id',
+    'transaction_id',
+    'asset_id',
+    'quantity',
   };
 }
 

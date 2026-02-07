@@ -13,34 +13,16 @@ part of openapi.api;
 class IsolatedPosition {
   /// Returns a new [IsolatedPosition] instance.
   IsolatedPosition({
-    this.globalPositionId,
-    this.isolatedPositionId,
-    this.transactionId,
+    required this.globalPositionId,
+    required this.isolatedPositionId,
+    required this.transactionId,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? globalPositionId;
+  String globalPositionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? isolatedPositionId;
+  String isolatedPositionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? transactionId;
+  String transactionId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is IsolatedPosition &&
@@ -51,30 +33,18 @@ class IsolatedPosition {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (globalPositionId == null ? 0 : globalPositionId!.hashCode) +
-    (isolatedPositionId == null ? 0 : isolatedPositionId!.hashCode) +
-    (transactionId == null ? 0 : transactionId!.hashCode);
+    (globalPositionId.hashCode) +
+    (isolatedPositionId.hashCode) +
+    (transactionId.hashCode);
 
   @override
   String toString() => 'IsolatedPosition[globalPositionId=$globalPositionId, isolatedPositionId=$isolatedPositionId, transactionId=$transactionId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.globalPositionId != null) {
       json[r'global_position_id'] = this.globalPositionId;
-    } else {
-      json[r'global_position_id'] = null;
-    }
-    if (this.isolatedPositionId != null) {
       json[r'isolated_position_id'] = this.isolatedPositionId;
-    } else {
-      json[r'isolated_position_id'] = null;
-    }
-    if (this.transactionId != null) {
       json[r'transaction_id'] = this.transactionId;
-    } else {
-      json[r'transaction_id'] = null;
-    }
     return json;
   }
 
@@ -97,9 +67,9 @@ class IsolatedPosition {
       }());
 
       return IsolatedPosition(
-        globalPositionId: mapValueOfType<String>(json, r'global_position_id'),
-        isolatedPositionId: mapValueOfType<String>(json, r'isolated_position_id'),
-        transactionId: mapValueOfType<String>(json, r'transaction_id'),
+        globalPositionId: mapValueOfType<String>(json, r'global_position_id')!,
+        isolatedPositionId: mapValueOfType<String>(json, r'isolated_position_id')!,
+        transactionId: mapValueOfType<String>(json, r'transaction_id')!,
       );
     }
     return null;
@@ -147,6 +117,9 @@ class IsolatedPosition {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'global_position_id',
+    'isolated_position_id',
+    'transaction_id',
   };
 }
 

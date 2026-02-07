@@ -13,34 +13,16 @@ part of openapi.api;
 class BalanceTransfer {
   /// Returns a new [BalanceTransfer] instance.
   BalanceTransfer({
-    this.fromPositionId,
-    this.toPositionId,
-    this.transactionId,
+    required this.fromPositionId,
+    required this.toPositionId,
+    required this.transactionId,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? fromPositionId;
+  String fromPositionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? toPositionId;
+  String toPositionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? transactionId;
+  String transactionId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is BalanceTransfer &&
@@ -51,30 +33,18 @@ class BalanceTransfer {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (fromPositionId == null ? 0 : fromPositionId!.hashCode) +
-    (toPositionId == null ? 0 : toPositionId!.hashCode) +
-    (transactionId == null ? 0 : transactionId!.hashCode);
+    (fromPositionId.hashCode) +
+    (toPositionId.hashCode) +
+    (transactionId.hashCode);
 
   @override
   String toString() => 'BalanceTransfer[fromPositionId=$fromPositionId, toPositionId=$toPositionId, transactionId=$transactionId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.fromPositionId != null) {
       json[r'from_position_id'] = this.fromPositionId;
-    } else {
-      json[r'from_position_id'] = null;
-    }
-    if (this.toPositionId != null) {
       json[r'to_position_id'] = this.toPositionId;
-    } else {
-      json[r'to_position_id'] = null;
-    }
-    if (this.transactionId != null) {
       json[r'transaction_id'] = this.transactionId;
-    } else {
-      json[r'transaction_id'] = null;
-    }
     return json;
   }
 
@@ -97,9 +67,9 @@ class BalanceTransfer {
       }());
 
       return BalanceTransfer(
-        fromPositionId: mapValueOfType<String>(json, r'from_position_id'),
-        toPositionId: mapValueOfType<String>(json, r'to_position_id'),
-        transactionId: mapValueOfType<String>(json, r'transaction_id'),
+        fromPositionId: mapValueOfType<String>(json, r'from_position_id')!,
+        toPositionId: mapValueOfType<String>(json, r'to_position_id')!,
+        transactionId: mapValueOfType<String>(json, r'transaction_id')!,
       );
     }
     return null;
@@ -147,6 +117,9 @@ class BalanceTransfer {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'from_position_id',
+    'to_position_id',
+    'transaction_id',
   };
 }
 

@@ -13,34 +13,16 @@ part of openapi.api;
 class PoolPrice {
   /// Returns a new [PoolPrice] instance.
   PoolPrice({
-    this.poolId,
-    this.price,
-    this.timestamp,
+    required this.poolId,
+    required this.price,
+    required this.timestamp,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? poolId;
+  String poolId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? price;
+  String price;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? timestamp;
+  DateTime timestamp;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PoolPrice &&
@@ -51,30 +33,18 @@ class PoolPrice {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (poolId == null ? 0 : poolId!.hashCode) +
-    (price == null ? 0 : price!.hashCode) +
-    (timestamp == null ? 0 : timestamp!.hashCode);
+    (poolId.hashCode) +
+    (price.hashCode) +
+    (timestamp.hashCode);
 
   @override
   String toString() => 'PoolPrice[poolId=$poolId, price=$price, timestamp=$timestamp]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.poolId != null) {
       json[r'pool_id'] = this.poolId;
-    } else {
-      json[r'pool_id'] = null;
-    }
-    if (this.price != null) {
       json[r'price'] = this.price;
-    } else {
-      json[r'price'] = null;
-    }
-    if (this.timestamp != null) {
-      json[r'timestamp'] = this.timestamp!.toUtc().toIso8601String();
-    } else {
-      json[r'timestamp'] = null;
-    }
+      json[r'timestamp'] = this.timestamp.toUtc().toIso8601String();
     return json;
   }
 
@@ -97,9 +67,9 @@ class PoolPrice {
       }());
 
       return PoolPrice(
-        poolId: mapValueOfType<String>(json, r'pool_id'),
-        price: mapValueOfType<String>(json, r'price'),
-        timestamp: mapDateTime(json, r'timestamp', r''),
+        poolId: mapValueOfType<String>(json, r'pool_id')!,
+        price: mapValueOfType<String>(json, r'price')!,
+        timestamp: mapDateTime(json, r'timestamp', r'')!,
       );
     }
     return null;
@@ -147,6 +117,9 @@ class PoolPrice {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'pool_id',
+    'price',
+    'timestamp',
   };
 }
 

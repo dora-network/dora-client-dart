@@ -13,17 +13,11 @@ part of openapi.api;
 class UnitedPosition {
   /// Returns a new [UnitedPosition] instance.
   UnitedPosition({
-    this.globalPositionId,
+    required this.globalPositionId,
     this.transactionIds = const [],
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? globalPositionId;
+  String globalPositionId;
 
   List<String> transactionIds;
 
@@ -35,7 +29,7 @@ class UnitedPosition {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (globalPositionId == null ? 0 : globalPositionId!.hashCode) +
+    (globalPositionId.hashCode) +
     (transactionIds.hashCode);
 
   @override
@@ -43,11 +37,7 @@ class UnitedPosition {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.globalPositionId != null) {
       json[r'global_position_id'] = this.globalPositionId;
-    } else {
-      json[r'global_position_id'] = null;
-    }
       json[r'transaction_ids'] = this.transactionIds;
     return json;
   }
@@ -71,7 +61,7 @@ class UnitedPosition {
       }());
 
       return UnitedPosition(
-        globalPositionId: mapValueOfType<String>(json, r'global_position_id'),
+        globalPositionId: mapValueOfType<String>(json, r'global_position_id')!,
         transactionIds: json[r'transaction_ids'] is Iterable
             ? (json[r'transaction_ids'] as Iterable).cast<String>().toList(growable: false)
             : const [],
@@ -122,6 +112,7 @@ class UnitedPosition {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'global_position_id',
   };
 }
 

@@ -61,8 +61,8 @@ class UserInterest {
       }());
 
       return UserInterest(
-        available: mapCastOfType<String, int>(json, r'available') ?? const {},
-        value: mapCastOfType<String, String>(json, r'value') ?? const {},
+        available: mapCastOfType<String, int>(json, r'available')!,
+        value: mapCastOfType<String, String>(json, r'value')!,
       );
     }
     return null;
@@ -110,6 +110,8 @@ class UserInterest {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'available',
+    'value',
   };
 }
 

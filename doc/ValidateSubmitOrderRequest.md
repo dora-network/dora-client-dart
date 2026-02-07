@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **userBalance** | **String** | User balance used to ensure they can afford the requested quantity | 
 **baseAssetId** | **String** | base asset of orderbook | [optional] 
 **quoteAssetId** | **String** | quote asset of orderbook | [optional] 
+**clientOrderId** | **String** | An optional client-provided identifier for the order. | [optional] 
 **positionAssets** | [**List<PositionAsset>**](PositionAsset.md) | Full list of assets in the position with their price and collateral weight, required when inverse_leverage < 1 for leverage health checks | [optional] [default to const []]
 **assetsConfig** | [**List<AssetConfig>**](AssetConfig.md) | Configuration for the assets in the order | [optional] [default to const []]
 

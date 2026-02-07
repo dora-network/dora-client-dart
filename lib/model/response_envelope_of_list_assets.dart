@@ -15,7 +15,7 @@ class ResponseEnvelopeOfListAssets {
   ResponseEnvelopeOfListAssets({
     this.data = const [],
     this.error,
-    this.metadata,
+    required this.metadata,
   });
 
   List<Asset> data;
@@ -30,13 +30,7 @@ class ResponseEnvelopeOfListAssets {
   String? error;
 
   /// Metadata about the response, including status code and trace information.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  Metadata? metadata;
+  Metadata metadata;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ResponseEnvelopeOfListAssets &&
@@ -49,7 +43,7 @@ class ResponseEnvelopeOfListAssets {
     // ignore: unnecessary_parenthesis
     (data.hashCode) +
     (error == null ? 0 : error!.hashCode) +
-    (metadata == null ? 0 : metadata!.hashCode);
+    (metadata.hashCode);
 
   @override
   String toString() => 'ResponseEnvelopeOfListAssets[data=$data, error=$error, metadata=$metadata]';
@@ -62,11 +56,7 @@ class ResponseEnvelopeOfListAssets {
     } else {
       json[r'error'] = null;
     }
-    if (this.metadata != null) {
       json[r'metadata'] = this.metadata;
-    } else {
-      json[r'metadata'] = null;
-    }
     return json;
   }
 
@@ -91,7 +81,7 @@ class ResponseEnvelopeOfListAssets {
       return ResponseEnvelopeOfListAssets(
         data: Asset.listFromJson(json[r'data']),
         error: mapValueOfType<String>(json, r'error'),
-        metadata: Metadata.fromJson(json[r'metadata']),
+        metadata: Metadata.fromJson(json[r'metadata'])!,
       );
     }
     return null;
@@ -139,6 +129,7 @@ class ResponseEnvelopeOfListAssets {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'metadata',
   };
 }
 

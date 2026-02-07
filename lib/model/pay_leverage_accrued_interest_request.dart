@@ -13,68 +13,38 @@ part of openapi.api;
 class PayLeverageAccruedInterestRequest {
   /// Returns a new [PayLeverageAccruedInterestRequest] instance.
   PayLeverageAccruedInterestRequest({
-    this.assetId,
-    this.positionId,
-    this.quantity,
+    required this.positionId,
+    required this.assetId,
+    required this.quantity,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? assetId;
+  String positionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? positionId;
+  String assetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? quantity;
+  String quantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PayLeverageAccruedInterestRequest &&
-    other.assetId == assetId &&
     other.positionId == positionId &&
+    other.assetId == assetId &&
     other.quantity == quantity;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (assetId == null ? 0 : assetId!.hashCode) +
-    (positionId == null ? 0 : positionId!.hashCode) +
-    (quantity == null ? 0 : quantity!.hashCode);
+    (positionId.hashCode) +
+    (assetId.hashCode) +
+    (quantity.hashCode);
 
   @override
-  String toString() => 'PayLeverageAccruedInterestRequest[assetId=$assetId, positionId=$positionId, quantity=$quantity]';
+  String toString() => 'PayLeverageAccruedInterestRequest[positionId=$positionId, assetId=$assetId, quantity=$quantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.assetId != null) {
-      json[r'asset_id'] = this.assetId;
-    } else {
-      json[r'asset_id'] = null;
-    }
-    if (this.positionId != null) {
       json[r'position_id'] = this.positionId;
-    } else {
-      json[r'position_id'] = null;
-    }
-    if (this.quantity != null) {
+      json[r'asset_id'] = this.assetId;
       json[r'quantity'] = this.quantity;
-    } else {
-      json[r'quantity'] = null;
-    }
     return json;
   }
 
@@ -97,9 +67,9 @@ class PayLeverageAccruedInterestRequest {
       }());
 
       return PayLeverageAccruedInterestRequest(
-        assetId: mapValueOfType<String>(json, r'asset_id'),
-        positionId: mapValueOfType<String>(json, r'position_id'),
-        quantity: mapValueOfType<String>(json, r'quantity'),
+        positionId: mapValueOfType<String>(json, r'position_id')!,
+        assetId: mapValueOfType<String>(json, r'asset_id')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
       );
     }
     return null;
@@ -147,6 +117,9 @@ class PayLeverageAccruedInterestRequest {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'position_id',
+    'asset_id',
+    'quantity',
   };
 }
 

@@ -13,17 +13,11 @@ part of openapi.api;
 class CreateAPIKeyRequest {
   /// Returns a new [CreateAPIKeyRequest] instance.
   CreateAPIKeyRequest({
-    this.label,
+    required this.label,
     this.expires,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? label;
+  String label;
 
   /// Date at which the api-key will expire
   ///
@@ -42,7 +36,7 @@ class CreateAPIKeyRequest {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (label == null ? 0 : label!.hashCode) +
+    (label.hashCode) +
     (expires == null ? 0 : expires!.hashCode);
 
   @override
@@ -50,11 +44,7 @@ class CreateAPIKeyRequest {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.label != null) {
       json[r'label'] = this.label;
-    } else {
-      json[r'label'] = null;
-    }
     if (this.expires != null) {
       json[r'expires'] = this.expires!.toUtc().toIso8601String();
     } else {
@@ -82,7 +72,7 @@ class CreateAPIKeyRequest {
       }());
 
       return CreateAPIKeyRequest(
-        label: mapValueOfType<String>(json, r'label'),
+        label: mapValueOfType<String>(json, r'label')!,
         expires: mapDateTime(json, r'expires', r''),
       );
     }
@@ -131,6 +121,7 @@ class CreateAPIKeyRequest {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'label',
   };
 }
 

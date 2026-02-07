@@ -13,31 +13,19 @@ part of openapi.api;
 class OrderBookDepth {
   /// Returns a new [OrderBookDepth] instance.
   OrderBookDepth({
-    this.orderBookId,
+    required this.orderBookId,
     this.bids = const [],
     this.asks = const [],
-    this.timestamp,
+    required this.timestamp,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderBookId;
+  String orderBookId;
 
   List<PriceLevel> bids;
 
   List<PriceLevel> asks;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? timestamp;
+  DateTime timestamp;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderBookDepth &&
@@ -49,28 +37,20 @@ class OrderBookDepth {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (orderBookId == null ? 0 : orderBookId!.hashCode) +
+    (orderBookId.hashCode) +
     (bids.hashCode) +
     (asks.hashCode) +
-    (timestamp == null ? 0 : timestamp!.hashCode);
+    (timestamp.hashCode);
 
   @override
   String toString() => 'OrderBookDepth[orderBookId=$orderBookId, bids=$bids, asks=$asks, timestamp=$timestamp]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.orderBookId != null) {
       json[r'order_book_id'] = this.orderBookId;
-    } else {
-      json[r'order_book_id'] = null;
-    }
       json[r'bids'] = this.bids;
       json[r'asks'] = this.asks;
-    if (this.timestamp != null) {
-      json[r'timestamp'] = this.timestamp!.toUtc().toIso8601String();
-    } else {
-      json[r'timestamp'] = null;
-    }
+      json[r'timestamp'] = this.timestamp.toUtc().toIso8601String();
     return json;
   }
 
@@ -93,10 +73,10 @@ class OrderBookDepth {
       }());
 
       return OrderBookDepth(
-        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
+        orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
         bids: PriceLevel.listFromJson(json[r'bids']),
         asks: PriceLevel.listFromJson(json[r'asks']),
-        timestamp: mapDateTime(json, r'timestamp', r''),
+        timestamp: mapDateTime(json, r'timestamp', r'')!,
       );
     }
     return null;
@@ -144,6 +124,10 @@ class OrderBookDepth {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'order_book_id',
+    'bids',
+    'asks',
+    'timestamp',
   };
 }
 

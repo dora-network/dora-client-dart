@@ -13,22 +13,16 @@ part of openapi.api;
 class UserConfig {
   /// Returns a new [UserConfig] instance.
   UserConfig({
-    this.id,
+    required this.id,
     this.photoUrl,
     this.timezone,
-    this.createdAt,
-    this.updatedAt,
-    this.showTutorialCards,
-    this.notificationsEnabled,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.showTutorialCards,
+    required this.notificationsEnabled,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? id;
+  String id;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -47,37 +41,13 @@ class UserConfig {
   ///
   String? timezone;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? createdAt;
+  DateTime createdAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? updatedAt;
+  DateTime updatedAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? showTutorialCards;
+  bool showTutorialCards;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? notificationsEnabled;
+  bool notificationsEnabled;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserConfig &&
@@ -92,24 +62,20 @@ class UserConfig {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (id == null ? 0 : id!.hashCode) +
+    (id.hashCode) +
     (photoUrl == null ? 0 : photoUrl!.hashCode) +
     (timezone == null ? 0 : timezone!.hashCode) +
-    (createdAt == null ? 0 : createdAt!.hashCode) +
-    (updatedAt == null ? 0 : updatedAt!.hashCode) +
-    (showTutorialCards == null ? 0 : showTutorialCards!.hashCode) +
-    (notificationsEnabled == null ? 0 : notificationsEnabled!.hashCode);
+    (createdAt.hashCode) +
+    (updatedAt.hashCode) +
+    (showTutorialCards.hashCode) +
+    (notificationsEnabled.hashCode);
 
   @override
   String toString() => 'UserConfig[id=$id, photoUrl=$photoUrl, timezone=$timezone, createdAt=$createdAt, updatedAt=$updatedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.id != null) {
       json[r'id'] = this.id;
-    } else {
-      json[r'id'] = null;
-    }
     if (this.photoUrl != null) {
       json[r'photo_url'] = this.photoUrl;
     } else {
@@ -120,26 +86,10 @@ class UserConfig {
     } else {
       json[r'timezone'] = null;
     }
-    if (this.createdAt != null) {
-      json[r'created_at'] = this.createdAt!.toUtc().toIso8601String();
-    } else {
-      json[r'created_at'] = null;
-    }
-    if (this.updatedAt != null) {
-      json[r'updated_at'] = this.updatedAt!.toUtc().toIso8601String();
-    } else {
-      json[r'updated_at'] = null;
-    }
-    if (this.showTutorialCards != null) {
+      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
+      json[r'updated_at'] = this.updatedAt.toUtc().toIso8601String();
       json[r'show_tutorial_cards'] = this.showTutorialCards;
-    } else {
-      json[r'show_tutorial_cards'] = null;
-    }
-    if (this.notificationsEnabled != null) {
       json[r'notifications_enabled'] = this.notificationsEnabled;
-    } else {
-      json[r'notifications_enabled'] = null;
-    }
     return json;
   }
 
@@ -162,13 +112,13 @@ class UserConfig {
       }());
 
       return UserConfig(
-        id: mapValueOfType<String>(json, r'id'),
+        id: mapValueOfType<String>(json, r'id')!,
         photoUrl: mapValueOfType<String>(json, r'photo_url'),
         timezone: mapValueOfType<String>(json, r'timezone'),
-        createdAt: mapDateTime(json, r'created_at', r''),
-        updatedAt: mapDateTime(json, r'updated_at', r''),
-        showTutorialCards: mapValueOfType<bool>(json, r'show_tutorial_cards'),
-        notificationsEnabled: mapValueOfType<bool>(json, r'notifications_enabled'),
+        createdAt: mapDateTime(json, r'created_at', r'')!,
+        updatedAt: mapDateTime(json, r'updated_at', r'')!,
+        showTutorialCards: mapValueOfType<bool>(json, r'show_tutorial_cards')!,
+        notificationsEnabled: mapValueOfType<bool>(json, r'notifications_enabled')!,
       );
     }
     return null;
@@ -216,6 +166,11 @@ class UserConfig {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'id',
+    'created_at',
+    'updated_at',
+    'show_tutorial_cards',
+    'notifications_enabled',
   };
 }
 

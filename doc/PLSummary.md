@@ -8,11 +8,11 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**leverage** | **String** | The leverage used to obtain the position on the isolated account | [optional] 
-**accountEquity** | **String** |  | [optional] 
-**available** | **String** |  | [optional] 
-**health** | **String** |  | [optional] 
-**ltv** | **String** |  | [optional] 
+**leverage** | **String** | The leverage used to obtain the position on the isolated account | 
+**accountEquity** | **String** |  | 
+**available** | **String** |  | 
+**health** | **String** |  | 
+**ltv** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

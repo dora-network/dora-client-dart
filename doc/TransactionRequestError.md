@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**Object**](.md) | The response data. Present for successful (2xx) responses. | [optional] 
 **error** | **String** |  | [optional] 
-**metadata** | [**Metadata**](Metadata.md) | Metadata about the response, including status code and trace information. | [optional] 
+**metadata** | [**Metadata**](Metadata.md) | Metadata about the response, including status code and trace information. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

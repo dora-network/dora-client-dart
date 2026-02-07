@@ -51,36 +51,6 @@ void main() {
       // TODO
     });
 
-    // Map<String, String> notionalLong (default value: const {})
-    test('to test the property `notionalLong`', () async {
-      // TODO
-    });
-
-    // Map<String, String> notionalShort (default value: const {})
-    test('to test the property `notionalShort`', () async {
-      // TODO
-    });
-
-    // Map<String, String> portfolioValue (default value: const {})
-    test('to test the property `portfolioValue`', () async {
-      // TODO
-    });
-
-    // Map<String, String> netLiquidationValue (default value: const {})
-    test('to test the property `netLiquidationValue`', () async {
-      // TODO
-    });
-
-    // Map<String, String> unrealizedPnl (default value: const {})
-    test('to test the property `unrealizedPnl`', () async {
-      // TODO
-    });
-
-    // Map<String, String> realizedPnl (default value: const {})
-    test('to test the property `realizedPnl`', () async {
-      // TODO
-    });
-
 
   });
 

@@ -51,11 +51,6 @@ void main() {
       // TODO
     });
 
-    // String maturityId
-    test('to test the property `maturityId`', () async {
-      // TODO
-    });
-
     // int maxSupply
     test('to test the property `maxSupply`', () async {
       // TODO
@@ -113,6 +108,11 @@ void main() {
 
     // num maxLeverage
     test('to test the property `maxLeverage`', () async {
+      // TODO
+    });
+
+    // num leverageInterestRate (default value: 0)
+    test('to test the property `leverageInterestRate`', () async {
       // TODO
     });
 

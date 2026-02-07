@@ -434,8 +434,6 @@ class ApiClient {
           return StreamUserCouponPaymentsEntry.fromJson(value);
         case 'StreamUserCouponPaymentsResponse':
           return StreamUserCouponPaymentsResponse.fromJson(value);
-        case 'StreamedAssetPrice':
-          return StreamedAssetPrice.fromJson(value);
         case 'Supply':
           return Supply.fromJson(value);
         case 'SupplyRequest':

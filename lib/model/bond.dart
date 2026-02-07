@@ -13,36 +13,24 @@ part of openapi.api;
 class Bond {
   /// Returns a new [Bond] instance.
   Bond({
-    this.id,
-    this.kind,
+    required this.id,
+    required this.kind,
     this.couponStartAt,
-    this.createdAt,
+    required this.createdAt,
     this.finalCouponAt,
-    this.isin,
-    this.issuedAt,
-    this.issuer,
-    this.maturityAt,
-    this.principalValue,
-    this.paymentsPerYear,
-    this.paymentsEvery,
+    required this.isin,
+    required this.issuedAt,
+    required this.issuer,
+    required this.maturityAt,
+    required this.principalValue,
+    required this.paymentsPerYear,
+    required this.paymentsEvery,
     this.nextCouponPayment,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? id;
+  String id;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  BondKind? kind;
+  BondKind kind;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -52,13 +40,7 @@ class Bond {
   ///
   DateTime? couponStartAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? createdAt;
+  DateTime createdAt;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -68,64 +50,23 @@ class Bond {
   ///
   DateTime? finalCouponAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? isin;
+  String isin;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? issuedAt;
+  DateTime issuedAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? issuer;
+  String issuer;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? maturityAt;
+  DateTime maturityAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? principalValue;
+  double principalValue;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? paymentsPerYear;
+  /// Minimum value: 0
+  int paymentsPerYear;
 
   /// Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond)
   ///
   /// Minimum value: 1000
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? paymentsEvery;
+  int paymentsEvery;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -154,18 +95,18 @@ class Bond {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (id == null ? 0 : id!.hashCode) +
-    (kind == null ? 0 : kind!.hashCode) +
+    (id.hashCode) +
+    (kind.hashCode) +
     (couponStartAt == null ? 0 : couponStartAt!.hashCode) +
-    (createdAt == null ? 0 : createdAt!.hashCode) +
+    (createdAt.hashCode) +
     (finalCouponAt == null ? 0 : finalCouponAt!.hashCode) +
-    (isin == null ? 0 : isin!.hashCode) +
-    (issuedAt == null ? 0 : issuedAt!.hashCode) +
-    (issuer == null ? 0 : issuer!.hashCode) +
-    (maturityAt == null ? 0 : maturityAt!.hashCode) +
-    (principalValue == null ? 0 : principalValue!.hashCode) +
-    (paymentsPerYear == null ? 0 : paymentsPerYear!.hashCode) +
-    (paymentsEvery == null ? 0 : paymentsEvery!.hashCode) +
+    (isin.hashCode) +
+    (issuedAt.hashCode) +
+    (issuer.hashCode) +
+    (maturityAt.hashCode) +
+    (principalValue.hashCode) +
+    (paymentsPerYear.hashCode) +
+    (paymentsEvery.hashCode) +
     (nextCouponPayment == null ? 0 : nextCouponPayment!.hashCode);
 
   @override
@@ -173,66 +114,26 @@ class Bond {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.id != null) {
       json[r'id'] = this.id;
-    } else {
-      json[r'id'] = null;
-    }
-    if (this.kind != null) {
       json[r'kind'] = this.kind;
-    } else {
-      json[r'kind'] = null;
-    }
     if (this.couponStartAt != null) {
       json[r'coupon_start_at'] = this.couponStartAt!.toUtc().toIso8601String();
     } else {
       json[r'coupon_start_at'] = null;
     }
-    if (this.createdAt != null) {
-      json[r'created_at'] = this.createdAt!.toUtc().toIso8601String();
-    } else {
-      json[r'created_at'] = null;
-    }
+      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
     if (this.finalCouponAt != null) {
       json[r'final_coupon_at'] = this.finalCouponAt!.toUtc().toIso8601String();
     } else {
       json[r'final_coupon_at'] = null;
     }
-    if (this.isin != null) {
       json[r'isin'] = this.isin;
-    } else {
-      json[r'isin'] = null;
-    }
-    if (this.issuedAt != null) {
-      json[r'issued_at'] = this.issuedAt!.toUtc().toIso8601String();
-    } else {
-      json[r'issued_at'] = null;
-    }
-    if (this.issuer != null) {
+      json[r'issued_at'] = this.issuedAt.toUtc().toIso8601String();
       json[r'issuer'] = this.issuer;
-    } else {
-      json[r'issuer'] = null;
-    }
-    if (this.maturityAt != null) {
-      json[r'maturity_at'] = this.maturityAt!.toUtc().toIso8601String();
-    } else {
-      json[r'maturity_at'] = null;
-    }
-    if (this.principalValue != null) {
+      json[r'maturity_at'] = this.maturityAt.toUtc().toIso8601String();
       json[r'principal_value'] = this.principalValue;
-    } else {
-      json[r'principal_value'] = null;
-    }
-    if (this.paymentsPerYear != null) {
       json[r'payments_per_year'] = this.paymentsPerYear;
-    } else {
-      json[r'payments_per_year'] = null;
-    }
-    if (this.paymentsEvery != null) {
       json[r'payments_every'] = this.paymentsEvery;
-    } else {
-      json[r'payments_every'] = null;
-    }
     if (this.nextCouponPayment != null) {
       json[r'next_coupon_payment'] = this.nextCouponPayment!.toUtc().toIso8601String();
     } else {
@@ -260,18 +161,18 @@ class Bond {
       }());
 
       return Bond(
-        id: mapValueOfType<String>(json, r'id'),
-        kind: BondKind.fromJson(json[r'kind']),
+        id: mapValueOfType<String>(json, r'id')!,
+        kind: BondKind.fromJson(json[r'kind'])!,
         couponStartAt: mapDateTime(json, r'coupon_start_at', r''),
-        createdAt: mapDateTime(json, r'created_at', r''),
+        createdAt: mapDateTime(json, r'created_at', r'')!,
         finalCouponAt: mapDateTime(json, r'final_coupon_at', r''),
-        isin: mapValueOfType<String>(json, r'isin'),
-        issuedAt: mapDateTime(json, r'issued_at', r''),
-        issuer: mapValueOfType<String>(json, r'issuer'),
-        maturityAt: mapDateTime(json, r'maturity_at', r''),
-        principalValue: mapValueOfType<String>(json, r'principal_value'),
-        paymentsPerYear: mapValueOfType<int>(json, r'payments_per_year'),
-        paymentsEvery: mapValueOfType<int>(json, r'payments_every'),
+        isin: mapValueOfType<String>(json, r'isin')!,
+        issuedAt: mapDateTime(json, r'issued_at', r'')!,
+        issuer: mapValueOfType<String>(json, r'issuer')!,
+        maturityAt: mapDateTime(json, r'maturity_at', r'')!,
+        principalValue: mapValueOfType<double>(json, r'principal_value')!,
+        paymentsPerYear: mapValueOfType<int>(json, r'payments_per_year')!,
+        paymentsEvery: mapValueOfType<int>(json, r'payments_every')!,
         nextCouponPayment: mapDateTime(json, r'next_coupon_payment', r''),
       );
     }
@@ -320,6 +221,16 @@ class Bond {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'id',
+    'kind',
+    'created_at',
+    'isin',
+    'issued_at',
+    'issuer',
+    'maturity_at',
+    'principal_value',
+    'payments_per_year',
+    'payments_every',
   };
 }
 

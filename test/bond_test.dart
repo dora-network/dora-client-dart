@@ -61,7 +61,7 @@ void main() {
       // TODO
     });
 
-    // String principalValue
+    // double principalValue
     test('to test the property `principalValue`', () async {
       // TODO
     });

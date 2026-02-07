@@ -8,10 +8,10 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assetId** | **String** |  | [optional] 
-**currentTime** | [**DateTime**](DateTime.md) |  | [optional] 
-**currentPrice** | **String** |  | [optional] 
-**yieldToMaturity** | **String** |  | [optional] 
+**assetId** | **String** |  | 
+**currentTime** | [**DateTime**](DateTime.md) |  | 
+**currentPrice** | **String** |  | 
+**yieldToMaturity** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

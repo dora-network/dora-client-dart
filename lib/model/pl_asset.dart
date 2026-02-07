@@ -13,106 +13,52 @@ part of openapi.api;
 class PLAsset {
   /// Returns a new [PLAsset] instance.
   PLAsset({
-    this.symbol,
-    this.side,
-    this.avgEntryPrice,
-    this.markPrice,
-    this.liquidationPrice,
-    this.available,
-    this.borrowed,
-    this.margin,
-    this.unrealizedPl,
-    this.leverageLimit,
+    required this.symbol,
+    required this.side,
+    required this.avgEntryPrice,
+    required this.markPrice,
+    required this.liquidationPrice,
+    required this.available,
+    required this.borrowed,
+    required this.margin,
+    required this.unrealizedPl,
+    required this.leverageLimit,
     this.tp,
     this.sl,
-    this.initialCapital,
+    required this.initialCapital,
     this.impendingBorrows,
-    this.locked,
-    this.unusedCollateral,
+    required this.locked,
+    required this.unusedCollateral,
   });
 
   /// The symbol of the asset
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? symbol;
+  String symbol;
 
   /// The side of the position (LONG or SHORT)
-  PLAssetSideEnum? side;
+  PLAssetSideEnum side;
 
   /// The average entry price of the position
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? avgEntryPrice;
+  String avgEntryPrice;
 
   /// The current mark price for the asset to calculate daily PL. This is usually the close price of the previous day
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? markPrice;
+  String markPrice;
 
   /// The liquidation price of the position
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? liquidationPrice;
+  String liquidationPrice;
 
   /// The available quantity in units of the asset
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? available;
+  String available;
 
   /// The borrowed quantity in units of the asset
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? borrowed;
+  String borrowed;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  Margin? margin;
+  Margin margin;
 
   /// The unrealized profit or loss of the position
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? unrealizedPl;
+  String unrealizedPl;
 
   /// The leverage limit for the position
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? leverageLimit;
+  String leverageLimit;
 
   /// The take profit price set for the position, if any
   ///
@@ -133,13 +79,7 @@ class PLAsset {
   String? sl;
 
   /// The initial capital of the position
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? initialCapital;
+  String initialCapital;
 
   /// The impending borrows of the position
   ///
@@ -151,22 +91,10 @@ class PLAsset {
   String? impendingBorrows;
 
   /// The locked amount of the position
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? locked;
+  String locked;
 
   /// The unused collateral of the position
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? unusedCollateral;
+  String unusedCollateral;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PLAsset &&
@@ -190,78 +118,38 @@ class PLAsset {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (symbol == null ? 0 : symbol!.hashCode) +
-    (side == null ? 0 : side!.hashCode) +
-    (avgEntryPrice == null ? 0 : avgEntryPrice!.hashCode) +
-    (markPrice == null ? 0 : markPrice!.hashCode) +
-    (liquidationPrice == null ? 0 : liquidationPrice!.hashCode) +
-    (available == null ? 0 : available!.hashCode) +
-    (borrowed == null ? 0 : borrowed!.hashCode) +
-    (margin == null ? 0 : margin!.hashCode) +
-    (unrealizedPl == null ? 0 : unrealizedPl!.hashCode) +
-    (leverageLimit == null ? 0 : leverageLimit!.hashCode) +
+    (symbol.hashCode) +
+    (side.hashCode) +
+    (avgEntryPrice.hashCode) +
+    (markPrice.hashCode) +
+    (liquidationPrice.hashCode) +
+    (available.hashCode) +
+    (borrowed.hashCode) +
+    (margin.hashCode) +
+    (unrealizedPl.hashCode) +
+    (leverageLimit.hashCode) +
     (tp == null ? 0 : tp!.hashCode) +
     (sl == null ? 0 : sl!.hashCode) +
-    (initialCapital == null ? 0 : initialCapital!.hashCode) +
+    (initialCapital.hashCode) +
     (impendingBorrows == null ? 0 : impendingBorrows!.hashCode) +
-    (locked == null ? 0 : locked!.hashCode) +
-    (unusedCollateral == null ? 0 : unusedCollateral!.hashCode);
+    (locked.hashCode) +
+    (unusedCollateral.hashCode);
 
   @override
   String toString() => 'PLAsset[symbol=$symbol, side=$side, avgEntryPrice=$avgEntryPrice, markPrice=$markPrice, liquidationPrice=$liquidationPrice, available=$available, borrowed=$borrowed, margin=$margin, unrealizedPl=$unrealizedPl, leverageLimit=$leverageLimit, tp=$tp, sl=$sl, initialCapital=$initialCapital, impendingBorrows=$impendingBorrows, locked=$locked, unusedCollateral=$unusedCollateral]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.symbol != null) {
       json[r'symbol'] = this.symbol;
-    } else {
-      json[r'symbol'] = null;
-    }
-    if (this.side != null) {
       json[r'side'] = this.side;
-    } else {
-      json[r'side'] = null;
-    }
-    if (this.avgEntryPrice != null) {
       json[r'avg_entry_price'] = this.avgEntryPrice;
-    } else {
-      json[r'avg_entry_price'] = null;
-    }
-    if (this.markPrice != null) {
       json[r'mark_price'] = this.markPrice;
-    } else {
-      json[r'mark_price'] = null;
-    }
-    if (this.liquidationPrice != null) {
       json[r'liquidation_price'] = this.liquidationPrice;
-    } else {
-      json[r'liquidation_price'] = null;
-    }
-    if (this.available != null) {
       json[r'available'] = this.available;
-    } else {
-      json[r'available'] = null;
-    }
-    if (this.borrowed != null) {
       json[r'borrowed'] = this.borrowed;
-    } else {
-      json[r'borrowed'] = null;
-    }
-    if (this.margin != null) {
       json[r'margin'] = this.margin;
-    } else {
-      json[r'margin'] = null;
-    }
-    if (this.unrealizedPl != null) {
       json[r'unrealized_pl'] = this.unrealizedPl;
-    } else {
-      json[r'unrealized_pl'] = null;
-    }
-    if (this.leverageLimit != null) {
       json[r'leverage_limit'] = this.leverageLimit;
-    } else {
-      json[r'leverage_limit'] = null;
-    }
     if (this.tp != null) {
       json[r'tp'] = this.tp;
     } else {
@@ -272,26 +160,14 @@ class PLAsset {
     } else {
       json[r'sl'] = null;
     }
-    if (this.initialCapital != null) {
       json[r'initial_capital'] = this.initialCapital;
-    } else {
-      json[r'initial_capital'] = null;
-    }
     if (this.impendingBorrows != null) {
       json[r'impending_borrows'] = this.impendingBorrows;
     } else {
       json[r'impending_borrows'] = null;
     }
-    if (this.locked != null) {
       json[r'locked'] = this.locked;
-    } else {
-      json[r'locked'] = null;
-    }
-    if (this.unusedCollateral != null) {
       json[r'unused_collateral'] = this.unusedCollateral;
-    } else {
-      json[r'unused_collateral'] = null;
-    }
     return json;
   }
 
@@ -314,22 +190,22 @@ class PLAsset {
       }());
 
       return PLAsset(
-        symbol: mapValueOfType<String>(json, r'symbol'),
-        side: PLAssetSideEnum.fromJson(json[r'side']),
-        avgEntryPrice: mapValueOfType<String>(json, r'avg_entry_price'),
-        markPrice: mapValueOfType<String>(json, r'mark_price'),
-        liquidationPrice: mapValueOfType<String>(json, r'liquidation_price'),
-        available: mapValueOfType<String>(json, r'available'),
-        borrowed: mapValueOfType<String>(json, r'borrowed'),
-        margin: Margin.fromJson(json[r'margin']),
-        unrealizedPl: mapValueOfType<String>(json, r'unrealized_pl'),
-        leverageLimit: mapValueOfType<String>(json, r'leverage_limit'),
+        symbol: mapValueOfType<String>(json, r'symbol')!,
+        side: PLAssetSideEnum.fromJson(json[r'side'])!,
+        avgEntryPrice: mapValueOfType<String>(json, r'avg_entry_price')!,
+        markPrice: mapValueOfType<String>(json, r'mark_price')!,
+        liquidationPrice: mapValueOfType<String>(json, r'liquidation_price')!,
+        available: mapValueOfType<String>(json, r'available')!,
+        borrowed: mapValueOfType<String>(json, r'borrowed')!,
+        margin: Margin.fromJson(json[r'margin'])!,
+        unrealizedPl: mapValueOfType<String>(json, r'unrealized_pl')!,
+        leverageLimit: mapValueOfType<String>(json, r'leverage_limit')!,
         tp: mapValueOfType<String>(json, r'tp'),
         sl: mapValueOfType<String>(json, r'sl'),
-        initialCapital: mapValueOfType<String>(json, r'initial_capital'),
+        initialCapital: mapValueOfType<String>(json, r'initial_capital')!,
         impendingBorrows: mapValueOfType<String>(json, r'impending_borrows'),
-        locked: mapValueOfType<String>(json, r'locked'),
-        unusedCollateral: mapValueOfType<String>(json, r'unused_collateral'),
+        locked: mapValueOfType<String>(json, r'locked')!,
+        unusedCollateral: mapValueOfType<String>(json, r'unused_collateral')!,
       );
     }
     return null;
@@ -377,6 +253,19 @@ class PLAsset {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'symbol',
+    'side',
+    'avg_entry_price',
+    'mark_price',
+    'liquidation_price',
+    'available',
+    'borrowed',
+    'margin',
+    'unrealized_pl',
+    'leverage_limit',
+    'initial_capital',
+    'locked',
+    'unused_collateral',
   };
 }
 

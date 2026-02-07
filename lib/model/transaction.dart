@@ -13,79 +13,37 @@ part of openapi.api;
 class Transaction {
   /// Returns a new [Transaction] instance.
   Transaction({
-    this.id,
-    this.createdAt,
-    this.kind,
-    this.asset0,
-    this.quantity0,
-    this.quantity1,
-    this.asset1,
-    this.userId,
+    required this.id,
+    required this.createdAt,
+    required this.kind,
+    required this.asset0,
+    required this.quantity0,
+    required this.quantity1,
+    required this.asset1,
+    required this.userId,
+    required this.adminUserId,
+    required this.orderSide,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? id;
+  String id;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? createdAt;
+  DateTime createdAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  TransactionKind? kind;
+  TransactionKind kind;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? asset0;
+  String asset0;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? quantity0;
+  String quantity0;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? quantity1;
+  String quantity1;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? asset1;
+  String asset1;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? userId;
+  String userId;
+
+  String adminUserId;
+
+  Side orderSide;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Transaction &&
@@ -96,65 +54,39 @@ class Transaction {
     other.quantity0 == quantity0 &&
     other.quantity1 == quantity1 &&
     other.asset1 == asset1 &&
-    other.userId == userId;
+    other.userId == userId &&
+    other.adminUserId == adminUserId &&
+    other.orderSide == orderSide;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (id == null ? 0 : id!.hashCode) +
-    (createdAt == null ? 0 : createdAt!.hashCode) +
-    (kind == null ? 0 : kind!.hashCode) +
-    (asset0 == null ? 0 : asset0!.hashCode) +
-    (quantity0 == null ? 0 : quantity0!.hashCode) +
-    (quantity1 == null ? 0 : quantity1!.hashCode) +
-    (asset1 == null ? 0 : asset1!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode);
+    (id.hashCode) +
+    (createdAt.hashCode) +
+    (kind.hashCode) +
+    (asset0.hashCode) +
+    (quantity0.hashCode) +
+    (quantity1.hashCode) +
+    (asset1.hashCode) +
+    (userId.hashCode) +
+    (adminUserId.hashCode) +
+    (orderSide.hashCode);
 
   @override
-  String toString() => 'Transaction[id=$id, createdAt=$createdAt, kind=$kind, asset0=$asset0, quantity0=$quantity0, quantity1=$quantity1, asset1=$asset1, userId=$userId]';
+  String toString() => 'Transaction[id=$id, createdAt=$createdAt, kind=$kind, asset0=$asset0, quantity0=$quantity0, quantity1=$quantity1, asset1=$asset1, userId=$userId, adminUserId=$adminUserId, orderSide=$orderSide]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.id != null) {
       json[r'id'] = this.id;
-    } else {
-      json[r'id'] = null;
-    }
-    if (this.createdAt != null) {
-      json[r'created_at'] = this.createdAt!.toUtc().toIso8601String();
-    } else {
-      json[r'created_at'] = null;
-    }
-    if (this.kind != null) {
+      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
       json[r'kind'] = this.kind;
-    } else {
-      json[r'kind'] = null;
-    }
-    if (this.asset0 != null) {
       json[r'asset0'] = this.asset0;
-    } else {
-      json[r'asset0'] = null;
-    }
-    if (this.quantity0 != null) {
       json[r'quantity0'] = this.quantity0;
-    } else {
-      json[r'quantity0'] = null;
-    }
-    if (this.quantity1 != null) {
       json[r'quantity1'] = this.quantity1;
-    } else {
-      json[r'quantity1'] = null;
-    }
-    if (this.asset1 != null) {
       json[r'asset1'] = this.asset1;
-    } else {
-      json[r'asset1'] = null;
-    }
-    if (this.userId != null) {
       json[r'user_id'] = this.userId;
-    } else {
-      json[r'user_id'] = null;
-    }
+      json[r'admin_user_id'] = this.adminUserId;
+      json[r'order_side'] = this.orderSide;
     return json;
   }
 
@@ -177,14 +109,16 @@ class Transaction {
       }());
 
       return Transaction(
-        id: mapValueOfType<String>(json, r'id'),
-        createdAt: mapDateTime(json, r'created_at', r''),
-        kind: TransactionKind.fromJson(json[r'kind']),
-        asset0: mapValueOfType<String>(json, r'asset0'),
-        quantity0: mapValueOfType<String>(json, r'quantity0'),
-        quantity1: mapValueOfType<String>(json, r'quantity1'),
-        asset1: mapValueOfType<String>(json, r'asset1'),
-        userId: mapValueOfType<String>(json, r'user_id'),
+        id: mapValueOfType<String>(json, r'id')!,
+        createdAt: mapDateTime(json, r'created_at', r'')!,
+        kind: TransactionKind.fromJson(json[r'kind'])!,
+        asset0: mapValueOfType<String>(json, r'asset0')!,
+        quantity0: mapValueOfType<String>(json, r'quantity0')!,
+        quantity1: mapValueOfType<String>(json, r'quantity1')!,
+        asset1: mapValueOfType<String>(json, r'asset1')!,
+        userId: mapValueOfType<String>(json, r'user_id')!,
+        adminUserId: mapValueOfType<String>(json, r'admin_user_id')!,
+        orderSide: Side.fromJson(json[r'order_side'])!,
       );
     }
     return null;
@@ -232,6 +166,16 @@ class Transaction {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'id',
+    'created_at',
+    'kind',
+    'asset0',
+    'quantity0',
+    'quantity1',
+    'asset1',
+    'user_id',
+    'admin_user_id',
+    'order_side',
   };
 }
 

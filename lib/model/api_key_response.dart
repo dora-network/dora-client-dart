@@ -13,36 +13,18 @@ part of openapi.api;
 class APIKeyResponse {
   /// Returns a new [APIKeyResponse] instance.
   APIKeyResponse({
-    this.userId,
-    this.keyId,
-    this.label,
+    required this.userId,
+    required this.keyId,
+    required this.label,
     this.expiresAt,
-    this.isActive,
+    required this.isActive,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? userId;
+  String userId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? keyId;
+  String keyId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? label;
+  String label;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -52,13 +34,7 @@ class APIKeyResponse {
   ///
   DateTime? expiresAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? isActive;
+  bool isActive;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is APIKeyResponse &&
@@ -71,42 +47,26 @@ class APIKeyResponse {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (userId == null ? 0 : userId!.hashCode) +
-    (keyId == null ? 0 : keyId!.hashCode) +
-    (label == null ? 0 : label!.hashCode) +
+    (userId.hashCode) +
+    (keyId.hashCode) +
+    (label.hashCode) +
     (expiresAt == null ? 0 : expiresAt!.hashCode) +
-    (isActive == null ? 0 : isActive!.hashCode);
+    (isActive.hashCode);
 
   @override
   String toString() => 'APIKeyResponse[userId=$userId, keyId=$keyId, label=$label, expiresAt=$expiresAt, isActive=$isActive]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.userId != null) {
       json[r'user_id'] = this.userId;
-    } else {
-      json[r'user_id'] = null;
-    }
-    if (this.keyId != null) {
       json[r'key_id'] = this.keyId;
-    } else {
-      json[r'key_id'] = null;
-    }
-    if (this.label != null) {
       json[r'label'] = this.label;
-    } else {
-      json[r'label'] = null;
-    }
     if (this.expiresAt != null) {
       json[r'expires_at'] = this.expiresAt!.toUtc().toIso8601String();
     } else {
       json[r'expires_at'] = null;
     }
-    if (this.isActive != null) {
       json[r'is_active'] = this.isActive;
-    } else {
-      json[r'is_active'] = null;
-    }
     return json;
   }
 
@@ -129,11 +89,11 @@ class APIKeyResponse {
       }());
 
       return APIKeyResponse(
-        userId: mapValueOfType<String>(json, r'user_id'),
-        keyId: mapValueOfType<String>(json, r'key_id'),
-        label: mapValueOfType<String>(json, r'label'),
+        userId: mapValueOfType<String>(json, r'user_id')!,
+        keyId: mapValueOfType<String>(json, r'key_id')!,
+        label: mapValueOfType<String>(json, r'label')!,
         expiresAt: mapDateTime(json, r'expires_at', r''),
-        isActive: mapValueOfType<bool>(json, r'is_active'),
+        isActive: mapValueOfType<bool>(json, r'is_active')!,
       );
     }
     return null;
@@ -181,6 +141,10 @@ class APIKeyResponse {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'user_id',
+    'key_id',
+    'label',
+    'is_active',
   };
 }
 

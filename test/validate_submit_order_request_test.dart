@@ -73,6 +73,12 @@ void main() {
       // TODO
     });
 
+    // An optional client-provided identifier for the order.
+    // String clientOrderId
+    test('to test the property `clientOrderId`', () async {
+      // TODO
+    });
+
     // Full list of assets in the position with their price and collateral weight, required when inverse_leverage < 1 for leverage health checks
     // List<PositionAsset> positionAssets (default value: const [])
     test('to test the property `positionAssets`', () async {

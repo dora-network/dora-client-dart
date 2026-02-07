@@ -13,53 +13,23 @@ part of openapi.api;
 class PLSummary {
   /// Returns a new [PLSummary] instance.
   PLSummary({
-    this.leverage,
-    this.accountEquity,
-    this.available,
-    this.health,
-    this.ltv,
+    required this.leverage,
+    required this.accountEquity,
+    required this.available,
+    required this.health,
+    required this.ltv,
   });
 
   /// The leverage used to obtain the position on the isolated account
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? leverage;
+  String leverage;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? accountEquity;
+  String accountEquity;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? available;
+  String available;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? health;
+  String health;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? ltv;
+  String ltv;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PLSummary &&
@@ -72,42 +42,22 @@ class PLSummary {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (leverage == null ? 0 : leverage!.hashCode) +
-    (accountEquity == null ? 0 : accountEquity!.hashCode) +
-    (available == null ? 0 : available!.hashCode) +
-    (health == null ? 0 : health!.hashCode) +
-    (ltv == null ? 0 : ltv!.hashCode);
+    (leverage.hashCode) +
+    (accountEquity.hashCode) +
+    (available.hashCode) +
+    (health.hashCode) +
+    (ltv.hashCode);
 
   @override
   String toString() => 'PLSummary[leverage=$leverage, accountEquity=$accountEquity, available=$available, health=$health, ltv=$ltv]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.leverage != null) {
       json[r'leverage'] = this.leverage;
-    } else {
-      json[r'leverage'] = null;
-    }
-    if (this.accountEquity != null) {
       json[r'account_equity'] = this.accountEquity;
-    } else {
-      json[r'account_equity'] = null;
-    }
-    if (this.available != null) {
       json[r'available'] = this.available;
-    } else {
-      json[r'available'] = null;
-    }
-    if (this.health != null) {
       json[r'health'] = this.health;
-    } else {
-      json[r'health'] = null;
-    }
-    if (this.ltv != null) {
       json[r'ltv'] = this.ltv;
-    } else {
-      json[r'ltv'] = null;
-    }
     return json;
   }
 
@@ -130,11 +80,11 @@ class PLSummary {
       }());
 
       return PLSummary(
-        leverage: mapValueOfType<String>(json, r'leverage'),
-        accountEquity: mapValueOfType<String>(json, r'account_equity'),
-        available: mapValueOfType<String>(json, r'available'),
-        health: mapValueOfType<String>(json, r'health'),
-        ltv: mapValueOfType<String>(json, r'ltv'),
+        leverage: mapValueOfType<String>(json, r'leverage')!,
+        accountEquity: mapValueOfType<String>(json, r'account_equity')!,
+        available: mapValueOfType<String>(json, r'available')!,
+        health: mapValueOfType<String>(json, r'health')!,
+        ltv: mapValueOfType<String>(json, r'ltv')!,
       );
     }
     return null;
@@ -182,6 +132,11 @@ class PLSummary {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'leverage',
+    'account_equity',
+    'available',
+    'health',
+    'ltv',
   };
 }
 

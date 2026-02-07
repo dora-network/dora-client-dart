@@ -13,34 +13,16 @@ part of openapi.api;
 class AssetPrice {
   /// Returns a new [AssetPrice] instance.
   AssetPrice({
-    this.assetId,
-    this.price,
-    this.time,
+    required this.assetId,
+    required this.price,
+    required this.time,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? assetId;
+  String assetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? price;
+  String price;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? time;
+  DateTime time;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is AssetPrice &&
@@ -51,30 +33,18 @@ class AssetPrice {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (assetId == null ? 0 : assetId!.hashCode) +
-    (price == null ? 0 : price!.hashCode) +
-    (time == null ? 0 : time!.hashCode);
+    (assetId.hashCode) +
+    (price.hashCode) +
+    (time.hashCode);
 
   @override
   String toString() => 'AssetPrice[assetId=$assetId, price=$price, time=$time]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.assetId != null) {
       json[r'asset_id'] = this.assetId;
-    } else {
-      json[r'asset_id'] = null;
-    }
-    if (this.price != null) {
       json[r'price'] = this.price;
-    } else {
-      json[r'price'] = null;
-    }
-    if (this.time != null) {
-      json[r'time'] = this.time!.toUtc().toIso8601String();
-    } else {
-      json[r'time'] = null;
-    }
+      json[r'time'] = this.time.toUtc().toIso8601String();
     return json;
   }
 
@@ -97,9 +67,9 @@ class AssetPrice {
       }());
 
       return AssetPrice(
-        assetId: mapValueOfType<String>(json, r'asset_id'),
-        price: mapValueOfType<String>(json, r'price'),
-        time: mapDateTime(json, r'time', r''),
+        assetId: mapValueOfType<String>(json, r'asset_id')!,
+        price: mapValueOfType<String>(json, r'price')!,
+        time: mapDateTime(json, r'time', r'')!,
       );
     }
     return null;
@@ -147,6 +117,9 @@ class AssetPrice {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'asset_id',
+    'price',
+    'time',
   };
 }
 

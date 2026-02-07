@@ -24,6 +24,7 @@ class CreateOrderRequest {
     this.goodTillDate,
     this.triggerPrice,
     this.triggerType,
+    this.clientOrderId,
   });
 
   String quantity;
@@ -75,6 +76,15 @@ class CreateOrderRequest {
   ///
   TriggerType? triggerType;
 
+  /// An optional client-provided identifier for the order.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? clientOrderId;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateOrderRequest &&
     other.quantity == quantity &&
@@ -87,7 +97,8 @@ class CreateOrderRequest {
     _deepEquality.equals(other.orderModifiers, orderModifiers) &&
     other.goodTillDate == goodTillDate &&
     other.triggerPrice == triggerPrice &&
-    other.triggerType == triggerType;
+    other.triggerType == triggerType &&
+    other.clientOrderId == clientOrderId;
 
   @override
   int get hashCode =>
@@ -102,10 +113,11 @@ class CreateOrderRequest {
     (orderModifiers.hashCode) +
     (goodTillDate == null ? 0 : goodTillDate!.hashCode) +
     (triggerPrice == null ? 0 : triggerPrice!.hashCode) +
-    (triggerType == null ? 0 : triggerType!.hashCode);
+    (triggerType == null ? 0 : triggerType!.hashCode) +
+    (clientOrderId == null ? 0 : clientOrderId!.hashCode);
 
   @override
-  String toString() => 'CreateOrderRequest[quantity=$quantity, inverseLeverage=$inverseLeverage, price=$price, kind=$kind, side=$side, fromGlobalPosition=$fromGlobalPosition, orderBookId=$orderBookId, orderModifiers=$orderModifiers, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType]';
+  String toString() => 'CreateOrderRequest[quantity=$quantity, inverseLeverage=$inverseLeverage, price=$price, kind=$kind, side=$side, fromGlobalPosition=$fromGlobalPosition, orderBookId=$orderBookId, orderModifiers=$orderModifiers, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType, clientOrderId=$clientOrderId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -135,6 +147,11 @@ class CreateOrderRequest {
       json[r'trigger_type'] = this.triggerType;
     } else {
       json[r'trigger_type'] = null;
+    }
+    if (this.clientOrderId != null) {
+      json[r'client_order_id'] = this.clientOrderId;
+    } else {
+      json[r'client_order_id'] = null;
     }
     return json;
   }
@@ -169,6 +186,7 @@ class CreateOrderRequest {
         goodTillDate: mapDateTime(json, r'good_till_date', r''),
         triggerPrice: mapValueOfType<String>(json, r'trigger_price'),
         triggerType: TriggerType.fromJson(json[r'trigger_type']),
+        clientOrderId: mapValueOfType<String>(json, r'client_order_id'),
       );
     }
     return null;

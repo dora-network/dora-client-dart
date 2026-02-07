@@ -74,6 +74,12 @@ void main() {
       // TODO
     });
 
+    // An optional client-provided identifier for the order.
+    // String clientOrderId
+    test('to test the property `clientOrderId`', () async {
+      // TODO
+    });
+
 
   });
 

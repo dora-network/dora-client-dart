@@ -13,12 +13,12 @@ part of openapi.api;
 class User {
   /// Returns a new [User] instance.
   User({
-    this.id,
+    required this.id,
     this.closedAt,
     this.disabledAt,
-    this.email,
-    this.name,
-    this.nativeAssetId,
+    required this.email,
+    required this.name,
+    required this.nativeAssetId,
     this.photoUrl,
     this.provider,
     this.providerId,
@@ -26,17 +26,11 @@ class User {
     this.timezone,
     this.timezoneOffset,
     this.verifiedAt,
-    this.showTutorialCards,
-    this.notificationsEnabled,
+    required this.showTutorialCards,
+    required this.notificationsEnabled,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? id;
+  String id;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -54,29 +48,11 @@ class User {
   ///
   DateTime? disabledAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? email;
+  String email;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? name;
+  String name;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? nativeAssetId;
+  String nativeAssetId;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -130,21 +106,9 @@ class User {
   ///
   DateTime? verifiedAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? showTutorialCards;
+  bool showTutorialCards;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? notificationsEnabled;
+  bool notificationsEnabled;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is User &&
@@ -167,12 +131,12 @@ class User {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (id == null ? 0 : id!.hashCode) +
+    (id.hashCode) +
     (closedAt == null ? 0 : closedAt!.hashCode) +
     (disabledAt == null ? 0 : disabledAt!.hashCode) +
-    (email == null ? 0 : email!.hashCode) +
-    (name == null ? 0 : name!.hashCode) +
-    (nativeAssetId == null ? 0 : nativeAssetId!.hashCode) +
+    (email.hashCode) +
+    (name.hashCode) +
+    (nativeAssetId.hashCode) +
     (photoUrl == null ? 0 : photoUrl!.hashCode) +
     (provider == null ? 0 : provider!.hashCode) +
     (providerId == null ? 0 : providerId!.hashCode) +
@@ -180,19 +144,15 @@ class User {
     (timezone == null ? 0 : timezone!.hashCode) +
     (timezoneOffset == null ? 0 : timezoneOffset!.hashCode) +
     (verifiedAt == null ? 0 : verifiedAt!.hashCode) +
-    (showTutorialCards == null ? 0 : showTutorialCards!.hashCode) +
-    (notificationsEnabled == null ? 0 : notificationsEnabled!.hashCode);
+    (showTutorialCards.hashCode) +
+    (notificationsEnabled.hashCode);
 
   @override
   String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, name=$name, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.id != null) {
       json[r'id'] = this.id;
-    } else {
-      json[r'id'] = null;
-    }
     if (this.closedAt != null) {
       json[r'closed_at'] = this.closedAt!.toUtc().toIso8601String();
     } else {
@@ -203,21 +163,9 @@ class User {
     } else {
       json[r'disabled_at'] = null;
     }
-    if (this.email != null) {
       json[r'email'] = this.email;
-    } else {
-      json[r'email'] = null;
-    }
-    if (this.name != null) {
       json[r'name'] = this.name;
-    } else {
-      json[r'name'] = null;
-    }
-    if (this.nativeAssetId != null) {
       json[r'native_asset_id'] = this.nativeAssetId;
-    } else {
-      json[r'native_asset_id'] = null;
-    }
     if (this.photoUrl != null) {
       json[r'photo_url'] = this.photoUrl;
     } else {
@@ -249,16 +197,8 @@ class User {
     } else {
       json[r'verified_at'] = null;
     }
-    if (this.showTutorialCards != null) {
       json[r'show_tutorial_cards'] = this.showTutorialCards;
-    } else {
-      json[r'show_tutorial_cards'] = null;
-    }
-    if (this.notificationsEnabled != null) {
       json[r'notifications_enabled'] = this.notificationsEnabled;
-    } else {
-      json[r'notifications_enabled'] = null;
-    }
     return json;
   }
 
@@ -281,12 +221,12 @@ class User {
       }());
 
       return User(
-        id: mapValueOfType<String>(json, r'id'),
+        id: mapValueOfType<String>(json, r'id')!,
         closedAt: mapDateTime(json, r'closed_at', r''),
         disabledAt: mapDateTime(json, r'disabled_at', r''),
-        email: mapValueOfType<String>(json, r'email'),
-        name: mapValueOfType<String>(json, r'name'),
-        nativeAssetId: mapValueOfType<String>(json, r'native_asset_id'),
+        email: mapValueOfType<String>(json, r'email')!,
+        name: mapValueOfType<String>(json, r'name')!,
+        nativeAssetId: mapValueOfType<String>(json, r'native_asset_id')!,
         photoUrl: mapValueOfType<String>(json, r'photo_url'),
         provider: mapValueOfType<String>(json, r'provider'),
         providerId: mapValueOfType<String>(json, r'provider_id'),
@@ -294,8 +234,8 @@ class User {
         timezone: mapValueOfType<String>(json, r'timezone'),
         timezoneOffset: mapValueOfType<int>(json, r'timezone_offset'),
         verifiedAt: mapDateTime(json, r'verified_at', r''),
-        showTutorialCards: mapValueOfType<bool>(json, r'show_tutorial_cards'),
-        notificationsEnabled: mapValueOfType<bool>(json, r'notifications_enabled'),
+        showTutorialCards: mapValueOfType<bool>(json, r'show_tutorial_cards')!,
+        notificationsEnabled: mapValueOfType<bool>(json, r'notifications_enabled')!,
       );
     }
     return null;
@@ -343,6 +283,13 @@ class User {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'id',
+    'email',
+    'name',
+    'native_asset_id',
+    'roles',
+    'show_tutorial_cards',
+    'notifications_enabled',
   };
 }
 

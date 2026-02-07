@@ -13,47 +13,29 @@ part of openapi.api;
 class OrderBookBalance {
   /// Returns a new [OrderBookBalance] instance.
   OrderBookBalance({
-    this.orderBookId,
-    this.baseQuantity,
-    this.quoteQuantity,
-    this.sharesQuantity,
+    required this.orderBookId,
+    required this.baseQuantity,
+    required this.quoteQuantity,
+    required this.sharesQuantity,
   });
 
   /// The ID of the order book.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderBookId;
+  String orderBookId;
 
   /// The quantity of the base asset.
   ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  double? baseQuantity;
+  /// Minimum value: 0
+  double baseQuantity;
 
   /// The quantity of the quote asset.
   ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  double? quoteQuantity;
+  /// Minimum value: 0
+  double quoteQuantity;
 
   /// The quantity of pool shares.
   ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  double? sharesQuantity;
+  /// Minimum value: 0
+  double sharesQuantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderBookBalance &&
@@ -65,36 +47,20 @@ class OrderBookBalance {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (orderBookId == null ? 0 : orderBookId!.hashCode) +
-    (baseQuantity == null ? 0 : baseQuantity!.hashCode) +
-    (quoteQuantity == null ? 0 : quoteQuantity!.hashCode) +
-    (sharesQuantity == null ? 0 : sharesQuantity!.hashCode);
+    (orderBookId.hashCode) +
+    (baseQuantity.hashCode) +
+    (quoteQuantity.hashCode) +
+    (sharesQuantity.hashCode);
 
   @override
   String toString() => 'OrderBookBalance[orderBookId=$orderBookId, baseQuantity=$baseQuantity, quoteQuantity=$quoteQuantity, sharesQuantity=$sharesQuantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.orderBookId != null) {
       json[r'order_book_id'] = this.orderBookId;
-    } else {
-      json[r'order_book_id'] = null;
-    }
-    if (this.baseQuantity != null) {
       json[r'base_quantity'] = this.baseQuantity;
-    } else {
-      json[r'base_quantity'] = null;
-    }
-    if (this.quoteQuantity != null) {
       json[r'quote_quantity'] = this.quoteQuantity;
-    } else {
-      json[r'quote_quantity'] = null;
-    }
-    if (this.sharesQuantity != null) {
       json[r'shares_quantity'] = this.sharesQuantity;
-    } else {
-      json[r'shares_quantity'] = null;
-    }
     return json;
   }
 
@@ -117,10 +83,10 @@ class OrderBookBalance {
       }());
 
       return OrderBookBalance(
-        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
-        baseQuantity: mapValueOfType<double>(json, r'base_quantity'),
-        quoteQuantity: mapValueOfType<double>(json, r'quote_quantity'),
-        sharesQuantity: mapValueOfType<double>(json, r'shares_quantity'),
+        orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
+        baseQuantity: mapValueOfType<double>(json, r'base_quantity')!,
+        quoteQuantity: mapValueOfType<double>(json, r'quote_quantity')!,
+        sharesQuantity: mapValueOfType<double>(json, r'shares_quantity')!,
       );
     }
     return null;
@@ -168,6 +134,10 @@ class OrderBookBalance {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'order_book_id',
+    'base_quantity',
+    'quote_quantity',
+    'shares_quantity',
   };
 }
 

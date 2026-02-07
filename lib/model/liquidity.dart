@@ -13,61 +13,25 @@ part of openapi.api;
 class Liquidity {
   /// Returns a new [Liquidity] instance.
   Liquidity({
-    this.orderBookId,
-    this.positionId,
-    this.transactionId,
-    this.baseQuantity,
-    this.quoteQuantity,
-    this.sharesQuantity,
+    required this.orderBookId,
+    required this.positionId,
+    required this.transactionId,
+    required this.baseQuantity,
+    required this.quoteQuantity,
+    required this.sharesQuantity,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderBookId;
+  String orderBookId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? positionId;
+  String positionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? transactionId;
+  String transactionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? baseQuantity;
+  String baseQuantity;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? quoteQuantity;
+  String quoteQuantity;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? sharesQuantity;
+  String sharesQuantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Liquidity &&
@@ -81,48 +45,24 @@ class Liquidity {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (orderBookId == null ? 0 : orderBookId!.hashCode) +
-    (positionId == null ? 0 : positionId!.hashCode) +
-    (transactionId == null ? 0 : transactionId!.hashCode) +
-    (baseQuantity == null ? 0 : baseQuantity!.hashCode) +
-    (quoteQuantity == null ? 0 : quoteQuantity!.hashCode) +
-    (sharesQuantity == null ? 0 : sharesQuantity!.hashCode);
+    (orderBookId.hashCode) +
+    (positionId.hashCode) +
+    (transactionId.hashCode) +
+    (baseQuantity.hashCode) +
+    (quoteQuantity.hashCode) +
+    (sharesQuantity.hashCode);
 
   @override
   String toString() => 'Liquidity[orderBookId=$orderBookId, positionId=$positionId, transactionId=$transactionId, baseQuantity=$baseQuantity, quoteQuantity=$quoteQuantity, sharesQuantity=$sharesQuantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.orderBookId != null) {
       json[r'order_book_id'] = this.orderBookId;
-    } else {
-      json[r'order_book_id'] = null;
-    }
-    if (this.positionId != null) {
       json[r'position_id'] = this.positionId;
-    } else {
-      json[r'position_id'] = null;
-    }
-    if (this.transactionId != null) {
       json[r'transaction_id'] = this.transactionId;
-    } else {
-      json[r'transaction_id'] = null;
-    }
-    if (this.baseQuantity != null) {
       json[r'base_quantity'] = this.baseQuantity;
-    } else {
-      json[r'base_quantity'] = null;
-    }
-    if (this.quoteQuantity != null) {
       json[r'quote_quantity'] = this.quoteQuantity;
-    } else {
-      json[r'quote_quantity'] = null;
-    }
-    if (this.sharesQuantity != null) {
       json[r'shares_quantity'] = this.sharesQuantity;
-    } else {
-      json[r'shares_quantity'] = null;
-    }
     return json;
   }
 
@@ -145,12 +85,12 @@ class Liquidity {
       }());
 
       return Liquidity(
-        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
-        positionId: mapValueOfType<String>(json, r'position_id'),
-        transactionId: mapValueOfType<String>(json, r'transaction_id'),
-        baseQuantity: mapValueOfType<String>(json, r'base_quantity'),
-        quoteQuantity: mapValueOfType<String>(json, r'quote_quantity'),
-        sharesQuantity: mapValueOfType<String>(json, r'shares_quantity'),
+        orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
+        positionId: mapValueOfType<String>(json, r'position_id')!,
+        transactionId: mapValueOfType<String>(json, r'transaction_id')!,
+        baseQuantity: mapValueOfType<String>(json, r'base_quantity')!,
+        quoteQuantity: mapValueOfType<String>(json, r'quote_quantity')!,
+        sharesQuantity: mapValueOfType<String>(json, r'shares_quantity')!,
       );
     }
     return null;
@@ -198,6 +138,12 @@ class Liquidity {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'order_book_id',
+    'position_id',
+    'transaction_id',
+    'base_quantity',
+    'quote_quantity',
+    'shares_quantity',
   };
 }
 

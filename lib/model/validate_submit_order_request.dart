@@ -23,6 +23,7 @@ class ValidateSubmitOrderRequest {
     required this.userBalance,
     this.baseAssetId,
     this.quoteAssetId,
+    this.clientOrderId,
     this.positionAssets = const [],
     this.assetsConfig = const [],
   });
@@ -78,6 +79,15 @@ class ValidateSubmitOrderRequest {
   ///
   String? quoteAssetId;
 
+  /// An optional client-provided identifier for the order.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? clientOrderId;
+
   /// Full list of assets in the position with their price and collateral weight, required when inverse_leverage < 1 for leverage health checks
   List<PositionAsset> positionAssets;
 
@@ -96,6 +106,7 @@ class ValidateSubmitOrderRequest {
     other.userBalance == userBalance &&
     other.baseAssetId == baseAssetId &&
     other.quoteAssetId == quoteAssetId &&
+    other.clientOrderId == clientOrderId &&
     _deepEquality.equals(other.positionAssets, positionAssets) &&
     _deepEquality.equals(other.assetsConfig, assetsConfig);
 
@@ -112,11 +123,12 @@ class ValidateSubmitOrderRequest {
     (userBalance.hashCode) +
     (baseAssetId == null ? 0 : baseAssetId!.hashCode) +
     (quoteAssetId == null ? 0 : quoteAssetId!.hashCode) +
+    (clientOrderId == null ? 0 : clientOrderId!.hashCode) +
     (positionAssets.hashCode) +
     (assetsConfig.hashCode);
 
   @override
-  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance, baseAssetId=$baseAssetId, quoteAssetId=$quoteAssetId, positionAssets=$positionAssets, assetsConfig=$assetsConfig]';
+  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance, baseAssetId=$baseAssetId, quoteAssetId=$quoteAssetId, clientOrderId=$clientOrderId, positionAssets=$positionAssets, assetsConfig=$assetsConfig]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -145,6 +157,11 @@ class ValidateSubmitOrderRequest {
       json[r'quote_asset_id'] = this.quoteAssetId;
     } else {
       json[r'quote_asset_id'] = null;
+    }
+    if (this.clientOrderId != null) {
+      json[r'client_order_id'] = this.clientOrderId;
+    } else {
+      json[r'client_order_id'] = null;
     }
       json[r'position_assets'] = this.positionAssets;
       json[r'assets_config'] = this.assetsConfig;
@@ -180,6 +197,7 @@ class ValidateSubmitOrderRequest {
         userBalance: mapValueOfType<String>(json, r'user_balance')!,
         baseAssetId: mapValueOfType<String>(json, r'base_asset_id'),
         quoteAssetId: mapValueOfType<String>(json, r'quote_asset_id'),
+        clientOrderId: mapValueOfType<String>(json, r'client_order_id'),
         positionAssets: PositionAsset.listFromJson(json[r'position_assets']),
         assetsConfig: AssetConfig.listFromJson(json[r'assets_config']),
       );

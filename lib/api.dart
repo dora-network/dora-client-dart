@@ -156,7 +156,6 @@ part 'model/stream_trades_entry.dart';
 part 'model/stream_transactions_entry.dart';
 part 'model/stream_user_coupon_payments_entry.dart';
 part 'model/stream_user_coupon_payments_response.dart';
-part 'model/streamed_asset_price.dart';
 part 'model/supply.dart';
 part 'model/supply_request.dart';
 part 'model/supply_response_envelope.dart';

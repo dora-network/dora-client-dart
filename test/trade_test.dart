@@ -31,16 +31,6 @@ void main() {
       // TODO
     });
 
-    // String feeAssetId
-    test('to test the property `feeAssetId`', () async {
-      // TODO
-    });
-
-    // String feeQuantity
-    test('to test the property `feeQuantity`', () async {
-      // TODO
-    });
-
     // String orderBookId
     test('to test the property `orderBookId`', () async {
       // TODO

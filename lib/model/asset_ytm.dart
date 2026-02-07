@@ -13,43 +13,19 @@ part of openapi.api;
 class AssetYTM {
   /// Returns a new [AssetYTM] instance.
   AssetYTM({
-    this.assetId,
-    this.currentTime,
-    this.currentPrice,
-    this.yieldToMaturity,
+    required this.assetId,
+    required this.currentTime,
+    required this.currentPrice,
+    required this.yieldToMaturity,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? assetId;
+  String assetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? currentTime;
+  DateTime currentTime;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? currentPrice;
+  String currentPrice;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? yieldToMaturity;
+  String yieldToMaturity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is AssetYTM &&
@@ -61,36 +37,20 @@ class AssetYTM {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (assetId == null ? 0 : assetId!.hashCode) +
-    (currentTime == null ? 0 : currentTime!.hashCode) +
-    (currentPrice == null ? 0 : currentPrice!.hashCode) +
-    (yieldToMaturity == null ? 0 : yieldToMaturity!.hashCode);
+    (assetId.hashCode) +
+    (currentTime.hashCode) +
+    (currentPrice.hashCode) +
+    (yieldToMaturity.hashCode);
 
   @override
   String toString() => 'AssetYTM[assetId=$assetId, currentTime=$currentTime, currentPrice=$currentPrice, yieldToMaturity=$yieldToMaturity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.assetId != null) {
       json[r'asset_id'] = this.assetId;
-    } else {
-      json[r'asset_id'] = null;
-    }
-    if (this.currentTime != null) {
-      json[r'current_time'] = this.currentTime!.toUtc().toIso8601String();
-    } else {
-      json[r'current_time'] = null;
-    }
-    if (this.currentPrice != null) {
+      json[r'current_time'] = this.currentTime.toUtc().toIso8601String();
       json[r'current_price'] = this.currentPrice;
-    } else {
-      json[r'current_price'] = null;
-    }
-    if (this.yieldToMaturity != null) {
       json[r'yield_to_maturity'] = this.yieldToMaturity;
-    } else {
-      json[r'yield_to_maturity'] = null;
-    }
     return json;
   }
 
@@ -113,10 +73,10 @@ class AssetYTM {
       }());
 
       return AssetYTM(
-        assetId: mapValueOfType<String>(json, r'asset_id'),
-        currentTime: mapDateTime(json, r'current_time', r''),
-        currentPrice: mapValueOfType<String>(json, r'current_price'),
-        yieldToMaturity: mapValueOfType<String>(json, r'yield_to_maturity'),
+        assetId: mapValueOfType<String>(json, r'asset_id')!,
+        currentTime: mapDateTime(json, r'current_time', r'')!,
+        currentPrice: mapValueOfType<String>(json, r'current_price')!,
+        yieldToMaturity: mapValueOfType<String>(json, r'yield_to_maturity')!,
       );
     }
     return null;
@@ -164,6 +124,10 @@ class AssetYTM {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'asset_id',
+    'current_time',
+    'current_price',
+    'yield_to_maturity',
   };
 }
 

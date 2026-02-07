@@ -8,9 +8,9 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assetId** | **String** |  | [optional] 
-**positionId** | **String** |  | [optional] 
-**quantity** | **String** |  | [optional] 
+**positionId** | **String** |  | 
+**assetId** | **String** |  | 
+**quantity** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

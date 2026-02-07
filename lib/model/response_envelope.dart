@@ -15,7 +15,7 @@ class ResponseEnvelope {
   ResponseEnvelope({
     this.data,
     this.error,
-    this.metadata,
+    required this.metadata,
   });
 
   /// The response data. Present for successful (2xx) responses.
@@ -37,13 +37,7 @@ class ResponseEnvelope {
   String? error;
 
   /// Metadata about the response, including status code and trace information.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  Metadata? metadata;
+  Metadata metadata;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ResponseEnvelope &&
@@ -56,7 +50,7 @@ class ResponseEnvelope {
     // ignore: unnecessary_parenthesis
     (data == null ? 0 : data!.hashCode) +
     (error == null ? 0 : error!.hashCode) +
-    (metadata == null ? 0 : metadata!.hashCode);
+    (metadata.hashCode);
 
   @override
   String toString() => 'ResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
@@ -73,11 +67,7 @@ class ResponseEnvelope {
     } else {
       json[r'error'] = null;
     }
-    if (this.metadata != null) {
       json[r'metadata'] = this.metadata;
-    } else {
-      json[r'metadata'] = null;
-    }
     return json;
   }
 
@@ -102,7 +92,7 @@ class ResponseEnvelope {
       return ResponseEnvelope(
         data: mapValueOfType<Object>(json, r'data'),
         error: mapValueOfType<String>(json, r'error'),
-        metadata: Metadata.fromJson(json[r'metadata']),
+        metadata: Metadata.fromJson(json[r'metadata'])!,
       );
     }
     return null;
@@ -150,6 +140,7 @@ class ResponseEnvelope {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'metadata',
   };
 }
 

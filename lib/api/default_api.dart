@@ -3840,7 +3840,7 @@ class DefaultApi {
   /// * [DateTime] since:
   ///
   /// * [String] assetId:
-  Future<Map<String, StreamedAssetPrice>?> streamAssetPrices({ DateTime? since, String? assetId, }) async {
+  Future<Map<String, AssetPrice>?> streamAssetPrices({ DateTime? since, String? assetId, }) async {
     final response = await streamAssetPricesWithHttpInfo( since: since, assetId: assetId, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -3849,7 +3849,7 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return Map<String, StreamedAssetPrice>.from(await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Map<String, StreamedAssetPrice>'),);
+      return Map<String, AssetPrice>.from(await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Map<String, AssetPrice>'),);
 
     }
     return null;

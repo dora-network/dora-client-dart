@@ -13,70 +13,28 @@ part of openapi.api;
 class Candle {
   /// Returns a new [Candle] instance.
   Candle({
-    this.orderBookId,
-    this.startTimestamp,
-    this.open,
-    this.high,
-    this.low,
-    this.close,
-    this.volume,
+    required this.orderBookId,
+    required this.startTimestamp,
+    required this.open,
+    required this.high,
+    required this.low,
+    required this.close,
+    required this.volume,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderBookId;
+  String orderBookId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? startTimestamp;
+  DateTime startTimestamp;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? open;
+  String open;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? high;
+  String high;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? low;
+  String low;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? close;
+  String close;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? volume;
+  String volume;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Candle &&
@@ -91,54 +49,26 @@ class Candle {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (orderBookId == null ? 0 : orderBookId!.hashCode) +
-    (startTimestamp == null ? 0 : startTimestamp!.hashCode) +
-    (open == null ? 0 : open!.hashCode) +
-    (high == null ? 0 : high!.hashCode) +
-    (low == null ? 0 : low!.hashCode) +
-    (close == null ? 0 : close!.hashCode) +
-    (volume == null ? 0 : volume!.hashCode);
+    (orderBookId.hashCode) +
+    (startTimestamp.hashCode) +
+    (open.hashCode) +
+    (high.hashCode) +
+    (low.hashCode) +
+    (close.hashCode) +
+    (volume.hashCode);
 
   @override
   String toString() => 'Candle[orderBookId=$orderBookId, startTimestamp=$startTimestamp, open=$open, high=$high, low=$low, close=$close, volume=$volume]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.orderBookId != null) {
       json[r'order_book_id'] = this.orderBookId;
-    } else {
-      json[r'order_book_id'] = null;
-    }
-    if (this.startTimestamp != null) {
-      json[r'start_timestamp'] = this.startTimestamp!.toUtc().toIso8601String();
-    } else {
-      json[r'start_timestamp'] = null;
-    }
-    if (this.open != null) {
+      json[r'start_timestamp'] = this.startTimestamp.toUtc().toIso8601String();
       json[r'open'] = this.open;
-    } else {
-      json[r'open'] = null;
-    }
-    if (this.high != null) {
       json[r'high'] = this.high;
-    } else {
-      json[r'high'] = null;
-    }
-    if (this.low != null) {
       json[r'low'] = this.low;
-    } else {
-      json[r'low'] = null;
-    }
-    if (this.close != null) {
       json[r'close'] = this.close;
-    } else {
-      json[r'close'] = null;
-    }
-    if (this.volume != null) {
       json[r'volume'] = this.volume;
-    } else {
-      json[r'volume'] = null;
-    }
     return json;
   }
 
@@ -161,13 +91,13 @@ class Candle {
       }());
 
       return Candle(
-        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
-        startTimestamp: mapDateTime(json, r'start_timestamp', r''),
-        open: mapValueOfType<String>(json, r'open'),
-        high: mapValueOfType<String>(json, r'high'),
-        low: mapValueOfType<String>(json, r'low'),
-        close: mapValueOfType<String>(json, r'close'),
-        volume: mapValueOfType<String>(json, r'volume'),
+        orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
+        startTimestamp: mapDateTime(json, r'start_timestamp', r'')!,
+        open: mapValueOfType<String>(json, r'open')!,
+        high: mapValueOfType<String>(json, r'high')!,
+        low: mapValueOfType<String>(json, r'low')!,
+        close: mapValueOfType<String>(json, r'close')!,
+        volume: mapValueOfType<String>(json, r'volume')!,
       );
     }
     return null;
@@ -215,6 +145,13 @@ class Candle {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'order_book_id',
+    'start_timestamp',
+    'open',
+    'high',
+    'low',
+    'close',
+    'volume',
   };
 }
 

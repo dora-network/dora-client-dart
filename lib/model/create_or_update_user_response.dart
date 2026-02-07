@@ -13,17 +13,11 @@ part of openapi.api;
 class CreateOrUpdateUserResponse {
   /// Returns a new [CreateOrUpdateUserResponse] instance.
   CreateOrUpdateUserResponse({
-    this.id,
+    required this.id,
   });
 
   /// The ID of the created or updated user.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? id;
+  String id;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateOrUpdateUserResponse &&
@@ -32,18 +26,14 @@ class CreateOrUpdateUserResponse {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (id == null ? 0 : id!.hashCode);
+    (id.hashCode);
 
   @override
   String toString() => 'CreateOrUpdateUserResponse[id=$id]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.id != null) {
       json[r'id'] = this.id;
-    } else {
-      json[r'id'] = null;
-    }
     return json;
   }
 
@@ -66,7 +56,7 @@ class CreateOrUpdateUserResponse {
       }());
 
       return CreateOrUpdateUserResponse(
-        id: mapValueOfType<String>(json, r'id'),
+        id: mapValueOfType<String>(json, r'id')!,
       );
     }
     return null;
@@ -114,6 +104,7 @@ class CreateOrUpdateUserResponse {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'id',
   };
 }
 

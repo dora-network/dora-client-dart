@@ -56,6 +56,16 @@ void main() {
       // TODO
     });
 
+    // String adminUserId
+    test('to test the property `adminUserId`', () async {
+      // TODO
+    });
+
+    // Side orderSide
+    test('to test the property `orderSide`', () async {
+      // TODO
+    });
+
 
   });
 

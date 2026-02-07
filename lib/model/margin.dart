@@ -13,37 +13,19 @@ part of openapi.api;
 class Margin {
   /// Returns a new [Margin] instance.
   Margin({
-    this.available,
-    this.used,
-    this.remaining,
+    required this.available,
+    required this.used,
+    required this.remaining,
   });
 
   /// The total margin available from this position.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? available;
+  String available;
 
   /// The amount of margin used from this position.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? used;
+  String used;
 
   /// The margin remaining available from this position.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? remaining;
+  String remaining;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Margin &&
@@ -54,30 +36,18 @@ class Margin {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (available == null ? 0 : available!.hashCode) +
-    (used == null ? 0 : used!.hashCode) +
-    (remaining == null ? 0 : remaining!.hashCode);
+    (available.hashCode) +
+    (used.hashCode) +
+    (remaining.hashCode);
 
   @override
   String toString() => 'Margin[available=$available, used=$used, remaining=$remaining]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.available != null) {
       json[r'available'] = this.available;
-    } else {
-      json[r'available'] = null;
-    }
-    if (this.used != null) {
       json[r'used'] = this.used;
-    } else {
-      json[r'used'] = null;
-    }
-    if (this.remaining != null) {
       json[r'remaining'] = this.remaining;
-    } else {
-      json[r'remaining'] = null;
-    }
     return json;
   }
 
@@ -100,9 +70,9 @@ class Margin {
       }());
 
       return Margin(
-        available: mapValueOfType<String>(json, r'available'),
-        used: mapValueOfType<String>(json, r'used'),
-        remaining: mapValueOfType<String>(json, r'remaining'),
+        available: mapValueOfType<String>(json, r'available')!,
+        used: mapValueOfType<String>(json, r'used')!,
+        remaining: mapValueOfType<String>(json, r'remaining')!,
       );
     }
     return null;
@@ -150,6 +120,9 @@ class Margin {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'available',
+    'used',
+    'remaining',
   };
 }
 

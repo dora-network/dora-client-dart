@@ -8,8 +8,8 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**price** | **String** |  | [optional] 
-**quantity** | **String** |  | [optional] 
+**price** | **String** |  | 
+**quantity** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

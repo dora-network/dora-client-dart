@@ -13,25 +13,13 @@ part of openapi.api;
 class PriceLevel {
   /// Returns a new [PriceLevel] instance.
   PriceLevel({
-    this.price,
-    this.quantity,
+    required this.price,
+    required this.quantity,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? price;
+  String price;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? quantity;
+  String quantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PriceLevel &&
@@ -41,24 +29,16 @@ class PriceLevel {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (price == null ? 0 : price!.hashCode) +
-    (quantity == null ? 0 : quantity!.hashCode);
+    (price.hashCode) +
+    (quantity.hashCode);
 
   @override
   String toString() => 'PriceLevel[price=$price, quantity=$quantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.price != null) {
       json[r'price'] = this.price;
-    } else {
-      json[r'price'] = null;
-    }
-    if (this.quantity != null) {
       json[r'quantity'] = this.quantity;
-    } else {
-      json[r'quantity'] = null;
-    }
     return json;
   }
 
@@ -81,8 +61,8 @@ class PriceLevel {
       }());
 
       return PriceLevel(
-        price: mapValueOfType<String>(json, r'price'),
-        quantity: mapValueOfType<String>(json, r'quantity'),
+        price: mapValueOfType<String>(json, r'price')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
       );
     }
     return null;
@@ -130,6 +110,8 @@ class PriceLevel {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'price',
+    'quantity',
   };
 }
 

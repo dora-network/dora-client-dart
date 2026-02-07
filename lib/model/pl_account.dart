@@ -13,49 +13,25 @@ part of openapi.api;
 class PLAccount {
   /// Returns a new [PLAccount] instance.
   PLAccount({
-    this.accountId,
-    this.accountName,
-    this.isGlobal,
+    required this.accountId,
+    required this.accountName,
+    required this.isGlobal,
     this.assets = const [],
-    this.summary,
+    required this.summary,
   });
 
   /// The ID of the account holding the position
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? accountId;
+  String accountId;
 
   /// The name of the account holding the position
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? accountName;
+  String accountName;
 
   /// Whether the account is the global or an isolated account
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? isGlobal;
+  bool isGlobal;
 
   List<PLAsset> assets;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  PLSummary? summary;
+  PLSummary summary;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PLAccount &&
@@ -68,38 +44,22 @@ class PLAccount {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (accountId == null ? 0 : accountId!.hashCode) +
-    (accountName == null ? 0 : accountName!.hashCode) +
-    (isGlobal == null ? 0 : isGlobal!.hashCode) +
+    (accountId.hashCode) +
+    (accountName.hashCode) +
+    (isGlobal.hashCode) +
     (assets.hashCode) +
-    (summary == null ? 0 : summary!.hashCode);
+    (summary.hashCode);
 
   @override
   String toString() => 'PLAccount[accountId=$accountId, accountName=$accountName, isGlobal=$isGlobal, assets=$assets, summary=$summary]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.accountId != null) {
       json[r'account_id'] = this.accountId;
-    } else {
-      json[r'account_id'] = null;
-    }
-    if (this.accountName != null) {
       json[r'account_name'] = this.accountName;
-    } else {
-      json[r'account_name'] = null;
-    }
-    if (this.isGlobal != null) {
       json[r'is_global'] = this.isGlobal;
-    } else {
-      json[r'is_global'] = null;
-    }
       json[r'assets'] = this.assets;
-    if (this.summary != null) {
       json[r'summary'] = this.summary;
-    } else {
-      json[r'summary'] = null;
-    }
     return json;
   }
 
@@ -122,11 +82,11 @@ class PLAccount {
       }());
 
       return PLAccount(
-        accountId: mapValueOfType<String>(json, r'account_id'),
-        accountName: mapValueOfType<String>(json, r'account_name'),
-        isGlobal: mapValueOfType<bool>(json, r'is_global'),
+        accountId: mapValueOfType<String>(json, r'account_id')!,
+        accountName: mapValueOfType<String>(json, r'account_name')!,
+        isGlobal: mapValueOfType<bool>(json, r'is_global')!,
         assets: PLAsset.listFromJson(json[r'assets']),
-        summary: PLSummary.fromJson(json[r'summary']),
+        summary: PLSummary.fromJson(json[r'summary'])!,
       );
     }
     return null;
@@ -174,6 +134,11 @@ class PLAccount {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'account_id',
+    'account_name',
+    'is_global',
+    'assets',
+    'summary',
   };
 }
 

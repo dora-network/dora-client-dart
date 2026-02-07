@@ -13,52 +13,22 @@ part of openapi.api;
 class OrderBookSummary {
   /// Returns a new [OrderBookSummary] instance.
   OrderBookSummary({
-    this.orderBookId,
-    this.midPrice,
-    this.spread,
-    this.bestBid,
-    this.bestAsk,
+    required this.orderBookId,
+    required this.midPrice,
+    required this.spread,
+    required this.bestBid,
+    required this.bestAsk,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderBookId;
+  String orderBookId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? midPrice;
+  String midPrice;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? spread;
+  String spread;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? bestBid;
+  String bestBid;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? bestAsk;
+  String bestAsk;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderBookSummary &&
@@ -71,42 +41,22 @@ class OrderBookSummary {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (orderBookId == null ? 0 : orderBookId!.hashCode) +
-    (midPrice == null ? 0 : midPrice!.hashCode) +
-    (spread == null ? 0 : spread!.hashCode) +
-    (bestBid == null ? 0 : bestBid!.hashCode) +
-    (bestAsk == null ? 0 : bestAsk!.hashCode);
+    (orderBookId.hashCode) +
+    (midPrice.hashCode) +
+    (spread.hashCode) +
+    (bestBid.hashCode) +
+    (bestAsk.hashCode);
 
   @override
   String toString() => 'OrderBookSummary[orderBookId=$orderBookId, midPrice=$midPrice, spread=$spread, bestBid=$bestBid, bestAsk=$bestAsk]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.orderBookId != null) {
       json[r'order_book_id'] = this.orderBookId;
-    } else {
-      json[r'order_book_id'] = null;
-    }
-    if (this.midPrice != null) {
       json[r'mid_price'] = this.midPrice;
-    } else {
-      json[r'mid_price'] = null;
-    }
-    if (this.spread != null) {
       json[r'spread'] = this.spread;
-    } else {
-      json[r'spread'] = null;
-    }
-    if (this.bestBid != null) {
       json[r'best_bid'] = this.bestBid;
-    } else {
-      json[r'best_bid'] = null;
-    }
-    if (this.bestAsk != null) {
       json[r'best_ask'] = this.bestAsk;
-    } else {
-      json[r'best_ask'] = null;
-    }
     return json;
   }
 
@@ -129,11 +79,11 @@ class OrderBookSummary {
       }());
 
       return OrderBookSummary(
-        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
-        midPrice: mapValueOfType<String>(json, r'mid_price'),
-        spread: mapValueOfType<String>(json, r'spread'),
-        bestBid: mapValueOfType<String>(json, r'best_bid'),
-        bestAsk: mapValueOfType<String>(json, r'best_ask'),
+        orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
+        midPrice: mapValueOfType<String>(json, r'mid_price')!,
+        spread: mapValueOfType<String>(json, r'spread')!,
+        bestBid: mapValueOfType<String>(json, r'best_bid')!,
+        bestAsk: mapValueOfType<String>(json, r'best_ask')!,
       );
     }
     return null;
@@ -181,6 +131,11 @@ class OrderBookSummary {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'order_book_id',
+    'mid_price',
+    'spread',
+    'best_bid',
+    'best_ask',
   };
 }
 

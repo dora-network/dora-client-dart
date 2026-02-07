@@ -129,7 +129,6 @@ doc/StreamTradesEntry.md
 doc/StreamTransactionsEntry.md
 doc/StreamUserCouponPaymentsEntry.md
 doc/StreamUserCouponPaymentsResponse.md
-doc/StreamedAssetPrice.md
 doc/Supply.md
 doc/SupplyRequest.md
 doc/SupplyResponseEnvelope.md
@@ -311,7 +310,6 @@ lib/model/stream_trades_entry.dart
 lib/model/stream_transactions_entry.dart
 lib/model/stream_user_coupon_payments_entry.dart
 lib/model/stream_user_coupon_payments_response.dart
-lib/model/streamed_asset_price.dart
 lib/model/supply.dart
 lib/model/supply_request.dart
 lib/model/supply_response_envelope.dart
@@ -484,7 +482,6 @@ test/stream_trades_entry_test.dart
 test/stream_transactions_entry_test.dart
 test/stream_user_coupon_payments_entry_test.dart
 test/stream_user_coupon_payments_response_test.dart
-test/streamed_asset_price_test.dart
 test/supply_request_test.dart
 test/supply_response_envelope_test.dart
 test/supply_test.dart

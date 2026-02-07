@@ -13,52 +13,22 @@ part of openapi.api;
 class FundUser {
   /// Returns a new [FundUser] instance.
   FundUser({
-    this.userId,
-    this.positionId,
-    this.assetId,
-    this.finalQuantity,
-    this.amount,
+    required this.userId,
+    required this.positionId,
+    required this.assetId,
+    required this.finalQuantity,
+    required this.amount,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? userId;
+  String userId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? positionId;
+  String positionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? assetId;
+  String assetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? finalQuantity;
+  String finalQuantity;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? amount;
+  String amount;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is FundUser &&
@@ -71,42 +41,22 @@ class FundUser {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (userId == null ? 0 : userId!.hashCode) +
-    (positionId == null ? 0 : positionId!.hashCode) +
-    (assetId == null ? 0 : assetId!.hashCode) +
-    (finalQuantity == null ? 0 : finalQuantity!.hashCode) +
-    (amount == null ? 0 : amount!.hashCode);
+    (userId.hashCode) +
+    (positionId.hashCode) +
+    (assetId.hashCode) +
+    (finalQuantity.hashCode) +
+    (amount.hashCode);
 
   @override
   String toString() => 'FundUser[userId=$userId, positionId=$positionId, assetId=$assetId, finalQuantity=$finalQuantity, amount=$amount]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.userId != null) {
       json[r'user_id'] = this.userId;
-    } else {
-      json[r'user_id'] = null;
-    }
-    if (this.positionId != null) {
       json[r'position_id'] = this.positionId;
-    } else {
-      json[r'position_id'] = null;
-    }
-    if (this.assetId != null) {
       json[r'asset_id'] = this.assetId;
-    } else {
-      json[r'asset_id'] = null;
-    }
-    if (this.finalQuantity != null) {
       json[r'final_quantity'] = this.finalQuantity;
-    } else {
-      json[r'final_quantity'] = null;
-    }
-    if (this.amount != null) {
       json[r'amount'] = this.amount;
-    } else {
-      json[r'amount'] = null;
-    }
     return json;
   }
 
@@ -129,11 +79,11 @@ class FundUser {
       }());
 
       return FundUser(
-        userId: mapValueOfType<String>(json, r'user_id'),
-        positionId: mapValueOfType<String>(json, r'position_id'),
-        assetId: mapValueOfType<String>(json, r'asset_id'),
-        finalQuantity: mapValueOfType<String>(json, r'final_quantity'),
-        amount: mapValueOfType<String>(json, r'amount'),
+        userId: mapValueOfType<String>(json, r'user_id')!,
+        positionId: mapValueOfType<String>(json, r'position_id')!,
+        assetId: mapValueOfType<String>(json, r'asset_id')!,
+        finalQuantity: mapValueOfType<String>(json, r'final_quantity')!,
+        amount: mapValueOfType<String>(json, r'amount')!,
       );
     }
     return null;
@@ -181,6 +131,11 @@ class FundUser {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'user_id',
+    'position_id',
+    'asset_id',
+    'final_quantity',
+    'amount',
   };
 }
 

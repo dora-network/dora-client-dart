@@ -13,37 +13,19 @@ part of openapi.api;
 class Metadata {
   /// Returns a new [Metadata] instance.
   Metadata({
-    this.statusCode,
-    this.traceId,
-    this.requestId,
+    required this.statusCode,
+    required this.traceId,
+    required this.requestId,
   });
 
   /// HTTP status code for the response.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? statusCode;
+  int statusCode;
 
   /// Trace ID for distributed tracing.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? traceId;
+  String traceId;
 
   /// Request ID for correlating logs and debugging.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? requestId;
+  String requestId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Metadata &&
@@ -54,30 +36,18 @@ class Metadata {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (statusCode == null ? 0 : statusCode!.hashCode) +
-    (traceId == null ? 0 : traceId!.hashCode) +
-    (requestId == null ? 0 : requestId!.hashCode);
+    (statusCode.hashCode) +
+    (traceId.hashCode) +
+    (requestId.hashCode);
 
   @override
   String toString() => 'Metadata[statusCode=$statusCode, traceId=$traceId, requestId=$requestId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.statusCode != null) {
       json[r'status_code'] = this.statusCode;
-    } else {
-      json[r'status_code'] = null;
-    }
-    if (this.traceId != null) {
       json[r'trace_id'] = this.traceId;
-    } else {
-      json[r'trace_id'] = null;
-    }
-    if (this.requestId != null) {
       json[r'request_id'] = this.requestId;
-    } else {
-      json[r'request_id'] = null;
-    }
     return json;
   }
 
@@ -100,9 +70,9 @@ class Metadata {
       }());
 
       return Metadata(
-        statusCode: mapValueOfType<int>(json, r'status_code'),
-        traceId: mapValueOfType<String>(json, r'trace_id'),
-        requestId: mapValueOfType<String>(json, r'request_id'),
+        statusCode: mapValueOfType<int>(json, r'status_code')!,
+        traceId: mapValueOfType<String>(json, r'trace_id')!,
+        requestId: mapValueOfType<String>(json, r'request_id')!,
       );
     }
     return null;
@@ -150,6 +120,9 @@ class Metadata {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'status_code',
+    'trace_id',
+    'request_id',
   };
 }
 

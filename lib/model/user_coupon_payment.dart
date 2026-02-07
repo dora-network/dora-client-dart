@@ -13,88 +13,35 @@ part of openapi.api;
 class UserCouponPayment {
   /// Returns a new [UserCouponPayment] instance.
   UserCouponPayment({
-    this.userId,
-    this.positionId,
-    this.assetId,
-    this.couponPaymentId,
-    this.seq,
-    this.pending,
-    this.completed,
-    this.startedAt,
-    this.endedAt,
+    required this.userId,
+    required this.positionId,
+    required this.assetId,
+    required this.couponPaymentId,
+    required this.seq,
+    required this.pending,
+    required this.completed,
+    required this.startedAt,
+    required this.endedAt,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? userId;
+  String userId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? positionId;
+  String positionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? assetId;
+  String assetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? couponPaymentId;
+  String couponPaymentId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? seq;
+  /// Minimum value: 0
+  int seq;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? pending;
+  String pending;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? completed;
+  String completed;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? startedAt;
+  DateTime startedAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? endedAt;
+  DateTime endedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserCouponPayment &&
@@ -111,66 +58,30 @@ class UserCouponPayment {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (userId == null ? 0 : userId!.hashCode) +
-    (positionId == null ? 0 : positionId!.hashCode) +
-    (assetId == null ? 0 : assetId!.hashCode) +
-    (couponPaymentId == null ? 0 : couponPaymentId!.hashCode) +
-    (seq == null ? 0 : seq!.hashCode) +
-    (pending == null ? 0 : pending!.hashCode) +
-    (completed == null ? 0 : completed!.hashCode) +
-    (startedAt == null ? 0 : startedAt!.hashCode) +
-    (endedAt == null ? 0 : endedAt!.hashCode);
+    (userId.hashCode) +
+    (positionId.hashCode) +
+    (assetId.hashCode) +
+    (couponPaymentId.hashCode) +
+    (seq.hashCode) +
+    (pending.hashCode) +
+    (completed.hashCode) +
+    (startedAt.hashCode) +
+    (endedAt.hashCode);
 
   @override
   String toString() => 'UserCouponPayment[userId=$userId, positionId=$positionId, assetId=$assetId, couponPaymentId=$couponPaymentId, seq=$seq, pending=$pending, completed=$completed, startedAt=$startedAt, endedAt=$endedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.userId != null) {
       json[r'user_id'] = this.userId;
-    } else {
-      json[r'user_id'] = null;
-    }
-    if (this.positionId != null) {
       json[r'position_id'] = this.positionId;
-    } else {
-      json[r'position_id'] = null;
-    }
-    if (this.assetId != null) {
       json[r'asset_id'] = this.assetId;
-    } else {
-      json[r'asset_id'] = null;
-    }
-    if (this.couponPaymentId != null) {
       json[r'coupon_payment_id'] = this.couponPaymentId;
-    } else {
-      json[r'coupon_payment_id'] = null;
-    }
-    if (this.seq != null) {
       json[r'seq'] = this.seq;
-    } else {
-      json[r'seq'] = null;
-    }
-    if (this.pending != null) {
       json[r'pending'] = this.pending;
-    } else {
-      json[r'pending'] = null;
-    }
-    if (this.completed != null) {
       json[r'completed'] = this.completed;
-    } else {
-      json[r'completed'] = null;
-    }
-    if (this.startedAt != null) {
-      json[r'started_at'] = this.startedAt!.toUtc().toIso8601String();
-    } else {
-      json[r'started_at'] = null;
-    }
-    if (this.endedAt != null) {
-      json[r'ended_at'] = this.endedAt!.toUtc().toIso8601String();
-    } else {
-      json[r'ended_at'] = null;
-    }
+      json[r'started_at'] = this.startedAt.toUtc().toIso8601String();
+      json[r'ended_at'] = this.endedAt.toUtc().toIso8601String();
     return json;
   }
 
@@ -193,15 +104,15 @@ class UserCouponPayment {
       }());
 
       return UserCouponPayment(
-        userId: mapValueOfType<String>(json, r'user_id'),
-        positionId: mapValueOfType<String>(json, r'position_id'),
-        assetId: mapValueOfType<String>(json, r'asset_id'),
-        couponPaymentId: mapValueOfType<String>(json, r'coupon_payment_id'),
-        seq: mapValueOfType<int>(json, r'seq'),
-        pending: mapValueOfType<String>(json, r'pending'),
-        completed: mapValueOfType<String>(json, r'completed'),
-        startedAt: mapDateTime(json, r'started_at', r''),
-        endedAt: mapDateTime(json, r'ended_at', r''),
+        userId: mapValueOfType<String>(json, r'user_id')!,
+        positionId: mapValueOfType<String>(json, r'position_id')!,
+        assetId: mapValueOfType<String>(json, r'asset_id')!,
+        couponPaymentId: mapValueOfType<String>(json, r'coupon_payment_id')!,
+        seq: mapValueOfType<int>(json, r'seq')!,
+        pending: mapValueOfType<String>(json, r'pending')!,
+        completed: mapValueOfType<String>(json, r'completed')!,
+        startedAt: mapDateTime(json, r'started_at', r'')!,
+        endedAt: mapDateTime(json, r'ended_at', r'')!,
       );
     }
     return null;
@@ -249,6 +160,15 @@ class UserCouponPayment {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'user_id',
+    'position_id',
+    'asset_id',
+    'coupon_payment_id',
+    'seq',
+    'pending',
+    'completed',
+    'started_at',
+    'ended_at',
   };
 }
 

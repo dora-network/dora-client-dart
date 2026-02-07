@@ -13,188 +13,79 @@ part of openapi.api;
 class Asset {
   /// Returns a new [Asset] instance.
   Asset({
-    this.id,
-    this.collateralWeight,
-    this.createdAt,
-    this.decimals,
-    this.fractionalizedUnits,
-    this.description,
-    this.liquidationWeight,
-    this.maturityId,
-    this.maxSupply,
-    this.maxUtilization,
-    this.name,
-    this.symbol,
-    this.kind,
-    this.yield_,
-    this.canAddLiquidity,
-    this.canDirectBorrow,
-    this.canOnboard,
-    this.canTrade,
-    this.canVirtualBorrow,
-    this.maxLeverage,
+    required this.id,
+    required this.collateralWeight,
+    required this.createdAt,
+    required this.decimals,
+    required this.fractionalizedUnits,
+    required this.description,
+    required this.liquidationWeight,
+    required this.maxSupply,
+    required this.maxUtilization,
+    required this.name,
+    required this.symbol,
+    required this.kind,
+    required this.yield_,
+    required this.canAddLiquidity,
+    required this.canDirectBorrow,
+    required this.canOnboard,
+    required this.canTrade,
+    required this.canVirtualBorrow,
+    required this.maxLeverage,
+    this.leverageInterestRate = 0,
     this.bond,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? id;
+  String id;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? collateralWeight;
+  /// Minimum value: 0
+  /// Maximum value: 1
+  num collateralWeight;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? createdAt;
+  DateTime createdAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? decimals;
+  /// Minimum value: 0
+  int decimals;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? fractionalizedUnits;
+  /// Minimum value: 1
+  int fractionalizedUnits;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? description;
+  String description;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? liquidationWeight;
+  /// Minimum value: 0
+  /// Maximum value: 1
+  num liquidationWeight;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? maturityId;
+  /// Minimum value: 0
+  int maxSupply;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? maxSupply;
+  /// Minimum value: 0
+  int maxUtilization;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? maxUtilization;
+  String name;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? name;
+  String symbol;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? symbol;
+  AssetKind kind;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  AssetKind? kind;
+  /// Minimum value: 0
+  num yield_;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? yield_;
+  bool canAddLiquidity;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? canAddLiquidity;
+  bool canDirectBorrow;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? canDirectBorrow;
+  bool canOnboard;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? canOnboard;
+  bool canTrade;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? canTrade;
+  bool canVirtualBorrow;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? canVirtualBorrow;
+  /// Minimum value: 0
+  /// Maximum value: 1
+  num maxLeverage;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? maxLeverage;
+  num leverageInterestRate;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -213,7 +104,6 @@ class Asset {
     other.fractionalizedUnits == fractionalizedUnits &&
     other.description == description &&
     other.liquidationWeight == liquidationWeight &&
-    other.maturityId == maturityId &&
     other.maxSupply == maxSupply &&
     other.maxUtilization == maxUtilization &&
     other.name == name &&
@@ -226,138 +116,59 @@ class Asset {
     other.canTrade == canTrade &&
     other.canVirtualBorrow == canVirtualBorrow &&
     other.maxLeverage == maxLeverage &&
+    other.leverageInterestRate == leverageInterestRate &&
     other.bond == bond;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (id == null ? 0 : id!.hashCode) +
-    (collateralWeight == null ? 0 : collateralWeight!.hashCode) +
-    (createdAt == null ? 0 : createdAt!.hashCode) +
-    (decimals == null ? 0 : decimals!.hashCode) +
-    (fractionalizedUnits == null ? 0 : fractionalizedUnits!.hashCode) +
-    (description == null ? 0 : description!.hashCode) +
-    (liquidationWeight == null ? 0 : liquidationWeight!.hashCode) +
-    (maturityId == null ? 0 : maturityId!.hashCode) +
-    (maxSupply == null ? 0 : maxSupply!.hashCode) +
-    (maxUtilization == null ? 0 : maxUtilization!.hashCode) +
-    (name == null ? 0 : name!.hashCode) +
-    (symbol == null ? 0 : symbol!.hashCode) +
-    (kind == null ? 0 : kind!.hashCode) +
-    (yield_ == null ? 0 : yield_!.hashCode) +
-    (canAddLiquidity == null ? 0 : canAddLiquidity!.hashCode) +
-    (canDirectBorrow == null ? 0 : canDirectBorrow!.hashCode) +
-    (canOnboard == null ? 0 : canOnboard!.hashCode) +
-    (canTrade == null ? 0 : canTrade!.hashCode) +
-    (canVirtualBorrow == null ? 0 : canVirtualBorrow!.hashCode) +
-    (maxLeverage == null ? 0 : maxLeverage!.hashCode) +
+    (id.hashCode) +
+    (collateralWeight.hashCode) +
+    (createdAt.hashCode) +
+    (decimals.hashCode) +
+    (fractionalizedUnits.hashCode) +
+    (description.hashCode) +
+    (liquidationWeight.hashCode) +
+    (maxSupply.hashCode) +
+    (maxUtilization.hashCode) +
+    (name.hashCode) +
+    (symbol.hashCode) +
+    (kind.hashCode) +
+    (yield_.hashCode) +
+    (canAddLiquidity.hashCode) +
+    (canDirectBorrow.hashCode) +
+    (canOnboard.hashCode) +
+    (canTrade.hashCode) +
+    (canVirtualBorrow.hashCode) +
+    (maxLeverage.hashCode) +
+    (leverageInterestRate.hashCode) +
     (bond == null ? 0 : bond!.hashCode);
 
   @override
-  String toString() => 'Asset[id=$id, collateralWeight=$collateralWeight, createdAt=$createdAt, decimals=$decimals, fractionalizedUnits=$fractionalizedUnits, description=$description, liquidationWeight=$liquidationWeight, maturityId=$maturityId, maxSupply=$maxSupply, maxUtilization=$maxUtilization, name=$name, symbol=$symbol, kind=$kind, yield_=$yield_, canAddLiquidity=$canAddLiquidity, canDirectBorrow=$canDirectBorrow, canOnboard=$canOnboard, canTrade=$canTrade, canVirtualBorrow=$canVirtualBorrow, maxLeverage=$maxLeverage, bond=$bond]';
+  String toString() => 'Asset[id=$id, collateralWeight=$collateralWeight, createdAt=$createdAt, decimals=$decimals, fractionalizedUnits=$fractionalizedUnits, description=$description, liquidationWeight=$liquidationWeight, maxSupply=$maxSupply, maxUtilization=$maxUtilization, name=$name, symbol=$symbol, kind=$kind, yield_=$yield_, canAddLiquidity=$canAddLiquidity, canDirectBorrow=$canDirectBorrow, canOnboard=$canOnboard, canTrade=$canTrade, canVirtualBorrow=$canVirtualBorrow, maxLeverage=$maxLeverage, leverageInterestRate=$leverageInterestRate, bond=$bond]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.id != null) {
       json[r'id'] = this.id;
-    } else {
-      json[r'id'] = null;
-    }
-    if (this.collateralWeight != null) {
       json[r'collateral_weight'] = this.collateralWeight;
-    } else {
-      json[r'collateral_weight'] = null;
-    }
-    if (this.createdAt != null) {
-      json[r'created_at'] = this.createdAt!.toUtc().toIso8601String();
-    } else {
-      json[r'created_at'] = null;
-    }
-    if (this.decimals != null) {
+      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
       json[r'decimals'] = this.decimals;
-    } else {
-      json[r'decimals'] = null;
-    }
-    if (this.fractionalizedUnits != null) {
       json[r'fractionalized_units'] = this.fractionalizedUnits;
-    } else {
-      json[r'fractionalized_units'] = null;
-    }
-    if (this.description != null) {
       json[r'description'] = this.description;
-    } else {
-      json[r'description'] = null;
-    }
-    if (this.liquidationWeight != null) {
       json[r'liquidation_weight'] = this.liquidationWeight;
-    } else {
-      json[r'liquidation_weight'] = null;
-    }
-    if (this.maturityId != null) {
-      json[r'maturity_id'] = this.maturityId;
-    } else {
-      json[r'maturity_id'] = null;
-    }
-    if (this.maxSupply != null) {
       json[r'max_supply'] = this.maxSupply;
-    } else {
-      json[r'max_supply'] = null;
-    }
-    if (this.maxUtilization != null) {
       json[r'max_utilization'] = this.maxUtilization;
-    } else {
-      json[r'max_utilization'] = null;
-    }
-    if (this.name != null) {
       json[r'name'] = this.name;
-    } else {
-      json[r'name'] = null;
-    }
-    if (this.symbol != null) {
       json[r'symbol'] = this.symbol;
-    } else {
-      json[r'symbol'] = null;
-    }
-    if (this.kind != null) {
       json[r'kind'] = this.kind;
-    } else {
-      json[r'kind'] = null;
-    }
-    if (this.yield_ != null) {
       json[r'yield'] = this.yield_;
-    } else {
-      json[r'yield'] = null;
-    }
-    if (this.canAddLiquidity != null) {
       json[r'can_add_liquidity'] = this.canAddLiquidity;
-    } else {
-      json[r'can_add_liquidity'] = null;
-    }
-    if (this.canDirectBorrow != null) {
       json[r'can_direct_borrow'] = this.canDirectBorrow;
-    } else {
-      json[r'can_direct_borrow'] = null;
-    }
-    if (this.canOnboard != null) {
       json[r'can_onboard'] = this.canOnboard;
-    } else {
-      json[r'can_onboard'] = null;
-    }
-    if (this.canTrade != null) {
       json[r'can_trade'] = this.canTrade;
-    } else {
-      json[r'can_trade'] = null;
-    }
-    if (this.canVirtualBorrow != null) {
       json[r'can_virtual_borrow'] = this.canVirtualBorrow;
-    } else {
-      json[r'can_virtual_borrow'] = null;
-    }
-    if (this.maxLeverage != null) {
       json[r'max_leverage'] = this.maxLeverage;
-    } else {
-      json[r'max_leverage'] = null;
-    }
+      json[r'leverage_interest_rate'] = this.leverageInterestRate;
     if (this.bond != null) {
       json[r'bond'] = this.bond;
     } else {
@@ -385,26 +196,26 @@ class Asset {
       }());
 
       return Asset(
-        id: mapValueOfType<String>(json, r'id'),
+        id: mapValueOfType<String>(json, r'id')!,
         collateralWeight: num.parse('${json[r'collateral_weight']}'),
-        createdAt: mapDateTime(json, r'created_at', r''),
-        decimals: mapValueOfType<int>(json, r'decimals'),
-        fractionalizedUnits: mapValueOfType<int>(json, r'fractionalized_units'),
-        description: mapValueOfType<String>(json, r'description'),
+        createdAt: mapDateTime(json, r'created_at', r'')!,
+        decimals: mapValueOfType<int>(json, r'decimals')!,
+        fractionalizedUnits: mapValueOfType<int>(json, r'fractionalized_units')!,
+        description: mapValueOfType<String>(json, r'description')!,
         liquidationWeight: num.parse('${json[r'liquidation_weight']}'),
-        maturityId: mapValueOfType<String>(json, r'maturity_id'),
-        maxSupply: mapValueOfType<int>(json, r'max_supply'),
-        maxUtilization: mapValueOfType<int>(json, r'max_utilization'),
-        name: mapValueOfType<String>(json, r'name'),
-        symbol: mapValueOfType<String>(json, r'symbol'),
-        kind: AssetKind.fromJson(json[r'kind']),
+        maxSupply: mapValueOfType<int>(json, r'max_supply')!,
+        maxUtilization: mapValueOfType<int>(json, r'max_utilization')!,
+        name: mapValueOfType<String>(json, r'name')!,
+        symbol: mapValueOfType<String>(json, r'symbol')!,
+        kind: AssetKind.fromJson(json[r'kind'])!,
         yield_: num.parse('${json[r'yield']}'),
-        canAddLiquidity: mapValueOfType<bool>(json, r'can_add_liquidity'),
-        canDirectBorrow: mapValueOfType<bool>(json, r'can_direct_borrow'),
-        canOnboard: mapValueOfType<bool>(json, r'can_onboard'),
-        canTrade: mapValueOfType<bool>(json, r'can_trade'),
-        canVirtualBorrow: mapValueOfType<bool>(json, r'can_virtual_borrow'),
+        canAddLiquidity: mapValueOfType<bool>(json, r'can_add_liquidity')!,
+        canDirectBorrow: mapValueOfType<bool>(json, r'can_direct_borrow')!,
+        canOnboard: mapValueOfType<bool>(json, r'can_onboard')!,
+        canTrade: mapValueOfType<bool>(json, r'can_trade')!,
+        canVirtualBorrow: mapValueOfType<bool>(json, r'can_virtual_borrow')!,
         maxLeverage: num.parse('${json[r'max_leverage']}'),
+        leverageInterestRate: num.parse('${json[r'leverage_interest_rate']}'),
         bond: Bond.fromJson(json[r'bond']),
       );
     }
@@ -453,6 +264,26 @@ class Asset {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'id',
+    'collateral_weight',
+    'created_at',
+    'decimals',
+    'fractionalized_units',
+    'description',
+    'liquidation_weight',
+    'max_supply',
+    'max_utilization',
+    'name',
+    'symbol',
+    'kind',
+    'yield',
+    'can_add_liquidity',
+    'can_direct_borrow',
+    'can_onboard',
+    'can_trade',
+    'can_virtual_borrow',
+    'max_leverage',
+    'leverage_interest_rate',
   };
 }
 

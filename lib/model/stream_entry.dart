@@ -13,27 +13,15 @@ part of openapi.api;
 class StreamEntry {
   /// Returns a new [StreamEntry] instance.
   StreamEntry({
-    this.val,
-    this.time,
+    required this.val,
+    required this.time,
   });
 
   /// The data being streamed
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  Object? val;
+  Object val;
 
   /// The timestamp when the data was created
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? time;
+  DateTime time;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is StreamEntry &&
@@ -43,24 +31,16 @@ class StreamEntry {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (val == null ? 0 : val!.hashCode) +
-    (time == null ? 0 : time!.hashCode);
+    (val.hashCode) +
+    (time.hashCode);
 
   @override
   String toString() => 'StreamEntry[val=$val, time=$time]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.val != null) {
       json[r'Val'] = this.val;
-    } else {
-      json[r'Val'] = null;
-    }
-    if (this.time != null) {
-      json[r'Time'] = this.time!.toUtc().toIso8601String();
-    } else {
-      json[r'Time'] = null;
-    }
+      json[r'Time'] = this.time.toUtc().toIso8601String();
     return json;
   }
 
@@ -83,8 +63,8 @@ class StreamEntry {
       }());
 
       return StreamEntry(
-        val: mapValueOfType<Object>(json, r'Val'),
-        time: mapDateTime(json, r'Time', r''),
+        val: mapValueOfType<Object>(json, r'Val')!,
+        time: mapDateTime(json, r'Time', r'')!,
       );
     }
     return null;
@@ -132,6 +112,8 @@ class StreamEntry {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'Val',
+    'Time',
   };
 }
 

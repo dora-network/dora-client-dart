@@ -13,43 +13,19 @@ part of openapi.api;
 class CurrentLeverageAccruedInterest {
   /// Returns a new [CurrentLeverageAccruedInterest] instance.
   CurrentLeverageAccruedInterest({
-    this.userId,
-    this.assetId,
-    this.positionId,
-    this.currentAccruedInterestUsd,
+    required this.userId,
+    required this.assetId,
+    required this.positionId,
+    required this.currentAccruedInterestUsd,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? userId;
+  String userId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? assetId;
+  String assetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? positionId;
+  String positionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? currentAccruedInterestUsd;
+  String currentAccruedInterestUsd;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CurrentLeverageAccruedInterest &&
@@ -61,36 +37,20 @@ class CurrentLeverageAccruedInterest {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (userId == null ? 0 : userId!.hashCode) +
-    (assetId == null ? 0 : assetId!.hashCode) +
-    (positionId == null ? 0 : positionId!.hashCode) +
-    (currentAccruedInterestUsd == null ? 0 : currentAccruedInterestUsd!.hashCode);
+    (userId.hashCode) +
+    (assetId.hashCode) +
+    (positionId.hashCode) +
+    (currentAccruedInterestUsd.hashCode);
 
   @override
   String toString() => 'CurrentLeverageAccruedInterest[userId=$userId, assetId=$assetId, positionId=$positionId, currentAccruedInterestUsd=$currentAccruedInterestUsd]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.userId != null) {
       json[r'user_id'] = this.userId;
-    } else {
-      json[r'user_id'] = null;
-    }
-    if (this.assetId != null) {
       json[r'asset_id'] = this.assetId;
-    } else {
-      json[r'asset_id'] = null;
-    }
-    if (this.positionId != null) {
       json[r'position_id'] = this.positionId;
-    } else {
-      json[r'position_id'] = null;
-    }
-    if (this.currentAccruedInterestUsd != null) {
       json[r'current_accrued_interest_usd'] = this.currentAccruedInterestUsd;
-    } else {
-      json[r'current_accrued_interest_usd'] = null;
-    }
     return json;
   }
 
@@ -113,10 +73,10 @@ class CurrentLeverageAccruedInterest {
       }());
 
       return CurrentLeverageAccruedInterest(
-        userId: mapValueOfType<String>(json, r'user_id'),
-        assetId: mapValueOfType<String>(json, r'asset_id'),
-        positionId: mapValueOfType<String>(json, r'position_id'),
-        currentAccruedInterestUsd: mapValueOfType<String>(json, r'current_accrued_interest_usd'),
+        userId: mapValueOfType<String>(json, r'user_id')!,
+        assetId: mapValueOfType<String>(json, r'asset_id')!,
+        positionId: mapValueOfType<String>(json, r'position_id')!,
+        currentAccruedInterestUsd: mapValueOfType<String>(json, r'current_accrued_interest_usd')!,
       );
     }
     return null;
@@ -164,6 +124,10 @@ class CurrentLeverageAccruedInterest {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'user_id',
+    'asset_id',
+    'position_id',
+    'current_accrued_interest_usd',
   };
 }
 

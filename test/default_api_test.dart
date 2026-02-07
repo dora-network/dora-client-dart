@@ -489,7 +489,7 @@ void main() {
     //
     // Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
     //
-    //Future<Map<String, StreamedAssetPrice>> streamAssetPrices({ DateTime since, String assetId }) async
+    //Future<Map<String, AssetPrice>> streamAssetPrices({ DateTime since, String assetId }) async
     test('test streamAssetPrices', () async {
       // TODO
     });

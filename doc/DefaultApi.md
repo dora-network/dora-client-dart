@@ -3326,7 +3326,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **streamAssetPrices**
-> Map<String, StreamedAssetPrice> streamAssetPrices(since, assetId)
+> Map<String, AssetPrice> streamAssetPrices(since, assetId)
 
 Stream real-time asset prices as map objects
 
@@ -3357,7 +3357,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Map<String, StreamedAssetPrice>**](StreamedAssetPrice.md)
+[**Map<String, AssetPrice>**](AssetPrice.md)
 
 ### Authorization
 

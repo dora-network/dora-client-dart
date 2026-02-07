@@ -13,34 +13,16 @@ part of openapi.api;
 class CreateAPIKeyData {
   /// Returns a new [CreateAPIKeyData] instance.
   CreateAPIKeyData({
-    this.keyId,
-    this.apiKey,
-    this.label,
+    required this.keyId,
+    required this.apiKey,
+    required this.label,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? keyId;
+  String keyId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? apiKey;
+  String apiKey;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? label;
+  String label;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateAPIKeyData &&
@@ -51,30 +33,18 @@ class CreateAPIKeyData {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (keyId == null ? 0 : keyId!.hashCode) +
-    (apiKey == null ? 0 : apiKey!.hashCode) +
-    (label == null ? 0 : label!.hashCode);
+    (keyId.hashCode) +
+    (apiKey.hashCode) +
+    (label.hashCode);
 
   @override
   String toString() => 'CreateAPIKeyData[keyId=$keyId, apiKey=$apiKey, label=$label]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.keyId != null) {
       json[r'key_id'] = this.keyId;
-    } else {
-      json[r'key_id'] = null;
-    }
-    if (this.apiKey != null) {
       json[r'api_key'] = this.apiKey;
-    } else {
-      json[r'api_key'] = null;
-    }
-    if (this.label != null) {
       json[r'label'] = this.label;
-    } else {
-      json[r'label'] = null;
-    }
     return json;
   }
 
@@ -97,9 +67,9 @@ class CreateAPIKeyData {
       }());
 
       return CreateAPIKeyData(
-        keyId: mapValueOfType<String>(json, r'key_id'),
-        apiKey: mapValueOfType<String>(json, r'api_key'),
-        label: mapValueOfType<String>(json, r'label'),
+        keyId: mapValueOfType<String>(json, r'key_id')!,
+        apiKey: mapValueOfType<String>(json, r'api_key')!,
+        label: mapValueOfType<String>(json, r'label')!,
       );
     }
     return null;
@@ -147,6 +117,9 @@ class CreateAPIKeyData {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'key_id',
+    'api_key',
+    'label',
   };
 }
 

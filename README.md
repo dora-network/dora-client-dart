@@ -277,7 +277,6 @@ Class | Method | HTTP request | Description
  - [StreamTransactionsEntry](doc//StreamTransactionsEntry.md)
  - [StreamUserCouponPaymentsEntry](doc//StreamUserCouponPaymentsEntry.md)
  - [StreamUserCouponPaymentsResponse](doc//StreamUserCouponPaymentsResponse.md)
- - [StreamedAssetPrice](doc//StreamedAssetPrice.md)
  - [Supply](doc//Supply.md)
  - [SupplyRequest](doc//SupplyRequest.md)
  - [SupplyResponseEnvelope](doc//SupplyResponseEnvelope.md)

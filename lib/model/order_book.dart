@@ -13,137 +13,61 @@ part of openapi.api;
 class OrderBook {
   /// Returns a new [OrderBook] instance.
   OrderBook({
-    this.orderBookId,
-    this.baseQuantity,
-    this.baseAssetId,
-    this.createdAt,
-    this.displayName,
-    this.feeFactor,
-    this.initialAssetsRatio,
-    this.maturityAt,
-    this.quoteQuantity,
-    this.quoteAssetId,
-    this.sharesQuantity,
-    this.status,
-    this.tickSize,
-    this.updatedAt,
+    required this.orderBookId,
+    required this.baseQuantity,
+    required this.baseAssetId,
+    required this.createdAt,
+    required this.displayName,
+    required this.feeFactor,
+    required this.initialAssetsRatio,
+    required this.maturityAt,
+    required this.quoteQuantity,
+    required this.quoteAssetId,
+    required this.sharesQuantity,
+    required this.status,
+    required this.tickSize,
+    required this.updatedAt,
     this.haltedAt,
     this.terminatedAt,
     this.poolUpdatedAt,
-    this.sharesAssetId,
+    required this.sharesAssetId,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderBookId;
+  String orderBookId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? baseQuantity;
+  /// Minimum value: 0
+  num baseQuantity;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? baseAssetId;
+  String baseAssetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? createdAt;
+  DateTime createdAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? displayName;
+  String displayName;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? feeFactor;
+  /// Minimum value: 0
+  /// Maximum value: 1
+  num feeFactor;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? initialAssetsRatio;
+  /// Minimum value: 0
+  /// Maximum value: 1
+  num initialAssetsRatio;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? maturityAt;
+  DateTime maturityAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? quoteQuantity;
+  /// Minimum value: 0
+  num quoteQuantity;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? quoteAssetId;
+  String quoteAssetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? sharesQuantity;
+  /// Minimum value: 0
+  num sharesQuantity;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  OrderBookStatus? status;
+  OrderBookStatus status;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? tickSize;
+  /// Minimum value: 0
+  num tickSize;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? updatedAt;
+  DateTime updatedAt;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -169,13 +93,7 @@ class OrderBook {
   ///
   DateTime? poolUpdatedAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? sharesAssetId;
+  String sharesAssetId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderBook &&
@@ -201,100 +119,44 @@ class OrderBook {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (orderBookId == null ? 0 : orderBookId!.hashCode) +
-    (baseQuantity == null ? 0 : baseQuantity!.hashCode) +
-    (baseAssetId == null ? 0 : baseAssetId!.hashCode) +
-    (createdAt == null ? 0 : createdAt!.hashCode) +
-    (displayName == null ? 0 : displayName!.hashCode) +
-    (feeFactor == null ? 0 : feeFactor!.hashCode) +
-    (initialAssetsRatio == null ? 0 : initialAssetsRatio!.hashCode) +
-    (maturityAt == null ? 0 : maturityAt!.hashCode) +
-    (quoteQuantity == null ? 0 : quoteQuantity!.hashCode) +
-    (quoteAssetId == null ? 0 : quoteAssetId!.hashCode) +
-    (sharesQuantity == null ? 0 : sharesQuantity!.hashCode) +
-    (status == null ? 0 : status!.hashCode) +
-    (tickSize == null ? 0 : tickSize!.hashCode) +
-    (updatedAt == null ? 0 : updatedAt!.hashCode) +
+    (orderBookId.hashCode) +
+    (baseQuantity.hashCode) +
+    (baseAssetId.hashCode) +
+    (createdAt.hashCode) +
+    (displayName.hashCode) +
+    (feeFactor.hashCode) +
+    (initialAssetsRatio.hashCode) +
+    (maturityAt.hashCode) +
+    (quoteQuantity.hashCode) +
+    (quoteAssetId.hashCode) +
+    (sharesQuantity.hashCode) +
+    (status.hashCode) +
+    (tickSize.hashCode) +
+    (updatedAt.hashCode) +
     (haltedAt == null ? 0 : haltedAt!.hashCode) +
     (terminatedAt == null ? 0 : terminatedAt!.hashCode) +
     (poolUpdatedAt == null ? 0 : poolUpdatedAt!.hashCode) +
-    (sharesAssetId == null ? 0 : sharesAssetId!.hashCode);
+    (sharesAssetId.hashCode);
 
   @override
   String toString() => 'OrderBook[orderBookId=$orderBookId, baseQuantity=$baseQuantity, baseAssetId=$baseAssetId, createdAt=$createdAt, displayName=$displayName, feeFactor=$feeFactor, initialAssetsRatio=$initialAssetsRatio, maturityAt=$maturityAt, quoteQuantity=$quoteQuantity, quoteAssetId=$quoteAssetId, sharesQuantity=$sharesQuantity, status=$status, tickSize=$tickSize, updatedAt=$updatedAt, haltedAt=$haltedAt, terminatedAt=$terminatedAt, poolUpdatedAt=$poolUpdatedAt, sharesAssetId=$sharesAssetId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.orderBookId != null) {
       json[r'order_book_id'] = this.orderBookId;
-    } else {
-      json[r'order_book_id'] = null;
-    }
-    if (this.baseQuantity != null) {
       json[r'base_quantity'] = this.baseQuantity;
-    } else {
-      json[r'base_quantity'] = null;
-    }
-    if (this.baseAssetId != null) {
       json[r'base_asset_id'] = this.baseAssetId;
-    } else {
-      json[r'base_asset_id'] = null;
-    }
-    if (this.createdAt != null) {
-      json[r'created_at'] = this.createdAt!.toUtc().toIso8601String();
-    } else {
-      json[r'created_at'] = null;
-    }
-    if (this.displayName != null) {
+      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
       json[r'display_name'] = this.displayName;
-    } else {
-      json[r'display_name'] = null;
-    }
-    if (this.feeFactor != null) {
       json[r'fee_factor'] = this.feeFactor;
-    } else {
-      json[r'fee_factor'] = null;
-    }
-    if (this.initialAssetsRatio != null) {
       json[r'initial_assets_ratio'] = this.initialAssetsRatio;
-    } else {
-      json[r'initial_assets_ratio'] = null;
-    }
-    if (this.maturityAt != null) {
-      json[r'maturity_at'] = this.maturityAt!.toUtc().toIso8601String();
-    } else {
-      json[r'maturity_at'] = null;
-    }
-    if (this.quoteQuantity != null) {
+      json[r'maturity_at'] = this.maturityAt.toUtc().toIso8601String();
       json[r'quote_quantity'] = this.quoteQuantity;
-    } else {
-      json[r'quote_quantity'] = null;
-    }
-    if (this.quoteAssetId != null) {
       json[r'quote_asset_id'] = this.quoteAssetId;
-    } else {
-      json[r'quote_asset_id'] = null;
-    }
-    if (this.sharesQuantity != null) {
       json[r'shares_quantity'] = this.sharesQuantity;
-    } else {
-      json[r'shares_quantity'] = null;
-    }
-    if (this.status != null) {
       json[r'status'] = this.status;
-    } else {
-      json[r'status'] = null;
-    }
-    if (this.tickSize != null) {
       json[r'tick_size'] = this.tickSize;
-    } else {
-      json[r'tick_size'] = null;
-    }
-    if (this.updatedAt != null) {
-      json[r'updated_at'] = this.updatedAt!.toUtc().toIso8601String();
-    } else {
-      json[r'updated_at'] = null;
-    }
+      json[r'updated_at'] = this.updatedAt.toUtc().toIso8601String();
     if (this.haltedAt != null) {
       json[r'halted_at'] = this.haltedAt!.toUtc().toIso8601String();
     } else {
@@ -310,11 +172,7 @@ class OrderBook {
     } else {
       json[r'pool_updated_at'] = null;
     }
-    if (this.sharesAssetId != null) {
       json[r'shares_asset_id'] = this.sharesAssetId;
-    } else {
-      json[r'shares_asset_id'] = null;
-    }
     return json;
   }
 
@@ -337,24 +195,24 @@ class OrderBook {
       }());
 
       return OrderBook(
-        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
+        orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
         baseQuantity: num.parse('${json[r'base_quantity']}'),
-        baseAssetId: mapValueOfType<String>(json, r'base_asset_id'),
-        createdAt: mapDateTime(json, r'created_at', r''),
-        displayName: mapValueOfType<String>(json, r'display_name'),
+        baseAssetId: mapValueOfType<String>(json, r'base_asset_id')!,
+        createdAt: mapDateTime(json, r'created_at', r'')!,
+        displayName: mapValueOfType<String>(json, r'display_name')!,
         feeFactor: num.parse('${json[r'fee_factor']}'),
         initialAssetsRatio: num.parse('${json[r'initial_assets_ratio']}'),
-        maturityAt: mapDateTime(json, r'maturity_at', r''),
+        maturityAt: mapDateTime(json, r'maturity_at', r'')!,
         quoteQuantity: num.parse('${json[r'quote_quantity']}'),
-        quoteAssetId: mapValueOfType<String>(json, r'quote_asset_id'),
+        quoteAssetId: mapValueOfType<String>(json, r'quote_asset_id')!,
         sharesQuantity: num.parse('${json[r'shares_quantity']}'),
-        status: OrderBookStatus.fromJson(json[r'status']),
+        status: OrderBookStatus.fromJson(json[r'status'])!,
         tickSize: num.parse('${json[r'tick_size']}'),
-        updatedAt: mapDateTime(json, r'updated_at', r''),
+        updatedAt: mapDateTime(json, r'updated_at', r'')!,
         haltedAt: mapDateTime(json, r'halted_at', r''),
         terminatedAt: mapDateTime(json, r'terminated_at', r''),
         poolUpdatedAt: mapDateTime(json, r'pool_updated_at', r''),
-        sharesAssetId: mapValueOfType<String>(json, r'shares_asset_id'),
+        sharesAssetId: mapValueOfType<String>(json, r'shares_asset_id')!,
       );
     }
     return null;
@@ -402,6 +260,21 @@ class OrderBook {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'order_book_id',
+    'base_quantity',
+    'base_asset_id',
+    'created_at',
+    'display_name',
+    'fee_factor',
+    'initial_assets_ratio',
+    'maturity_at',
+    'quote_quantity',
+    'quote_asset_id',
+    'shares_quantity',
+    'status',
+    'tick_size',
+    'updated_at',
+    'shares_asset_id',
   };
 }
 

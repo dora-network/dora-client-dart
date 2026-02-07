@@ -13,115 +13,56 @@ part of openapi.api;
 class Order {
   /// Returns a new [Order] instance.
   Order({
-    this.orderId,
-    this.orderBookId,
-    this.kind,
-    this.originalPrice,
-    this.avgFillPrice,
-    this.cancelledQuantity,
-    this.openQuantity,
-    this.originalQuantity,
-    this.filledQuantity,
-    this.filledNotional,
+    required this.orderId,
+    required this.orderBookId,
+    required this.kind,
+    required this.originalPrice,
+    required this.avgFillPrice,
+    required this.cancelledQuantity,
+    required this.openQuantity,
+    required this.originalQuantity,
+    required this.filledQuantity,
+    required this.filledNotional,
     this.lastUpdateAt,
-    this.openedAt,
-    this.inverseLeverage,
-    this.side,
-    this.status,
-    this.userId,
+    required this.openedAt,
+    required this.inverseLeverage,
+    required this.side,
+    required this.status,
+    required this.userId,
     this.orderModifiers = const [],
-    this.positionId,
+    required this.positionId,
     this.orderInfo,
     this.goodTillDate,
     this.triggerPrice,
     this.triggerType,
+    this.clientOrderId,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderId;
+  String orderId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderBookId;
+  String orderBookId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  OrderKind? kind;
+  OrderKind kind;
 
   /// If Kind is LIMIT, this is the original limit price. If Kind is MARKET, this may be 0 or omitted.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? originalPrice;
+  String originalPrice;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? avgFillPrice;
+  String avgFillPrice;
 
   /// Quantity that was cancelled, if any.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? cancelledQuantity;
+  String cancelledQuantity;
 
   /// Quantity that is still open, i.e., not filled or cancelled.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? openQuantity;
+  String openQuantity;
 
   /// The original quantity of the order when it was created.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? originalQuantity;
+  String originalQuantity;
 
   /// Quantity that has been filled so far.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? filledQuantity;
+  String filledQuantity;
 
   /// Quote quantity that has been filled so far.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? filledNotional;
+  String filledNotional;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -131,55 +72,19 @@ class Order {
   ///
   DateTime? lastUpdateAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? openedAt;
+  DateTime openedAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? inverseLeverage;
+  String inverseLeverage;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  Side? side;
+  Side side;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  OrderStatus? status;
+  OrderStatus status;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? userId;
+  String userId;
 
   List<OrderModifierKind> orderModifiers;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? positionId;
+  String positionId;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -213,6 +118,15 @@ class Order {
   ///
   TriggerType? triggerType;
 
+  /// An optional client-provided identifier for the order.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? clientOrderId;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is Order &&
     other.orderId == orderId &&
@@ -236,125 +150,63 @@ class Order {
     other.orderInfo == orderInfo &&
     other.goodTillDate == goodTillDate &&
     other.triggerPrice == triggerPrice &&
-    other.triggerType == triggerType;
+    other.triggerType == triggerType &&
+    other.clientOrderId == clientOrderId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (orderId == null ? 0 : orderId!.hashCode) +
-    (orderBookId == null ? 0 : orderBookId!.hashCode) +
-    (kind == null ? 0 : kind!.hashCode) +
-    (originalPrice == null ? 0 : originalPrice!.hashCode) +
-    (avgFillPrice == null ? 0 : avgFillPrice!.hashCode) +
-    (cancelledQuantity == null ? 0 : cancelledQuantity!.hashCode) +
-    (openQuantity == null ? 0 : openQuantity!.hashCode) +
-    (originalQuantity == null ? 0 : originalQuantity!.hashCode) +
-    (filledQuantity == null ? 0 : filledQuantity!.hashCode) +
-    (filledNotional == null ? 0 : filledNotional!.hashCode) +
+    (orderId.hashCode) +
+    (orderBookId.hashCode) +
+    (kind.hashCode) +
+    (originalPrice.hashCode) +
+    (avgFillPrice.hashCode) +
+    (cancelledQuantity.hashCode) +
+    (openQuantity.hashCode) +
+    (originalQuantity.hashCode) +
+    (filledQuantity.hashCode) +
+    (filledNotional.hashCode) +
     (lastUpdateAt == null ? 0 : lastUpdateAt!.hashCode) +
-    (openedAt == null ? 0 : openedAt!.hashCode) +
-    (inverseLeverage == null ? 0 : inverseLeverage!.hashCode) +
-    (side == null ? 0 : side!.hashCode) +
-    (status == null ? 0 : status!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode) +
+    (openedAt.hashCode) +
+    (inverseLeverage.hashCode) +
+    (side.hashCode) +
+    (status.hashCode) +
+    (userId.hashCode) +
     (orderModifiers.hashCode) +
-    (positionId == null ? 0 : positionId!.hashCode) +
+    (positionId.hashCode) +
     (orderInfo == null ? 0 : orderInfo!.hashCode) +
     (goodTillDate == null ? 0 : goodTillDate!.hashCode) +
     (triggerPrice == null ? 0 : triggerPrice!.hashCode) +
-    (triggerType == null ? 0 : triggerType!.hashCode);
+    (triggerType == null ? 0 : triggerType!.hashCode) +
+    (clientOrderId == null ? 0 : clientOrderId!.hashCode);
 
   @override
-  String toString() => 'Order[orderId=$orderId, orderBookId=$orderBookId, kind=$kind, originalPrice=$originalPrice, avgFillPrice=$avgFillPrice, cancelledQuantity=$cancelledQuantity, openQuantity=$openQuantity, originalQuantity=$originalQuantity, filledQuantity=$filledQuantity, filledNotional=$filledNotional, lastUpdateAt=$lastUpdateAt, openedAt=$openedAt, inverseLeverage=$inverseLeverage, side=$side, status=$status, userId=$userId, orderModifiers=$orderModifiers, positionId=$positionId, orderInfo=$orderInfo, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType]';
+  String toString() => 'Order[orderId=$orderId, orderBookId=$orderBookId, kind=$kind, originalPrice=$originalPrice, avgFillPrice=$avgFillPrice, cancelledQuantity=$cancelledQuantity, openQuantity=$openQuantity, originalQuantity=$originalQuantity, filledQuantity=$filledQuantity, filledNotional=$filledNotional, lastUpdateAt=$lastUpdateAt, openedAt=$openedAt, inverseLeverage=$inverseLeverage, side=$side, status=$status, userId=$userId, orderModifiers=$orderModifiers, positionId=$positionId, orderInfo=$orderInfo, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType, clientOrderId=$clientOrderId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.orderId != null) {
       json[r'order_id'] = this.orderId;
-    } else {
-      json[r'order_id'] = null;
-    }
-    if (this.orderBookId != null) {
       json[r'order_book_id'] = this.orderBookId;
-    } else {
-      json[r'order_book_id'] = null;
-    }
-    if (this.kind != null) {
       json[r'kind'] = this.kind;
-    } else {
-      json[r'kind'] = null;
-    }
-    if (this.originalPrice != null) {
       json[r'original_price'] = this.originalPrice;
-    } else {
-      json[r'original_price'] = null;
-    }
-    if (this.avgFillPrice != null) {
       json[r'avg_fill_price'] = this.avgFillPrice;
-    } else {
-      json[r'avg_fill_price'] = null;
-    }
-    if (this.cancelledQuantity != null) {
       json[r'cancelled_quantity'] = this.cancelledQuantity;
-    } else {
-      json[r'cancelled_quantity'] = null;
-    }
-    if (this.openQuantity != null) {
       json[r'open_quantity'] = this.openQuantity;
-    } else {
-      json[r'open_quantity'] = null;
-    }
-    if (this.originalQuantity != null) {
       json[r'original_quantity'] = this.originalQuantity;
-    } else {
-      json[r'original_quantity'] = null;
-    }
-    if (this.filledQuantity != null) {
       json[r'filled_quantity'] = this.filledQuantity;
-    } else {
-      json[r'filled_quantity'] = null;
-    }
-    if (this.filledNotional != null) {
       json[r'filled_notional'] = this.filledNotional;
-    } else {
-      json[r'filled_notional'] = null;
-    }
     if (this.lastUpdateAt != null) {
       json[r'last_update_at'] = this.lastUpdateAt!.toUtc().toIso8601String();
     } else {
       json[r'last_update_at'] = null;
     }
-    if (this.openedAt != null) {
-      json[r'opened_at'] = this.openedAt!.toUtc().toIso8601String();
-    } else {
-      json[r'opened_at'] = null;
-    }
-    if (this.inverseLeverage != null) {
+      json[r'opened_at'] = this.openedAt.toUtc().toIso8601String();
       json[r'inverse_leverage'] = this.inverseLeverage;
-    } else {
-      json[r'inverse_leverage'] = null;
-    }
-    if (this.side != null) {
       json[r'side'] = this.side;
-    } else {
-      json[r'side'] = null;
-    }
-    if (this.status != null) {
       json[r'status'] = this.status;
-    } else {
-      json[r'status'] = null;
-    }
-    if (this.userId != null) {
       json[r'user_id'] = this.userId;
-    } else {
-      json[r'user_id'] = null;
-    }
       json[r'order_modifiers'] = this.orderModifiers;
-    if (this.positionId != null) {
       json[r'position_id'] = this.positionId;
-    } else {
-      json[r'position_id'] = null;
-    }
     if (this.orderInfo != null) {
       json[r'order_info'] = this.orderInfo;
     } else {
@@ -374,6 +226,11 @@ class Order {
       json[r'trigger_type'] = this.triggerType;
     } else {
       json[r'trigger_type'] = null;
+    }
+    if (this.clientOrderId != null) {
+      json[r'client_order_id'] = this.clientOrderId;
+    } else {
+      json[r'client_order_id'] = null;
     }
     return json;
   }
@@ -397,28 +254,29 @@ class Order {
       }());
 
       return Order(
-        orderId: mapValueOfType<String>(json, r'order_id'),
-        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
-        kind: OrderKind.fromJson(json[r'kind']),
-        originalPrice: mapValueOfType<String>(json, r'original_price'),
-        avgFillPrice: mapValueOfType<String>(json, r'avg_fill_price'),
-        cancelledQuantity: mapValueOfType<String>(json, r'cancelled_quantity'),
-        openQuantity: mapValueOfType<String>(json, r'open_quantity'),
-        originalQuantity: mapValueOfType<String>(json, r'original_quantity'),
-        filledQuantity: mapValueOfType<String>(json, r'filled_quantity'),
-        filledNotional: mapValueOfType<String>(json, r'filled_notional'),
+        orderId: mapValueOfType<String>(json, r'order_id')!,
+        orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
+        kind: OrderKind.fromJson(json[r'kind'])!,
+        originalPrice: mapValueOfType<String>(json, r'original_price')!,
+        avgFillPrice: mapValueOfType<String>(json, r'avg_fill_price')!,
+        cancelledQuantity: mapValueOfType<String>(json, r'cancelled_quantity')!,
+        openQuantity: mapValueOfType<String>(json, r'open_quantity')!,
+        originalQuantity: mapValueOfType<String>(json, r'original_quantity')!,
+        filledQuantity: mapValueOfType<String>(json, r'filled_quantity')!,
+        filledNotional: mapValueOfType<String>(json, r'filled_notional')!,
         lastUpdateAt: mapDateTime(json, r'last_update_at', r''),
-        openedAt: mapDateTime(json, r'opened_at', r''),
-        inverseLeverage: mapValueOfType<String>(json, r'inverse_leverage'),
-        side: Side.fromJson(json[r'side']),
-        status: OrderStatus.fromJson(json[r'status']),
-        userId: mapValueOfType<String>(json, r'user_id'),
+        openedAt: mapDateTime(json, r'opened_at', r'')!,
+        inverseLeverage: mapValueOfType<String>(json, r'inverse_leverage')!,
+        side: Side.fromJson(json[r'side'])!,
+        status: OrderStatus.fromJson(json[r'status'])!,
+        userId: mapValueOfType<String>(json, r'user_id')!,
         orderModifiers: OrderModifierKind.listFromJson(json[r'order_modifiers']),
-        positionId: mapValueOfType<String>(json, r'position_id'),
+        positionId: mapValueOfType<String>(json, r'position_id')!,
         orderInfo: mapValueOfType<String>(json, r'order_info'),
         goodTillDate: mapDateTime(json, r'good_till_date', r''),
         triggerPrice: mapValueOfType<String>(json, r'trigger_price'),
         triggerType: TriggerType.fromJson(json[r'trigger_type']),
+        clientOrderId: mapValueOfType<String>(json, r'client_order_id'),
       );
     }
     return null;
@@ -466,6 +324,22 @@ class Order {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'order_id',
+    'order_book_id',
+    'kind',
+    'original_price',
+    'avg_fill_price',
+    'cancelled_quantity',
+    'open_quantity',
+    'original_quantity',
+    'filled_quantity',
+    'filled_notional',
+    'opened_at',
+    'inverse_leverage',
+    'side',
+    'status',
+    'user_id',
+    'position_id',
   };
 }
 

@@ -13,109 +13,44 @@ part of openapi.api;
 class CouponPayment {
   /// Returns a new [CouponPayment] instance.
   CouponPayment({
-    this.id,
-    this.assetId,
-    this.yield_,
-    this.startAt,
-    this.endAt,
-    this.payAt,
-    this.availableToPay,
-    this.completedAt,
-    this.createdAt,
-    this.processEvery,
-    this.lastProcessedAt,
+    required this.id,
+    required this.assetId,
+    required this.yield_,
+    required this.startAt,
+    required this.endAt,
+    required this.payAt,
+    required this.availableToPay,
+    required this.completedAt,
+    required this.createdAt,
+    required this.processEvery,
+    required this.lastProcessedAt,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? id;
+  String id;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? assetId;
+  String assetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  num? yield_;
+  /// Minimum value: 0
+  num yield_;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? startAt;
+  DateTime startAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? endAt;
+  DateTime endAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? payAt;
+  DateTime payAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? availableToPay;
+  String availableToPay;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? completedAt;
+  DateTime completedAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? createdAt;
+  DateTime createdAt;
 
   /// Number of nanoseconds to wait between coupon payment processing, must be at least 1000 (1 microsecond)
   ///
   /// Minimum value: 1000
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? processEvery;
+  int processEvery;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? lastProcessedAt;
+  DateTime lastProcessedAt;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CouponPayment &&
@@ -134,78 +69,34 @@ class CouponPayment {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (id == null ? 0 : id!.hashCode) +
-    (assetId == null ? 0 : assetId!.hashCode) +
-    (yield_ == null ? 0 : yield_!.hashCode) +
-    (startAt == null ? 0 : startAt!.hashCode) +
-    (endAt == null ? 0 : endAt!.hashCode) +
-    (payAt == null ? 0 : payAt!.hashCode) +
-    (availableToPay == null ? 0 : availableToPay!.hashCode) +
-    (completedAt == null ? 0 : completedAt!.hashCode) +
-    (createdAt == null ? 0 : createdAt!.hashCode) +
-    (processEvery == null ? 0 : processEvery!.hashCode) +
-    (lastProcessedAt == null ? 0 : lastProcessedAt!.hashCode);
+    (id.hashCode) +
+    (assetId.hashCode) +
+    (yield_.hashCode) +
+    (startAt.hashCode) +
+    (endAt.hashCode) +
+    (payAt.hashCode) +
+    (availableToPay.hashCode) +
+    (completedAt.hashCode) +
+    (createdAt.hashCode) +
+    (processEvery.hashCode) +
+    (lastProcessedAt.hashCode);
 
   @override
   String toString() => 'CouponPayment[id=$id, assetId=$assetId, yield_=$yield_, startAt=$startAt, endAt=$endAt, payAt=$payAt, availableToPay=$availableToPay, completedAt=$completedAt, createdAt=$createdAt, processEvery=$processEvery, lastProcessedAt=$lastProcessedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.id != null) {
       json[r'id'] = this.id;
-    } else {
-      json[r'id'] = null;
-    }
-    if (this.assetId != null) {
       json[r'asset_id'] = this.assetId;
-    } else {
-      json[r'asset_id'] = null;
-    }
-    if (this.yield_ != null) {
       json[r'yield'] = this.yield_;
-    } else {
-      json[r'yield'] = null;
-    }
-    if (this.startAt != null) {
-      json[r'start_at'] = this.startAt!.toUtc().toIso8601String();
-    } else {
-      json[r'start_at'] = null;
-    }
-    if (this.endAt != null) {
-      json[r'end_at'] = this.endAt!.toUtc().toIso8601String();
-    } else {
-      json[r'end_at'] = null;
-    }
-    if (this.payAt != null) {
-      json[r'pay_at'] = this.payAt!.toUtc().toIso8601String();
-    } else {
-      json[r'pay_at'] = null;
-    }
-    if (this.availableToPay != null) {
+      json[r'start_at'] = this.startAt.toUtc().toIso8601String();
+      json[r'end_at'] = this.endAt.toUtc().toIso8601String();
+      json[r'pay_at'] = this.payAt.toUtc().toIso8601String();
       json[r'available_to_pay'] = this.availableToPay;
-    } else {
-      json[r'available_to_pay'] = null;
-    }
-    if (this.completedAt != null) {
-      json[r'completed_at'] = this.completedAt!.toUtc().toIso8601String();
-    } else {
-      json[r'completed_at'] = null;
-    }
-    if (this.createdAt != null) {
-      json[r'created_at'] = this.createdAt!.toUtc().toIso8601String();
-    } else {
-      json[r'created_at'] = null;
-    }
-    if (this.processEvery != null) {
+      json[r'completed_at'] = this.completedAt.toUtc().toIso8601String();
+      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
       json[r'process_every'] = this.processEvery;
-    } else {
-      json[r'process_every'] = null;
-    }
-    if (this.lastProcessedAt != null) {
-      json[r'last_processed_at'] = this.lastProcessedAt!.toUtc().toIso8601String();
-    } else {
-      json[r'last_processed_at'] = null;
-    }
+      json[r'last_processed_at'] = this.lastProcessedAt.toUtc().toIso8601String();
     return json;
   }
 
@@ -228,17 +119,17 @@ class CouponPayment {
       }());
 
       return CouponPayment(
-        id: mapValueOfType<String>(json, r'id'),
-        assetId: mapValueOfType<String>(json, r'asset_id'),
+        id: mapValueOfType<String>(json, r'id')!,
+        assetId: mapValueOfType<String>(json, r'asset_id')!,
         yield_: num.parse('${json[r'yield']}'),
-        startAt: mapDateTime(json, r'start_at', r''),
-        endAt: mapDateTime(json, r'end_at', r''),
-        payAt: mapDateTime(json, r'pay_at', r''),
-        availableToPay: mapValueOfType<String>(json, r'available_to_pay'),
-        completedAt: mapDateTime(json, r'completed_at', r''),
-        createdAt: mapDateTime(json, r'created_at', r''),
-        processEvery: mapValueOfType<int>(json, r'process_every'),
-        lastProcessedAt: mapDateTime(json, r'last_processed_at', r''),
+        startAt: mapDateTime(json, r'start_at', r'')!,
+        endAt: mapDateTime(json, r'end_at', r'')!,
+        payAt: mapDateTime(json, r'pay_at', r'')!,
+        availableToPay: mapValueOfType<String>(json, r'available_to_pay')!,
+        completedAt: mapDateTime(json, r'completed_at', r'')!,
+        createdAt: mapDateTime(json, r'created_at', r'')!,
+        processEvery: mapValueOfType<int>(json, r'process_every')!,
+        lastProcessedAt: mapDateTime(json, r'last_processed_at', r'')!,
       );
     }
     return null;
@@ -286,6 +177,17 @@ class CouponPayment {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'id',
+    'asset_id',
+    'yield',
+    'start_at',
+    'end_at',
+    'pay_at',
+    'available_to_pay',
+    'completed_at',
+    'created_at',
+    'process_every',
+    'last_processed_at',
   };
 }
 

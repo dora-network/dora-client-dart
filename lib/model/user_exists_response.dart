@@ -13,34 +13,16 @@ part of openapi.api;
 class UserExistsResponse {
   /// Returns a new [UserExistsResponse] instance.
   UserExistsResponse({
-    this.emailExists,
-    this.firebaseSet,
-    this.shouldCreateUser,
+    required this.emailExists,
+    required this.firebaseSet,
+    required this.shouldCreateUser,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? emailExists;
+  bool emailExists;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? firebaseSet;
+  bool firebaseSet;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? shouldCreateUser;
+  bool shouldCreateUser;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserExistsResponse &&
@@ -51,30 +33,18 @@ class UserExistsResponse {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (emailExists == null ? 0 : emailExists!.hashCode) +
-    (firebaseSet == null ? 0 : firebaseSet!.hashCode) +
-    (shouldCreateUser == null ? 0 : shouldCreateUser!.hashCode);
+    (emailExists.hashCode) +
+    (firebaseSet.hashCode) +
+    (shouldCreateUser.hashCode);
 
   @override
   String toString() => 'UserExistsResponse[emailExists=$emailExists, firebaseSet=$firebaseSet, shouldCreateUser=$shouldCreateUser]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.emailExists != null) {
       json[r'email_exists'] = this.emailExists;
-    } else {
-      json[r'email_exists'] = null;
-    }
-    if (this.firebaseSet != null) {
       json[r'firebase_set'] = this.firebaseSet;
-    } else {
-      json[r'firebase_set'] = null;
-    }
-    if (this.shouldCreateUser != null) {
       json[r'should_create_user'] = this.shouldCreateUser;
-    } else {
-      json[r'should_create_user'] = null;
-    }
     return json;
   }
 
@@ -97,9 +67,9 @@ class UserExistsResponse {
       }());
 
       return UserExistsResponse(
-        emailExists: mapValueOfType<bool>(json, r'email_exists'),
-        firebaseSet: mapValueOfType<bool>(json, r'firebase_set'),
-        shouldCreateUser: mapValueOfType<bool>(json, r'should_create_user'),
+        emailExists: mapValueOfType<bool>(json, r'email_exists')!,
+        firebaseSet: mapValueOfType<bool>(json, r'firebase_set')!,
+        shouldCreateUser: mapValueOfType<bool>(json, r'should_create_user')!,
       );
     }
     return null;
@@ -147,6 +117,9 @@ class UserExistsResponse {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'email_exists',
+    'firebase_set',
+    'should_create_user',
   };
 }
 

@@ -8,15 +8,15 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**userId** | **String** |  | [optional] 
-**positionId** | **String** |  | [optional] 
-**assetId** | **String** |  | [optional] 
-**couponPaymentId** | **String** |  | [optional] 
-**seq** | **int** |  | [optional] 
-**pending** | **String** |  | [optional] 
-**completed** | **String** |  | [optional] 
-**startedAt** | [**DateTime**](DateTime.md) |  | [optional] 
-**endedAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**userId** | **String** |  | 
+**positionId** | **String** |  | 
+**assetId** | **String** |  | 
+**couponPaymentId** | **String** |  | 
+**seq** | **int** |  | 
+**pending** | **String** |  | 
+**completed** | **String** |  | 
+**startedAt** | [**DateTime**](DateTime.md) |  | 
+**endedAt** | [**DateTime**](DateTime.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

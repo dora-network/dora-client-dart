@@ -13,52 +13,22 @@ part of openapi.api;
 class IsolatedCollateral {
   /// Returns a new [IsolatedCollateral] instance.
   IsolatedCollateral({
-    this.globalPositionId,
-    this.isolatedPositionId,
-    this.transactionId,
-    this.assetId,
-    this.quantity,
+    required this.globalPositionId,
+    required this.isolatedPositionId,
+    required this.transactionId,
+    required this.assetId,
+    required this.quantity,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? globalPositionId;
+  String globalPositionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? isolatedPositionId;
+  String isolatedPositionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? transactionId;
+  String transactionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? assetId;
+  String assetId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? quantity;
+  String quantity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is IsolatedCollateral &&
@@ -71,42 +41,22 @@ class IsolatedCollateral {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (globalPositionId == null ? 0 : globalPositionId!.hashCode) +
-    (isolatedPositionId == null ? 0 : isolatedPositionId!.hashCode) +
-    (transactionId == null ? 0 : transactionId!.hashCode) +
-    (assetId == null ? 0 : assetId!.hashCode) +
-    (quantity == null ? 0 : quantity!.hashCode);
+    (globalPositionId.hashCode) +
+    (isolatedPositionId.hashCode) +
+    (transactionId.hashCode) +
+    (assetId.hashCode) +
+    (quantity.hashCode);
 
   @override
   String toString() => 'IsolatedCollateral[globalPositionId=$globalPositionId, isolatedPositionId=$isolatedPositionId, transactionId=$transactionId, assetId=$assetId, quantity=$quantity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.globalPositionId != null) {
       json[r'global_position_id'] = this.globalPositionId;
-    } else {
-      json[r'global_position_id'] = null;
-    }
-    if (this.isolatedPositionId != null) {
       json[r'isolated_position_id'] = this.isolatedPositionId;
-    } else {
-      json[r'isolated_position_id'] = null;
-    }
-    if (this.transactionId != null) {
       json[r'transaction_id'] = this.transactionId;
-    } else {
-      json[r'transaction_id'] = null;
-    }
-    if (this.assetId != null) {
       json[r'asset_id'] = this.assetId;
-    } else {
-      json[r'asset_id'] = null;
-    }
-    if (this.quantity != null) {
       json[r'quantity'] = this.quantity;
-    } else {
-      json[r'quantity'] = null;
-    }
     return json;
   }
 
@@ -129,11 +79,11 @@ class IsolatedCollateral {
       }());
 
       return IsolatedCollateral(
-        globalPositionId: mapValueOfType<String>(json, r'global_position_id'),
-        isolatedPositionId: mapValueOfType<String>(json, r'isolated_position_id'),
-        transactionId: mapValueOfType<String>(json, r'transaction_id'),
-        assetId: mapValueOfType<String>(json, r'asset_id'),
-        quantity: mapValueOfType<String>(json, r'quantity'),
+        globalPositionId: mapValueOfType<String>(json, r'global_position_id')!,
+        isolatedPositionId: mapValueOfType<String>(json, r'isolated_position_id')!,
+        transactionId: mapValueOfType<String>(json, r'transaction_id')!,
+        assetId: mapValueOfType<String>(json, r'asset_id')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
       );
     }
     return null;
@@ -181,6 +131,11 @@ class IsolatedCollateral {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'global_position_id',
+    'isolated_position_id',
+    'transaction_id',
+    'asset_id',
+    'quantity',
   };
 }
 

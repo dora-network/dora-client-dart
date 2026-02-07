@@ -13,133 +13,48 @@ part of openapi.api;
 class Trade {
   /// Returns a new [Trade] instance.
   Trade({
-    this.transactionId,
-    this.asset0,
-    this.createdAt,
-    this.feeAssetId,
-    this.feeQuantity,
-    this.orderBookId,
-    this.orderId,
-    this.orderSeq,
-    this.price,
-    this.quantity0,
-    this.userId,
-    this.side,
-    this.aggressorIndicator,
+    required this.transactionId,
+    required this.asset0,
+    required this.createdAt,
+    required this.orderBookId,
+    required this.orderId,
+    required this.orderSeq,
+    required this.price,
+    required this.quantity0,
+    required this.userId,
+    required this.side,
+    required this.aggressorIndicator,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? transactionId;
+  String transactionId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? asset0;
+  String asset0;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? createdAt;
+  DateTime createdAt;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? feeAssetId;
+  String orderBookId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? feeQuantity;
+  String orderId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderBookId;
+  /// Minimum value: 1
+  int orderSeq;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderId;
+  String price;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  int? orderSeq;
+  String quantity0;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? price;
+  String userId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? quantity0;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? userId;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  Side? side;
+  Side side;
 
   /// If true, then this order is the aggressor (taker); otherwise it is the maker.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? aggressorIndicator;
+  bool aggressorIndicator;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Trade &&
     other.transactionId == transactionId &&
     other.asset0 == asset0 &&
     other.createdAt == createdAt &&
-    other.feeAssetId == feeAssetId &&
-    other.feeQuantity == feeQuantity &&
     other.orderBookId == orderBookId &&
     other.orderId == orderId &&
     other.orderSeq == orderSeq &&
@@ -152,90 +67,34 @@ class Trade {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (transactionId == null ? 0 : transactionId!.hashCode) +
-    (asset0 == null ? 0 : asset0!.hashCode) +
-    (createdAt == null ? 0 : createdAt!.hashCode) +
-    (feeAssetId == null ? 0 : feeAssetId!.hashCode) +
-    (feeQuantity == null ? 0 : feeQuantity!.hashCode) +
-    (orderBookId == null ? 0 : orderBookId!.hashCode) +
-    (orderId == null ? 0 : orderId!.hashCode) +
-    (orderSeq == null ? 0 : orderSeq!.hashCode) +
-    (price == null ? 0 : price!.hashCode) +
-    (quantity0 == null ? 0 : quantity0!.hashCode) +
-    (userId == null ? 0 : userId!.hashCode) +
-    (side == null ? 0 : side!.hashCode) +
-    (aggressorIndicator == null ? 0 : aggressorIndicator!.hashCode);
+    (transactionId.hashCode) +
+    (asset0.hashCode) +
+    (createdAt.hashCode) +
+    (orderBookId.hashCode) +
+    (orderId.hashCode) +
+    (orderSeq.hashCode) +
+    (price.hashCode) +
+    (quantity0.hashCode) +
+    (userId.hashCode) +
+    (side.hashCode) +
+    (aggressorIndicator.hashCode);
 
   @override
-  String toString() => 'Trade[transactionId=$transactionId, asset0=$asset0, createdAt=$createdAt, feeAssetId=$feeAssetId, feeQuantity=$feeQuantity, orderBookId=$orderBookId, orderId=$orderId, orderSeq=$orderSeq, price=$price, quantity0=$quantity0, userId=$userId, side=$side, aggressorIndicator=$aggressorIndicator]';
+  String toString() => 'Trade[transactionId=$transactionId, asset0=$asset0, createdAt=$createdAt, orderBookId=$orderBookId, orderId=$orderId, orderSeq=$orderSeq, price=$price, quantity0=$quantity0, userId=$userId, side=$side, aggressorIndicator=$aggressorIndicator]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.transactionId != null) {
       json[r'transaction_id'] = this.transactionId;
-    } else {
-      json[r'transaction_id'] = null;
-    }
-    if (this.asset0 != null) {
       json[r'asset_0'] = this.asset0;
-    } else {
-      json[r'asset_0'] = null;
-    }
-    if (this.createdAt != null) {
-      json[r'created_at'] = this.createdAt!.toUtc().toIso8601String();
-    } else {
-      json[r'created_at'] = null;
-    }
-    if (this.feeAssetId != null) {
-      json[r'fee_asset_id'] = this.feeAssetId;
-    } else {
-      json[r'fee_asset_id'] = null;
-    }
-    if (this.feeQuantity != null) {
-      json[r'fee_quantity'] = this.feeQuantity;
-    } else {
-      json[r'fee_quantity'] = null;
-    }
-    if (this.orderBookId != null) {
+      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
       json[r'order_book_id'] = this.orderBookId;
-    } else {
-      json[r'order_book_id'] = null;
-    }
-    if (this.orderId != null) {
       json[r'order_id'] = this.orderId;
-    } else {
-      json[r'order_id'] = null;
-    }
-    if (this.orderSeq != null) {
       json[r'order_seq'] = this.orderSeq;
-    } else {
-      json[r'order_seq'] = null;
-    }
-    if (this.price != null) {
       json[r'price'] = this.price;
-    } else {
-      json[r'price'] = null;
-    }
-    if (this.quantity0 != null) {
       json[r'quantity_0'] = this.quantity0;
-    } else {
-      json[r'quantity_0'] = null;
-    }
-    if (this.userId != null) {
       json[r'user_id'] = this.userId;
-    } else {
-      json[r'user_id'] = null;
-    }
-    if (this.side != null) {
       json[r'side'] = this.side;
-    } else {
-      json[r'side'] = null;
-    }
-    if (this.aggressorIndicator != null) {
       json[r'aggressor_indicator'] = this.aggressorIndicator;
-    } else {
-      json[r'aggressor_indicator'] = null;
-    }
     return json;
   }
 
@@ -258,19 +117,17 @@ class Trade {
       }());
 
       return Trade(
-        transactionId: mapValueOfType<String>(json, r'transaction_id'),
-        asset0: mapValueOfType<String>(json, r'asset_0'),
-        createdAt: mapDateTime(json, r'created_at', r''),
-        feeAssetId: mapValueOfType<String>(json, r'fee_asset_id'),
-        feeQuantity: mapValueOfType<String>(json, r'fee_quantity'),
-        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
-        orderId: mapValueOfType<String>(json, r'order_id'),
-        orderSeq: mapValueOfType<int>(json, r'order_seq'),
-        price: mapValueOfType<String>(json, r'price'),
-        quantity0: mapValueOfType<String>(json, r'quantity_0'),
-        userId: mapValueOfType<String>(json, r'user_id'),
-        side: Side.fromJson(json[r'side']),
-        aggressorIndicator: mapValueOfType<bool>(json, r'aggressor_indicator'),
+        transactionId: mapValueOfType<String>(json, r'transaction_id')!,
+        asset0: mapValueOfType<String>(json, r'asset_0')!,
+        createdAt: mapDateTime(json, r'created_at', r'')!,
+        orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
+        orderId: mapValueOfType<String>(json, r'order_id')!,
+        orderSeq: mapValueOfType<int>(json, r'order_seq')!,
+        price: mapValueOfType<String>(json, r'price')!,
+        quantity0: mapValueOfType<String>(json, r'quantity_0')!,
+        userId: mapValueOfType<String>(json, r'user_id')!,
+        side: Side.fromJson(json[r'side'])!,
+        aggressorIndicator: mapValueOfType<bool>(json, r'aggressor_indicator')!,
       );
     }
     return null;
@@ -318,6 +175,17 @@ class Trade {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'transaction_id',
+    'asset_0',
+    'created_at',
+    'order_book_id',
+    'order_id',
+    'order_seq',
+    'price',
+    'quantity_0',
+    'user_id',
+    'side',
+    'aggressor_indicator',
   };
 }
 

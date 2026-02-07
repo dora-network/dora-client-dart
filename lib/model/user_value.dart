@@ -20,12 +20,6 @@ class UserValue {
     this.impendingBorrows = const {},
     this.borrowLimit = const {},
     this.liquidationThreshold = const {},
-    this.notionalLong = const {},
-    this.notionalShort = const {},
-    this.portfolioValue = const {},
-    this.netLiquidationValue = const {},
-    this.unrealizedPnl = const {},
-    this.realizedPnl = const {},
   });
 
   Map<String, String> available;
@@ -42,18 +36,6 @@ class UserValue {
 
   Map<String, String> liquidationThreshold;
 
-  Map<String, String> notionalLong;
-
-  Map<String, String> notionalShort;
-
-  Map<String, String> portfolioValue;
-
-  Map<String, String> netLiquidationValue;
-
-  Map<String, String> unrealizedPnl;
-
-  Map<String, String> realizedPnl;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserValue &&
     _deepEquality.equals(other.available, available) &&
@@ -62,13 +44,7 @@ class UserValue {
     _deepEquality.equals(other.supplied, supplied) &&
     _deepEquality.equals(other.impendingBorrows, impendingBorrows) &&
     _deepEquality.equals(other.borrowLimit, borrowLimit) &&
-    _deepEquality.equals(other.liquidationThreshold, liquidationThreshold) &&
-    _deepEquality.equals(other.notionalLong, notionalLong) &&
-    _deepEquality.equals(other.notionalShort, notionalShort) &&
-    _deepEquality.equals(other.portfolioValue, portfolioValue) &&
-    _deepEquality.equals(other.netLiquidationValue, netLiquidationValue) &&
-    _deepEquality.equals(other.unrealizedPnl, unrealizedPnl) &&
-    _deepEquality.equals(other.realizedPnl, realizedPnl);
+    _deepEquality.equals(other.liquidationThreshold, liquidationThreshold);
 
   @override
   int get hashCode =>
@@ -79,16 +55,10 @@ class UserValue {
     (supplied.hashCode) +
     (impendingBorrows.hashCode) +
     (borrowLimit.hashCode) +
-    (liquidationThreshold.hashCode) +
-    (notionalLong.hashCode) +
-    (notionalShort.hashCode) +
-    (portfolioValue.hashCode) +
-    (netLiquidationValue.hashCode) +
-    (unrealizedPnl.hashCode) +
-    (realizedPnl.hashCode);
+    (liquidationThreshold.hashCode);
 
   @override
-  String toString() => 'UserValue[available=$available, locked=$locked, borrowed=$borrowed, supplied=$supplied, impendingBorrows=$impendingBorrows, borrowLimit=$borrowLimit, liquidationThreshold=$liquidationThreshold, notionalLong=$notionalLong, notionalShort=$notionalShort, portfolioValue=$portfolioValue, netLiquidationValue=$netLiquidationValue, unrealizedPnl=$unrealizedPnl, realizedPnl=$realizedPnl]';
+  String toString() => 'UserValue[available=$available, locked=$locked, borrowed=$borrowed, supplied=$supplied, impendingBorrows=$impendingBorrows, borrowLimit=$borrowLimit, liquidationThreshold=$liquidationThreshold]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -99,12 +69,6 @@ class UserValue {
       json[r'impending_borrows'] = this.impendingBorrows;
       json[r'borrow_limit'] = this.borrowLimit;
       json[r'liquidation_threshold'] = this.liquidationThreshold;
-      json[r'notional_long'] = this.notionalLong;
-      json[r'notional_short'] = this.notionalShort;
-      json[r'portfolio_value'] = this.portfolioValue;
-      json[r'net_liquidation_value'] = this.netLiquidationValue;
-      json[r'unrealized_pnl'] = this.unrealizedPnl;
-      json[r'realized_pnl'] = this.realizedPnl;
     return json;
   }
 
@@ -127,19 +91,13 @@ class UserValue {
       }());
 
       return UserValue(
-        available: mapCastOfType<String, String>(json, r'available') ?? const {},
-        locked: mapCastOfType<String, String>(json, r'locked') ?? const {},
-        borrowed: mapCastOfType<String, String>(json, r'borrowed') ?? const {},
-        supplied: mapCastOfType<String, String>(json, r'supplied') ?? const {},
-        impendingBorrows: mapCastOfType<String, String>(json, r'impending_borrows') ?? const {},
-        borrowLimit: mapCastOfType<String, String>(json, r'borrow_limit') ?? const {},
-        liquidationThreshold: mapCastOfType<String, String>(json, r'liquidation_threshold') ?? const {},
-        notionalLong: mapCastOfType<String, String>(json, r'notional_long') ?? const {},
-        notionalShort: mapCastOfType<String, String>(json, r'notional_short') ?? const {},
-        portfolioValue: mapCastOfType<String, String>(json, r'portfolio_value') ?? const {},
-        netLiquidationValue: mapCastOfType<String, String>(json, r'net_liquidation_value') ?? const {},
-        unrealizedPnl: mapCastOfType<String, String>(json, r'unrealized_pnl') ?? const {},
-        realizedPnl: mapCastOfType<String, String>(json, r'realized_pnl') ?? const {},
+        available: mapCastOfType<String, String>(json, r'available')!,
+        locked: mapCastOfType<String, String>(json, r'locked')!,
+        borrowed: mapCastOfType<String, String>(json, r'borrowed')!,
+        supplied: mapCastOfType<String, String>(json, r'supplied')!,
+        impendingBorrows: mapCastOfType<String, String>(json, r'impending_borrows')!,
+        borrowLimit: mapCastOfType<String, String>(json, r'borrow_limit')!,
+        liquidationThreshold: mapCastOfType<String, String>(json, r'liquidation_threshold')!,
       );
     }
     return null;
@@ -187,6 +145,13 @@ class UserValue {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'available',
+    'locked',
+    'borrowed',
+    'supplied',
+    'impending_borrows',
+    'borrow_limit',
+    'liquidation_threshold',
   };
 }
 

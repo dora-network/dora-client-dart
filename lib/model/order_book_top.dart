@@ -13,43 +13,19 @@ part of openapi.api;
 class OrderBookTop {
   /// Returns a new [OrderBookTop] instance.
   OrderBookTop({
-    this.orderBookId,
-    this.bestBid,
-    this.bestAsk,
-    this.timestamp,
+    required this.orderBookId,
+    required this.bestBid,
+    required this.bestAsk,
+    required this.timestamp,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? orderBookId;
+  String orderBookId;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? bestBid;
+  String bestBid;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? bestAsk;
+  String bestAsk;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? timestamp;
+  DateTime timestamp;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderBookTop &&
@@ -61,36 +37,20 @@ class OrderBookTop {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (orderBookId == null ? 0 : orderBookId!.hashCode) +
-    (bestBid == null ? 0 : bestBid!.hashCode) +
-    (bestAsk == null ? 0 : bestAsk!.hashCode) +
-    (timestamp == null ? 0 : timestamp!.hashCode);
+    (orderBookId.hashCode) +
+    (bestBid.hashCode) +
+    (bestAsk.hashCode) +
+    (timestamp.hashCode);
 
   @override
   String toString() => 'OrderBookTop[orderBookId=$orderBookId, bestBid=$bestBid, bestAsk=$bestAsk, timestamp=$timestamp]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.orderBookId != null) {
       json[r'order_book_id'] = this.orderBookId;
-    } else {
-      json[r'order_book_id'] = null;
-    }
-    if (this.bestBid != null) {
       json[r'best_bid'] = this.bestBid;
-    } else {
-      json[r'best_bid'] = null;
-    }
-    if (this.bestAsk != null) {
       json[r'best_ask'] = this.bestAsk;
-    } else {
-      json[r'best_ask'] = null;
-    }
-    if (this.timestamp != null) {
-      json[r'timestamp'] = this.timestamp!.toUtc().toIso8601String();
-    } else {
-      json[r'timestamp'] = null;
-    }
+      json[r'timestamp'] = this.timestamp.toUtc().toIso8601String();
     return json;
   }
 
@@ -113,10 +73,10 @@ class OrderBookTop {
       }());
 
       return OrderBookTop(
-        orderBookId: mapValueOfType<String>(json, r'order_book_id'),
-        bestBid: mapValueOfType<String>(json, r'best_bid'),
-        bestAsk: mapValueOfType<String>(json, r'best_ask'),
-        timestamp: mapDateTime(json, r'timestamp', r''),
+        orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
+        bestBid: mapValueOfType<String>(json, r'best_bid')!,
+        bestAsk: mapValueOfType<String>(json, r'best_ask')!,
+        timestamp: mapDateTime(json, r'timestamp', r'')!,
       );
     }
     return null;
@@ -164,6 +124,10 @@ class OrderBookTop {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'order_book_id',
+    'best_bid',
+    'best_ask',
+    'timestamp',
   };
 }
 

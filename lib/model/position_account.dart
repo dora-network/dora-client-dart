@@ -13,37 +13,19 @@ part of openapi.api;
 class PositionAccount {
   /// Returns a new [PositionAccount] instance.
   PositionAccount({
-    this.positionId,
-    this.positionName,
-    this.isGlobal,
+    required this.positionId,
+    required this.positionName,
+    required this.isGlobal,
   });
 
   /// The ID of the position account
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? positionId;
+  String positionId;
 
   /// The name of the position account
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? positionName;
+  String positionName;
 
   /// Whether the position account is the global or an isolated account
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? isGlobal;
+  bool isGlobal;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PositionAccount &&
@@ -54,30 +36,18 @@ class PositionAccount {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (positionId == null ? 0 : positionId!.hashCode) +
-    (positionName == null ? 0 : positionName!.hashCode) +
-    (isGlobal == null ? 0 : isGlobal!.hashCode);
+    (positionId.hashCode) +
+    (positionName.hashCode) +
+    (isGlobal.hashCode);
 
   @override
   String toString() => 'PositionAccount[positionId=$positionId, positionName=$positionName, isGlobal=$isGlobal]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.positionId != null) {
       json[r'position_id'] = this.positionId;
-    } else {
-      json[r'position_id'] = null;
-    }
-    if (this.positionName != null) {
       json[r'position_name'] = this.positionName;
-    } else {
-      json[r'position_name'] = null;
-    }
-    if (this.isGlobal != null) {
       json[r'is_global'] = this.isGlobal;
-    } else {
-      json[r'is_global'] = null;
-    }
     return json;
   }
 
@@ -100,9 +70,9 @@ class PositionAccount {
       }());
 
       return PositionAccount(
-        positionId: mapValueOfType<String>(json, r'position_id'),
-        positionName: mapValueOfType<String>(json, r'position_name'),
-        isGlobal: mapValueOfType<bool>(json, r'is_global'),
+        positionId: mapValueOfType<String>(json, r'position_id')!,
+        positionName: mapValueOfType<String>(json, r'position_name')!,
+        isGlobal: mapValueOfType<bool>(json, r'is_global')!,
       );
     }
     return null;
@@ -150,6 +120,9 @@ class PositionAccount {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'position_id',
+    'position_name',
+    'is_global',
   };
 }
 

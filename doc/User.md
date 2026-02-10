@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **verifiedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **showTutorialCards** | **bool** |  | 
 **notificationsEnabled** | **bool** |  | 
+**tenantId** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

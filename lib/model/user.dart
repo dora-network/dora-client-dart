@@ -28,6 +28,7 @@ class User {
     this.verifiedAt,
     required this.showTutorialCards,
     required this.notificationsEnabled,
+    required this.tenantId,
   });
 
   String id;
@@ -110,6 +111,8 @@ class User {
 
   bool notificationsEnabled;
 
+  String tenantId;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is User &&
     other.id == id &&
@@ -126,7 +129,8 @@ class User {
     other.timezoneOffset == timezoneOffset &&
     other.verifiedAt == verifiedAt &&
     other.showTutorialCards == showTutorialCards &&
-    other.notificationsEnabled == notificationsEnabled;
+    other.notificationsEnabled == notificationsEnabled &&
+    other.tenantId == tenantId;
 
   @override
   int get hashCode =>
@@ -145,10 +149,11 @@ class User {
     (timezoneOffset == null ? 0 : timezoneOffset!.hashCode) +
     (verifiedAt == null ? 0 : verifiedAt!.hashCode) +
     (showTutorialCards.hashCode) +
-    (notificationsEnabled.hashCode);
+    (notificationsEnabled.hashCode) +
+    (tenantId.hashCode);
 
   @override
-  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, name=$name, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled]';
+  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, name=$name, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -199,6 +204,7 @@ class User {
     }
       json[r'show_tutorial_cards'] = this.showTutorialCards;
       json[r'notifications_enabled'] = this.notificationsEnabled;
+      json[r'tenant_id'] = this.tenantId;
     return json;
   }
 
@@ -236,6 +242,7 @@ class User {
         verifiedAt: mapDateTime(json, r'verified_at', r''),
         showTutorialCards: mapValueOfType<bool>(json, r'show_tutorial_cards')!,
         notificationsEnabled: mapValueOfType<bool>(json, r'notifications_enabled')!,
+        tenantId: mapValueOfType<String>(json, r'tenant_id')!,
       );
     }
     return null;
@@ -290,6 +297,7 @@ class User {
     'roles',
     'show_tutorial_cards',
     'notifications_enabled',
+    'tenant_id',
   };
 }
 

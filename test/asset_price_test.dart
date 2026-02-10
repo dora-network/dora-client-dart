@@ -26,6 +26,11 @@ void main() {
       // TODO
     });
 
+    // String ytm
+    test('to test the property `ytm`', () async {
+      // TODO
+    });
+
     // DateTime time
     test('to test the property `time`', () async {
       // TODO

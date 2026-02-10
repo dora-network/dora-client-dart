@@ -18,6 +18,8 @@ class OrderBook {
     required this.baseAssetId,
     required this.createdAt,
     required this.displayName,
+    required this.baseAssetFractionalizedUnits,
+    required this.quoteAssetFractionalizedUnits,
     required this.feeFactor,
     required this.initialAssetsRatio,
     required this.maturityAt,
@@ -43,6 +45,12 @@ class OrderBook {
   DateTime createdAt;
 
   String displayName;
+
+  /// Minimum value: 0
+  int baseAssetFractionalizedUnits;
+
+  /// Minimum value: 0
+  int quoteAssetFractionalizedUnits;
 
   /// Minimum value: 0
   /// Maximum value: 1
@@ -102,6 +110,8 @@ class OrderBook {
     other.baseAssetId == baseAssetId &&
     other.createdAt == createdAt &&
     other.displayName == displayName &&
+    other.baseAssetFractionalizedUnits == baseAssetFractionalizedUnits &&
+    other.quoteAssetFractionalizedUnits == quoteAssetFractionalizedUnits &&
     other.feeFactor == feeFactor &&
     other.initialAssetsRatio == initialAssetsRatio &&
     other.maturityAt == maturityAt &&
@@ -124,6 +134,8 @@ class OrderBook {
     (baseAssetId.hashCode) +
     (createdAt.hashCode) +
     (displayName.hashCode) +
+    (baseAssetFractionalizedUnits.hashCode) +
+    (quoteAssetFractionalizedUnits.hashCode) +
     (feeFactor.hashCode) +
     (initialAssetsRatio.hashCode) +
     (maturityAt.hashCode) +
@@ -139,7 +151,7 @@ class OrderBook {
     (sharesAssetId.hashCode);
 
   @override
-  String toString() => 'OrderBook[orderBookId=$orderBookId, baseQuantity=$baseQuantity, baseAssetId=$baseAssetId, createdAt=$createdAt, displayName=$displayName, feeFactor=$feeFactor, initialAssetsRatio=$initialAssetsRatio, maturityAt=$maturityAt, quoteQuantity=$quoteQuantity, quoteAssetId=$quoteAssetId, sharesQuantity=$sharesQuantity, status=$status, tickSize=$tickSize, updatedAt=$updatedAt, haltedAt=$haltedAt, terminatedAt=$terminatedAt, poolUpdatedAt=$poolUpdatedAt, sharesAssetId=$sharesAssetId]';
+  String toString() => 'OrderBook[orderBookId=$orderBookId, baseQuantity=$baseQuantity, baseAssetId=$baseAssetId, createdAt=$createdAt, displayName=$displayName, baseAssetFractionalizedUnits=$baseAssetFractionalizedUnits, quoteAssetFractionalizedUnits=$quoteAssetFractionalizedUnits, feeFactor=$feeFactor, initialAssetsRatio=$initialAssetsRatio, maturityAt=$maturityAt, quoteQuantity=$quoteQuantity, quoteAssetId=$quoteAssetId, sharesQuantity=$sharesQuantity, status=$status, tickSize=$tickSize, updatedAt=$updatedAt, haltedAt=$haltedAt, terminatedAt=$terminatedAt, poolUpdatedAt=$poolUpdatedAt, sharesAssetId=$sharesAssetId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -148,6 +160,8 @@ class OrderBook {
       json[r'base_asset_id'] = this.baseAssetId;
       json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
       json[r'display_name'] = this.displayName;
+      json[r'base_asset_fractionalized_units'] = this.baseAssetFractionalizedUnits;
+      json[r'quote_asset_fractionalized_units'] = this.quoteAssetFractionalizedUnits;
       json[r'fee_factor'] = this.feeFactor;
       json[r'initial_assets_ratio'] = this.initialAssetsRatio;
       json[r'maturity_at'] = this.maturityAt.toUtc().toIso8601String();
@@ -200,6 +214,8 @@ class OrderBook {
         baseAssetId: mapValueOfType<String>(json, r'base_asset_id')!,
         createdAt: mapDateTime(json, r'created_at', r'')!,
         displayName: mapValueOfType<String>(json, r'display_name')!,
+        baseAssetFractionalizedUnits: mapValueOfType<int>(json, r'base_asset_fractionalized_units')!,
+        quoteAssetFractionalizedUnits: mapValueOfType<int>(json, r'quote_asset_fractionalized_units')!,
         feeFactor: num.parse('${json[r'fee_factor']}'),
         initialAssetsRatio: num.parse('${json[r'initial_assets_ratio']}'),
         maturityAt: mapDateTime(json, r'maturity_at', r'')!,
@@ -265,6 +281,8 @@ class OrderBook {
     'base_asset_id',
     'created_at',
     'display_name',
+    'base_asset_fractionalized_units',
+    'quote_asset_fractionalized_units',
     'fee_factor',
     'initial_assets_ratio',
     'maturity_at',

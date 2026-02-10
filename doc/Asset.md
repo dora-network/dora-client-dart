@@ -20,14 +20,14 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **symbol** | **String** |  | 
 **kind** | [**AssetKind**](AssetKind.md) |  | 
-**yield_** | **num** |  | 
+**yield_** | **num** |  | [optional] 
 **canAddLiquidity** | **bool** |  | 
 **canDirectBorrow** | **bool** |  | 
 **canOnboard** | **bool** |  | 
 **canTrade** | **bool** |  | 
 **canVirtualBorrow** | **bool** |  | 
 **maxLeverage** | **num** |  | 
-**leverageInterestRate** | **num** |  | [default to 0]
+**leverageInterestRate** | **num** |  | [optional] [default to 0]
 **bond** | [**Bond**](Bond.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

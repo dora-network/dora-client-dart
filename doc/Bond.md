@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 **issuedAt** | [**DateTime**](DateTime.md) |  | 
 **issuer** | **String** |  | 
 **maturityAt** | [**DateTime**](DateTime.md) |  | 
-**principalValue** | **double** |  | 
+**principalValue** | **String** |  | 
 **paymentsPerYear** | **int** |  | 
-**paymentsEvery** | **int** | Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond) | 
+**paymentsEvery** | **int** | Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond) | [optional] 
 **nextCouponPayment** | [**DateTime**](DateTime.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

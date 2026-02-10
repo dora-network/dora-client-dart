@@ -25,7 +25,7 @@ class Asset {
     required this.name,
     required this.symbol,
     required this.kind,
-    required this.yield_,
+    this.yield_,
     required this.canAddLiquidity,
     required this.canDirectBorrow,
     required this.canOnboard,
@@ -69,7 +69,13 @@ class Asset {
   AssetKind kind;
 
   /// Minimum value: 0
-  num yield_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  num? yield_;
 
   bool canAddLiquidity;
 
@@ -134,7 +140,7 @@ class Asset {
     (name.hashCode) +
     (symbol.hashCode) +
     (kind.hashCode) +
-    (yield_.hashCode) +
+    (yield_ == null ? 0 : yield_!.hashCode) +
     (canAddLiquidity.hashCode) +
     (canDirectBorrow.hashCode) +
     (canOnboard.hashCode) +
@@ -161,7 +167,11 @@ class Asset {
       json[r'name'] = this.name;
       json[r'symbol'] = this.symbol;
       json[r'kind'] = this.kind;
+    if (this.yield_ != null) {
       json[r'yield'] = this.yield_;
+    } else {
+      json[r'yield'] = null;
+    }
       json[r'can_add_liquidity'] = this.canAddLiquidity;
       json[r'can_direct_borrow'] = this.canDirectBorrow;
       json[r'can_onboard'] = this.canOnboard;
@@ -276,14 +286,12 @@ class Asset {
     'name',
     'symbol',
     'kind',
-    'yield',
     'can_add_liquidity',
     'can_direct_borrow',
     'can_onboard',
     'can_trade',
     'can_virtual_borrow',
     'max_leverage',
-    'leverage_interest_rate',
   };
 }
 

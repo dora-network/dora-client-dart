@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **baseAssetId** | **String** |  | 
 **createdAt** | [**DateTime**](DateTime.md) |  | 
 **displayName** | **String** |  | 
+**baseAssetFractionalizedUnits** | **int** |  | 
+**quoteAssetFractionalizedUnits** | **int** |  | 
 **feeFactor** | **num** |  | 
 **initialAssetsRatio** | **num** |  | 
 **maturityAt** | [**DateTime**](DateTime.md) |  | 

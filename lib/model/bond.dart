@@ -24,7 +24,7 @@ class Bond {
     required this.maturityAt,
     required this.principalValue,
     required this.paymentsPerYear,
-    required this.paymentsEvery,
+    this.paymentsEvery,
     this.nextCouponPayment,
   });
 
@@ -58,7 +58,7 @@ class Bond {
 
   DateTime maturityAt;
 
-  double principalValue;
+  String principalValue;
 
   /// Minimum value: 0
   int paymentsPerYear;
@@ -66,7 +66,13 @@ class Bond {
   /// Coupon payment frequency in nanoseconds (minimum 1000 i.e. 1 microsecond)
   ///
   /// Minimum value: 1000
-  int paymentsEvery;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? paymentsEvery;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -106,7 +112,7 @@ class Bond {
     (maturityAt.hashCode) +
     (principalValue.hashCode) +
     (paymentsPerYear.hashCode) +
-    (paymentsEvery.hashCode) +
+    (paymentsEvery == null ? 0 : paymentsEvery!.hashCode) +
     (nextCouponPayment == null ? 0 : nextCouponPayment!.hashCode);
 
   @override
@@ -133,7 +139,11 @@ class Bond {
       json[r'maturity_at'] = this.maturityAt.toUtc().toIso8601String();
       json[r'principal_value'] = this.principalValue;
       json[r'payments_per_year'] = this.paymentsPerYear;
+    if (this.paymentsEvery != null) {
       json[r'payments_every'] = this.paymentsEvery;
+    } else {
+      json[r'payments_every'] = null;
+    }
     if (this.nextCouponPayment != null) {
       json[r'next_coupon_payment'] = this.nextCouponPayment!.toUtc().toIso8601String();
     } else {
@@ -170,9 +180,9 @@ class Bond {
         issuedAt: mapDateTime(json, r'issued_at', r'')!,
         issuer: mapValueOfType<String>(json, r'issuer')!,
         maturityAt: mapDateTime(json, r'maturity_at', r'')!,
-        principalValue: mapValueOfType<double>(json, r'principal_value')!,
+        principalValue: mapValueOfType<String>(json, r'principal_value')!,
         paymentsPerYear: mapValueOfType<int>(json, r'payments_per_year')!,
-        paymentsEvery: mapValueOfType<int>(json, r'payments_every')!,
+        paymentsEvery: mapValueOfType<int>(json, r'payments_every'),
         nextCouponPayment: mapDateTime(json, r'next_coupon_payment', r''),
       );
     }
@@ -230,7 +240,6 @@ class Bond {
     'maturity_at',
     'principal_value',
     'payments_per_year',
-    'payments_every',
   };
 }
 

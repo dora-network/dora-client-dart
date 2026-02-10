@@ -41,6 +41,16 @@ void main() {
       // TODO
     });
 
+    // int baseAssetFractionalizedUnits
+    test('to test the property `baseAssetFractionalizedUnits`', () async {
+      // TODO
+    });
+
+    // int quoteAssetFractionalizedUnits
+    test('to test the property `quoteAssetFractionalizedUnits`', () async {
+      // TODO
+    });
+
     // num feeFactor
     test('to test the property `feeFactor`', () async {
       // TODO

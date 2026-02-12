@@ -27,6 +27,7 @@ class Position {
     required this.liquidationThreshold,
     required this.createdAt,
     required this.positionName,
+    required this.pendingWithdrawal,
   });
 
   /// The unique identifier for the position. Used, for example, when creating an order from a position, or deciding collateral should be transferred from position A to position B.
@@ -73,6 +74,9 @@ class Position {
 
   String positionName;
 
+  /// The amount of asset that is pending withdrawal from the position.
+  String pendingWithdrawal;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is Position &&
     other.id == id &&
@@ -88,7 +92,8 @@ class Position {
     other.borrowLimit == borrowLimit &&
     other.liquidationThreshold == liquidationThreshold &&
     other.createdAt == createdAt &&
-    other.positionName == positionName;
+    other.positionName == positionName &&
+    other.pendingWithdrawal == pendingWithdrawal;
 
   @override
   int get hashCode =>
@@ -106,10 +111,11 @@ class Position {
     (borrowLimit.hashCode) +
     (liquidationThreshold.hashCode) +
     (createdAt.hashCode) +
-    (positionName.hashCode);
+    (positionName.hashCode) +
+    (pendingWithdrawal.hashCode);
 
   @override
-  String toString() => 'Position[id=$id, assetId=$assetId, seq=$seq, isGlobal=$isGlobal, available=$available, locked=$locked, supplied=$supplied, borrowed=$borrowed, impendingBorrows=$impendingBorrows, avgEntryPrice=$avgEntryPrice, borrowLimit=$borrowLimit, liquidationThreshold=$liquidationThreshold, createdAt=$createdAt, positionName=$positionName]';
+  String toString() => 'Position[id=$id, assetId=$assetId, seq=$seq, isGlobal=$isGlobal, available=$available, locked=$locked, supplied=$supplied, borrowed=$borrowed, impendingBorrows=$impendingBorrows, avgEntryPrice=$avgEntryPrice, borrowLimit=$borrowLimit, liquidationThreshold=$liquidationThreshold, createdAt=$createdAt, positionName=$positionName, pendingWithdrawal=$pendingWithdrawal]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -131,6 +137,7 @@ class Position {
       json[r'liquidation_threshold'] = this.liquidationThreshold;
       json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
       json[r'position_name'] = this.positionName;
+      json[r'pending_withdrawal'] = this.pendingWithdrawal;
     return json;
   }
 
@@ -167,6 +174,7 @@ class Position {
         liquidationThreshold: mapValueOfType<String>(json, r'liquidation_threshold')!,
         createdAt: mapDateTime(json, r'created_at', r'')!,
         positionName: mapValueOfType<String>(json, r'position_name')!,
+        pendingWithdrawal: mapValueOfType<String>(json, r'pending_withdrawal')!,
       );
     }
     return null;
@@ -227,6 +235,7 @@ class Position {
     'liquidation_threshold',
     'created_at',
     'position_name',
+    'pending_withdrawal',
   };
 }
 

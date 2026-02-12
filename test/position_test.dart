@@ -95,6 +95,12 @@ void main() {
       // TODO
     });
 
+    // The amount of asset that is pending withdrawal from the position.
+    // String pendingWithdrawal
+    test('to test the property `pendingWithdrawal`', () async {
+      // TODO
+    });
+
 
   });
 

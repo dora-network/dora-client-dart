@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **liquidationThreshold** | **String** | The borrow limit | 
 **createdAt** | [**DateTime**](DateTime.md) |  | 
 **positionName** | **String** |  | 
+**pendingWithdrawal** | **String** | The amount of asset that is pending withdrawal from the position. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

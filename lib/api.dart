@@ -33,6 +33,7 @@ part 'api/default_api.dart';
 part 'model/api_key_response.dart';
 part 'model/api_key_response_envelope.dart';
 part 'model/api_keys.dart';
+part 'model/all_withdrawal_initiations_response_envelope.dart';
 part 'model/asset.dart';
 part 'model/asset_config.dart';
 part 'model/asset_kind.dart';
@@ -200,6 +201,8 @@ part 'model/validate_submit_order_response.dart';
 part 'model/withdraw.dart';
 part 'model/withdraw_request.dart';
 part 'model/withdraw_response_envelope.dart';
+part 'model/withdrawal_initiation.dart';
+part 'model/withdrawal_initiation_response_envelope.dart';
 
 
 /// An [ApiClient] instance that uses the default values obtained from

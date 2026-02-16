@@ -206,6 +206,13 @@ void main() {
       // TODO
     });
 
+    // Get all pending withdrawal requests for the logged in user
+    //
+    //Future<AllWithdrawalInitiationsResponseEnvelope> getLedgerWithdrawRequestsBySelf() async
+    test('test getLedgerWithdrawRequestsBySelf', () async {
+      // TODO
+    });
+
     // Get order by ID
     //
     //Future<OrderResponseEnvelope> getOrderById(String orderId) async
@@ -375,6 +382,15 @@ void main() {
     //
     //Future<FundUserResponseEnvelope> ledgerWithdraw(String userId, DefundUserRequest defundUserRequest) async
     test('test ledgerWithdraw', () async {
+      // TODO
+    });
+
+    // Initiate a withdrawal request for the logged in user to the outside world
+    //
+    // Withdraw assets from the logged in user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+    //
+    //Future<WithdrawalInitiationResponseEnvelope> ledgerWithdrawRequest(String userId, DefundUserRequest defundUserRequest) async
+    test('test ledgerWithdrawRequest', () async {
       // TODO
     });
 

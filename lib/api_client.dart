@@ -188,6 +188,8 @@ class ApiClient {
           return APIKeyResponseEnvelope.fromJson(value);
         case 'APIKeys':
           return APIKeys.fromJson(value);
+        case 'AllWithdrawalInitiationsResponseEnvelope':
+          return AllWithdrawalInitiationsResponseEnvelope.fromJson(value);
         case 'Asset':
           return Asset.fromJson(value);
         case 'AssetConfig':
@@ -522,6 +524,10 @@ class ApiClient {
           return WithdrawRequest.fromJson(value);
         case 'WithdrawResponseEnvelope':
           return WithdrawResponseEnvelope.fromJson(value);
+        case 'WithdrawalInitiation':
+          return WithdrawalInitiation.fromJson(value);
+        case 'WithdrawalInitiationResponseEnvelope':
+          return WithdrawalInitiationResponseEnvelope.fromJson(value);
         default:
           dynamic match;
           if (value is List && (match = _regList.firstMatch(targetType)?.group(1)) != null) {

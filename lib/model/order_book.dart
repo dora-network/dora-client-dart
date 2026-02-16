@@ -14,6 +14,7 @@ class OrderBook {
   /// Returns a new [OrderBook] instance.
   OrderBook({
     required this.orderBookId,
+    this.orderBookSeq,
     required this.baseQuantity,
     required this.baseAssetId,
     required this.createdAt,
@@ -36,6 +37,14 @@ class OrderBook {
   });
 
   String orderBookId;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? orderBookSeq;
 
   /// Minimum value: 0
   num baseQuantity;
@@ -106,6 +115,7 @@ class OrderBook {
   @override
   bool operator ==(Object other) => identical(this, other) || other is OrderBook &&
     other.orderBookId == orderBookId &&
+    other.orderBookSeq == orderBookSeq &&
     other.baseQuantity == baseQuantity &&
     other.baseAssetId == baseAssetId &&
     other.createdAt == createdAt &&
@@ -130,6 +140,7 @@ class OrderBook {
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (orderBookId.hashCode) +
+    (orderBookSeq == null ? 0 : orderBookSeq!.hashCode) +
     (baseQuantity.hashCode) +
     (baseAssetId.hashCode) +
     (createdAt.hashCode) +
@@ -151,11 +162,16 @@ class OrderBook {
     (sharesAssetId.hashCode);
 
   @override
-  String toString() => 'OrderBook[orderBookId=$orderBookId, baseQuantity=$baseQuantity, baseAssetId=$baseAssetId, createdAt=$createdAt, displayName=$displayName, baseAssetFractionalizedUnits=$baseAssetFractionalizedUnits, quoteAssetFractionalizedUnits=$quoteAssetFractionalizedUnits, feeFactor=$feeFactor, initialAssetsRatio=$initialAssetsRatio, maturityAt=$maturityAt, quoteQuantity=$quoteQuantity, quoteAssetId=$quoteAssetId, sharesQuantity=$sharesQuantity, status=$status, tickSize=$tickSize, updatedAt=$updatedAt, haltedAt=$haltedAt, terminatedAt=$terminatedAt, poolUpdatedAt=$poolUpdatedAt, sharesAssetId=$sharesAssetId]';
+  String toString() => 'OrderBook[orderBookId=$orderBookId, orderBookSeq=$orderBookSeq, baseQuantity=$baseQuantity, baseAssetId=$baseAssetId, createdAt=$createdAt, displayName=$displayName, baseAssetFractionalizedUnits=$baseAssetFractionalizedUnits, quoteAssetFractionalizedUnits=$quoteAssetFractionalizedUnits, feeFactor=$feeFactor, initialAssetsRatio=$initialAssetsRatio, maturityAt=$maturityAt, quoteQuantity=$quoteQuantity, quoteAssetId=$quoteAssetId, sharesQuantity=$sharesQuantity, status=$status, tickSize=$tickSize, updatedAt=$updatedAt, haltedAt=$haltedAt, terminatedAt=$terminatedAt, poolUpdatedAt=$poolUpdatedAt, sharesAssetId=$sharesAssetId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'order_book_id'] = this.orderBookId;
+    if (this.orderBookSeq != null) {
+      json[r'order_book_seq'] = this.orderBookSeq;
+    } else {
+      json[r'order_book_seq'] = null;
+    }
       json[r'base_quantity'] = this.baseQuantity;
       json[r'base_asset_id'] = this.baseAssetId;
       json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
@@ -210,6 +226,7 @@ class OrderBook {
 
       return OrderBook(
         orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
+        orderBookSeq: mapValueOfType<int>(json, r'order_book_seq'),
         baseQuantity: num.parse('${json[r'base_quantity']}'),
         baseAssetId: mapValueOfType<String>(json, r'base_asset_id')!,
         createdAt: mapDateTime(json, r'created_at', r'')!,

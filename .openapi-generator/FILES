@@ -5,6 +5,7 @@ analysis_options.yaml
 doc/APIKeyResponse.md
 doc/APIKeyResponseEnvelope.md
 doc/APIKeys.md
+doc/AllWithdrawalInitiationsResponseEnvelope.md
 doc/Asset.md
 doc/AssetConfig.md
 doc/AssetKind.md
@@ -173,6 +174,8 @@ doc/ValidateSubmitOrderResponse.md
 doc/Withdraw.md
 doc/WithdrawRequest.md
 doc/WithdrawResponseEnvelope.md
+doc/WithdrawalInitiation.md
+doc/WithdrawalInitiationResponseEnvelope.md
 git_push.sh
 lib/api.dart
 lib/api/default_api.dart
@@ -184,6 +187,7 @@ lib/auth/authentication.dart
 lib/auth/http_basic_auth.dart
 lib/auth/http_bearer_auth.dart
 lib/auth/oauth.dart
+lib/model/all_withdrawal_initiations_response_envelope.dart
 lib/model/api_key_response.dart
 lib/model/api_key_response_envelope.dart
 lib/model/api_keys.dart
@@ -354,7 +358,10 @@ lib/model/validate_submit_order_response.dart
 lib/model/withdraw.dart
 lib/model/withdraw_request.dart
 lib/model/withdraw_response_envelope.dart
+lib/model/withdrawal_initiation.dart
+lib/model/withdrawal_initiation_response_envelope.dart
 pubspec.yaml
+test/all_withdrawal_initiations_response_envelope_test.dart
 test/api_key_response_envelope_test.dart
 test/api_key_response_test.dart
 test/api_keys_test.dart
@@ -526,3 +533,5 @@ test/validate_submit_order_response_test.dart
 test/withdraw_request_test.dart
 test/withdraw_response_envelope_test.dart
 test/withdraw_test.dart
+test/withdrawal_initiation_response_envelope_test.dart
+test/withdrawal_initiation_test.dart

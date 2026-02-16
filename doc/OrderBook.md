@@ -9,6 +9,7 @@ import 'package:dora_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **orderBookId** | **String** |  | 
+**orderBookSeq** | **int** |  | [optional] 
 **baseQuantity** | **num** |  | 
 **baseAssetId** | **String** |  | 
 **createdAt** | [**DateTime**](DateTime.md) |  | 

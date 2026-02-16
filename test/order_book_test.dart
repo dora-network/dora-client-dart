@@ -21,6 +21,11 @@ void main() {
       // TODO
     });
 
+    // int orderBookSeq
+    test('to test the property `orderBookSeq`', () async {
+      // TODO
+    });
+
     // num baseQuantity
     test('to test the property `baseQuantity`', () async {
       // TODO

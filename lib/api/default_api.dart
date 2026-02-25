@@ -16,6 +16,67 @@ class DefaultApi {
 
   final ApiClient apiClient;
 
+  /// Approve a pending withdrawal request
+  ///
+  /// Approve a pending withdrawal request, allowing the transfer of assets to the outside world to proceed. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] withdrawalId (required):
+  ///
+  /// * [WithdrawalRequestReason] withdrawalRequestReason:
+  Future<Response> approveLedgerWithdrawRequestWithHttpInfo(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/ledger/withdraw/requests/{withdrawal_id}/approve'
+      .replaceAll('{withdrawal_id}', withdrawalId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = withdrawalRequestReason;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Approve a pending withdrawal request
+  ///
+  /// Approve a pending withdrawal request, allowing the transfer of assets to the outside world to proceed. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] withdrawalId (required):
+  ///
+  /// * [WithdrawalRequestReason] withdrawalRequestReason:
+  Future<WithdrawalInitiationResponseEnvelope?> approveLedgerWithdrawRequest(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, }) async {
+    final response = await approveLedgerWithdrawRequestWithHttpInfo(withdrawalId,  withdrawalRequestReason: withdrawalRequestReason, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WithdrawalInitiationResponseEnvelope',) as WithdrawalInitiationResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
   ///
   /// Note: This method returns the HTTP [Response].
@@ -81,6 +142,67 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListOrdersResponseEnvelope',) as ListOrdersResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Cancel a pending withdrawal request
+  ///
+  /// Cancel a pending withdrawal request, providing an optional reason for the cancellation.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] withdrawalId (required):
+  ///
+  /// * [WithdrawalRequestReason] withdrawalRequestReason:
+  Future<Response> cancelLedgerWithdrawRequestWithHttpInfo(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/ledger/withdraw/requests/{withdrawal_id}/cancel'
+      .replaceAll('{withdrawal_id}', withdrawalId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = withdrawalRequestReason;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Cancel a pending withdrawal request
+  ///
+  /// Cancel a pending withdrawal request, providing an optional reason for the cancellation.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] withdrawalId (required):
+  ///
+  /// * [WithdrawalRequestReason] withdrawalRequestReason:
+  Future<WithdrawalInitiationResponseEnvelope?> cancelLedgerWithdrawRequest(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, }) async {
+    final response = await cancelLedgerWithdrawRequestWithHttpInfo(withdrawalId,  withdrawalRequestReason: withdrawalRequestReason, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WithdrawalInitiationResponseEnvelope',) as WithdrawalInitiationResponseEnvelope;
     
     }
     return null;
@@ -655,6 +777,62 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListAssetPriceResponseEnvelope',) as ListAssetPriceResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get all withdrawal requests
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] status:
+  Future<Response> getAllWithdrawalRequestsWithHttpInfo({ String? status, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/ledger/withdraw/requests';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (status != null) {
+      queryParams.addAll(_queryParams('', 'status', status));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get all withdrawal requests
+  ///
+  /// Parameters:
+  ///
+  /// * [String] status:
+  Future<AllWithdrawalInitiationsResponseEnvelope?> getAllWithdrawalRequests({ String? status, }) async {
+    final response = await getAllWithdrawalRequestsWithHttpInfo( status: status, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AllWithdrawalInitiationsResponseEnvelope',) as AllWithdrawalInitiationsResponseEnvelope;
     
     }
     return null;
@@ -1448,7 +1626,11 @@ class DefaultApi {
   /// Get all pending withdrawal requests for the logged in user
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getLedgerWithdrawRequestsBySelfWithHttpInfo() async {
+  ///
+  /// Parameters:
+  ///
+  /// * [String] status:
+  Future<Response> getLedgerWithdrawRequestsBySelfWithHttpInfo({ String? status, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/requests/self';
 
@@ -1458,6 +1640,10 @@ class DefaultApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
+
+    if (status != null) {
+      queryParams.addAll(_queryParams('', 'status', status));
+    }
 
     const contentTypes = <String>[];
 
@@ -1474,8 +1660,73 @@ class DefaultApi {
   }
 
   /// Get all pending withdrawal requests for the logged in user
-  Future<AllWithdrawalInitiationsResponseEnvelope?> getLedgerWithdrawRequestsBySelf() async {
-    final response = await getLedgerWithdrawRequestsBySelfWithHttpInfo();
+  ///
+  /// Parameters:
+  ///
+  /// * [String] status:
+  Future<AllWithdrawalInitiationsResponseEnvelope?> getLedgerWithdrawRequestsBySelf({ String? status, }) async {
+    final response = await getLedgerWithdrawRequestsBySelfWithHttpInfo( status: status, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AllWithdrawalInitiationsResponseEnvelope',) as AllWithdrawalInitiationsResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get all pending withdrawal requests for this user
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [String] status:
+  Future<Response> getLedgerWithdrawRequestsByUserIDWithHttpInfo(String userId, { String? status, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/ledger/withdraw/requests/{user_id}'
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (status != null) {
+      queryParams.addAll(_queryParams('', 'status', status));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get all pending withdrawal requests for this user
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [String] status:
+  Future<AllWithdrawalInitiationsResponseEnvelope?> getLedgerWithdrawRequestsByUserID(String userId, { String? status, }) async {
+    final response = await getLedgerWithdrawRequestsByUserIDWithHttpInfo(userId,  status: status, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2824,7 +3075,9 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DefundUserRequest] defundUserRequest (required):
-  Future<Response> ledgerWithdrawWithHttpInfo(String userId, DefundUserRequest defundUserRequest,) async {
+  ///
+  /// * [String] status:
+  Future<Response> ledgerWithdrawWithHttpInfo(String userId, DefundUserRequest defundUserRequest, { String? status, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/{user_id}'
       .replaceAll('{user_id}', userId);
@@ -2835,6 +3088,10 @@ class DefaultApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
+
+    if (status != null) {
+      queryParams.addAll(_queryParams('', 'status', status));
+    }
 
     const contentTypes = <String>['application/json'];
 
@@ -2859,8 +3116,10 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DefundUserRequest] defundUserRequest (required):
-  Future<FundUserResponseEnvelope?> ledgerWithdraw(String userId, DefundUserRequest defundUserRequest,) async {
-    final response = await ledgerWithdrawWithHttpInfo(userId, defundUserRequest,);
+  ///
+  /// * [String] status:
+  Future<FundUserResponseEnvelope?> ledgerWithdraw(String userId, DefundUserRequest defundUserRequest, { String? status, }) async {
+    final response = await ledgerWithdrawWithHttpInfo(userId, defundUserRequest,  status: status, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2869,6 +3128,67 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'FundUserResponseEnvelope',) as FundUserResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Initiate a withdrawal request for this user to the outside world
+  ///
+  /// Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [DefundUserRequest] defundUserRequest (required):
+  Future<Response> ledgerWithdrawRequestWithHttpInfo(String userId, DefundUserRequest defundUserRequest,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/ledger/withdraw/requests/{user_id}'
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = defundUserRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Initiate a withdrawal request for this user to the outside world
+  ///
+  /// Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [DefundUserRequest] defundUserRequest (required):
+  Future<WithdrawalInitiationResponseEnvelope?> ledgerWithdrawRequest(String userId, DefundUserRequest defundUserRequest,) async {
+    final response = await ledgerWithdrawRequestWithHttpInfo(userId, defundUserRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WithdrawalInitiationResponseEnvelope',) as WithdrawalInitiationResponseEnvelope;
     
     }
     return null;
@@ -2885,7 +3205,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DefundUserRequest] defundUserRequest (required):
-  Future<Response> ledgerWithdrawRequestWithHttpInfo(String userId, DefundUserRequest defundUserRequest,) async {
+  Future<Response> ledgerWithdrawRequestSelfWithHttpInfo(String userId, DefundUserRequest defundUserRequest,) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/requests/self'
       .replaceAll('{user_id}', userId);
@@ -2920,8 +3240,8 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DefundUserRequest] defundUserRequest (required):
-  Future<WithdrawalInitiationResponseEnvelope?> ledgerWithdrawRequest(String userId, DefundUserRequest defundUserRequest,) async {
-    final response = await ledgerWithdrawRequestWithHttpInfo(userId, defundUserRequest,);
+  Future<WithdrawalInitiationResponseEnvelope?> ledgerWithdrawRequestSelf(String userId, DefundUserRequest defundUserRequest,) async {
+    final response = await ledgerWithdrawRequestSelfWithHttpInfo(userId, defundUserRequest,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3725,6 +4045,67 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PayLeverageAccruedInterestResponseEnvelope',) as PayLeverageAccruedInterestResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Reject a pending withdrawal request
+  ///
+  /// Reject a pending withdrawal request, providing a reason for the rejection. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] withdrawalId (required):
+  ///
+  /// * [WithdrawalRequestReason] withdrawalRequestReason (required):
+  Future<Response> rejectLedgerWithdrawRequestWithHttpInfo(String withdrawalId, WithdrawalRequestReason withdrawalRequestReason,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/ledger/withdraw/requests/{withdrawal_id}/reject'
+      .replaceAll('{withdrawal_id}', withdrawalId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = withdrawalRequestReason;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Reject a pending withdrawal request
+  ///
+  /// Reject a pending withdrawal request, providing a reason for the rejection. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] withdrawalId (required):
+  ///
+  /// * [WithdrawalRequestReason] withdrawalRequestReason (required):
+  Future<WithdrawalInitiationResponseEnvelope?> rejectLedgerWithdrawRequest(String withdrawalId, WithdrawalRequestReason withdrawalRequestReason,) async {
+    final response = await rejectLedgerWithdrawRequestWithHttpInfo(withdrawalId, withdrawalRequestReason,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WithdrawalInitiationResponseEnvelope',) as WithdrawalInitiationResponseEnvelope;
     
     }
     return null;

@@ -20,7 +20,10 @@ class WithdrawalInitiation {
     required this.quantity,
     required this.status,
     required this.createdAt,
+    required this.createdBy,
     required this.updatedAt,
+    required this.updatedBy,
+    required this.reason,
   });
 
   String withdrawalId;
@@ -33,11 +36,17 @@ class WithdrawalInitiation {
 
   String quantity;
 
-  String status;
+  WithdrawalStatus status;
 
   DateTime createdAt;
 
+  String createdBy;
+
   DateTime updatedAt;
+
+  String updatedBy;
+
+  String reason;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is WithdrawalInitiation &&
@@ -48,7 +57,10 @@ class WithdrawalInitiation {
     other.quantity == quantity &&
     other.status == status &&
     other.createdAt == createdAt &&
-    other.updatedAt == updatedAt;
+    other.createdBy == createdBy &&
+    other.updatedAt == updatedAt &&
+    other.updatedBy == updatedBy &&
+    other.reason == reason;
 
   @override
   int get hashCode =>
@@ -60,10 +72,13 @@ class WithdrawalInitiation {
     (quantity.hashCode) +
     (status.hashCode) +
     (createdAt.hashCode) +
-    (updatedAt.hashCode);
+    (createdBy.hashCode) +
+    (updatedAt.hashCode) +
+    (updatedBy.hashCode) +
+    (reason.hashCode);
 
   @override
-  String toString() => 'WithdrawalInitiation[withdrawalId=$withdrawalId, userId=$userId, positionId=$positionId, assetId=$assetId, quantity=$quantity, status=$status, createdAt=$createdAt, updatedAt=$updatedAt]';
+  String toString() => 'WithdrawalInitiation[withdrawalId=$withdrawalId, userId=$userId, positionId=$positionId, assetId=$assetId, quantity=$quantity, status=$status, createdAt=$createdAt, createdBy=$createdBy, updatedAt=$updatedAt, updatedBy=$updatedBy, reason=$reason]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -74,7 +89,10 @@ class WithdrawalInitiation {
       json[r'quantity'] = this.quantity;
       json[r'status'] = this.status;
       json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
+      json[r'created_by'] = this.createdBy;
       json[r'updated_at'] = this.updatedAt.toUtc().toIso8601String();
+      json[r'updated_by'] = this.updatedBy;
+      json[r'reason'] = this.reason;
     return json;
   }
 
@@ -102,9 +120,12 @@ class WithdrawalInitiation {
         positionId: mapValueOfType<String>(json, r'position_id')!,
         assetId: mapValueOfType<String>(json, r'asset_id')!,
         quantity: mapValueOfType<String>(json, r'quantity')!,
-        status: mapValueOfType<String>(json, r'status')!,
+        status: WithdrawalStatus.fromJson(json[r'status'])!,
         createdAt: mapDateTime(json, r'created_at', r'')!,
+        createdBy: mapValueOfType<String>(json, r'created_by')!,
         updatedAt: mapDateTime(json, r'updated_at', r'')!,
+        updatedBy: mapValueOfType<String>(json, r'updated_by')!,
+        reason: mapValueOfType<String>(json, r'reason')!,
       );
     }
     return null;
@@ -159,7 +180,10 @@ class WithdrawalInitiation {
     'quantity',
     'status',
     'created_at',
+    'created_by',
     'updated_at',
+    'updated_by',
+    'reason',
   };
 }
 

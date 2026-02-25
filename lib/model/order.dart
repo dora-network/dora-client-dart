@@ -36,6 +36,7 @@ class Order {
     this.triggerPrice,
     this.triggerType,
     this.clientOrderId,
+    this.parentOrderId,
   });
 
   String orderId;
@@ -127,6 +128,14 @@ class Order {
   ///
   String? clientOrderId;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? parentOrderId;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is Order &&
     other.orderId == orderId &&
@@ -151,7 +160,8 @@ class Order {
     other.goodTillDate == goodTillDate &&
     other.triggerPrice == triggerPrice &&
     other.triggerType == triggerType &&
-    other.clientOrderId == clientOrderId;
+    other.clientOrderId == clientOrderId &&
+    other.parentOrderId == parentOrderId;
 
   @override
   int get hashCode =>
@@ -178,10 +188,11 @@ class Order {
     (goodTillDate == null ? 0 : goodTillDate!.hashCode) +
     (triggerPrice == null ? 0 : triggerPrice!.hashCode) +
     (triggerType == null ? 0 : triggerType!.hashCode) +
-    (clientOrderId == null ? 0 : clientOrderId!.hashCode);
+    (clientOrderId == null ? 0 : clientOrderId!.hashCode) +
+    (parentOrderId == null ? 0 : parentOrderId!.hashCode);
 
   @override
-  String toString() => 'Order[orderId=$orderId, orderBookId=$orderBookId, kind=$kind, originalPrice=$originalPrice, avgFillPrice=$avgFillPrice, cancelledQuantity=$cancelledQuantity, openQuantity=$openQuantity, originalQuantity=$originalQuantity, filledQuantity=$filledQuantity, filledNotional=$filledNotional, lastUpdateAt=$lastUpdateAt, openedAt=$openedAt, inverseLeverage=$inverseLeverage, side=$side, status=$status, userId=$userId, orderModifiers=$orderModifiers, positionId=$positionId, orderInfo=$orderInfo, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType, clientOrderId=$clientOrderId]';
+  String toString() => 'Order[orderId=$orderId, orderBookId=$orderBookId, kind=$kind, originalPrice=$originalPrice, avgFillPrice=$avgFillPrice, cancelledQuantity=$cancelledQuantity, openQuantity=$openQuantity, originalQuantity=$originalQuantity, filledQuantity=$filledQuantity, filledNotional=$filledNotional, lastUpdateAt=$lastUpdateAt, openedAt=$openedAt, inverseLeverage=$inverseLeverage, side=$side, status=$status, userId=$userId, orderModifiers=$orderModifiers, positionId=$positionId, orderInfo=$orderInfo, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType, clientOrderId=$clientOrderId, parentOrderId=$parentOrderId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -232,6 +243,11 @@ class Order {
     } else {
       json[r'client_order_id'] = null;
     }
+    if (this.parentOrderId != null) {
+      json[r'parent_order_id'] = this.parentOrderId;
+    } else {
+      json[r'parent_order_id'] = null;
+    }
     return json;
   }
 
@@ -277,6 +293,7 @@ class Order {
         triggerPrice: mapValueOfType<String>(json, r'trigger_price'),
         triggerType: TriggerType.fromJson(json[r'trigger_type']),
         clientOrderId: mapValueOfType<String>(json, r'client_order_id'),
+        parentOrderId: mapValueOfType<String>(json, r'parent_order_id'),
       );
     }
     return null;

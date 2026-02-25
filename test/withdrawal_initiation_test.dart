@@ -41,7 +41,7 @@ void main() {
       // TODO
     });
 
-    // String status
+    // WithdrawalStatus status
     test('to test the property `status`', () async {
       // TODO
     });
@@ -51,8 +51,23 @@ void main() {
       // TODO
     });
 
+    // String createdBy
+    test('to test the property `createdBy`', () async {
+      // TODO
+    });
+
     // DateTime updatedAt
     test('to test the property `updatedAt`', () async {
+      // TODO
+    });
+
+    // String updatedBy
+    test('to test the property `updatedBy`', () async {
+      // TODO
+    });
+
+    // String reason
+    test('to test the property `reason`', () async {
       // TODO
     });
 

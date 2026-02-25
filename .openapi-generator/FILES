@@ -176,6 +176,8 @@ doc/WithdrawRequest.md
 doc/WithdrawResponseEnvelope.md
 doc/WithdrawalInitiation.md
 doc/WithdrawalInitiationResponseEnvelope.md
+doc/WithdrawalRequestReason.md
+doc/WithdrawalStatus.md
 git_push.sh
 lib/api.dart
 lib/api/default_api.dart
@@ -360,6 +362,8 @@ lib/model/withdraw_request.dart
 lib/model/withdraw_response_envelope.dart
 lib/model/withdrawal_initiation.dart
 lib/model/withdrawal_initiation_response_envelope.dart
+lib/model/withdrawal_request_reason.dart
+lib/model/withdrawal_status.dart
 pubspec.yaml
 test/all_withdrawal_initiations_response_envelope_test.dart
 test/api_key_response_envelope_test.dart
@@ -535,3 +539,5 @@ test/withdraw_response_envelope_test.dart
 test/withdraw_test.dart
 test/withdrawal_initiation_response_envelope_test.dart
 test/withdrawal_initiation_test.dart
+test/withdrawal_request_reason_test.dart
+test/withdrawal_status_test.dart

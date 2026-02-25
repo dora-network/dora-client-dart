@@ -203,6 +203,8 @@ part 'model/withdraw_request.dart';
 part 'model/withdraw_response_envelope.dart';
 part 'model/withdrawal_initiation.dart';
 part 'model/withdrawal_initiation_response_envelope.dart';
+part 'model/withdrawal_request_reason.dart';
+part 'model/withdrawal_status.dart';
 
 
 /// An [ApiClient] instance that uses the default values obtained from

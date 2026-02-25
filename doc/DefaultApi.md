@@ -5,11 +5,13 @@
 import 'package:dora_client/api.dart';
 ```
 
-All URIs are relative to *https://localhost:8084*
+All URIs are relative to *https://staging.dora.co*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**approveLedgerWithdrawRequest**](DefaultApi.md#approveledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
 [**cancelAllOpenOrders**](DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+[**cancelLedgerWithdrawRequest**](DefaultApi.md#cancelledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 [**cancelOrderById**](DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 [**checkUserEmailExists**](DefaultApi.md#checkuseremailexists) | **GET** /v1/user/exists | Check whether a user email exists
 [**claimLeverageGetAccruedInterest**](DefaultApi.md#claimleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
@@ -21,6 +23,7 @@ Method | HTTP request | Description
 [**deleteUser**](DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
 [**getAPIKeysForUserID**](DefaultApi.md#getapikeysforuserid) | **GET** /v1/user/{user_id}/apikey | Get user's api keys: admin or integrator only
 [**getAllAssetPrices**](DefaultApi.md#getallassetprices) | **GET** /v1/price | Get the current price of all assets
+[**getAllWithdrawalRequests**](DefaultApi.md#getallwithdrawalrequests) | **GET** /v1/ledger/withdraw/requests | Get all withdrawal requests
 [**getAssetById**](DefaultApi.md#getassetbyid) | **GET** /v1/assets/{asset_id} | Get asset by ID
 [**getAssetPrice**](DefaultApi.md#getassetprice) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
 [**getAssetYTMById**](DefaultApi.md#getassetytmbyid) | **GET** /v1/assets/{asset_id}/ytm | Get annualized yield to maturity for a bond asset
@@ -37,6 +40,7 @@ Method | HTTP request | Description
 [**getLedgerPositionsSelf**](DefaultApi.md#getledgerpositionsself) | **GET** /v1/ledger/positions/self | Get your own positions
 [**getLedgerValueSelf**](DefaultApi.md#getledgervalueself) | **GET** /v1/ledger/value/self | Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
 [**getLedgerWithdrawRequestsBySelf**](DefaultApi.md#getledgerwithdrawrequestsbyself) | **GET** /v1/ledger/withdraw/requests/self | Get all pending withdrawal requests for the logged in user
+[**getLedgerWithdrawRequestsByUserID**](DefaultApi.md#getledgerwithdrawrequestsbyuserid) | **GET** /v1/ledger/withdraw/requests/{user_id} | Get all pending withdrawal requests for this user
 [**getOrderById**](DefaultApi.md#getorderbyid) | **GET** /v1/orders/{order_id} | Get order by ID
 [**getOrderbookById**](DefaultApi.md#getorderbookbyid) | **GET** /v1/orderbooks/{order_book_id} | Get orderbook by ID
 [**getOrderbookDepth**](DefaultApi.md#getorderbookdepth) | **GET** /v1/orderbooks/{order_book_id}/depth | Get the aggregated price levels for a specific orderbook (L2 market depth)
@@ -61,7 +65,8 @@ Method | HTTP request | Description
 [**getUsersAPIKeys**](DefaultApi.md#getusersapikeys) | **GET** /v1/user/apikey | Get user's api keys
 [**ledgerDeposit**](DefaultApi.md#ledgerdeposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user's account from the outside world
 [**ledgerWithdraw**](DefaultApi.md#ledgerwithdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
-[**ledgerWithdrawRequest**](DefaultApi.md#ledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/self | Initiate a withdrawal request for the logged in user to the outside world
+[**ledgerWithdrawRequest**](DefaultApi.md#ledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{user_id} | Initiate a withdrawal request for this user to the outside world
+[**ledgerWithdrawRequestSelf**](DefaultApi.md#ledgerwithdrawrequestself) | **POST** /v1/ledger/withdraw/requests/self | Initiate a withdrawal request for the logged in user to the outside world
 [**leverageGetAccruedInterestByUser**](DefaultApi.md#leveragegetaccruedinterestbyuser) | **GET** /v1/leverage/accrued_interest/self | Get current accrued leverage interest for the user
 [**leverageIsolateCollateral**](DefaultApi.md#leverageisolatecollateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user's global collateral
 [**leverageSupply**](DefaultApi.md#leveragesupply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
@@ -74,6 +79,7 @@ Method | HTTP request | Description
 [**listOrders**](DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
 [**listPositionAccountsSelf**](DefaultApi.md#listpositionaccountsself) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
 [**payLeverageGetAccruedInterest**](DefaultApi.md#payleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
+[**rejectLedgerWithdrawRequest**](DefaultApi.md#rejectledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
 [**revokeAPIKeyForUser**](DefaultApi.md#revokeapikeyforuser) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 [**revokeAPIKeyForUserID**](DefaultApi.md#revokeapikeyforuserid) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
 [**settleLeverageAccruedInterest**](DefaultApi.md#settleleverageaccruedinterest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
@@ -88,6 +94,61 @@ Method | HTTP request | Description
 [**validateSubmitOrder**](DefaultApi.md#validatesubmitorder) | **POST** /v1/orders/validate | Validate submit order request data
 [**verifyUser**](DefaultApi.md#verifyuser) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
 
+
+# **approveLedgerWithdrawRequest**
+> WithdrawalInitiationResponseEnvelope approveLedgerWithdrawRequest(withdrawalId, withdrawalRequestReason)
+
+Approve a pending withdrawal request
+
+Approve a pending withdrawal request, allowing the transfer of assets to the outside world to proceed. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final withdrawalId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final withdrawalRequestReason = WithdrawalRequestReason(); // WithdrawalRequestReason | 
+
+try {
+    final result = api_instance.approveLedgerWithdrawRequest(withdrawalId, withdrawalRequestReason);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->approveLedgerWithdrawRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **withdrawalId** | **String**|  | 
+ **withdrawalRequestReason** | [**WithdrawalRequestReason**](WithdrawalRequestReason.md)|  | [optional] 
+
+### Return type
+
+[**WithdrawalInitiationResponseEnvelope**](WithdrawalInitiationResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **cancelAllOpenOrders**
 > ListOrdersResponseEnvelope cancelAllOpenOrders(orderBookId, userId, orderKind)
@@ -140,6 +201,61 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **cancelLedgerWithdrawRequest**
+> WithdrawalInitiationResponseEnvelope cancelLedgerWithdrawRequest(withdrawalId, withdrawalRequestReason)
+
+Cancel a pending withdrawal request
+
+Cancel a pending withdrawal request, providing an optional reason for the cancellation.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final withdrawalId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final withdrawalRequestReason = WithdrawalRequestReason(); // WithdrawalRequestReason | 
+
+try {
+    final result = api_instance.cancelLedgerWithdrawRequest(withdrawalId, withdrawalRequestReason);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->cancelLedgerWithdrawRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **withdrawalId** | **String**|  | 
+ **withdrawalRequestReason** | [**WithdrawalRequestReason**](WithdrawalRequestReason.md)|  | [optional] 
+
+### Return type
+
+[**WithdrawalInitiationResponseEnvelope**](WithdrawalInitiationResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -691,6 +807,57 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ListAssetPriceResponseEnvelope**](ListAssetPriceResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAllWithdrawalRequests**
+> AllWithdrawalInitiationsResponseEnvelope getAllWithdrawalRequests(status)
+
+Get all withdrawal requests
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final status = status_example; // String | 
+
+try {
+    final result = api_instance.getAllWithdrawalRequests(status);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getAllWithdrawalRequests: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | **String**|  | [optional] 
+
+### Return type
+
+[**AllWithdrawalInitiationsResponseEnvelope**](AllWithdrawalInitiationsResponseEnvelope.md)
 
 ### Authorization
 
@@ -1377,7 +1544,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getLedgerWithdrawRequestsBySelf**
-> AllWithdrawalInitiationsResponseEnvelope getLedgerWithdrawRequestsBySelf()
+> AllWithdrawalInitiationsResponseEnvelope getLedgerWithdrawRequestsBySelf(status)
 
 Get all pending withdrawal requests for the logged in user
 
@@ -1396,9 +1563,10 @@ import 'package:dora_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = DefaultApi();
+final status = status_example; // String | 
 
 try {
-    final result = api_instance.getLedgerWithdrawRequestsBySelf();
+    final result = api_instance.getLedgerWithdrawRequestsBySelf(status);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->getLedgerWithdrawRequestsBySelf: $e\n');
@@ -1406,7 +1574,63 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | **String**|  | [optional] 
+
+### Return type
+
+[**AllWithdrawalInitiationsResponseEnvelope**](AllWithdrawalInitiationsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getLedgerWithdrawRequestsByUserID**
+> AllWithdrawalInitiationsResponseEnvelope getLedgerWithdrawRequestsByUserID(userId, status)
+
+Get all pending withdrawal requests for this user
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final status = status_example; // String | 
+
+try {
+    final result = api_instance.getLedgerWithdrawRequestsByUserID(userId, status);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getLedgerWithdrawRequestsByUserID: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+ **status** | **String**|  | [optional] 
 
 ### Return type
 
@@ -2519,7 +2743,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ledgerWithdraw**
-> FundUserResponseEnvelope ledgerWithdraw(userId, defundUserRequest)
+> FundUserResponseEnvelope ledgerWithdraw(userId, defundUserRequest, status)
 
 Withdraw assets from this user to the outside world
 
@@ -2542,9 +2766,10 @@ import 'package:dora_client/api.dart';
 final api_instance = DefaultApi();
 final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final defundUserRequest = DefundUserRequest(); // DefundUserRequest | 
+final status = status_example; // String | 
 
 try {
-    final result = api_instance.ledgerWithdraw(userId, defundUserRequest);
+    final result = api_instance.ledgerWithdraw(userId, defundUserRequest, status);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->ledgerWithdraw: $e\n');
@@ -2557,6 +2782,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **String**|  | 
  **defundUserRequest** | [**DefundUserRequest**](DefundUserRequest.md)|  | 
+ **status** | **String**|  | [optional] 
 
 ### Return type
 
@@ -2576,9 +2802,9 @@ Name | Type | Description  | Notes
 # **ledgerWithdrawRequest**
 > WithdrawalInitiationResponseEnvelope ledgerWithdrawRequest(userId, defundUserRequest)
 
-Initiate a withdrawal request for the logged in user to the outside world
+Initiate a withdrawal request for this user to the outside world
 
-Withdraw assets from the logged in user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
 
 ### Example
 ```dart
@@ -2603,6 +2829,61 @@ try {
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->ledgerWithdrawRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+ **defundUserRequest** | [**DefundUserRequest**](DefundUserRequest.md)|  | 
+
+### Return type
+
+[**WithdrawalInitiationResponseEnvelope**](WithdrawalInitiationResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ledgerWithdrawRequestSelf**
+> WithdrawalInitiationResponseEnvelope ledgerWithdrawRequestSelf(userId, defundUserRequest)
+
+Initiate a withdrawal request for the logged in user to the outside world
+
+Withdraw assets from the logged in user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final defundUserRequest = DefundUserRequest(); // DefundUserRequest | 
+
+try {
+    final result = api_instance.ledgerWithdrawRequestSelf(userId, defundUserRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->ledgerWithdrawRequestSelf: $e\n');
 }
 ```
 
@@ -3262,6 +3543,61 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PayLeverageAccruedInterestResponseEnvelope**](PayLeverageAccruedInterestResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **rejectLedgerWithdrawRequest**
+> WithdrawalInitiationResponseEnvelope rejectLedgerWithdrawRequest(withdrawalId, withdrawalRequestReason)
+
+Reject a pending withdrawal request
+
+Reject a pending withdrawal request, providing a reason for the rejection. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final withdrawalId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final withdrawalRequestReason = WithdrawalRequestReason(); // WithdrawalRequestReason | 
+
+try {
+    final result = api_instance.rejectLedgerWithdrawRequest(withdrawalId, withdrawalRequestReason);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->rejectLedgerWithdrawRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **withdrawalId** | **String**|  | 
+ **withdrawalRequestReason** | [**WithdrawalRequestReason**](WithdrawalRequestReason.md)|  | 
+
+### Return type
+
+[**WithdrawalInitiationResponseEnvelope**](WithdrawalInitiationResponseEnvelope.md)
 
 ### Authorization
 

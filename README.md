@@ -52,26 +52,27 @@ import 'package:dora_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = DefaultApi();
-final orderBookId = orderBookId_example; // String | 
-final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final orderKind = ; // OrderKind | 
+final withdrawalId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final withdrawalRequestReason = WithdrawalRequestReason(); // WithdrawalRequestReason | 
 
 try {
-    final result = api_instance.cancelAllOpenOrders(orderBookId, userId, orderKind);
+    final result = api_instance.approveLedgerWithdrawRequest(withdrawalId, withdrawalRequestReason);
     print(result);
 } catch (e) {
-    print('Exception when calling DefaultApi->cancelAllOpenOrders: $e\n');
+    print('Exception when calling DefaultApi->approveLedgerWithdrawRequest: $e\n');
 }
 
 ```
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://localhost:8084*
+All URIs are relative to *https://staging.dora.co*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultApi* | [**approveLedgerWithdrawRequest**](doc//DefaultApi.md#approveledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
 *DefaultApi* | [**cancelAllOpenOrders**](doc//DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+*DefaultApi* | [**cancelLedgerWithdrawRequest**](doc//DefaultApi.md#cancelledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 *DefaultApi* | [**cancelOrderById**](doc//DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 *DefaultApi* | [**checkUserEmailExists**](doc//DefaultApi.md#checkuseremailexists) | **GET** /v1/user/exists | Check whether a user email exists
 *DefaultApi* | [**claimLeverageGetAccruedInterest**](doc//DefaultApi.md#claimleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
@@ -83,6 +84,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**deleteUser**](doc//DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
 *DefaultApi* | [**getAPIKeysForUserID**](doc//DefaultApi.md#getapikeysforuserid) | **GET** /v1/user/{user_id}/apikey | Get user's api keys: admin or integrator only
 *DefaultApi* | [**getAllAssetPrices**](doc//DefaultApi.md#getallassetprices) | **GET** /v1/price | Get the current price of all assets
+*DefaultApi* | [**getAllWithdrawalRequests**](doc//DefaultApi.md#getallwithdrawalrequests) | **GET** /v1/ledger/withdraw/requests | Get all withdrawal requests
 *DefaultApi* | [**getAssetById**](doc//DefaultApi.md#getassetbyid) | **GET** /v1/assets/{asset_id} | Get asset by ID
 *DefaultApi* | [**getAssetPrice**](doc//DefaultApi.md#getassetprice) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
 *DefaultApi* | [**getAssetYTMById**](doc//DefaultApi.md#getassetytmbyid) | **GET** /v1/assets/{asset_id}/ytm | Get annualized yield to maturity for a bond asset
@@ -99,6 +101,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getLedgerPositionsSelf**](doc//DefaultApi.md#getledgerpositionsself) | **GET** /v1/ledger/positions/self | Get your own positions
 *DefaultApi* | [**getLedgerValueSelf**](doc//DefaultApi.md#getledgervalueself) | **GET** /v1/ledger/value/self | Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
 *DefaultApi* | [**getLedgerWithdrawRequestsBySelf**](doc//DefaultApi.md#getledgerwithdrawrequestsbyself) | **GET** /v1/ledger/withdraw/requests/self | Get all pending withdrawal requests for the logged in user
+*DefaultApi* | [**getLedgerWithdrawRequestsByUserID**](doc//DefaultApi.md#getledgerwithdrawrequestsbyuserid) | **GET** /v1/ledger/withdraw/requests/{user_id} | Get all pending withdrawal requests for this user
 *DefaultApi* | [**getOrderById**](doc//DefaultApi.md#getorderbyid) | **GET** /v1/orders/{order_id} | Get order by ID
 *DefaultApi* | [**getOrderbookById**](doc//DefaultApi.md#getorderbookbyid) | **GET** /v1/orderbooks/{order_book_id} | Get orderbook by ID
 *DefaultApi* | [**getOrderbookDepth**](doc//DefaultApi.md#getorderbookdepth) | **GET** /v1/orderbooks/{order_book_id}/depth | Get the aggregated price levels for a specific orderbook (L2 market depth)
@@ -123,7 +126,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getUsersAPIKeys**](doc//DefaultApi.md#getusersapikeys) | **GET** /v1/user/apikey | Get user's api keys
 *DefaultApi* | [**ledgerDeposit**](doc//DefaultApi.md#ledgerdeposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user's account from the outside world
 *DefaultApi* | [**ledgerWithdraw**](doc//DefaultApi.md#ledgerwithdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
-*DefaultApi* | [**ledgerWithdrawRequest**](doc//DefaultApi.md#ledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/self | Initiate a withdrawal request for the logged in user to the outside world
+*DefaultApi* | [**ledgerWithdrawRequest**](doc//DefaultApi.md#ledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{user_id} | Initiate a withdrawal request for this user to the outside world
+*DefaultApi* | [**ledgerWithdrawRequestSelf**](doc//DefaultApi.md#ledgerwithdrawrequestself) | **POST** /v1/ledger/withdraw/requests/self | Initiate a withdrawal request for the logged in user to the outside world
 *DefaultApi* | [**leverageGetAccruedInterestByUser**](doc//DefaultApi.md#leveragegetaccruedinterestbyuser) | **GET** /v1/leverage/accrued_interest/self | Get current accrued leverage interest for the user
 *DefaultApi* | [**leverageIsolateCollateral**](doc//DefaultApi.md#leverageisolatecollateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user's global collateral
 *DefaultApi* | [**leverageSupply**](doc//DefaultApi.md#leveragesupply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
@@ -136,6 +140,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**listOrders**](doc//DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
 *DefaultApi* | [**listPositionAccountsSelf**](doc//DefaultApi.md#listpositionaccountsself) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
 *DefaultApi* | [**payLeverageGetAccruedInterest**](doc//DefaultApi.md#payleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
+*DefaultApi* | [**rejectLedgerWithdrawRequest**](doc//DefaultApi.md#rejectledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
 *DefaultApi* | [**revokeAPIKeyForUser**](doc//DefaultApi.md#revokeapikeyforuser) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 *DefaultApi* | [**revokeAPIKeyForUserID**](doc//DefaultApi.md#revokeapikeyforuserid) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
 *DefaultApi* | [**settleLeverageAccruedInterest**](doc//DefaultApi.md#settleleverageaccruedinterest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
@@ -326,6 +331,8 @@ Class | Method | HTTP request | Description
  - [WithdrawResponseEnvelope](doc//WithdrawResponseEnvelope.md)
  - [WithdrawalInitiation](doc//WithdrawalInitiation.md)
  - [WithdrawalInitiationResponseEnvelope](doc//WithdrawalInitiationResponseEnvelope.md)
+ - [WithdrawalRequestReason](doc//WithdrawalRequestReason.md)
+ - [WithdrawalStatus](doc//WithdrawalStatus.md)
 
 
 ## Documentation For Authorization

@@ -13,9 +13,12 @@ Name | Type | Description | Notes
 **positionId** | **String** |  | 
 **assetId** | **String** |  | 
 **quantity** | **String** |  | 
-**status** | **String** |  | 
+**status** | [**WithdrawalStatus**](WithdrawalStatus.md) |  | 
 **createdAt** | [**DateTime**](DateTime.md) |  | 
+**createdBy** | **String** |  | 
 **updatedAt** | [**DateTime**](DateTime.md) |  | 
+**updatedBy** | **String** |  | 
+**reason** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

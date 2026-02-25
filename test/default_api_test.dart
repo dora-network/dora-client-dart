@@ -17,10 +17,28 @@ void main() {
   // final instance = DefaultApi();
 
   group('tests for DefaultApi', () {
+    // Approve a pending withdrawal request
+    //
+    // Approve a pending withdrawal request, allowing the transfer of assets to the outside world to proceed. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
+    //
+    //Future<WithdrawalInitiationResponseEnvelope> approveLedgerWithdrawRequest(String withdrawalId, { WithdrawalRequestReason withdrawalRequestReason }) async
+    test('test approveLedgerWithdrawRequest', () async {
+      // TODO
+    });
+
     // Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
     //
     //Future<ListOrdersResponseEnvelope> cancelAllOpenOrders({ String orderBookId, String userId, OrderKind orderKind }) async
     test('test cancelAllOpenOrders', () async {
+      // TODO
+    });
+
+    // Cancel a pending withdrawal request
+    //
+    // Cancel a pending withdrawal request, providing an optional reason for the cancellation.
+    //
+    //Future<WithdrawalInitiationResponseEnvelope> cancelLedgerWithdrawRequest(String withdrawalId, { WithdrawalRequestReason withdrawalRequestReason }) async
+    test('test cancelLedgerWithdrawRequest', () async {
       // TODO
     });
 
@@ -98,6 +116,13 @@ void main() {
     //
     //Future<ListAssetPriceResponseEnvelope> getAllAssetPrices() async
     test('test getAllAssetPrices', () async {
+      // TODO
+    });
+
+    // Get all withdrawal requests
+    //
+    //Future<AllWithdrawalInitiationsResponseEnvelope> getAllWithdrawalRequests({ String status }) async
+    test('test getAllWithdrawalRequests', () async {
       // TODO
     });
 
@@ -208,8 +233,15 @@ void main() {
 
     // Get all pending withdrawal requests for the logged in user
     //
-    //Future<AllWithdrawalInitiationsResponseEnvelope> getLedgerWithdrawRequestsBySelf() async
+    //Future<AllWithdrawalInitiationsResponseEnvelope> getLedgerWithdrawRequestsBySelf({ String status }) async
     test('test getLedgerWithdrawRequestsBySelf', () async {
+      // TODO
+    });
+
+    // Get all pending withdrawal requests for this user
+    //
+    //Future<AllWithdrawalInitiationsResponseEnvelope> getLedgerWithdrawRequestsByUserID(String userId, { String status }) async
+    test('test getLedgerWithdrawRequestsByUserID', () async {
       // TODO
     });
 
@@ -380,8 +412,17 @@ void main() {
     //
     // Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
     //
-    //Future<FundUserResponseEnvelope> ledgerWithdraw(String userId, DefundUserRequest defundUserRequest) async
+    //Future<FundUserResponseEnvelope> ledgerWithdraw(String userId, DefundUserRequest defundUserRequest, { String status }) async
     test('test ledgerWithdraw', () async {
+      // TODO
+    });
+
+    // Initiate a withdrawal request for this user to the outside world
+    //
+    // Withdraw assets from this user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
+    //
+    //Future<WithdrawalInitiationResponseEnvelope> ledgerWithdrawRequest(String userId, DefundUserRequest defundUserRequest) async
+    test('test ledgerWithdrawRequest', () async {
       // TODO
     });
 
@@ -389,8 +430,8 @@ void main() {
     //
     // Withdraw assets from the logged in user's account to the outside world. Note that this does not interact with any external systems; it simply deducts the amount from the user's available balance in the ledger. Actual transfer of assets must be handled separately.
     //
-    //Future<WithdrawalInitiationResponseEnvelope> ledgerWithdrawRequest(String userId, DefundUserRequest defundUserRequest) async
-    test('test ledgerWithdrawRequest', () async {
+    //Future<WithdrawalInitiationResponseEnvelope> ledgerWithdrawRequestSelf(String userId, DefundUserRequest defundUserRequest) async
+    test('test ledgerWithdrawRequestSelf', () async {
       // TODO
     });
 
@@ -477,6 +518,15 @@ void main() {
     //
     //Future<PayLeverageAccruedInterestResponseEnvelope> payLeverageGetAccruedInterest(PayLeverageAccruedInterestRequest payLeverageAccruedInterestRequest) async
     test('test payLeverageGetAccruedInterest', () async {
+      // TODO
+    });
+
+    // Reject a pending withdrawal request
+    //
+    // Reject a pending withdrawal request, providing a reason for the rejection. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
+    //
+    //Future<WithdrawalInitiationResponseEnvelope> rejectLedgerWithdrawRequest(String withdrawalId, WithdrawalRequestReason withdrawalRequestReason) async
+    test('test rejectLedgerWithdrawRequest', () async {
       // TODO
     });
 

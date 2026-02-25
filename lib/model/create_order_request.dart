@@ -22,9 +22,9 @@ class CreateOrderRequest {
     required this.orderBookId,
     this.orderModifiers = const [],
     this.goodTillDate,
-    this.triggerPrice,
-    this.triggerType,
     this.clientOrderId,
+    this.stopLossPrice,
+    this.takeProfitPrice,
   });
 
   String quantity;
@@ -60,22 +60,6 @@ class CreateOrderRequest {
   ///
   DateTime? goodTillDate;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? triggerPrice;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  TriggerType? triggerType;
-
   /// An optional client-provided identifier for the order.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -84,6 +68,24 @@ class CreateOrderRequest {
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
   String? clientOrderId;
+
+  /// Stop loss price
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? stopLossPrice;
+
+  /// Take profit price
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? takeProfitPrice;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateOrderRequest &&
@@ -96,9 +98,9 @@ class CreateOrderRequest {
     other.orderBookId == orderBookId &&
     _deepEquality.equals(other.orderModifiers, orderModifiers) &&
     other.goodTillDate == goodTillDate &&
-    other.triggerPrice == triggerPrice &&
-    other.triggerType == triggerType &&
-    other.clientOrderId == clientOrderId;
+    other.clientOrderId == clientOrderId &&
+    other.stopLossPrice == stopLossPrice &&
+    other.takeProfitPrice == takeProfitPrice;
 
   @override
   int get hashCode =>
@@ -112,12 +114,12 @@ class CreateOrderRequest {
     (orderBookId.hashCode) +
     (orderModifiers.hashCode) +
     (goodTillDate == null ? 0 : goodTillDate!.hashCode) +
-    (triggerPrice == null ? 0 : triggerPrice!.hashCode) +
-    (triggerType == null ? 0 : triggerType!.hashCode) +
-    (clientOrderId == null ? 0 : clientOrderId!.hashCode);
+    (clientOrderId == null ? 0 : clientOrderId!.hashCode) +
+    (stopLossPrice == null ? 0 : stopLossPrice!.hashCode) +
+    (takeProfitPrice == null ? 0 : takeProfitPrice!.hashCode);
 
   @override
-  String toString() => 'CreateOrderRequest[quantity=$quantity, inverseLeverage=$inverseLeverage, price=$price, kind=$kind, side=$side, fromGlobalPosition=$fromGlobalPosition, orderBookId=$orderBookId, orderModifiers=$orderModifiers, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType, clientOrderId=$clientOrderId]';
+  String toString() => 'CreateOrderRequest[quantity=$quantity, inverseLeverage=$inverseLeverage, price=$price, kind=$kind, side=$side, fromGlobalPosition=$fromGlobalPosition, orderBookId=$orderBookId, orderModifiers=$orderModifiers, goodTillDate=$goodTillDate, clientOrderId=$clientOrderId, stopLossPrice=$stopLossPrice, takeProfitPrice=$takeProfitPrice]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -138,20 +140,20 @@ class CreateOrderRequest {
     } else {
       json[r'good_till_date'] = null;
     }
-    if (this.triggerPrice != null) {
-      json[r'trigger_price'] = this.triggerPrice;
-    } else {
-      json[r'trigger_price'] = null;
-    }
-    if (this.triggerType != null) {
-      json[r'trigger_type'] = this.triggerType;
-    } else {
-      json[r'trigger_type'] = null;
-    }
     if (this.clientOrderId != null) {
       json[r'client_order_id'] = this.clientOrderId;
     } else {
       json[r'client_order_id'] = null;
+    }
+    if (this.stopLossPrice != null) {
+      json[r'stop_loss_price'] = this.stopLossPrice;
+    } else {
+      json[r'stop_loss_price'] = null;
+    }
+    if (this.takeProfitPrice != null) {
+      json[r'take_profit_price'] = this.takeProfitPrice;
+    } else {
+      json[r'take_profit_price'] = null;
     }
     return json;
   }
@@ -184,9 +186,9 @@ class CreateOrderRequest {
         orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
         orderModifiers: OrderModifierKind.listFromJson(json[r'order_modifiers']),
         goodTillDate: mapDateTime(json, r'good_till_date', r''),
-        triggerPrice: mapValueOfType<String>(json, r'trigger_price'),
-        triggerType: TriggerType.fromJson(json[r'trigger_type']),
         clientOrderId: mapValueOfType<String>(json, r'client_order_id'),
+        stopLossPrice: mapValueOfType<String>(json, r'stop_loss_price'),
+        takeProfitPrice: mapValueOfType<String>(json, r'take_profit_price'),
       );
     }
     return null;

@@ -26,6 +26,8 @@ class ValidateSubmitOrderRequest {
     this.clientOrderId,
     this.positionAssets = const [],
     this.assetsConfig = const [],
+    this.stopLossPrice,
+    this.takeProfitPrice,
   });
 
   String quantity;
@@ -94,6 +96,24 @@ class ValidateSubmitOrderRequest {
   /// Configuration for the assets in the order
   List<AssetConfig> assetsConfig;
 
+  /// Stop loss price
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? stopLossPrice;
+
+  /// Take profit price
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? takeProfitPrice;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ValidateSubmitOrderRequest &&
     other.quantity == quantity &&
@@ -108,7 +128,9 @@ class ValidateSubmitOrderRequest {
     other.quoteAssetId == quoteAssetId &&
     other.clientOrderId == clientOrderId &&
     _deepEquality.equals(other.positionAssets, positionAssets) &&
-    _deepEquality.equals(other.assetsConfig, assetsConfig);
+    _deepEquality.equals(other.assetsConfig, assetsConfig) &&
+    other.stopLossPrice == stopLossPrice &&
+    other.takeProfitPrice == takeProfitPrice;
 
   @override
   int get hashCode =>
@@ -125,10 +147,12 @@ class ValidateSubmitOrderRequest {
     (quoteAssetId == null ? 0 : quoteAssetId!.hashCode) +
     (clientOrderId == null ? 0 : clientOrderId!.hashCode) +
     (positionAssets.hashCode) +
-    (assetsConfig.hashCode);
+    (assetsConfig.hashCode) +
+    (stopLossPrice == null ? 0 : stopLossPrice!.hashCode) +
+    (takeProfitPrice == null ? 0 : takeProfitPrice!.hashCode);
 
   @override
-  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance, baseAssetId=$baseAssetId, quoteAssetId=$quoteAssetId, clientOrderId=$clientOrderId, positionAssets=$positionAssets, assetsConfig=$assetsConfig]';
+  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance, baseAssetId=$baseAssetId, quoteAssetId=$quoteAssetId, clientOrderId=$clientOrderId, positionAssets=$positionAssets, assetsConfig=$assetsConfig, stopLossPrice=$stopLossPrice, takeProfitPrice=$takeProfitPrice]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -165,6 +189,16 @@ class ValidateSubmitOrderRequest {
     }
       json[r'position_assets'] = this.positionAssets;
       json[r'assets_config'] = this.assetsConfig;
+    if (this.stopLossPrice != null) {
+      json[r'stop_loss_price'] = this.stopLossPrice;
+    } else {
+      json[r'stop_loss_price'] = null;
+    }
+    if (this.takeProfitPrice != null) {
+      json[r'take_profit_price'] = this.takeProfitPrice;
+    } else {
+      json[r'take_profit_price'] = null;
+    }
     return json;
   }
 
@@ -200,6 +234,8 @@ class ValidateSubmitOrderRequest {
         clientOrderId: mapValueOfType<String>(json, r'client_order_id'),
         positionAssets: PositionAsset.listFromJson(json[r'position_assets']),
         assetsConfig: AssetConfig.listFromJson(json[r'assets_config']),
+        stopLossPrice: mapValueOfType<String>(json, r'stop_loss_price'),
+        takeProfitPrice: mapValueOfType<String>(json, r'take_profit_price'),
       );
     }
     return null;

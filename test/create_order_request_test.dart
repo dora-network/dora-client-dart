@@ -64,19 +64,21 @@ void main() {
       // TODO
     });
 
-    // String triggerPrice
-    test('to test the property `triggerPrice`', () async {
-      // TODO
-    });
-
-    // TriggerType triggerType
-    test('to test the property `triggerType`', () async {
-      // TODO
-    });
-
     // An optional client-provided identifier for the order.
     // String clientOrderId
     test('to test the property `clientOrderId`', () async {
+      // TODO
+    });
+
+    // Stop loss price
+    // String stopLossPrice
+    test('to test the property `stopLossPrice`', () async {
+      // TODO
+    });
+
+    // Take profit price
+    // String takeProfitPrice
+    test('to test the property `takeProfitPrice`', () async {
       // TODO
     });
 

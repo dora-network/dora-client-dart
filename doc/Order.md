@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **triggerPrice** | **String** |  | [optional] 
 **triggerType** | [**TriggerType**](TriggerType.md) |  | [optional] 
 **clientOrderId** | **String** | An optional client-provided identifier for the order. | [optional] 
+**parentOrderId** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

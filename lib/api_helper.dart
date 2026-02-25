@@ -94,6 +94,9 @@ String parameterToString(dynamic value) {
   if (value is UserRole) {
     return UserRoleTypeTransformer().encode(value).toString();
   }
+  if (value is WithdrawalStatus) {
+    return WithdrawalStatusTypeTransformer().encode(value).toString();
+  }
   return value.toString();
 }
 

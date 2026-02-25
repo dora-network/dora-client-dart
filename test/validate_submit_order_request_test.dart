@@ -91,6 +91,18 @@ void main() {
       // TODO
     });
 
+    // Stop loss price
+    // String stopLossPrice
+    test('to test the property `stopLossPrice`', () async {
+      // TODO
+    });
+
+    // Take profit price
+    // String takeProfitPrice
+    test('to test the property `takeProfitPrice`', () async {
+      // TODO
+    });
+
 
   });
 

@@ -11,7 +11,7 @@
 part of openapi.api;
 
 class ApiClient {
-  ApiClient({this.basePath = 'https://localhost:8084', this.authentication,});
+  ApiClient({this.basePath = 'https://staging.dora.co', this.authentication,});
 
   final String basePath;
   final Authentication? authentication;
@@ -528,6 +528,10 @@ class ApiClient {
           return WithdrawalInitiation.fromJson(value);
         case 'WithdrawalInitiationResponseEnvelope':
           return WithdrawalInitiationResponseEnvelope.fromJson(value);
+        case 'WithdrawalRequestReason':
+          return WithdrawalRequestReason.fromJson(value);
+        case 'WithdrawalStatus':
+          return WithdrawalStatusTypeTransformer().decode(value);
         default:
           dynamic match;
           if (value is List && (match = _regList.firstMatch(targetType)?.group(1)) != null) {

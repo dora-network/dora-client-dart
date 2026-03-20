@@ -23,7 +23,9 @@ class Order {
     required this.originalQuantity,
     required this.filledQuantity,
     required this.filledNotional,
-    this.lastUpdateAt,
+    required this.lockedQuantity,
+    required this.impendingBorrowsQuantity,
+    required this.lastUpdateAt,
     required this.openedAt,
     required this.inverseLeverage,
     required this.side,
@@ -65,13 +67,13 @@ class Order {
   /// Quote quantity that has been filled so far.
   String filledNotional;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  DateTime? lastUpdateAt;
+  /// Balance locked to ensure limit buy orders have sufficient balance to be fulfilled
+  double lockedQuantity;
+
+  /// Borrows locked from the liquidity pool to ensure limit short sell orders have sufficient balance to be fulfilled
+  double impendingBorrowsQuantity;
+
+  DateTime lastUpdateAt;
 
   DateTime openedAt;
 
@@ -148,6 +150,8 @@ class Order {
     other.originalQuantity == originalQuantity &&
     other.filledQuantity == filledQuantity &&
     other.filledNotional == filledNotional &&
+    other.lockedQuantity == lockedQuantity &&
+    other.impendingBorrowsQuantity == impendingBorrowsQuantity &&
     other.lastUpdateAt == lastUpdateAt &&
     other.openedAt == openedAt &&
     other.inverseLeverage == inverseLeverage &&
@@ -176,7 +180,9 @@ class Order {
     (originalQuantity.hashCode) +
     (filledQuantity.hashCode) +
     (filledNotional.hashCode) +
-    (lastUpdateAt == null ? 0 : lastUpdateAt!.hashCode) +
+    (lockedQuantity.hashCode) +
+    (impendingBorrowsQuantity.hashCode) +
+    (lastUpdateAt.hashCode) +
     (openedAt.hashCode) +
     (inverseLeverage.hashCode) +
     (side.hashCode) +
@@ -192,7 +198,7 @@ class Order {
     (parentOrderId == null ? 0 : parentOrderId!.hashCode);
 
   @override
-  String toString() => 'Order[orderId=$orderId, orderBookId=$orderBookId, kind=$kind, originalPrice=$originalPrice, avgFillPrice=$avgFillPrice, cancelledQuantity=$cancelledQuantity, openQuantity=$openQuantity, originalQuantity=$originalQuantity, filledQuantity=$filledQuantity, filledNotional=$filledNotional, lastUpdateAt=$lastUpdateAt, openedAt=$openedAt, inverseLeverage=$inverseLeverage, side=$side, status=$status, userId=$userId, orderModifiers=$orderModifiers, positionId=$positionId, orderInfo=$orderInfo, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType, clientOrderId=$clientOrderId, parentOrderId=$parentOrderId]';
+  String toString() => 'Order[orderId=$orderId, orderBookId=$orderBookId, kind=$kind, originalPrice=$originalPrice, avgFillPrice=$avgFillPrice, cancelledQuantity=$cancelledQuantity, openQuantity=$openQuantity, originalQuantity=$originalQuantity, filledQuantity=$filledQuantity, filledNotional=$filledNotional, lockedQuantity=$lockedQuantity, impendingBorrowsQuantity=$impendingBorrowsQuantity, lastUpdateAt=$lastUpdateAt, openedAt=$openedAt, inverseLeverage=$inverseLeverage, side=$side, status=$status, userId=$userId, orderModifiers=$orderModifiers, positionId=$positionId, orderInfo=$orderInfo, goodTillDate=$goodTillDate, triggerPrice=$triggerPrice, triggerType=$triggerType, clientOrderId=$clientOrderId, parentOrderId=$parentOrderId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -206,11 +212,9 @@ class Order {
       json[r'original_quantity'] = this.originalQuantity;
       json[r'filled_quantity'] = this.filledQuantity;
       json[r'filled_notional'] = this.filledNotional;
-    if (this.lastUpdateAt != null) {
-      json[r'last_update_at'] = this.lastUpdateAt!.toUtc().toIso8601String();
-    } else {
-      json[r'last_update_at'] = null;
-    }
+      json[r'locked_quantity'] = this.lockedQuantity;
+      json[r'impending_borrows_quantity'] = this.impendingBorrowsQuantity;
+      json[r'last_update_at'] = this.lastUpdateAt.toUtc().toIso8601String();
       json[r'opened_at'] = this.openedAt.toUtc().toIso8601String();
       json[r'inverse_leverage'] = this.inverseLeverage;
       json[r'side'] = this.side;
@@ -280,7 +284,9 @@ class Order {
         originalQuantity: mapValueOfType<String>(json, r'original_quantity')!,
         filledQuantity: mapValueOfType<String>(json, r'filled_quantity')!,
         filledNotional: mapValueOfType<String>(json, r'filled_notional')!,
-        lastUpdateAt: mapDateTime(json, r'last_update_at', r''),
+        lockedQuantity: mapValueOfType<double>(json, r'locked_quantity')!,
+        impendingBorrowsQuantity: mapValueOfType<double>(json, r'impending_borrows_quantity')!,
+        lastUpdateAt: mapDateTime(json, r'last_update_at', r'')!,
         openedAt: mapDateTime(json, r'opened_at', r'')!,
         inverseLeverage: mapValueOfType<String>(json, r'inverse_leverage')!,
         side: Side.fromJson(json[r'side'])!,
@@ -351,6 +357,9 @@ class Order {
     'original_quantity',
     'filled_quantity',
     'filled_notional',
+    'locked_quantity',
+    'impending_borrows_quantity',
+    'last_update_at',
     'opened_at',
     'inverse_leverage',
     'side',

@@ -20,6 +20,10 @@ class UserConfig {
     required this.updatedAt,
     required this.showTutorialCards,
     required this.notificationsEnabled,
+    required this.allowEmailNotifications,
+    required this.allowLiquidationsNotifications,
+    required this.allowDepositWithdrawalNotifications,
+    required this.allowOrdersNotifications,
   });
 
   String id;
@@ -49,6 +53,14 @@ class UserConfig {
 
   bool notificationsEnabled;
 
+  bool allowEmailNotifications;
+
+  bool allowLiquidationsNotifications;
+
+  bool allowDepositWithdrawalNotifications;
+
+  bool allowOrdersNotifications;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserConfig &&
     other.id == id &&
@@ -57,7 +69,11 @@ class UserConfig {
     other.createdAt == createdAt &&
     other.updatedAt == updatedAt &&
     other.showTutorialCards == showTutorialCards &&
-    other.notificationsEnabled == notificationsEnabled;
+    other.notificationsEnabled == notificationsEnabled &&
+    other.allowEmailNotifications == allowEmailNotifications &&
+    other.allowLiquidationsNotifications == allowLiquidationsNotifications &&
+    other.allowDepositWithdrawalNotifications == allowDepositWithdrawalNotifications &&
+    other.allowOrdersNotifications == allowOrdersNotifications;
 
   @override
   int get hashCode =>
@@ -68,10 +84,14 @@ class UserConfig {
     (createdAt.hashCode) +
     (updatedAt.hashCode) +
     (showTutorialCards.hashCode) +
-    (notificationsEnabled.hashCode);
+    (notificationsEnabled.hashCode) +
+    (allowEmailNotifications.hashCode) +
+    (allowLiquidationsNotifications.hashCode) +
+    (allowDepositWithdrawalNotifications.hashCode) +
+    (allowOrdersNotifications.hashCode);
 
   @override
-  String toString() => 'UserConfig[id=$id, photoUrl=$photoUrl, timezone=$timezone, createdAt=$createdAt, updatedAt=$updatedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled]';
+  String toString() => 'UserConfig[id=$id, photoUrl=$photoUrl, timezone=$timezone, createdAt=$createdAt, updatedAt=$updatedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -90,6 +110,10 @@ class UserConfig {
       json[r'updated_at'] = this.updatedAt.toUtc().toIso8601String();
       json[r'show_tutorial_cards'] = this.showTutorialCards;
       json[r'notifications_enabled'] = this.notificationsEnabled;
+      json[r'allow_email_notifications'] = this.allowEmailNotifications;
+      json[r'allow_liquidations_notifications'] = this.allowLiquidationsNotifications;
+      json[r'allow_deposit_withdrawal_notifications'] = this.allowDepositWithdrawalNotifications;
+      json[r'allow_orders_notifications'] = this.allowOrdersNotifications;
     return json;
   }
 
@@ -119,6 +143,10 @@ class UserConfig {
         updatedAt: mapDateTime(json, r'updated_at', r'')!,
         showTutorialCards: mapValueOfType<bool>(json, r'show_tutorial_cards')!,
         notificationsEnabled: mapValueOfType<bool>(json, r'notifications_enabled')!,
+        allowEmailNotifications: mapValueOfType<bool>(json, r'allow_email_notifications')!,
+        allowLiquidationsNotifications: mapValueOfType<bool>(json, r'allow_liquidations_notifications')!,
+        allowDepositWithdrawalNotifications: mapValueOfType<bool>(json, r'allow_deposit_withdrawal_notifications')!,
+        allowOrdersNotifications: mapValueOfType<bool>(json, r'allow_orders_notifications')!,
       );
     }
     return null;
@@ -171,6 +199,10 @@ class UserConfig {
     'updated_at',
     'show_tutorial_cards',
     'notifications_enabled',
+    'allow_email_notifications',
+    'allow_liquidations_notifications',
+    'allow_deposit_withdrawal_notifications',
+    'allow_orders_notifications',
   };
 }
 

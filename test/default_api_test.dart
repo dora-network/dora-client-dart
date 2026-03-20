@@ -84,6 +84,13 @@ void main() {
       // TODO
     });
 
+    // Create a new conditional orders
+    //
+    //Future<CreateConditionalOrderResponseEnvelope> createConditionalOrder(CreateConditionalOrderRequest createConditionalOrderRequest) async
+    test('test createConditionalOrder', () async {
+      // TODO
+    });
+
     // Create a new order
     //
     //Future<CreateOrderResponseEnvelope> createOrder(CreateOrderRequest createOrderRequest) async
@@ -116,6 +123,13 @@ void main() {
     //
     //Future<ListAssetPriceResponseEnvelope> getAllAssetPrices() async
     test('test getAllAssetPrices', () async {
+      // TODO
+    });
+
+    // Get all users' positions
+    //
+    //Future<AllPositionsResponseEnvelope> getAllPositions() async
+    test('test getAllPositions', () async {
       // TODO
     });
 
@@ -315,6 +329,13 @@ void main() {
       // TODO
     });
 
+    // Get realized P&L settlements with filters
+    //
+    //Future<GetRealizedPnlSettlementsResponseEnvelope> getRealizedPnlSettlements({ String userId, String tenantId, String positionId, DateTime createdAfter, DateTime settledBefore, bool isSettled }) async
+    test('test getRealizedPnlSettlements', () async {
+      // TODO
+    });
+
     // Get a trade by ID
     //
     //Future<TradeResponseEnvelope> getTradeById(String tradeId) async
@@ -338,7 +359,7 @@ void main() {
 
     // Get a filtered, paginated list of transactions
     //
-    //Future<ListTransactionsResponseEnvelope> getTransactions({ List<String> pools, List<String> userIds, List<TransactionKind> txKinds, DateTime start, DateTime end, int page, int limit }) async
+    //Future<ListTransactionsResponseEnvelope> getTransactions({ List<String> pools, List<String> userIds, List<TransactionKind> txKinds, DateTime start, DateTime end, String tenantId, int page, int limit }) async
     test('test getTransactions', () async {
       // TODO
     });
@@ -548,6 +569,13 @@ void main() {
     //
     //Future<SettleLeverageAccruedInterestResponseEnvelope> settleLeverageAccruedInterest(SettleLeverageAccruedInterestRequest settleLeverageAccruedInterestRequest) async
     test('test settleLeverageAccruedInterest', () async {
+      // TODO
+    });
+
+    // Mark a realized P&L settlement as settled
+    //
+    //Future<SettleRealizedPnlRecordResponseEnvelope> settleRealizedPnlRecord(String settlementId) async
+    test('test settleRealizedPnlRecord', () async {
       // TODO
     });
 

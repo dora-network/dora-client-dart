@@ -87,8 +87,7 @@ class Asset {
 
   bool canVirtualBorrow;
 
-  /// Minimum value: 0
-  /// Maximum value: 1
+  /// Minimum value: 1
   num maxLeverage;
 
   num leverageInterestRate;

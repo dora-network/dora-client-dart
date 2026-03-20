@@ -40,6 +40,30 @@ void main() {
       // TODO
     });
 
+    // Optional: Whether to allow email notifications.
+    // UpdateFieldBoolean allowEmailNotifications
+    test('to test the property `allowEmailNotifications`', () async {
+      // TODO
+    });
+
+    // Optional: Whether to allow liquidations notifications.
+    // UpdateFieldBoolean allowLiquidationsNotifications
+    test('to test the property `allowLiquidationsNotifications`', () async {
+      // TODO
+    });
+
+    // Optional: Whether to allow deposit/withdrawal notifications.
+    // UpdateFieldBoolean allowDepositWithdrawalNotifications
+    test('to test the property `allowDepositWithdrawalNotifications`', () async {
+      // TODO
+    });
+
+    // Optional: Whether to allow orders notifications.
+    // UpdateFieldBoolean allowOrdersNotifications
+    test('to test the property `allowOrdersNotifications`', () async {
+      // TODO
+    });
+
 
   });
 

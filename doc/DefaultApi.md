@@ -18,11 +18,13 @@ Method | HTTP request | Description
 [**closeIsolatedPosition**](DefaultApi.md#closeisolatedposition) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 [**createAPIKeyForUser**](DefaultApi.md#createapikeyforuser) | **POST** /v1/user/apikey | Create apikey for a user
 [**createAPIKeyForUserID**](DefaultApi.md#createapikeyforuserid) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
+[**createConditionalOrder**](DefaultApi.md#createconditionalorder) | **POST** /v1/orders/conditional | Create a new conditional orders
 [**createOrder**](DefaultApi.md#createorder) | **POST** /v1/orders | Create a new order
 [**createUser**](DefaultApi.md#createuser) | **POST** /v1/integrators/user | Create a new user
 [**deleteUser**](DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
 [**getAPIKeysForUserID**](DefaultApi.md#getapikeysforuserid) | **GET** /v1/user/{user_id}/apikey | Get user's api keys: admin or integrator only
 [**getAllAssetPrices**](DefaultApi.md#getallassetprices) | **GET** /v1/price | Get the current price of all assets
+[**getAllPositions**](DefaultApi.md#getallpositions) | **GET** /v1/ledger/positions | Get all users' positions
 [**getAllWithdrawalRequests**](DefaultApi.md#getallwithdrawalrequests) | **GET** /v1/ledger/withdraw/requests | Get all withdrawal requests
 [**getAssetById**](DefaultApi.md#getassetbyid) | **GET** /v1/assets/{asset_id} | Get asset by ID
 [**getAssetPrice**](DefaultApi.md#getassetprice) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
@@ -51,6 +53,7 @@ Method | HTTP request | Description
 [**getOrderbookTop**](DefaultApi.md#getorderbooktop) | **GET** /v1/orderbooks/{order_book_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
 [**getPLForSelfByAccount**](DefaultApi.md#getplforselfbyaccount) | **GET** /v1/pl/self | Get account-by-account PL breakdown for the logged in user
 [**getPoolPrice**](DefaultApi.md#getpoolprice) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
+[**getRealizedPnlSettlements**](DefaultApi.md#getrealizedpnlsettlements) | **GET** /v1/realized_pnl_settlements | Get realized P&L settlements with filters
 [**getTradeById**](DefaultApi.md#gettradebyid) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 [**getTrades**](DefaultApi.md#gettrades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 [**getTransactionById**](DefaultApi.md#gettransactionbyid) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
@@ -83,6 +86,7 @@ Method | HTTP request | Description
 [**revokeAPIKeyForUser**](DefaultApi.md#revokeapikeyforuser) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 [**revokeAPIKeyForUserID**](DefaultApi.md#revokeapikeyforuserid) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
 [**settleLeverageAccruedInterest**](DefaultApi.md#settleleverageaccruedinterest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
+[**settleRealizedPnlRecord**](DefaultApi.md#settlerealizedpnlrecord) | **PUT** /v1/realized_pnl_settlements/{settlement_id} | Mark a realized P&L settlement as settled
 [**streamAssetPrices**](DefaultApi.md#streamassetprices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 [**streamCandleData**](DefaultApi.md#streamcandledata) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 [**streamOrderBookBalances**](DefaultApi.md#streamorderbookbalances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -568,6 +572,57 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **createConditionalOrder**
+> CreateConditionalOrderResponseEnvelope createConditionalOrder(createConditionalOrderRequest)
+
+Create a new conditional orders
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final createConditionalOrderRequest = CreateConditionalOrderRequest(); // CreateConditionalOrderRequest | 
+
+try {
+    final result = api_instance.createConditionalOrder(createConditionalOrderRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->createConditionalOrder: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createConditionalOrderRequest** | [**CreateConditionalOrderRequest**](CreateConditionalOrderRequest.md)|  | 
+
+### Return type
+
+[**CreateConditionalOrderResponseEnvelope**](CreateConditionalOrderResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **createOrder**
 > CreateOrderResponseEnvelope createOrder(createOrderRequest)
 
@@ -807,6 +862,53 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ListAssetPriceResponseEnvelope**](ListAssetPriceResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAllPositions**
+> AllPositionsResponseEnvelope getAllPositions()
+
+Get all users' positions
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+
+try {
+    final result = api_instance.getAllPositions();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getAllPositions: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AllPositionsResponseEnvelope**](AllPositionsResponseEnvelope.md)
 
 ### Authorization
 
@@ -2113,6 +2215,67 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getRealizedPnlSettlements**
+> GetRealizedPnlSettlementsResponseEnvelope getRealizedPnlSettlements(userId, tenantId, positionId, createdAfter, settledBefore, isSettled)
+
+Get realized P&L settlements with filters
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final tenantId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final positionId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final createdAfter = 2013-10-20T19:20:30+01:00; // DateTime | 
+final settledBefore = 2013-10-20T19:20:30+01:00; // DateTime | 
+final isSettled = true; // bool | 
+
+try {
+    final result = api_instance.getRealizedPnlSettlements(userId, tenantId, positionId, createdAfter, settledBefore, isSettled);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getRealizedPnlSettlements: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | [optional] 
+ **tenantId** | **String**|  | [optional] 
+ **positionId** | **String**|  | [optional] 
+ **createdAfter** | **DateTime**|  | [optional] 
+ **settledBefore** | **DateTime**|  | [optional] 
+ **isSettled** | **bool**|  | [optional] 
+
+### Return type
+
+[**GetRealizedPnlSettlementsResponseEnvelope**](GetRealizedPnlSettlementsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getTradeById**
 > TradeResponseEnvelope getTradeById(tradeId)
 
@@ -2257,7 +2420,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getTransactions**
-> ListTransactionsResponseEnvelope getTransactions(pools, userIds, txKinds, start, end, page, limit)
+> ListTransactionsResponseEnvelope getTransactions(pools, userIds, txKinds, start, end, tenantId, page, limit)
 
 Get a filtered, paginated list of transactions
 
@@ -2271,11 +2434,12 @@ final userIds = []; // List<String> |
 final txKinds = []; // List<TransactionKind> | 
 final start = 2013-10-20T19:20:30+01:00; // DateTime | 
 final end = 2013-10-20T19:20:30+01:00; // DateTime | 
+final tenantId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final page = 56; // int | 
 final limit = 56; // int | 
 
 try {
-    final result = api_instance.getTransactions(pools, userIds, txKinds, start, end, page, limit);
+    final result = api_instance.getTransactions(pools, userIds, txKinds, start, end, tenantId, page, limit);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->getTransactions: $e\n');
@@ -2291,6 +2455,7 @@ Name | Type | Description  | Notes
  **txKinds** | [**List<TransactionKind>**](TransactionKind.md)|  | [optional] [default to const []]
  **start** | **DateTime**|  | [optional] 
  **end** | **DateTime**|  | [optional] 
+ **tenantId** | **String**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **limit** | **int**|  | [optional] [default to 100]
 
@@ -3761,6 +3926,57 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **settleRealizedPnlRecord**
+> SettleRealizedPnlRecordResponseEnvelope settleRealizedPnlRecord(settlementId)
+
+Mark a realized P&L settlement as settled
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final settlementId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.settleRealizedPnlRecord(settlementId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->settleRealizedPnlRecord: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **settlementId** | **String**|  | 
+
+### Return type
+
+[**SettleRealizedPnlRecordResponseEnvelope**](SettleRealizedPnlRecordResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

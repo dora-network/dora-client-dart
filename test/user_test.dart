@@ -98,6 +98,26 @@ void main() {
       // TODO
     });
 
+    // bool allowEmailNotifications
+    test('to test the property `allowEmailNotifications`', () async {
+      // TODO
+    });
+
+    // bool allowLiquidationsNotifications
+    test('to test the property `allowLiquidationsNotifications`', () async {
+      // TODO
+    });
+
+    // bool allowDepositWithdrawalNotifications
+    test('to test the property `allowDepositWithdrawalNotifications`', () async {
+      // TODO
+    });
+
+    // bool allowOrdersNotifications
+    test('to test the property `allowOrdersNotifications`', () async {
+      // TODO
+    });
+
 
   });
 

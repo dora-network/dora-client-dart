@@ -36,6 +36,16 @@ void main() {
       // TODO
     });
 
+    // String assetName
+    test('to test the property `assetName`', () async {
+      // TODO
+    });
+
+    // String assetSymbol
+    test('to test the property `assetSymbol`', () async {
+      // TODO
+    });
+
 
   });
 

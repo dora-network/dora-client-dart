@@ -79,6 +79,9 @@ String parameterToString(dynamic value) {
   if (value is OrderStatus) {
     return OrderStatusTypeTransformer().encode(value).toString();
   }
+  if (value is PositionSide) {
+    return PositionSideTypeTransformer().encode(value).toString();
+  }
   if (value is PositionType) {
     return PositionTypeTypeTransformer().encode(value).toString();
   }

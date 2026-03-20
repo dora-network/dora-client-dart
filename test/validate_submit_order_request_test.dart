@@ -103,6 +103,12 @@ void main() {
       // TODO
     });
 
+    // Map of restriction keys to Restriction objects
+    // Map<String, Restriction> restrictions (default value: const {})
+    test('to test the property `restrictions`', () async {
+      // TODO
+    });
+
 
   });
 

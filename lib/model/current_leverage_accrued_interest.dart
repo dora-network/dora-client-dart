@@ -17,6 +17,8 @@ class CurrentLeverageAccruedInterest {
     required this.assetId,
     required this.positionId,
     required this.currentAccruedInterestUsd,
+    this.assetName,
+    this.assetSymbol,
   });
 
   String userId;
@@ -27,12 +29,30 @@ class CurrentLeverageAccruedInterest {
 
   String currentAccruedInterestUsd;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? assetName;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? assetSymbol;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CurrentLeverageAccruedInterest &&
     other.userId == userId &&
     other.assetId == assetId &&
     other.positionId == positionId &&
-    other.currentAccruedInterestUsd == currentAccruedInterestUsd;
+    other.currentAccruedInterestUsd == currentAccruedInterestUsd &&
+    other.assetName == assetName &&
+    other.assetSymbol == assetSymbol;
 
   @override
   int get hashCode =>
@@ -40,10 +60,12 @@ class CurrentLeverageAccruedInterest {
     (userId.hashCode) +
     (assetId.hashCode) +
     (positionId.hashCode) +
-    (currentAccruedInterestUsd.hashCode);
+    (currentAccruedInterestUsd.hashCode) +
+    (assetName == null ? 0 : assetName!.hashCode) +
+    (assetSymbol == null ? 0 : assetSymbol!.hashCode);
 
   @override
-  String toString() => 'CurrentLeverageAccruedInterest[userId=$userId, assetId=$assetId, positionId=$positionId, currentAccruedInterestUsd=$currentAccruedInterestUsd]';
+  String toString() => 'CurrentLeverageAccruedInterest[userId=$userId, assetId=$assetId, positionId=$positionId, currentAccruedInterestUsd=$currentAccruedInterestUsd, assetName=$assetName, assetSymbol=$assetSymbol]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -51,6 +73,16 @@ class CurrentLeverageAccruedInterest {
       json[r'asset_id'] = this.assetId;
       json[r'position_id'] = this.positionId;
       json[r'current_accrued_interest_usd'] = this.currentAccruedInterestUsd;
+    if (this.assetName != null) {
+      json[r'asset_name'] = this.assetName;
+    } else {
+      json[r'asset_name'] = null;
+    }
+    if (this.assetSymbol != null) {
+      json[r'asset_symbol'] = this.assetSymbol;
+    } else {
+      json[r'asset_symbol'] = null;
+    }
     return json;
   }
 
@@ -77,6 +109,8 @@ class CurrentLeverageAccruedInterest {
         assetId: mapValueOfType<String>(json, r'asset_id')!,
         positionId: mapValueOfType<String>(json, r'position_id')!,
         currentAccruedInterestUsd: mapValueOfType<String>(json, r'current_accrued_interest_usd')!,
+        assetName: mapValueOfType<String>(json, r'asset_name'),
+        assetSymbol: mapValueOfType<String>(json, r'asset_symbol'),
       );
     }
     return null;

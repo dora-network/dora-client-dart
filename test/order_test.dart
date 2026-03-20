@@ -72,6 +72,18 @@ void main() {
       // TODO
     });
 
+    // Balance locked to ensure limit buy orders have sufficient balance to be fulfilled
+    // double lockedQuantity
+    test('to test the property `lockedQuantity`', () async {
+      // TODO
+    });
+
+    // Borrows locked from the liquidity pool to ensure limit short sell orders have sufficient balance to be fulfilled
+    // double impendingBorrowsQuantity
+    test('to test the property `impendingBorrowsQuantity`', () async {
+      // TODO
+    });
+
     // DateTime lastUpdateAt
     test('to test the property `lastUpdateAt`', () async {
       // TODO

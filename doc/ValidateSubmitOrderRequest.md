@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **assetsConfig** | [**List<AssetConfig>**](AssetConfig.md) | Configuration for the assets in the order | [optional] [default to const []]
 **stopLossPrice** | **String** | Stop loss price | [optional] 
 **takeProfitPrice** | **String** | Take profit price | [optional] 
+**restrictions** | [**Map<String, Restriction>**](Restriction.md) | Map of restriction keys to Restriction objects | [optional] [default to const {}]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

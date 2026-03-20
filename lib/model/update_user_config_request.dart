@@ -17,6 +17,10 @@ class UpdateUserConfigRequest {
     required this.timezone,
     this.showTutorialCards,
     this.notificationsEnabled,
+    this.allowEmailNotifications,
+    this.allowLiquidationsNotifications,
+    this.allowDepositWithdrawalNotifications,
+    this.allowOrdersNotifications,
   });
 
   /// Optional: URL of the user's profile photo, optional.
@@ -49,12 +53,52 @@ class UpdateUserConfigRequest {
   ///
   UpdateFieldBoolean? notificationsEnabled;
 
+  /// Optional: Whether to allow email notifications.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UpdateFieldBoolean? allowEmailNotifications;
+
+  /// Optional: Whether to allow liquidations notifications.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UpdateFieldBoolean? allowLiquidationsNotifications;
+
+  /// Optional: Whether to allow deposit/withdrawal notifications.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UpdateFieldBoolean? allowDepositWithdrawalNotifications;
+
+  /// Optional: Whether to allow orders notifications.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UpdateFieldBoolean? allowOrdersNotifications;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is UpdateUserConfigRequest &&
     other.photoUrl == photoUrl &&
     other.timezone == timezone &&
     other.showTutorialCards == showTutorialCards &&
-    other.notificationsEnabled == notificationsEnabled;
+    other.notificationsEnabled == notificationsEnabled &&
+    other.allowEmailNotifications == allowEmailNotifications &&
+    other.allowLiquidationsNotifications == allowLiquidationsNotifications &&
+    other.allowDepositWithdrawalNotifications == allowDepositWithdrawalNotifications &&
+    other.allowOrdersNotifications == allowOrdersNotifications;
 
   @override
   int get hashCode =>
@@ -62,10 +106,14 @@ class UpdateUserConfigRequest {
     (photoUrl == null ? 0 : photoUrl!.hashCode) +
     (timezone.hashCode) +
     (showTutorialCards == null ? 0 : showTutorialCards!.hashCode) +
-    (notificationsEnabled == null ? 0 : notificationsEnabled!.hashCode);
+    (notificationsEnabled == null ? 0 : notificationsEnabled!.hashCode) +
+    (allowEmailNotifications == null ? 0 : allowEmailNotifications!.hashCode) +
+    (allowLiquidationsNotifications == null ? 0 : allowLiquidationsNotifications!.hashCode) +
+    (allowDepositWithdrawalNotifications == null ? 0 : allowDepositWithdrawalNotifications!.hashCode) +
+    (allowOrdersNotifications == null ? 0 : allowOrdersNotifications!.hashCode);
 
   @override
-  String toString() => 'UpdateUserConfigRequest[photoUrl=$photoUrl, timezone=$timezone, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled]';
+  String toString() => 'UpdateUserConfigRequest[photoUrl=$photoUrl, timezone=$timezone, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -84,6 +132,26 @@ class UpdateUserConfigRequest {
       json[r'notifications_enabled'] = this.notificationsEnabled;
     } else {
       json[r'notifications_enabled'] = null;
+    }
+    if (this.allowEmailNotifications != null) {
+      json[r'allow_email_notifications'] = this.allowEmailNotifications;
+    } else {
+      json[r'allow_email_notifications'] = null;
+    }
+    if (this.allowLiquidationsNotifications != null) {
+      json[r'allow_liquidations_notifications'] = this.allowLiquidationsNotifications;
+    } else {
+      json[r'allow_liquidations_notifications'] = null;
+    }
+    if (this.allowDepositWithdrawalNotifications != null) {
+      json[r'allow_deposit_withdrawal_notifications'] = this.allowDepositWithdrawalNotifications;
+    } else {
+      json[r'allow_deposit_withdrawal_notifications'] = null;
+    }
+    if (this.allowOrdersNotifications != null) {
+      json[r'allow_orders_notifications'] = this.allowOrdersNotifications;
+    } else {
+      json[r'allow_orders_notifications'] = null;
     }
     return json;
   }
@@ -111,6 +179,10 @@ class UpdateUserConfigRequest {
         timezone: UpdateFieldString.fromJson(json[r'timezone'])!,
         showTutorialCards: UpdateFieldBoolean.fromJson(json[r'show_tutorial_cards']),
         notificationsEnabled: UpdateFieldBoolean.fromJson(json[r'notifications_enabled']),
+        allowEmailNotifications: UpdateFieldBoolean.fromJson(json[r'allow_email_notifications']),
+        allowLiquidationsNotifications: UpdateFieldBoolean.fromJson(json[r'allow_liquidations_notifications']),
+        allowDepositWithdrawalNotifications: UpdateFieldBoolean.fromJson(json[r'allow_deposit_withdrawal_notifications']),
+        allowOrdersNotifications: UpdateFieldBoolean.fromJson(json[r'allow_orders_notifications']),
       );
     }
     return null;

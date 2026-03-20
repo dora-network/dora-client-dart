@@ -1,4 +1,4 @@
-# dora_client.model.CurrentLeverageAccruedInterest
+# dora_client.model.AllPositionsResponseEnvelope
 
 ## Load the model package
 ```dart
@@ -8,12 +8,9 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**userId** | **String** |  | 
-**assetId** | **String** |  | 
-**positionId** | **String** |  | 
-**currentAccruedInterestUsd** | **String** |  | 
-**assetName** | **String** |  | [optional] 
-**assetSymbol** | **String** |  | [optional] 
+**data** | [**AllPositions**](AllPositions.md) |  | [optional] 
+**error** | **String** | The error message. Present for error (non-2xx) responses. | [optional] 
+**metadata** | [**Metadata**](Metadata.md) | Metadata about the response, including status code and trace information. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

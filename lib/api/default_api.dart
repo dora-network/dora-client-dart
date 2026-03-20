@@ -528,6 +528,58 @@ class DefaultApi {
     return null;
   }
 
+  /// Create a new conditional orders
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateConditionalOrderRequest] createConditionalOrderRequest (required):
+  Future<Response> createConditionalOrderWithHttpInfo(CreateConditionalOrderRequest createConditionalOrderRequest,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/orders/conditional';
+
+    // ignore: prefer_final_locals
+    Object? postBody = createConditionalOrderRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Create a new conditional orders
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateConditionalOrderRequest] createConditionalOrderRequest (required):
+  Future<CreateConditionalOrderResponseEnvelope?> createConditionalOrder(CreateConditionalOrderRequest createConditionalOrderRequest,) async {
+    final response = await createConditionalOrderWithHttpInfo(createConditionalOrderRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateConditionalOrderResponseEnvelope',) as CreateConditionalOrderResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Create a new order
   ///
   /// Note: This method returns the HTTP [Response].
@@ -777,6 +829,50 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListAssetPriceResponseEnvelope',) as ListAssetPriceResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get all users' positions
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getAllPositionsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/ledger/positions';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get all users' positions
+  Future<AllPositionsResponseEnvelope?> getAllPositions() async {
+    final response = await getAllPositionsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AllPositionsResponseEnvelope',) as AllPositionsResponseEnvelope;
     
     }
     return null;
@@ -2261,6 +2357,97 @@ class DefaultApi {
     return null;
   }
 
+  /// Get realized P&L settlements with filters
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId:
+  ///
+  /// * [String] tenantId:
+  ///
+  /// * [String] positionId:
+  ///
+  /// * [DateTime] createdAfter:
+  ///
+  /// * [DateTime] settledBefore:
+  ///
+  /// * [bool] isSettled:
+  Future<Response> getRealizedPnlSettlementsWithHttpInfo({ String? userId, String? tenantId, String? positionId, DateTime? createdAfter, DateTime? settledBefore, bool? isSettled, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/realized_pnl_settlements';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (userId != null) {
+      queryParams.addAll(_queryParams('', 'user_id', userId));
+    }
+    if (tenantId != null) {
+      queryParams.addAll(_queryParams('', 'tenant_id', tenantId));
+    }
+    if (positionId != null) {
+      queryParams.addAll(_queryParams('', 'position_id', positionId));
+    }
+    if (createdAfter != null) {
+      queryParams.addAll(_queryParams('', 'created_after', createdAfter));
+    }
+    if (settledBefore != null) {
+      queryParams.addAll(_queryParams('', 'settled_before', settledBefore));
+    }
+    if (isSettled != null) {
+      queryParams.addAll(_queryParams('', 'is_settled', isSettled));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get realized P&L settlements with filters
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId:
+  ///
+  /// * [String] tenantId:
+  ///
+  /// * [String] positionId:
+  ///
+  /// * [DateTime] createdAfter:
+  ///
+  /// * [DateTime] settledBefore:
+  ///
+  /// * [bool] isSettled:
+  Future<GetRealizedPnlSettlementsResponseEnvelope?> getRealizedPnlSettlements({ String? userId, String? tenantId, String? positionId, DateTime? createdAfter, DateTime? settledBefore, bool? isSettled, }) async {
+    final response = await getRealizedPnlSettlementsWithHttpInfo( userId: userId, tenantId: tenantId, positionId: positionId, createdAfter: createdAfter, settledBefore: settledBefore, isSettled: isSettled, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetRealizedPnlSettlementsResponseEnvelope',) as GetRealizedPnlSettlementsResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Get a trade by ID
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2474,10 +2661,12 @@ class DefaultApi {
   ///
   /// * [DateTime] end:
   ///
+  /// * [String] tenantId:
+  ///
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<Response> getTransactionsWithHttpInfo({ List<String>? pools, List<String>? userIds, List<TransactionKind>? txKinds, DateTime? start, DateTime? end, int? page, int? limit, }) async {
+  Future<Response> getTransactionsWithHttpInfo({ List<String>? pools, List<String>? userIds, List<TransactionKind>? txKinds, DateTime? start, DateTime? end, String? tenantId, int? page, int? limit, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/transactions';
 
@@ -2502,6 +2691,9 @@ class DefaultApi {
     }
     if (end != null) {
       queryParams.addAll(_queryParams('', 'end', end));
+    }
+    if (tenantId != null) {
+      queryParams.addAll(_queryParams('', 'tenant_id', tenantId));
     }
     if (page != null) {
       queryParams.addAll(_queryParams('', 'page', page));
@@ -2538,11 +2730,13 @@ class DefaultApi {
   ///
   /// * [DateTime] end:
   ///
+  /// * [String] tenantId:
+  ///
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<ListTransactionsResponseEnvelope?> getTransactions({ List<String>? pools, List<String>? userIds, List<TransactionKind>? txKinds, DateTime? start, DateTime? end, int? page, int? limit, }) async {
-    final response = await getTransactionsWithHttpInfo( pools: pools, userIds: userIds, txKinds: txKinds, start: start, end: end, page: page, limit: limit, );
+  Future<ListTransactionsResponseEnvelope?> getTransactions({ List<String>? pools, List<String>? userIds, List<TransactionKind>? txKinds, DateTime? start, DateTime? end, String? tenantId, int? page, int? limit, }) async {
+    final response = await getTransactionsWithHttpInfo( pools: pools, userIds: userIds, txKinds: txKinds, start: start, end: end, tenantId: tenantId, page: page, limit: limit, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4269,6 +4463,59 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SettleLeverageAccruedInterestResponseEnvelope',) as SettleLeverageAccruedInterestResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Mark a realized P&L settlement as settled
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] settlementId (required):
+  Future<Response> settleRealizedPnlRecordWithHttpInfo(String settlementId,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/realized_pnl_settlements/{settlement_id}'
+      .replaceAll('{settlement_id}', settlementId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Mark a realized P&L settlement as settled
+  ///
+  /// Parameters:
+  ///
+  /// * [String] settlementId (required):
+  Future<SettleRealizedPnlRecordResponseEnvelope?> settleRealizedPnlRecord(String settlementId,) async {
+    final response = await settleRealizedPnlRecordWithHttpInfo(settlementId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SettleRealizedPnlRecordResponseEnvelope',) as SettleRealizedPnlRecordResponseEnvelope;
     
     }
     return null;

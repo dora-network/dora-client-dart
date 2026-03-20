@@ -188,6 +188,10 @@ class ApiClient {
           return APIKeyResponseEnvelope.fromJson(value);
         case 'APIKeys':
           return APIKeys.fromJson(value);
+        case 'AllPositions':
+          return AllPositions.fromJson(value);
+        case 'AllPositionsResponseEnvelope':
+          return AllPositionsResponseEnvelope.fromJson(value);
         case 'AllWithdrawalInitiationsResponseEnvelope':
           return AllWithdrawalInitiationsResponseEnvelope.fromJson(value);
         case 'Asset':
@@ -240,6 +244,12 @@ class ApiClient {
           return CreateAPIKeyRequest.fromJson(value);
         case 'CreateAPIKeyResponseEnvelope':
           return CreateAPIKeyResponseEnvelope.fromJson(value);
+        case 'CreateConditionalOrderRequest':
+          return CreateConditionalOrderRequest.fromJson(value);
+        case 'CreateConditionalOrderResponseEnvelope':
+          return CreateConditionalOrderResponseEnvelope.fromJson(value);
+        case 'CreateConditionalOrderResponseEnvelopeAllOfData':
+          return CreateConditionalOrderResponseEnvelopeAllOfData.fromJson(value);
         case 'CreateIntegratorUserRequest':
           return CreateIntegratorUserRequest.fromJson(value);
         case 'CreateOrUpdateUserResponse':
@@ -266,6 +276,8 @@ class ApiClient {
           return GetAssetByIDResponseEnvelope.fromJson(value);
         case 'GetAssetYTMByIDResponseEnvelope':
           return GetAssetYTMByIDResponseEnvelope.fromJson(value);
+        case 'GetRealizedPnlSettlementsResponseEnvelope':
+          return GetRealizedPnlSettlementsResponseEnvelope.fromJson(value);
         case 'GetTopOfBookResponseEnvelope':
           return GetTopOfBookResponseEnvelope.fromJson(value);
         case 'IsolateCollateralRequest':
@@ -394,14 +406,22 @@ class ApiClient {
           return PositionAsset.fromJson(value);
         case 'PositionResponse':
           return PositionResponse.fromJson(value);
+        case 'PositionSide':
+          return PositionSideTypeTransformer().decode(value);
         case 'PositionType':
           return PositionTypeTypeTransformer().decode(value);
         case 'PriceLevel':
           return PriceLevel.fromJson(value);
+        case 'RealizedPnlSettlement':
+          return RealizedPnlSettlement.fromJson(value);
+        case 'RealizedPnlSettlements':
+          return RealizedPnlSettlements.fromJson(value);
         case 'ResponseEnvelope':
           return ResponseEnvelope.fromJson(value);
         case 'ResponseEnvelopeOfListAssets':
           return ResponseEnvelopeOfListAssets.fromJson(value);
+        case 'Restriction':
+          return Restriction.fromJson(value);
         case 'RevokeAPIKeyData':
           return RevokeAPIKeyData.fromJson(value);
         case 'RevokeAPIKeyResponseEnvelope':
@@ -412,6 +432,8 @@ class ApiClient {
           return SettleLeverageAccruedInterestRequest.fromJson(value);
         case 'SettleLeverageAccruedInterestResponseEnvelope':
           return SettleLeverageAccruedInterestResponseEnvelope.fromJson(value);
+        case 'SettleRealizedPnlRecordResponseEnvelope':
+          return SettleRealizedPnlRecordResponseEnvelope.fromJson(value);
         case 'Side':
           return SideTypeTransformer().decode(value);
         case 'StreamAssetsEntry':

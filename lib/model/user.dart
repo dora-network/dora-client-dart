@@ -29,6 +29,10 @@ class User {
     required this.showTutorialCards,
     required this.notificationsEnabled,
     required this.tenantId,
+    required this.allowEmailNotifications,
+    required this.allowLiquidationsNotifications,
+    required this.allowDepositWithdrawalNotifications,
+    required this.allowOrdersNotifications,
   });
 
   String id;
@@ -113,6 +117,14 @@ class User {
 
   String tenantId;
 
+  bool allowEmailNotifications;
+
+  bool allowLiquidationsNotifications;
+
+  bool allowDepositWithdrawalNotifications;
+
+  bool allowOrdersNotifications;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is User &&
     other.id == id &&
@@ -130,7 +142,11 @@ class User {
     other.verifiedAt == verifiedAt &&
     other.showTutorialCards == showTutorialCards &&
     other.notificationsEnabled == notificationsEnabled &&
-    other.tenantId == tenantId;
+    other.tenantId == tenantId &&
+    other.allowEmailNotifications == allowEmailNotifications &&
+    other.allowLiquidationsNotifications == allowLiquidationsNotifications &&
+    other.allowDepositWithdrawalNotifications == allowDepositWithdrawalNotifications &&
+    other.allowOrdersNotifications == allowOrdersNotifications;
 
   @override
   int get hashCode =>
@@ -150,10 +166,14 @@ class User {
     (verifiedAt == null ? 0 : verifiedAt!.hashCode) +
     (showTutorialCards.hashCode) +
     (notificationsEnabled.hashCode) +
-    (tenantId.hashCode);
+    (tenantId.hashCode) +
+    (allowEmailNotifications.hashCode) +
+    (allowLiquidationsNotifications.hashCode) +
+    (allowDepositWithdrawalNotifications.hashCode) +
+    (allowOrdersNotifications.hashCode);
 
   @override
-  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, name=$name, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId]';
+  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, name=$name, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -205,6 +225,10 @@ class User {
       json[r'show_tutorial_cards'] = this.showTutorialCards;
       json[r'notifications_enabled'] = this.notificationsEnabled;
       json[r'tenant_id'] = this.tenantId;
+      json[r'allow_email_notifications'] = this.allowEmailNotifications;
+      json[r'allow_liquidations_notifications'] = this.allowLiquidationsNotifications;
+      json[r'allow_deposit_withdrawal_notifications'] = this.allowDepositWithdrawalNotifications;
+      json[r'allow_orders_notifications'] = this.allowOrdersNotifications;
     return json;
   }
 
@@ -243,6 +267,10 @@ class User {
         showTutorialCards: mapValueOfType<bool>(json, r'show_tutorial_cards')!,
         notificationsEnabled: mapValueOfType<bool>(json, r'notifications_enabled')!,
         tenantId: mapValueOfType<String>(json, r'tenant_id')!,
+        allowEmailNotifications: mapValueOfType<bool>(json, r'allow_email_notifications')!,
+        allowLiquidationsNotifications: mapValueOfType<bool>(json, r'allow_liquidations_notifications')!,
+        allowDepositWithdrawalNotifications: mapValueOfType<bool>(json, r'allow_deposit_withdrawal_notifications')!,
+        allowOrdersNotifications: mapValueOfType<bool>(json, r'allow_orders_notifications')!,
       );
     }
     return null;
@@ -298,6 +326,10 @@ class User {
     'show_tutorial_cards',
     'notifications_enabled',
     'tenant_id',
+    'allow_email_notifications',
+    'allow_liquidations_notifications',
+    'allow_deposit_withdrawal_notifications',
+    'allow_orders_notifications',
   };
 }
 

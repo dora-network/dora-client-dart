@@ -24,6 +24,10 @@ Name | Type | Description | Notes
 **showTutorialCards** | **bool** |  | 
 **notificationsEnabled** | **bool** |  | 
 **tenantId** | **String** |  | 
+**allowEmailNotifications** | **bool** |  | 
+**allowLiquidationsNotifications** | **bool** |  | 
+**allowDepositWithdrawalNotifications** | **bool** |  | 
+**allowOrdersNotifications** | **bool** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,6 +28,7 @@ class ValidateSubmitOrderRequest {
     this.assetsConfig = const [],
     this.stopLossPrice,
     this.takeProfitPrice,
+    this.restrictions = const {},
   });
 
   String quantity;
@@ -114,6 +115,9 @@ class ValidateSubmitOrderRequest {
   ///
   String? takeProfitPrice;
 
+  /// Map of restriction keys to Restriction objects
+  Map<String, Restriction> restrictions;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is ValidateSubmitOrderRequest &&
     other.quantity == quantity &&
@@ -130,7 +134,8 @@ class ValidateSubmitOrderRequest {
     _deepEquality.equals(other.positionAssets, positionAssets) &&
     _deepEquality.equals(other.assetsConfig, assetsConfig) &&
     other.stopLossPrice == stopLossPrice &&
-    other.takeProfitPrice == takeProfitPrice;
+    other.takeProfitPrice == takeProfitPrice &&
+    _deepEquality.equals(other.restrictions, restrictions);
 
   @override
   int get hashCode =>
@@ -149,10 +154,11 @@ class ValidateSubmitOrderRequest {
     (positionAssets.hashCode) +
     (assetsConfig.hashCode) +
     (stopLossPrice == null ? 0 : stopLossPrice!.hashCode) +
-    (takeProfitPrice == null ? 0 : takeProfitPrice!.hashCode);
+    (takeProfitPrice == null ? 0 : takeProfitPrice!.hashCode) +
+    (restrictions.hashCode);
 
   @override
-  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance, baseAssetId=$baseAssetId, quoteAssetId=$quoteAssetId, clientOrderId=$clientOrderId, positionAssets=$positionAssets, assetsConfig=$assetsConfig, stopLossPrice=$stopLossPrice, takeProfitPrice=$takeProfitPrice]';
+  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance, baseAssetId=$baseAssetId, quoteAssetId=$quoteAssetId, clientOrderId=$clientOrderId, positionAssets=$positionAssets, assetsConfig=$assetsConfig, stopLossPrice=$stopLossPrice, takeProfitPrice=$takeProfitPrice, restrictions=$restrictions]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -199,6 +205,7 @@ class ValidateSubmitOrderRequest {
     } else {
       json[r'take_profit_price'] = null;
     }
+      json[r'restrictions'] = this.restrictions;
     return json;
   }
 
@@ -236,6 +243,7 @@ class ValidateSubmitOrderRequest {
         assetsConfig: AssetConfig.listFromJson(json[r'assets_config']),
         stopLossPrice: mapValueOfType<String>(json, r'stop_loss_price'),
         takeProfitPrice: mapValueOfType<String>(json, r'take_profit_price'),
+        restrictions: Restriction.mapFromJson(json[r'restrictions']),
       );
     }
     return null;

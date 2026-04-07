@@ -1,4 +1,4 @@
-# dora_client.model.Restriction
+# dora_client.model.StreamOrderUpdatesResponse
 
 ## Load the model package
 ```dart
@@ -8,7 +8,6 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**depositLimit** | **String** | Maximum deposit allowed (decimal as string) | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -103,9 +103,14 @@ void main() {
       // TODO
     });
 
-    // Map of restriction keys to Restriction objects
-    // Map<String, Restriction> restrictions (default value: const {})
+    // TenantRestrictions restrictions
     test('to test the property `restrictions`', () async {
+      // TODO
+    });
+
+    // Initial capital value in USD only used to validate sells with leverage
+    // String initialCapital
+    test('to test the property `initialCapital`', () async {
       // TODO
     });
 

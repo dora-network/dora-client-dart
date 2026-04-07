@@ -58,6 +58,7 @@ Method | HTTP request | Description
 [**getTrades**](DefaultApi.md#gettrades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 [**getTransactionById**](DefaultApi.md#gettransactionbyid) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 [**getTransactions**](DefaultApi.md#gettransactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
+[**getTransactionsSettlements**](DefaultApi.md#gettransactionssettlements) | **GET** /v1/transactions/settlements | Get transactions settlements with filters
 [**getUserById**](DefaultApi.md#getuserbyid) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 [**getUserCouponPaymentsStream**](DefaultApi.md#getusercouponpaymentsstream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user's coupon payment accruals in real time
 [**getUserLedgerStream**](DefaultApi.md#getuserledgerstream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
@@ -87,6 +88,7 @@ Method | HTTP request | Description
 [**revokeAPIKeyForUserID**](DefaultApi.md#revokeapikeyforuserid) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
 [**settleLeverageAccruedInterest**](DefaultApi.md#settleleverageaccruedinterest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
 [**settleRealizedPnlRecord**](DefaultApi.md#settlerealizedpnlrecord) | **PUT** /v1/realized_pnl_settlements/{settlement_id} | Mark a realized P&L settlement as settled
+[**settleTransactionsSettlements**](DefaultApi.md#settletransactionssettlements) | **PUT** /v1/transactions/settlements | Settle multiple transactions settlements in batch
 [**streamAssetPrices**](DefaultApi.md#streamassetprices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 [**streamCandleData**](DefaultApi.md#streamcandledata) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 [**streamOrderBookBalances**](DefaultApi.md#streamorderbookbalances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -1106,7 +1108,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getAssetsStream**
-> List<StreamAssetsEntry> getAssetsStream(since, until)
+> StreamAssetsResponse getAssetsStream(since, until)
 
 Get all inserts or updates for assets
 
@@ -1135,7 +1137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StreamAssetsEntry>**](StreamAssetsEntry.md)
+[**StreamAssetsResponse**](StreamAssetsResponse.md)
 
 ### Authorization
 
@@ -1176,8 +1178,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderBookId** | **String**|  | 
- **start** | **DateTime**|  | [optional] 
- **end** | **DateTime**|  | [optional] 
+ **start** | **DateTime**|  | 
+ **end** | **DateTime**|  | 
  **resolution** | [**CandleResolution**](.md)|  | [optional] 
 
 ### Return type
@@ -2474,6 +2476,69 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getTransactionsSettlements**
+> TransactionsSettlementsResponseEnvelope getTransactionsSettlements(tenantId, userId, positionId, txKind, createdAfter, settledBefore, isSettled)
+
+Get transactions settlements with filters
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final tenantId = tenantId_example; // String | Tenant ID to filter settlements
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | User ID to filter settlements
+final positionId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Position ID to filter settlements
+final txKind = txKind_example; // String | Transaction kind to filter settlements
+final createdAfter = 2013-10-20T19:20:30+01:00; // DateTime | Filter settlements created after this time
+final settledBefore = 2013-10-20T19:20:30+01:00; // DateTime | Filter settlements settled before this time
+final isSettled = true; // bool | Filter settlements by settlement status
+
+try {
+    final result = api_instance.getTransactionsSettlements(tenantId, userId, positionId, txKind, createdAfter, settledBefore, isSettled);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getTransactionsSettlements: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenantId** | **String**| Tenant ID to filter settlements | [optional] 
+ **userId** | **String**| User ID to filter settlements | [optional] 
+ **positionId** | **String**| Position ID to filter settlements | [optional] 
+ **txKind** | **String**| Transaction kind to filter settlements | [optional] 
+ **createdAfter** | **DateTime**| Filter settlements created after this time | [optional] 
+ **settledBefore** | **DateTime**| Filter settlements settled before this time | [optional] 
+ **isSettled** | **bool**| Filter settlements by settlement status | [optional] 
+
+### Return type
+
+[**TransactionsSettlementsResponseEnvelope**](TransactionsSettlementsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getUserById**
 > UserEnvelope getUserById(userId)
 
@@ -2571,7 +2636,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserLedgerStream**
-> List<StreamPositionsEntry> getUserLedgerStream(userId)
+> StreamPositionsResponse getUserLedgerStream(userId)
 
 Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 
@@ -2602,7 +2667,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StreamPositionsEntry>**](StreamPositionsEntry.md)
+[**StreamPositionsResponse**](StreamPositionsResponse.md)
 
 ### Authorization
 
@@ -2616,7 +2681,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserOrderUpdatesStream**
-> List<StreamOrderUpdatesEntry> getUserOrderUpdatesStream(userId, orderBookId, since)
+> StreamOrderUpdatesResponse getUserOrderUpdatesStream(userId, orderBookId, since)
 
 Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 
@@ -2651,7 +2716,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StreamOrderUpdatesEntry>**](StreamOrderUpdatesEntry.md)
+[**StreamOrderUpdatesResponse**](StreamOrderUpdatesResponse.md)
 
 ### Authorization
 
@@ -2665,7 +2730,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserOrdersUpdatesStreamAll**
-> List<StreamOrderUpdatesEntry> getUserOrdersUpdatesStreamAll(userId, since)
+> StreamOrderUpdatesResponse getUserOrdersUpdatesStreamAll(userId, since)
 
 Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 
@@ -2698,7 +2763,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StreamOrderUpdatesEntry>**](StreamOrderUpdatesEntry.md)
+[**StreamOrderUpdatesResponse**](StreamOrderUpdatesResponse.md)
 
 ### Authorization
 
@@ -2759,7 +2824,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getUserTransactionsStream**
-> List<StreamTransactionsEntry> getUserTransactionsStream(userId, since)
+> StreamTransactionsResponse getUserTransactionsStream(userId, since)
 
 Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 
@@ -2792,7 +2857,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StreamTransactionsEntry>**](StreamTransactionsEntry.md)
+[**StreamTransactionsResponse**](StreamTransactionsResponse.md)
 
 ### Authorization
 
@@ -3981,8 +4046,59 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **settleTransactionsSettlements**
+> TransactionsSettlementsResponse settleTransactionsSettlements(transactionsSettlementRequest)
+
+Settle multiple transactions settlements in batch
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final transactionsSettlementRequest = TransactionsSettlementRequest(); // TransactionsSettlementRequest | 
+
+try {
+    final result = api_instance.settleTransactionsSettlements(transactionsSettlementRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->settleTransactionsSettlements: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transactionsSettlementRequest** | [**TransactionsSettlementRequest**](TransactionsSettlementRequest.md)|  | 
+
+### Return type
+
+[**TransactionsSettlementsResponse**](TransactionsSettlementsResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **streamAssetPrices**
-> Map<String, AssetPrice> streamAssetPrices(since, assetId)
+> StreamAssetPricesResponse streamAssetPrices(since, assetId)
 
 Stream real-time asset prices as map objects
 
@@ -4013,7 +4129,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Map<String, AssetPrice>**](AssetPrice.md)
+[**StreamAssetPricesResponse**](StreamAssetPricesResponse.md)
 
 ### Authorization
 
@@ -4027,7 +4143,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **streamCandleData**
-> List<StreamCandlesEntry> streamCandleData(orderBookId, since, resolution)
+> StreamCandlesResponse streamCandleData(orderBookId, since, resolution)
 
 Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 
@@ -4058,7 +4174,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StreamCandlesEntry>**](StreamCandlesEntry.md)
+[**StreamCandlesResponse**](StreamCandlesResponse.md)
 
 ### Authorization
 
@@ -4072,7 +4188,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **streamOrderBookBalances**
-> List<StreamOrderBookBalanceEntry> streamOrderBookBalances(orderBookId, since)
+> StreamOrderBookBalancesResponse streamOrderBookBalances(orderBookId, since)
 
 Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 
@@ -4101,7 +4217,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StreamOrderBookBalanceEntry>**](StreamOrderBookBalanceEntry.md)
+[**StreamOrderBookBalancesResponse**](StreamOrderBookBalancesResponse.md)
 
 ### Authorization
 
@@ -4158,7 +4274,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **streamTrades**
-> List<StreamTradesEntry> streamTrades(orderBookId, since)
+> StreamTradesResponse streamTrades(orderBookId, since)
 
 Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
 
@@ -4187,7 +4303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List<StreamTradesEntry>**](StreamTradesEntry.md)
+[**StreamTradesResponse**](StreamTradesResponse.md)
 
 ### Authorization
 

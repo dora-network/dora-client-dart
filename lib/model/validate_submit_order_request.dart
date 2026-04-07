@@ -28,7 +28,8 @@ class ValidateSubmitOrderRequest {
     this.assetsConfig = const [],
     this.stopLossPrice,
     this.takeProfitPrice,
-    this.restrictions = const {},
+    this.restrictions,
+    this.initialCapital,
   });
 
   String quantity;
@@ -115,8 +116,22 @@ class ValidateSubmitOrderRequest {
   ///
   String? takeProfitPrice;
 
-  /// Map of restriction keys to Restriction objects
-  Map<String, Restriction> restrictions;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  TenantRestrictions? restrictions;
+
+  /// Initial capital value in USD only used to validate sells with leverage
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? initialCapital;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ValidateSubmitOrderRequest &&
@@ -135,7 +150,8 @@ class ValidateSubmitOrderRequest {
     _deepEquality.equals(other.assetsConfig, assetsConfig) &&
     other.stopLossPrice == stopLossPrice &&
     other.takeProfitPrice == takeProfitPrice &&
-    _deepEquality.equals(other.restrictions, restrictions);
+    other.restrictions == restrictions &&
+    other.initialCapital == initialCapital;
 
   @override
   int get hashCode =>
@@ -155,10 +171,11 @@ class ValidateSubmitOrderRequest {
     (assetsConfig.hashCode) +
     (stopLossPrice == null ? 0 : stopLossPrice!.hashCode) +
     (takeProfitPrice == null ? 0 : takeProfitPrice!.hashCode) +
-    (restrictions.hashCode);
+    (restrictions == null ? 0 : restrictions!.hashCode) +
+    (initialCapital == null ? 0 : initialCapital!.hashCode);
 
   @override
-  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance, baseAssetId=$baseAssetId, quoteAssetId=$quoteAssetId, clientOrderId=$clientOrderId, positionAssets=$positionAssets, assetsConfig=$assetsConfig, stopLossPrice=$stopLossPrice, takeProfitPrice=$takeProfitPrice, restrictions=$restrictions]';
+  String toString() => 'ValidateSubmitOrderRequest[quantity=$quantity, tick=$tick, kind=$kind, side=$side, price=$price, goodTillDate=$goodTillDate, inverseLeverage=$inverseLeverage, userBalance=$userBalance, baseAssetId=$baseAssetId, quoteAssetId=$quoteAssetId, clientOrderId=$clientOrderId, positionAssets=$positionAssets, assetsConfig=$assetsConfig, stopLossPrice=$stopLossPrice, takeProfitPrice=$takeProfitPrice, restrictions=$restrictions, initialCapital=$initialCapital]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -205,7 +222,16 @@ class ValidateSubmitOrderRequest {
     } else {
       json[r'take_profit_price'] = null;
     }
+    if (this.restrictions != null) {
       json[r'restrictions'] = this.restrictions;
+    } else {
+      json[r'restrictions'] = null;
+    }
+    if (this.initialCapital != null) {
+      json[r'initial_capital'] = this.initialCapital;
+    } else {
+      json[r'initial_capital'] = null;
+    }
     return json;
   }
 
@@ -243,7 +269,8 @@ class ValidateSubmitOrderRequest {
         assetsConfig: AssetConfig.listFromJson(json[r'assets_config']),
         stopLossPrice: mapValueOfType<String>(json, r'stop_loss_price'),
         takeProfitPrice: mapValueOfType<String>(json, r'take_profit_price'),
-        restrictions: Restriction.mapFromJson(json[r'restrictions']),
+        restrictions: TenantRestrictions.fromJson(json[r'restrictions']),
+        initialCapital: mapValueOfType<String>(json, r'initial_capital'),
       );
     }
     return null;

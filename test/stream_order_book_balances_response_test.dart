@@ -11,17 +11,11 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for Restriction
+// tests for StreamOrderBookBalancesResponse
 void main() {
-  // final instance = Restriction();
+  // final instance = StreamOrderBookBalancesResponse();
 
-  group('test Restriction', () {
-    // Maximum deposit allowed (decimal as string)
-    // String depositLimit
-    test('to test the property `depositLimit`', () async {
-      // TODO
-    });
-
+  group('test StreamOrderBookBalancesResponse', () {
 
   });
 

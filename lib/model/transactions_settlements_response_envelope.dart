@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-class PLResponseEnvelope {
-  /// Returns a new [PLResponseEnvelope] instance.
-  PLResponseEnvelope({
+class TransactionsSettlementsResponseEnvelope {
+  /// Returns a new [TransactionsSettlementsResponseEnvelope] instance.
+  TransactionsSettlementsResponseEnvelope({
     this.data,
     this.error,
     required this.metadata,
@@ -24,7 +24,7 @@ class PLResponseEnvelope {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  PLAccounts? data;
+  TransactionsSettlementsResponse? data;
 
   /// The error message. Present for error (non-2xx) responses.
   ///
@@ -39,7 +39,7 @@ class PLResponseEnvelope {
   Metadata metadata;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PLResponseEnvelope &&
+  bool operator ==(Object other) => identical(this, other) || other is TransactionsSettlementsResponseEnvelope &&
     other.data == data &&
     other.error == error &&
     other.metadata == metadata;
@@ -52,7 +52,7 @@ class PLResponseEnvelope {
     (metadata.hashCode);
 
   @override
-  String toString() => 'PLResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
+  String toString() => 'TransactionsSettlementsResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -70,10 +70,10 @@ class PLResponseEnvelope {
     return json;
   }
 
-  /// Returns a new [PLResponseEnvelope] instance and imports its values from
+  /// Returns a new [TransactionsSettlementsResponseEnvelope] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static PLResponseEnvelope? fromJson(dynamic value) {
+  static TransactionsSettlementsResponseEnvelope? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -82,14 +82,14 @@ class PLResponseEnvelope {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PLResponseEnvelope[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PLResponseEnvelope[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "TransactionsSettlementsResponseEnvelope[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "TransactionsSettlementsResponseEnvelope[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return PLResponseEnvelope(
-        data: PLAccounts.fromJson(json[r'data']),
+      return TransactionsSettlementsResponseEnvelope(
+        data: TransactionsSettlementsResponse.fromJson(json[r'data']),
         error: mapValueOfType<String>(json, r'error'),
         metadata: Metadata.fromJson(json[r'metadata'])!,
       );
@@ -97,11 +97,11 @@ class PLResponseEnvelope {
     return null;
   }
 
-  static List<PLResponseEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <PLResponseEnvelope>[];
+  static List<TransactionsSettlementsResponseEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <TransactionsSettlementsResponseEnvelope>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = PLResponseEnvelope.fromJson(row);
+        final value = TransactionsSettlementsResponseEnvelope.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -110,12 +110,12 @@ class PLResponseEnvelope {
     return result.toList(growable: growable);
   }
 
-  static Map<String, PLResponseEnvelope> mapFromJson(dynamic json) {
-    final map = <String, PLResponseEnvelope>{};
+  static Map<String, TransactionsSettlementsResponseEnvelope> mapFromJson(dynamic json) {
+    final map = <String, TransactionsSettlementsResponseEnvelope>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = PLResponseEnvelope.fromJson(entry.value);
+        final value = TransactionsSettlementsResponseEnvelope.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -124,14 +124,14 @@ class PLResponseEnvelope {
     return map;
   }
 
-  // maps a json object with a list of PLResponseEnvelope-objects as value to a dart map
-  static Map<String, List<PLResponseEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<PLResponseEnvelope>>{};
+  // maps a json object with a list of TransactionsSettlementsResponseEnvelope-objects as value to a dart map
+  static Map<String, List<TransactionsSettlementsResponseEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<TransactionsSettlementsResponseEnvelope>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = PLResponseEnvelope.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = TransactionsSettlementsResponseEnvelope.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

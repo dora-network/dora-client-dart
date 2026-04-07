@@ -24,7 +24,7 @@ class CreateConditionalOrderResponseEnvelope {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  CreateConditionalOrderResponseEnvelopeAllOfData? data;
+  CreateConditionalOrderResponseData? data;
 
   /// The error message. Present for error (non-2xx) responses.
   ///
@@ -89,7 +89,7 @@ class CreateConditionalOrderResponseEnvelope {
       }());
 
       return CreateConditionalOrderResponseEnvelope(
-        data: CreateConditionalOrderResponseEnvelopeAllOfData.fromJson(json[r'data']),
+        data: CreateConditionalOrderResponseData.fromJson(json[r'data']),
         error: mapValueOfType<String>(json, r'error'),
         metadata: Metadata.fromJson(json[r'metadata'])!,
       );

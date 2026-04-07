@@ -119,6 +119,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getTrades**](doc//DefaultApi.md#gettrades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 *DefaultApi* | [**getTransactionById**](doc//DefaultApi.md#gettransactionbyid) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 *DefaultApi* | [**getTransactions**](doc//DefaultApi.md#gettransactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
+*DefaultApi* | [**getTransactionsSettlements**](doc//DefaultApi.md#gettransactionssettlements) | **GET** /v1/transactions/settlements | Get transactions settlements with filters
 *DefaultApi* | [**getUserById**](doc//DefaultApi.md#getuserbyid) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 *DefaultApi* | [**getUserCouponPaymentsStream**](doc//DefaultApi.md#getusercouponpaymentsstream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user's coupon payment accruals in real time
 *DefaultApi* | [**getUserLedgerStream**](doc//DefaultApi.md#getuserledgerstream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
@@ -148,6 +149,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**revokeAPIKeyForUserID**](doc//DefaultApi.md#revokeapikeyforuserid) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
 *DefaultApi* | [**settleLeverageAccruedInterest**](doc//DefaultApi.md#settleleverageaccruedinterest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
 *DefaultApi* | [**settleRealizedPnlRecord**](doc//DefaultApi.md#settlerealizedpnlrecord) | **PUT** /v1/realized_pnl_settlements/{settlement_id} | Mark a realized P&L settlement as settled
+*DefaultApi* | [**settleTransactionsSettlements**](doc//DefaultApi.md#settletransactionssettlements) | **PUT** /v1/transactions/settlements | Settle multiple transactions settlements in batch
 *DefaultApi* | [**streamAssetPrices**](doc//DefaultApi.md#streamassetprices) | **GET** /v1/prices/stream | Stream real-time asset prices as map objects
 *DefaultApi* | [**streamCandleData**](doc//DefaultApi.md#streamcandledata) | **GET** /v1/charts/{order_book_id}/candle/stream | Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
 *DefaultApi* | [**streamOrderBookBalances**](doc//DefaultApi.md#streamorderbookbalances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
@@ -194,8 +196,8 @@ Class | Method | HTTP request | Description
  - [CreateAPIKeyRequest](doc//CreateAPIKeyRequest.md)
  - [CreateAPIKeyResponseEnvelope](doc//CreateAPIKeyResponseEnvelope.md)
  - [CreateConditionalOrderRequest](doc//CreateConditionalOrderRequest.md)
+ - [CreateConditionalOrderResponseData](doc//CreateConditionalOrderResponseData.md)
  - [CreateConditionalOrderResponseEnvelope](doc//CreateConditionalOrderResponseEnvelope.md)
- - [CreateConditionalOrderResponseEnvelopeAllOfData](doc//CreateConditionalOrderResponseEnvelopeAllOfData.md)
  - [CreateIntegratorUserRequest](doc//CreateIntegratorUserRequest.md)
  - [CreateOrUpdateUserResponse](doc//CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](doc//CreateOrderRequest.md)
@@ -260,6 +262,7 @@ Class | Method | HTTP request | Description
  - [OrderbookStats](doc//OrderbookStats.md)
  - [OrderbookStatsResponseEnvelope](doc//OrderbookStatsResponseEnvelope.md)
  - [PLAccount](doc//PLAccount.md)
+ - [PLAccounts](doc//PLAccounts.md)
  - [PLAsset](doc//PLAsset.md)
  - [PLResponseEnvelope](doc//PLResponseEnvelope.md)
  - [PLSummary](doc//PLSummary.md)
@@ -272,6 +275,7 @@ Class | Method | HTTP request | Description
  - [Portfolio](doc//Portfolio.md)
  - [Position](doc//Position.md)
  - [PositionAccount](doc//PositionAccount.md)
+ - [PositionAccounts](doc//PositionAccounts.md)
  - [PositionAsset](doc//PositionAsset.md)
  - [PositionResponse](doc//PositionResponse.md)
  - [PositionSide](doc//PositionSide.md)
@@ -281,7 +285,6 @@ Class | Method | HTTP request | Description
  - [RealizedPnlSettlements](doc//RealizedPnlSettlements.md)
  - [ResponseEnvelope](doc//ResponseEnvelope.md)
  - [ResponseEnvelopeOfListAssets](doc//ResponseEnvelopeOfListAssets.md)
- - [Restriction](doc//Restriction.md)
  - [RevokeAPIKeyData](doc//RevokeAPIKeyData.md)
  - [RevokeAPIKeyResponseEnvelope](doc//RevokeAPIKeyResponseEnvelope.md)
  - [SettleLeverageAccruedInterest](doc//SettleLeverageAccruedInterest.md)
@@ -289,20 +292,30 @@ Class | Method | HTTP request | Description
  - [SettleLeverageAccruedInterestResponseEnvelope](doc//SettleLeverageAccruedInterestResponseEnvelope.md)
  - [SettleRealizedPnlRecordResponseEnvelope](doc//SettleRealizedPnlRecordResponseEnvelope.md)
  - [Side](doc//Side.md)
+ - [StreamAssetPricesResponse](doc//StreamAssetPricesResponse.md)
  - [StreamAssetsEntry](doc//StreamAssetsEntry.md)
+ - [StreamAssetsResponse](doc//StreamAssetsResponse.md)
  - [StreamCandlesEntry](doc//StreamCandlesEntry.md)
+ - [StreamCandlesResponse](doc//StreamCandlesResponse.md)
  - [StreamEntry](doc//StreamEntry.md)
  - [StreamOrderBookBalanceEntry](doc//StreamOrderBookBalanceEntry.md)
+ - [StreamOrderBookBalancesResponse](doc//StreamOrderBookBalancesResponse.md)
  - [StreamOrderUpdatesEntry](doc//StreamOrderUpdatesEntry.md)
+ - [StreamOrderUpdatesResponse](doc//StreamOrderUpdatesResponse.md)
  - [StreamOrdersEntry](doc//StreamOrdersEntry.md)
+ - [StreamOrdersResponse](doc//StreamOrdersResponse.md)
  - [StreamPositionsEntry](doc//StreamPositionsEntry.md)
+ - [StreamPositionsResponse](doc//StreamPositionsResponse.md)
  - [StreamTradesEntry](doc//StreamTradesEntry.md)
+ - [StreamTradesResponse](doc//StreamTradesResponse.md)
  - [StreamTransactionsEntry](doc//StreamTransactionsEntry.md)
+ - [StreamTransactionsResponse](doc//StreamTransactionsResponse.md)
  - [StreamUserCouponPaymentsEntry](doc//StreamUserCouponPaymentsEntry.md)
  - [StreamUserCouponPaymentsResponse](doc//StreamUserCouponPaymentsResponse.md)
  - [Supply](doc//Supply.md)
  - [SupplyRequest](doc//SupplyRequest.md)
  - [SupplyResponseEnvelope](doc//SupplyResponseEnvelope.md)
+ - [TenantRestrictions](doc//TenantRestrictions.md)
  - [Trade](doc//Trade.md)
  - [TradeRequestError](doc//TradeRequestError.md)
  - [TradeResponseEnvelope](doc//TradeResponseEnvelope.md)
@@ -310,6 +323,10 @@ Class | Method | HTTP request | Description
  - [TransactionKind](doc//TransactionKind.md)
  - [TransactionRequestError](doc//TransactionRequestError.md)
  - [TransactionResponseEnvelope](doc//TransactionResponseEnvelope.md)
+ - [TransactionsSettlement](doc//TransactionsSettlement.md)
+ - [TransactionsSettlementRequest](doc//TransactionsSettlementRequest.md)
+ - [TransactionsSettlementsResponse](doc//TransactionsSettlementsResponse.md)
+ - [TransactionsSettlementsResponseEnvelope](doc//TransactionsSettlementsResponseEnvelope.md)
  - [TransferBalancesRequest](doc//TransferBalancesRequest.md)
  - [TransferBalancesResponseEnvelope](doc//TransferBalancesResponseEnvelope.md)
  - [TransformedAssets](doc//TransformedAssets.md)

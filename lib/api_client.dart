@@ -246,10 +246,10 @@ class ApiClient {
           return CreateAPIKeyResponseEnvelope.fromJson(value);
         case 'CreateConditionalOrderRequest':
           return CreateConditionalOrderRequest.fromJson(value);
+        case 'CreateConditionalOrderResponseData':
+          return CreateConditionalOrderResponseData.fromJson(value);
         case 'CreateConditionalOrderResponseEnvelope':
           return CreateConditionalOrderResponseEnvelope.fromJson(value);
-        case 'CreateConditionalOrderResponseEnvelopeAllOfData':
-          return CreateConditionalOrderResponseEnvelopeAllOfData.fromJson(value);
         case 'CreateIntegratorUserRequest':
           return CreateIntegratorUserRequest.fromJson(value);
         case 'CreateOrUpdateUserResponse':
@@ -378,6 +378,8 @@ class ApiClient {
           return OrderbookStatsResponseEnvelope.fromJson(value);
         case 'PLAccount':
           return PLAccount.fromJson(value);
+        case 'PLAccounts':
+          return PLAccounts.fromJson(value);
         case 'PLAsset':
           return PLAsset.fromJson(value);
         case 'PLResponseEnvelope':
@@ -402,6 +404,8 @@ class ApiClient {
           return Position.fromJson(value);
         case 'PositionAccount':
           return PositionAccount.fromJson(value);
+        case 'PositionAccounts':
+          return PositionAccounts.fromJson(value);
         case 'PositionAsset':
           return PositionAsset.fromJson(value);
         case 'PositionResponse':
@@ -420,8 +424,6 @@ class ApiClient {
           return ResponseEnvelope.fromJson(value);
         case 'ResponseEnvelopeOfListAssets':
           return ResponseEnvelopeOfListAssets.fromJson(value);
-        case 'Restriction':
-          return Restriction.fromJson(value);
         case 'RevokeAPIKeyData':
           return RevokeAPIKeyData.fromJson(value);
         case 'RevokeAPIKeyResponseEnvelope':
@@ -436,24 +438,42 @@ class ApiClient {
           return SettleRealizedPnlRecordResponseEnvelope.fromJson(value);
         case 'Side':
           return SideTypeTransformer().decode(value);
+        case 'StreamAssetPricesResponse':
+          return StreamAssetPricesResponse.fromJson(value);
         case 'StreamAssetsEntry':
           return StreamAssetsEntry.fromJson(value);
+        case 'StreamAssetsResponse':
+          return StreamAssetsResponse.fromJson(value);
         case 'StreamCandlesEntry':
           return StreamCandlesEntry.fromJson(value);
+        case 'StreamCandlesResponse':
+          return StreamCandlesResponse.fromJson(value);
         case 'StreamEntry':
           return StreamEntry.fromJson(value);
         case 'StreamOrderBookBalanceEntry':
           return StreamOrderBookBalanceEntry.fromJson(value);
+        case 'StreamOrderBookBalancesResponse':
+          return StreamOrderBookBalancesResponse.fromJson(value);
         case 'StreamOrderUpdatesEntry':
           return StreamOrderUpdatesEntry.fromJson(value);
+        case 'StreamOrderUpdatesResponse':
+          return StreamOrderUpdatesResponse.fromJson(value);
         case 'StreamOrdersEntry':
           return StreamOrdersEntry.fromJson(value);
+        case 'StreamOrdersResponse':
+          return StreamOrdersResponse.fromJson(value);
         case 'StreamPositionsEntry':
           return StreamPositionsEntry.fromJson(value);
+        case 'StreamPositionsResponse':
+          return StreamPositionsResponse.fromJson(value);
         case 'StreamTradesEntry':
           return StreamTradesEntry.fromJson(value);
+        case 'StreamTradesResponse':
+          return StreamTradesResponse.fromJson(value);
         case 'StreamTransactionsEntry':
           return StreamTransactionsEntry.fromJson(value);
+        case 'StreamTransactionsResponse':
+          return StreamTransactionsResponse.fromJson(value);
         case 'StreamUserCouponPaymentsEntry':
           return StreamUserCouponPaymentsEntry.fromJson(value);
         case 'StreamUserCouponPaymentsResponse':
@@ -464,6 +484,8 @@ class ApiClient {
           return SupplyRequest.fromJson(value);
         case 'SupplyResponseEnvelope':
           return SupplyResponseEnvelope.fromJson(value);
+        case 'TenantRestrictions':
+          return TenantRestrictions.fromJson(value);
         case 'Trade':
           return Trade.fromJson(value);
         case 'TradeRequestError':
@@ -478,6 +500,14 @@ class ApiClient {
           return TransactionRequestError.fromJson(value);
         case 'TransactionResponseEnvelope':
           return TransactionResponseEnvelope.fromJson(value);
+        case 'TransactionsSettlement':
+          return TransactionsSettlement.fromJson(value);
+        case 'TransactionsSettlementRequest':
+          return TransactionsSettlementRequest.fromJson(value);
+        case 'TransactionsSettlementsResponse':
+          return TransactionsSettlementsResponse.fromJson(value);
+        case 'TransactionsSettlementsResponseEnvelope':
+          return TransactionsSettlementsResponseEnvelope.fromJson(value);
         case 'TransferBalancesRequest':
           return TransferBalancesRequest.fromJson(value);
         case 'TransferBalancesResponseEnvelope':

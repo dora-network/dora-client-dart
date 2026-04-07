@@ -13,12 +13,18 @@ part of openapi.api;
 class ListPositionAccountsResponseEnvelope {
   /// Returns a new [ListPositionAccountsResponseEnvelope] instance.
   ListPositionAccountsResponseEnvelope({
-    this.data = const [],
+    this.data,
     this.error,
     required this.metadata,
   });
 
-  List<PositionAccount> data;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  PositionAccounts? data;
 
   /// The error message. Present for error (non-2xx) responses.
   ///
@@ -34,14 +40,14 @@ class ListPositionAccountsResponseEnvelope {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListPositionAccountsResponseEnvelope &&
-    _deepEquality.equals(other.data, data) &&
+    other.data == data &&
     other.error == error &&
     other.metadata == metadata;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (data.hashCode) +
+    (data == null ? 0 : data!.hashCode) +
     (error == null ? 0 : error!.hashCode) +
     (metadata.hashCode);
 
@@ -50,7 +56,11 @@ class ListPositionAccountsResponseEnvelope {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (this.data != null) {
       json[r'data'] = this.data;
+    } else {
+      json[r'data'] = null;
+    }
     if (this.error != null) {
       json[r'error'] = this.error;
     } else {
@@ -79,7 +89,7 @@ class ListPositionAccountsResponseEnvelope {
       }());
 
       return ListPositionAccountsResponseEnvelope(
-        data: PositionAccount.listFromJson(json[r'data']),
+        data: PositionAccounts.fromJson(json[r'data']),
         error: mapValueOfType<String>(json, r'error'),
         metadata: Metadata.fromJson(json[r'metadata'])!,
       );

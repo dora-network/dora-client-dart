@@ -11,12 +11,12 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for CreateConditionalOrderResponseEnvelope
+// tests for TransactionsSettlementsResponseEnvelope
 void main() {
-  // final instance = CreateConditionalOrderResponseEnvelope();
+  // final instance = TransactionsSettlementsResponseEnvelope();
 
-  group('test CreateConditionalOrderResponseEnvelope', () {
-    // CreateConditionalOrderResponseData data
+  group('test TransactionsSettlementsResponseEnvelope', () {
+    // TransactionsSettlementsResponse data
     test('to test the property `data`', () async {
       // TODO
     });

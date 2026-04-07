@@ -11,11 +11,11 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for CreateConditionalOrderResponseEnvelopeAllOfData
+// tests for CreateConditionalOrderResponseData
 void main() {
-  // final instance = CreateConditionalOrderResponseEnvelopeAllOfData();
+  // final instance = CreateConditionalOrderResponseData();
 
-  group('test CreateConditionalOrderResponseEnvelopeAllOfData', () {
+  group('test CreateConditionalOrderResponseData', () {
     // String stopLossOrderId
     test('to test the property `stopLossOrderId`', () async {
       // TODO

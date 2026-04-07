@@ -1141,7 +1141,7 @@ class DefaultApi {
   /// * [DateTime] since:
   ///
   /// * [DateTime] until:
-  Future<List<StreamAssetsEntry>?> getAssetsStream({ DateTime? since, DateTime? until, }) async {
+  Future<StreamAssetsResponse?> getAssetsStream({ DateTime? since, DateTime? until, }) async {
     final response = await getAssetsStreamWithHttpInfo( since: since, until: until, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -1150,11 +1150,8 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<StreamAssetsEntry>') as List)
-        .cast<StreamAssetsEntry>()
-        .toList(growable: false);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamAssetsResponse',) as StreamAssetsResponse;
+    
     }
     return null;
   }
@@ -1167,12 +1164,12 @@ class DefaultApi {
   ///
   /// * [String] orderBookId (required):
   ///
-  /// * [DateTime] start:
+  /// * [DateTime] start (required):
   ///
-  /// * [DateTime] end:
+  /// * [DateTime] end (required):
   ///
   /// * [CandleResolution] resolution:
-  Future<Response> getCandleDataWithHttpInfo(String orderBookId, { DateTime? start, DateTime? end, CandleResolution? resolution, }) async {
+  Future<Response> getCandleDataWithHttpInfo(String orderBookId, DateTime start, DateTime end, { CandleResolution? resolution, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/charts/{order_book_id}/candle'
       .replaceAll('{order_book_id}', orderBookId);
@@ -1184,12 +1181,8 @@ class DefaultApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    if (start != null) {
       queryParams.addAll(_queryParams('', 'start', start));
-    }
-    if (end != null) {
       queryParams.addAll(_queryParams('', 'end', end));
-    }
     if (resolution != null) {
       queryParams.addAll(_queryParams('', 'resolution', resolution));
     }
@@ -1214,13 +1207,13 @@ class DefaultApi {
   ///
   /// * [String] orderBookId (required):
   ///
-  /// * [DateTime] start:
+  /// * [DateTime] start (required):
   ///
-  /// * [DateTime] end:
+  /// * [DateTime] end (required):
   ///
   /// * [CandleResolution] resolution:
-  Future<ListCandlesResponseEnvelope?> getCandleData(String orderBookId, { DateTime? start, DateTime? end, CandleResolution? resolution, }) async {
-    final response = await getCandleDataWithHttpInfo(orderBookId,  start: start, end: end, resolution: resolution, );
+  Future<ListCandlesResponseEnvelope?> getCandleData(String orderBookId, DateTime start, DateTime end, { CandleResolution? resolution, }) async {
+    final response = await getCandleDataWithHttpInfo(orderBookId, start, end,  resolution: resolution, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2750,6 +2743,118 @@ class DefaultApi {
     return null;
   }
 
+  /// Get transactions settlements with filters
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tenantId:
+  ///   Tenant ID to filter settlements
+  ///
+  /// * [String] userId:
+  ///   User ID to filter settlements
+  ///
+  /// * [String] positionId:
+  ///   Position ID to filter settlements
+  ///
+  /// * [String] txKind:
+  ///   Transaction kind to filter settlements
+  ///
+  /// * [DateTime] createdAfter:
+  ///   Filter settlements created after this time
+  ///
+  /// * [DateTime] settledBefore:
+  ///   Filter settlements settled before this time
+  ///
+  /// * [bool] isSettled:
+  ///   Filter settlements by settlement status
+  Future<Response> getTransactionsSettlementsWithHttpInfo({ String? tenantId, String? userId, String? positionId, String? txKind, DateTime? createdAfter, DateTime? settledBefore, bool? isSettled, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/transactions/settlements';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (tenantId != null) {
+      queryParams.addAll(_queryParams('', 'tenant_id', tenantId));
+    }
+    if (userId != null) {
+      queryParams.addAll(_queryParams('', 'user_id', userId));
+    }
+    if (positionId != null) {
+      queryParams.addAll(_queryParams('', 'position_id', positionId));
+    }
+    if (txKind != null) {
+      queryParams.addAll(_queryParams('', 'tx_kind', txKind));
+    }
+    if (createdAfter != null) {
+      queryParams.addAll(_queryParams('', 'created_after', createdAfter));
+    }
+    if (settledBefore != null) {
+      queryParams.addAll(_queryParams('', 'settled_before', settledBefore));
+    }
+    if (isSettled != null) {
+      queryParams.addAll(_queryParams('', 'is_settled', isSettled));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get transactions settlements with filters
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tenantId:
+  ///   Tenant ID to filter settlements
+  ///
+  /// * [String] userId:
+  ///   User ID to filter settlements
+  ///
+  /// * [String] positionId:
+  ///   Position ID to filter settlements
+  ///
+  /// * [String] txKind:
+  ///   Transaction kind to filter settlements
+  ///
+  /// * [DateTime] createdAfter:
+  ///   Filter settlements created after this time
+  ///
+  /// * [DateTime] settledBefore:
+  ///   Filter settlements settled before this time
+  ///
+  /// * [bool] isSettled:
+  ///   Filter settlements by settlement status
+  Future<TransactionsSettlementsResponseEnvelope?> getTransactionsSettlements({ String? tenantId, String? userId, String? positionId, String? txKind, DateTime? createdAfter, DateTime? settledBefore, bool? isSettled, }) async {
+    final response = await getTransactionsSettlementsWithHttpInfo( tenantId: tenantId, userId: userId, positionId: positionId, txKind: txKind, createdAfter: createdAfter, settledBefore: settledBefore, isSettled: isSettled, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TransactionsSettlementsResponseEnvelope',) as TransactionsSettlementsResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Get user by ID (admin only)
   ///
   /// Note: This method returns the HTTP [Response].
@@ -2894,7 +2999,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<List<StreamPositionsEntry>?> getUserLedgerStream(String userId,) async {
+  Future<StreamPositionsResponse?> getUserLedgerStream(String userId,) async {
     final response = await getUserLedgerStreamWithHttpInfo(userId,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -2903,11 +3008,8 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<StreamPositionsEntry>') as List)
-        .cast<StreamPositionsEntry>()
-        .toList(growable: false);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamPositionsResponse',) as StreamPositionsResponse;
+    
     }
     return null;
   }
@@ -2963,7 +3065,7 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<List<StreamOrderUpdatesEntry>?> getUserOrderUpdatesStream(String userId, String orderBookId, { DateTime? since, }) async {
+  Future<StreamOrderUpdatesResponse?> getUserOrderUpdatesStream(String userId, String orderBookId, { DateTime? since, }) async {
     final response = await getUserOrderUpdatesStreamWithHttpInfo(userId, orderBookId,  since: since, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -2972,11 +3074,8 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<StreamOrderUpdatesEntry>') as List)
-        .cast<StreamOrderUpdatesEntry>()
-        .toList(growable: false);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamOrderUpdatesResponse',) as StreamOrderUpdatesResponse;
+    
     }
     return null;
   }
@@ -3027,7 +3126,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DateTime] since:
-  Future<List<StreamOrderUpdatesEntry>?> getUserOrdersUpdatesStreamAll(String userId, { DateTime? since, }) async {
+  Future<StreamOrderUpdatesResponse?> getUserOrdersUpdatesStreamAll(String userId, { DateTime? since, }) async {
     final response = await getUserOrdersUpdatesStreamAllWithHttpInfo(userId,  since: since, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -3036,11 +3135,8 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<StreamOrderUpdatesEntry>') as List)
-        .cast<StreamOrderUpdatesEntry>()
-        .toList(growable: false);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamOrderUpdatesResponse',) as StreamOrderUpdatesResponse;
+    
     }
     return null;
   }
@@ -3135,7 +3231,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DateTime] since:
-  Future<List<StreamTransactionsEntry>?> getUserTransactionsStream(String userId, { DateTime? since, }) async {
+  Future<StreamTransactionsResponse?> getUserTransactionsStream(String userId, { DateTime? since, }) async {
     final response = await getUserTransactionsStreamWithHttpInfo(userId,  since: since, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -3144,11 +3240,8 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<StreamTransactionsEntry>') as List)
-        .cast<StreamTransactionsEntry>()
-        .toList(growable: false);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamTransactionsResponse',) as StreamTransactionsResponse;
+    
     }
     return null;
   }
@@ -4521,6 +4614,58 @@ class DefaultApi {
     return null;
   }
 
+  /// Settle multiple transactions settlements in batch
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [TransactionsSettlementRequest] transactionsSettlementRequest (required):
+  Future<Response> settleTransactionsSettlementsWithHttpInfo(TransactionsSettlementRequest transactionsSettlementRequest,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/transactions/settlements';
+
+    // ignore: prefer_final_locals
+    Object? postBody = transactionsSettlementRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Settle multiple transactions settlements in batch
+  ///
+  /// Parameters:
+  ///
+  /// * [TransactionsSettlementRequest] transactionsSettlementRequest (required):
+  Future<TransactionsSettlementsResponse?> settleTransactionsSettlements(TransactionsSettlementRequest transactionsSettlementRequest,) async {
+    final response = await settleTransactionsSettlementsWithHttpInfo(transactionsSettlementRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TransactionsSettlementsResponse',) as TransactionsSettlementsResponse;
+    
+    }
+    return null;
+  }
+
   /// Stream real-time asset prices as map objects
   ///
   /// Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
@@ -4573,7 +4718,7 @@ class DefaultApi {
   /// * [DateTime] since:
   ///
   /// * [String] assetId:
-  Future<Map<String, AssetPrice>?> streamAssetPrices({ DateTime? since, String? assetId, }) async {
+  Future<StreamAssetPricesResponse?> streamAssetPrices({ DateTime? since, String? assetId, }) async {
     final response = await streamAssetPricesWithHttpInfo( since: since, assetId: assetId, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -4582,8 +4727,8 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return Map<String, AssetPrice>.from(await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Map<String, AssetPrice>'),);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamAssetPricesResponse',) as StreamAssetPricesResponse;
+    
     }
     return null;
   }
@@ -4641,7 +4786,7 @@ class DefaultApi {
   /// * [DateTime] since:
   ///
   /// * [CandleResolution] resolution:
-  Future<List<StreamCandlesEntry>?> streamCandleData(String orderBookId, { DateTime? since, CandleResolution? resolution, }) async {
+  Future<StreamCandlesResponse?> streamCandleData(String orderBookId, { DateTime? since, CandleResolution? resolution, }) async {
     final response = await streamCandleDataWithHttpInfo(orderBookId,  since: since, resolution: resolution, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -4650,11 +4795,8 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<StreamCandlesEntry>') as List)
-        .cast<StreamCandlesEntry>()
-        .toList(growable: false);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamCandlesResponse',) as StreamCandlesResponse;
+    
     }
     return null;
   }
@@ -4705,7 +4847,7 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<List<StreamOrderBookBalanceEntry>?> streamOrderBookBalances(String orderBookId, { DateTime? since, }) async {
+  Future<StreamOrderBookBalancesResponse?> streamOrderBookBalances(String orderBookId, { DateTime? since, }) async {
     final response = await streamOrderBookBalancesWithHttpInfo(orderBookId,  since: since, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -4714,11 +4856,8 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<StreamOrderBookBalanceEntry>') as List)
-        .cast<StreamOrderBookBalanceEntry>()
-        .toList(growable: false);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamOrderBookBalancesResponse',) as StreamOrderBookBalancesResponse;
+    
     }
     return null;
   }
@@ -4830,7 +4969,7 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<List<StreamTradesEntry>?> streamTrades(String orderBookId, { DateTime? since, }) async {
+  Future<StreamTradesResponse?> streamTrades(String orderBookId, { DateTime? since, }) async {
     final response = await streamTradesWithHttpInfo(orderBookId,  since: since, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -4839,11 +4978,8 @@ class DefaultApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<StreamTradesEntry>') as List)
-        .cast<StreamTradesEntry>()
-        .toList(growable: false);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamTradesResponse',) as StreamTradesResponse;
+    
     }
     return null;
   }

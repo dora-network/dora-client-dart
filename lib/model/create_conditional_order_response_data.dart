@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-class CreateConditionalOrderResponseEnvelopeAllOfData {
-  /// Returns a new [CreateConditionalOrderResponseEnvelopeAllOfData] instance.
-  CreateConditionalOrderResponseEnvelopeAllOfData({
+class CreateConditionalOrderResponseData {
+  /// Returns a new [CreateConditionalOrderResponseData] instance.
+  CreateConditionalOrderResponseData({
     this.stopLossOrderId,
     this.takeProfitOrderId,
   });
@@ -34,7 +34,7 @@ class CreateConditionalOrderResponseEnvelopeAllOfData {
   String? takeProfitOrderId;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CreateConditionalOrderResponseEnvelopeAllOfData &&
+  bool operator ==(Object other) => identical(this, other) || other is CreateConditionalOrderResponseData &&
     other.stopLossOrderId == stopLossOrderId &&
     other.takeProfitOrderId == takeProfitOrderId;
 
@@ -45,7 +45,7 @@ class CreateConditionalOrderResponseEnvelopeAllOfData {
     (takeProfitOrderId == null ? 0 : takeProfitOrderId!.hashCode);
 
   @override
-  String toString() => 'CreateConditionalOrderResponseEnvelopeAllOfData[stopLossOrderId=$stopLossOrderId, takeProfitOrderId=$takeProfitOrderId]';
+  String toString() => 'CreateConditionalOrderResponseData[stopLossOrderId=$stopLossOrderId, takeProfitOrderId=$takeProfitOrderId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -62,10 +62,10 @@ class CreateConditionalOrderResponseEnvelopeAllOfData {
     return json;
   }
 
-  /// Returns a new [CreateConditionalOrderResponseEnvelopeAllOfData] instance and imports its values from
+  /// Returns a new [CreateConditionalOrderResponseData] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static CreateConditionalOrderResponseEnvelopeAllOfData? fromJson(dynamic value) {
+  static CreateConditionalOrderResponseData? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -74,13 +74,13 @@ class CreateConditionalOrderResponseEnvelopeAllOfData {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateConditionalOrderResponseEnvelopeAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateConditionalOrderResponseEnvelopeAllOfData[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "CreateConditionalOrderResponseData[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "CreateConditionalOrderResponseData[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return CreateConditionalOrderResponseEnvelopeAllOfData(
+      return CreateConditionalOrderResponseData(
         stopLossOrderId: mapValueOfType<String>(json, r'stop_loss_order_id'),
         takeProfitOrderId: mapValueOfType<String>(json, r'take_profit_order_id'),
       );
@@ -88,11 +88,11 @@ class CreateConditionalOrderResponseEnvelopeAllOfData {
     return null;
   }
 
-  static List<CreateConditionalOrderResponseEnvelopeAllOfData> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <CreateConditionalOrderResponseEnvelopeAllOfData>[];
+  static List<CreateConditionalOrderResponseData> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <CreateConditionalOrderResponseData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = CreateConditionalOrderResponseEnvelopeAllOfData.fromJson(row);
+        final value = CreateConditionalOrderResponseData.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -101,12 +101,12 @@ class CreateConditionalOrderResponseEnvelopeAllOfData {
     return result.toList(growable: growable);
   }
 
-  static Map<String, CreateConditionalOrderResponseEnvelopeAllOfData> mapFromJson(dynamic json) {
-    final map = <String, CreateConditionalOrderResponseEnvelopeAllOfData>{};
+  static Map<String, CreateConditionalOrderResponseData> mapFromJson(dynamic json) {
+    final map = <String, CreateConditionalOrderResponseData>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = CreateConditionalOrderResponseEnvelopeAllOfData.fromJson(entry.value);
+        final value = CreateConditionalOrderResponseData.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -115,14 +115,14 @@ class CreateConditionalOrderResponseEnvelopeAllOfData {
     return map;
   }
 
-  // maps a json object with a list of CreateConditionalOrderResponseEnvelopeAllOfData-objects as value to a dart map
-  static Map<String, List<CreateConditionalOrderResponseEnvelopeAllOfData>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<CreateConditionalOrderResponseEnvelopeAllOfData>>{};
+  // maps a json object with a list of CreateConditionalOrderResponseData-objects as value to a dart map
+  static Map<String, List<CreateConditionalOrderResponseData>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<CreateConditionalOrderResponseData>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = CreateConditionalOrderResponseEnvelopeAllOfData.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = CreateConditionalOrderResponseData.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

@@ -163,7 +163,7 @@ void main() {
 
     // Get all inserts or updates for assets
     //
-    //Future<StreamAssetsResponse> getAssetsStream({ DateTime since, DateTime until }) async
+    //Future<List<StreamAssetsEntry>> getAssetsStream({ DateTime since, DateTime until }) async
     test('test getAssetsStream', () async {
       // TODO
     });
@@ -387,21 +387,21 @@ void main() {
 
     // Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
     //
-    //Future<StreamPositionsResponse> getUserLedgerStream(String userId) async
+    //Future<List<StreamPositionsEntry>> getUserLedgerStream(String userId) async
     test('test getUserLedgerStream', () async {
       // TODO
     });
 
     // Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
     //
-    //Future<StreamOrderUpdatesResponse> getUserOrderUpdatesStream(String userId, String orderBookId, { DateTime since }) async
+    //Future<List<StreamOrderUpdatesEntry>> getUserOrderUpdatesStream(String userId, String orderBookId, { DateTime since }) async
     test('test getUserOrderUpdatesStream', () async {
       // TODO
     });
 
     // Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
     //
-    //Future<StreamOrderUpdatesResponse> getUserOrdersUpdatesStreamAll(String userId, { DateTime since }) async
+    //Future<List<StreamOrderUpdatesEntry>> getUserOrdersUpdatesStreamAll(String userId, { DateTime since }) async
     test('test getUserOrdersUpdatesStreamAll', () async {
       // TODO
     });
@@ -415,7 +415,7 @@ void main() {
 
     // Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
     //
-    //Future<StreamTransactionsResponse> getUserTransactionsStream(String userId, { DateTime since }) async
+    //Future<List<StreamTransactionsEntry>> getUserTransactionsStream(String userId, { DateTime since }) async
     test('test getUserTransactionsStream', () async {
       // TODO
     });
@@ -597,21 +597,21 @@ void main() {
     //
     // Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
     //
-    //Future<StreamAssetPricesResponse> streamAssetPrices({ DateTime since, String assetId }) async
+    //Future<Map<String, AssetPrice>> streamAssetPrices({ DateTime since, String assetId }) async
     test('test streamAssetPrices', () async {
       // TODO
     });
 
     // Get a snapshot of candlestick data from date provided, and open a stream for real-time updates
     //
-    //Future<StreamCandlesResponse> streamCandleData(String orderBookId, { DateTime since, CandleResolution resolution }) async
+    //Future<List<StreamCandlesEntry>> streamCandleData(String orderBookId, { DateTime since, CandleResolution resolution }) async
     test('test streamCandleData', () async {
       // TODO
     });
 
     // Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
     //
-    //Future<StreamOrderBookBalancesResponse> streamOrderBookBalances(String orderBookId, { DateTime since }) async
+    //Future<List<StreamOrderBookBalanceEntry>> streamOrderBookBalances(String orderBookId, { DateTime since }) async
     test('test streamOrderBookBalances', () async {
       // TODO
     });
@@ -625,7 +625,7 @@ void main() {
 
     // Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
     //
-    //Future<StreamTradesResponse> streamTrades(String orderBookId, { DateTime since }) async
+    //Future<List<StreamTradesEntry>> streamTrades(String orderBookId, { DateTime since }) async
     test('test streamTrades', () async {
       // TODO
     });

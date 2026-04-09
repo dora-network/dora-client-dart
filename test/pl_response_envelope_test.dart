@@ -16,7 +16,7 @@ void main() {
   // final instance = PLResponseEnvelope();
 
   group('test PLResponseEnvelope', () {
-    // PLAccounts data
+    // List<PLAccount> data (default value: const [])
     test('to test the property `data`', () async {
       // TODO
     });

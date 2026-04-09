@@ -13,18 +13,12 @@ part of openapi.api;
 class PLResponseEnvelope {
   /// Returns a new [PLResponseEnvelope] instance.
   PLResponseEnvelope({
-    this.data,
+    this.data = const [],
     this.error,
     required this.metadata,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  PLAccounts? data;
+  List<PLAccount> data;
 
   /// The error message. Present for error (non-2xx) responses.
   ///
@@ -40,14 +34,14 @@ class PLResponseEnvelope {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PLResponseEnvelope &&
-    other.data == data &&
+    _deepEquality.equals(other.data, data) &&
     other.error == error &&
     other.metadata == metadata;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (data == null ? 0 : data!.hashCode) +
+    (data.hashCode) +
     (error == null ? 0 : error!.hashCode) +
     (metadata.hashCode);
 
@@ -56,11 +50,7 @@ class PLResponseEnvelope {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.data != null) {
       json[r'data'] = this.data;
-    } else {
-      json[r'data'] = null;
-    }
     if (this.error != null) {
       json[r'error'] = this.error;
     } else {
@@ -89,7 +79,7 @@ class PLResponseEnvelope {
       }());
 
       return PLResponseEnvelope(
-        data: PLAccounts.fromJson(json[r'data']),
+        data: PLAccount.listFromJson(json[r'data']),
         error: mapValueOfType<String>(json, r'error'),
         metadata: Metadata.fromJson(json[r'metadata'])!,
       );

@@ -22,6 +22,7 @@ class UserCouponPayment {
     required this.completed,
     required this.startedAt,
     required this.endedAt,
+    this.transactionId,
   });
 
   String userId;
@@ -43,6 +44,14 @@ class UserCouponPayment {
 
   DateTime endedAt;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? transactionId;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserCouponPayment &&
     other.userId == userId &&
@@ -53,7 +62,8 @@ class UserCouponPayment {
     other.pending == pending &&
     other.completed == completed &&
     other.startedAt == startedAt &&
-    other.endedAt == endedAt;
+    other.endedAt == endedAt &&
+    other.transactionId == transactionId;
 
   @override
   int get hashCode =>
@@ -66,10 +76,11 @@ class UserCouponPayment {
     (pending.hashCode) +
     (completed.hashCode) +
     (startedAt.hashCode) +
-    (endedAt.hashCode);
+    (endedAt.hashCode) +
+    (transactionId == null ? 0 : transactionId!.hashCode);
 
   @override
-  String toString() => 'UserCouponPayment[userId=$userId, positionId=$positionId, assetId=$assetId, couponPaymentId=$couponPaymentId, seq=$seq, pending=$pending, completed=$completed, startedAt=$startedAt, endedAt=$endedAt]';
+  String toString() => 'UserCouponPayment[userId=$userId, positionId=$positionId, assetId=$assetId, couponPaymentId=$couponPaymentId, seq=$seq, pending=$pending, completed=$completed, startedAt=$startedAt, endedAt=$endedAt, transactionId=$transactionId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -82,6 +93,11 @@ class UserCouponPayment {
       json[r'completed'] = this.completed;
       json[r'started_at'] = this.startedAt.toUtc().toIso8601String();
       json[r'ended_at'] = this.endedAt.toUtc().toIso8601String();
+    if (this.transactionId != null) {
+      json[r'transaction_id'] = this.transactionId;
+    } else {
+      json[r'transaction_id'] = null;
+    }
     return json;
   }
 
@@ -113,6 +129,7 @@ class UserCouponPayment {
         completed: mapValueOfType<String>(json, r'completed')!,
         startedAt: mapDateTime(json, r'started_at', r'')!,
         endedAt: mapDateTime(json, r'ended_at', r'')!,
+        transactionId: mapValueOfType<String>(json, r'transaction_id'),
       );
     }
     return null;

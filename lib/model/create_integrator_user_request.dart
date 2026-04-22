@@ -14,7 +14,9 @@ class CreateIntegratorUserRequest {
   /// Returns a new [CreateIntegratorUserRequest] instance.
   CreateIntegratorUserRequest({
     this.email,
-    this.name,
+    this.firstName,
+    this.lastName,
+    this.countryOfDomicile,
     this.nativeAssetId,
     this.photoUrl,
     this.provider,
@@ -36,7 +38,23 @@ class CreateIntegratorUserRequest {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  String? name;
+  String? firstName;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? lastName;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  CountryCode? countryOfDomicile;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -81,7 +99,9 @@ class CreateIntegratorUserRequest {
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateIntegratorUserRequest &&
     other.email == email &&
-    other.name == name &&
+    other.firstName == firstName &&
+    other.lastName == lastName &&
+    other.countryOfDomicile == countryOfDomicile &&
     other.nativeAssetId == nativeAssetId &&
     other.photoUrl == photoUrl &&
     other.provider == provider &&
@@ -92,7 +112,9 @@ class CreateIntegratorUserRequest {
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (email == null ? 0 : email!.hashCode) +
-    (name == null ? 0 : name!.hashCode) +
+    (firstName == null ? 0 : firstName!.hashCode) +
+    (lastName == null ? 0 : lastName!.hashCode) +
+    (countryOfDomicile == null ? 0 : countryOfDomicile!.hashCode) +
     (nativeAssetId == null ? 0 : nativeAssetId!.hashCode) +
     (photoUrl == null ? 0 : photoUrl!.hashCode) +
     (provider == null ? 0 : provider!.hashCode) +
@@ -100,7 +122,7 @@ class CreateIntegratorUserRequest {
     (timezone == null ? 0 : timezone!.hashCode);
 
   @override
-  String toString() => 'CreateIntegratorUserRequest[email=$email, name=$name, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, timezone=$timezone]';
+  String toString() => 'CreateIntegratorUserRequest[email=$email, firstName=$firstName, lastName=$lastName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, timezone=$timezone]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -109,10 +131,20 @@ class CreateIntegratorUserRequest {
     } else {
       json[r'email'] = null;
     }
-    if (this.name != null) {
-      json[r'name'] = this.name;
+    if (this.firstName != null) {
+      json[r'first_name'] = this.firstName;
     } else {
-      json[r'name'] = null;
+      json[r'first_name'] = null;
+    }
+    if (this.lastName != null) {
+      json[r'last_name'] = this.lastName;
+    } else {
+      json[r'last_name'] = null;
+    }
+    if (this.countryOfDomicile != null) {
+      json[r'country_of_domicile'] = this.countryOfDomicile;
+    } else {
+      json[r'country_of_domicile'] = null;
     }
     if (this.nativeAssetId != null) {
       json[r'native_asset_id'] = this.nativeAssetId;
@@ -162,7 +194,9 @@ class CreateIntegratorUserRequest {
 
       return CreateIntegratorUserRequest(
         email: mapValueOfType<String>(json, r'email'),
-        name: mapValueOfType<String>(json, r'name'),
+        firstName: mapValueOfType<String>(json, r'first_name'),
+        lastName: mapValueOfType<String>(json, r'last_name'),
+        countryOfDomicile: CountryCode.fromJson(json[r'country_of_domicile']),
         nativeAssetId: mapValueOfType<String>(json, r'native_asset_id'),
         photoUrl: mapValueOfType<String>(json, r'photo_url'),
         provider: mapValueOfType<String>(json, r'provider'),

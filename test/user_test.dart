@@ -36,8 +36,18 @@ void main() {
       // TODO
     });
 
-    // String name
-    test('to test the property `name`', () async {
+    // String firstName
+    test('to test the property `firstName`', () async {
+      // TODO
+    });
+
+    // String lastName
+    test('to test the property `lastName`', () async {
+      // TODO
+    });
+
+    // CountryCode countryOfDomicile
+    test('to test the property `countryOfDomicile`', () async {
       // TODO
     });
 

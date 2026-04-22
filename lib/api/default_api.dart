@@ -2367,10 +2367,14 @@ class DefaultApi {
   ///
   /// * [DateTime] createdAfter:
   ///
+  /// * [DateTime] createdBefore:
+  ///
+  /// * [DateTime] settledAfter:
+  ///
   /// * [DateTime] settledBefore:
   ///
   /// * [bool] isSettled:
-  Future<Response> getRealizedPnlSettlementsWithHttpInfo({ String? userId, String? tenantId, String? positionId, DateTime? createdAfter, DateTime? settledBefore, bool? isSettled, }) async {
+  Future<Response> getRealizedPnlSettlementsWithHttpInfo({ String? userId, String? tenantId, String? positionId, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/realized_pnl_settlements';
 
@@ -2392,6 +2396,12 @@ class DefaultApi {
     }
     if (createdAfter != null) {
       queryParams.addAll(_queryParams('', 'created_after', createdAfter));
+    }
+    if (createdBefore != null) {
+      queryParams.addAll(_queryParams('', 'created_before', createdBefore));
+    }
+    if (settledAfter != null) {
+      queryParams.addAll(_queryParams('', 'settled_after', settledAfter));
     }
     if (settledBefore != null) {
       queryParams.addAll(_queryParams('', 'settled_before', settledBefore));
@@ -2426,11 +2436,15 @@ class DefaultApi {
   ///
   /// * [DateTime] createdAfter:
   ///
+  /// * [DateTime] createdBefore:
+  ///
+  /// * [DateTime] settledAfter:
+  ///
   /// * [DateTime] settledBefore:
   ///
   /// * [bool] isSettled:
-  Future<GetRealizedPnlSettlementsResponseEnvelope?> getRealizedPnlSettlements({ String? userId, String? tenantId, String? positionId, DateTime? createdAfter, DateTime? settledBefore, bool? isSettled, }) async {
-    final response = await getRealizedPnlSettlementsWithHttpInfo( userId: userId, tenantId: tenantId, positionId: positionId, createdAfter: createdAfter, settledBefore: settledBefore, isSettled: isSettled, );
+  Future<GetRealizedPnlSettlementsResponseEnvelope?> getRealizedPnlSettlements({ String? userId, String? tenantId, String? positionId, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, }) async {
+    final response = await getRealizedPnlSettlementsWithHttpInfo( userId: userId, tenantId: tenantId, positionId: positionId, createdAfter: createdAfter, createdBefore: createdBefore, settledAfter: settledAfter, settledBefore: settledBefore, isSettled: isSettled, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

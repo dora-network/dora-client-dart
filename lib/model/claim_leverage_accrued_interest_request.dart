@@ -13,38 +13,32 @@ part of openapi.api;
 class ClaimLeverageAccruedInterestRequest {
   /// Returns a new [ClaimLeverageAccruedInterestRequest] instance.
   ClaimLeverageAccruedInterestRequest({
-    required this.positionId,
     required this.assetId,
-    required this.quantity,
+    required this.positionId,
   });
-
-  String positionId;
 
   String assetId;
 
-  String quantity;
+  String positionId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ClaimLeverageAccruedInterestRequest &&
-    other.positionId == positionId &&
     other.assetId == assetId &&
-    other.quantity == quantity;
+    other.positionId == positionId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (positionId.hashCode) +
     (assetId.hashCode) +
-    (quantity.hashCode);
+    (positionId.hashCode);
 
   @override
-  String toString() => 'ClaimLeverageAccruedInterestRequest[positionId=$positionId, assetId=$assetId, quantity=$quantity]';
+  String toString() => 'ClaimLeverageAccruedInterestRequest[assetId=$assetId, positionId=$positionId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'position_id'] = this.positionId;
       json[r'asset_id'] = this.assetId;
-      json[r'quantity'] = this.quantity;
+      json[r'position_id'] = this.positionId;
     return json;
   }
 
@@ -67,9 +61,8 @@ class ClaimLeverageAccruedInterestRequest {
       }());
 
       return ClaimLeverageAccruedInterestRequest(
-        positionId: mapValueOfType<String>(json, r'position_id')!,
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        quantity: mapValueOfType<String>(json, r'quantity')!,
+        positionId: mapValueOfType<String>(json, r'position_id')!,
       );
     }
     return null;
@@ -117,9 +110,8 @@ class ClaimLeverageAccruedInterestRequest {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
-    'position_id',
     'asset_id',
-    'quantity',
+    'position_id',
   };
 }
 

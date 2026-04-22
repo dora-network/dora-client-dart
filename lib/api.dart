@@ -57,6 +57,7 @@ part 'model/close_position_request.dart';
 part 'model/close_position_resp.dart';
 part 'model/close_position_response_envelope.dart';
 part 'model/collateral.dart';
+part 'model/country_code.dart';
 part 'model/coupon_payment.dart';
 part 'model/create_api_key_data.dart';
 part 'model/create_api_key_request.dart';

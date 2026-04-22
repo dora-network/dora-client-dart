@@ -191,6 +191,7 @@ Class | Method | HTTP request | Description
  - [ClosePositionResp](doc//ClosePositionResp.md)
  - [ClosePositionResponseEnvelope](doc//ClosePositionResponseEnvelope.md)
  - [Collateral](doc//Collateral.md)
+ - [CountryCode](doc//CountryCode.md)
  - [CouponPayment](doc//CouponPayment.md)
  - [CreateAPIKeyData](doc//CreateAPIKeyData.md)
  - [CreateAPIKeyRequest](doc//CreateAPIKeyRequest.md)

@@ -64,6 +64,9 @@ String parameterToString(dynamic value) {
   if (value is CandleResolution) {
     return CandleResolutionTypeTransformer().encode(value).toString();
   }
+  if (value is CountryCode) {
+    return CountryCodeTypeTransformer().encode(value).toString();
+  }
   if (value is LeverageType) {
     return LeverageTypeTypeTransformer().encode(value).toString();
   }

@@ -236,6 +236,8 @@ class ApiClient {
           return ClosePositionResponseEnvelope.fromJson(value);
         case 'Collateral':
           return Collateral.fromJson(value);
+        case 'CountryCode':
+          return CountryCodeTypeTransformer().decode(value);
         case 'CouponPayment':
           return CouponPayment.fromJson(value);
         case 'CreateAPIKeyData':

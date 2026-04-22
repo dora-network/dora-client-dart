@@ -16,6 +16,8 @@ class RealizedPnlSettlements {
     this.settlements = const [],
     this.userTotals = const {},
     this.tenantTotals = const {},
+    this.userTotalsUnsettled = const {},
+    this.tenantTotalsUnsettled = const {},
   });
 
   /// A list of realized PnL settlements matching the query parameters of the request
@@ -27,27 +29,39 @@ class RealizedPnlSettlements {
   /// A map of tenant IDs to their total realized PnL in USD across all settlements included in the response
   Map<String, double> tenantTotals;
 
+  /// A map of user IDs to their total realized PnL in USD across unsettled settlements (where settled_at is null) included in the response
+  Map<String, double> userTotalsUnsettled;
+
+  /// A map of tenant IDs to their total realized PnL in USD across unsettled settlements (where settled_at is null) included in the response
+  Map<String, double> tenantTotalsUnsettled;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is RealizedPnlSettlements &&
     _deepEquality.equals(other.settlements, settlements) &&
     _deepEquality.equals(other.userTotals, userTotals) &&
-    _deepEquality.equals(other.tenantTotals, tenantTotals);
+    _deepEquality.equals(other.tenantTotals, tenantTotals) &&
+    _deepEquality.equals(other.userTotalsUnsettled, userTotalsUnsettled) &&
+    _deepEquality.equals(other.tenantTotalsUnsettled, tenantTotalsUnsettled);
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (settlements.hashCode) +
     (userTotals.hashCode) +
-    (tenantTotals.hashCode);
+    (tenantTotals.hashCode) +
+    (userTotalsUnsettled.hashCode) +
+    (tenantTotalsUnsettled.hashCode);
 
   @override
-  String toString() => 'RealizedPnlSettlements[settlements=$settlements, userTotals=$userTotals, tenantTotals=$tenantTotals]';
+  String toString() => 'RealizedPnlSettlements[settlements=$settlements, userTotals=$userTotals, tenantTotals=$tenantTotals, userTotalsUnsettled=$userTotalsUnsettled, tenantTotalsUnsettled=$tenantTotalsUnsettled]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'settlements'] = this.settlements;
       json[r'user_totals'] = this.userTotals;
       json[r'tenant_totals'] = this.tenantTotals;
+      json[r'user_totals_unsettled'] = this.userTotalsUnsettled;
+      json[r'tenant_totals_unsettled'] = this.tenantTotalsUnsettled;
     return json;
   }
 
@@ -73,6 +87,8 @@ class RealizedPnlSettlements {
         settlements: RealizedPnlSettlement.listFromJson(json[r'settlements']),
         userTotals: mapCastOfType<String, double>(json, r'user_totals') ?? const {},
         tenantTotals: mapCastOfType<String, double>(json, r'tenant_totals') ?? const {},
+        userTotalsUnsettled: mapCastOfType<String, double>(json, r'user_totals_unsettled') ?? const {},
+        tenantTotalsUnsettled: mapCastOfType<String, double>(json, r'tenant_totals_unsettled') ?? const {},
       );
     }
     return null;

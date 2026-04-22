@@ -11,21 +11,10 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for PayLeverageAccruedInterestRequest
+// tests for CountryCode
 void main() {
-  // final instance = PayLeverageAccruedInterestRequest();
 
-  group('test PayLeverageAccruedInterestRequest', () {
-    // String assetId
-    test('to test the property `assetId`', () async {
-      // TODO
-    });
-
-    // String positionId
-    test('to test the property `positionId`', () async {
-      // TODO
-    });
-
+  group('test CountryCode', () {
 
   });
 

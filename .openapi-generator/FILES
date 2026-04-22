@@ -29,6 +29,7 @@ doc/ClosePositionRequest.md
 doc/ClosePositionResp.md
 doc/ClosePositionResponseEnvelope.md
 doc/Collateral.md
+doc/CountryCode.md
 doc/CouponPayment.md
 doc/CreateAPIKeyData.md
 doc/CreateAPIKeyRequest.md
@@ -231,6 +232,7 @@ lib/model/close_position_request.dart
 lib/model/close_position_resp.dart
 lib/model/close_position_response_envelope.dart
 lib/model/collateral.dart
+lib/model/country_code.dart
 lib/model/coupon_payment.dart
 lib/model/create_api_key_data.dart
 lib/model/create_api_key_request.dart
@@ -422,6 +424,7 @@ test/close_position_request_test.dart
 test/close_position_resp_test.dart
 test/close_position_response_envelope_test.dart
 test/collateral_test.dart
+test/country_code_test.dart
 test/coupon_payment_test.dart
 test/create_api_key_data_test.dart
 test/create_api_key_request_test.dart

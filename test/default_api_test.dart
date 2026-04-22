@@ -331,7 +331,7 @@ void main() {
 
     // Get realized P&L settlements with filters
     //
-    //Future<GetRealizedPnlSettlementsResponseEnvelope> getRealizedPnlSettlements({ String userId, String tenantId, String positionId, DateTime createdAfter, DateTime settledBefore, bool isSettled }) async
+    //Future<GetRealizedPnlSettlementsResponseEnvelope> getRealizedPnlSettlements({ String userId, String tenantId, String positionId, DateTime createdAfter, DateTime createdBefore, DateTime settledAfter, DateTime settledBefore, bool isSettled }) async
     test('test getRealizedPnlSettlements', () async {
       // TODO
     });

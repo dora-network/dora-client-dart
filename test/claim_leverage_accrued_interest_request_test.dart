@@ -16,18 +16,13 @@ void main() {
   // final instance = ClaimLeverageAccruedInterestRequest();
 
   group('test ClaimLeverageAccruedInterestRequest', () {
-    // String positionId
-    test('to test the property `positionId`', () async {
-      // TODO
-    });
-
     // String assetId
     test('to test the property `assetId`', () async {
       // TODO
     });
 
-    // String quantity
-    test('to test the property `quantity`', () async {
+    // String positionId
+    test('to test the property `positionId`', () async {
       // TODO
     });
 

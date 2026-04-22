@@ -17,7 +17,9 @@ class User {
     this.closedAt,
     this.disabledAt,
     required this.email,
-    required this.name,
+    required this.firstName,
+    required this.lastName,
+    required this.countryOfDomicile,
     required this.nativeAssetId,
     this.photoUrl,
     this.provider,
@@ -55,7 +57,11 @@ class User {
 
   String email;
 
-  String name;
+  String firstName;
+
+  String lastName;
+
+  CountryCode countryOfDomicile;
 
   String nativeAssetId;
 
@@ -131,7 +137,9 @@ class User {
     other.closedAt == closedAt &&
     other.disabledAt == disabledAt &&
     other.email == email &&
-    other.name == name &&
+    other.firstName == firstName &&
+    other.lastName == lastName &&
+    other.countryOfDomicile == countryOfDomicile &&
     other.nativeAssetId == nativeAssetId &&
     other.photoUrl == photoUrl &&
     other.provider == provider &&
@@ -155,7 +163,9 @@ class User {
     (closedAt == null ? 0 : closedAt!.hashCode) +
     (disabledAt == null ? 0 : disabledAt!.hashCode) +
     (email.hashCode) +
-    (name.hashCode) +
+    (firstName.hashCode) +
+    (lastName.hashCode) +
+    (countryOfDomicile.hashCode) +
     (nativeAssetId.hashCode) +
     (photoUrl == null ? 0 : photoUrl!.hashCode) +
     (provider == null ? 0 : provider!.hashCode) +
@@ -173,7 +183,7 @@ class User {
     (allowOrdersNotifications.hashCode);
 
   @override
-  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, name=$name, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications]';
+  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, firstName=$firstName, lastName=$lastName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -189,7 +199,9 @@ class User {
       json[r'disabled_at'] = null;
     }
       json[r'email'] = this.email;
-      json[r'name'] = this.name;
+      json[r'first_name'] = this.firstName;
+      json[r'last_name'] = this.lastName;
+      json[r'country_of_domicile'] = this.countryOfDomicile;
       json[r'native_asset_id'] = this.nativeAssetId;
     if (this.photoUrl != null) {
       json[r'photo_url'] = this.photoUrl;
@@ -255,7 +267,9 @@ class User {
         closedAt: mapDateTime(json, r'closed_at', r''),
         disabledAt: mapDateTime(json, r'disabled_at', r''),
         email: mapValueOfType<String>(json, r'email')!,
-        name: mapValueOfType<String>(json, r'name')!,
+        firstName: mapValueOfType<String>(json, r'first_name')!,
+        lastName: mapValueOfType<String>(json, r'last_name')!,
+        countryOfDomicile: CountryCode.fromJson(json[r'country_of_domicile'])!,
         nativeAssetId: mapValueOfType<String>(json, r'native_asset_id')!,
         photoUrl: mapValueOfType<String>(json, r'photo_url'),
         provider: mapValueOfType<String>(json, r'provider'),
@@ -320,7 +334,9 @@ class User {
   static const requiredKeys = <String>{
     'id',
     'email',
-    'name',
+    'first_name',
+    'last_name',
+    'country_of_domicile',
     'native_asset_id',
     'roles',
     'show_tutorial_cards',

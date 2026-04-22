@@ -2218,7 +2218,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getRealizedPnlSettlements**
-> GetRealizedPnlSettlementsResponseEnvelope getRealizedPnlSettlements(userId, tenantId, positionId, createdAfter, settledBefore, isSettled)
+> GetRealizedPnlSettlementsResponseEnvelope getRealizedPnlSettlements(userId, tenantId, positionId, createdAfter, createdBefore, settledAfter, settledBefore, isSettled)
 
 Get realized P&L settlements with filters
 
@@ -2241,11 +2241,13 @@ final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String |
 final tenantId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final positionId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final createdAfter = 2013-10-20T19:20:30+01:00; // DateTime | 
+final createdBefore = 2013-10-20T19:20:30+01:00; // DateTime | 
+final settledAfter = 2013-10-20T19:20:30+01:00; // DateTime | 
 final settledBefore = 2013-10-20T19:20:30+01:00; // DateTime | 
 final isSettled = true; // bool | 
 
 try {
-    final result = api_instance.getRealizedPnlSettlements(userId, tenantId, positionId, createdAfter, settledBefore, isSettled);
+    final result = api_instance.getRealizedPnlSettlements(userId, tenantId, positionId, createdAfter, createdBefore, settledAfter, settledBefore, isSettled);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->getRealizedPnlSettlements: $e\n');
@@ -2260,6 +2262,8 @@ Name | Type | Description  | Notes
  **tenantId** | **String**|  | [optional] 
  **positionId** | **String**|  | [optional] 
  **createdAfter** | **DateTime**|  | [optional] 
+ **createdBefore** | **DateTime**|  | [optional] 
+ **settledAfter** | **DateTime**|  | [optional] 
  **settledBefore** | **DateTime**|  | [optional] 
  **isSettled** | **bool**|  | [optional] 
 

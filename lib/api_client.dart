@@ -266,8 +266,6 @@ class ApiClient {
           return CurrentLeverageAccruedInterestResponseEnvelope.fromJson(value);
         case 'DefundUserRequest':
           return DefundUserRequest.fromJson(value);
-        case 'EmailExistsResponseEnvelope':
-          return EmailExistsResponseEnvelope.fromJson(value);
         case 'FundUser':
           return FundUser.fromJson(value);
         case 'FundUserRequest':
@@ -332,6 +330,8 @@ class ApiClient {
           return ListTransactionsResponseEnvelope.fromJson(value);
         case 'ListUserCouponPaymentsResponseEnvelope':
           return ListUserCouponPaymentsResponseEnvelope.fromJson(value);
+        case 'ListUsersResponseEnvelope':
+          return ListUsersResponseEnvelope.fromJson(value);
         case 'LiveOrderbook':
           return LiveOrderbook.fromJson(value);
         case 'Margin':
@@ -440,6 +440,8 @@ class ApiClient {
           return StreamAssetsEntry.fromJson(value);
         case 'StreamCandlesEntry':
           return StreamCandlesEntry.fromJson(value);
+        case 'StreamCurrentLeverageAccruedInterestResponse':
+          return StreamCurrentLeverageAccruedInterestResponse.fromJson(value);
         case 'StreamEntry':
           return StreamEntry.fromJson(value);
         case 'StreamOrderBookBalanceEntry':

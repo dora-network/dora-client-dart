@@ -10,21 +10,15 @@
 
 part of openapi.api;
 
-class EmailExistsResponseEnvelope {
-  /// Returns a new [EmailExistsResponseEnvelope] instance.
-  EmailExistsResponseEnvelope({
-    this.data,
+class ListUsersResponseEnvelope {
+  /// Returns a new [ListUsersResponseEnvelope] instance.
+  ListUsersResponseEnvelope({
+    this.data = const [],
     this.error,
     required this.metadata,
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  UserExistsResponse? data;
+  List<User> data;
 
   /// The error message. Present for error (non-2xx) responses.
   ///
@@ -39,28 +33,24 @@ class EmailExistsResponseEnvelope {
   Metadata metadata;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is EmailExistsResponseEnvelope &&
-    other.data == data &&
+  bool operator ==(Object other) => identical(this, other) || other is ListUsersResponseEnvelope &&
+    _deepEquality.equals(other.data, data) &&
     other.error == error &&
     other.metadata == metadata;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (data == null ? 0 : data!.hashCode) +
+    (data.hashCode) +
     (error == null ? 0 : error!.hashCode) +
     (metadata.hashCode);
 
   @override
-  String toString() => 'EmailExistsResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
+  String toString() => 'ListUsersResponseEnvelope[data=$data, error=$error, metadata=$metadata]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.data != null) {
       json[r'data'] = this.data;
-    } else {
-      json[r'data'] = null;
-    }
     if (this.error != null) {
       json[r'error'] = this.error;
     } else {
@@ -70,10 +60,10 @@ class EmailExistsResponseEnvelope {
     return json;
   }
 
-  /// Returns a new [EmailExistsResponseEnvelope] instance and imports its values from
+  /// Returns a new [ListUsersResponseEnvelope] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static EmailExistsResponseEnvelope? fromJson(dynamic value) {
+  static ListUsersResponseEnvelope? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -82,14 +72,14 @@ class EmailExistsResponseEnvelope {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "EmailExistsResponseEnvelope[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "EmailExistsResponseEnvelope[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "ListUsersResponseEnvelope[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ListUsersResponseEnvelope[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return EmailExistsResponseEnvelope(
-        data: UserExistsResponse.fromJson(json[r'data']),
+      return ListUsersResponseEnvelope(
+        data: User.listFromJson(json[r'data']),
         error: mapValueOfType<String>(json, r'error'),
         metadata: Metadata.fromJson(json[r'metadata'])!,
       );
@@ -97,11 +87,11 @@ class EmailExistsResponseEnvelope {
     return null;
   }
 
-  static List<EmailExistsResponseEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <EmailExistsResponseEnvelope>[];
+  static List<ListUsersResponseEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ListUsersResponseEnvelope>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = EmailExistsResponseEnvelope.fromJson(row);
+        final value = ListUsersResponseEnvelope.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -110,12 +100,12 @@ class EmailExistsResponseEnvelope {
     return result.toList(growable: growable);
   }
 
-  static Map<String, EmailExistsResponseEnvelope> mapFromJson(dynamic json) {
-    final map = <String, EmailExistsResponseEnvelope>{};
+  static Map<String, ListUsersResponseEnvelope> mapFromJson(dynamic json) {
+    final map = <String, ListUsersResponseEnvelope>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = EmailExistsResponseEnvelope.fromJson(entry.value);
+        final value = ListUsersResponseEnvelope.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -124,14 +114,14 @@ class EmailExistsResponseEnvelope {
     return map;
   }
 
-  // maps a json object with a list of EmailExistsResponseEnvelope-objects as value to a dart map
-  static Map<String, List<EmailExistsResponseEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<EmailExistsResponseEnvelope>>{};
+  // maps a json object with a list of ListUsersResponseEnvelope-objects as value to a dart map
+  static Map<String, List<ListUsersResponseEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ListUsersResponseEnvelope>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = EmailExistsResponseEnvelope.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ListUsersResponseEnvelope.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

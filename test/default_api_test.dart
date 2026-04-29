@@ -26,9 +26,9 @@ void main() {
       // TODO
     });
 
-    // Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+    // Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
     //
-    //Future<ListOrdersResponseEnvelope> cancelAllOpenOrders({ String orderBookId, String userId, OrderKind orderKind }) async
+    //Future<ListOrdersResponseEnvelope> cancelAllOpenOrders({ String orderBookId, String userId, String accountId, OrderKind orderKind }) async
     test('test cancelAllOpenOrders', () async {
       // TODO
     });
@@ -46,13 +46,6 @@ void main() {
     //
     //Future<CancelOrderResponseEnvelope> cancelOrderById(String orderId) async
     test('test cancelOrderById', () async {
-      // TODO
-    });
-
-    // Check whether a user email exists
-    //
-    //Future<EmailExistsResponseEnvelope> checkUserEmailExists(String email) async
-    test('test checkUserEmailExists', () async {
       // TODO
     });
 
@@ -371,6 +364,13 @@ void main() {
       // TODO
     });
 
+    // Get transactions since a specific time, and open a stream for further updates
+    //
+    //Future<List<StreamTransactionsEntry>> getTransactionsStream({ DateTime since }) async
+    test('test getTransactionsStream', () async {
+      // TODO
+    });
+
     // Get user by ID (admin only)
     //
     //Future<UserEnvelope> getUserById(String userId) async
@@ -389,6 +389,13 @@ void main() {
     //
     //Future<List<StreamPositionsEntry>> getUserLedgerStream(String userId) async
     test('test getUserLedgerStream', () async {
+      // TODO
+    });
+
+    // Stream user's current leverage accrued interest in real time
+    //
+    //Future<StreamCurrentLeverageAccruedInterestResponse> getUserLeverageAccruedInterestStream(String userId) async
+    test('test getUserLeverageAccruedInterestStream', () async {
       // TODO
     });
 
@@ -417,6 +424,13 @@ void main() {
     //
     //Future<List<StreamTransactionsEntry>> getUserTransactionsStream(String userId, { DateTime since }) async
     test('test getUserTransactionsStream', () async {
+      // TODO
+    });
+
+    // Get all users (admin only)
+    //
+    //Future<ListUsersResponseEnvelope> getUsers({ String id, int limit, int offset, String email, String firstName, String lastName, CountryCode countryOfDomicile }) async
+    test('test getUsers', () async {
       // TODO
     });
 

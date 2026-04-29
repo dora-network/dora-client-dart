@@ -77,7 +77,7 @@ class DefaultApi {
     return null;
   }
 
-  /// Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+  /// Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -87,8 +87,10 @@ class DefaultApi {
   ///
   /// * [String] userId:
   ///
+  /// * [String] accountId:
+  ///
   /// * [OrderKind] orderKind:
-  Future<Response> cancelAllOpenOrdersWithHttpInfo({ String? orderBookId, String? userId, OrderKind? orderKind, }) async {
+  Future<Response> cancelAllOpenOrdersWithHttpInfo({ String? orderBookId, String? userId, String? accountId, OrderKind? orderKind, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orders';
 
@@ -104,6 +106,9 @@ class DefaultApi {
     }
     if (userId != null) {
       queryParams.addAll(_queryParams('', 'user_id', userId));
+    }
+    if (accountId != null) {
+      queryParams.addAll(_queryParams('', 'account_id', accountId));
     }
     if (orderKind != null) {
       queryParams.addAll(_queryParams('', 'order_kind', orderKind));
@@ -123,7 +128,7 @@ class DefaultApi {
     );
   }
 
-  /// Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+  /// Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
   ///
   /// Parameters:
   ///
@@ -131,9 +136,11 @@ class DefaultApi {
   ///
   /// * [String] userId:
   ///
+  /// * [String] accountId:
+  ///
   /// * [OrderKind] orderKind:
-  Future<ListOrdersResponseEnvelope?> cancelAllOpenOrders({ String? orderBookId, String? userId, OrderKind? orderKind, }) async {
-    final response = await cancelAllOpenOrdersWithHttpInfo( orderBookId: orderBookId, userId: userId, orderKind: orderKind, );
+  Future<ListOrdersResponseEnvelope?> cancelAllOpenOrders({ String? orderBookId, String? userId, String? accountId, OrderKind? orderKind, }) async {
+    final response = await cancelAllOpenOrdersWithHttpInfo( orderBookId: orderBookId, userId: userId, accountId: accountId, orderKind: orderKind, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -256,60 +263,6 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CancelOrderResponseEnvelope',) as CancelOrderResponseEnvelope;
-    
-    }
-    return null;
-  }
-
-  /// Check whether a user email exists
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [String] email (required):
-  Future<Response> checkUserEmailExistsWithHttpInfo(String email,) async {
-    // ignore: prefer_const_declarations
-    final path = r'/v1/user/exists';
-
-    // ignore: prefer_final_locals
-    Object? postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-      queryParams.addAll(_queryParams('', 'email', email));
-
-    const contentTypes = <String>[];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'GET',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes.first,
-    );
-  }
-
-  /// Check whether a user email exists
-  ///
-  /// Parameters:
-  ///
-  /// * [String] email (required):
-  Future<EmailExistsResponseEnvelope?> checkUserEmailExists(String email,) async {
-    final response = await checkUserEmailExistsWithHttpInfo(email,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'EmailExistsResponseEnvelope',) as EmailExistsResponseEnvelope;
     
     }
     return null;
@@ -2872,6 +2825,65 @@ class DefaultApi {
     return null;
   }
 
+  /// Get transactions since a specific time, and open a stream for further updates
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [DateTime] since:
+  Future<Response> getTransactionsStreamWithHttpInfo({ DateTime? since, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/transactions/stream';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (since != null) {
+      queryParams.addAll(_queryParams('', 'since', since));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get transactions since a specific time, and open a stream for further updates
+  ///
+  /// Parameters:
+  ///
+  /// * [DateTime] since:
+  Future<List<StreamTransactionsEntry>?> getTransactionsStream({ DateTime? since, }) async {
+    final response = await getTransactionsStreamWithHttpInfo( since: since, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      final responseBody = await _decodeBodyBytes(response);
+      return (await apiClient.deserializeAsync(responseBody, 'List<StreamTransactionsEntry>') as List)
+        .cast<StreamTransactionsEntry>()
+        .toList(growable: false);
+
+    }
+    return null;
+  }
+
   /// Get user by ID (admin only)
   ///
   /// Note: This method returns the HTTP [Response].
@@ -3030,6 +3042,59 @@ class DefaultApi {
         .cast<StreamPositionsEntry>()
         .toList(growable: false);
 
+    }
+    return null;
+  }
+
+  /// Stream user's current leverage accrued interest in real time
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<Response> getUserLeverageAccruedInterestStreamWithHttpInfo(String userId,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/{user_id}/leverage/accrued_interest/stream'
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Stream user's current leverage accrued interest in real time
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<StreamCurrentLeverageAccruedInterestResponse?> getUserLeverageAccruedInterestStream(String userId,) async {
+    final response = await getUserLeverageAccruedInterestStreamWithHttpInfo(userId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamCurrentLeverageAccruedInterestResponse',) as StreamCurrentLeverageAccruedInterestResponse;
+    
     }
     return null;
   }
@@ -3271,6 +3336,104 @@ class DefaultApi {
         .cast<StreamTransactionsEntry>()
         .toList(growable: false);
 
+    }
+    return null;
+  }
+
+  /// Get all users (admin only)
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id:
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] offset:
+  ///
+  /// * [String] email:
+  ///
+  /// * [String] firstName:
+  ///
+  /// * [String] lastName:
+  ///
+  /// * [CountryCode] countryOfDomicile:
+  Future<Response> getUsersWithHttpInfo({ String? id, int? limit, int? offset, String? email, String? firstName, String? lastName, CountryCode? countryOfDomicile, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (id != null) {
+      queryParams.addAll(_queryParams('', 'id', id));
+    }
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (offset != null) {
+      queryParams.addAll(_queryParams('', 'offset', offset));
+    }
+    if (email != null) {
+      queryParams.addAll(_queryParams('', 'email', email));
+    }
+    if (firstName != null) {
+      queryParams.addAll(_queryParams('', 'first_name', firstName));
+    }
+    if (lastName != null) {
+      queryParams.addAll(_queryParams('', 'last_name', lastName));
+    }
+    if (countryOfDomicile != null) {
+      queryParams.addAll(_queryParams('', 'country_of_domicile', countryOfDomicile));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get all users (admin only)
+  ///
+  /// Parameters:
+  ///
+  /// * [String] id:
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] offset:
+  ///
+  /// * [String] email:
+  ///
+  /// * [String] firstName:
+  ///
+  /// * [String] lastName:
+  ///
+  /// * [CountryCode] countryOfDomicile:
+  Future<ListUsersResponseEnvelope?> getUsers({ String? id, int? limit, int? offset, String? email, String? firstName, String? lastName, CountryCode? countryOfDomicile, }) async {
+    final response = await getUsersWithHttpInfo( id: id, limit: limit, offset: offset, email: email, firstName: firstName, lastName: lastName, countryOfDomicile: countryOfDomicile, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListUsersResponseEnvelope',) as ListUsersResponseEnvelope;
+    
     }
     return null;
   }

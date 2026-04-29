@@ -71,10 +71,9 @@ All URIs are relative to *https://staging.dora.co*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**approveLedgerWithdrawRequest**](doc//DefaultApi.md#approveledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
-*DefaultApi* | [**cancelAllOpenOrders**](doc//DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+*DefaultApi* | [**cancelAllOpenOrders**](doc//DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
 *DefaultApi* | [**cancelLedgerWithdrawRequest**](doc//DefaultApi.md#cancelledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 *DefaultApi* | [**cancelOrderById**](doc//DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
-*DefaultApi* | [**checkUserEmailExists**](doc//DefaultApi.md#checkuseremailexists) | **GET** /v1/user/exists | Check whether a user email exists
 *DefaultApi* | [**claimLeverageGetAccruedInterest**](doc//DefaultApi.md#claimleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
 *DefaultApi* | [**closeIsolatedPosition**](doc//DefaultApi.md#closeisolatedposition) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 *DefaultApi* | [**createAPIKeyForUser**](doc//DefaultApi.md#createapikeyforuser) | **POST** /v1/user/apikey | Create apikey for a user
@@ -120,13 +119,16 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getTransactionById**](doc//DefaultApi.md#gettransactionbyid) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 *DefaultApi* | [**getTransactions**](doc//DefaultApi.md#gettransactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
 *DefaultApi* | [**getTransactionsSettlements**](doc//DefaultApi.md#gettransactionssettlements) | **GET** /v1/transactions/settlements | Get transactions settlements with filters
+*DefaultApi* | [**getTransactionsStream**](doc//DefaultApi.md#gettransactionsstream) | **GET** /v1/transactions/stream | Get transactions since a specific time, and open a stream for further updates
 *DefaultApi* | [**getUserById**](doc//DefaultApi.md#getuserbyid) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 *DefaultApi* | [**getUserCouponPaymentsStream**](doc//DefaultApi.md#getusercouponpaymentsstream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user's coupon payment accruals in real time
 *DefaultApi* | [**getUserLedgerStream**](doc//DefaultApi.md#getuserledgerstream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
+*DefaultApi* | [**getUserLeverageAccruedInterestStream**](doc//DefaultApi.md#getuserleverageaccruedintereststream) | **GET** /v1/user/{user_id}/leverage/accrued_interest/stream | Stream user's current leverage accrued interest in real time
 *DefaultApi* | [**getUserOrderUpdatesStream**](doc//DefaultApi.md#getuserorderupdatesstream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 *DefaultApi* | [**getUserOrdersUpdatesStreamAll**](doc//DefaultApi.md#getuserordersupdatesstreamall) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 *DefaultApi* | [**getUserSelf**](doc//DefaultApi.md#getuserself) | **GET** /v1/user/self | Get user details for the authenticated user
 *DefaultApi* | [**getUserTransactionsStream**](doc//DefaultApi.md#getusertransactionsstream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
+*DefaultApi* | [**getUsers**](doc//DefaultApi.md#getusers) | **GET** /v1/user | Get all users (admin only)
 *DefaultApi* | [**getUsersAPIKeys**](doc//DefaultApi.md#getusersapikeys) | **GET** /v1/user/apikey | Get user's api keys
 *DefaultApi* | [**ledgerDeposit**](doc//DefaultApi.md#ledgerdeposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user's account from the outside world
 *DefaultApi* | [**ledgerWithdraw**](doc//DefaultApi.md#ledgerwithdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
@@ -206,7 +208,6 @@ Class | Method | HTTP request | Description
  - [CurrentLeverageAccruedInterest](doc//CurrentLeverageAccruedInterest.md)
  - [CurrentLeverageAccruedInterestResponseEnvelope](doc//CurrentLeverageAccruedInterestResponseEnvelope.md)
  - [DefundUserRequest](doc//DefundUserRequest.md)
- - [EmailExistsResponseEnvelope](doc//EmailExistsResponseEnvelope.md)
  - [FundUser](doc//FundUser.md)
  - [FundUserRequest](doc//FundUserRequest.md)
  - [FundUserResponseEnvelope](doc//FundUserResponseEnvelope.md)
@@ -239,6 +240,7 @@ Class | Method | HTTP request | Description
  - [ListTradeResponseEnvelope](doc//ListTradeResponseEnvelope.md)
  - [ListTransactionsResponseEnvelope](doc//ListTransactionsResponseEnvelope.md)
  - [ListUserCouponPaymentsResponseEnvelope](doc//ListUserCouponPaymentsResponseEnvelope.md)
+ - [ListUsersResponseEnvelope](doc//ListUsersResponseEnvelope.md)
  - [LiveOrderbook](doc//LiveOrderbook.md)
  - [Margin](doc//Margin.md)
  - [Metadata](doc//Metadata.md)
@@ -293,6 +295,7 @@ Class | Method | HTTP request | Description
  - [Side](doc//Side.md)
  - [StreamAssetsEntry](doc//StreamAssetsEntry.md)
  - [StreamCandlesEntry](doc//StreamCandlesEntry.md)
+ - [StreamCurrentLeverageAccruedInterestResponse](doc//StreamCurrentLeverageAccruedInterestResponse.md)
  - [StreamEntry](doc//StreamEntry.md)
  - [StreamOrderBookBalanceEntry](doc//StreamOrderBookBalanceEntry.md)
  - [StreamOrderUpdatesEntry](doc//StreamOrderUpdatesEntry.md)

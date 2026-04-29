@@ -10,10 +10,9 @@ All URIs are relative to *https://staging.dora.co*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**approveLedgerWithdrawRequest**](DefaultApi.md#approveledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
-[**cancelAllOpenOrders**](DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+[**cancelAllOpenOrders**](DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
 [**cancelLedgerWithdrawRequest**](DefaultApi.md#cancelledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 [**cancelOrderById**](DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
-[**checkUserEmailExists**](DefaultApi.md#checkuseremailexists) | **GET** /v1/user/exists | Check whether a user email exists
 [**claimLeverageGetAccruedInterest**](DefaultApi.md#claimleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
 [**closeIsolatedPosition**](DefaultApi.md#closeisolatedposition) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 [**createAPIKeyForUser**](DefaultApi.md#createapikeyforuser) | **POST** /v1/user/apikey | Create apikey for a user
@@ -59,13 +58,16 @@ Method | HTTP request | Description
 [**getTransactionById**](DefaultApi.md#gettransactionbyid) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 [**getTransactions**](DefaultApi.md#gettransactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
 [**getTransactionsSettlements**](DefaultApi.md#gettransactionssettlements) | **GET** /v1/transactions/settlements | Get transactions settlements with filters
+[**getTransactionsStream**](DefaultApi.md#gettransactionsstream) | **GET** /v1/transactions/stream | Get transactions since a specific time, and open a stream for further updates
 [**getUserById**](DefaultApi.md#getuserbyid) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 [**getUserCouponPaymentsStream**](DefaultApi.md#getusercouponpaymentsstream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user's coupon payment accruals in real time
 [**getUserLedgerStream**](DefaultApi.md#getuserledgerstream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
+[**getUserLeverageAccruedInterestStream**](DefaultApi.md#getuserleverageaccruedintereststream) | **GET** /v1/user/{user_id}/leverage/accrued_interest/stream | Stream user's current leverage accrued interest in real time
 [**getUserOrderUpdatesStream**](DefaultApi.md#getuserorderupdatesstream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
 [**getUserOrdersUpdatesStreamAll**](DefaultApi.md#getuserordersupdatesstreamall) | **GET** /v1/user/{user_id}/orders/all/updates/stream | Get a snapshot of user's order updates across all order books since a specific time, and opens a stream for further updates
 [**getUserSelf**](DefaultApi.md#getuserself) | **GET** /v1/user/self | Get user details for the authenticated user
 [**getUserTransactionsStream**](DefaultApi.md#getusertransactionsstream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
+[**getUsers**](DefaultApi.md#getusers) | **GET** /v1/user | Get all users (admin only)
 [**getUsersAPIKeys**](DefaultApi.md#getusersapikeys) | **GET** /v1/user/apikey | Get user's api keys
 [**ledgerDeposit**](DefaultApi.md#ledgerdeposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user's account from the outside world
 [**ledgerWithdraw**](DefaultApi.md#ledgerwithdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
@@ -157,9 +159,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **cancelAllOpenOrders**
-> ListOrdersResponseEnvelope cancelAllOpenOrders(orderBookId, userId, orderKind)
+> ListOrdersResponseEnvelope cancelAllOpenOrders(orderBookId, userId, accountId, orderKind)
 
-Cancel all open orders, if user passes orderbook on query param it will cancel all orders on specific orderbook, admin can cancel user's orders on specific orderbook
+Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
 
 ### Example
 ```dart
@@ -178,10 +180,11 @@ import 'package:dora_client/api.dart';
 final api_instance = DefaultApi();
 final orderBookId = orderBookId_example; // String | 
 final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final accountId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final orderKind = ; // OrderKind | 
 
 try {
-    final result = api_instance.cancelAllOpenOrders(orderBookId, userId, orderKind);
+    final result = api_instance.cancelAllOpenOrders(orderBookId, userId, accountId, orderKind);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->cancelAllOpenOrders: $e\n');
@@ -194,6 +197,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **orderBookId** | **String**|  | [optional] 
  **userId** | **String**|  | [optional] 
+ **accountId** | **String**|  | [optional] 
  **orderKind** | [**OrderKind**](.md)|  | [optional] 
 
 ### Return type
@@ -305,57 +309,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CancelOrderResponseEnvelope**](CancelOrderResponseEnvelope.md)
-
-### Authorization
-
-[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **checkUserEmailExists**
-> EmailExistsResponseEnvelope checkUserEmailExists(email)
-
-Check whether a user email exists
-
-### Example
-```dart
-import 'package:dora_client/api.dart';
-// TODO Configure API key authorization: apiKeyAuthHeader
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
-// TODO Configure HTTP Bearer authorization: bearerAuth
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
-
-final api_instance = DefaultApi();
-final email = email_example; // String | 
-
-try {
-    final result = api_instance.checkUserEmailExists(email);
-    print(result);
-} catch (e) {
-    print('Exception when calling DefaultApi->checkUserEmailExists: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **String**|  | 
-
-### Return type
-
-[**EmailExistsResponseEnvelope**](EmailExistsResponseEnvelope.md)
 
 ### Authorization
 
@@ -2543,6 +2496,51 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getTransactionsStream**
+> List<StreamTransactionsEntry> getTransactionsStream(since)
+
+Get transactions since a specific time, and open a stream for further updates
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthQuery
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthQuery').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthQuery').apiKeyPrefix = 'Bearer';
+
+final api_instance = DefaultApi();
+final since = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final result = api_instance.getTransactionsStream(since);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getTransactionsStream: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **since** | **DateTime**|  | [optional] 
+
+### Return type
+
+[**List<StreamTransactionsEntry>**](StreamTransactionsEntry.md)
+
+### Authorization
+
+[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getUserById**
 > UserEnvelope getUserById(userId)
 
@@ -2672,6 +2670,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List<StreamPositionsEntry>**](StreamPositionsEntry.md)
+
+### Authorization
+
+[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUserLeverageAccruedInterestStream**
+> StreamCurrentLeverageAccruedInterestResponse getUserLeverageAccruedInterestStream(userId)
+
+Stream user's current leverage accrued interest in real time
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthQuery
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthQuery').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthQuery').apiKeyPrefix = 'Bearer';
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getUserLeverageAccruedInterestStream(userId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getUserLeverageAccruedInterestStream: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+
+### Return type
+
+[**StreamCurrentLeverageAccruedInterestResponse**](StreamCurrentLeverageAccruedInterestResponse.md)
 
 ### Authorization
 
@@ -2866,6 +2909,69 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUsers**
+> ListUsersResponseEnvelope getUsers(id, limit, offset, email, firstName, lastName, countryOfDomicile)
+
+Get all users (admin only)
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final limit = 56; // int | 
+final offset = 56; // int | 
+final email = email_example; // String | 
+final firstName = firstName_example; // String | 
+final lastName = lastName_example; // String | 
+final countryOfDomicile = ; // CountryCode | 
+
+try {
+    final result = api_instance.getUsers(id, limit, offset, email, firstName, lastName, countryOfDomicile);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getUsers: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  | [optional] 
+ **limit** | **int**|  | [optional] [default to 100]
+ **offset** | **int**|  | [optional] [default to 0]
+ **email** | **String**|  | [optional] 
+ **firstName** | **String**|  | [optional] 
+ **lastName** | **String**|  | [optional] 
+ **countryOfDomicile** | [**CountryCode**](.md)|  | [optional] 
+
+### Return type
+
+[**ListUsersResponseEnvelope**](ListUsersResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

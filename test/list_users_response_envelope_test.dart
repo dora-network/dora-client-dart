@@ -11,12 +11,12 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for EmailExistsResponseEnvelope
+// tests for ListUsersResponseEnvelope
 void main() {
-  // final instance = EmailExistsResponseEnvelope();
+  // final instance = ListUsersResponseEnvelope();
 
-  group('test EmailExistsResponseEnvelope', () {
-    // UserExistsResponse data
+  group('test ListUsersResponseEnvelope', () {
+    // List<User> data (default value: const [])
     test('to test the property `data`', () async {
       // TODO
     });

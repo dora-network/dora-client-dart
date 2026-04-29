@@ -1,4 +1,4 @@
-# dora_client.model.EmailExistsResponseEnvelope
+# dora_client.model.ListUsersResponseEnvelope
 
 ## Load the model package
 ```dart
@@ -8,7 +8,7 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**UserExistsResponse**](UserExistsResponse.md) |  | [optional] 
+**data** | [**List<User>**](User.md) |  | [optional] [default to const []]
 **error** | **String** | The error message. Present for error (non-2xx) responses. | [optional] 
 **metadata** | [**Metadata**](Metadata.md) | Metadata about the response, including status code and trace information. | 
 

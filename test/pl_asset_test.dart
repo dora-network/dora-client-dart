@@ -16,6 +16,17 @@ void main() {
   // final instance = PLAsset();
 
   group('test PLAsset', () {
+    // The ID of the asset
+    // String id
+    test('to test the property `id`', () async {
+      // TODO
+    });
+
+    // AssetKind kind
+    test('to test the property `kind`', () async {
+      // TODO
+    });
+
     // The symbol of the asset
     // String symbol
     test('to test the property `symbol`', () async {

@@ -113,6 +113,7 @@ class UnitedPosition {
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
     'global_position_id',
+    'transaction_ids',
   };
 }
 

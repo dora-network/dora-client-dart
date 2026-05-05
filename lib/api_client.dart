@@ -188,6 +188,16 @@ class ApiClient {
           return APIKeyResponseEnvelope.fromJson(value);
         case 'APIKeys':
           return APIKeys.fromJson(value);
+        case 'AccountBalanceTransfer':
+          return AccountBalanceTransfer.fromJson(value);
+        case 'AccountPortfolioResponseV2':
+          return AccountPortfolioResponseV2.fromJson(value);
+        case 'AccountPortfolioV2':
+          return AccountPortfolioV2.fromJson(value);
+        case 'AccountSummaryV2':
+          return AccountSummaryV2.fromJson(value);
+        case 'AccountV2':
+          return AccountV2.fromJson(value);
         case 'AllPositions':
           return AllPositions.fromJson(value);
         case 'AllPositionsResponseEnvelope':
@@ -228,6 +238,8 @@ class ApiClient {
           return ClaimLeverageAccruedInterestRequest.fromJson(value);
         case 'ClaimLeverageAccruedInterestResponseEnvelope':
           return ClaimLeverageAccruedInterestResponseEnvelope.fromJson(value);
+        case 'CloseAccountRequest':
+          return CloseAccountRequest.fromJson(value);
         case 'ClosePositionRequest':
           return ClosePositionRequest.fromJson(value);
         case 'ClosePositionResp':
@@ -280,6 +292,12 @@ class ApiClient {
           return GetRealizedPnlSettlementsResponseEnvelope.fromJson(value);
         case 'GetTopOfBookResponseEnvelope':
           return GetTopOfBookResponseEnvelope.fromJson(value);
+        case 'HistoricalLeverageInterestRate':
+          return HistoricalLeverageInterestRate.fromJson(value);
+        case 'HistoricalLeverageInterestRates':
+          return HistoricalLeverageInterestRates.fromJson(value);
+        case 'HistoricalLeverageInterestRatesResponseEnvelope':
+          return HistoricalLeverageInterestRatesResponseEnvelope.fromJson(value);
         case 'IsolateCollateralRequest':
           return IsolateCollateralRequest.fromJson(value);
         case 'IsolateCollateralResponse':
@@ -288,12 +306,18 @@ class ApiClient {
           return IsolatedCollateral.fromJson(value);
         case 'IsolatedPosition':
           return IsolatedPosition.fromJson(value);
+        case 'LedgerAccountsResponseV2Envelope':
+          return LedgerAccountsResponseV2Envelope.fromJson(value);
         case 'LedgerModuleByAssetResponseEnvelope':
           return LedgerModuleByAssetResponseEnvelope.fromJson(value);
         case 'LedgerModuleResponseEnvelope':
           return LedgerModuleResponseEnvelope.fromJson(value);
         case 'LeverageBalanceResponse':
           return LeverageBalanceResponse.fromJson(value);
+        case 'LeverageInterestRate':
+          return LeverageInterestRate.fromJson(value);
+        case 'LeverageInterestRateResponseEnvelope':
+          return LeverageInterestRateResponseEnvelope.fromJson(value);
         case 'LeverageModuleResponse':
           return LeverageModuleResponse.fromJson(value);
         case 'LeverageRequestError':
@@ -308,6 +332,8 @@ class ApiClient {
           return LiquidityRequest.fromJson(value);
         case 'LiquidityResponseEnvelope':
           return LiquidityResponseEnvelope.fromJson(value);
+        case 'ListAccountsResponseV2Envelope':
+          return ListAccountsResponseV2Envelope.fromJson(value);
         case 'ListAssetPriceResponseEnvelope':
           return ListAssetPriceResponseEnvelope.fromJson(value);
         case 'ListCandlesResponseEnvelope':
@@ -340,6 +366,10 @@ class ApiClient {
           return Metadata.fromJson(value);
         case 'ModuleBalance':
           return ModuleBalance.fromJson(value);
+        case 'NewIsolatedAccountRequestV2':
+          return NewIsolatedAccountRequestV2.fromJson(value);
+        case 'NewIsolatedAccountResponseV2Envelope':
+          return NewIsolatedAccountResponseV2Envelope.fromJson(value);
         case 'Order':
           return Order.fromJson(value);
         case 'OrderBook':
@@ -490,6 +520,10 @@ class ApiClient {
           return TransactionsSettlementsResponse.fromJson(value);
         case 'TransactionsSettlementsResponseEnvelope':
           return TransactionsSettlementsResponseEnvelope.fromJson(value);
+        case 'TransferAccountBalancesRequest':
+          return TransferAccountBalancesRequest.fromJson(value);
+        case 'TransferAccountBalancesResponseEnvelope':
+          return TransferAccountBalancesResponseEnvelope.fromJson(value);
         case 'TransferBalancesRequest':
           return TransferBalancesRequest.fromJson(value);
         case 'TransferBalancesResponseEnvelope':

@@ -56,8 +56,28 @@ void main() {
       // TODO
     });
 
-    // int maxUtilization
+    // num maxUtilization
     test('to test the property `maxUtilization`', () async {
+      // TODO
+    });
+
+    // num minimumRate
+    test('to test the property `minimumRate`', () async {
+      // TODO
+    });
+
+    // num kinkRate
+    test('to test the property `kinkRate`', () async {
+      // TODO
+    });
+
+    // num maximumRate
+    test('to test the property `maximumRate`', () async {
+      // TODO
+    });
+
+    // num kinkUtilization
+    test('to test the property `kinkUtilization`', () async {
       // TODO
     });
 

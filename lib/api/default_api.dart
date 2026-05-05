@@ -320,6 +320,58 @@ class DefaultApi {
     return null;
   }
 
+  /// Close an isolated account, repaying the borrowed
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [CloseAccountRequest] closeAccountRequest (required):
+  Future<Response> closeIsolatedAccountV2WithHttpInfo(CloseAccountRequest closeAccountRequest,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v2/accounts/close';
+
+    // ignore: prefer_final_locals
+    Object? postBody = closeAccountRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Close an isolated account, repaying the borrowed
+  ///
+  /// Parameters:
+  ///
+  /// * [CloseAccountRequest] closeAccountRequest (required):
+  Future<ClosePositionResponseEnvelope?> closeIsolatedAccountV2(CloseAccountRequest closeAccountRequest,) async {
+    final response = await closeIsolatedAccountV2WithHttpInfo(closeAccountRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ClosePositionResponseEnvelope',) as ClosePositionResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Close isolated positions, repaying the borrowed
   ///
   /// Note: This method returns the HTTP [Response].
@@ -528,6 +580,58 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateConditionalOrderResponseEnvelope',) as CreateConditionalOrderResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Create a new isolated account for a user transferring available assets into the account
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [NewIsolatedAccountRequestV2] newIsolatedAccountRequestV2 (required):
+  Future<Response> createNewIsolatedAccountV2WithHttpInfo(NewIsolatedAccountRequestV2 newIsolatedAccountRequestV2,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v2/accounts/new_isolated';
+
+    // ignore: prefer_final_locals
+    Object? postBody = newIsolatedAccountRequestV2;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Create a new isolated account for a user transferring available assets into the account
+  ///
+  /// Parameters:
+  ///
+  /// * [NewIsolatedAccountRequestV2] newIsolatedAccountRequestV2 (required):
+  Future<NewIsolatedAccountResponseV2Envelope?> createNewIsolatedAccountV2(NewIsolatedAccountRequestV2 newIsolatedAccountRequestV2,) async {
+    final response = await createNewIsolatedAccountV2WithHttpInfo(newIsolatedAccountRequestV2,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'NewIsolatedAccountResponseV2Envelope',) as NewIsolatedAccountResponseV2Envelope;
     
     }
     return null;
@@ -1390,6 +1494,50 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListOrdersResponseEnvelope',) as ListOrdersResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get your own accounts
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getLedgerAccountsSelfV2WithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v2/ledger/accounts/self';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get your own accounts
+  Future<LedgerAccountsResponseV2Envelope?> getLedgerAccountsSelfV2() async {
+    final response = await getLedgerAccountsSelfV2WithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LedgerAccountsResponseV2Envelope',) as LedgerAccountsResponseV2Envelope;
     
     }
     return null;
@@ -2734,12 +2882,18 @@ class DefaultApi {
   /// * [DateTime] createdAfter:
   ///   Filter settlements created after this time
   ///
+  /// * [DateTime] createdBefore:
+  ///   Filter settlements created before this time
+  ///
+  /// * [DateTime] settledAfter:
+  ///   Filter settlements settled after this time
+  ///
   /// * [DateTime] settledBefore:
   ///   Filter settlements settled before this time
   ///
   /// * [bool] isSettled:
   ///   Filter settlements by settlement status
-  Future<Response> getTransactionsSettlementsWithHttpInfo({ String? tenantId, String? userId, String? positionId, String? txKind, DateTime? createdAfter, DateTime? settledBefore, bool? isSettled, }) async {
+  Future<Response> getTransactionsSettlementsWithHttpInfo({ String? tenantId, String? userId, String? positionId, String? txKind, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/transactions/settlements';
 
@@ -2764,6 +2918,12 @@ class DefaultApi {
     }
     if (createdAfter != null) {
       queryParams.addAll(_queryParams('', 'created_after', createdAfter));
+    }
+    if (createdBefore != null) {
+      queryParams.addAll(_queryParams('', 'created_before', createdBefore));
+    }
+    if (settledAfter != null) {
+      queryParams.addAll(_queryParams('', 'settled_after', settledAfter));
     }
     if (settledBefore != null) {
       queryParams.addAll(_queryParams('', 'settled_before', settledBefore));
@@ -2805,13 +2965,19 @@ class DefaultApi {
   /// * [DateTime] createdAfter:
   ///   Filter settlements created after this time
   ///
+  /// * [DateTime] createdBefore:
+  ///   Filter settlements created before this time
+  ///
+  /// * [DateTime] settledAfter:
+  ///   Filter settlements settled after this time
+  ///
   /// * [DateTime] settledBefore:
   ///   Filter settlements settled before this time
   ///
   /// * [bool] isSettled:
   ///   Filter settlements by settlement status
-  Future<TransactionsSettlementsResponseEnvelope?> getTransactionsSettlements({ String? tenantId, String? userId, String? positionId, String? txKind, DateTime? createdAfter, DateTime? settledBefore, bool? isSettled, }) async {
-    final response = await getTransactionsSettlementsWithHttpInfo( tenantId: tenantId, userId: userId, positionId: positionId, txKind: txKind, createdAfter: createdAfter, settledBefore: settledBefore, isSettled: isSettled, );
+  Future<TransactionsSettlementsResponseEnvelope?> getTransactionsSettlements({ String? tenantId, String? userId, String? positionId, String? txKind, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, }) async {
+    final response = await getTransactionsSettlementsWithHttpInfo( tenantId: tenantId, userId: userId, positionId: positionId, txKind: txKind, createdAfter: createdAfter, createdBefore: createdBefore, settledAfter: settledAfter, settledBefore: settledBefore, isSettled: isSettled, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3797,6 +3963,142 @@ class DefaultApi {
     return null;
   }
 
+  /// Get historical leverage interest rates for a specific asset
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] assetId (required):
+  ///
+  /// * [DateTime] start:
+  ///
+  /// * [DateTime] end:
+  Future<Response> leverageGetHistoricalInterestRatesWithHttpInfo(String assetId, { DateTime? start, DateTime? end, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/leverage/interest_rate/{asset_id}/historical'
+      .replaceAll('{asset_id}', assetId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (start != null) {
+      queryParams.addAll(_queryParams('', 'start', start));
+    }
+    if (end != null) {
+      queryParams.addAll(_queryParams('', 'end', end));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get historical leverage interest rates for a specific asset
+  ///
+  /// Parameters:
+  ///
+  /// * [String] assetId (required):
+  ///
+  /// * [DateTime] start:
+  ///
+  /// * [DateTime] end:
+  Future<HistoricalLeverageInterestRatesResponseEnvelope?> leverageGetHistoricalInterestRates(String assetId, { DateTime? start, DateTime? end, }) async {
+    final response = await leverageGetHistoricalInterestRatesWithHttpInfo(assetId,  start: start, end: end, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'HistoricalLeverageInterestRatesResponseEnvelope',) as HistoricalLeverageInterestRatesResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get leverage interest rate for a specific asset
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] assetId (required):
+  ///
+  /// * [DateTime] start:
+  ///
+  /// * [DateTime] end:
+  Future<Response> leverageGetInterestRateWithHttpInfo(String assetId, { DateTime? start, DateTime? end, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/leverage/interest_rate/{asset_id}'
+      .replaceAll('{asset_id}', assetId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (start != null) {
+      queryParams.addAll(_queryParams('', 'start', start));
+    }
+    if (end != null) {
+      queryParams.addAll(_queryParams('', 'end', end));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get leverage interest rate for a specific asset
+  ///
+  /// Parameters:
+  ///
+  /// * [String] assetId (required):
+  ///
+  /// * [DateTime] start:
+  ///
+  /// * [DateTime] end:
+  Future<LeverageInterestRateResponseEnvelope?> leverageGetInterestRate(String assetId, { DateTime? start, DateTime? end, }) async {
+    final response = await leverageGetInterestRateWithHttpInfo(assetId,  start: start, end: end, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LeverageInterestRateResponseEnvelope',) as LeverageInterestRateResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Create an isolated position by transferring collateral to the position from the user's global collateral
   ///
   /// Note: This method returns the HTTP [Response].
@@ -4118,6 +4420,50 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LiquidityResponseEnvelope',) as LiquidityResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// List all accounts for the authenticated user
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> listAccountsSelfV2WithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/v2/user/self/accounts';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// List all accounts for the authenticated user
+  Future<ListAccountsResponseV2Envelope?> listAccountsSelfV2() async {
+    final response = await listAccountsSelfV2WithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListAccountsResponseV2Envelope',) as ListAccountsResponseV2Envelope;
     
     }
     return null;
@@ -5181,6 +5527,58 @@ class DefaultApi {
         .cast<StreamTradesEntry>()
         .toList(growable: false);
 
+    }
+    return null;
+  }
+
+  /// Transfer available balance between a user's accounts
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [TransferAccountBalancesRequest] transferAccountBalancesRequest (required):
+  Future<Response> transferAccountBalancesV2WithHttpInfo(TransferAccountBalancesRequest transferAccountBalancesRequest,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v2/accounts/transfer_balances';
+
+    // ignore: prefer_final_locals
+    Object? postBody = transferAccountBalancesRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Transfer available balance between a user's accounts
+  ///
+  /// Parameters:
+  ///
+  /// * [TransferAccountBalancesRequest] transferAccountBalancesRequest (required):
+  Future<TransferAccountBalancesResponseEnvelope?> transferAccountBalancesV2(TransferAccountBalancesRequest transferAccountBalancesRequest,) async {
+    final response = await transferAccountBalancesV2WithHttpInfo(transferAccountBalancesRequest,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TransferAccountBalancesResponseEnvelope',) as TransferAccountBalancesResponseEnvelope;
+    
     }
     return null;
   }

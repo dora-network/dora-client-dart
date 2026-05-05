@@ -56,6 +56,13 @@ void main() {
       // TODO
     });
 
+    // Close an isolated account, repaying the borrowed
+    //
+    //Future<ClosePositionResponseEnvelope> closeIsolatedAccountV2(CloseAccountRequest closeAccountRequest) async
+    test('test closeIsolatedAccountV2', () async {
+      // TODO
+    });
+
     // Close isolated positions, repaying the borrowed
     //
     //Future<ClosePositionResponseEnvelope> closeIsolatedPosition(ClosePositionRequest closePositionRequest) async
@@ -81,6 +88,13 @@ void main() {
     //
     //Future<CreateConditionalOrderResponseEnvelope> createConditionalOrder(CreateConditionalOrderRequest createConditionalOrderRequest) async
     test('test createConditionalOrder', () async {
+      // TODO
+    });
+
+    // Create a new isolated account for a user transferring available assets into the account
+    //
+    //Future<NewIsolatedAccountResponseV2Envelope> createNewIsolatedAccountV2(NewIsolatedAccountRequestV2 newIsolatedAccountRequestV2) async
+    test('test createNewIsolatedAccountV2', () async {
       // TODO
     });
 
@@ -193,6 +207,13 @@ void main() {
     //
     //Future<ListOrdersResponseEnvelope> getL3Depth(String orderBookId) async
     test('test getL3Depth', () async {
+      // TODO
+    });
+
+    // Get your own accounts
+    //
+    //Future<LedgerAccountsResponseV2Envelope> getLedgerAccountsSelfV2() async
+    test('test getLedgerAccountsSelfV2', () async {
       // TODO
     });
 
@@ -359,7 +380,7 @@ void main() {
 
     // Get transactions settlements with filters
     //
-    //Future<TransactionsSettlementsResponseEnvelope> getTransactionsSettlements({ String tenantId, String userId, String positionId, String txKind, DateTime createdAfter, DateTime settledBefore, bool isSettled }) async
+    //Future<TransactionsSettlementsResponseEnvelope> getTransactionsSettlements({ String tenantId, String userId, String positionId, String txKind, DateTime createdAfter, DateTime createdBefore, DateTime settledAfter, DateTime settledBefore, bool isSettled }) async
     test('test getTransactionsSettlements', () async {
       // TODO
     });
@@ -484,6 +505,20 @@ void main() {
       // TODO
     });
 
+    // Get historical leverage interest rates for a specific asset
+    //
+    //Future<HistoricalLeverageInterestRatesResponseEnvelope> leverageGetHistoricalInterestRates(String assetId, { DateTime start, DateTime end }) async
+    test('test leverageGetHistoricalInterestRates', () async {
+      // TODO
+    });
+
+    // Get leverage interest rate for a specific asset
+    //
+    //Future<LeverageInterestRateResponseEnvelope> leverageGetInterestRate(String assetId, { DateTime start, DateTime end }) async
+    test('test leverageGetInterestRate', () async {
+      // TODO
+    });
+
     // Create an isolated position by transferring collateral to the position from the user's global collateral
     //
     //Future<IsolateCollateralResponse> leverageIsolateCollateral(IsolateCollateralRequest isolateCollateralRequest) async
@@ -525,6 +560,13 @@ void main() {
     //
     //Future<LiquidityResponseEnvelope> liquiditySubtract(String poolId, LiquidityRequest liquidityRequest) async
     test('test liquiditySubtract', () async {
+      // TODO
+    });
+
+    // List all accounts for the authenticated user
+    //
+    //Future<ListAccountsResponseV2Envelope> listAccountsSelfV2() async
+    test('test listAccountsSelfV2', () async {
       // TODO
     });
 
@@ -641,6 +683,13 @@ void main() {
     //
     //Future<List<StreamTradesEntry>> streamTrades(String orderBookId, { DateTime since }) async
     test('test streamTrades', () async {
+      // TODO
+    });
+
+    // Transfer available balance between a user's accounts
+    //
+    //Future<TransferAccountBalancesResponseEnvelope> transferAccountBalancesV2(TransferAccountBalancesRequest transferAccountBalancesRequest) async
+    test('test transferAccountBalancesV2', () async {
       // TODO
     });
 

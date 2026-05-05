@@ -16,7 +16,11 @@ Name | Type | Description | Notes
 **description** | **String** |  | 
 **liquidationWeight** | **num** |  | 
 **maxSupply** | **int** |  | 
-**maxUtilization** | **int** |  | 
+**maxUtilization** | **num** |  | 
+**minimumRate** | **num** |  | 
+**kinkRate** | **num** |  | 
+**maximumRate** | **num** |  | 
+**kinkUtilization** | **num** |  | 
 **name** | **String** |  | 
 **symbol** | **String** |  | 
 **kind** | [**AssetKind**](AssetKind.md) |  | 

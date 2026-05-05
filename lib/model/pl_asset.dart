@@ -13,6 +13,8 @@ part of openapi.api;
 class PLAsset {
   /// Returns a new [PLAsset] instance.
   PLAsset({
+    required this.id,
+    required this.kind,
     required this.symbol,
     required this.side,
     required this.avgEntryPrice,
@@ -30,6 +32,11 @@ class PLAsset {
     required this.locked,
     required this.unusedCollateral,
   });
+
+  /// The ID of the asset
+  String id;
+
+  AssetKind kind;
 
   /// The symbol of the asset
   String symbol;
@@ -98,6 +105,8 @@ class PLAsset {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PLAsset &&
+    other.id == id &&
+    other.kind == kind &&
     other.symbol == symbol &&
     other.side == side &&
     other.avgEntryPrice == avgEntryPrice &&
@@ -118,6 +127,8 @@ class PLAsset {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
+    (id.hashCode) +
+    (kind.hashCode) +
     (symbol.hashCode) +
     (side.hashCode) +
     (avgEntryPrice.hashCode) +
@@ -136,10 +147,12 @@ class PLAsset {
     (unusedCollateral.hashCode);
 
   @override
-  String toString() => 'PLAsset[symbol=$symbol, side=$side, avgEntryPrice=$avgEntryPrice, markPrice=$markPrice, liquidationPrice=$liquidationPrice, available=$available, borrowed=$borrowed, margin=$margin, unrealizedPl=$unrealizedPl, leverageLimit=$leverageLimit, tp=$tp, sl=$sl, initialCapital=$initialCapital, impendingBorrows=$impendingBorrows, locked=$locked, unusedCollateral=$unusedCollateral]';
+  String toString() => 'PLAsset[id=$id, kind=$kind, symbol=$symbol, side=$side, avgEntryPrice=$avgEntryPrice, markPrice=$markPrice, liquidationPrice=$liquidationPrice, available=$available, borrowed=$borrowed, margin=$margin, unrealizedPl=$unrealizedPl, leverageLimit=$leverageLimit, tp=$tp, sl=$sl, initialCapital=$initialCapital, impendingBorrows=$impendingBorrows, locked=$locked, unusedCollateral=$unusedCollateral]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'id'] = this.id;
+      json[r'kind'] = this.kind;
       json[r'symbol'] = this.symbol;
       json[r'side'] = this.side;
       json[r'avg_entry_price'] = this.avgEntryPrice;
@@ -190,6 +203,8 @@ class PLAsset {
       }());
 
       return PLAsset(
+        id: mapValueOfType<String>(json, r'id')!,
+        kind: AssetKind.fromJson(json[r'kind'])!,
         symbol: mapValueOfType<String>(json, r'symbol')!,
         side: PLAssetSideEnum.fromJson(json[r'side'])!,
         avgEntryPrice: mapValueOfType<String>(json, r'avg_entry_price')!,
@@ -253,6 +268,8 @@ class PLAsset {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'id',
+    'kind',
     'symbol',
     'side',
     'avg_entry_price',

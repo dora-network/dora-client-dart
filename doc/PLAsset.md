@@ -8,6 +8,8 @@ import 'package:dora_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **String** | The ID of the asset | 
+**kind** | [**AssetKind**](AssetKind.md) |  | 
 **symbol** | **String** | The symbol of the asset | 
 **side** | **String** | The side of the position (LONG or SHORT) | 
 **avgEntryPrice** | **String** | The average entry price of the position | 

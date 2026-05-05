@@ -22,6 +22,10 @@ class Asset {
     required this.liquidationWeight,
     required this.maxSupply,
     required this.maxUtilization,
+    required this.minimumRate,
+    required this.kinkRate,
+    required this.maximumRate,
+    required this.kinkUtilization,
     required this.name,
     required this.symbol,
     required this.kind,
@@ -60,7 +64,24 @@ class Asset {
   int maxSupply;
 
   /// Minimum value: 0
-  int maxUtilization;
+  /// Maximum value: 1
+  num maxUtilization;
+
+  /// Minimum value: 0
+  /// Maximum value: 1
+  num minimumRate;
+
+  /// Minimum value: 0
+  /// Maximum value: 1
+  num kinkRate;
+
+  /// Minimum value: 0
+  /// Maximum value: 1
+  num maximumRate;
+
+  /// Minimum value: 0
+  /// Maximum value: 1
+  num kinkUtilization;
 
   String name;
 
@@ -111,6 +132,10 @@ class Asset {
     other.liquidationWeight == liquidationWeight &&
     other.maxSupply == maxSupply &&
     other.maxUtilization == maxUtilization &&
+    other.minimumRate == minimumRate &&
+    other.kinkRate == kinkRate &&
+    other.maximumRate == maximumRate &&
+    other.kinkUtilization == kinkUtilization &&
     other.name == name &&
     other.symbol == symbol &&
     other.kind == kind &&
@@ -136,6 +161,10 @@ class Asset {
     (liquidationWeight.hashCode) +
     (maxSupply.hashCode) +
     (maxUtilization.hashCode) +
+    (minimumRate.hashCode) +
+    (kinkRate.hashCode) +
+    (maximumRate.hashCode) +
+    (kinkUtilization.hashCode) +
     (name.hashCode) +
     (symbol.hashCode) +
     (kind.hashCode) +
@@ -150,7 +179,7 @@ class Asset {
     (bond == null ? 0 : bond!.hashCode);
 
   @override
-  String toString() => 'Asset[id=$id, collateralWeight=$collateralWeight, createdAt=$createdAt, decimals=$decimals, fractionalizedUnits=$fractionalizedUnits, description=$description, liquidationWeight=$liquidationWeight, maxSupply=$maxSupply, maxUtilization=$maxUtilization, name=$name, symbol=$symbol, kind=$kind, yield_=$yield_, canAddLiquidity=$canAddLiquidity, canDirectBorrow=$canDirectBorrow, canOnboard=$canOnboard, canTrade=$canTrade, canVirtualBorrow=$canVirtualBorrow, maxLeverage=$maxLeverage, leverageInterestRate=$leverageInterestRate, bond=$bond]';
+  String toString() => 'Asset[id=$id, collateralWeight=$collateralWeight, createdAt=$createdAt, decimals=$decimals, fractionalizedUnits=$fractionalizedUnits, description=$description, liquidationWeight=$liquidationWeight, maxSupply=$maxSupply, maxUtilization=$maxUtilization, minimumRate=$minimumRate, kinkRate=$kinkRate, maximumRate=$maximumRate, kinkUtilization=$kinkUtilization, name=$name, symbol=$symbol, kind=$kind, yield_=$yield_, canAddLiquidity=$canAddLiquidity, canDirectBorrow=$canDirectBorrow, canOnboard=$canOnboard, canTrade=$canTrade, canVirtualBorrow=$canVirtualBorrow, maxLeverage=$maxLeverage, leverageInterestRate=$leverageInterestRate, bond=$bond]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -163,6 +192,10 @@ class Asset {
       json[r'liquidation_weight'] = this.liquidationWeight;
       json[r'max_supply'] = this.maxSupply;
       json[r'max_utilization'] = this.maxUtilization;
+      json[r'minimum_rate'] = this.minimumRate;
+      json[r'kink_rate'] = this.kinkRate;
+      json[r'maximum_rate'] = this.maximumRate;
+      json[r'kink_utilization'] = this.kinkUtilization;
       json[r'name'] = this.name;
       json[r'symbol'] = this.symbol;
       json[r'kind'] = this.kind;
@@ -213,7 +246,11 @@ class Asset {
         description: mapValueOfType<String>(json, r'description')!,
         liquidationWeight: num.parse('${json[r'liquidation_weight']}'),
         maxSupply: mapValueOfType<int>(json, r'max_supply')!,
-        maxUtilization: mapValueOfType<int>(json, r'max_utilization')!,
+        maxUtilization: num.parse('${json[r'max_utilization']}'),
+        minimumRate: num.parse('${json[r'minimum_rate']}'),
+        kinkRate: num.parse('${json[r'kink_rate']}'),
+        maximumRate: num.parse('${json[r'maximum_rate']}'),
+        kinkUtilization: num.parse('${json[r'kink_utilization']}'),
         name: mapValueOfType<String>(json, r'name')!,
         symbol: mapValueOfType<String>(json, r'symbol')!,
         kind: AssetKind.fromJson(json[r'kind'])!,
@@ -282,6 +319,10 @@ class Asset {
     'liquidation_weight',
     'max_supply',
     'max_utilization',
+    'minimum_rate',
+    'kink_rate',
+    'maximum_rate',
+    'kink_utilization',
     'name',
     'symbol',
     'kind',

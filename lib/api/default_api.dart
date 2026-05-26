@@ -1150,6 +1150,75 @@ class DefaultApi {
     return null;
   }
 
+  /// Get yield chart data for an asset
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] assetId (required):
+  ///
+  /// * [DateTime] start (required):
+  ///
+  /// * [DateTime] end (required):
+  ///
+  /// * [AssetYieldResolution] resolution (required):
+  Future<Response> getAssetYieldDataWithHttpInfo(String assetId, DateTime start, DateTime end, AssetYieldResolution resolution,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/charts/{asset_id}/yield'
+      .replaceAll('{asset_id}', assetId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_queryParams('', 'start', start));
+      queryParams.addAll(_queryParams('', 'end', end));
+      queryParams.addAll(_queryParams('', 'resolution', resolution));
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get yield chart data for an asset
+  ///
+  /// Parameters:
+  ///
+  /// * [String] assetId (required):
+  ///
+  /// * [DateTime] start (required):
+  ///
+  /// * [DateTime] end (required):
+  ///
+  /// * [AssetYieldResolution] resolution (required):
+  Future<ListAssetYieldResponseEnvelope?> getAssetYieldData(String assetId, DateTime start, DateTime end, AssetYieldResolution resolution,) async {
+    final response = await getAssetYieldDataWithHttpInfo(assetId, start, end, resolution,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListAssetYieldResponseEnvelope',) as ListAssetYieldResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Get all inserts or updates for assets
   ///
   /// Note: This method returns the HTTP [Response].
@@ -4596,7 +4665,7 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [OrderBookStatus] status:
+  /// * [List<OrderBookStatus>] status:
   ///
   /// * [String] baseAssetId:
   ///
@@ -4605,7 +4674,7 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<Response> listOrderBooksWithHttpInfo({ OrderBookStatus? status, String? baseAssetId, String? quoteAssetId, int? page, int? limit, }) async {
+  Future<Response> listOrderBooksWithHttpInfo({ List<OrderBookStatus>? status, String? baseAssetId, String? quoteAssetId, int? page, int? limit, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks';
 
@@ -4617,7 +4686,7 @@ class DefaultApi {
     final formParams = <String, String>{};
 
     if (status != null) {
-      queryParams.addAll(_queryParams('', 'status', status));
+      queryParams.addAll(_queryParams('multi', 'status', status));
     }
     if (baseAssetId != null) {
       queryParams.addAll(_queryParams('', 'base_asset_id', baseAssetId));
@@ -4650,7 +4719,7 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [OrderBookStatus] status:
+  /// * [List<OrderBookStatus>] status:
   ///
   /// * [String] baseAssetId:
   ///
@@ -4659,7 +4728,7 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<ListOrderbookResponseEnvelope?> listOrderBooks({ OrderBookStatus? status, String? baseAssetId, String? quoteAssetId, int? page, int? limit, }) async {
+  Future<ListOrderbookResponseEnvelope?> listOrderBooks({ List<OrderBookStatus>? status, String? baseAssetId, String? quoteAssetId, int? page, int? limit, }) async {
     final response = await listOrderBooksWithHttpInfo( status: status, baseAssetId: baseAssetId, quoteAssetId: quoteAssetId, page: page, limit: limit, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));

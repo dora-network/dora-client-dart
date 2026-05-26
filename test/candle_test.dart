@@ -46,6 +46,11 @@ void main() {
       // TODO
     });
 
+    // String ytm
+    test('to test the property `ytm`', () async {
+      // TODO
+    });
+
     // String volume
     test('to test the property `volume`', () async {
       // TODO

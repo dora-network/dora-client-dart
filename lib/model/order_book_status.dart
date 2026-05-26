@@ -26,12 +26,14 @@ class OrderBookStatus {
   static const CLOSED = OrderBookStatus._(r'CLOSED');
   static const OPEN = OrderBookStatus._(r'OPEN');
   static const SUSPENDED = OrderBookStatus._(r'SUSPENDED');
+  static const TESTING = OrderBookStatus._(r'TESTING');
 
   /// List of all possible values in this [enum][OrderBookStatus].
   static const values = <OrderBookStatus>[
     CLOSED,
     OPEN,
     SUSPENDED,
+    TESTING,
   ];
 
   static OrderBookStatus? fromJson(dynamic value) => OrderBookStatusTypeTransformer().decode(value);
@@ -73,6 +75,7 @@ class OrderBookStatusTypeTransformer {
         case r'CLOSED': return OrderBookStatus.CLOSED;
         case r'OPEN': return OrderBookStatus.OPEN;
         case r'SUSPENDED': return OrderBookStatus.SUSPENDED;
+        case r'TESTING': return OrderBookStatus.TESTING;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

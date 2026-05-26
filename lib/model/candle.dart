@@ -19,6 +19,7 @@ class Candle {
     required this.high,
     required this.low,
     required this.close,
+    required this.ytm,
     required this.volume,
   });
 
@@ -34,6 +35,8 @@ class Candle {
 
   String close;
 
+  String ytm;
+
   String volume;
 
   @override
@@ -44,6 +47,7 @@ class Candle {
     other.high == high &&
     other.low == low &&
     other.close == close &&
+    other.ytm == ytm &&
     other.volume == volume;
 
   @override
@@ -55,10 +59,11 @@ class Candle {
     (high.hashCode) +
     (low.hashCode) +
     (close.hashCode) +
+    (ytm.hashCode) +
     (volume.hashCode);
 
   @override
-  String toString() => 'Candle[orderBookId=$orderBookId, startTimestamp=$startTimestamp, open=$open, high=$high, low=$low, close=$close, volume=$volume]';
+  String toString() => 'Candle[orderBookId=$orderBookId, startTimestamp=$startTimestamp, open=$open, high=$high, low=$low, close=$close, ytm=$ytm, volume=$volume]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -68,6 +73,7 @@ class Candle {
       json[r'high'] = this.high;
       json[r'low'] = this.low;
       json[r'close'] = this.close;
+      json[r'ytm'] = this.ytm;
       json[r'volume'] = this.volume;
     return json;
   }
@@ -97,6 +103,7 @@ class Candle {
         high: mapValueOfType<String>(json, r'high')!,
         low: mapValueOfType<String>(json, r'low')!,
         close: mapValueOfType<String>(json, r'close')!,
+        ytm: mapValueOfType<String>(json, r'ytm')!,
         volume: mapValueOfType<String>(json, r'volume')!,
       );
     }
@@ -151,6 +158,7 @@ class Candle {
     'high',
     'low',
     'close',
+    'ytm',
     'volume',
   };
 }

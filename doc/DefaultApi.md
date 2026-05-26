@@ -30,6 +30,7 @@ Method | HTTP request | Description
 [**getAssetById**](DefaultApi.md#getassetbyid) | **GET** /v1/assets/{asset_id} | Get asset by ID
 [**getAssetPrice**](DefaultApi.md#getassetprice) | **GET** /v1/price/asset/{asset_id} | Get the current price of an asset
 [**getAssetYTMById**](DefaultApi.md#getassetytmbyid) | **GET** /v1/assets/{asset_id}/ytm | Get annualized yield to maturity for a bond asset
+[**getAssetYieldData**](DefaultApi.md#getassetyielddata) | **GET** /v1/charts/{asset_id}/yield | Get yield chart data for an asset
 [**getAssetsStream**](DefaultApi.md#getassetsstream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 [**getCandleData**](DefaultApi.md#getcandledata) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
 [**getCouponPaymentsByAssetId**](DefaultApi.md#getcouponpaymentsbyassetid) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
@@ -1157,6 +1158,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetAssetYTMByIDResponseEnvelope**](GetAssetYTMByIDResponseEnvelope.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAssetYieldData**
+> ListAssetYieldResponseEnvelope getAssetYieldData(assetId, start, end, resolution)
+
+Get yield chart data for an asset
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final assetId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final start = 2013-10-20T19:20:30+01:00; // DateTime | 
+final end = 2013-10-20T19:20:30+01:00; // DateTime | 
+final resolution = ; // AssetYieldResolution | 
+
+try {
+    final result = api_instance.getAssetYieldData(assetId, start, end, resolution);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getAssetYieldData: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetId** | **String**|  | 
+ **start** | **DateTime**|  | 
+ **end** | **DateTime**|  | 
+ **resolution** | [**AssetYieldResolution**](.md)|  | 
+
+### Return type
+
+[**ListAssetYieldResponseEnvelope**](ListAssetYieldResponseEnvelope.md)
 
 ### Authorization
 
@@ -4010,7 +4058,7 @@ import 'package:dora_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = DefaultApi();
-final status = ; // OrderBookStatus | 
+final status = []; // List<OrderBookStatus> | 
 final baseAssetId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final quoteAssetId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final page = 56; // int | 
@@ -4028,7 +4076,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | [**OrderBookStatus**](.md)|  | [optional] 
+ **status** | [**List<OrderBookStatus>**](OrderBookStatus.md)|  | [optional] [default to const []]
  **baseAssetId** | **String**|  | [optional] 
  **quoteAssetId** | **String**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]

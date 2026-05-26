@@ -58,6 +58,9 @@ String parameterToString(dynamic value) {
   if (value is AssetKind) {
     return AssetKindTypeTransformer().encode(value).toString();
   }
+  if (value is AssetYieldResolution) {
+    return AssetYieldResolutionTypeTransformer().encode(value).toString();
+  }
   if (value is BondKind) {
     return BondKindTypeTransformer().encode(value).toString();
   }

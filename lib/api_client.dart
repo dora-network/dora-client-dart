@@ -218,6 +218,10 @@ class ApiClient {
           return AssetRequestError.fromJson(value);
         case 'AssetYTM':
           return AssetYTM.fromJson(value);
+        case 'AssetYield':
+          return AssetYield.fromJson(value);
+        case 'AssetYieldResolution':
+          return AssetYieldResolutionTypeTransformer().decode(value);
         case 'BalanceTransfer':
           return BalanceTransfer.fromJson(value);
         case 'BalancesResponse':
@@ -336,6 +340,8 @@ class ApiClient {
           return ListAccountsResponseV2Envelope.fromJson(value);
         case 'ListAssetPriceResponseEnvelope':
           return ListAssetPriceResponseEnvelope.fromJson(value);
+        case 'ListAssetYieldResponseEnvelope':
+          return ListAssetYieldResponseEnvelope.fromJson(value);
         case 'ListCandlesResponseEnvelope':
           return ListCandlesResponseEnvelope.fromJson(value);
         case 'ListCouponPaymentsResponseEnvelope':

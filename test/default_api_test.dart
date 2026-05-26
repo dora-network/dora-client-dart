@@ -168,6 +168,13 @@ void main() {
       // TODO
     });
 
+    // Get yield chart data for an asset
+    //
+    //Future<ListAssetYieldResponseEnvelope> getAssetYieldData(String assetId, DateTime start, DateTime end, AssetYieldResolution resolution) async
+    test('test getAssetYieldData', () async {
+      // TODO
+    });
+
     // Get all inserts or updates for assets
     //
     //Future<List<StreamAssetsEntry>> getAssetsStream({ DateTime since, DateTime until }) async
@@ -579,7 +586,7 @@ void main() {
 
     // List order books
     //
-    //Future<ListOrderbookResponseEnvelope> listOrderBooks({ OrderBookStatus status, String baseAssetId, String quoteAssetId, int page, int limit }) async
+    //Future<ListOrderbookResponseEnvelope> listOrderBooks({ List<OrderBookStatus> status, String baseAssetId, String quoteAssetId, int page, int limit }) async
     test('test listOrderBooks', () async {
       // TODO
     });

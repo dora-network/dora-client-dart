@@ -195,6 +195,7 @@ part 'model/trade.dart';
 part 'model/trade_request_error.dart';
 part 'model/trade_response_envelope.dart';
 part 'model/transaction.dart';
+part 'model/transaction_internal_transfer.dart';
 part 'model/transaction_kind.dart';
 part 'model/transaction_request_error.dart';
 part 'model/transaction_response_envelope.dart';

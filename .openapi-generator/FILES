@@ -168,6 +168,7 @@ doc/Trade.md
 doc/TradeRequestError.md
 doc/TradeResponseEnvelope.md
 doc/Transaction.md
+doc/TransactionInternalTransfer.md
 doc/TransactionKind.md
 doc/TransactionRequestError.md
 doc/TransactionResponseEnvelope.md
@@ -391,6 +392,7 @@ lib/model/trade.dart
 lib/model/trade_request_error.dart
 lib/model/trade_response_envelope.dart
 lib/model/transaction.dart
+lib/model/transaction_internal_transfer.dart
 lib/model/transaction_kind.dart
 lib/model/transaction_request_error.dart
 lib/model/transaction_response_envelope.dart
@@ -604,6 +606,7 @@ test/tenant_restrictions_test.dart
 test/trade_request_error_test.dart
 test/trade_response_envelope_test.dart
 test/trade_test.dart
+test/transaction_internal_transfer_test.dart
 test/transaction_kind_test.dart
 test/transaction_request_error_test.dart
 test/transaction_response_envelope_test.dart

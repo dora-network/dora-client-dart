@@ -66,6 +66,11 @@ void main() {
       // TODO
     });
 
+    // TransactionInternalTransfer internalTransfer
+    test('to test the property `internalTransfer`', () async {
+      // TODO
+    });
+
 
   });
 

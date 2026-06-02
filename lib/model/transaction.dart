@@ -23,6 +23,7 @@ class Transaction {
     required this.userId,
     required this.adminUserId,
     required this.orderSide,
+    this.internalTransfer,
   });
 
   String id;
@@ -45,6 +46,14 @@ class Transaction {
 
   Side orderSide;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  TransactionInternalTransfer? internalTransfer;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is Transaction &&
     other.id == id &&
@@ -56,7 +65,8 @@ class Transaction {
     other.asset1 == asset1 &&
     other.userId == userId &&
     other.adminUserId == adminUserId &&
-    other.orderSide == orderSide;
+    other.orderSide == orderSide &&
+    other.internalTransfer == internalTransfer;
 
   @override
   int get hashCode =>
@@ -70,10 +80,11 @@ class Transaction {
     (asset1.hashCode) +
     (userId.hashCode) +
     (adminUserId.hashCode) +
-    (orderSide.hashCode);
+    (orderSide.hashCode) +
+    (internalTransfer == null ? 0 : internalTransfer!.hashCode);
 
   @override
-  String toString() => 'Transaction[id=$id, createdAt=$createdAt, kind=$kind, asset0=$asset0, quantity0=$quantity0, quantity1=$quantity1, asset1=$asset1, userId=$userId, adminUserId=$adminUserId, orderSide=$orderSide]';
+  String toString() => 'Transaction[id=$id, createdAt=$createdAt, kind=$kind, asset0=$asset0, quantity0=$quantity0, quantity1=$quantity1, asset1=$asset1, userId=$userId, adminUserId=$adminUserId, orderSide=$orderSide, internalTransfer=$internalTransfer]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -87,6 +98,11 @@ class Transaction {
       json[r'user_id'] = this.userId;
       json[r'admin_user_id'] = this.adminUserId;
       json[r'order_side'] = this.orderSide;
+    if (this.internalTransfer != null) {
+      json[r'internal_transfer'] = this.internalTransfer;
+    } else {
+      json[r'internal_transfer'] = null;
+    }
     return json;
   }
 
@@ -119,6 +135,7 @@ class Transaction {
         userId: mapValueOfType<String>(json, r'user_id')!,
         adminUserId: mapValueOfType<String>(json, r'admin_user_id')!,
         orderSide: Side.fromJson(json[r'order_side'])!,
+        internalTransfer: TransactionInternalTransfer.fromJson(json[r'internal_transfer']),
       );
     }
     return null;

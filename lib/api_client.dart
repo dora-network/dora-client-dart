@@ -512,6 +512,8 @@ class ApiClient {
           return TradeResponseEnvelope.fromJson(value);
         case 'Transaction':
           return Transaction.fromJson(value);
+        case 'TransactionInternalTransfer':
+          return TransactionInternalTransfer.fromJson(value);
         case 'TransactionKind':
           return TransactionKindTypeTransformer().decode(value);
         case 'TransactionRequestError':

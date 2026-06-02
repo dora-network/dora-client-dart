@@ -46,6 +46,7 @@ class TransactionKind {
   static const COLLATERALIZE = TransactionKind._(r'COLLATERALIZE');
   static const DE_COLLATERALIZE = TransactionKind._(r'DE-COLLATERALIZE');
   static const COUPON_PAYMENT = TransactionKind._(r'COUPON_PAYMENT');
+  static const INTERNAL_TRANSFER = TransactionKind._(r'INTERNAL_TRANSFER');
 
   /// List of all possible values in this [enum][TransactionKind].
   static const values = <TransactionKind>[
@@ -72,6 +73,7 @@ class TransactionKind {
     COLLATERALIZE,
     DE_COLLATERALIZE,
     COUPON_PAYMENT,
+    INTERNAL_TRANSFER,
   ];
 
   static TransactionKind? fromJson(dynamic value) => TransactionKindTypeTransformer().decode(value);
@@ -133,6 +135,7 @@ class TransactionKindTypeTransformer {
         case r'COLLATERALIZE': return TransactionKind.COLLATERALIZE;
         case r'DE-COLLATERALIZE': return TransactionKind.DE_COLLATERALIZE;
         case r'COUPON_PAYMENT': return TransactionKind.COUPON_PAYMENT;
+        case r'INTERNAL_TRANSFER': return TransactionKind.INTERNAL_TRANSFER;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

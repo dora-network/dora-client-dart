@@ -21,23 +21,38 @@ void main() {
       // TODO
     });
 
-    // double utilization
+    // String utilization
     test('to test the property `utilization`', () async {
       // TODO
     });
 
-    // double avgUtilization
+    // String avgUtilization
     test('to test the property `avgUtilization`', () async {
       // TODO
     });
 
-    // double avgInterestRate
-    test('to test the property `avgInterestRate`', () async {
+    // String avgBorrowingYieldRate
+    test('to test the property `avgBorrowingYieldRate`', () async {
       // TODO
     });
 
-    // double interestRate
-    test('to test the property `interestRate`', () async {
+    // String avgLendingYieldRate
+    test('to test the property `avgLendingYieldRate`', () async {
+      // TODO
+    });
+
+    // String borrowingYieldRate
+    test('to test the property `borrowingYieldRate`', () async {
+      // TODO
+    });
+
+    // String lendingYieldRate
+    test('to test the property `lendingYieldRate`', () async {
+      // TODO
+    });
+
+    // String yieldToMaturity
+    test('to test the property `yieldToMaturity`', () async {
       // TODO
     });
 

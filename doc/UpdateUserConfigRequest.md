@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **allowLiquidationsNotifications** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow liquidations notifications. | [optional] 
 **allowDepositWithdrawalNotifications** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow deposit/withdrawal notifications. | [optional] 
 **allowOrdersNotifications** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow orders notifications. | [optional] 
+**allowCopyTrading** | [**UpdateFieldBoolean**](UpdateFieldBoolean.md) | Optional: Whether to allow copy trading. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

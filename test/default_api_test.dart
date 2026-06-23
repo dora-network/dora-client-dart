@@ -512,14 +512,14 @@ void main() {
       // TODO
     });
 
-    // Get historical leverage interest rates for a specific asset
+    // Get historical leverage borrowing and lending yields for a specific asset
     //
     //Future<HistoricalLeverageInterestRatesResponseEnvelope> leverageGetHistoricalInterestRates(String assetId, { DateTime start, DateTime end }) async
     test('test leverageGetHistoricalInterestRates', () async {
       // TODO
     });
 
-    // Get leverage interest rate for a specific asset
+    // Get leverage borrowing and lending yields for a specific asset
     //
     //Future<LeverageInterestRateResponseEnvelope> leverageGetInterestRate(String assetId, { DateTime start, DateTime end }) async
     test('test leverageGetInterestRate', () async {
@@ -660,7 +660,7 @@ void main() {
     //
     // Opens a WebSocket stream for real-time asset price updates. First message contains all current prices, subsequent messages contain only changed prices. Data is sent as JSON objects keyed by asset ID.
     //
-    //Future<Map<String, AssetPrice>> streamAssetPrices({ DateTime since, String assetId }) async
+    //Future<Map<String, AssetPrice>> streamAssetPrices({ String assetId }) async
     test('test streamAssetPrices', () async {
       // TODO
     });

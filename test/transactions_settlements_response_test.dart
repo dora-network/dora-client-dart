@@ -21,12 +21,12 @@ void main() {
       // TODO
     });
 
-    // Map<String, double> userTotals (default value: const {})
+    // Map<String, String> userTotals (default value: const {})
     test('to test the property `userTotals`', () async {
       // TODO
     });
 
-    // Map<String, double> tenantTotals (default value: const {})
+    // Map<String, String> tenantTotals (default value: const {})
     test('to test the property `tenantTotals`', () async {
       // TODO
     });

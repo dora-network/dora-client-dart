@@ -83,10 +83,20 @@ class UserValue {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserValue[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserValue[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'available'), 'Required key "UserValue[available]" is missing from JSON.');
+        assert(json[r'available'] != null, 'Required key "UserValue[available]" has a null value in JSON.');
+        assert(json.containsKey(r'locked'), 'Required key "UserValue[locked]" is missing from JSON.');
+        assert(json[r'locked'] != null, 'Required key "UserValue[locked]" has a null value in JSON.');
+        assert(json.containsKey(r'borrowed'), 'Required key "UserValue[borrowed]" is missing from JSON.');
+        assert(json[r'borrowed'] != null, 'Required key "UserValue[borrowed]" has a null value in JSON.');
+        assert(json.containsKey(r'supplied'), 'Required key "UserValue[supplied]" is missing from JSON.');
+        assert(json[r'supplied'] != null, 'Required key "UserValue[supplied]" has a null value in JSON.');
+        assert(json.containsKey(r'impending_borrows'), 'Required key "UserValue[impending_borrows]" is missing from JSON.');
+        assert(json[r'impending_borrows'] != null, 'Required key "UserValue[impending_borrows]" has a null value in JSON.');
+        assert(json.containsKey(r'borrow_limit'), 'Required key "UserValue[borrow_limit]" is missing from JSON.');
+        assert(json[r'borrow_limit'] != null, 'Required key "UserValue[borrow_limit]" has a null value in JSON.');
+        assert(json.containsKey(r'liquidation_threshold'), 'Required key "UserValue[liquidation_threshold]" is missing from JSON.');
+        assert(json[r'liquidation_threshold'] != null, 'Required key "UserValue[liquidation_threshold]" has a null value in JSON.');
         return true;
       }());
 

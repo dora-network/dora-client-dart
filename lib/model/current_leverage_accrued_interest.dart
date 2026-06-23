@@ -97,10 +97,14 @@ class CurrentLeverageAccruedInterest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CurrentLeverageAccruedInterest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CurrentLeverageAccruedInterest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'user_id'), 'Required key "CurrentLeverageAccruedInterest[user_id]" is missing from JSON.');
+        assert(json[r'user_id'] != null, 'Required key "CurrentLeverageAccruedInterest[user_id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_id'), 'Required key "CurrentLeverageAccruedInterest[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "CurrentLeverageAccruedInterest[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'position_id'), 'Required key "CurrentLeverageAccruedInterest[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "CurrentLeverageAccruedInterest[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'current_accrued_interest_usd'), 'Required key "CurrentLeverageAccruedInterest[current_accrued_interest_usd]" is missing from JSON.');
+        assert(json[r'current_accrued_interest_usd'] != null, 'Required key "CurrentLeverageAccruedInterest[current_accrued_interest_usd]" has a null value in JSON.');
         return true;
       }());
 

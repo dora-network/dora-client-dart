@@ -21,26 +21,32 @@ class HistoricalLeverageInterestRate {
     required this.kinkRate,
     required this.maximumRate,
     required this.kinkUtilization,
-    required this.interestRate,
+    required this.borrowingYieldRate,
+    required this.lendingYieldRate,
+    required this.yieldToMaturity,
   });
 
   String assetId;
 
   DateTime updatedAt;
 
-  double utilization;
+  String utilization;
 
-  double maximumUtilization;
+  String maximumUtilization;
 
-  double minimumRate;
+  String minimumRate;
 
-  double kinkRate;
+  String kinkRate;
 
-  double maximumRate;
+  String maximumRate;
 
-  double kinkUtilization;
+  String kinkUtilization;
 
-  double interestRate;
+  String borrowingYieldRate;
+
+  String lendingYieldRate;
+
+  String yieldToMaturity;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is HistoricalLeverageInterestRate &&
@@ -52,7 +58,9 @@ class HistoricalLeverageInterestRate {
     other.kinkRate == kinkRate &&
     other.maximumRate == maximumRate &&
     other.kinkUtilization == kinkUtilization &&
-    other.interestRate == interestRate;
+    other.borrowingYieldRate == borrowingYieldRate &&
+    other.lendingYieldRate == lendingYieldRate &&
+    other.yieldToMaturity == yieldToMaturity;
 
   @override
   int get hashCode =>
@@ -65,10 +73,12 @@ class HistoricalLeverageInterestRate {
     (kinkRate.hashCode) +
     (maximumRate.hashCode) +
     (kinkUtilization.hashCode) +
-    (interestRate.hashCode);
+    (borrowingYieldRate.hashCode) +
+    (lendingYieldRate.hashCode) +
+    (yieldToMaturity.hashCode);
 
   @override
-  String toString() => 'HistoricalLeverageInterestRate[assetId=$assetId, updatedAt=$updatedAt, utilization=$utilization, maximumUtilization=$maximumUtilization, minimumRate=$minimumRate, kinkRate=$kinkRate, maximumRate=$maximumRate, kinkUtilization=$kinkUtilization, interestRate=$interestRate]';
+  String toString() => 'HistoricalLeverageInterestRate[assetId=$assetId, updatedAt=$updatedAt, utilization=$utilization, maximumUtilization=$maximumUtilization, minimumRate=$minimumRate, kinkRate=$kinkRate, maximumRate=$maximumRate, kinkUtilization=$kinkUtilization, borrowingYieldRate=$borrowingYieldRate, lendingYieldRate=$lendingYieldRate, yieldToMaturity=$yieldToMaturity]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -80,7 +90,9 @@ class HistoricalLeverageInterestRate {
       json[r'kink_rate'] = this.kinkRate;
       json[r'maximum_rate'] = this.maximumRate;
       json[r'kink_utilization'] = this.kinkUtilization;
-      json[r'interest_rate'] = this.interestRate;
+      json[r'borrowing_yield_rate'] = this.borrowingYieldRate;
+      json[r'lending_yield_rate'] = this.lendingYieldRate;
+      json[r'yield_to_maturity'] = this.yieldToMaturity;
     return json;
   }
 
@@ -95,23 +107,43 @@ class HistoricalLeverageInterestRate {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "HistoricalLeverageInterestRate[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "HistoricalLeverageInterestRate[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'asset_id'), 'Required key "HistoricalLeverageInterestRate[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "HistoricalLeverageInterestRate[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'updated_at'), 'Required key "HistoricalLeverageInterestRate[updated_at]" is missing from JSON.');
+        assert(json[r'updated_at'] != null, 'Required key "HistoricalLeverageInterestRate[updated_at]" has a null value in JSON.');
+        assert(json.containsKey(r'utilization'), 'Required key "HistoricalLeverageInterestRate[utilization]" is missing from JSON.');
+        assert(json[r'utilization'] != null, 'Required key "HistoricalLeverageInterestRate[utilization]" has a null value in JSON.');
+        assert(json.containsKey(r'maximum_utilization'), 'Required key "HistoricalLeverageInterestRate[maximum_utilization]" is missing from JSON.');
+        assert(json[r'maximum_utilization'] != null, 'Required key "HistoricalLeverageInterestRate[maximum_utilization]" has a null value in JSON.');
+        assert(json.containsKey(r'minimum_rate'), 'Required key "HistoricalLeverageInterestRate[minimum_rate]" is missing from JSON.');
+        assert(json[r'minimum_rate'] != null, 'Required key "HistoricalLeverageInterestRate[minimum_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'kink_rate'), 'Required key "HistoricalLeverageInterestRate[kink_rate]" is missing from JSON.');
+        assert(json[r'kink_rate'] != null, 'Required key "HistoricalLeverageInterestRate[kink_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'maximum_rate'), 'Required key "HistoricalLeverageInterestRate[maximum_rate]" is missing from JSON.');
+        assert(json[r'maximum_rate'] != null, 'Required key "HistoricalLeverageInterestRate[maximum_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'kink_utilization'), 'Required key "HistoricalLeverageInterestRate[kink_utilization]" is missing from JSON.');
+        assert(json[r'kink_utilization'] != null, 'Required key "HistoricalLeverageInterestRate[kink_utilization]" has a null value in JSON.');
+        assert(json.containsKey(r'borrowing_yield_rate'), 'Required key "HistoricalLeverageInterestRate[borrowing_yield_rate]" is missing from JSON.');
+        assert(json[r'borrowing_yield_rate'] != null, 'Required key "HistoricalLeverageInterestRate[borrowing_yield_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'lending_yield_rate'), 'Required key "HistoricalLeverageInterestRate[lending_yield_rate]" is missing from JSON.');
+        assert(json[r'lending_yield_rate'] != null, 'Required key "HistoricalLeverageInterestRate[lending_yield_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'yield_to_maturity'), 'Required key "HistoricalLeverageInterestRate[yield_to_maturity]" is missing from JSON.');
+        assert(json[r'yield_to_maturity'] != null, 'Required key "HistoricalLeverageInterestRate[yield_to_maturity]" has a null value in JSON.');
         return true;
       }());
 
       return HistoricalLeverageInterestRate(
         assetId: mapValueOfType<String>(json, r'asset_id')!,
         updatedAt: mapDateTime(json, r'updated_at', r'')!,
-        utilization: mapValueOfType<double>(json, r'utilization')!,
-        maximumUtilization: mapValueOfType<double>(json, r'maximum_utilization')!,
-        minimumRate: mapValueOfType<double>(json, r'minimum_rate')!,
-        kinkRate: mapValueOfType<double>(json, r'kink_rate')!,
-        maximumRate: mapValueOfType<double>(json, r'maximum_rate')!,
-        kinkUtilization: mapValueOfType<double>(json, r'kink_utilization')!,
-        interestRate: mapValueOfType<double>(json, r'interest_rate')!,
+        utilization: mapValueOfType<String>(json, r'utilization')!,
+        maximumUtilization: mapValueOfType<String>(json, r'maximum_utilization')!,
+        minimumRate: mapValueOfType<String>(json, r'minimum_rate')!,
+        kinkRate: mapValueOfType<String>(json, r'kink_rate')!,
+        maximumRate: mapValueOfType<String>(json, r'maximum_rate')!,
+        kinkUtilization: mapValueOfType<String>(json, r'kink_utilization')!,
+        borrowingYieldRate: mapValueOfType<String>(json, r'borrowing_yield_rate')!,
+        lendingYieldRate: mapValueOfType<String>(json, r'lending_yield_rate')!,
+        yieldToMaturity: mapValueOfType<String>(json, r'yield_to_maturity')!,
       );
     }
     return null;
@@ -167,7 +199,9 @@ class HistoricalLeverageInterestRate {
     'kink_rate',
     'maximum_rate',
     'kink_utilization',
-    'interest_rate',
+    'borrowing_yield_rate',
+    'lending_yield_rate',
+    'yield_to_maturity',
   };
 }
 

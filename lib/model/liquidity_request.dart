@@ -53,10 +53,10 @@ class LiquidityRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "LiquidityRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "LiquidityRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'position_id'), 'Required key "LiquidityRequest[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "LiquidityRequest[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity'), 'Required key "LiquidityRequest[quantity]" is missing from JSON.');
+        assert(json[r'quantity'] != null, 'Required key "LiquidityRequest[quantity]" has a null value in JSON.');
         return true;
       }());
 

@@ -53,10 +53,10 @@ class PriceLevel {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PriceLevel[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PriceLevel[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'price'), 'Required key "PriceLevel[price]" is missing from JSON.');
+        assert(json[r'price'] != null, 'Required key "PriceLevel[price]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity'), 'Required key "PriceLevel[quantity]" is missing from JSON.');
+        assert(json[r'quantity'] != null, 'Required key "PriceLevel[quantity]" has a null value in JSON.');
         return true;
       }());
 

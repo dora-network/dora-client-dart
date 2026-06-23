@@ -46,8 +46,29 @@ void main() {
       // TODO
     });
 
+    // DEPRECATED: Use close_ytm instead.
     // String ytm
     test('to test the property `ytm`', () async {
+      // TODO
+    });
+
+    // String openYtm
+    test('to test the property `openYtm`', () async {
+      // TODO
+    });
+
+    // String closeYtm
+    test('to test the property `closeYtm`', () async {
+      // TODO
+    });
+
+    // String highYtm
+    test('to test the property `highYtm`', () async {
+      // TODO
+    });
+
+    // String lowYtm
+    test('to test the property `lowYtm`', () async {
       // TODO
     });
 

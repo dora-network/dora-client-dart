@@ -16,21 +16,30 @@ class LeverageInterestRate {
     required this.assetId,
     required this.utilization,
     required this.avgUtilization,
-    required this.avgInterestRate,
-    required this.interestRate,
+    required this.avgBorrowingYieldRate,
+    required this.avgLendingYieldRate,
+    required this.borrowingYieldRate,
+    required this.lendingYieldRate,
+    required this.yieldToMaturity,
     required this.startTime,
     required this.endTime,
   });
 
   String assetId;
 
-  double utilization;
+  String utilization;
 
-  double avgUtilization;
+  String avgUtilization;
 
-  double avgInterestRate;
+  String avgBorrowingYieldRate;
 
-  double interestRate;
+  String avgLendingYieldRate;
+
+  String borrowingYieldRate;
+
+  String lendingYieldRate;
+
+  String yieldToMaturity;
 
   DateTime startTime;
 
@@ -41,8 +50,11 @@ class LeverageInterestRate {
     other.assetId == assetId &&
     other.utilization == utilization &&
     other.avgUtilization == avgUtilization &&
-    other.avgInterestRate == avgInterestRate &&
-    other.interestRate == interestRate &&
+    other.avgBorrowingYieldRate == avgBorrowingYieldRate &&
+    other.avgLendingYieldRate == avgLendingYieldRate &&
+    other.borrowingYieldRate == borrowingYieldRate &&
+    other.lendingYieldRate == lendingYieldRate &&
+    other.yieldToMaturity == yieldToMaturity &&
     other.startTime == startTime &&
     other.endTime == endTime;
 
@@ -52,21 +64,27 @@ class LeverageInterestRate {
     (assetId.hashCode) +
     (utilization.hashCode) +
     (avgUtilization.hashCode) +
-    (avgInterestRate.hashCode) +
-    (interestRate.hashCode) +
+    (avgBorrowingYieldRate.hashCode) +
+    (avgLendingYieldRate.hashCode) +
+    (borrowingYieldRate.hashCode) +
+    (lendingYieldRate.hashCode) +
+    (yieldToMaturity.hashCode) +
     (startTime.hashCode) +
     (endTime.hashCode);
 
   @override
-  String toString() => 'LeverageInterestRate[assetId=$assetId, utilization=$utilization, avgUtilization=$avgUtilization, avgInterestRate=$avgInterestRate, interestRate=$interestRate, startTime=$startTime, endTime=$endTime]';
+  String toString() => 'LeverageInterestRate[assetId=$assetId, utilization=$utilization, avgUtilization=$avgUtilization, avgBorrowingYieldRate=$avgBorrowingYieldRate, avgLendingYieldRate=$avgLendingYieldRate, borrowingYieldRate=$borrowingYieldRate, lendingYieldRate=$lendingYieldRate, yieldToMaturity=$yieldToMaturity, startTime=$startTime, endTime=$endTime]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'asset_id'] = this.assetId;
       json[r'utilization'] = this.utilization;
       json[r'avg_utilization'] = this.avgUtilization;
-      json[r'avg_interest_rate'] = this.avgInterestRate;
-      json[r'interest_rate'] = this.interestRate;
+      json[r'avg_borrowing_yield_rate'] = this.avgBorrowingYieldRate;
+      json[r'avg_lending_yield_rate'] = this.avgLendingYieldRate;
+      json[r'borrowing_yield_rate'] = this.borrowingYieldRate;
+      json[r'lending_yield_rate'] = this.lendingYieldRate;
+      json[r'yield_to_maturity'] = this.yieldToMaturity;
       json[r'start_time'] = this.startTime.toUtc().toIso8601String();
       json[r'end_time'] = this.endTime.toUtc().toIso8601String();
     return json;
@@ -83,19 +101,38 @@ class LeverageInterestRate {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "LeverageInterestRate[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "LeverageInterestRate[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'asset_id'), 'Required key "LeverageInterestRate[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "LeverageInterestRate[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'utilization'), 'Required key "LeverageInterestRate[utilization]" is missing from JSON.');
+        assert(json[r'utilization'] != null, 'Required key "LeverageInterestRate[utilization]" has a null value in JSON.');
+        assert(json.containsKey(r'avg_utilization'), 'Required key "LeverageInterestRate[avg_utilization]" is missing from JSON.');
+        assert(json[r'avg_utilization'] != null, 'Required key "LeverageInterestRate[avg_utilization]" has a null value in JSON.');
+        assert(json.containsKey(r'avg_borrowing_yield_rate'), 'Required key "LeverageInterestRate[avg_borrowing_yield_rate]" is missing from JSON.');
+        assert(json[r'avg_borrowing_yield_rate'] != null, 'Required key "LeverageInterestRate[avg_borrowing_yield_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'avg_lending_yield_rate'), 'Required key "LeverageInterestRate[avg_lending_yield_rate]" is missing from JSON.');
+        assert(json[r'avg_lending_yield_rate'] != null, 'Required key "LeverageInterestRate[avg_lending_yield_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'borrowing_yield_rate'), 'Required key "LeverageInterestRate[borrowing_yield_rate]" is missing from JSON.');
+        assert(json[r'borrowing_yield_rate'] != null, 'Required key "LeverageInterestRate[borrowing_yield_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'lending_yield_rate'), 'Required key "LeverageInterestRate[lending_yield_rate]" is missing from JSON.');
+        assert(json[r'lending_yield_rate'] != null, 'Required key "LeverageInterestRate[lending_yield_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'yield_to_maturity'), 'Required key "LeverageInterestRate[yield_to_maturity]" is missing from JSON.');
+        assert(json[r'yield_to_maturity'] != null, 'Required key "LeverageInterestRate[yield_to_maturity]" has a null value in JSON.');
+        assert(json.containsKey(r'start_time'), 'Required key "LeverageInterestRate[start_time]" is missing from JSON.');
+        assert(json[r'start_time'] != null, 'Required key "LeverageInterestRate[start_time]" has a null value in JSON.');
+        assert(json.containsKey(r'end_time'), 'Required key "LeverageInterestRate[end_time]" is missing from JSON.');
+        assert(json[r'end_time'] != null, 'Required key "LeverageInterestRate[end_time]" has a null value in JSON.');
         return true;
       }());
 
       return LeverageInterestRate(
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        utilization: mapValueOfType<double>(json, r'utilization')!,
-        avgUtilization: mapValueOfType<double>(json, r'avg_utilization')!,
-        avgInterestRate: mapValueOfType<double>(json, r'avg_interest_rate')!,
-        interestRate: mapValueOfType<double>(json, r'interest_rate')!,
+        utilization: mapValueOfType<String>(json, r'utilization')!,
+        avgUtilization: mapValueOfType<String>(json, r'avg_utilization')!,
+        avgBorrowingYieldRate: mapValueOfType<String>(json, r'avg_borrowing_yield_rate')!,
+        avgLendingYieldRate: mapValueOfType<String>(json, r'avg_lending_yield_rate')!,
+        borrowingYieldRate: mapValueOfType<String>(json, r'borrowing_yield_rate')!,
+        lendingYieldRate: mapValueOfType<String>(json, r'lending_yield_rate')!,
+        yieldToMaturity: mapValueOfType<String>(json, r'yield_to_maturity')!,
         startTime: mapDateTime(json, r'start_time', r'')!,
         endTime: mapDateTime(json, r'end_time', r'')!,
       );
@@ -148,8 +185,11 @@ class LeverageInterestRate {
     'asset_id',
     'utilization',
     'avg_utilization',
-    'avg_interest_rate',
-    'interest_rate',
+    'avg_borrowing_yield_rate',
+    'avg_lending_yield_rate',
+    'borrowing_yield_rate',
+    'lending_yield_rate',
+    'yield_to_maturity',
     'start_time',
     'end_time',
   };

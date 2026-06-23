@@ -31,8 +31,18 @@ void main() {
       // TODO
     });
 
-    // String lendingYield
-    test('to test the property `lendingYield`', () async {
+    // String borrowingYieldRate
+    test('to test the property `borrowingYieldRate`', () async {
+      // TODO
+    });
+
+    // String lendingYieldRate
+    test('to test the property `lendingYieldRate`', () async {
+      // TODO
+    });
+
+    // String price
+    test('to test the property `price`', () async {
       // TODO
     });
 

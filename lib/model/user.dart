@@ -35,6 +35,7 @@ class User {
     required this.allowLiquidationsNotifications,
     required this.allowDepositWithdrawalNotifications,
     required this.allowOrdersNotifications,
+    required this.allowCopyTrading,
   });
 
   String id;
@@ -131,6 +132,8 @@ class User {
 
   bool allowOrdersNotifications;
 
+  bool allowCopyTrading;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is User &&
     other.id == id &&
@@ -154,7 +157,8 @@ class User {
     other.allowEmailNotifications == allowEmailNotifications &&
     other.allowLiquidationsNotifications == allowLiquidationsNotifications &&
     other.allowDepositWithdrawalNotifications == allowDepositWithdrawalNotifications &&
-    other.allowOrdersNotifications == allowOrdersNotifications;
+    other.allowOrdersNotifications == allowOrdersNotifications &&
+    other.allowCopyTrading == allowCopyTrading;
 
   @override
   int get hashCode =>
@@ -180,10 +184,11 @@ class User {
     (allowEmailNotifications.hashCode) +
     (allowLiquidationsNotifications.hashCode) +
     (allowDepositWithdrawalNotifications.hashCode) +
-    (allowOrdersNotifications.hashCode);
+    (allowOrdersNotifications.hashCode) +
+    (allowCopyTrading.hashCode);
 
   @override
-  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, firstName=$firstName, lastName=$lastName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications]';
+  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, firstName=$firstName, lastName=$lastName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications, allowCopyTrading=$allowCopyTrading]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -241,6 +246,7 @@ class User {
       json[r'allow_liquidations_notifications'] = this.allowLiquidationsNotifications;
       json[r'allow_deposit_withdrawal_notifications'] = this.allowDepositWithdrawalNotifications;
       json[r'allow_orders_notifications'] = this.allowOrdersNotifications;
+      json[r'allow_copy_trading'] = this.allowCopyTrading;
     return json;
   }
 
@@ -255,10 +261,36 @@ class User {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "User[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "User[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "User[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "User[id]" has a null value in JSON.');
+        assert(json.containsKey(r'email'), 'Required key "User[email]" is missing from JSON.');
+        assert(json[r'email'] != null, 'Required key "User[email]" has a null value in JSON.');
+        assert(json.containsKey(r'first_name'), 'Required key "User[first_name]" is missing from JSON.');
+        assert(json[r'first_name'] != null, 'Required key "User[first_name]" has a null value in JSON.');
+        assert(json.containsKey(r'last_name'), 'Required key "User[last_name]" is missing from JSON.');
+        assert(json[r'last_name'] != null, 'Required key "User[last_name]" has a null value in JSON.');
+        assert(json.containsKey(r'country_of_domicile'), 'Required key "User[country_of_domicile]" is missing from JSON.');
+        assert(json[r'country_of_domicile'] != null, 'Required key "User[country_of_domicile]" has a null value in JSON.');
+        assert(json.containsKey(r'native_asset_id'), 'Required key "User[native_asset_id]" is missing from JSON.');
+        assert(json[r'native_asset_id'] != null, 'Required key "User[native_asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'roles'), 'Required key "User[roles]" is missing from JSON.');
+        assert(json[r'roles'] != null, 'Required key "User[roles]" has a null value in JSON.');
+        assert(json.containsKey(r'show_tutorial_cards'), 'Required key "User[show_tutorial_cards]" is missing from JSON.');
+        assert(json[r'show_tutorial_cards'] != null, 'Required key "User[show_tutorial_cards]" has a null value in JSON.');
+        assert(json.containsKey(r'notifications_enabled'), 'Required key "User[notifications_enabled]" is missing from JSON.');
+        assert(json[r'notifications_enabled'] != null, 'Required key "User[notifications_enabled]" has a null value in JSON.');
+        assert(json.containsKey(r'tenant_id'), 'Required key "User[tenant_id]" is missing from JSON.');
+        assert(json[r'tenant_id'] != null, 'Required key "User[tenant_id]" has a null value in JSON.');
+        assert(json.containsKey(r'allow_email_notifications'), 'Required key "User[allow_email_notifications]" is missing from JSON.');
+        assert(json[r'allow_email_notifications'] != null, 'Required key "User[allow_email_notifications]" has a null value in JSON.');
+        assert(json.containsKey(r'allow_liquidations_notifications'), 'Required key "User[allow_liquidations_notifications]" is missing from JSON.');
+        assert(json[r'allow_liquidations_notifications'] != null, 'Required key "User[allow_liquidations_notifications]" has a null value in JSON.');
+        assert(json.containsKey(r'allow_deposit_withdrawal_notifications'), 'Required key "User[allow_deposit_withdrawal_notifications]" is missing from JSON.');
+        assert(json[r'allow_deposit_withdrawal_notifications'] != null, 'Required key "User[allow_deposit_withdrawal_notifications]" has a null value in JSON.');
+        assert(json.containsKey(r'allow_orders_notifications'), 'Required key "User[allow_orders_notifications]" is missing from JSON.');
+        assert(json[r'allow_orders_notifications'] != null, 'Required key "User[allow_orders_notifications]" has a null value in JSON.');
+        assert(json.containsKey(r'allow_copy_trading'), 'Required key "User[allow_copy_trading]" is missing from JSON.');
+        assert(json[r'allow_copy_trading'] != null, 'Required key "User[allow_copy_trading]" has a null value in JSON.');
         return true;
       }());
 
@@ -285,6 +317,7 @@ class User {
         allowLiquidationsNotifications: mapValueOfType<bool>(json, r'allow_liquidations_notifications')!,
         allowDepositWithdrawalNotifications: mapValueOfType<bool>(json, r'allow_deposit_withdrawal_notifications')!,
         allowOrdersNotifications: mapValueOfType<bool>(json, r'allow_orders_notifications')!,
+        allowCopyTrading: mapValueOfType<bool>(json, r'allow_copy_trading')!,
       );
     }
     return null;
@@ -346,6 +379,7 @@ class User {
     'allow_liquidations_notifications',
     'allow_deposit_withdrawal_notifications',
     'allow_orders_notifications',
+    'allow_copy_trading',
   };
 }
 

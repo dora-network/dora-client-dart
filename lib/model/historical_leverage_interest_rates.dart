@@ -65,10 +65,14 @@ class HistoricalLeverageInterestRates {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "HistoricalLeverageInterestRates[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "HistoricalLeverageInterestRates[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'asset_id'), 'Required key "HistoricalLeverageInterestRates[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "HistoricalLeverageInterestRates[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'start_time'), 'Required key "HistoricalLeverageInterestRates[start_time]" is missing from JSON.');
+        assert(json[r'start_time'] != null, 'Required key "HistoricalLeverageInterestRates[start_time]" has a null value in JSON.');
+        assert(json.containsKey(r'end_time'), 'Required key "HistoricalLeverageInterestRates[end_time]" is missing from JSON.');
+        assert(json[r'end_time'] != null, 'Required key "HistoricalLeverageInterestRates[end_time]" has a null value in JSON.');
+        assert(json.containsKey(r'rates'), 'Required key "HistoricalLeverageInterestRates[rates]" is missing from JSON.');
+        assert(json[r'rates'] != null, 'Required key "HistoricalLeverageInterestRates[rates]" has a null value in JSON.');
         return true;
       }());
 

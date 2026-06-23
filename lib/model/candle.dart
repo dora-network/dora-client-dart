@@ -19,7 +19,11 @@ class Candle {
     required this.high,
     required this.low,
     required this.close,
-    required this.ytm,
+    this.ytm,
+    required this.openYtm,
+    required this.closeYtm,
+    required this.highYtm,
+    required this.lowYtm,
     required this.volume,
   });
 
@@ -35,7 +39,22 @@ class Candle {
 
   String close;
 
-  String ytm;
+  /// DEPRECATED: Use close_ytm instead.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? ytm;
+
+  String openYtm;
+
+  String closeYtm;
+
+  String highYtm;
+
+  String lowYtm;
 
   String volume;
 
@@ -48,6 +67,10 @@ class Candle {
     other.low == low &&
     other.close == close &&
     other.ytm == ytm &&
+    other.openYtm == openYtm &&
+    other.closeYtm == closeYtm &&
+    other.highYtm == highYtm &&
+    other.lowYtm == lowYtm &&
     other.volume == volume;
 
   @override
@@ -59,11 +82,15 @@ class Candle {
     (high.hashCode) +
     (low.hashCode) +
     (close.hashCode) +
-    (ytm.hashCode) +
+    (ytm == null ? 0 : ytm!.hashCode) +
+    (openYtm.hashCode) +
+    (closeYtm.hashCode) +
+    (highYtm.hashCode) +
+    (lowYtm.hashCode) +
     (volume.hashCode);
 
   @override
-  String toString() => 'Candle[orderBookId=$orderBookId, startTimestamp=$startTimestamp, open=$open, high=$high, low=$low, close=$close, ytm=$ytm, volume=$volume]';
+  String toString() => 'Candle[orderBookId=$orderBookId, startTimestamp=$startTimestamp, open=$open, high=$high, low=$low, close=$close, ytm=$ytm, openYtm=$openYtm, closeYtm=$closeYtm, highYtm=$highYtm, lowYtm=$lowYtm, volume=$volume]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -73,7 +100,15 @@ class Candle {
       json[r'high'] = this.high;
       json[r'low'] = this.low;
       json[r'close'] = this.close;
+    if (this.ytm != null) {
       json[r'ytm'] = this.ytm;
+    } else {
+      json[r'ytm'] = null;
+    }
+      json[r'open_ytm'] = this.openYtm;
+      json[r'close_ytm'] = this.closeYtm;
+      json[r'high_ytm'] = this.highYtm;
+      json[r'low_ytm'] = this.lowYtm;
       json[r'volume'] = this.volume;
     return json;
   }
@@ -89,10 +124,28 @@ class Candle {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Candle[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Candle[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'order_book_id'), 'Required key "Candle[order_book_id]" is missing from JSON.');
+        assert(json[r'order_book_id'] != null, 'Required key "Candle[order_book_id]" has a null value in JSON.');
+        assert(json.containsKey(r'start_timestamp'), 'Required key "Candle[start_timestamp]" is missing from JSON.');
+        assert(json[r'start_timestamp'] != null, 'Required key "Candle[start_timestamp]" has a null value in JSON.');
+        assert(json.containsKey(r'open'), 'Required key "Candle[open]" is missing from JSON.');
+        assert(json[r'open'] != null, 'Required key "Candle[open]" has a null value in JSON.');
+        assert(json.containsKey(r'high'), 'Required key "Candle[high]" is missing from JSON.');
+        assert(json[r'high'] != null, 'Required key "Candle[high]" has a null value in JSON.');
+        assert(json.containsKey(r'low'), 'Required key "Candle[low]" is missing from JSON.');
+        assert(json[r'low'] != null, 'Required key "Candle[low]" has a null value in JSON.');
+        assert(json.containsKey(r'close'), 'Required key "Candle[close]" is missing from JSON.');
+        assert(json[r'close'] != null, 'Required key "Candle[close]" has a null value in JSON.');
+        assert(json.containsKey(r'open_ytm'), 'Required key "Candle[open_ytm]" is missing from JSON.');
+        assert(json[r'open_ytm'] != null, 'Required key "Candle[open_ytm]" has a null value in JSON.');
+        assert(json.containsKey(r'close_ytm'), 'Required key "Candle[close_ytm]" is missing from JSON.');
+        assert(json[r'close_ytm'] != null, 'Required key "Candle[close_ytm]" has a null value in JSON.');
+        assert(json.containsKey(r'high_ytm'), 'Required key "Candle[high_ytm]" is missing from JSON.');
+        assert(json[r'high_ytm'] != null, 'Required key "Candle[high_ytm]" has a null value in JSON.');
+        assert(json.containsKey(r'low_ytm'), 'Required key "Candle[low_ytm]" is missing from JSON.');
+        assert(json[r'low_ytm'] != null, 'Required key "Candle[low_ytm]" has a null value in JSON.');
+        assert(json.containsKey(r'volume'), 'Required key "Candle[volume]" is missing from JSON.');
+        assert(json[r'volume'] != null, 'Required key "Candle[volume]" has a null value in JSON.');
         return true;
       }());
 
@@ -103,7 +156,11 @@ class Candle {
         high: mapValueOfType<String>(json, r'high')!,
         low: mapValueOfType<String>(json, r'low')!,
         close: mapValueOfType<String>(json, r'close')!,
-        ytm: mapValueOfType<String>(json, r'ytm')!,
+        ytm: mapValueOfType<String>(json, r'ytm'),
+        openYtm: mapValueOfType<String>(json, r'open_ytm')!,
+        closeYtm: mapValueOfType<String>(json, r'close_ytm')!,
+        highYtm: mapValueOfType<String>(json, r'high_ytm')!,
+        lowYtm: mapValueOfType<String>(json, r'low_ytm')!,
         volume: mapValueOfType<String>(json, r'volume')!,
       );
     }
@@ -158,7 +215,10 @@ class Candle {
     'high',
     'low',
     'close',
-    'ytm',
+    'open_ytm',
+    'close_ytm',
+    'high_ytm',
+    'low_ytm',
     'volume',
   };
 }

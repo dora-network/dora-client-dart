@@ -53,10 +53,10 @@ class ClaimLeverageAccruedInterestRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ClaimLeverageAccruedInterestRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ClaimLeverageAccruedInterestRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'asset_id'), 'Required key "ClaimLeverageAccruedInterestRequest[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "ClaimLeverageAccruedInterestRequest[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'position_id'), 'Required key "ClaimLeverageAccruedInterestRequest[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "ClaimLeverageAccruedInterestRequest[position_id]" has a null value in JSON.');
         return true;
       }());
 

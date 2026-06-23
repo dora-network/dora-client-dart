@@ -103,10 +103,24 @@ class OrderbookStats {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "OrderbookStats[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "OrderbookStats[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'order_book_id'), 'Required key "OrderbookStats[order_book_id]" is missing from JSON.');
+        assert(json[r'order_book_id'] != null, 'Required key "OrderbookStats[order_book_id]" has a null value in JSON.');
+        assert(json.containsKey(r'open_price'), 'Required key "OrderbookStats[open_price]" is missing from JSON.');
+        assert(json[r'open_price'] != null, 'Required key "OrderbookStats[open_price]" has a null value in JSON.');
+        assert(json.containsKey(r'last_price'), 'Required key "OrderbookStats[last_price]" is missing from JSON.');
+        assert(json[r'last_price'] != null, 'Required key "OrderbookStats[last_price]" has a null value in JSON.');
+        assert(json.containsKey(r'high_24h'), 'Required key "OrderbookStats[high_24h]" is missing from JSON.');
+        assert(json[r'high_24h'] != null, 'Required key "OrderbookStats[high_24h]" has a null value in JSON.');
+        assert(json.containsKey(r'low_24h'), 'Required key "OrderbookStats[low_24h]" is missing from JSON.');
+        assert(json[r'low_24h'] != null, 'Required key "OrderbookStats[low_24h]" has a null value in JSON.');
+        assert(json.containsKey(r'change_24h'), 'Required key "OrderbookStats[change_24h]" is missing from JSON.');
+        assert(json[r'change_24h'] != null, 'Required key "OrderbookStats[change_24h]" has a null value in JSON.');
+        assert(json.containsKey(r'change_pct_24h'), 'Required key "OrderbookStats[change_pct_24h]" is missing from JSON.');
+        assert(json[r'change_pct_24h'] != null, 'Required key "OrderbookStats[change_pct_24h]" has a null value in JSON.');
+        assert(json.containsKey(r'volume_24h_base'), 'Required key "OrderbookStats[volume_24h_base]" is missing from JSON.');
+        assert(json[r'volume_24h_base'] != null, 'Required key "OrderbookStats[volume_24h_base]" has a null value in JSON.');
+        assert(json.containsKey(r'volume_24h_usd'), 'Required key "OrderbookStats[volume_24h_usd]" is missing from JSON.');
+        assert(json[r'volume_24h_usd'] != null, 'Required key "OrderbookStats[volume_24h_usd]" has a null value in JSON.');
         return true;
       }());
 

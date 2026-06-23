@@ -24,16 +24,16 @@ class RealizedPnlSettlements {
   List<RealizedPnlSettlement> settlements;
 
   /// A map of user IDs to their total realized PnL in USD across all settlements included in the response
-  Map<String, double> userTotals;
+  Map<String, String> userTotals;
 
   /// A map of tenant IDs to their total realized PnL in USD across all settlements included in the response
-  Map<String, double> tenantTotals;
+  Map<String, String> tenantTotals;
 
   /// A map of user IDs to their total realized PnL in USD across unsettled settlements (where settled_at is null) included in the response
-  Map<String, double> userTotalsUnsettled;
+  Map<String, String> userTotalsUnsettled;
 
   /// A map of tenant IDs to their total realized PnL in USD across unsettled settlements (where settled_at is null) included in the response
-  Map<String, double> tenantTotalsUnsettled;
+  Map<String, String> tenantTotalsUnsettled;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is RealizedPnlSettlements &&
@@ -76,19 +76,15 @@ class RealizedPnlSettlements {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealizedPnlSettlements[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealizedPnlSettlements[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
       return RealizedPnlSettlements(
         settlements: RealizedPnlSettlement.listFromJson(json[r'settlements']),
-        userTotals: mapCastOfType<String, double>(json, r'user_totals') ?? const {},
-        tenantTotals: mapCastOfType<String, double>(json, r'tenant_totals') ?? const {},
-        userTotalsUnsettled: mapCastOfType<String, double>(json, r'user_totals_unsettled') ?? const {},
-        tenantTotalsUnsettled: mapCastOfType<String, double>(json, r'tenant_totals_unsettled') ?? const {},
+        userTotals: mapCastOfType<String, String>(json, r'user_totals') ?? const {},
+        tenantTotals: mapCastOfType<String, String>(json, r'tenant_totals') ?? const {},
+        userTotalsUnsettled: mapCastOfType<String, String>(json, r'user_totals_unsettled') ?? const {},
+        tenantTotalsUnsettled: mapCastOfType<String, String>(json, r'tenant_totals_unsettled') ?? const {},
       );
     }
     return null;

@@ -72,6 +72,11 @@ void main() {
       // TODO
     });
 
+    // bool allowCopyTrading
+    test('to test the property `allowCopyTrading`', () async {
+      // TODO
+    });
+
 
   });
 

@@ -20,9 +20,9 @@ class TransactionsSettlementsResponse {
 
   List<TransactionsSettlement> settlements;
 
-  Map<String, double> userTotals;
+  Map<String, String> userTotals;
 
-  Map<String, double> tenantTotals;
+  Map<String, String> tenantTotals;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is TransactionsSettlementsResponse &&
@@ -59,17 +59,13 @@ class TransactionsSettlementsResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TransactionsSettlementsResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TransactionsSettlementsResponse[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 
       return TransactionsSettlementsResponse(
         settlements: TransactionsSettlement.listFromJson(json[r'settlements']),
-        userTotals: mapCastOfType<String, double>(json, r'user_totals') ?? const {},
-        tenantTotals: mapCastOfType<String, double>(json, r'tenant_totals') ?? const {},
+        userTotals: mapCastOfType<String, String>(json, r'user_totals') ?? const {},
+        tenantTotals: mapCastOfType<String, String>(json, r'tenant_totals') ?? const {},
       );
     }
     return null;

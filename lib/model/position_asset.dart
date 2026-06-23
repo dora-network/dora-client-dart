@@ -77,10 +77,18 @@ class PositionAsset {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PositionAsset[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PositionAsset[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'asset_id'), 'Required key "PositionAsset[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "PositionAsset[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'kind'), 'Required key "PositionAsset[kind]" is missing from JSON.');
+        assert(json[r'kind'] != null, 'Required key "PositionAsset[kind]" has a null value in JSON.');
+        assert(json.containsKey(r'borrowed'), 'Required key "PositionAsset[borrowed]" is missing from JSON.');
+        assert(json[r'borrowed'] != null, 'Required key "PositionAsset[borrowed]" has a null value in JSON.');
+        assert(json.containsKey(r'impending_borrows'), 'Required key "PositionAsset[impending_borrows]" is missing from JSON.');
+        assert(json[r'impending_borrows'] != null, 'Required key "PositionAsset[impending_borrows]" has a null value in JSON.');
+        assert(json.containsKey(r'available'), 'Required key "PositionAsset[available]" is missing from JSON.');
+        assert(json[r'available'] != null, 'Required key "PositionAsset[available]" has a null value in JSON.');
+        assert(json.containsKey(r'locked'), 'Required key "PositionAsset[locked]" is missing from JSON.');
+        assert(json[r'locked'] != null, 'Required key "PositionAsset[locked]" has a null value in JSON.');
         return true;
       }());
 

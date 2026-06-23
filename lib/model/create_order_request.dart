@@ -169,10 +169,18 @@ class CreateOrderRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateOrderRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateOrderRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'quantity'), 'Required key "CreateOrderRequest[quantity]" is missing from JSON.');
+        assert(json[r'quantity'] != null, 'Required key "CreateOrderRequest[quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'inverse_leverage'), 'Required key "CreateOrderRequest[inverse_leverage]" is missing from JSON.');
+        assert(json[r'inverse_leverage'] != null, 'Required key "CreateOrderRequest[inverse_leverage]" has a null value in JSON.');
+        assert(json.containsKey(r'kind'), 'Required key "CreateOrderRequest[kind]" is missing from JSON.');
+        assert(json[r'kind'] != null, 'Required key "CreateOrderRequest[kind]" has a null value in JSON.');
+        assert(json.containsKey(r'side'), 'Required key "CreateOrderRequest[side]" is missing from JSON.');
+        assert(json[r'side'] != null, 'Required key "CreateOrderRequest[side]" has a null value in JSON.');
+        assert(json.containsKey(r'from_global_position'), 'Required key "CreateOrderRequest[from_global_position]" is missing from JSON.');
+        assert(json[r'from_global_position'] != null, 'Required key "CreateOrderRequest[from_global_position]" has a null value in JSON.');
+        assert(json.containsKey(r'order_book_id'), 'Required key "CreateOrderRequest[order_book_id]" is missing from JSON.');
+        assert(json[r'order_book_id'] != null, 'Required key "CreateOrderRequest[order_book_id]" has a null value in JSON.');
         return true;
       }());
 

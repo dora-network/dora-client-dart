@@ -82,10 +82,18 @@ class ModuleBalance {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ModuleBalance[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ModuleBalance[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'asset_id'), 'Required key "ModuleBalance[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "ModuleBalance[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'seq'), 'Required key "ModuleBalance[seq]" is missing from JSON.');
+        assert(json[r'seq'] != null, 'Required key "ModuleBalance[seq]" has a null value in JSON.');
+        assert(json.containsKey(r'available'), 'Required key "ModuleBalance[available]" is missing from JSON.');
+        assert(json[r'available'] != null, 'Required key "ModuleBalance[available]" has a null value in JSON.');
+        assert(json.containsKey(r'supplied'), 'Required key "ModuleBalance[supplied]" is missing from JSON.');
+        assert(json[r'supplied'] != null, 'Required key "ModuleBalance[supplied]" has a null value in JSON.');
+        assert(json.containsKey(r'virtual'), 'Required key "ModuleBalance[virtual]" is missing from JSON.');
+        assert(json[r'virtual'] != null, 'Required key "ModuleBalance[virtual]" has a null value in JSON.');
+        assert(json.containsKey(r'borrowed'), 'Required key "ModuleBalance[borrowed]" is missing from JSON.');
+        assert(json[r'borrowed'] != null, 'Required key "ModuleBalance[borrowed]" has a null value in JSON.');
         return true;
       }());
 

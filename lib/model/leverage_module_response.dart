@@ -48,10 +48,8 @@ class LeverageModuleResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "LeverageModuleResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "LeverageModuleResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'balances'), 'Required key "LeverageModuleResponse[balances]" is missing from JSON.');
+        assert(json[r'balances'] != null, 'Required key "LeverageModuleResponse[balances]" has a null value in JSON.');
         return true;
       }());
 

@@ -109,10 +109,28 @@ class Trade {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Trade[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Trade[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'transaction_id'), 'Required key "Trade[transaction_id]" is missing from JSON.');
+        assert(json[r'transaction_id'] != null, 'Required key "Trade[transaction_id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_0'), 'Required key "Trade[asset_0]" is missing from JSON.');
+        assert(json[r'asset_0'] != null, 'Required key "Trade[asset_0]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "Trade[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "Trade[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'order_book_id'), 'Required key "Trade[order_book_id]" is missing from JSON.');
+        assert(json[r'order_book_id'] != null, 'Required key "Trade[order_book_id]" has a null value in JSON.');
+        assert(json.containsKey(r'order_id'), 'Required key "Trade[order_id]" is missing from JSON.');
+        assert(json[r'order_id'] != null, 'Required key "Trade[order_id]" has a null value in JSON.');
+        assert(json.containsKey(r'order_seq'), 'Required key "Trade[order_seq]" is missing from JSON.');
+        assert(json[r'order_seq'] != null, 'Required key "Trade[order_seq]" has a null value in JSON.');
+        assert(json.containsKey(r'price'), 'Required key "Trade[price]" is missing from JSON.');
+        assert(json[r'price'] != null, 'Required key "Trade[price]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity_0'), 'Required key "Trade[quantity_0]" is missing from JSON.');
+        assert(json[r'quantity_0'] != null, 'Required key "Trade[quantity_0]" has a null value in JSON.');
+        assert(json.containsKey(r'user_id'), 'Required key "Trade[user_id]" is missing from JSON.');
+        assert(json[r'user_id'] != null, 'Required key "Trade[user_id]" has a null value in JSON.');
+        assert(json.containsKey(r'side'), 'Required key "Trade[side]" is missing from JSON.');
+        assert(json[r'side'] != null, 'Required key "Trade[side]" has a null value in JSON.');
+        assert(json.containsKey(r'aggressor_indicator'), 'Required key "Trade[aggressor_indicator]" is missing from JSON.');
+        assert(json[r'aggressor_indicator'] != null, 'Required key "Trade[aggressor_indicator]" has a null value in JSON.');
         return true;
       }());
 

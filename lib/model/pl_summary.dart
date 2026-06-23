@@ -72,10 +72,16 @@ class PLSummary {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PLSummary[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PLSummary[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'leverage'), 'Required key "PLSummary[leverage]" is missing from JSON.');
+        assert(json[r'leverage'] != null, 'Required key "PLSummary[leverage]" has a null value in JSON.');
+        assert(json.containsKey(r'account_equity'), 'Required key "PLSummary[account_equity]" is missing from JSON.');
+        assert(json[r'account_equity'] != null, 'Required key "PLSummary[account_equity]" has a null value in JSON.');
+        assert(json.containsKey(r'available'), 'Required key "PLSummary[available]" is missing from JSON.');
+        assert(json[r'available'] != null, 'Required key "PLSummary[available]" has a null value in JSON.');
+        assert(json.containsKey(r'health'), 'Required key "PLSummary[health]" is missing from JSON.');
+        assert(json[r'health'] != null, 'Required key "PLSummary[health]" has a null value in JSON.');
+        assert(json.containsKey(r'ltv'), 'Required key "PLSummary[ltv]" is missing from JSON.');
+        assert(json[r'ltv'] != null, 'Required key "PLSummary[ltv]" has a null value in JSON.');
         return true;
       }());
 

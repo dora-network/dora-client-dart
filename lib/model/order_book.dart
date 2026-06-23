@@ -217,10 +217,40 @@ class OrderBook {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "OrderBook[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "OrderBook[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'order_book_id'), 'Required key "OrderBook[order_book_id]" is missing from JSON.');
+        assert(json[r'order_book_id'] != null, 'Required key "OrderBook[order_book_id]" has a null value in JSON.');
+        assert(json.containsKey(r'base_quantity'), 'Required key "OrderBook[base_quantity]" is missing from JSON.');
+        assert(json[r'base_quantity'] != null, 'Required key "OrderBook[base_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'base_asset_id'), 'Required key "OrderBook[base_asset_id]" is missing from JSON.');
+        assert(json[r'base_asset_id'] != null, 'Required key "OrderBook[base_asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "OrderBook[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "OrderBook[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'display_name'), 'Required key "OrderBook[display_name]" is missing from JSON.');
+        assert(json[r'display_name'] != null, 'Required key "OrderBook[display_name]" has a null value in JSON.');
+        assert(json.containsKey(r'base_asset_fractionalized_units'), 'Required key "OrderBook[base_asset_fractionalized_units]" is missing from JSON.');
+        assert(json[r'base_asset_fractionalized_units'] != null, 'Required key "OrderBook[base_asset_fractionalized_units]" has a null value in JSON.');
+        assert(json.containsKey(r'quote_asset_fractionalized_units'), 'Required key "OrderBook[quote_asset_fractionalized_units]" is missing from JSON.');
+        assert(json[r'quote_asset_fractionalized_units'] != null, 'Required key "OrderBook[quote_asset_fractionalized_units]" has a null value in JSON.');
+        assert(json.containsKey(r'fee_factor'), 'Required key "OrderBook[fee_factor]" is missing from JSON.');
+        assert(json[r'fee_factor'] != null, 'Required key "OrderBook[fee_factor]" has a null value in JSON.');
+        assert(json.containsKey(r'initial_assets_ratio'), 'Required key "OrderBook[initial_assets_ratio]" is missing from JSON.');
+        assert(json[r'initial_assets_ratio'] != null, 'Required key "OrderBook[initial_assets_ratio]" has a null value in JSON.');
+        assert(json.containsKey(r'maturity_at'), 'Required key "OrderBook[maturity_at]" is missing from JSON.');
+        assert(json[r'maturity_at'] != null, 'Required key "OrderBook[maturity_at]" has a null value in JSON.');
+        assert(json.containsKey(r'quote_quantity'), 'Required key "OrderBook[quote_quantity]" is missing from JSON.');
+        assert(json[r'quote_quantity'] != null, 'Required key "OrderBook[quote_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'quote_asset_id'), 'Required key "OrderBook[quote_asset_id]" is missing from JSON.');
+        assert(json[r'quote_asset_id'] != null, 'Required key "OrderBook[quote_asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'shares_quantity'), 'Required key "OrderBook[shares_quantity]" is missing from JSON.');
+        assert(json[r'shares_quantity'] != null, 'Required key "OrderBook[shares_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "OrderBook[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "OrderBook[status]" has a null value in JSON.');
+        assert(json.containsKey(r'tick_size'), 'Required key "OrderBook[tick_size]" is missing from JSON.');
+        assert(json[r'tick_size'] != null, 'Required key "OrderBook[tick_size]" has a null value in JSON.');
+        assert(json.containsKey(r'updated_at'), 'Required key "OrderBook[updated_at]" is missing from JSON.');
+        assert(json[r'updated_at'] != null, 'Required key "OrderBook[updated_at]" has a null value in JSON.');
+        assert(json.containsKey(r'shares_asset_id'), 'Required key "OrderBook[shares_asset_id]" is missing from JSON.');
+        assert(json[r'shares_asset_id'] != null, 'Required key "OrderBook[shares_asset_id]" has a null value in JSON.');
         return true;
       }());
 

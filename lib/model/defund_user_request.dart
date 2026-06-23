@@ -53,10 +53,10 @@ class DefundUserRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "DefundUserRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "DefundUserRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'asset_id'), 'Required key "DefundUserRequest[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "DefundUserRequest[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity'), 'Required key "DefundUserRequest[quantity]" is missing from JSON.');
+        assert(json[r'quantity'] != null, 'Required key "DefundUserRequest[quantity]" has a null value in JSON.');
         return true;
       }());
 

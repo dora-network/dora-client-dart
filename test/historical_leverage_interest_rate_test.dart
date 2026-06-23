@@ -26,38 +26,48 @@ void main() {
       // TODO
     });
 
-    // double utilization
+    // String utilization
     test('to test the property `utilization`', () async {
       // TODO
     });
 
-    // double maximumUtilization
+    // String maximumUtilization
     test('to test the property `maximumUtilization`', () async {
       // TODO
     });
 
-    // double minimumRate
+    // String minimumRate
     test('to test the property `minimumRate`', () async {
       // TODO
     });
 
-    // double kinkRate
+    // String kinkRate
     test('to test the property `kinkRate`', () async {
       // TODO
     });
 
-    // double maximumRate
+    // String maximumRate
     test('to test the property `maximumRate`', () async {
       // TODO
     });
 
-    // double kinkUtilization
+    // String kinkUtilization
     test('to test the property `kinkUtilization`', () async {
       // TODO
     });
 
-    // double interestRate
-    test('to test the property `interestRate`', () async {
+    // String borrowingYieldRate
+    test('to test the property `borrowingYieldRate`', () async {
+      // TODO
+    });
+
+    // String lendingYieldRate
+    test('to test the property `lendingYieldRate`', () async {
+      // TODO
+    });
+
+    // String yieldToMaturity
+    test('to test the property `yieldToMaturity`', () async {
       // TODO
     });
 

@@ -62,10 +62,12 @@ class AccountSummaryV2 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AccountSummaryV2[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AccountSummaryV2[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'account_id'), 'Required key "AccountSummaryV2[account_id]" is missing from JSON.');
+        assert(json[r'account_id'] != null, 'Required key "AccountSummaryV2[account_id]" has a null value in JSON.');
+        assert(json.containsKey(r'account_name'), 'Required key "AccountSummaryV2[account_name]" is missing from JSON.');
+        assert(json[r'account_name'] != null, 'Required key "AccountSummaryV2[account_name]" has a null value in JSON.');
+        assert(json.containsKey(r'is_global'), 'Required key "AccountSummaryV2[is_global]" is missing from JSON.');
+        assert(json[r'is_global'] != null, 'Required key "AccountSummaryV2[is_global]" has a null value in JSON.');
         return true;
       }());
 

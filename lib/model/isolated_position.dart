@@ -59,10 +59,12 @@ class IsolatedPosition {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "IsolatedPosition[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "IsolatedPosition[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'global_position_id'), 'Required key "IsolatedPosition[global_position_id]" is missing from JSON.');
+        assert(json[r'global_position_id'] != null, 'Required key "IsolatedPosition[global_position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'isolated_position_id'), 'Required key "IsolatedPosition[isolated_position_id]" is missing from JSON.');
+        assert(json[r'isolated_position_id'] != null, 'Required key "IsolatedPosition[isolated_position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'transaction_id'), 'Required key "IsolatedPosition[transaction_id]" is missing from JSON.');
+        assert(json[r'transaction_id'] != null, 'Required key "IsolatedPosition[transaction_id]" has a null value in JSON.');
         return true;
       }());
 

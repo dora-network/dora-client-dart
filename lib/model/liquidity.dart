@@ -77,10 +77,18 @@ class Liquidity {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Liquidity[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Liquidity[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'order_book_id'), 'Required key "Liquidity[order_book_id]" is missing from JSON.');
+        assert(json[r'order_book_id'] != null, 'Required key "Liquidity[order_book_id]" has a null value in JSON.');
+        assert(json.containsKey(r'position_id'), 'Required key "Liquidity[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "Liquidity[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'transaction_id'), 'Required key "Liquidity[transaction_id]" is missing from JSON.');
+        assert(json[r'transaction_id'] != null, 'Required key "Liquidity[transaction_id]" has a null value in JSON.');
+        assert(json.containsKey(r'base_quantity'), 'Required key "Liquidity[base_quantity]" is missing from JSON.');
+        assert(json[r'base_quantity'] != null, 'Required key "Liquidity[base_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'quote_quantity'), 'Required key "Liquidity[quote_quantity]" is missing from JSON.');
+        assert(json[r'quote_quantity'] != null, 'Required key "Liquidity[quote_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'shares_quantity'), 'Required key "Liquidity[shares_quantity]" is missing from JSON.');
+        assert(json[r'shares_quantity'] != null, 'Required key "Liquidity[shares_quantity]" has a null value in JSON.');
         return true;
       }());
 

@@ -27,7 +27,7 @@ class DefaultApi {
   /// * [String] withdrawalId (required):
   ///
   /// * [WithdrawalRequestReason] withdrawalRequestReason:
-  Future<Response> approveLedgerWithdrawRequestWithHttpInfo(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, }) async {
+  Future<Response> approveLedgerWithdrawRequestWithHttpInfo(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/requests/{withdrawal_id}/approve'
       .replaceAll('{withdrawal_id}', withdrawalId);
@@ -50,6 +50,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -62,8 +63,8 @@ class DefaultApi {
   /// * [String] withdrawalId (required):
   ///
   /// * [WithdrawalRequestReason] withdrawalRequestReason:
-  Future<WithdrawalInitiationResponseEnvelope?> approveLedgerWithdrawRequest(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, }) async {
-    final response = await approveLedgerWithdrawRequestWithHttpInfo(withdrawalId,  withdrawalRequestReason: withdrawalRequestReason, );
+  Future<WithdrawalInitiationResponseEnvelope?> approveLedgerWithdrawRequest(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, Future<void>? abortTrigger, }) async {
+    final response = await approveLedgerWithdrawRequestWithHttpInfo(withdrawalId, withdrawalRequestReason: withdrawalRequestReason, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -90,7 +91,7 @@ class DefaultApi {
   /// * [String] accountId:
   ///
   /// * [OrderKind] orderKind:
-  Future<Response> cancelAllOpenOrdersWithHttpInfo({ String? orderBookId, String? userId, String? accountId, OrderKind? orderKind, }) async {
+  Future<Response> cancelAllOpenOrdersWithHttpInfo({ String? orderBookId, String? userId, String? accountId, OrderKind? orderKind, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orders';
 
@@ -125,6 +126,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -139,8 +141,8 @@ class DefaultApi {
   /// * [String] accountId:
   ///
   /// * [OrderKind] orderKind:
-  Future<ListOrdersResponseEnvelope?> cancelAllOpenOrders({ String? orderBookId, String? userId, String? accountId, OrderKind? orderKind, }) async {
-    final response = await cancelAllOpenOrdersWithHttpInfo( orderBookId: orderBookId, userId: userId, accountId: accountId, orderKind: orderKind, );
+  Future<ListOrdersResponseEnvelope?> cancelAllOpenOrders({ String? orderBookId, String? userId, String? accountId, OrderKind? orderKind, Future<void>? abortTrigger, }) async {
+    final response = await cancelAllOpenOrdersWithHttpInfo(orderBookId: orderBookId, userId: userId, accountId: accountId, orderKind: orderKind, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -165,7 +167,7 @@ class DefaultApi {
   /// * [String] withdrawalId (required):
   ///
   /// * [WithdrawalRequestReason] withdrawalRequestReason:
-  Future<Response> cancelLedgerWithdrawRequestWithHttpInfo(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, }) async {
+  Future<Response> cancelLedgerWithdrawRequestWithHttpInfo(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/requests/{withdrawal_id}/cancel'
       .replaceAll('{withdrawal_id}', withdrawalId);
@@ -188,6 +190,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -200,8 +203,8 @@ class DefaultApi {
   /// * [String] withdrawalId (required):
   ///
   /// * [WithdrawalRequestReason] withdrawalRequestReason:
-  Future<WithdrawalInitiationResponseEnvelope?> cancelLedgerWithdrawRequest(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, }) async {
-    final response = await cancelLedgerWithdrawRequestWithHttpInfo(withdrawalId,  withdrawalRequestReason: withdrawalRequestReason, );
+  Future<WithdrawalInitiationResponseEnvelope?> cancelLedgerWithdrawRequest(String withdrawalId, { WithdrawalRequestReason? withdrawalRequestReason, Future<void>? abortTrigger, }) async {
+    final response = await cancelLedgerWithdrawRequestWithHttpInfo(withdrawalId, withdrawalRequestReason: withdrawalRequestReason, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -222,7 +225,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderId (required):
-  Future<Response> cancelOrderByIdWithHttpInfo(String orderId,) async {
+  Future<Response> cancelOrderByIdWithHttpInfo(String orderId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orders/{order_id}'
       .replaceAll('{order_id}', orderId);
@@ -245,6 +248,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -253,8 +257,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderId (required):
-  Future<CancelOrderResponseEnvelope?> cancelOrderById(String orderId,) async {
-    final response = await cancelOrderByIdWithHttpInfo(orderId,);
+  Future<CancelOrderResponseEnvelope?> cancelOrderById(String orderId, { Future<void>? abortTrigger, }) async {
+    final response = await cancelOrderByIdWithHttpInfo(orderId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -275,7 +279,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [ClaimLeverageAccruedInterestRequest] claimLeverageAccruedInterestRequest (required):
-  Future<Response> claimLeverageGetAccruedInterestWithHttpInfo(ClaimLeverageAccruedInterestRequest claimLeverageAccruedInterestRequest,) async {
+  Future<Response> claimLeverageGetAccruedInterestWithHttpInfo(ClaimLeverageAccruedInterestRequest claimLeverageAccruedInterestRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/leverage/accrued_interest/claim';
 
@@ -297,6 +301,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -305,8 +310,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [ClaimLeverageAccruedInterestRequest] claimLeverageAccruedInterestRequest (required):
-  Future<ClaimLeverageAccruedInterestResponseEnvelope?> claimLeverageGetAccruedInterest(ClaimLeverageAccruedInterestRequest claimLeverageAccruedInterestRequest,) async {
-    final response = await claimLeverageGetAccruedInterestWithHttpInfo(claimLeverageAccruedInterestRequest,);
+  Future<ClaimLeverageAccruedInterestResponseEnvelope?> claimLeverageGetAccruedInterest(ClaimLeverageAccruedInterestRequest claimLeverageAccruedInterestRequest, { Future<void>? abortTrigger, }) async {
+    final response = await claimLeverageGetAccruedInterestWithHttpInfo(claimLeverageAccruedInterestRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -327,7 +332,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CloseAccountRequest] closeAccountRequest (required):
-  Future<Response> closeIsolatedAccountV2WithHttpInfo(CloseAccountRequest closeAccountRequest,) async {
+  Future<Response> closeIsolatedAccountV2WithHttpInfo(CloseAccountRequest closeAccountRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v2/accounts/close';
 
@@ -349,6 +354,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -357,8 +363,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CloseAccountRequest] closeAccountRequest (required):
-  Future<ClosePositionResponseEnvelope?> closeIsolatedAccountV2(CloseAccountRequest closeAccountRequest,) async {
-    final response = await closeIsolatedAccountV2WithHttpInfo(closeAccountRequest,);
+  Future<ClosePositionResponseEnvelope?> closeIsolatedAccountV2(CloseAccountRequest closeAccountRequest, { Future<void>? abortTrigger, }) async {
+    final response = await closeIsolatedAccountV2WithHttpInfo(closeAccountRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -379,7 +385,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [ClosePositionRequest] closePositionRequest (required):
-  Future<Response> closeIsolatedPositionWithHttpInfo(ClosePositionRequest closePositionRequest,) async {
+  Future<Response> closeIsolatedPositionWithHttpInfo(ClosePositionRequest closePositionRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/positions/close';
 
@@ -401,6 +407,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -409,8 +416,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [ClosePositionRequest] closePositionRequest (required):
-  Future<ClosePositionResponseEnvelope?> closeIsolatedPosition(ClosePositionRequest closePositionRequest,) async {
-    final response = await closeIsolatedPositionWithHttpInfo(closePositionRequest,);
+  Future<ClosePositionResponseEnvelope?> closeIsolatedPosition(ClosePositionRequest closePositionRequest, { Future<void>? abortTrigger, }) async {
+    final response = await closeIsolatedPositionWithHttpInfo(closePositionRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -431,7 +438,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CreateAPIKeyRequest] createAPIKeyRequest (required):
-  Future<Response> createAPIKeyForUserWithHttpInfo(CreateAPIKeyRequest createAPIKeyRequest,) async {
+  Future<Response> createAPIKeyForUserWithHttpInfo(CreateAPIKeyRequest createAPIKeyRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/apikey';
 
@@ -453,6 +460,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -461,8 +469,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CreateAPIKeyRequest] createAPIKeyRequest (required):
-  Future<CreateAPIKeyResponseEnvelope?> createAPIKeyForUser(CreateAPIKeyRequest createAPIKeyRequest,) async {
-    final response = await createAPIKeyForUserWithHttpInfo(createAPIKeyRequest,);
+  Future<CreateAPIKeyResponseEnvelope?> createAPIKeyForUser(CreateAPIKeyRequest createAPIKeyRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createAPIKeyForUserWithHttpInfo(createAPIKeyRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -485,7 +493,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [CreateAPIKeyRequest] createAPIKeyRequest (required):
-  Future<Response> createAPIKeyForUserIDWithHttpInfo(String userId, CreateAPIKeyRequest createAPIKeyRequest,) async {
+  Future<Response> createAPIKeyForUserIDWithHttpInfo(String userId, CreateAPIKeyRequest createAPIKeyRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/apikey'
       .replaceAll('{user_id}', userId);
@@ -508,6 +516,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -518,8 +527,8 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [CreateAPIKeyRequest] createAPIKeyRequest (required):
-  Future<CreateAPIKeyResponseEnvelope?> createAPIKeyForUserID(String userId, CreateAPIKeyRequest createAPIKeyRequest,) async {
-    final response = await createAPIKeyForUserIDWithHttpInfo(userId, createAPIKeyRequest,);
+  Future<CreateAPIKeyResponseEnvelope?> createAPIKeyForUserID(String userId, CreateAPIKeyRequest createAPIKeyRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createAPIKeyForUserIDWithHttpInfo(userId, createAPIKeyRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -540,7 +549,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CreateConditionalOrderRequest] createConditionalOrderRequest (required):
-  Future<Response> createConditionalOrderWithHttpInfo(CreateConditionalOrderRequest createConditionalOrderRequest,) async {
+  Future<Response> createConditionalOrderWithHttpInfo(CreateConditionalOrderRequest createConditionalOrderRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orders/conditional';
 
@@ -562,6 +571,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -570,8 +580,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CreateConditionalOrderRequest] createConditionalOrderRequest (required):
-  Future<CreateConditionalOrderResponseEnvelope?> createConditionalOrder(CreateConditionalOrderRequest createConditionalOrderRequest,) async {
-    final response = await createConditionalOrderWithHttpInfo(createConditionalOrderRequest,);
+  Future<CreateConditionalOrderResponseEnvelope?> createConditionalOrder(CreateConditionalOrderRequest createConditionalOrderRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createConditionalOrderWithHttpInfo(createConditionalOrderRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -592,7 +602,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [NewIsolatedAccountRequestV2] newIsolatedAccountRequestV2 (required):
-  Future<Response> createNewIsolatedAccountV2WithHttpInfo(NewIsolatedAccountRequestV2 newIsolatedAccountRequestV2,) async {
+  Future<Response> createNewIsolatedAccountV2WithHttpInfo(NewIsolatedAccountRequestV2 newIsolatedAccountRequestV2, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v2/accounts/new_isolated';
 
@@ -614,6 +624,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -622,8 +633,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [NewIsolatedAccountRequestV2] newIsolatedAccountRequestV2 (required):
-  Future<NewIsolatedAccountResponseV2Envelope?> createNewIsolatedAccountV2(NewIsolatedAccountRequestV2 newIsolatedAccountRequestV2,) async {
-    final response = await createNewIsolatedAccountV2WithHttpInfo(newIsolatedAccountRequestV2,);
+  Future<NewIsolatedAccountResponseV2Envelope?> createNewIsolatedAccountV2(NewIsolatedAccountRequestV2 newIsolatedAccountRequestV2, { Future<void>? abortTrigger, }) async {
+    final response = await createNewIsolatedAccountV2WithHttpInfo(newIsolatedAccountRequestV2, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -644,7 +655,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CreateOrderRequest] createOrderRequest (required):
-  Future<Response> createOrderWithHttpInfo(CreateOrderRequest createOrderRequest,) async {
+  Future<Response> createOrderWithHttpInfo(CreateOrderRequest createOrderRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orders';
 
@@ -666,6 +677,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -674,8 +686,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CreateOrderRequest] createOrderRequest (required):
-  Future<CreateOrderResponseEnvelope?> createOrder(CreateOrderRequest createOrderRequest,) async {
-    final response = await createOrderWithHttpInfo(createOrderRequest,);
+  Future<CreateOrderResponseEnvelope?> createOrder(CreateOrderRequest createOrderRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createOrderWithHttpInfo(createOrderRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -696,7 +708,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CreateIntegratorUserRequest] createIntegratorUserRequest (required):
-  Future<Response> createUserWithHttpInfo(CreateIntegratorUserRequest createIntegratorUserRequest,) async {
+  Future<Response> createUserWithHttpInfo(CreateIntegratorUserRequest createIntegratorUserRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/integrators/user';
 
@@ -718,6 +730,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -726,8 +739,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [CreateIntegratorUserRequest] createIntegratorUserRequest (required):
-  Future<UserCreatedResponseEnvelope?> createUser(CreateIntegratorUserRequest createIntegratorUserRequest,) async {
-    final response = await createUserWithHttpInfo(createIntegratorUserRequest,);
+  Future<UserCreatedResponseEnvelope?> createUser(CreateIntegratorUserRequest createIntegratorUserRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createUserWithHttpInfo(createIntegratorUserRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -748,7 +761,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<Response> deleteUserWithHttpInfo(String userId,) async {
+  Future<Response> deleteUserWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}'
       .replaceAll('{user_id}', userId);
@@ -771,6 +784,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -779,8 +793,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<UserDeletedResponseEnvelope?> deleteUser(String userId,) async {
-    final response = await deleteUserWithHttpInfo(userId,);
+  Future<UserDeletedResponseEnvelope?> deleteUser(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteUserWithHttpInfo(userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -801,7 +815,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<Response> getAPIKeysForUserIDWithHttpInfo(String userId,) async {
+  Future<Response> getAPIKeysForUserIDWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/apikey'
       .replaceAll('{user_id}', userId);
@@ -824,6 +838,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -832,8 +847,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<APIKeyResponseEnvelope?> getAPIKeysForUserID(String userId,) async {
-    final response = await getAPIKeysForUserIDWithHttpInfo(userId,);
+  Future<APIKeyResponseEnvelope?> getAPIKeysForUserID(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await getAPIKeysForUserIDWithHttpInfo(userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -850,7 +865,7 @@ class DefaultApi {
   /// Get the current price of all assets
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getAllAssetPricesWithHttpInfo() async {
+  Future<Response> getAllAssetPricesWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/price';
 
@@ -872,12 +887,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get the current price of all assets
-  Future<ListAssetPriceResponseEnvelope?> getAllAssetPrices() async {
-    final response = await getAllAssetPricesWithHttpInfo();
+  Future<ListAssetPriceResponseEnvelope?> getAllAssetPrices({ Future<void>? abortTrigger, }) async {
+    final response = await getAllAssetPricesWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -894,7 +910,7 @@ class DefaultApi {
   /// Get all users' positions
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getAllPositionsWithHttpInfo() async {
+  Future<Response> getAllPositionsWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/positions';
 
@@ -916,12 +932,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get all users' positions
-  Future<AllPositionsResponseEnvelope?> getAllPositions() async {
-    final response = await getAllPositionsWithHttpInfo();
+  Future<AllPositionsResponseEnvelope?> getAllPositions({ Future<void>? abortTrigger, }) async {
+    final response = await getAllPositionsWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -942,7 +959,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] status:
-  Future<Response> getAllWithdrawalRequestsWithHttpInfo({ String? status, }) async {
+  Future<Response> getAllWithdrawalRequestsWithHttpInfo({ String? status, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/requests';
 
@@ -968,6 +985,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -976,8 +994,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] status:
-  Future<AllWithdrawalInitiationsResponseEnvelope?> getAllWithdrawalRequests({ String? status, }) async {
-    final response = await getAllWithdrawalRequestsWithHttpInfo( status: status, );
+  Future<AllWithdrawalInitiationsResponseEnvelope?> getAllWithdrawalRequests({ String? status, Future<void>? abortTrigger, }) async {
+    final response = await getAllWithdrawalRequestsWithHttpInfo(status: status, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -998,7 +1016,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] assetId (required):
-  Future<Response> getAssetByIdWithHttpInfo(String assetId,) async {
+  Future<Response> getAssetByIdWithHttpInfo(String assetId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/assets/{asset_id}'
       .replaceAll('{asset_id}', assetId);
@@ -1021,6 +1039,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1029,8 +1048,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] assetId (required):
-  Future<GetAssetByIDResponseEnvelope?> getAssetById(String assetId,) async {
-    final response = await getAssetByIdWithHttpInfo(assetId,);
+  Future<GetAssetByIDResponseEnvelope?> getAssetById(String assetId, { Future<void>? abortTrigger, }) async {
+    final response = await getAssetByIdWithHttpInfo(assetId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1051,7 +1070,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] assetId (required):
-  Future<Response> getAssetPriceWithHttpInfo(String assetId,) async {
+  Future<Response> getAssetPriceWithHttpInfo(String assetId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/price/asset/{asset_id}'
       .replaceAll('{asset_id}', assetId);
@@ -1074,6 +1093,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1082,8 +1102,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] assetId (required):
-  Future<AssetPriceResponseEnvelope?> getAssetPrice(String assetId,) async {
-    final response = await getAssetPriceWithHttpInfo(assetId,);
+  Future<AssetPriceResponseEnvelope?> getAssetPrice(String assetId, { Future<void>? abortTrigger, }) async {
+    final response = await getAssetPriceWithHttpInfo(assetId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1104,7 +1124,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] assetId (required):
-  Future<Response> getAssetYTMByIdWithHttpInfo(String assetId,) async {
+  Future<Response> getAssetYTMByIdWithHttpInfo(String assetId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/assets/{asset_id}/ytm'
       .replaceAll('{asset_id}', assetId);
@@ -1127,6 +1147,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1135,8 +1156,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] assetId (required):
-  Future<GetAssetYTMByIDResponseEnvelope?> getAssetYTMById(String assetId,) async {
-    final response = await getAssetYTMByIdWithHttpInfo(assetId,);
+  Future<GetAssetYTMByIDResponseEnvelope?> getAssetYTMById(String assetId, { Future<void>? abortTrigger, }) async {
+    final response = await getAssetYTMByIdWithHttpInfo(assetId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1163,7 +1184,7 @@ class DefaultApi {
   /// * [DateTime] end (required):
   ///
   /// * [AssetYieldResolution] resolution (required):
-  Future<Response> getAssetYieldDataWithHttpInfo(String assetId, DateTime start, DateTime end, AssetYieldResolution resolution,) async {
+  Future<Response> getAssetYieldDataWithHttpInfo(String assetId, DateTime start, DateTime end, AssetYieldResolution resolution, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/charts/{asset_id}/yield'
       .replaceAll('{asset_id}', assetId);
@@ -1190,6 +1211,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1204,8 +1226,8 @@ class DefaultApi {
   /// * [DateTime] end (required):
   ///
   /// * [AssetYieldResolution] resolution (required):
-  Future<ListAssetYieldResponseEnvelope?> getAssetYieldData(String assetId, DateTime start, DateTime end, AssetYieldResolution resolution,) async {
-    final response = await getAssetYieldDataWithHttpInfo(assetId, start, end, resolution,);
+  Future<ListAssetYieldResponseEnvelope?> getAssetYieldData(String assetId, DateTime start, DateTime end, AssetYieldResolution resolution, { Future<void>? abortTrigger, }) async {
+    final response = await getAssetYieldDataWithHttpInfo(assetId, start, end, resolution, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1228,7 +1250,7 @@ class DefaultApi {
   /// * [DateTime] since:
   ///
   /// * [DateTime] until:
-  Future<Response> getAssetsStreamWithHttpInfo({ DateTime? since, DateTime? until, }) async {
+  Future<Response> getAssetsStreamWithHttpInfo({ DateTime? since, DateTime? until, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/assets/stream';
 
@@ -1257,6 +1279,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1267,8 +1290,8 @@ class DefaultApi {
   /// * [DateTime] since:
   ///
   /// * [DateTime] until:
-  Future<List<StreamAssetsEntry>?> getAssetsStream({ DateTime? since, DateTime? until, }) async {
-    final response = await getAssetsStreamWithHttpInfo( since: since, until: until, );
+  Future<List<StreamAssetsEntry>?> getAssetsStream({ DateTime? since, DateTime? until, Future<void>? abortTrigger, }) async {
+    final response = await getAssetsStreamWithHttpInfo(since: since, until: until, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1298,7 +1321,7 @@ class DefaultApi {
   /// * [DateTime] end (required):
   ///
   /// * [CandleResolution] resolution:
-  Future<Response> getCandleDataWithHttpInfo(String orderBookId, DateTime start, DateTime end, { CandleResolution? resolution, }) async {
+  Future<Response> getCandleDataWithHttpInfo(String orderBookId, DateTime start, DateTime end, { CandleResolution? resolution, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/charts/{order_book_id}/candle'
       .replaceAll('{order_book_id}', orderBookId);
@@ -1327,6 +1350,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1341,8 +1365,8 @@ class DefaultApi {
   /// * [DateTime] end (required):
   ///
   /// * [CandleResolution] resolution:
-  Future<ListCandlesResponseEnvelope?> getCandleData(String orderBookId, DateTime start, DateTime end, { CandleResolution? resolution, }) async {
-    final response = await getCandleDataWithHttpInfo(orderBookId, start, end,  resolution: resolution, );
+  Future<ListCandlesResponseEnvelope?> getCandleData(String orderBookId, DateTime start, DateTime end, { CandleResolution? resolution, Future<void>? abortTrigger, }) async {
+    final response = await getCandleDataWithHttpInfo(orderBookId, start, end, resolution: resolution, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1363,7 +1387,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] assetId (required):
-  Future<Response> getCouponPaymentsByAssetIdWithHttpInfo(String assetId,) async {
+  Future<Response> getCouponPaymentsByAssetIdWithHttpInfo(String assetId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/assets/{asset_id}/coupon_payments'
       .replaceAll('{asset_id}', assetId);
@@ -1386,6 +1410,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1394,8 +1419,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] assetId (required):
-  Future<ListCouponPaymentsResponseEnvelope?> getCouponPaymentsByAssetId(String assetId,) async {
-    final response = await getCouponPaymentsByAssetIdWithHttpInfo(assetId,);
+  Future<ListCouponPaymentsResponseEnvelope?> getCouponPaymentsByAssetId(String assetId, { Future<void>? abortTrigger, }) async {
+    final response = await getCouponPaymentsByAssetIdWithHttpInfo(assetId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1416,7 +1441,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<Response> getL1DepthWithHttpInfo(String orderBookId,) async {
+  Future<Response> getL1DepthWithHttpInfo(String orderBookId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/L1'
       .replaceAll('{order_book_id}', orderBookId);
@@ -1439,6 +1464,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1447,8 +1473,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<GetTopOfBookResponseEnvelope?> getL1Depth(String orderBookId,) async {
-    final response = await getL1DepthWithHttpInfo(orderBookId,);
+  Future<GetTopOfBookResponseEnvelope?> getL1Depth(String orderBookId, { Future<void>? abortTrigger, }) async {
+    final response = await getL1DepthWithHttpInfo(orderBookId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1469,7 +1495,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<Response> getL2DepthWithHttpInfo(String orderBookId,) async {
+  Future<Response> getL2DepthWithHttpInfo(String orderBookId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/L2'
       .replaceAll('{order_book_id}', orderBookId);
@@ -1492,6 +1518,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1500,8 +1527,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<ListOrderBookDepthResponseEnvelope?> getL2Depth(String orderBookId,) async {
-    final response = await getL2DepthWithHttpInfo(orderBookId,);
+  Future<ListOrderBookDepthResponseEnvelope?> getL2Depth(String orderBookId, { Future<void>? abortTrigger, }) async {
+    final response = await getL2DepthWithHttpInfo(orderBookId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1522,7 +1549,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<Response> getL3DepthWithHttpInfo(String orderBookId,) async {
+  Future<Response> getL3DepthWithHttpInfo(String orderBookId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/L3'
       .replaceAll('{order_book_id}', orderBookId);
@@ -1545,6 +1572,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1553,8 +1581,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<ListOrdersResponseEnvelope?> getL3Depth(String orderBookId,) async {
-    final response = await getL3DepthWithHttpInfo(orderBookId,);
+  Future<ListOrdersResponseEnvelope?> getL3Depth(String orderBookId, { Future<void>? abortTrigger, }) async {
+    final response = await getL3DepthWithHttpInfo(orderBookId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1571,7 +1599,7 @@ class DefaultApi {
   /// Get your own accounts
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getLedgerAccountsSelfV2WithHttpInfo() async {
+  Future<Response> getLedgerAccountsSelfV2WithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v2/ledger/accounts/self';
 
@@ -1593,12 +1621,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get your own accounts
-  Future<LedgerAccountsResponseV2Envelope?> getLedgerAccountsSelfV2() async {
-    final response = await getLedgerAccountsSelfV2WithHttpInfo();
+  Future<LedgerAccountsResponseV2Envelope?> getLedgerAccountsSelfV2({ Future<void>? abortTrigger, }) async {
+    final response = await getLedgerAccountsSelfV2WithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1615,7 +1644,7 @@ class DefaultApi {
   /// Get your own available, locked, and borrowed assets
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getLedgerBalancesSelfWithHttpInfo() async {
+  Future<Response> getLedgerBalancesSelfWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/balances/self';
 
@@ -1637,12 +1666,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get your own available, locked, and borrowed assets
-  Future<UserBalanceResponseEnvelope?> getLedgerBalancesSelf() async {
-    final response = await getLedgerBalancesSelfWithHttpInfo();
+  Future<UserBalanceResponseEnvelope?> getLedgerBalancesSelf({ Future<void>? abortTrigger, }) async {
+    final response = await getLedgerBalancesSelfWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1659,7 +1689,7 @@ class DefaultApi {
   /// Get your own interest
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getLedgerInterestSelfWithHttpInfo() async {
+  Future<Response> getLedgerInterestSelfWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/interest/self';
 
@@ -1681,12 +1711,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get your own interest
-  Future<UserInterestResponseEnvelope?> getLedgerInterestSelf() async {
-    final response = await getLedgerInterestSelfWithHttpInfo();
+  Future<UserInterestResponseEnvelope?> getLedgerInterestSelf({ Future<void>? abortTrigger, }) async {
+    final response = await getLedgerInterestSelfWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1703,7 +1734,7 @@ class DefaultApi {
   /// Get the entire module object, including unborrowed leverage assets and total leverage trackers
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getLedgerModuleWithHttpInfo() async {
+  Future<Response> getLedgerModuleWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/module';
 
@@ -1725,12 +1756,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get the entire module object, including unborrowed leverage assets and total leverage trackers
-  Future<LedgerModuleResponseEnvelope?> getLedgerModule() async {
-    final response = await getLedgerModuleWithHttpInfo();
+  Future<LedgerModuleResponseEnvelope?> getLedgerModule({ Future<void>? abortTrigger, }) async {
+    final response = await getLedgerModuleWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1751,7 +1783,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] assetId (required):
-  Future<Response> getLedgerModuleByAssetWithHttpInfo(String assetId,) async {
+  Future<Response> getLedgerModuleByAssetWithHttpInfo(String assetId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/module/{asset_id}'
       .replaceAll('{asset_id}', assetId);
@@ -1774,6 +1806,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1782,8 +1815,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] assetId (required):
-  Future<LedgerModuleByAssetResponseEnvelope?> getLedgerModuleByAsset(String assetId,) async {
-    final response = await getLedgerModuleByAssetWithHttpInfo(assetId,);
+  Future<LedgerModuleByAssetResponseEnvelope?> getLedgerModuleByAsset(String assetId, { Future<void>? abortTrigger, }) async {
+    final response = await getLedgerModuleByAssetWithHttpInfo(assetId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1800,7 +1833,7 @@ class DefaultApi {
   /// Get your own positions
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getLedgerPositionsSelfWithHttpInfo() async {
+  Future<Response> getLedgerPositionsSelfWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/positions/self';
 
@@ -1822,12 +1855,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get your own positions
-  Future<UserPositionResponseEnvelope?> getLedgerPositionsSelf() async {
-    final response = await getLedgerPositionsSelfWithHttpInfo();
+  Future<UserPositionResponseEnvelope?> getLedgerPositionsSelf({ Future<void>? abortTrigger, }) async {
+    final response = await getLedgerPositionsSelfWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1844,7 +1878,7 @@ class DefaultApi {
   /// Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getLedgerValueSelfWithHttpInfo() async {
+  Future<Response> getLedgerValueSelfWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/value/self';
 
@@ -1866,12 +1900,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get your own available, locked, and borrowed USD value; and realized and unrealized PnL
-  Future<UserValueResponseEnvelope?> getLedgerValueSelf() async {
-    final response = await getLedgerValueSelfWithHttpInfo();
+  Future<UserValueResponseEnvelope?> getLedgerValueSelf({ Future<void>? abortTrigger, }) async {
+    final response = await getLedgerValueSelfWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1892,7 +1927,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] status:
-  Future<Response> getLedgerWithdrawRequestsBySelfWithHttpInfo({ String? status, }) async {
+  Future<Response> getLedgerWithdrawRequestsBySelfWithHttpInfo({ String? status, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/requests/self';
 
@@ -1918,6 +1953,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1926,8 +1962,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] status:
-  Future<AllWithdrawalInitiationsResponseEnvelope?> getLedgerWithdrawRequestsBySelf({ String? status, }) async {
-    final response = await getLedgerWithdrawRequestsBySelfWithHttpInfo( status: status, );
+  Future<AllWithdrawalInitiationsResponseEnvelope?> getLedgerWithdrawRequestsBySelf({ String? status, Future<void>? abortTrigger, }) async {
+    final response = await getLedgerWithdrawRequestsBySelfWithHttpInfo(status: status, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1950,7 +1986,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [String] status:
-  Future<Response> getLedgerWithdrawRequestsByUserIDWithHttpInfo(String userId, { String? status, }) async {
+  Future<Response> getLedgerWithdrawRequestsByUserIDWithHttpInfo(String userId, { String? status, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/requests/{user_id}'
       .replaceAll('{user_id}', userId);
@@ -1977,6 +2013,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1987,8 +2024,8 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [String] status:
-  Future<AllWithdrawalInitiationsResponseEnvelope?> getLedgerWithdrawRequestsByUserID(String userId, { String? status, }) async {
-    final response = await getLedgerWithdrawRequestsByUserIDWithHttpInfo(userId,  status: status, );
+  Future<AllWithdrawalInitiationsResponseEnvelope?> getLedgerWithdrawRequestsByUserID(String userId, { String? status, Future<void>? abortTrigger, }) async {
+    final response = await getLedgerWithdrawRequestsByUserIDWithHttpInfo(userId, status: status, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2009,7 +2046,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderId (required):
-  Future<Response> getOrderByIdWithHttpInfo(String orderId,) async {
+  Future<Response> getOrderByIdWithHttpInfo(String orderId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orders/{order_id}'
       .replaceAll('{order_id}', orderId);
@@ -2032,6 +2069,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2040,8 +2078,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderId (required):
-  Future<OrderResponseEnvelope?> getOrderById(String orderId,) async {
-    final response = await getOrderByIdWithHttpInfo(orderId,);
+  Future<OrderResponseEnvelope?> getOrderById(String orderId, { Future<void>? abortTrigger, }) async {
+    final response = await getOrderByIdWithHttpInfo(orderId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2062,7 +2100,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<Response> getOrderbookByIdWithHttpInfo(String orderBookId,) async {
+  Future<Response> getOrderbookByIdWithHttpInfo(String orderBookId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}'
       .replaceAll('{order_book_id}', orderBookId);
@@ -2085,6 +2123,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2093,8 +2132,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<OrderBookResponseEnvelope?> getOrderbookById(String orderBookId,) async {
-    final response = await getOrderbookByIdWithHttpInfo(orderBookId,);
+  Future<OrderBookResponseEnvelope?> getOrderbookById(String orderBookId, { Future<void>? abortTrigger, }) async {
+    final response = await getOrderbookByIdWithHttpInfo(orderBookId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2115,7 +2154,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<Response> getOrderbookDepthWithHttpInfo(String orderBookId,) async {
+  Future<Response> getOrderbookDepthWithHttpInfo(String orderBookId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/depth'
       .replaceAll('{order_book_id}', orderBookId);
@@ -2138,6 +2177,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2146,8 +2186,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<ListOrderBookDepthResponseEnvelope?> getOrderbookDepth(String orderBookId,) async {
-    final response = await getOrderbookDepthWithHttpInfo(orderBookId,);
+  Future<ListOrderBookDepthResponseEnvelope?> getOrderbookDepth(String orderBookId, { Future<void>? abortTrigger, }) async {
+    final response = await getOrderbookDepthWithHttpInfo(orderBookId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2168,7 +2208,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<Response> getOrderbookOrdersWithHttpInfo(String orderBookId,) async {
+  Future<Response> getOrderbookOrdersWithHttpInfo(String orderBookId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/orders'
       .replaceAll('{order_book_id}', orderBookId);
@@ -2191,6 +2231,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2199,8 +2240,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<ListOrdersResponseEnvelope?> getOrderbookOrders(String orderBookId,) async {
-    final response = await getOrderbookOrdersWithHttpInfo(orderBookId,);
+  Future<ListOrdersResponseEnvelope?> getOrderbookOrders(String orderBookId, { Future<void>? abortTrigger, }) async {
+    final response = await getOrderbookOrdersWithHttpInfo(orderBookId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2221,7 +2262,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<Response> getOrderbookStatsWithHttpInfo(String orderBookId,) async {
+  Future<Response> getOrderbookStatsWithHttpInfo(String orderBookId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/stats'
       .replaceAll('{order_book_id}', orderBookId);
@@ -2244,6 +2285,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2252,8 +2294,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<OrderbookStatsResponseEnvelope?> getOrderbookStats(String orderBookId,) async {
-    final response = await getOrderbookStatsWithHttpInfo(orderBookId,);
+  Future<OrderbookStatsResponseEnvelope?> getOrderbookStats(String orderBookId, { Future<void>? abortTrigger, }) async {
+    final response = await getOrderbookStatsWithHttpInfo(orderBookId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2274,7 +2316,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<Response> getOrderbookStatsStreamWithHttpInfo(String orderBookId,) async {
+  Future<Response> getOrderbookStatsStreamWithHttpInfo(String orderBookId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/stats/stream'
       .replaceAll('{order_book_id}', orderBookId);
@@ -2297,6 +2339,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2305,8 +2348,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<OrderbookStats?> getOrderbookStatsStream(String orderBookId,) async {
-    final response = await getOrderbookStatsStreamWithHttpInfo(orderBookId,);
+  Future<OrderbookStats?> getOrderbookStatsStream(String orderBookId, { Future<void>? abortTrigger, }) async {
+    final response = await getOrderbookStatsStreamWithHttpInfo(orderBookId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2327,7 +2370,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<Response> getOrderbookSummaryWithHttpInfo(String orderBookId,) async {
+  Future<Response> getOrderbookSummaryWithHttpInfo(String orderBookId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/summary'
       .replaceAll('{order_book_id}', orderBookId);
@@ -2350,6 +2393,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2358,8 +2402,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<OrderBookSummaryResponseEnvelope?> getOrderbookSummary(String orderBookId,) async {
-    final response = await getOrderbookSummaryWithHttpInfo(orderBookId,);
+  Future<OrderBookSummaryResponseEnvelope?> getOrderbookSummary(String orderBookId, { Future<void>? abortTrigger, }) async {
+    final response = await getOrderbookSummaryWithHttpInfo(orderBookId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2380,7 +2424,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<Response> getOrderbookTopWithHttpInfo(String orderBookId,) async {
+  Future<Response> getOrderbookTopWithHttpInfo(String orderBookId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/top'
       .replaceAll('{order_book_id}', orderBookId);
@@ -2403,6 +2447,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2411,8 +2456,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] orderBookId (required):
-  Future<GetTopOfBookResponseEnvelope?> getOrderbookTop(String orderBookId,) async {
-    final response = await getOrderbookTopWithHttpInfo(orderBookId,);
+  Future<GetTopOfBookResponseEnvelope?> getOrderbookTop(String orderBookId, { Future<void>? abortTrigger, }) async {
+    final response = await getOrderbookTopWithHttpInfo(orderBookId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2429,7 +2474,7 @@ class DefaultApi {
   /// Get account-by-account PL breakdown for the logged in user
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getPLForSelfByAccountWithHttpInfo() async {
+  Future<Response> getPLForSelfByAccountWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/pl/self';
 
@@ -2451,12 +2496,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get account-by-account PL breakdown for the logged in user
-  Future<PLResponseEnvelope?> getPLForSelfByAccount() async {
-    final response = await getPLForSelfByAccountWithHttpInfo();
+  Future<PLResponseEnvelope?> getPLForSelfByAccount({ Future<void>? abortTrigger, }) async {
+    final response = await getPLForSelfByAccountWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2477,7 +2523,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] poolId (required):
-  Future<Response> getPoolPriceWithHttpInfo(String poolId,) async {
+  Future<Response> getPoolPriceWithHttpInfo(String poolId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/price/pool/{pool_id}'
       .replaceAll('{pool_id}', poolId);
@@ -2500,6 +2546,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2508,8 +2555,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] poolId (required):
-  Future<PoolPriceResponseEnvelope?> getPoolPrice(String poolId,) async {
-    final response = await getPoolPriceWithHttpInfo(poolId,);
+  Future<PoolPriceResponseEnvelope?> getPoolPrice(String poolId, { Future<void>? abortTrigger, }) async {
+    final response = await getPoolPriceWithHttpInfo(poolId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2544,7 +2591,7 @@ class DefaultApi {
   /// * [DateTime] settledBefore:
   ///
   /// * [bool] isSettled:
-  Future<Response> getRealizedPnlSettlementsWithHttpInfo({ String? userId, String? tenantId, String? positionId, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, }) async {
+  Future<Response> getRealizedPnlSettlementsWithHttpInfo({ String? userId, String? tenantId, String? positionId, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/realized_pnl_settlements';
 
@@ -2591,6 +2638,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2613,8 +2661,8 @@ class DefaultApi {
   /// * [DateTime] settledBefore:
   ///
   /// * [bool] isSettled:
-  Future<GetRealizedPnlSettlementsResponseEnvelope?> getRealizedPnlSettlements({ String? userId, String? tenantId, String? positionId, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, }) async {
-    final response = await getRealizedPnlSettlementsWithHttpInfo( userId: userId, tenantId: tenantId, positionId: positionId, createdAfter: createdAfter, createdBefore: createdBefore, settledAfter: settledAfter, settledBefore: settledBefore, isSettled: isSettled, );
+  Future<GetRealizedPnlSettlementsResponseEnvelope?> getRealizedPnlSettlements({ String? userId, String? tenantId, String? positionId, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, Future<void>? abortTrigger, }) async {
+    final response = await getRealizedPnlSettlementsWithHttpInfo(userId: userId, tenantId: tenantId, positionId: positionId, createdAfter: createdAfter, createdBefore: createdBefore, settledAfter: settledAfter, settledBefore: settledBefore, isSettled: isSettled, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2635,7 +2683,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] tradeId (required):
-  Future<Response> getTradeByIdWithHttpInfo(String tradeId,) async {
+  Future<Response> getTradeByIdWithHttpInfo(String tradeId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/trades/{trade_id}'
       .replaceAll('{trade_id}', tradeId);
@@ -2658,6 +2706,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2666,8 +2715,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] tradeId (required):
-  Future<TradeResponseEnvelope?> getTradeById(String tradeId,) async {
-    final response = await getTradeByIdWithHttpInfo(tradeId,);
+  Future<TradeResponseEnvelope?> getTradeById(String tradeId, { Future<void>? abortTrigger, }) async {
+    final response = await getTradeByIdWithHttpInfo(tradeId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2698,7 +2747,7 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<Response> getTradesWithHttpInfo({ List<String>? orderBookIds, List<String>? userIds, DateTime? start, DateTime? end, int? page, int? limit, }) async {
+  Future<Response> getTradesWithHttpInfo({ List<String>? orderBookIds, List<String>? userIds, DateTime? start, DateTime? end, int? page, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/trades';
 
@@ -2739,6 +2788,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2757,8 +2807,8 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<ListTradeResponseEnvelope?> getTrades({ List<String>? orderBookIds, List<String>? userIds, DateTime? start, DateTime? end, int? page, int? limit, }) async {
-    final response = await getTradesWithHttpInfo( orderBookIds: orderBookIds, userIds: userIds, start: start, end: end, page: page, limit: limit, );
+  Future<ListTradeResponseEnvelope?> getTrades({ List<String>? orderBookIds, List<String>? userIds, DateTime? start, DateTime? end, int? page, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await getTradesWithHttpInfo(orderBookIds: orderBookIds, userIds: userIds, start: start, end: end, page: page, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2779,7 +2829,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] transactionId (required):
-  Future<Response> getTransactionByIdWithHttpInfo(String transactionId,) async {
+  Future<Response> getTransactionByIdWithHttpInfo(String transactionId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/transactions/{transaction_id}'
       .replaceAll('{transaction_id}', transactionId);
@@ -2802,6 +2852,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2810,8 +2861,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] transactionId (required):
-  Future<TransactionResponseEnvelope?> getTransactionById(String transactionId,) async {
-    final response = await getTransactionByIdWithHttpInfo(transactionId,);
+  Future<TransactionResponseEnvelope?> getTransactionById(String transactionId, { Future<void>? abortTrigger, }) async {
+    final response = await getTransactionByIdWithHttpInfo(transactionId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2846,7 +2897,7 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<Response> getTransactionsWithHttpInfo({ List<String>? pools, List<String>? userIds, List<TransactionKind>? txKinds, DateTime? start, DateTime? end, String? tenantId, int? page, int? limit, }) async {
+  Future<Response> getTransactionsWithHttpInfo({ List<String>? pools, List<String>? userIds, List<TransactionKind>? txKinds, DateTime? start, DateTime? end, String? tenantId, int? page, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/transactions';
 
@@ -2893,6 +2944,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2915,8 +2967,8 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<ListTransactionsResponseEnvelope?> getTransactions({ List<String>? pools, List<String>? userIds, List<TransactionKind>? txKinds, DateTime? start, DateTime? end, String? tenantId, int? page, int? limit, }) async {
-    final response = await getTransactionsWithHttpInfo( pools: pools, userIds: userIds, txKinds: txKinds, start: start, end: end, tenantId: tenantId, page: page, limit: limit, );
+  Future<ListTransactionsResponseEnvelope?> getTransactions({ List<String>? pools, List<String>? userIds, List<TransactionKind>? txKinds, DateTime? start, DateTime? end, String? tenantId, int? page, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await getTransactionsWithHttpInfo(pools: pools, userIds: userIds, txKinds: txKinds, start: start, end: end, tenantId: tenantId, page: page, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2962,7 +3014,7 @@ class DefaultApi {
   ///
   /// * [bool] isSettled:
   ///   Filter settlements by settlement status
-  Future<Response> getTransactionsSettlementsWithHttpInfo({ String? tenantId, String? userId, String? positionId, String? txKind, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, }) async {
+  Future<Response> getTransactionsSettlementsWithHttpInfo({ String? tenantId, String? userId, String? positionId, String? txKind, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/transactions/settlements';
 
@@ -3012,6 +3064,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3045,8 +3098,8 @@ class DefaultApi {
   ///
   /// * [bool] isSettled:
   ///   Filter settlements by settlement status
-  Future<TransactionsSettlementsResponseEnvelope?> getTransactionsSettlements({ String? tenantId, String? userId, String? positionId, String? txKind, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, }) async {
-    final response = await getTransactionsSettlementsWithHttpInfo( tenantId: tenantId, userId: userId, positionId: positionId, txKind: txKind, createdAfter: createdAfter, createdBefore: createdBefore, settledAfter: settledAfter, settledBefore: settledBefore, isSettled: isSettled, );
+  Future<TransactionsSettlementsResponseEnvelope?> getTransactionsSettlements({ String? tenantId, String? userId, String? positionId, String? txKind, DateTime? createdAfter, DateTime? createdBefore, DateTime? settledAfter, DateTime? settledBefore, bool? isSettled, Future<void>? abortTrigger, }) async {
+    final response = await getTransactionsSettlementsWithHttpInfo(tenantId: tenantId, userId: userId, positionId: positionId, txKind: txKind, createdAfter: createdAfter, createdBefore: createdBefore, settledAfter: settledAfter, settledBefore: settledBefore, isSettled: isSettled, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3067,7 +3120,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [DateTime] since:
-  Future<Response> getTransactionsStreamWithHttpInfo({ DateTime? since, }) async {
+  Future<Response> getTransactionsStreamWithHttpInfo({ DateTime? since, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/transactions/stream';
 
@@ -3093,6 +3146,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3101,8 +3155,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [DateTime] since:
-  Future<List<StreamTransactionsEntry>?> getTransactionsStream({ DateTime? since, }) async {
-    final response = await getTransactionsStreamWithHttpInfo( since: since, );
+  Future<List<StreamTransactionsEntry>?> getTransactionsStream({ DateTime? since, Future<void>? abortTrigger, }) async {
+    final response = await getTransactionsStreamWithHttpInfo(since: since, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3126,7 +3180,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<Response> getUserByIdWithHttpInfo(String userId,) async {
+  Future<Response> getUserByIdWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}'
       .replaceAll('{user_id}', userId);
@@ -3149,6 +3203,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3157,8 +3212,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<UserEnvelope?> getUserById(String userId,) async {
-    final response = await getUserByIdWithHttpInfo(userId,);
+  Future<UserEnvelope?> getUserById(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await getUserByIdWithHttpInfo(userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3179,7 +3234,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<Response> getUserCouponPaymentsStreamWithHttpInfo(String userId,) async {
+  Future<Response> getUserCouponPaymentsStreamWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/coupon_payments/stream'
       .replaceAll('{user_id}', userId);
@@ -3202,6 +3257,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3210,8 +3266,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<StreamUserCouponPaymentsResponse?> getUserCouponPaymentsStream(String userId,) async {
-    final response = await getUserCouponPaymentsStreamWithHttpInfo(userId,);
+  Future<StreamUserCouponPaymentsResponse?> getUserCouponPaymentsStream(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await getUserCouponPaymentsStreamWithHttpInfo(userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3232,7 +3288,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<Response> getUserLedgerStreamWithHttpInfo(String userId,) async {
+  Future<Response> getUserLedgerStreamWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/ledger/stream'
       .replaceAll('{user_id}', userId);
@@ -3255,6 +3311,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3263,8 +3320,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<List<StreamPositionsEntry>?> getUserLedgerStream(String userId,) async {
-    final response = await getUserLedgerStreamWithHttpInfo(userId,);
+  Future<List<StreamPositionsEntry>?> getUserLedgerStream(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await getUserLedgerStreamWithHttpInfo(userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3288,7 +3345,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<Response> getUserLeverageAccruedInterestStreamWithHttpInfo(String userId,) async {
+  Future<Response> getUserLeverageAccruedInterestStreamWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/leverage/accrued_interest/stream'
       .replaceAll('{user_id}', userId);
@@ -3311,6 +3368,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3319,8 +3377,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<StreamCurrentLeverageAccruedInterestResponse?> getUserLeverageAccruedInterestStream(String userId,) async {
-    final response = await getUserLeverageAccruedInterestStreamWithHttpInfo(userId,);
+  Future<StreamCurrentLeverageAccruedInterestResponse?> getUserLeverageAccruedInterestStream(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await getUserLeverageAccruedInterestStreamWithHttpInfo(userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3345,7 +3403,7 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<Response> getUserOrderUpdatesStreamWithHttpInfo(String userId, String orderBookId, { DateTime? since, }) async {
+  Future<Response> getUserOrderUpdatesStreamWithHttpInfo(String userId, String orderBookId, { DateTime? since, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/orders/{order_book_id}/updates/stream'
       .replaceAll('{user_id}', userId)
@@ -3373,6 +3431,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3385,8 +3444,8 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<List<StreamOrderUpdatesEntry>?> getUserOrderUpdatesStream(String userId, String orderBookId, { DateTime? since, }) async {
-    final response = await getUserOrderUpdatesStreamWithHttpInfo(userId, orderBookId,  since: since, );
+  Future<List<StreamOrderUpdatesEntry>?> getUserOrderUpdatesStream(String userId, String orderBookId, { DateTime? since, Future<void>? abortTrigger, }) async {
+    final response = await getUserOrderUpdatesStreamWithHttpInfo(userId, orderBookId, since: since, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3412,7 +3471,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DateTime] since:
-  Future<Response> getUserOrdersUpdatesStreamAllWithHttpInfo(String userId, { DateTime? since, }) async {
+  Future<Response> getUserOrdersUpdatesStreamAllWithHttpInfo(String userId, { DateTime? since, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/orders/all/updates/stream'
       .replaceAll('{user_id}', userId);
@@ -3439,6 +3498,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3449,8 +3509,8 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DateTime] since:
-  Future<List<StreamOrderUpdatesEntry>?> getUserOrdersUpdatesStreamAll(String userId, { DateTime? since, }) async {
-    final response = await getUserOrdersUpdatesStreamAllWithHttpInfo(userId,  since: since, );
+  Future<List<StreamOrderUpdatesEntry>?> getUserOrdersUpdatesStreamAll(String userId, { DateTime? since, Future<void>? abortTrigger, }) async {
+    final response = await getUserOrdersUpdatesStreamAllWithHttpInfo(userId, since: since, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3470,7 +3530,7 @@ class DefaultApi {
   /// Get user details for the authenticated user
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getUserSelfWithHttpInfo() async {
+  Future<Response> getUserSelfWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/self';
 
@@ -3492,12 +3552,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get user details for the authenticated user
-  Future<UserEnvelope?> getUserSelf() async {
-    final response = await getUserSelfWithHttpInfo();
+  Future<UserEnvelope?> getUserSelf({ Future<void>? abortTrigger, }) async {
+    final response = await getUserSelfWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3520,7 +3581,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DateTime] since:
-  Future<Response> getUserTransactionsStreamWithHttpInfo(String userId, { DateTime? since, }) async {
+  Future<Response> getUserTransactionsStreamWithHttpInfo(String userId, { DateTime? since, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/transactions/stream'
       .replaceAll('{user_id}', userId);
@@ -3547,6 +3608,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3557,8 +3619,8 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DateTime] since:
-  Future<List<StreamTransactionsEntry>?> getUserTransactionsStream(String userId, { DateTime? since, }) async {
-    final response = await getUserTransactionsStreamWithHttpInfo(userId,  since: since, );
+  Future<List<StreamTransactionsEntry>?> getUserTransactionsStream(String userId, { DateTime? since, Future<void>? abortTrigger, }) async {
+    final response = await getUserTransactionsStreamWithHttpInfo(userId, since: since, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3594,7 +3656,7 @@ class DefaultApi {
   /// * [String] lastName:
   ///
   /// * [CountryCode] countryOfDomicile:
-  Future<Response> getUsersWithHttpInfo({ String? id, int? limit, int? offset, String? email, String? firstName, String? lastName, CountryCode? countryOfDomicile, }) async {
+  Future<Response> getUsersWithHttpInfo({ String? id, int? limit, int? offset, String? email, String? firstName, String? lastName, CountryCode? countryOfDomicile, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user';
 
@@ -3638,6 +3700,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3658,8 +3721,8 @@ class DefaultApi {
   /// * [String] lastName:
   ///
   /// * [CountryCode] countryOfDomicile:
-  Future<ListUsersResponseEnvelope?> getUsers({ String? id, int? limit, int? offset, String? email, String? firstName, String? lastName, CountryCode? countryOfDomicile, }) async {
-    final response = await getUsersWithHttpInfo( id: id, limit: limit, offset: offset, email: email, firstName: firstName, lastName: lastName, countryOfDomicile: countryOfDomicile, );
+  Future<ListUsersResponseEnvelope?> getUsers({ String? id, int? limit, int? offset, String? email, String? firstName, String? lastName, CountryCode? countryOfDomicile, Future<void>? abortTrigger, }) async {
+    final response = await getUsersWithHttpInfo(id: id, limit: limit, offset: offset, email: email, firstName: firstName, lastName: lastName, countryOfDomicile: countryOfDomicile, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3676,7 +3739,7 @@ class DefaultApi {
   /// Get user's api keys
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getUsersAPIKeysWithHttpInfo() async {
+  Future<Response> getUsersAPIKeysWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/apikey';
 
@@ -3698,12 +3761,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Get user's api keys
-  Future<APIKeyResponseEnvelope?> getUsersAPIKeys() async {
-    final response = await getUsersAPIKeysWithHttpInfo();
+  Future<APIKeyResponseEnvelope?> getUsersAPIKeys({ Future<void>? abortTrigger, }) async {
+    final response = await getUsersAPIKeysWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3728,7 +3792,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [FundUserRequest] fundUserRequest (required):
-  Future<Response> ledgerDepositWithHttpInfo(String userId, FundUserRequest fundUserRequest,) async {
+  Future<Response> ledgerDepositWithHttpInfo(String userId, FundUserRequest fundUserRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/deposit/{user_id}'
       .replaceAll('{user_id}', userId);
@@ -3751,6 +3815,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3763,8 +3828,8 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [FundUserRequest] fundUserRequest (required):
-  Future<FundUserResponseEnvelope?> ledgerDeposit(String userId, FundUserRequest fundUserRequest,) async {
-    final response = await ledgerDepositWithHttpInfo(userId, fundUserRequest,);
+  Future<FundUserResponseEnvelope?> ledgerDeposit(String userId, FundUserRequest fundUserRequest, { Future<void>? abortTrigger, }) async {
+    final response = await ledgerDepositWithHttpInfo(userId, fundUserRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3791,7 +3856,7 @@ class DefaultApi {
   /// * [DefundUserRequest] defundUserRequest (required):
   ///
   /// * [String] status:
-  Future<Response> ledgerWithdrawWithHttpInfo(String userId, DefundUserRequest defundUserRequest, { String? status, }) async {
+  Future<Response> ledgerWithdrawWithHttpInfo(String userId, DefundUserRequest defundUserRequest, { String? status, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/{user_id}'
       .replaceAll('{user_id}', userId);
@@ -3818,6 +3883,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3832,8 +3898,8 @@ class DefaultApi {
   /// * [DefundUserRequest] defundUserRequest (required):
   ///
   /// * [String] status:
-  Future<FundUserResponseEnvelope?> ledgerWithdraw(String userId, DefundUserRequest defundUserRequest, { String? status, }) async {
-    final response = await ledgerWithdrawWithHttpInfo(userId, defundUserRequest,  status: status, );
+  Future<FundUserResponseEnvelope?> ledgerWithdraw(String userId, DefundUserRequest defundUserRequest, { String? status, Future<void>? abortTrigger, }) async {
+    final response = await ledgerWithdrawWithHttpInfo(userId, defundUserRequest, status: status, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3858,7 +3924,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DefundUserRequest] defundUserRequest (required):
-  Future<Response> ledgerWithdrawRequestWithHttpInfo(String userId, DefundUserRequest defundUserRequest,) async {
+  Future<Response> ledgerWithdrawRequestWithHttpInfo(String userId, DefundUserRequest defundUserRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/requests/{user_id}'
       .replaceAll('{user_id}', userId);
@@ -3881,6 +3947,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3893,8 +3960,8 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DefundUserRequest] defundUserRequest (required):
-  Future<WithdrawalInitiationResponseEnvelope?> ledgerWithdrawRequest(String userId, DefundUserRequest defundUserRequest,) async {
-    final response = await ledgerWithdrawRequestWithHttpInfo(userId, defundUserRequest,);
+  Future<WithdrawalInitiationResponseEnvelope?> ledgerWithdrawRequest(String userId, DefundUserRequest defundUserRequest, { Future<void>? abortTrigger, }) async {
+    final response = await ledgerWithdrawRequestWithHttpInfo(userId, defundUserRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3919,7 +3986,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DefundUserRequest] defundUserRequest (required):
-  Future<Response> ledgerWithdrawRequestSelfWithHttpInfo(String userId, DefundUserRequest defundUserRequest,) async {
+  Future<Response> ledgerWithdrawRequestSelfWithHttpInfo(String userId, DefundUserRequest defundUserRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/requests/self'
       .replaceAll('{user_id}', userId);
@@ -3942,6 +4009,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -3954,8 +4022,8 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [DefundUserRequest] defundUserRequest (required):
-  Future<WithdrawalInitiationResponseEnvelope?> ledgerWithdrawRequestSelf(String userId, DefundUserRequest defundUserRequest,) async {
-    final response = await ledgerWithdrawRequestSelfWithHttpInfo(userId, defundUserRequest,);
+  Future<WithdrawalInitiationResponseEnvelope?> ledgerWithdrawRequestSelf(String userId, DefundUserRequest defundUserRequest, { Future<void>? abortTrigger, }) async {
+    final response = await ledgerWithdrawRequestSelfWithHttpInfo(userId, defundUserRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -3978,7 +4046,7 @@ class DefaultApi {
   /// * [String] positionId:
   ///
   /// * [String] assetId:
-  Future<Response> leverageGetAccruedInterestByUserWithHttpInfo({ String? positionId, String? assetId, }) async {
+  Future<Response> leverageGetAccruedInterestByUserWithHttpInfo({ String? positionId, String? assetId, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/leverage/accrued_interest/self';
 
@@ -4007,6 +4075,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4017,8 +4086,8 @@ class DefaultApi {
   /// * [String] positionId:
   ///
   /// * [String] assetId:
-  Future<CurrentLeverageAccruedInterestResponseEnvelope?> leverageGetAccruedInterestByUser({ String? positionId, String? assetId, }) async {
-    final response = await leverageGetAccruedInterestByUserWithHttpInfo( positionId: positionId, assetId: assetId, );
+  Future<CurrentLeverageAccruedInterestResponseEnvelope?> leverageGetAccruedInterestByUser({ String? positionId, String? assetId, Future<void>? abortTrigger, }) async {
+    final response = await leverageGetAccruedInterestByUserWithHttpInfo(positionId: positionId, assetId: assetId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4032,7 +4101,7 @@ class DefaultApi {
     return null;
   }
 
-  /// Get historical leverage interest rates for a specific asset
+  /// Get historical leverage borrowing and lending yields for a specific asset
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -4043,7 +4112,7 @@ class DefaultApi {
   /// * [DateTime] start:
   ///
   /// * [DateTime] end:
-  Future<Response> leverageGetHistoricalInterestRatesWithHttpInfo(String assetId, { DateTime? start, DateTime? end, }) async {
+  Future<Response> leverageGetHistoricalInterestRatesWithHttpInfo(String assetId, { DateTime? start, DateTime? end, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/leverage/interest_rate/{asset_id}/historical'
       .replaceAll('{asset_id}', assetId);
@@ -4073,10 +4142,11 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
-  /// Get historical leverage interest rates for a specific asset
+  /// Get historical leverage borrowing and lending yields for a specific asset
   ///
   /// Parameters:
   ///
@@ -4085,8 +4155,8 @@ class DefaultApi {
   /// * [DateTime] start:
   ///
   /// * [DateTime] end:
-  Future<HistoricalLeverageInterestRatesResponseEnvelope?> leverageGetHistoricalInterestRates(String assetId, { DateTime? start, DateTime? end, }) async {
-    final response = await leverageGetHistoricalInterestRatesWithHttpInfo(assetId,  start: start, end: end, );
+  Future<HistoricalLeverageInterestRatesResponseEnvelope?> leverageGetHistoricalInterestRates(String assetId, { DateTime? start, DateTime? end, Future<void>? abortTrigger, }) async {
+    final response = await leverageGetHistoricalInterestRatesWithHttpInfo(assetId, start: start, end: end, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4100,7 +4170,7 @@ class DefaultApi {
     return null;
   }
 
-  /// Get leverage interest rate for a specific asset
+  /// Get leverage borrowing and lending yields for a specific asset
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -4111,7 +4181,7 @@ class DefaultApi {
   /// * [DateTime] start:
   ///
   /// * [DateTime] end:
-  Future<Response> leverageGetInterestRateWithHttpInfo(String assetId, { DateTime? start, DateTime? end, }) async {
+  Future<Response> leverageGetInterestRateWithHttpInfo(String assetId, { DateTime? start, DateTime? end, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/leverage/interest_rate/{asset_id}'
       .replaceAll('{asset_id}', assetId);
@@ -4141,10 +4211,11 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
-  /// Get leverage interest rate for a specific asset
+  /// Get leverage borrowing and lending yields for a specific asset
   ///
   /// Parameters:
   ///
@@ -4153,8 +4224,8 @@ class DefaultApi {
   /// * [DateTime] start:
   ///
   /// * [DateTime] end:
-  Future<LeverageInterestRateResponseEnvelope?> leverageGetInterestRate(String assetId, { DateTime? start, DateTime? end, }) async {
-    final response = await leverageGetInterestRateWithHttpInfo(assetId,  start: start, end: end, );
+  Future<LeverageInterestRateResponseEnvelope?> leverageGetInterestRate(String assetId, { DateTime? start, DateTime? end, Future<void>? abortTrigger, }) async {
+    final response = await leverageGetInterestRateWithHttpInfo(assetId, start: start, end: end, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4175,7 +4246,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [IsolateCollateralRequest] isolateCollateralRequest (required):
-  Future<Response> leverageIsolateCollateralWithHttpInfo(IsolateCollateralRequest isolateCollateralRequest,) async {
+  Future<Response> leverageIsolateCollateralWithHttpInfo(IsolateCollateralRequest isolateCollateralRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/leverage/isolate_collateral';
 
@@ -4197,6 +4268,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4205,8 +4277,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [IsolateCollateralRequest] isolateCollateralRequest (required):
-  Future<IsolateCollateralResponse?> leverageIsolateCollateral(IsolateCollateralRequest isolateCollateralRequest,) async {
-    final response = await leverageIsolateCollateralWithHttpInfo(isolateCollateralRequest,);
+  Future<IsolateCollateralResponse?> leverageIsolateCollateral(IsolateCollateralRequest isolateCollateralRequest, { Future<void>? abortTrigger, }) async {
+    final response = await leverageIsolateCollateralWithHttpInfo(isolateCollateralRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4227,7 +4299,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [SupplyRequest] supplyRequest (required):
-  Future<Response> leverageSupplyWithHttpInfo(SupplyRequest supplyRequest,) async {
+  Future<Response> leverageSupplyWithHttpInfo(SupplyRequest supplyRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/leverage/supply';
 
@@ -4249,6 +4321,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4257,8 +4330,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [SupplyRequest] supplyRequest (required):
-  Future<SupplyResponseEnvelope?> leverageSupply(SupplyRequest supplyRequest,) async {
-    final response = await leverageSupplyWithHttpInfo(supplyRequest,);
+  Future<SupplyResponseEnvelope?> leverageSupply(SupplyRequest supplyRequest, { Future<void>? abortTrigger, }) async {
+    final response = await leverageSupplyWithHttpInfo(supplyRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4281,7 +4354,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [UnitePositionRequest] unitePositionRequest (required):
-  Future<Response> leverageUniteWithHttpInfo(UnitePositionRequest unitePositionRequest,) async {
+  Future<Response> leverageUniteWithHttpInfo(UnitePositionRequest unitePositionRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/leverage/unite';
 
@@ -4303,6 +4376,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4313,8 +4387,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [UnitePositionRequest] unitePositionRequest (required):
-  Future<UnitePositionResponseEnvelope?> leverageUnite(UnitePositionRequest unitePositionRequest,) async {
-    final response = await leverageUniteWithHttpInfo(unitePositionRequest,);
+  Future<UnitePositionResponseEnvelope?> leverageUnite(UnitePositionRequest unitePositionRequest, { Future<void>? abortTrigger, }) async {
+    final response = await leverageUniteWithHttpInfo(unitePositionRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4335,7 +4409,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [WithdrawRequest] withdrawRequest (required):
-  Future<Response> leverageWithdrawWithHttpInfo(WithdrawRequest withdrawRequest,) async {
+  Future<Response> leverageWithdrawWithHttpInfo(WithdrawRequest withdrawRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/leverage/withdraw';
 
@@ -4357,6 +4431,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4365,8 +4440,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [WithdrawRequest] withdrawRequest (required):
-  Future<WithdrawResponseEnvelope?> leverageWithdraw(WithdrawRequest withdrawRequest,) async {
-    final response = await leverageWithdrawWithHttpInfo(withdrawRequest,);
+  Future<WithdrawResponseEnvelope?> leverageWithdraw(WithdrawRequest withdrawRequest, { Future<void>? abortTrigger, }) async {
+    final response = await leverageWithdrawWithHttpInfo(withdrawRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4389,7 +4464,7 @@ class DefaultApi {
   /// * [String] poolId (required):
   ///
   /// * [LiquidityRequest] liquidityRequest (required):
-  Future<Response> liquidityAddWithHttpInfo(String poolId, LiquidityRequest liquidityRequest,) async {
+  Future<Response> liquidityAddWithHttpInfo(String poolId, LiquidityRequest liquidityRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/liquidity/pool/{pool_id}/add'
       .replaceAll('{pool_id}', poolId);
@@ -4412,6 +4487,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4422,8 +4498,8 @@ class DefaultApi {
   /// * [String] poolId (required):
   ///
   /// * [LiquidityRequest] liquidityRequest (required):
-  Future<LiquidityResponseEnvelope?> liquidityAdd(String poolId, LiquidityRequest liquidityRequest,) async {
-    final response = await liquidityAddWithHttpInfo(poolId, liquidityRequest,);
+  Future<LiquidityResponseEnvelope?> liquidityAdd(String poolId, LiquidityRequest liquidityRequest, { Future<void>? abortTrigger, }) async {
+    final response = await liquidityAddWithHttpInfo(poolId, liquidityRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4446,7 +4522,7 @@ class DefaultApi {
   /// * [String] poolId (required):
   ///
   /// * [LiquidityRequest] liquidityRequest (required):
-  Future<Response> liquiditySubtractWithHttpInfo(String poolId, LiquidityRequest liquidityRequest,) async {
+  Future<Response> liquiditySubtractWithHttpInfo(String poolId, LiquidityRequest liquidityRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/liquidity/pool/{pool_id}/remove'
       .replaceAll('{pool_id}', poolId);
@@ -4469,6 +4545,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4479,8 +4556,8 @@ class DefaultApi {
   /// * [String] poolId (required):
   ///
   /// * [LiquidityRequest] liquidityRequest (required):
-  Future<LiquidityResponseEnvelope?> liquiditySubtract(String poolId, LiquidityRequest liquidityRequest,) async {
-    final response = await liquiditySubtractWithHttpInfo(poolId, liquidityRequest,);
+  Future<LiquidityResponseEnvelope?> liquiditySubtract(String poolId, LiquidityRequest liquidityRequest, { Future<void>? abortTrigger, }) async {
+    final response = await liquiditySubtractWithHttpInfo(poolId, liquidityRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4497,7 +4574,7 @@ class DefaultApi {
   /// List all accounts for the authenticated user
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> listAccountsSelfV2WithHttpInfo() async {
+  Future<Response> listAccountsSelfV2WithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v2/user/self/accounts';
 
@@ -4519,12 +4596,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// List all accounts for the authenticated user
-  Future<ListAccountsResponseV2Envelope?> listAccountsSelfV2() async {
-    final response = await listAccountsSelfV2WithHttpInfo();
+  Future<ListAccountsResponseV2Envelope?> listAccountsSelfV2({ Future<void>? abortTrigger, }) async {
+    final response = await listAccountsSelfV2WithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4564,7 +4642,7 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<Response> listAssetsWithHttpInfo({ DateTime? createdAfter, DateTime? createdBefore, AssetKind? assetKind, bool? canAddLiquidity, bool? canDirectBorrow, bool? canOnboard, bool? canTrade, bool? canVirtualBorrow, int? page, int? limit, }) async {
+  Future<Response> listAssetsWithHttpInfo({ DateTime? createdAfter, DateTime? createdBefore, AssetKind? assetKind, bool? canAddLiquidity, bool? canDirectBorrow, bool? canOnboard, bool? canTrade, bool? canVirtualBorrow, int? page, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/assets';
 
@@ -4617,6 +4695,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4644,8 +4723,8 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<ResponseEnvelopeOfListAssets?> listAssets({ DateTime? createdAfter, DateTime? createdBefore, AssetKind? assetKind, bool? canAddLiquidity, bool? canDirectBorrow, bool? canOnboard, bool? canTrade, bool? canVirtualBorrow, int? page, int? limit, }) async {
-    final response = await listAssetsWithHttpInfo( createdAfter: createdAfter, createdBefore: createdBefore, assetKind: assetKind, canAddLiquidity: canAddLiquidity, canDirectBorrow: canDirectBorrow, canOnboard: canOnboard, canTrade: canTrade, canVirtualBorrow: canVirtualBorrow, page: page, limit: limit, );
+  Future<ResponseEnvelopeOfListAssets?> listAssets({ DateTime? createdAfter, DateTime? createdBefore, AssetKind? assetKind, bool? canAddLiquidity, bool? canDirectBorrow, bool? canOnboard, bool? canTrade, bool? canVirtualBorrow, int? page, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await listAssetsWithHttpInfo(createdAfter: createdAfter, createdBefore: createdBefore, assetKind: assetKind, canAddLiquidity: canAddLiquidity, canDirectBorrow: canDirectBorrow, canOnboard: canOnboard, canTrade: canTrade, canVirtualBorrow: canVirtualBorrow, page: page, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4674,7 +4753,7 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<Response> listOrderBooksWithHttpInfo({ List<OrderBookStatus>? status, String? baseAssetId, String? quoteAssetId, int? page, int? limit, }) async {
+  Future<Response> listOrderBooksWithHttpInfo({ List<OrderBookStatus>? status, String? baseAssetId, String? quoteAssetId, int? page, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks';
 
@@ -4712,6 +4791,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4728,8 +4808,8 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<ListOrderbookResponseEnvelope?> listOrderBooks({ List<OrderBookStatus>? status, String? baseAssetId, String? quoteAssetId, int? page, int? limit, }) async {
-    final response = await listOrderBooksWithHttpInfo( status: status, baseAssetId: baseAssetId, quoteAssetId: quoteAssetId, page: page, limit: limit, );
+  Future<ListOrderbookResponseEnvelope?> listOrderBooks({ List<OrderBookStatus>? status, String? baseAssetId, String? quoteAssetId, int? page, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await listOrderBooksWithHttpInfo(status: status, baseAssetId: baseAssetId, quoteAssetId: quoteAssetId, page: page, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4764,7 +4844,7 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<Response> listOrdersWithHttpInfo({ List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, }) async {
+  Future<Response> listOrdersWithHttpInfo({ List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orders';
 
@@ -4811,6 +4891,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4833,8 +4914,8 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<ListOrdersResponseEnvelope?> listOrders({ List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, }) async {
-    final response = await listOrdersWithHttpInfo( orderBookId: orderBookId, kind: kind, status: status, side: side, from: from, to: to, page: page, limit: limit, );
+  Future<ListOrdersResponseEnvelope?> listOrders({ List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await listOrdersWithHttpInfo(orderBookId: orderBookId, kind: kind, status: status, side: side, from: from, to: to, page: page, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4851,7 +4932,7 @@ class DefaultApi {
   /// List all position accounts for the authenticated user
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> listPositionAccountsSelfWithHttpInfo() async {
+  Future<Response> listPositionAccountsSelfWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/self/position_accounts';
 
@@ -4873,12 +4954,13 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// List all position accounts for the authenticated user
-  Future<ListPositionAccountsResponseEnvelope?> listPositionAccountsSelf() async {
-    final response = await listPositionAccountsSelfWithHttpInfo();
+  Future<ListPositionAccountsResponseEnvelope?> listPositionAccountsSelf({ Future<void>? abortTrigger, }) async {
+    final response = await listPositionAccountsSelfWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4899,7 +4981,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [PayLeverageAccruedInterestRequest] payLeverageAccruedInterestRequest (required):
-  Future<Response> payLeverageGetAccruedInterestWithHttpInfo(PayLeverageAccruedInterestRequest payLeverageAccruedInterestRequest,) async {
+  Future<Response> payLeverageGetAccruedInterestWithHttpInfo(PayLeverageAccruedInterestRequest payLeverageAccruedInterestRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/leverage/accrued_interest/pay';
 
@@ -4921,6 +5003,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4929,8 +5012,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [PayLeverageAccruedInterestRequest] payLeverageAccruedInterestRequest (required):
-  Future<PayLeverageAccruedInterestResponseEnvelope?> payLeverageGetAccruedInterest(PayLeverageAccruedInterestRequest payLeverageAccruedInterestRequest,) async {
-    final response = await payLeverageGetAccruedInterestWithHttpInfo(payLeverageAccruedInterestRequest,);
+  Future<PayLeverageAccruedInterestResponseEnvelope?> payLeverageGetAccruedInterest(PayLeverageAccruedInterestRequest payLeverageAccruedInterestRequest, { Future<void>? abortTrigger, }) async {
+    final response = await payLeverageGetAccruedInterestWithHttpInfo(payLeverageAccruedInterestRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -4955,7 +5038,7 @@ class DefaultApi {
   /// * [String] withdrawalId (required):
   ///
   /// * [WithdrawalRequestReason] withdrawalRequestReason (required):
-  Future<Response> rejectLedgerWithdrawRequestWithHttpInfo(String withdrawalId, WithdrawalRequestReason withdrawalRequestReason,) async {
+  Future<Response> rejectLedgerWithdrawRequestWithHttpInfo(String withdrawalId, WithdrawalRequestReason withdrawalRequestReason, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/ledger/withdraw/requests/{withdrawal_id}/reject'
       .replaceAll('{withdrawal_id}', withdrawalId);
@@ -4978,6 +5061,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -4990,8 +5074,8 @@ class DefaultApi {
   /// * [String] withdrawalId (required):
   ///
   /// * [WithdrawalRequestReason] withdrawalRequestReason (required):
-  Future<WithdrawalInitiationResponseEnvelope?> rejectLedgerWithdrawRequest(String withdrawalId, WithdrawalRequestReason withdrawalRequestReason,) async {
-    final response = await rejectLedgerWithdrawRequestWithHttpInfo(withdrawalId, withdrawalRequestReason,);
+  Future<WithdrawalInitiationResponseEnvelope?> rejectLedgerWithdrawRequest(String withdrawalId, WithdrawalRequestReason withdrawalRequestReason, { Future<void>? abortTrigger, }) async {
+    final response = await rejectLedgerWithdrawRequestWithHttpInfo(withdrawalId, withdrawalRequestReason, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5012,7 +5096,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] keyId (required):
-  Future<Response> revokeAPIKeyForUserWithHttpInfo(String keyId,) async {
+  Future<Response> revokeAPIKeyForUserWithHttpInfo(String keyId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/apikey/{key_id}/revoke'
       .replaceAll('{key_id}', keyId);
@@ -5035,6 +5119,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5043,8 +5128,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] keyId (required):
-  Future<RevokeAPIKeyResponseEnvelope?> revokeAPIKeyForUser(String keyId,) async {
-    final response = await revokeAPIKeyForUserWithHttpInfo(keyId,);
+  Future<RevokeAPIKeyResponseEnvelope?> revokeAPIKeyForUser(String keyId, { Future<void>? abortTrigger, }) async {
+    final response = await revokeAPIKeyForUserWithHttpInfo(keyId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5067,7 +5152,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [String] keyId (required):
-  Future<Response> revokeAPIKeyForUserIDWithHttpInfo(String userId, String keyId,) async {
+  Future<Response> revokeAPIKeyForUserIDWithHttpInfo(String userId, String keyId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/apikey/{key_id}/revoke'
       .replaceAll('{user_id}', userId)
@@ -5091,6 +5176,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5101,8 +5187,8 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [String] keyId (required):
-  Future<RevokeAPIKeyResponseEnvelope?> revokeAPIKeyForUserID(String userId, String keyId,) async {
-    final response = await revokeAPIKeyForUserIDWithHttpInfo(userId, keyId,);
+  Future<RevokeAPIKeyResponseEnvelope?> revokeAPIKeyForUserID(String userId, String keyId, { Future<void>? abortTrigger, }) async {
+    final response = await revokeAPIKeyForUserIDWithHttpInfo(userId, keyId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5123,7 +5209,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [SettleLeverageAccruedInterestRequest] settleLeverageAccruedInterestRequest (required):
-  Future<Response> settleLeverageAccruedInterestWithHttpInfo(SettleLeverageAccruedInterestRequest settleLeverageAccruedInterestRequest,) async {
+  Future<Response> settleLeverageAccruedInterestWithHttpInfo(SettleLeverageAccruedInterestRequest settleLeverageAccruedInterestRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/leverage/accrued_interest/settle';
 
@@ -5145,6 +5231,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5153,8 +5240,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [SettleLeverageAccruedInterestRequest] settleLeverageAccruedInterestRequest (required):
-  Future<SettleLeverageAccruedInterestResponseEnvelope?> settleLeverageAccruedInterest(SettleLeverageAccruedInterestRequest settleLeverageAccruedInterestRequest,) async {
-    final response = await settleLeverageAccruedInterestWithHttpInfo(settleLeverageAccruedInterestRequest,);
+  Future<SettleLeverageAccruedInterestResponseEnvelope?> settleLeverageAccruedInterest(SettleLeverageAccruedInterestRequest settleLeverageAccruedInterestRequest, { Future<void>? abortTrigger, }) async {
+    final response = await settleLeverageAccruedInterestWithHttpInfo(settleLeverageAccruedInterestRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5175,7 +5262,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] settlementId (required):
-  Future<Response> settleRealizedPnlRecordWithHttpInfo(String settlementId,) async {
+  Future<Response> settleRealizedPnlRecordWithHttpInfo(String settlementId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/realized_pnl_settlements/{settlement_id}'
       .replaceAll('{settlement_id}', settlementId);
@@ -5198,6 +5285,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5206,8 +5294,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] settlementId (required):
-  Future<SettleRealizedPnlRecordResponseEnvelope?> settleRealizedPnlRecord(String settlementId,) async {
-    final response = await settleRealizedPnlRecordWithHttpInfo(settlementId,);
+  Future<SettleRealizedPnlRecordResponseEnvelope?> settleRealizedPnlRecord(String settlementId, { Future<void>? abortTrigger, }) async {
+    final response = await settleRealizedPnlRecordWithHttpInfo(settlementId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5228,7 +5316,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [TransactionsSettlementRequest] transactionsSettlementRequest (required):
-  Future<Response> settleTransactionsSettlementsWithHttpInfo(TransactionsSettlementRequest transactionsSettlementRequest,) async {
+  Future<Response> settleTransactionsSettlementsWithHttpInfo(TransactionsSettlementRequest transactionsSettlementRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/transactions/settlements';
 
@@ -5250,6 +5338,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5258,8 +5347,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [TransactionsSettlementRequest] transactionsSettlementRequest (required):
-  Future<TransactionsSettlementsResponse?> settleTransactionsSettlements(TransactionsSettlementRequest transactionsSettlementRequest,) async {
-    final response = await settleTransactionsSettlementsWithHttpInfo(transactionsSettlementRequest,);
+  Future<TransactionsSettlementsResponse?> settleTransactionsSettlements(TransactionsSettlementRequest transactionsSettlementRequest, { Future<void>? abortTrigger, }) async {
+    final response = await settleTransactionsSettlementsWithHttpInfo(transactionsSettlementRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5281,10 +5370,8 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [DateTime] since:
-  ///
   /// * [String] assetId:
-  Future<Response> streamAssetPricesWithHttpInfo({ DateTime? since, String? assetId, }) async {
+  Future<Response> streamAssetPricesWithHttpInfo({ String? assetId, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/prices/stream';
 
@@ -5295,9 +5382,6 @@ class DefaultApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    if (since != null) {
-      queryParams.addAll(_queryParams('', 'since', since));
-    }
     if (assetId != null) {
       queryParams.addAll(_queryParams('', 'asset_id', assetId));
     }
@@ -5313,6 +5397,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5322,11 +5407,9 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [DateTime] since:
-  ///
   /// * [String] assetId:
-  Future<Map<String, AssetPrice>?> streamAssetPrices({ DateTime? since, String? assetId, }) async {
-    final response = await streamAssetPricesWithHttpInfo( since: since, assetId: assetId, );
+  Future<Map<String, AssetPrice>?> streamAssetPrices({ String? assetId, Future<void>? abortTrigger, }) async {
+    final response = await streamAssetPricesWithHttpInfo(assetId: assetId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5351,7 +5434,7 @@ class DefaultApi {
   /// * [DateTime] since:
   ///
   /// * [CandleResolution] resolution:
-  Future<Response> streamCandleDataWithHttpInfo(String orderBookId, { DateTime? since, CandleResolution? resolution, }) async {
+  Future<Response> streamCandleDataWithHttpInfo(String orderBookId, { DateTime? since, CandleResolution? resolution, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/charts/{order_book_id}/candle/stream'
       .replaceAll('{order_book_id}', orderBookId);
@@ -5381,6 +5464,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5393,8 +5477,8 @@ class DefaultApi {
   /// * [DateTime] since:
   ///
   /// * [CandleResolution] resolution:
-  Future<List<StreamCandlesEntry>?> streamCandleData(String orderBookId, { DateTime? since, CandleResolution? resolution, }) async {
-    final response = await streamCandleDataWithHttpInfo(orderBookId,  since: since, resolution: resolution, );
+  Future<List<StreamCandlesEntry>?> streamCandleData(String orderBookId, { DateTime? since, CandleResolution? resolution, Future<void>? abortTrigger, }) async {
+    final response = await streamCandleDataWithHttpInfo(orderBookId, since: since, resolution: resolution, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5420,7 +5504,7 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<Response> streamOrderBookBalancesWithHttpInfo(String orderBookId, { DateTime? since, }) async {
+  Future<Response> streamOrderBookBalancesWithHttpInfo(String orderBookId, { DateTime? since, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/balances/stream'
       .replaceAll('{order_book_id}', orderBookId);
@@ -5447,6 +5531,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5457,8 +5542,8 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<List<StreamOrderBookBalanceEntry>?> streamOrderBookBalances(String orderBookId, { DateTime? since, }) async {
-    final response = await streamOrderBookBalancesWithHttpInfo(orderBookId,  since: since, );
+  Future<List<StreamOrderBookBalanceEntry>?> streamOrderBookBalances(String orderBookId, { DateTime? since, Future<void>? abortTrigger, }) async {
+    final response = await streamOrderBookBalancesWithHttpInfo(orderBookId, since: since, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5484,7 +5569,7 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<Response> streamOrderbookOpenOrdersWithHttpInfo(String orderBookId, { DateTime? since, }) async {
+  Future<Response> streamOrderbookOpenOrdersWithHttpInfo(String orderBookId, { DateTime? since, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orderbooks/{order_book_id}/open/stream'
       .replaceAll('{order_book_id}', orderBookId);
@@ -5511,6 +5596,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5521,8 +5607,8 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<LiveOrderbook?> streamOrderbookOpenOrders(String orderBookId, { DateTime? since, }) async {
-    final response = await streamOrderbookOpenOrdersWithHttpInfo(orderBookId,  since: since, );
+  Future<LiveOrderbook?> streamOrderbookOpenOrders(String orderBookId, { DateTime? since, Future<void>? abortTrigger, }) async {
+    final response = await streamOrderbookOpenOrdersWithHttpInfo(orderBookId, since: since, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5545,7 +5631,7 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<Response> streamTradesWithHttpInfo(String orderBookId, { DateTime? since, }) async {
+  Future<Response> streamTradesWithHttpInfo(String orderBookId, { DateTime? since, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/trades/{order_book_id}/stream'
       .replaceAll('{order_book_id}', orderBookId);
@@ -5572,6 +5658,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5582,8 +5669,8 @@ class DefaultApi {
   /// * [String] orderBookId (required):
   ///
   /// * [DateTime] since:
-  Future<List<StreamTradesEntry>?> streamTrades(String orderBookId, { DateTime? since, }) async {
-    final response = await streamTradesWithHttpInfo(orderBookId,  since: since, );
+  Future<List<StreamTradesEntry>?> streamTrades(String orderBookId, { DateTime? since, Future<void>? abortTrigger, }) async {
+    final response = await streamTradesWithHttpInfo(orderBookId, since: since, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5607,7 +5694,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [TransferAccountBalancesRequest] transferAccountBalancesRequest (required):
-  Future<Response> transferAccountBalancesV2WithHttpInfo(TransferAccountBalancesRequest transferAccountBalancesRequest,) async {
+  Future<Response> transferAccountBalancesV2WithHttpInfo(TransferAccountBalancesRequest transferAccountBalancesRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v2/accounts/transfer_balances';
 
@@ -5629,6 +5716,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5637,8 +5725,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [TransferAccountBalancesRequest] transferAccountBalancesRequest (required):
-  Future<TransferAccountBalancesResponseEnvelope?> transferAccountBalancesV2(TransferAccountBalancesRequest transferAccountBalancesRequest,) async {
-    final response = await transferAccountBalancesV2WithHttpInfo(transferAccountBalancesRequest,);
+  Future<TransferAccountBalancesResponseEnvelope?> transferAccountBalancesV2(TransferAccountBalancesRequest transferAccountBalancesRequest, { Future<void>? abortTrigger, }) async {
+    final response = await transferAccountBalancesV2WithHttpInfo(transferAccountBalancesRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5659,7 +5747,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [TransferBalancesRequest] transferBalancesRequest (required):
-  Future<Response> transferAvailableBalancesWithHttpInfo(TransferBalancesRequest transferBalancesRequest,) async {
+  Future<Response> transferAvailableBalancesWithHttpInfo(TransferBalancesRequest transferBalancesRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/positions/transfer_balances';
 
@@ -5681,6 +5769,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5689,8 +5778,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [TransferBalancesRequest] transferBalancesRequest (required):
-  Future<TransferBalancesResponseEnvelope?> transferAvailableBalances(TransferBalancesRequest transferBalancesRequest,) async {
-    final response = await transferAvailableBalancesWithHttpInfo(transferBalancesRequest,);
+  Future<TransferBalancesResponseEnvelope?> transferAvailableBalances(TransferBalancesRequest transferBalancesRequest, { Future<void>? abortTrigger, }) async {
+    final response = await transferAvailableBalancesWithHttpInfo(transferBalancesRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5713,7 +5802,7 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [UpdateUserConfigRequest] updateUserConfigRequest (required):
-  Future<Response> updateUserConfigWithHttpInfo(String userId, UpdateUserConfigRequest updateUserConfigRequest,) async {
+  Future<Response> updateUserConfigWithHttpInfo(String userId, UpdateUserConfigRequest updateUserConfigRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/config'
       .replaceAll('{user_id}', userId);
@@ -5736,6 +5825,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5746,8 +5836,8 @@ class DefaultApi {
   /// * [String] userId (required):
   ///
   /// * [UpdateUserConfigRequest] updateUserConfigRequest (required):
-  Future<UserUpdatedResponseEnvelope?> updateUserConfig(String userId, UpdateUserConfigRequest updateUserConfigRequest,) async {
-    final response = await updateUserConfigWithHttpInfo(userId, updateUserConfigRequest,);
+  Future<UserUpdatedResponseEnvelope?> updateUserConfig(String userId, UpdateUserConfigRequest updateUserConfigRequest, { Future<void>? abortTrigger, }) async {
+    final response = await updateUserConfigWithHttpInfo(userId, updateUserConfigRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5768,7 +5858,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [UpdateUserConfigRequest] updateUserConfigRequest (required):
-  Future<Response> updateUserConfigSelfWithHttpInfo(UpdateUserConfigRequest updateUserConfigRequest,) async {
+  Future<Response> updateUserConfigSelfWithHttpInfo(UpdateUserConfigRequest updateUserConfigRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/config/self';
 
@@ -5790,6 +5880,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5798,8 +5889,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [UpdateUserConfigRequest] updateUserConfigRequest (required):
-  Future<UserUpdatedResponseEnvelope?> updateUserConfigSelf(UpdateUserConfigRequest updateUserConfigRequest,) async {
-    final response = await updateUserConfigSelfWithHttpInfo(updateUserConfigRequest,);
+  Future<UserUpdatedResponseEnvelope?> updateUserConfigSelf(UpdateUserConfigRequest updateUserConfigRequest, { Future<void>? abortTrigger, }) async {
+    final response = await updateUserConfigSelfWithHttpInfo(updateUserConfigRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5820,7 +5911,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [ValidateSubmitOrderRequest] validateSubmitOrderRequest (required):
-  Future<Response> validateSubmitOrderWithHttpInfo(ValidateSubmitOrderRequest validateSubmitOrderRequest,) async {
+  Future<Response> validateSubmitOrderWithHttpInfo(ValidateSubmitOrderRequest validateSubmitOrderRequest, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orders/validate';
 
@@ -5842,6 +5933,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5850,8 +5942,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [ValidateSubmitOrderRequest] validateSubmitOrderRequest (required):
-  Future<ValidateSubmitOrderResponse?> validateSubmitOrder(ValidateSubmitOrderRequest validateSubmitOrderRequest,) async {
-    final response = await validateSubmitOrderWithHttpInfo(validateSubmitOrderRequest,);
+  Future<ValidateSubmitOrderResponse?> validateSubmitOrder(ValidateSubmitOrderRequest validateSubmitOrderRequest, { Future<void>? abortTrigger, }) async {
+    final response = await validateSubmitOrderWithHttpInfo(validateSubmitOrderRequest, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5872,7 +5964,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<Response> verifyUserWithHttpInfo(String userId,) async {
+  Future<Response> verifyUserWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/{user_id}/verify'
       .replaceAll('{user_id}', userId);
@@ -5895,6 +5987,7 @@ class DefaultApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -5903,8 +5996,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId (required):
-  Future<UserUpdatedResponseEnvelope?> verifyUser(String userId,) async {
-    final response = await verifyUserWithHttpInfo(userId,);
+  Future<UserUpdatedResponseEnvelope?> verifyUser(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await verifyUserWithHttpInfo(userId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

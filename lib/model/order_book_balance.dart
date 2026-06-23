@@ -75,10 +75,14 @@ class OrderBookBalance {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "OrderBookBalance[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "OrderBookBalance[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'order_book_id'), 'Required key "OrderBookBalance[order_book_id]" is missing from JSON.');
+        assert(json[r'order_book_id'] != null, 'Required key "OrderBookBalance[order_book_id]" has a null value in JSON.');
+        assert(json.containsKey(r'base_quantity'), 'Required key "OrderBookBalance[base_quantity]" is missing from JSON.');
+        assert(json[r'base_quantity'] != null, 'Required key "OrderBookBalance[base_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'quote_quantity'), 'Required key "OrderBookBalance[quote_quantity]" is missing from JSON.');
+        assert(json[r'quote_quantity'] != null, 'Required key "OrderBookBalance[quote_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'shares_quantity'), 'Required key "OrderBookBalance[shares_quantity]" is missing from JSON.');
+        assert(json[r'shares_quantity'] != null, 'Required key "OrderBookBalance[shares_quantity]" has a null value in JSON.');
         return true;
       }());
 

@@ -23,7 +23,7 @@ class NewIsolatedAccountRequestV2 {
 
   String assetId;
 
-  double quantity;
+  String quantity;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -75,17 +75,19 @@ class NewIsolatedAccountRequestV2 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "NewIsolatedAccountRequestV2[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "NewIsolatedAccountRequestV2[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'global_account_id'), 'Required key "NewIsolatedAccountRequestV2[global_account_id]" is missing from JSON.');
+        assert(json[r'global_account_id'] != null, 'Required key "NewIsolatedAccountRequestV2[global_account_id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_id'), 'Required key "NewIsolatedAccountRequestV2[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "NewIsolatedAccountRequestV2[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity'), 'Required key "NewIsolatedAccountRequestV2[quantity]" is missing from JSON.');
+        assert(json[r'quantity'] != null, 'Required key "NewIsolatedAccountRequestV2[quantity]" has a null value in JSON.');
         return true;
       }());
 
       return NewIsolatedAccountRequestV2(
         globalAccountId: mapValueOfType<String>(json, r'global_account_id')!,
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        quantity: mapValueOfType<double>(json, r'quantity')!,
+        quantity: mapValueOfType<String>(json, r'quantity')!,
         accountName: mapValueOfType<String>(json, r'account_name'),
       );
     }

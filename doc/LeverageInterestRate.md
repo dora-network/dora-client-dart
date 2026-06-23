@@ -9,10 +9,13 @@ import 'package:dora_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **assetId** | **String** |  | 
-**utilization** | **double** |  | 
-**avgUtilization** | **double** |  | 
-**avgInterestRate** | **double** |  | 
-**interestRate** | **double** |  | 
+**utilization** | **String** |  | 
+**avgUtilization** | **String** |  | 
+**avgBorrowingYieldRate** | **String** |  | 
+**avgLendingYieldRate** | **String** |  | 
+**borrowingYieldRate** | **String** |  | 
+**lendingYieldRate** | **String** |  | 
+**yieldToMaturity** | **String** |  | 
 **startTime** | [**DateTime**](DateTime.md) |  | 
 **endTime** | [**DateTime**](DateTime.md) |  | 
 

@@ -11,7 +11,9 @@ Name | Type | Description | Notes
 **assetId** | **String** |  | 
 **timestamp** | [**DateTime**](DateTime.md) |  | 
 **ytm** | **String** |  | 
-**lendingYield** | **String** |  | 
+**borrowingYieldRate** | **String** |  | 
+**lendingYieldRate** | **String** |  | 
+**price** | **String** |  | 
 **tvl** | **String** |  | 
 **totalYield** | **String** |  | 
 

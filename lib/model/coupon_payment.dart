@@ -111,10 +111,28 @@ class CouponPayment {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CouponPayment[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CouponPayment[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "CouponPayment[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "CouponPayment[id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_id'), 'Required key "CouponPayment[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "CouponPayment[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'yield'), 'Required key "CouponPayment[yield]" is missing from JSON.');
+        assert(json[r'yield'] != null, 'Required key "CouponPayment[yield]" has a null value in JSON.');
+        assert(json.containsKey(r'start_at'), 'Required key "CouponPayment[start_at]" is missing from JSON.');
+        assert(json[r'start_at'] != null, 'Required key "CouponPayment[start_at]" has a null value in JSON.');
+        assert(json.containsKey(r'end_at'), 'Required key "CouponPayment[end_at]" is missing from JSON.');
+        assert(json[r'end_at'] != null, 'Required key "CouponPayment[end_at]" has a null value in JSON.');
+        assert(json.containsKey(r'pay_at'), 'Required key "CouponPayment[pay_at]" is missing from JSON.');
+        assert(json[r'pay_at'] != null, 'Required key "CouponPayment[pay_at]" has a null value in JSON.');
+        assert(json.containsKey(r'available_to_pay'), 'Required key "CouponPayment[available_to_pay]" is missing from JSON.');
+        assert(json[r'available_to_pay'] != null, 'Required key "CouponPayment[available_to_pay]" has a null value in JSON.');
+        assert(json.containsKey(r'completed_at'), 'Required key "CouponPayment[completed_at]" is missing from JSON.');
+        assert(json[r'completed_at'] != null, 'Required key "CouponPayment[completed_at]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "CouponPayment[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "CouponPayment[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'process_every'), 'Required key "CouponPayment[process_every]" is missing from JSON.');
+        assert(json[r'process_every'] != null, 'Required key "CouponPayment[process_every]" has a null value in JSON.');
+        assert(json.containsKey(r'last_processed_at'), 'Required key "CouponPayment[last_processed_at]" is missing from JSON.');
+        assert(json[r'last_processed_at'] != null, 'Required key "CouponPayment[last_processed_at]" has a null value in JSON.');
         return true;
       }());
 

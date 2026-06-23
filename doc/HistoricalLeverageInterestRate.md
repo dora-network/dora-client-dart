@@ -10,13 +10,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **assetId** | **String** |  | 
 **updatedAt** | [**DateTime**](DateTime.md) |  | 
-**utilization** | **double** |  | 
-**maximumUtilization** | **double** |  | 
-**minimumRate** | **double** |  | 
-**kinkRate** | **double** |  | 
-**maximumRate** | **double** |  | 
-**kinkUtilization** | **double** |  | 
-**interestRate** | **double** |  | 
+**utilization** | **String** |  | 
+**maximumUtilization** | **String** |  | 
+**minimumRate** | **String** |  | 
+**kinkRate** | **String** |  | 
+**maximumRate** | **String** |  | 
+**kinkUtilization** | **String** |  | 
+**borrowingYieldRate** | **String** |  | 
+**lendingYieldRate** | **String** |  | 
+**yieldToMaturity** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -59,10 +59,12 @@ class CreateAPIKeyData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateAPIKeyData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateAPIKeyData[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'key_id'), 'Required key "CreateAPIKeyData[key_id]" is missing from JSON.');
+        assert(json[r'key_id'] != null, 'Required key "CreateAPIKeyData[key_id]" has a null value in JSON.');
+        assert(json.containsKey(r'api_key'), 'Required key "CreateAPIKeyData[api_key]" is missing from JSON.');
+        assert(json[r'api_key'] != null, 'Required key "CreateAPIKeyData[api_key]" has a null value in JSON.');
+        assert(json.containsKey(r'label'), 'Required key "CreateAPIKeyData[label]" is missing from JSON.');
+        assert(json[r'label'] != null, 'Required key "CreateAPIKeyData[label]" has a null value in JSON.');
         return true;
       }());
 

@@ -54,10 +54,10 @@ class StreamTradesEntry {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "StreamTradesEntry[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "StreamTradesEntry[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'Val'), 'Required key "StreamTradesEntry[Val]" is missing from JSON.');
+        assert(json[r'Val'] != null, 'Required key "StreamTradesEntry[Val]" has a null value in JSON.');
+        assert(json.containsKey(r'Time'), 'Required key "StreamTradesEntry[Time]" is missing from JSON.');
+        assert(json[r'Time'] != null, 'Required key "StreamTradesEntry[Time]" has a null value in JSON.');
         return true;
       }());
 

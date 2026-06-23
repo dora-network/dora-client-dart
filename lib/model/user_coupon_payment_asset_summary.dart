@@ -59,10 +59,12 @@ class UserCouponPaymentAssetSummary {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserCouponPaymentAssetSummary[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserCouponPaymentAssetSummary[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'asset_id'), 'Required key "UserCouponPaymentAssetSummary[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "UserCouponPaymentAssetSummary[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'pending'), 'Required key "UserCouponPaymentAssetSummary[pending]" is missing from JSON.');
+        assert(json[r'pending'] != null, 'Required key "UserCouponPaymentAssetSummary[pending]" has a null value in JSON.');
+        assert(json.containsKey(r'completed'), 'Required key "UserCouponPaymentAssetSummary[completed]" is missing from JSON.');
+        assert(json[r'completed'] != null, 'Required key "UserCouponPaymentAssetSummary[completed]" has a null value in JSON.');
         return true;
       }());
 

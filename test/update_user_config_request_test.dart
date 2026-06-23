@@ -64,6 +64,12 @@ void main() {
       // TODO
     });
 
+    // Optional: Whether to allow copy trading.
+    // UpdateFieldBoolean allowCopyTrading
+    test('to test the property `allowCopyTrading`', () async {
+      // TODO
+    });
+
 
   });
 

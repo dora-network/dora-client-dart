@@ -41,7 +41,7 @@ void main() {
       // TODO
     });
 
-    // double quantityUsd
+    // String quantityUsd
     test('to test the property `quantityUsd`', () async {
       // TODO
     });

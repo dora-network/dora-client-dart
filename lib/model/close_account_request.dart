@@ -53,10 +53,10 @@ class CloseAccountRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CloseAccountRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CloseAccountRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'account_id'), 'Required key "CloseAccountRequest[account_id]" is missing from JSON.');
+        assert(json[r'account_id'] != null, 'Required key "CloseAccountRequest[account_id]" has a null value in JSON.');
+        assert(json.containsKey(r'order_book_id'), 'Required key "CloseAccountRequest[order_book_id]" is missing from JSON.');
+        assert(json[r'order_book_id'] != null, 'Required key "CloseAccountRequest[order_book_id]" has a null value in JSON.');
         return true;
       }());
 

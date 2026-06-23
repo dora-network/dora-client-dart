@@ -34,7 +34,7 @@ class TransactionsSettlement {
 
   String txKind;
 
-  double quantityUsd;
+  String quantityUsd;
 
   DateTime createdAt;
 
@@ -115,10 +115,20 @@ class TransactionsSettlement {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TransactionsSettlement[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TransactionsSettlement[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'tx_id'), 'Required key "TransactionsSettlement[tx_id]" is missing from JSON.');
+        assert(json[r'tx_id'] != null, 'Required key "TransactionsSettlement[tx_id]" has a null value in JSON.');
+        assert(json.containsKey(r'user_id'), 'Required key "TransactionsSettlement[user_id]" is missing from JSON.');
+        assert(json[r'user_id'] != null, 'Required key "TransactionsSettlement[user_id]" has a null value in JSON.');
+        assert(json.containsKey(r'tenant_id'), 'Required key "TransactionsSettlement[tenant_id]" is missing from JSON.');
+        assert(json[r'tenant_id'] != null, 'Required key "TransactionsSettlement[tenant_id]" has a null value in JSON.');
+        assert(json.containsKey(r'position_id'), 'Required key "TransactionsSettlement[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "TransactionsSettlement[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'tx_kind'), 'Required key "TransactionsSettlement[tx_kind]" is missing from JSON.');
+        assert(json[r'tx_kind'] != null, 'Required key "TransactionsSettlement[tx_kind]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity_usd'), 'Required key "TransactionsSettlement[quantity_usd]" is missing from JSON.');
+        assert(json[r'quantity_usd'] != null, 'Required key "TransactionsSettlement[quantity_usd]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "TransactionsSettlement[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "TransactionsSettlement[created_at]" has a null value in JSON.');
         return true;
       }());
 
@@ -128,7 +138,7 @@ class TransactionsSettlement {
         tenantId: mapValueOfType<String>(json, r'tenant_id')!,
         positionId: mapValueOfType<String>(json, r'position_id')!,
         txKind: mapValueOfType<String>(json, r'tx_kind')!,
-        quantityUsd: mapValueOfType<double>(json, r'quantity_usd')!,
+        quantityUsd: mapValueOfType<String>(json, r'quantity_usd')!,
         createdAt: mapDateTime(json, r'created_at', r'')!,
         settledAt: mapDateTime(json, r'settled_at', r''),
         settledBy: mapValueOfType<String>(json, r'settled_by'),

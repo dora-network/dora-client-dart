@@ -62,10 +62,12 @@ class Margin {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Margin[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Margin[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'available'), 'Required key "Margin[available]" is missing from JSON.');
+        assert(json[r'available'] != null, 'Required key "Margin[available]" has a null value in JSON.');
+        assert(json.containsKey(r'used'), 'Required key "Margin[used]" is missing from JSON.');
+        assert(json[r'used'] != null, 'Required key "Margin[used]" has a null value in JSON.');
+        assert(json.containsKey(r'remaining'), 'Required key "Margin[remaining]" is missing from JSON.');
+        assert(json[r'remaining'] != null, 'Required key "Margin[remaining]" has a null value in JSON.');
         return true;
       }());
 

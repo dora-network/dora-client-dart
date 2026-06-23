@@ -59,10 +59,12 @@ class UserExistsResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserExistsResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserExistsResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'email_exists'), 'Required key "UserExistsResponse[email_exists]" is missing from JSON.');
+        assert(json[r'email_exists'] != null, 'Required key "UserExistsResponse[email_exists]" has a null value in JSON.');
+        assert(json.containsKey(r'firebase_set'), 'Required key "UserExistsResponse[firebase_set]" is missing from JSON.');
+        assert(json[r'firebase_set'] != null, 'Required key "UserExistsResponse[firebase_set]" has a null value in JSON.');
+        assert(json.containsKey(r'should_create_user'), 'Required key "UserExistsResponse[should_create_user]" is missing from JSON.');
+        assert(json[r'should_create_user'] != null, 'Required key "UserExistsResponse[should_create_user]" has a null value in JSON.');
         return true;
       }());
 

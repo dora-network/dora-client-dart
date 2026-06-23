@@ -65,10 +65,14 @@ class Supply {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Supply[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Supply[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'position_id'), 'Required key "Supply[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "Supply[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'transaction_id'), 'Required key "Supply[transaction_id]" is missing from JSON.');
+        assert(json[r'transaction_id'] != null, 'Required key "Supply[transaction_id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_id'), 'Required key "Supply[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "Supply[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity'), 'Required key "Supply[quantity]" is missing from JSON.');
+        assert(json[r'quantity'] != null, 'Required key "Supply[quantity]" has a null value in JSON.');
         return true;
       }());
 

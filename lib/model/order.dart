@@ -68,10 +68,10 @@ class Order {
   String filledNotional;
 
   /// Balance locked to ensure limit buy orders have sufficient balance to be fulfilled
-  double lockedQuantity;
+  String lockedQuantity;
 
   /// Borrows locked from the liquidity pool to ensure limit short sell orders have sufficient balance to be fulfilled
-  double impendingBorrowsQuantity;
+  String impendingBorrowsQuantity;
 
   DateTime lastUpdateAt;
 
@@ -266,10 +266,44 @@ class Order {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Order[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Order[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'order_id'), 'Required key "Order[order_id]" is missing from JSON.');
+        assert(json[r'order_id'] != null, 'Required key "Order[order_id]" has a null value in JSON.');
+        assert(json.containsKey(r'order_book_id'), 'Required key "Order[order_book_id]" is missing from JSON.');
+        assert(json[r'order_book_id'] != null, 'Required key "Order[order_book_id]" has a null value in JSON.');
+        assert(json.containsKey(r'kind'), 'Required key "Order[kind]" is missing from JSON.');
+        assert(json[r'kind'] != null, 'Required key "Order[kind]" has a null value in JSON.');
+        assert(json.containsKey(r'original_price'), 'Required key "Order[original_price]" is missing from JSON.');
+        assert(json[r'original_price'] != null, 'Required key "Order[original_price]" has a null value in JSON.');
+        assert(json.containsKey(r'avg_fill_price'), 'Required key "Order[avg_fill_price]" is missing from JSON.');
+        assert(json[r'avg_fill_price'] != null, 'Required key "Order[avg_fill_price]" has a null value in JSON.');
+        assert(json.containsKey(r'cancelled_quantity'), 'Required key "Order[cancelled_quantity]" is missing from JSON.');
+        assert(json[r'cancelled_quantity'] != null, 'Required key "Order[cancelled_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'open_quantity'), 'Required key "Order[open_quantity]" is missing from JSON.');
+        assert(json[r'open_quantity'] != null, 'Required key "Order[open_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'original_quantity'), 'Required key "Order[original_quantity]" is missing from JSON.');
+        assert(json[r'original_quantity'] != null, 'Required key "Order[original_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'filled_quantity'), 'Required key "Order[filled_quantity]" is missing from JSON.');
+        assert(json[r'filled_quantity'] != null, 'Required key "Order[filled_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'filled_notional'), 'Required key "Order[filled_notional]" is missing from JSON.');
+        assert(json[r'filled_notional'] != null, 'Required key "Order[filled_notional]" has a null value in JSON.');
+        assert(json.containsKey(r'locked_quantity'), 'Required key "Order[locked_quantity]" is missing from JSON.');
+        assert(json[r'locked_quantity'] != null, 'Required key "Order[locked_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'impending_borrows_quantity'), 'Required key "Order[impending_borrows_quantity]" is missing from JSON.');
+        assert(json[r'impending_borrows_quantity'] != null, 'Required key "Order[impending_borrows_quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'last_update_at'), 'Required key "Order[last_update_at]" is missing from JSON.');
+        assert(json[r'last_update_at'] != null, 'Required key "Order[last_update_at]" has a null value in JSON.');
+        assert(json.containsKey(r'opened_at'), 'Required key "Order[opened_at]" is missing from JSON.');
+        assert(json[r'opened_at'] != null, 'Required key "Order[opened_at]" has a null value in JSON.');
+        assert(json.containsKey(r'inverse_leverage'), 'Required key "Order[inverse_leverage]" is missing from JSON.');
+        assert(json[r'inverse_leverage'] != null, 'Required key "Order[inverse_leverage]" has a null value in JSON.');
+        assert(json.containsKey(r'side'), 'Required key "Order[side]" is missing from JSON.');
+        assert(json[r'side'] != null, 'Required key "Order[side]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "Order[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "Order[status]" has a null value in JSON.');
+        assert(json.containsKey(r'user_id'), 'Required key "Order[user_id]" is missing from JSON.');
+        assert(json[r'user_id'] != null, 'Required key "Order[user_id]" has a null value in JSON.');
+        assert(json.containsKey(r'position_id'), 'Required key "Order[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "Order[position_id]" has a null value in JSON.');
         return true;
       }());
 
@@ -284,8 +318,8 @@ class Order {
         originalQuantity: mapValueOfType<String>(json, r'original_quantity')!,
         filledQuantity: mapValueOfType<String>(json, r'filled_quantity')!,
         filledNotional: mapValueOfType<String>(json, r'filled_notional')!,
-        lockedQuantity: mapValueOfType<double>(json, r'locked_quantity')!,
-        impendingBorrowsQuantity: mapValueOfType<double>(json, r'impending_borrows_quantity')!,
+        lockedQuantity: mapValueOfType<String>(json, r'locked_quantity')!,
+        impendingBorrowsQuantity: mapValueOfType<String>(json, r'impending_borrows_quantity')!,
         lastUpdateAt: mapDateTime(json, r'last_update_at', r'')!,
         openedAt: mapDateTime(json, r'opened_at', r'')!,
         inverseLeverage: mapValueOfType<String>(json, r'inverse_leverage')!,

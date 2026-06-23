@@ -62,10 +62,12 @@ class PositionAccount {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PositionAccount[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PositionAccount[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'position_id'), 'Required key "PositionAccount[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "PositionAccount[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'position_name'), 'Required key "PositionAccount[position_name]" is missing from JSON.');
+        assert(json[r'position_name'] != null, 'Required key "PositionAccount[position_name]" has a null value in JSON.');
+        assert(json.containsKey(r'is_global'), 'Required key "PositionAccount[is_global]" is missing from JSON.');
+        assert(json[r'is_global'] != null, 'Required key "PositionAccount[is_global]" has a null value in JSON.');
         return true;
       }());
 

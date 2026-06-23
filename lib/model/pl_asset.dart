@@ -195,10 +195,36 @@ class PLAsset {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PLAsset[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PLAsset[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "PLAsset[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "PLAsset[id]" has a null value in JSON.');
+        assert(json.containsKey(r'kind'), 'Required key "PLAsset[kind]" is missing from JSON.');
+        assert(json[r'kind'] != null, 'Required key "PLAsset[kind]" has a null value in JSON.');
+        assert(json.containsKey(r'symbol'), 'Required key "PLAsset[symbol]" is missing from JSON.');
+        assert(json[r'symbol'] != null, 'Required key "PLAsset[symbol]" has a null value in JSON.');
+        assert(json.containsKey(r'side'), 'Required key "PLAsset[side]" is missing from JSON.');
+        assert(json[r'side'] != null, 'Required key "PLAsset[side]" has a null value in JSON.');
+        assert(json.containsKey(r'avg_entry_price'), 'Required key "PLAsset[avg_entry_price]" is missing from JSON.');
+        assert(json[r'avg_entry_price'] != null, 'Required key "PLAsset[avg_entry_price]" has a null value in JSON.');
+        assert(json.containsKey(r'mark_price'), 'Required key "PLAsset[mark_price]" is missing from JSON.');
+        assert(json[r'mark_price'] != null, 'Required key "PLAsset[mark_price]" has a null value in JSON.');
+        assert(json.containsKey(r'liquidation_price'), 'Required key "PLAsset[liquidation_price]" is missing from JSON.');
+        assert(json[r'liquidation_price'] != null, 'Required key "PLAsset[liquidation_price]" has a null value in JSON.');
+        assert(json.containsKey(r'available'), 'Required key "PLAsset[available]" is missing from JSON.');
+        assert(json[r'available'] != null, 'Required key "PLAsset[available]" has a null value in JSON.');
+        assert(json.containsKey(r'borrowed'), 'Required key "PLAsset[borrowed]" is missing from JSON.');
+        assert(json[r'borrowed'] != null, 'Required key "PLAsset[borrowed]" has a null value in JSON.');
+        assert(json.containsKey(r'margin'), 'Required key "PLAsset[margin]" is missing from JSON.');
+        assert(json[r'margin'] != null, 'Required key "PLAsset[margin]" has a null value in JSON.');
+        assert(json.containsKey(r'unrealized_pl'), 'Required key "PLAsset[unrealized_pl]" is missing from JSON.');
+        assert(json[r'unrealized_pl'] != null, 'Required key "PLAsset[unrealized_pl]" has a null value in JSON.');
+        assert(json.containsKey(r'leverage_limit'), 'Required key "PLAsset[leverage_limit]" is missing from JSON.');
+        assert(json[r'leverage_limit'] != null, 'Required key "PLAsset[leverage_limit]" has a null value in JSON.');
+        assert(json.containsKey(r'initial_capital'), 'Required key "PLAsset[initial_capital]" is missing from JSON.');
+        assert(json[r'initial_capital'] != null, 'Required key "PLAsset[initial_capital]" has a null value in JSON.');
+        assert(json.containsKey(r'locked'), 'Required key "PLAsset[locked]" is missing from JSON.');
+        assert(json[r'locked'] != null, 'Required key "PLAsset[locked]" has a null value in JSON.');
+        assert(json.containsKey(r'unused_collateral'), 'Required key "PLAsset[unused_collateral]" is missing from JSON.');
+        assert(json[r'unused_collateral'] != null, 'Required key "PLAsset[unused_collateral]" has a null value in JSON.');
         return true;
       }());
 

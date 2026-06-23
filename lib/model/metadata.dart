@@ -62,10 +62,12 @@ class Metadata {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Metadata[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Metadata[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'status_code'), 'Required key "Metadata[status_code]" is missing from JSON.');
+        assert(json[r'status_code'] != null, 'Required key "Metadata[status_code]" has a null value in JSON.');
+        assert(json.containsKey(r'trace_id'), 'Required key "Metadata[trace_id]" is missing from JSON.');
+        assert(json[r'trace_id'] != null, 'Required key "Metadata[trace_id]" has a null value in JSON.');
+        assert(json.containsKey(r'request_id'), 'Required key "Metadata[request_id]" is missing from JSON.');
+        assert(json[r'request_id'] != null, 'Required key "Metadata[request_id]" has a null value in JSON.');
         return true;
       }());
 

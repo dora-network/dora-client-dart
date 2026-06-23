@@ -21,6 +21,7 @@ class UpdateUserConfigRequest {
     this.allowLiquidationsNotifications,
     this.allowDepositWithdrawalNotifications,
     this.allowOrdersNotifications,
+    this.allowCopyTrading,
   });
 
   /// Optional: URL of the user's profile photo, optional.
@@ -89,6 +90,15 @@ class UpdateUserConfigRequest {
   ///
   UpdateFieldBoolean? allowOrdersNotifications;
 
+  /// Optional: Whether to allow copy trading.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UpdateFieldBoolean? allowCopyTrading;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is UpdateUserConfigRequest &&
     other.photoUrl == photoUrl &&
@@ -98,7 +108,8 @@ class UpdateUserConfigRequest {
     other.allowEmailNotifications == allowEmailNotifications &&
     other.allowLiquidationsNotifications == allowLiquidationsNotifications &&
     other.allowDepositWithdrawalNotifications == allowDepositWithdrawalNotifications &&
-    other.allowOrdersNotifications == allowOrdersNotifications;
+    other.allowOrdersNotifications == allowOrdersNotifications &&
+    other.allowCopyTrading == allowCopyTrading;
 
   @override
   int get hashCode =>
@@ -110,10 +121,11 @@ class UpdateUserConfigRequest {
     (allowEmailNotifications == null ? 0 : allowEmailNotifications!.hashCode) +
     (allowLiquidationsNotifications == null ? 0 : allowLiquidationsNotifications!.hashCode) +
     (allowDepositWithdrawalNotifications == null ? 0 : allowDepositWithdrawalNotifications!.hashCode) +
-    (allowOrdersNotifications == null ? 0 : allowOrdersNotifications!.hashCode);
+    (allowOrdersNotifications == null ? 0 : allowOrdersNotifications!.hashCode) +
+    (allowCopyTrading == null ? 0 : allowCopyTrading!.hashCode);
 
   @override
-  String toString() => 'UpdateUserConfigRequest[photoUrl=$photoUrl, timezone=$timezone, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications]';
+  String toString() => 'UpdateUserConfigRequest[photoUrl=$photoUrl, timezone=$timezone, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications, allowCopyTrading=$allowCopyTrading]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -153,6 +165,11 @@ class UpdateUserConfigRequest {
     } else {
       json[r'allow_orders_notifications'] = null;
     }
+    if (this.allowCopyTrading != null) {
+      json[r'allow_copy_trading'] = this.allowCopyTrading;
+    } else {
+      json[r'allow_copy_trading'] = null;
+    }
     return json;
   }
 
@@ -167,10 +184,8 @@ class UpdateUserConfigRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UpdateUserConfigRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UpdateUserConfigRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'timezone'), 'Required key "UpdateUserConfigRequest[timezone]" is missing from JSON.');
+        assert(json[r'timezone'] != null, 'Required key "UpdateUserConfigRequest[timezone]" has a null value in JSON.');
         return true;
       }());
 
@@ -183,6 +198,7 @@ class UpdateUserConfigRequest {
         allowLiquidationsNotifications: UpdateFieldBoolean.fromJson(json[r'allow_liquidations_notifications']),
         allowDepositWithdrawalNotifications: UpdateFieldBoolean.fromJson(json[r'allow_deposit_withdrawal_notifications']),
         allowOrdersNotifications: UpdateFieldBoolean.fromJson(json[r'allow_orders_notifications']),
+        allowCopyTrading: UpdateFieldBoolean.fromJson(json[r'allow_copy_trading']),
       );
     }
     return null;

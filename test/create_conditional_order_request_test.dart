@@ -16,7 +16,7 @@ void main() {
   // final instance = CreateConditionalOrderRequest();
 
   group('test CreateConditionalOrderRequest', () {
-    // double price
+    // String price
     test('to test the property `price`', () async {
       // TODO
     });
@@ -40,13 +40,13 @@ void main() {
     });
 
     // Stop loss price
-    // double stopLossPrice
+    // String stopLossPrice
     test('to test the property `stopLossPrice`', () async {
       // TODO
     });
 
     // Take profit price
-    // double takeProfitPrice
+    // String takeProfitPrice
     test('to test the property `takeProfitPrice`', () async {
       // TODO
     });

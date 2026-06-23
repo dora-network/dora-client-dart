@@ -23,25 +23,25 @@ void main() {
     });
 
     // A map of user IDs to their total realized PnL in USD across all settlements included in the response
-    // Map<String, double> userTotals (default value: const {})
+    // Map<String, String> userTotals (default value: const {})
     test('to test the property `userTotals`', () async {
       // TODO
     });
 
     // A map of tenant IDs to their total realized PnL in USD across all settlements included in the response
-    // Map<String, double> tenantTotals (default value: const {})
+    // Map<String, String> tenantTotals (default value: const {})
     test('to test the property `tenantTotals`', () async {
       // TODO
     });
 
     // A map of user IDs to their total realized PnL in USD across unsettled settlements (where settled_at is null) included in the response
-    // Map<String, double> userTotalsUnsettled (default value: const {})
+    // Map<String, String> userTotalsUnsettled (default value: const {})
     test('to test the property `userTotalsUnsettled`', () async {
       // TODO
     });
 
     // A map of tenant IDs to their total realized PnL in USD across unsettled settlements (where settled_at is null) included in the response
-    // Map<String, double> tenantTotalsUnsettled (default value: const {})
+    // Map<String, String> tenantTotalsUnsettled (default value: const {})
     test('to test the property `tenantTotalsUnsettled`', () async {
       // TODO
     });

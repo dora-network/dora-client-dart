@@ -16,7 +16,9 @@ class AssetYield {
     required this.assetId,
     required this.timestamp,
     required this.ytm,
-    required this.lendingYield,
+    required this.borrowingYieldRate,
+    required this.lendingYieldRate,
+    required this.price,
     required this.tvl,
     required this.totalYield,
   });
@@ -27,7 +29,11 @@ class AssetYield {
 
   String ytm;
 
-  String lendingYield;
+  String borrowingYieldRate;
+
+  String lendingYieldRate;
+
+  String price;
 
   String tvl;
 
@@ -38,7 +44,9 @@ class AssetYield {
     other.assetId == assetId &&
     other.timestamp == timestamp &&
     other.ytm == ytm &&
-    other.lendingYield == lendingYield &&
+    other.borrowingYieldRate == borrowingYieldRate &&
+    other.lendingYieldRate == lendingYieldRate &&
+    other.price == price &&
     other.tvl == tvl &&
     other.totalYield == totalYield;
 
@@ -48,19 +56,23 @@ class AssetYield {
     (assetId.hashCode) +
     (timestamp.hashCode) +
     (ytm.hashCode) +
-    (lendingYield.hashCode) +
+    (borrowingYieldRate.hashCode) +
+    (lendingYieldRate.hashCode) +
+    (price.hashCode) +
     (tvl.hashCode) +
     (totalYield.hashCode);
 
   @override
-  String toString() => 'AssetYield[assetId=$assetId, timestamp=$timestamp, ytm=$ytm, lendingYield=$lendingYield, tvl=$tvl, totalYield=$totalYield]';
+  String toString() => 'AssetYield[assetId=$assetId, timestamp=$timestamp, ytm=$ytm, borrowingYieldRate=$borrowingYieldRate, lendingYieldRate=$lendingYieldRate, price=$price, tvl=$tvl, totalYield=$totalYield]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'asset_id'] = this.assetId;
       json[r'timestamp'] = this.timestamp.toUtc().toIso8601String();
       json[r'ytm'] = this.ytm;
-      json[r'lending_yield'] = this.lendingYield;
+      json[r'borrowing_yield_rate'] = this.borrowingYieldRate;
+      json[r'lending_yield_rate'] = this.lendingYieldRate;
+      json[r'price'] = this.price;
       json[r'tvl'] = this.tvl;
       json[r'total_yield'] = this.totalYield;
     return json;
@@ -77,10 +89,22 @@ class AssetYield {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AssetYield[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AssetYield[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'asset_id'), 'Required key "AssetYield[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "AssetYield[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'timestamp'), 'Required key "AssetYield[timestamp]" is missing from JSON.');
+        assert(json[r'timestamp'] != null, 'Required key "AssetYield[timestamp]" has a null value in JSON.');
+        assert(json.containsKey(r'ytm'), 'Required key "AssetYield[ytm]" is missing from JSON.');
+        assert(json[r'ytm'] != null, 'Required key "AssetYield[ytm]" has a null value in JSON.');
+        assert(json.containsKey(r'borrowing_yield_rate'), 'Required key "AssetYield[borrowing_yield_rate]" is missing from JSON.');
+        assert(json[r'borrowing_yield_rate'] != null, 'Required key "AssetYield[borrowing_yield_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'lending_yield_rate'), 'Required key "AssetYield[lending_yield_rate]" is missing from JSON.');
+        assert(json[r'lending_yield_rate'] != null, 'Required key "AssetYield[lending_yield_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'price'), 'Required key "AssetYield[price]" is missing from JSON.');
+        assert(json[r'price'] != null, 'Required key "AssetYield[price]" has a null value in JSON.');
+        assert(json.containsKey(r'tvl'), 'Required key "AssetYield[tvl]" is missing from JSON.');
+        assert(json[r'tvl'] != null, 'Required key "AssetYield[tvl]" has a null value in JSON.');
+        assert(json.containsKey(r'total_yield'), 'Required key "AssetYield[total_yield]" is missing from JSON.');
+        assert(json[r'total_yield'] != null, 'Required key "AssetYield[total_yield]" has a null value in JSON.');
         return true;
       }());
 
@@ -88,7 +112,9 @@ class AssetYield {
         assetId: mapValueOfType<String>(json, r'asset_id')!,
         timestamp: mapDateTime(json, r'timestamp', r'')!,
         ytm: mapValueOfType<String>(json, r'ytm')!,
-        lendingYield: mapValueOfType<String>(json, r'lending_yield')!,
+        borrowingYieldRate: mapValueOfType<String>(json, r'borrowing_yield_rate')!,
+        lendingYieldRate: mapValueOfType<String>(json, r'lending_yield_rate')!,
+        price: mapValueOfType<String>(json, r'price')!,
         tvl: mapValueOfType<String>(json, r'tvl')!,
         totalYield: mapValueOfType<String>(json, r'total_yield')!,
       );
@@ -141,7 +167,9 @@ class AssetYield {
     'asset_id',
     'timestamp',
     'ytm',
-    'lending_yield',
+    'borrowing_yield_rate',
+    'lending_yield_rate',
+    'price',
     'tvl',
     'total_yield',
   };

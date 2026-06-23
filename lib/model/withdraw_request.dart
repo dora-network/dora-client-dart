@@ -59,10 +59,12 @@ class WithdrawRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WithdrawRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WithdrawRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'position_id'), 'Required key "WithdrawRequest[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "WithdrawRequest[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_id'), 'Required key "WithdrawRequest[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "WithdrawRequest[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity'), 'Required key "WithdrawRequest[quantity]" is missing from JSON.');
+        assert(json[r'quantity'] != null, 'Required key "WithdrawRequest[quantity]" has a null value in JSON.');
         return true;
       }());
 

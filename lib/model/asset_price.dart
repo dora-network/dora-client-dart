@@ -75,10 +75,12 @@ class AssetPrice {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AssetPrice[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AssetPrice[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'asset_id'), 'Required key "AssetPrice[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "AssetPrice[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'price'), 'Required key "AssetPrice[price]" is missing from JSON.');
+        assert(json[r'price'] != null, 'Required key "AssetPrice[price]" has a null value in JSON.');
+        assert(json.containsKey(r'time'), 'Required key "AssetPrice[time]" is missing from JSON.');
+        assert(json[r'time'] != null, 'Required key "AssetPrice[time]" has a null value in JSON.');
         return true;
       }());
 

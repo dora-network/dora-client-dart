@@ -230,10 +230,50 @@ class Asset {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Asset[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Asset[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "Asset[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "Asset[id]" has a null value in JSON.');
+        assert(json.containsKey(r'collateral_weight'), 'Required key "Asset[collateral_weight]" is missing from JSON.');
+        assert(json[r'collateral_weight'] != null, 'Required key "Asset[collateral_weight]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "Asset[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "Asset[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'decimals'), 'Required key "Asset[decimals]" is missing from JSON.');
+        assert(json[r'decimals'] != null, 'Required key "Asset[decimals]" has a null value in JSON.');
+        assert(json.containsKey(r'fractionalized_units'), 'Required key "Asset[fractionalized_units]" is missing from JSON.');
+        assert(json[r'fractionalized_units'] != null, 'Required key "Asset[fractionalized_units]" has a null value in JSON.');
+        assert(json.containsKey(r'description'), 'Required key "Asset[description]" is missing from JSON.');
+        assert(json[r'description'] != null, 'Required key "Asset[description]" has a null value in JSON.');
+        assert(json.containsKey(r'liquidation_weight'), 'Required key "Asset[liquidation_weight]" is missing from JSON.');
+        assert(json[r'liquidation_weight'] != null, 'Required key "Asset[liquidation_weight]" has a null value in JSON.');
+        assert(json.containsKey(r'max_supply'), 'Required key "Asset[max_supply]" is missing from JSON.');
+        assert(json[r'max_supply'] != null, 'Required key "Asset[max_supply]" has a null value in JSON.');
+        assert(json.containsKey(r'max_utilization'), 'Required key "Asset[max_utilization]" is missing from JSON.');
+        assert(json[r'max_utilization'] != null, 'Required key "Asset[max_utilization]" has a null value in JSON.');
+        assert(json.containsKey(r'minimum_rate'), 'Required key "Asset[minimum_rate]" is missing from JSON.');
+        assert(json[r'minimum_rate'] != null, 'Required key "Asset[minimum_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'kink_rate'), 'Required key "Asset[kink_rate]" is missing from JSON.');
+        assert(json[r'kink_rate'] != null, 'Required key "Asset[kink_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'maximum_rate'), 'Required key "Asset[maximum_rate]" is missing from JSON.');
+        assert(json[r'maximum_rate'] != null, 'Required key "Asset[maximum_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'kink_utilization'), 'Required key "Asset[kink_utilization]" is missing from JSON.');
+        assert(json[r'kink_utilization'] != null, 'Required key "Asset[kink_utilization]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "Asset[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "Asset[name]" has a null value in JSON.');
+        assert(json.containsKey(r'symbol'), 'Required key "Asset[symbol]" is missing from JSON.');
+        assert(json[r'symbol'] != null, 'Required key "Asset[symbol]" has a null value in JSON.');
+        assert(json.containsKey(r'kind'), 'Required key "Asset[kind]" is missing from JSON.');
+        assert(json[r'kind'] != null, 'Required key "Asset[kind]" has a null value in JSON.');
+        assert(json.containsKey(r'can_add_liquidity'), 'Required key "Asset[can_add_liquidity]" is missing from JSON.');
+        assert(json[r'can_add_liquidity'] != null, 'Required key "Asset[can_add_liquidity]" has a null value in JSON.');
+        assert(json.containsKey(r'can_direct_borrow'), 'Required key "Asset[can_direct_borrow]" is missing from JSON.');
+        assert(json[r'can_direct_borrow'] != null, 'Required key "Asset[can_direct_borrow]" has a null value in JSON.');
+        assert(json.containsKey(r'can_onboard'), 'Required key "Asset[can_onboard]" is missing from JSON.');
+        assert(json[r'can_onboard'] != null, 'Required key "Asset[can_onboard]" has a null value in JSON.');
+        assert(json.containsKey(r'can_trade'), 'Required key "Asset[can_trade]" is missing from JSON.');
+        assert(json[r'can_trade'] != null, 'Required key "Asset[can_trade]" has a null value in JSON.');
+        assert(json.containsKey(r'can_virtual_borrow'), 'Required key "Asset[can_virtual_borrow]" is missing from JSON.');
+        assert(json[r'can_virtual_borrow'] != null, 'Required key "Asset[can_virtual_borrow]" has a null value in JSON.');
+        assert(json.containsKey(r'max_leverage'), 'Required key "Asset[max_leverage]" is missing from JSON.');
+        assert(json[r'max_leverage'] != null, 'Required key "Asset[max_leverage]" has a null value in JSON.');
         return true;
       }());
 

@@ -81,10 +81,8 @@ class WithdrawalInitiationResponseEnvelope {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WithdrawalInitiationResponseEnvelope[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WithdrawalInitiationResponseEnvelope[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'metadata'), 'Required key "WithdrawalInitiationResponseEnvelope[metadata]" is missing from JSON.');
+        assert(json[r'metadata'] != null, 'Required key "WithdrawalInitiationResponseEnvelope[metadata]" has a null value in JSON.');
         return true;
       }());
 

@@ -65,10 +65,14 @@ class Collateral {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Collateral[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Collateral[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'position_id'), 'Required key "Collateral[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "Collateral[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'transaction_id'), 'Required key "Collateral[transaction_id]" is missing from JSON.');
+        assert(json[r'transaction_id'] != null, 'Required key "Collateral[transaction_id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_id'), 'Required key "Collateral[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "Collateral[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity'), 'Required key "Collateral[quantity]" is missing from JSON.');
+        assert(json[r'quantity'] != null, 'Required key "Collateral[quantity]" has a null value in JSON.');
         return true;
       }());
 

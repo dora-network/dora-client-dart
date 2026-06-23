@@ -55,10 +55,10 @@ class LiveOrderbook {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "LiveOrderbook[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "LiveOrderbook[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'bids'), 'Required key "LiveOrderbook[bids]" is missing from JSON.');
+        assert(json[r'bids'] != null, 'Required key "LiveOrderbook[bids]" has a null value in JSON.');
+        assert(json.containsKey(r'asks'), 'Required key "LiveOrderbook[asks]" is missing from JSON.');
+        assert(json[r'asks'] != null, 'Required key "LiveOrderbook[asks]" has a null value in JSON.');
         return true;
       }());
 

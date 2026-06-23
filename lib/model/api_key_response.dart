@@ -81,10 +81,14 @@ class APIKeyResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "APIKeyResponse[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "APIKeyResponse[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'user_id'), 'Required key "APIKeyResponse[user_id]" is missing from JSON.');
+        assert(json[r'user_id'] != null, 'Required key "APIKeyResponse[user_id]" has a null value in JSON.');
+        assert(json.containsKey(r'key_id'), 'Required key "APIKeyResponse[key_id]" is missing from JSON.');
+        assert(json[r'key_id'] != null, 'Required key "APIKeyResponse[key_id]" has a null value in JSON.');
+        assert(json.containsKey(r'label'), 'Required key "APIKeyResponse[label]" is missing from JSON.');
+        assert(json[r'label'] != null, 'Required key "APIKeyResponse[label]" has a null value in JSON.');
+        assert(json.containsKey(r'is_active'), 'Required key "APIKeyResponse[is_active]" is missing from JSON.');
+        assert(json[r'is_active'] != null, 'Required key "APIKeyResponse[is_active]" has a null value in JSON.');
         return true;
       }());
 

@@ -53,10 +53,10 @@ class UserInterest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserInterest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserInterest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'available'), 'Required key "UserInterest[available]" is missing from JSON.');
+        assert(json[r'available'] != null, 'Required key "UserInterest[available]" has a null value in JSON.');
+        assert(json.containsKey(r'value'), 'Required key "UserInterest[value]" is missing from JSON.');
+        assert(json[r'value'] != null, 'Required key "UserInterest[value]" has a null value in JSON.');
         return true;
       }());
 

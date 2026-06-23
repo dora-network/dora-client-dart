@@ -163,10 +163,24 @@ class Bond {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Bond[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Bond[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "Bond[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "Bond[id]" has a null value in JSON.');
+        assert(json.containsKey(r'kind'), 'Required key "Bond[kind]" is missing from JSON.');
+        assert(json[r'kind'] != null, 'Required key "Bond[kind]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "Bond[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "Bond[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'isin'), 'Required key "Bond[isin]" is missing from JSON.');
+        assert(json[r'isin'] != null, 'Required key "Bond[isin]" has a null value in JSON.');
+        assert(json.containsKey(r'issued_at'), 'Required key "Bond[issued_at]" is missing from JSON.');
+        assert(json[r'issued_at'] != null, 'Required key "Bond[issued_at]" has a null value in JSON.');
+        assert(json.containsKey(r'issuer'), 'Required key "Bond[issuer]" is missing from JSON.');
+        assert(json[r'issuer'] != null, 'Required key "Bond[issuer]" has a null value in JSON.');
+        assert(json.containsKey(r'maturity_at'), 'Required key "Bond[maturity_at]" is missing from JSON.');
+        assert(json[r'maturity_at'] != null, 'Required key "Bond[maturity_at]" has a null value in JSON.');
+        assert(json.containsKey(r'principal_value'), 'Required key "Bond[principal_value]" is missing from JSON.');
+        assert(json[r'principal_value'] != null, 'Required key "Bond[principal_value]" has a null value in JSON.');
+        assert(json.containsKey(r'payments_per_year'), 'Required key "Bond[payments_per_year]" is missing from JSON.');
+        assert(json[r'payments_per_year'] != null, 'Required key "Bond[payments_per_year]" has a null value in JSON.');
         return true;
       }());
 

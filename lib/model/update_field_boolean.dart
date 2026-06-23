@@ -65,10 +65,8 @@ class UpdateFieldBoolean {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UpdateFieldBoolean[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UpdateFieldBoolean[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'update'), 'Required key "UpdateFieldBoolean[update]" is missing from JSON.');
+        assert(json[r'update'] != null, 'Required key "UpdateFieldBoolean[update]" has a null value in JSON.');
         return true;
       }());
 

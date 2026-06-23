@@ -47,7 +47,7 @@ void main() {
     });
 
     // The amount of realized PnL in USD
-    // double realizedUsd
+    // String realizedUsd
     test('to test the property `realizedUsd`', () async {
       // TODO
     });

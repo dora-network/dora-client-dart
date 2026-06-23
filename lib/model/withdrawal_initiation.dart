@@ -107,10 +107,28 @@ class WithdrawalInitiation {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "WithdrawalInitiation[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "WithdrawalInitiation[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'withdrawal_id'), 'Required key "WithdrawalInitiation[withdrawal_id]" is missing from JSON.');
+        assert(json[r'withdrawal_id'] != null, 'Required key "WithdrawalInitiation[withdrawal_id]" has a null value in JSON.');
+        assert(json.containsKey(r'user_id'), 'Required key "WithdrawalInitiation[user_id]" is missing from JSON.');
+        assert(json[r'user_id'] != null, 'Required key "WithdrawalInitiation[user_id]" has a null value in JSON.');
+        assert(json.containsKey(r'position_id'), 'Required key "WithdrawalInitiation[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "WithdrawalInitiation[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_id'), 'Required key "WithdrawalInitiation[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "WithdrawalInitiation[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity'), 'Required key "WithdrawalInitiation[quantity]" is missing from JSON.');
+        assert(json[r'quantity'] != null, 'Required key "WithdrawalInitiation[quantity]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "WithdrawalInitiation[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "WithdrawalInitiation[status]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "WithdrawalInitiation[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "WithdrawalInitiation[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'created_by'), 'Required key "WithdrawalInitiation[created_by]" is missing from JSON.');
+        assert(json[r'created_by'] != null, 'Required key "WithdrawalInitiation[created_by]" has a null value in JSON.');
+        assert(json.containsKey(r'updated_at'), 'Required key "WithdrawalInitiation[updated_at]" is missing from JSON.');
+        assert(json[r'updated_at'] != null, 'Required key "WithdrawalInitiation[updated_at]" has a null value in JSON.');
+        assert(json.containsKey(r'updated_by'), 'Required key "WithdrawalInitiation[updated_by]" is missing from JSON.');
+        assert(json[r'updated_by'] != null, 'Required key "WithdrawalInitiation[updated_by]" has a null value in JSON.');
+        assert(json.containsKey(r'reason'), 'Required key "WithdrawalInitiation[reason]" is missing from JSON.');
+        assert(json[r'reason'] != null, 'Required key "WithdrawalInitiation[reason]" has a null value in JSON.');
         return true;
       }());
 

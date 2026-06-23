@@ -59,10 +59,12 @@ class AccountBalanceTransfer {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AccountBalanceTransfer[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AccountBalanceTransfer[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'from_account_id'), 'Required key "AccountBalanceTransfer[from_account_id]" is missing from JSON.');
+        assert(json[r'from_account_id'] != null, 'Required key "AccountBalanceTransfer[from_account_id]" has a null value in JSON.');
+        assert(json.containsKey(r'to_account_id'), 'Required key "AccountBalanceTransfer[to_account_id]" is missing from JSON.');
+        assert(json[r'to_account_id'] != null, 'Required key "AccountBalanceTransfer[to_account_id]" has a null value in JSON.');
+        assert(json.containsKey(r'transaction_id'), 'Required key "AccountBalanceTransfer[transaction_id]" is missing from JSON.');
+        assert(json[r'transaction_id'] != null, 'Required key "AccountBalanceTransfer[transaction_id]" has a null value in JSON.');
         return true;
       }());
 

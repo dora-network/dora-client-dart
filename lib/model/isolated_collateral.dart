@@ -71,10 +71,16 @@ class IsolatedCollateral {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "IsolatedCollateral[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "IsolatedCollateral[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'global_position_id'), 'Required key "IsolatedCollateral[global_position_id]" is missing from JSON.');
+        assert(json[r'global_position_id'] != null, 'Required key "IsolatedCollateral[global_position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'isolated_position_id'), 'Required key "IsolatedCollateral[isolated_position_id]" is missing from JSON.');
+        assert(json[r'isolated_position_id'] != null, 'Required key "IsolatedCollateral[isolated_position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'transaction_id'), 'Required key "IsolatedCollateral[transaction_id]" is missing from JSON.');
+        assert(json[r'transaction_id'] != null, 'Required key "IsolatedCollateral[transaction_id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_id'), 'Required key "IsolatedCollateral[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "IsolatedCollateral[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'quantity'), 'Required key "IsolatedCollateral[quantity]" is missing from JSON.');
+        assert(json[r'quantity'] != null, 'Required key "IsolatedCollateral[quantity]" has a null value in JSON.');
         return true;
       }());
 

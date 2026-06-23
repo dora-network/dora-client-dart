@@ -78,8 +78,8 @@ Method | HTTP request | Description
 [**ledgerWithdrawRequest**](DefaultApi.md#ledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{user_id} | Initiate a withdrawal request for this user to the outside world
 [**ledgerWithdrawRequestSelf**](DefaultApi.md#ledgerwithdrawrequestself) | **POST** /v1/ledger/withdraw/requests/self | Initiate a withdrawal request for the logged in user to the outside world
 [**leverageGetAccruedInterestByUser**](DefaultApi.md#leveragegetaccruedinterestbyuser) | **GET** /v1/leverage/accrued_interest/self | Get current accrued leverage interest for the user
-[**leverageGetHistoricalInterestRates**](DefaultApi.md#leveragegethistoricalinterestrates) | **GET** /v1/leverage/interest_rate/{asset_id}/historical | Get historical leverage interest rates for a specific asset
-[**leverageGetInterestRate**](DefaultApi.md#leveragegetinterestrate) | **GET** /v1/leverage/interest_rate/{asset_id} | Get leverage interest rate for a specific asset
+[**leverageGetHistoricalInterestRates**](DefaultApi.md#leveragegethistoricalinterestrates) | **GET** /v1/leverage/interest_rate/{asset_id}/historical | Get historical leverage borrowing and lending yields for a specific asset
+[**leverageGetInterestRate**](DefaultApi.md#leveragegetinterestrate) | **GET** /v1/leverage/interest_rate/{asset_id} | Get leverage borrowing and lending yields for a specific asset
 [**leverageIsolateCollateral**](DefaultApi.md#leverageisolatecollateral) | **POST** /v1/leverage/isolate_collateral | Create an isolated position by transferring collateral to the position from the user's global collateral
 [**leverageSupply**](DefaultApi.md#leveragesupply) | **POST** /v1/leverage/supply | Supply leverage for a specific asset
 [**leverageUnite**](DefaultApi.md#leverageunite) | **POST** /v1/leverage/unite | Combines all isolated positions into a single global position
@@ -2712,10 +2712,6 @@ Get transactions since a specific time, and open a stream for further updates
 ### Example
 ```dart
 import 'package:dora_client/api.dart';
-// TODO Configure API key authorization: apiKeyAuthQuery
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthQuery').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthQuery').apiKeyPrefix = 'Bearer';
 
 final api_instance = DefaultApi();
 final since = 2013-10-20T19:20:30+01:00; // DateTime | 
@@ -2740,7 +2736,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
+No authorization required
 
 ### HTTP request headers
 
@@ -3513,7 +3509,7 @@ Name | Type | Description  | Notes
 # **leverageGetHistoricalInterestRates**
 > HistoricalLeverageInterestRatesResponseEnvelope leverageGetHistoricalInterestRates(assetId, start, end)
 
-Get historical leverage interest rates for a specific asset
+Get historical leverage borrowing and lending yields for a specific asset
 
 ### Example
 ```dart
@@ -3568,7 +3564,7 @@ Name | Type | Description  | Notes
 # **leverageGetInterestRate**
 > LeverageInterestRateResponseEnvelope leverageGetInterestRate(assetId, start, end)
 
-Get leverage interest rate for a specific asset
+Get leverage borrowing and lending yields for a specific asset
 
 ### Example
 ```dart
@@ -4573,7 +4569,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **streamAssetPrices**
-> Map<String, AssetPrice> streamAssetPrices(since, assetId)
+> Map<String, AssetPrice> streamAssetPrices(assetId)
 
 Stream real-time asset prices as map objects
 
@@ -4584,11 +4580,10 @@ Opens a WebSocket stream for real-time asset price updates. First message contai
 import 'package:dora_client/api.dart';
 
 final api_instance = DefaultApi();
-final since = 2013-10-20T19:20:30+01:00; // DateTime | 
 final assetId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 
 try {
-    final result = api_instance.streamAssetPrices(since, assetId);
+    final result = api_instance.streamAssetPrices(assetId);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->streamAssetPrices: $e\n');
@@ -4599,7 +4594,6 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **since** | **DateTime**|  | [optional] 
  **assetId** | **String**|  | [optional] 
 
 ### Return type

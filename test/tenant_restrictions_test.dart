@@ -23,13 +23,13 @@ void main() {
     });
 
     // Maximum allowed deposit for the tenant.
-    // double depositLimit
+    // String depositLimit
     test('to test the property `depositLimit`', () async {
       // TODO
     });
 
     // Maximum allowed trade amount for the tenant.
-    // double tradeLimit
+    // String tradeLimit
     test('to test the property `tradeLimit`', () async {
       // TODO
     });

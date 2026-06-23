@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **tenantId** | **String** |  | 
 **positionId** | **String** |  | 
 **txKind** | **String** |  | 
-**quantityUsd** | **double** |  | 
+**quantityUsd** | **String** |  | 
 **createdAt** | [**DateTime**](DateTime.md) |  | 
 **settledAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **settledBy** | **String** |  | [optional] 

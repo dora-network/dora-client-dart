@@ -23,10 +23,10 @@ class TenantRestrictions {
   String tenantId;
 
   /// Maximum allowed deposit for the tenant.
-  double depositLimit;
+  String depositLimit;
 
   /// Maximum allowed trade amount for the tenant.
-  double tradeLimit;
+  String tradeLimit;
 
   /// Last update timestamp for the restrictions.
   DateTime updatedAt;
@@ -69,17 +69,21 @@ class TenantRestrictions {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "TenantRestrictions[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "TenantRestrictions[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'tenant_id'), 'Required key "TenantRestrictions[tenant_id]" is missing from JSON.');
+        assert(json[r'tenant_id'] != null, 'Required key "TenantRestrictions[tenant_id]" has a null value in JSON.');
+        assert(json.containsKey(r'deposit_limit'), 'Required key "TenantRestrictions[deposit_limit]" is missing from JSON.');
+        assert(json[r'deposit_limit'] != null, 'Required key "TenantRestrictions[deposit_limit]" has a null value in JSON.');
+        assert(json.containsKey(r'trade_limit'), 'Required key "TenantRestrictions[trade_limit]" is missing from JSON.');
+        assert(json[r'trade_limit'] != null, 'Required key "TenantRestrictions[trade_limit]" has a null value in JSON.');
+        assert(json.containsKey(r'updated_at'), 'Required key "TenantRestrictions[updated_at]" is missing from JSON.');
+        assert(json[r'updated_at'] != null, 'Required key "TenantRestrictions[updated_at]" has a null value in JSON.');
         return true;
       }());
 
       return TenantRestrictions(
         tenantId: mapValueOfType<String>(json, r'tenant_id')!,
-        depositLimit: mapValueOfType<double>(json, r'deposit_limit')!,
-        tradeLimit: mapValueOfType<double>(json, r'trade_limit')!,
+        depositLimit: mapValueOfType<String>(json, r'deposit_limit')!,
+        tradeLimit: mapValueOfType<String>(json, r'trade_limit')!,
         updatedAt: mapDateTime(json, r'updated_at', r'')!,
       );
     }

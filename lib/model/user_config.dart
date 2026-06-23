@@ -24,6 +24,7 @@ class UserConfig {
     required this.allowLiquidationsNotifications,
     required this.allowDepositWithdrawalNotifications,
     required this.allowOrdersNotifications,
+    required this.allowCopyTrading,
   });
 
   String id;
@@ -61,6 +62,8 @@ class UserConfig {
 
   bool allowOrdersNotifications;
 
+  bool allowCopyTrading;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserConfig &&
     other.id == id &&
@@ -73,7 +76,8 @@ class UserConfig {
     other.allowEmailNotifications == allowEmailNotifications &&
     other.allowLiquidationsNotifications == allowLiquidationsNotifications &&
     other.allowDepositWithdrawalNotifications == allowDepositWithdrawalNotifications &&
-    other.allowOrdersNotifications == allowOrdersNotifications;
+    other.allowOrdersNotifications == allowOrdersNotifications &&
+    other.allowCopyTrading == allowCopyTrading;
 
   @override
   int get hashCode =>
@@ -88,10 +92,11 @@ class UserConfig {
     (allowEmailNotifications.hashCode) +
     (allowLiquidationsNotifications.hashCode) +
     (allowDepositWithdrawalNotifications.hashCode) +
-    (allowOrdersNotifications.hashCode);
+    (allowOrdersNotifications.hashCode) +
+    (allowCopyTrading.hashCode);
 
   @override
-  String toString() => 'UserConfig[id=$id, photoUrl=$photoUrl, timezone=$timezone, createdAt=$createdAt, updatedAt=$updatedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications]';
+  String toString() => 'UserConfig[id=$id, photoUrl=$photoUrl, timezone=$timezone, createdAt=$createdAt, updatedAt=$updatedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications, allowCopyTrading=$allowCopyTrading]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -114,6 +119,7 @@ class UserConfig {
       json[r'allow_liquidations_notifications'] = this.allowLiquidationsNotifications;
       json[r'allow_deposit_withdrawal_notifications'] = this.allowDepositWithdrawalNotifications;
       json[r'allow_orders_notifications'] = this.allowOrdersNotifications;
+      json[r'allow_copy_trading'] = this.allowCopyTrading;
     return json;
   }
 
@@ -128,10 +134,26 @@ class UserConfig {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UserConfig[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UserConfig[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "UserConfig[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "UserConfig[id]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "UserConfig[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "UserConfig[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'updated_at'), 'Required key "UserConfig[updated_at]" is missing from JSON.');
+        assert(json[r'updated_at'] != null, 'Required key "UserConfig[updated_at]" has a null value in JSON.');
+        assert(json.containsKey(r'show_tutorial_cards'), 'Required key "UserConfig[show_tutorial_cards]" is missing from JSON.');
+        assert(json[r'show_tutorial_cards'] != null, 'Required key "UserConfig[show_tutorial_cards]" has a null value in JSON.');
+        assert(json.containsKey(r'notifications_enabled'), 'Required key "UserConfig[notifications_enabled]" is missing from JSON.');
+        assert(json[r'notifications_enabled'] != null, 'Required key "UserConfig[notifications_enabled]" has a null value in JSON.');
+        assert(json.containsKey(r'allow_email_notifications'), 'Required key "UserConfig[allow_email_notifications]" is missing from JSON.');
+        assert(json[r'allow_email_notifications'] != null, 'Required key "UserConfig[allow_email_notifications]" has a null value in JSON.');
+        assert(json.containsKey(r'allow_liquidations_notifications'), 'Required key "UserConfig[allow_liquidations_notifications]" is missing from JSON.');
+        assert(json[r'allow_liquidations_notifications'] != null, 'Required key "UserConfig[allow_liquidations_notifications]" has a null value in JSON.');
+        assert(json.containsKey(r'allow_deposit_withdrawal_notifications'), 'Required key "UserConfig[allow_deposit_withdrawal_notifications]" is missing from JSON.');
+        assert(json[r'allow_deposit_withdrawal_notifications'] != null, 'Required key "UserConfig[allow_deposit_withdrawal_notifications]" has a null value in JSON.');
+        assert(json.containsKey(r'allow_orders_notifications'), 'Required key "UserConfig[allow_orders_notifications]" is missing from JSON.');
+        assert(json[r'allow_orders_notifications'] != null, 'Required key "UserConfig[allow_orders_notifications]" has a null value in JSON.');
+        assert(json.containsKey(r'allow_copy_trading'), 'Required key "UserConfig[allow_copy_trading]" is missing from JSON.');
+        assert(json[r'allow_copy_trading'] != null, 'Required key "UserConfig[allow_copy_trading]" has a null value in JSON.');
         return true;
       }());
 
@@ -147,6 +169,7 @@ class UserConfig {
         allowLiquidationsNotifications: mapValueOfType<bool>(json, r'allow_liquidations_notifications')!,
         allowDepositWithdrawalNotifications: mapValueOfType<bool>(json, r'allow_deposit_withdrawal_notifications')!,
         allowOrdersNotifications: mapValueOfType<bool>(json, r'allow_orders_notifications')!,
+        allowCopyTrading: mapValueOfType<bool>(json, r'allow_copy_trading')!,
       );
     }
     return null;
@@ -203,6 +226,7 @@ class UserConfig {
     'allow_liquidations_notifications',
     'allow_deposit_withdrawal_notifications',
     'allow_orders_notifications',
+    'allow_copy_trading',
   };
 }
 

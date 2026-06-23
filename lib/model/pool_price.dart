@@ -59,10 +59,12 @@ class PoolPrice {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PoolPrice[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PoolPrice[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'pool_id'), 'Required key "PoolPrice[pool_id]" is missing from JSON.');
+        assert(json[r'pool_id'] != null, 'Required key "PoolPrice[pool_id]" has a null value in JSON.');
+        assert(json.containsKey(r'price'), 'Required key "PoolPrice[price]" is missing from JSON.');
+        assert(json[r'price'] != null, 'Required key "PoolPrice[price]" has a null value in JSON.');
+        assert(json.containsKey(r'timestamp'), 'Required key "PoolPrice[timestamp]" is missing from JSON.');
+        assert(json[r'timestamp'] != null, 'Required key "PoolPrice[timestamp]" has a null value in JSON.');
         return true;
       }());
 

@@ -152,10 +152,34 @@ class AccountV2 {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "AccountV2[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "AccountV2[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "AccountV2[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "AccountV2[id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_id'), 'Required key "AccountV2[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "AccountV2[asset_id]" has a null value in JSON.');
+        assert(json.containsKey(r'seq'), 'Required key "AccountV2[seq]" is missing from JSON.');
+        assert(json[r'seq'] != null, 'Required key "AccountV2[seq]" has a null value in JSON.');
+        assert(json.containsKey(r'available'), 'Required key "AccountV2[available]" is missing from JSON.');
+        assert(json[r'available'] != null, 'Required key "AccountV2[available]" has a null value in JSON.');
+        assert(json.containsKey(r'locked'), 'Required key "AccountV2[locked]" is missing from JSON.');
+        assert(json[r'locked'] != null, 'Required key "AccountV2[locked]" has a null value in JSON.');
+        assert(json.containsKey(r'supplied'), 'Required key "AccountV2[supplied]" is missing from JSON.');
+        assert(json[r'supplied'] != null, 'Required key "AccountV2[supplied]" has a null value in JSON.');
+        assert(json.containsKey(r'borrowed'), 'Required key "AccountV2[borrowed]" is missing from JSON.');
+        assert(json[r'borrowed'] != null, 'Required key "AccountV2[borrowed]" has a null value in JSON.');
+        assert(json.containsKey(r'impending_borrows'), 'Required key "AccountV2[impending_borrows]" is missing from JSON.');
+        assert(json[r'impending_borrows'] != null, 'Required key "AccountV2[impending_borrows]" has a null value in JSON.');
+        assert(json.containsKey(r'avg_entry_price'), 'Required key "AccountV2[avg_entry_price]" is missing from JSON.');
+        assert(json[r'avg_entry_price'] != null, 'Required key "AccountV2[avg_entry_price]" has a null value in JSON.');
+        assert(json.containsKey(r'borrow_limit'), 'Required key "AccountV2[borrow_limit]" is missing from JSON.');
+        assert(json[r'borrow_limit'] != null, 'Required key "AccountV2[borrow_limit]" has a null value in JSON.');
+        assert(json.containsKey(r'liquidation_threshold'), 'Required key "AccountV2[liquidation_threshold]" is missing from JSON.');
+        assert(json[r'liquidation_threshold'] != null, 'Required key "AccountV2[liquidation_threshold]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "AccountV2[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "AccountV2[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'pending_withdrawal'), 'Required key "AccountV2[pending_withdrawal]" is missing from JSON.');
+        assert(json[r'pending_withdrawal'] != null, 'Required key "AccountV2[pending_withdrawal]" has a null value in JSON.');
+        assert(json.containsKey(r'account_name'), 'Required key "AccountV2[account_name]" is missing from JSON.');
+        assert(json[r'account_name'] != null, 'Required key "AccountV2[account_name]" has a null value in JSON.');
         return true;
       }());
 

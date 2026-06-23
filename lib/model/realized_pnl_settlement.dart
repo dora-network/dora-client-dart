@@ -39,7 +39,7 @@ class RealizedPnlSettlement {
   String orderId;
 
   /// The amount of realized PnL in USD
-  double realizedUsd;
+  String realizedUsd;
 
   /// The timestamp when the realized PnL settlement was settled
   ///
@@ -107,10 +107,20 @@ class RealizedPnlSettlement {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RealizedPnlSettlement[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RealizedPnlSettlement[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "RealizedPnlSettlement[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "RealizedPnlSettlement[id]" has a null value in JSON.');
+        assert(json.containsKey(r'user_id'), 'Required key "RealizedPnlSettlement[user_id]" is missing from JSON.');
+        assert(json[r'user_id'] != null, 'Required key "RealizedPnlSettlement[user_id]" has a null value in JSON.');
+        assert(json.containsKey(r'tenant_id'), 'Required key "RealizedPnlSettlement[tenant_id]" is missing from JSON.');
+        assert(json[r'tenant_id'] != null, 'Required key "RealizedPnlSettlement[tenant_id]" has a null value in JSON.');
+        assert(json.containsKey(r'position_id'), 'Required key "RealizedPnlSettlement[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "RealizedPnlSettlement[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'order_id'), 'Required key "RealizedPnlSettlement[order_id]" is missing from JSON.');
+        assert(json[r'order_id'] != null, 'Required key "RealizedPnlSettlement[order_id]" has a null value in JSON.');
+        assert(json.containsKey(r'realized_usd'), 'Required key "RealizedPnlSettlement[realized_usd]" is missing from JSON.');
+        assert(json[r'realized_usd'] != null, 'Required key "RealizedPnlSettlement[realized_usd]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "RealizedPnlSettlement[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "RealizedPnlSettlement[created_at]" has a null value in JSON.');
         return true;
       }());
 
@@ -120,7 +130,7 @@ class RealizedPnlSettlement {
         tenantId: mapValueOfType<String>(json, r'tenant_id')!,
         positionId: mapValueOfType<String>(json, r'position_id')!,
         orderId: mapValueOfType<String>(json, r'order_id')!,
-        realizedUsd: mapValueOfType<double>(json, r'realized_usd')!,
+        realizedUsd: mapValueOfType<String>(json, r'realized_usd')!,
         settledAt: mapDateTime(json, r'settled_at', r''),
         createdAt: mapDateTime(json, r'created_at', r'')!,
       );

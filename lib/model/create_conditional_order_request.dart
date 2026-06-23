@@ -21,7 +21,7 @@ class CreateConditionalOrderRequest {
     this.takeProfitPrice,
   });
 
-  double price;
+  String price;
 
   /// Required: the order book to submit the order to
   String orderBookId;
@@ -39,7 +39,7 @@ class CreateConditionalOrderRequest {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? stopLossPrice;
+  String? stopLossPrice;
 
   /// Take profit price
   ///
@@ -48,7 +48,7 @@ class CreateConditionalOrderRequest {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  double? takeProfitPrice;
+  String? takeProfitPrice;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateConditionalOrderRequest &&
@@ -102,20 +102,24 @@ class CreateConditionalOrderRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateConditionalOrderRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateConditionalOrderRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'price'), 'Required key "CreateConditionalOrderRequest[price]" is missing from JSON.');
+        assert(json[r'price'] != null, 'Required key "CreateConditionalOrderRequest[price]" has a null value in JSON.');
+        assert(json.containsKey(r'order_book_id'), 'Required key "CreateConditionalOrderRequest[order_book_id]" is missing from JSON.');
+        assert(json[r'order_book_id'] != null, 'Required key "CreateConditionalOrderRequest[order_book_id]" has a null value in JSON.');
+        assert(json.containsKey(r'position_id'), 'Required key "CreateConditionalOrderRequest[position_id]" is missing from JSON.');
+        assert(json[r'position_id'] != null, 'Required key "CreateConditionalOrderRequest[position_id]" has a null value in JSON.');
+        assert(json.containsKey(r'asset_id'), 'Required key "CreateConditionalOrderRequest[asset_id]" is missing from JSON.');
+        assert(json[r'asset_id'] != null, 'Required key "CreateConditionalOrderRequest[asset_id]" has a null value in JSON.');
         return true;
       }());
 
       return CreateConditionalOrderRequest(
-        price: mapValueOfType<double>(json, r'price')!,
+        price: mapValueOfType<String>(json, r'price')!,
         orderBookId: mapValueOfType<String>(json, r'order_book_id')!,
         positionId: mapValueOfType<String>(json, r'position_id')!,
         assetId: mapValueOfType<String>(json, r'asset_id')!,
-        stopLossPrice: mapValueOfType<double>(json, r'stop_loss_price'),
-        takeProfitPrice: mapValueOfType<double>(json, r'take_profit_price'),
+        stopLossPrice: mapValueOfType<String>(json, r'stop_loss_price'),
+        takeProfitPrice: mapValueOfType<String>(json, r'take_profit_price'),
       );
     }
     return null;

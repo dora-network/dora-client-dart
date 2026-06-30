@@ -11,9 +11,9 @@
 part of openapi.api;
 
 
-class BondKind {
+class CouponKind {
   /// Instantiate a new enum with the provided [value].
-  const BondKind._(this.value);
+  const CouponKind._(this.value);
 
   /// The underlying value of this enum member.
   final String value;
@@ -23,22 +23,22 @@ class BondKind {
 
   String toJson() => value;
 
-  static const CORPORATE = BondKind._(r'CORPORATE');
-  static const TREASURY = BondKind._(r'TREASURY');
+  static const COUPON_PAYING = CouponKind._(r'COUPON-PAYING');
+  static const PRINCIPAL_ONLY = CouponKind._(r'PRINCIPAL-ONLY');
 
-  /// List of all possible values in this [enum][BondKind].
-  static const values = <BondKind>[
-    CORPORATE,
-    TREASURY,
+  /// List of all possible values in this [enum][CouponKind].
+  static const values = <CouponKind>[
+    COUPON_PAYING,
+    PRINCIPAL_ONLY,
   ];
 
-  static BondKind? fromJson(dynamic value) => BondKindTypeTransformer().decode(value);
+  static CouponKind? fromJson(dynamic value) => CouponKindTypeTransformer().decode(value);
 
-  static List<BondKind> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <BondKind>[];
+  static List<CouponKind> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <CouponKind>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = BondKind.fromJson(row);
+        final value = CouponKind.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -48,16 +48,16 @@ class BondKind {
   }
 }
 
-/// Transformation class that can [encode] an instance of [BondKind] to String,
-/// and [decode] dynamic data back to [BondKind].
-class BondKindTypeTransformer {
-  factory BondKindTypeTransformer() => _instance ??= const BondKindTypeTransformer._();
+/// Transformation class that can [encode] an instance of [CouponKind] to String,
+/// and [decode] dynamic data back to [CouponKind].
+class CouponKindTypeTransformer {
+  factory CouponKindTypeTransformer() => _instance ??= const CouponKindTypeTransformer._();
 
-  const BondKindTypeTransformer._();
+  const CouponKindTypeTransformer._();
 
-  String encode(BondKind data) => data.value;
+  String encode(CouponKind data) => data.value;
 
-  /// Decodes a [dynamic value][data] to a BondKind.
+  /// Decodes a [dynamic value][data] to a CouponKind.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -65,11 +65,11 @@ class BondKindTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  BondKind? decode(dynamic data, {bool allowNull = true}) {
+  CouponKind? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'CORPORATE': return BondKind.CORPORATE;
-        case r'TREASURY': return BondKind.TREASURY;
+        case r'COUPON-PAYING': return CouponKind.COUPON_PAYING;
+        case r'PRINCIPAL-ONLY': return CouponKind.PRINCIPAL_ONLY;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -79,7 +79,7 @@ class BondKindTypeTransformer {
     return null;
   }
 
-  /// Singleton [BondKindTypeTransformer] instance.
-  static BondKindTypeTransformer? _instance;
+  /// Singleton [CouponKindTypeTransformer] instance.
+  static CouponKindTypeTransformer? _instance;
 }
 

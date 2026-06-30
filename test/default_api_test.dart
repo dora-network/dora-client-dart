@@ -357,6 +357,13 @@ void main() {
       // TODO
     });
 
+    // Get top traders by PnL
+    //
+    //Future<GetPnLRankingResponse> getTopTradersByPnL(DateTime start, DateTime end, { int limit }) async
+    test('test getTopTradersByPnL', () async {
+      // TODO
+    });
+
     // Get a trade by ID
     //
     //Future<TradeResponseEnvelope> getTradeById(String tradeId) async
@@ -593,7 +600,7 @@ void main() {
 
     // List all orders
     //
-    //Future<ListOrdersResponseEnvelope> listOrders({ List<String> orderBookId, List<OrderKind> kind, List<OrderStatus> status, Side side, DateTime from, DateTime to, int page, int limit }) async
+    //Future<ListOrdersResponseEnvelope> listOrders({ String userId, List<String> orderBookId, List<OrderKind> kind, List<OrderStatus> status, Side side, DateTime from, DateTime to, int page, int limit }) async
     test('test listOrders', () async {
       // TODO
     });

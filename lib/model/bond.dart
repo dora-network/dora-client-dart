@@ -15,6 +15,8 @@ class Bond {
   Bond({
     required this.id,
     required this.kind,
+    this.couponKind,
+    this.bondKind,
     this.couponStartAt,
     required this.createdAt,
     this.finalCouponAt,
@@ -30,7 +32,23 @@ class Bond {
 
   String id;
 
-  BondKind kind;
+  CouponKind kind;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  CouponKind? couponKind;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  BondKind? bondKind;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -86,6 +104,8 @@ class Bond {
   bool operator ==(Object other) => identical(this, other) || other is Bond &&
     other.id == id &&
     other.kind == kind &&
+    other.couponKind == couponKind &&
+    other.bondKind == bondKind &&
     other.couponStartAt == couponStartAt &&
     other.createdAt == createdAt &&
     other.finalCouponAt == finalCouponAt &&
@@ -103,6 +123,8 @@ class Bond {
     // ignore: unnecessary_parenthesis
     (id.hashCode) +
     (kind.hashCode) +
+    (couponKind == null ? 0 : couponKind!.hashCode) +
+    (bondKind == null ? 0 : bondKind!.hashCode) +
     (couponStartAt == null ? 0 : couponStartAt!.hashCode) +
     (createdAt.hashCode) +
     (finalCouponAt == null ? 0 : finalCouponAt!.hashCode) +
@@ -116,12 +138,22 @@ class Bond {
     (nextCouponPayment == null ? 0 : nextCouponPayment!.hashCode);
 
   @override
-  String toString() => 'Bond[id=$id, kind=$kind, couponStartAt=$couponStartAt, createdAt=$createdAt, finalCouponAt=$finalCouponAt, isin=$isin, issuedAt=$issuedAt, issuer=$issuer, maturityAt=$maturityAt, principalValue=$principalValue, paymentsPerYear=$paymentsPerYear, paymentsEvery=$paymentsEvery, nextCouponPayment=$nextCouponPayment]';
+  String toString() => 'Bond[id=$id, kind=$kind, couponKind=$couponKind, bondKind=$bondKind, couponStartAt=$couponStartAt, createdAt=$createdAt, finalCouponAt=$finalCouponAt, isin=$isin, issuedAt=$issuedAt, issuer=$issuer, maturityAt=$maturityAt, principalValue=$principalValue, paymentsPerYear=$paymentsPerYear, paymentsEvery=$paymentsEvery, nextCouponPayment=$nextCouponPayment]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'id'] = this.id;
       json[r'kind'] = this.kind;
+    if (this.couponKind != null) {
+      json[r'coupon_kind'] = this.couponKind;
+    } else {
+      json[r'coupon_kind'] = null;
+    }
+    if (this.bondKind != null) {
+      json[r'bond_kind'] = this.bondKind;
+    } else {
+      json[r'bond_kind'] = null;
+    }
     if (this.couponStartAt != null) {
       json[r'coupon_start_at'] = this.couponStartAt!.toUtc().toIso8601String();
     } else {
@@ -186,7 +218,9 @@ class Bond {
 
       return Bond(
         id: mapValueOfType<String>(json, r'id')!,
-        kind: BondKind.fromJson(json[r'kind'])!,
+        kind: CouponKind.fromJson(json[r'kind'])!,
+        couponKind: CouponKind.fromJson(json[r'coupon_kind']),
+        bondKind: BondKind.fromJson(json[r'bond_kind']),
         couponStartAt: mapDateTime(json, r'coupon_start_at', r''),
         createdAt: mapDateTime(json, r'created_at', r'')!,
         finalCouponAt: mapDateTime(json, r'final_coupon_at', r''),

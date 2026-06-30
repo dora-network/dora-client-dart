@@ -2676,6 +2676,73 @@ class DefaultApi {
     return null;
   }
 
+  /// Get top traders by PnL
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [DateTime] start (required):
+  ///
+  /// * [DateTime] end (required):
+  ///
+  /// * [int] limit:
+  Future<Response> getTopTradersByPnLWithHttpInfo(DateTime start, DateTime end, { int? limit, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/ranking';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_queryParams('', 'start', start));
+      queryParams.addAll(_queryParams('', 'end', end));
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get top traders by PnL
+  ///
+  /// Parameters:
+  ///
+  /// * [DateTime] start (required):
+  ///
+  /// * [DateTime] end (required):
+  ///
+  /// * [int] limit:
+  Future<GetPnLRankingResponse?> getTopTradersByPnL(DateTime start, DateTime end, { int? limit, Future<void>? abortTrigger, }) async {
+    final response = await getTopTradersByPnLWithHttpInfo(start, end, limit: limit, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetPnLRankingResponse',) as GetPnLRankingResponse;
+    
+    }
+    return null;
+  }
+
   /// Get a trade by ID
   ///
   /// Note: This method returns the HTTP [Response].
@@ -4829,6 +4896,9 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
+  /// * [String] userId:
+  ///   Filter by user ID (only allowed if the user has copy trading enabled)
+  ///
   /// * [List<String>] orderBookId:
   ///
   /// * [List<OrderKind>] kind:
@@ -4844,7 +4914,7 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<Response> listOrdersWithHttpInfo({ List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, Future<void>? abortTrigger, }) async {
+  Future<Response> listOrdersWithHttpInfo({ String? userId, List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orders';
 
@@ -4855,6 +4925,9 @@ class DefaultApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
+    if (userId != null) {
+      queryParams.addAll(_queryParams('', 'user_id', userId));
+    }
     if (orderBookId != null) {
       queryParams.addAll(_queryParams('multi', 'order_book_id', orderBookId));
     }
@@ -4899,6 +4972,9 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
+  /// * [String] userId:
+  ///   Filter by user ID (only allowed if the user has copy trading enabled)
+  ///
   /// * [List<String>] orderBookId:
   ///
   /// * [List<OrderKind>] kind:
@@ -4914,8 +4990,8 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<ListOrdersResponseEnvelope?> listOrders({ List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, Future<void>? abortTrigger, }) async {
-    final response = await listOrdersWithHttpInfo(orderBookId: orderBookId, kind: kind, status: status, side: side, from: from, to: to, page: page, limit: limit, abortTrigger: abortTrigger,);
+  Future<ListOrdersResponseEnvelope?> listOrders({ String? userId, List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await listOrdersWithHttpInfo(userId: userId, orderBookId: orderBookId, kind: kind, status: status, side: side, from: from, to: to, page: page, limit: limit, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

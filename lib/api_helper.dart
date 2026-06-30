@@ -70,6 +70,9 @@ String parameterToString(dynamic value) {
   if (value is CountryCode) {
     return CountryCodeTypeTransformer().encode(value).toString();
   }
+  if (value is CouponKind) {
+    return CouponKindTypeTransformer().encode(value).toString();
+  }
   if (value is LeverageType) {
     return LeverageTypeTypeTransformer().encode(value).toString();
   }

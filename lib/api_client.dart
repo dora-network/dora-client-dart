@@ -255,6 +255,8 @@ class ApiClient {
           return Collateral.fromJson(value);
         case 'CountryCode':
           return CountryCodeTypeTransformer().decode(value);
+        case 'CouponKind':
+          return CouponKindTypeTransformer().decode(value);
         case 'CouponPayment':
           return CouponPayment.fromJson(value);
         case 'CreateAPIKeyData':
@@ -293,6 +295,8 @@ class ApiClient {
           return GetAssetByIDResponseEnvelope.fromJson(value);
         case 'GetAssetYTMByIDResponseEnvelope':
           return GetAssetYTMByIDResponseEnvelope.fromJson(value);
+        case 'GetPnLRankingResponse':
+          return GetPnLRankingResponse.fromJson(value);
         case 'GetRealizedPnlSettlementsResponseEnvelope':
           return GetRealizedPnlSettlementsResponseEnvelope.fromJson(value);
         case 'GetTopOfBookResponseEnvelope':
@@ -429,6 +433,8 @@ class ApiClient {
           return PayLeverageAccruedInterestRequest.fromJson(value);
         case 'PayLeverageAccruedInterestResponseEnvelope':
           return PayLeverageAccruedInterestResponseEnvelope.fromJson(value);
+        case 'PnLRankingResponse':
+          return PnLRankingResponse.fromJson(value);
         case 'PoolPrice':
           return PoolPrice.fromJson(value);
         case 'PoolPriceResponseEnvelope':

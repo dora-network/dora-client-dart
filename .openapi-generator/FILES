@@ -38,6 +38,7 @@ doc/ClosePositionResp.md
 doc/ClosePositionResponseEnvelope.md
 doc/Collateral.md
 doc/CountryCode.md
+doc/CouponKind.md
 doc/CouponPayment.md
 doc/CreateAPIKeyData.md
 doc/CreateAPIKeyRequest.md
@@ -58,6 +59,7 @@ doc/FundUserRequest.md
 doc/FundUserResponseEnvelope.md
 doc/GetAssetByIDResponseEnvelope.md
 doc/GetAssetYTMByIDResponseEnvelope.md
+doc/GetPnLRankingResponse.md
 doc/GetRealizedPnlSettlementsResponseEnvelope.md
 doc/GetTopOfBookResponseEnvelope.md
 doc/HistoricalLeverageInterestRate.md
@@ -126,6 +128,7 @@ doc/PLSummary.md
 doc/PayLeverageAccruedInterest.md
 doc/PayLeverageAccruedInterestRequest.md
 doc/PayLeverageAccruedInterestResponseEnvelope.md
+doc/PnLRankingResponse.md
 doc/PoolPrice.md
 doc/PoolPriceResponseEnvelope.md
 doc/PoolRequestError.md
@@ -263,6 +266,7 @@ lib/model/close_position_resp.dart
 lib/model/close_position_response_envelope.dart
 lib/model/collateral.dart
 lib/model/country_code.dart
+lib/model/coupon_kind.dart
 lib/model/coupon_payment.dart
 lib/model/create_api_key_data.dart
 lib/model/create_api_key_request.dart
@@ -282,6 +286,7 @@ lib/model/fund_user_request.dart
 lib/model/fund_user_response_envelope.dart
 lib/model/get_asset_by_id_response_envelope.dart
 lib/model/get_asset_ytmby_id_response_envelope.dart
+lib/model/get_pn_l_ranking_response.dart
 lib/model/get_realized_pnl_settlements_response_envelope.dart
 lib/model/get_top_of_book_response_envelope.dart
 lib/model/historical_leverage_interest_rate.dart
@@ -350,6 +355,7 @@ lib/model/pl_account.dart
 lib/model/pl_asset.dart
 lib/model/pl_response_envelope.dart
 lib/model/pl_summary.dart
+lib/model/pn_l_ranking_response.dart
 lib/model/pool_price.dart
 lib/model/pool_price_response_envelope.dart
 lib/model/pool_request_error.dart
@@ -477,6 +483,7 @@ test/close_position_resp_test.dart
 test/close_position_response_envelope_test.dart
 test/collateral_test.dart
 test/country_code_test.dart
+test/coupon_kind_test.dart
 test/coupon_payment_test.dart
 test/create_api_key_data_test.dart
 test/create_api_key_request_test.dart
@@ -497,6 +504,7 @@ test/fund_user_response_envelope_test.dart
 test/fund_user_test.dart
 test/get_asset_by_id_response_envelope_test.dart
 test/get_asset_ytmby_id_response_envelope_test.dart
+test/get_pn_l_ranking_response_test.dart
 test/get_realized_pnl_settlements_response_envelope_test.dart
 test/get_top_of_book_response_envelope_test.dart
 test/historical_leverage_interest_rate_test.dart
@@ -565,6 +573,7 @@ test/pl_account_test.dart
 test/pl_asset_test.dart
 test/pl_response_envelope_test.dart
 test/pl_summary_test.dart
+test/pn_l_ranking_response_test.dart
 test/pool_price_response_envelope_test.dart
 test/pool_price_test.dart
 test/pool_request_error_test.dart

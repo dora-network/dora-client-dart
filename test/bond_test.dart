@@ -21,8 +21,18 @@ void main() {
       // TODO
     });
 
-    // BondKind kind
+    // CouponKind kind
     test('to test the property `kind`', () async {
+      // TODO
+    });
+
+    // CouponKind couponKind
+    test('to test the property `couponKind`', () async {
+      // TODO
+    });
+
+    // BondKind bondKind
+    test('to test the property `bondKind`', () async {
       // TODO
     });
 

@@ -27,6 +27,24 @@ void main() {
       // TODO
     });
 
+    // Optional leverage module available balance for this asset, from /v1/ledger/module/{asset_id}. If provided, validation rejects orders that need to borrow more than the module can supply.
+    // String moduleAvailable
+    test('to test the property `moduleAvailable`', () async {
+      // TODO
+    });
+
+    // Optional leverage module total supplied balance for this asset, from /v1/ledger/module/{asset_id}. Required with module_available when the asset has max_utilization.
+    // String moduleSupplied
+    test('to test the property `moduleSupplied`', () async {
+      // TODO
+    });
+
+    // Optional leverage module borrowed balance for this asset, from /v1/ledger/module/{asset_id}. Required with module_available when the asset has max_utilization.
+    // String moduleBorrowed
+    test('to test the property `moduleBorrowed`', () async {
+      // TODO
+    });
+
 
   });
 

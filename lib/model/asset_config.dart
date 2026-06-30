@@ -15,6 +15,9 @@ class AssetConfig {
   AssetConfig({
     required this.assetId,
     required this.price,
+    this.moduleAvailable,
+    this.moduleSupplied,
+    this.moduleBorrowed,
   });
 
   String assetId;
@@ -22,24 +25,72 @@ class AssetConfig {
   /// if an asset is a CURRENCY, set 1 USD price,If an asset is a BOND and the price isn't found, set to 0 USD   You can find price details on /price/asset/{asset_id} route
   String price;
 
+  /// Optional leverage module available balance for this asset, from /v1/ledger/module/{asset_id}. If provided, validation rejects orders that need to borrow more than the module can supply.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? moduleAvailable;
+
+  /// Optional leverage module total supplied balance for this asset, from /v1/ledger/module/{asset_id}. Required with module_available when the asset has max_utilization.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? moduleSupplied;
+
+  /// Optional leverage module borrowed balance for this asset, from /v1/ledger/module/{asset_id}. Required with module_available when the asset has max_utilization.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? moduleBorrowed;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is AssetConfig &&
     other.assetId == assetId &&
-    other.price == price;
+    other.price == price &&
+    other.moduleAvailable == moduleAvailable &&
+    other.moduleSupplied == moduleSupplied &&
+    other.moduleBorrowed == moduleBorrowed;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (assetId.hashCode) +
-    (price.hashCode);
+    (price.hashCode) +
+    (moduleAvailable == null ? 0 : moduleAvailable!.hashCode) +
+    (moduleSupplied == null ? 0 : moduleSupplied!.hashCode) +
+    (moduleBorrowed == null ? 0 : moduleBorrowed!.hashCode);
 
   @override
-  String toString() => 'AssetConfig[assetId=$assetId, price=$price]';
+  String toString() => 'AssetConfig[assetId=$assetId, price=$price, moduleAvailable=$moduleAvailable, moduleSupplied=$moduleSupplied, moduleBorrowed=$moduleBorrowed]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'asset_id'] = this.assetId;
       json[r'price'] = this.price;
+    if (this.moduleAvailable != null) {
+      json[r'module_available'] = this.moduleAvailable;
+    } else {
+      json[r'module_available'] = null;
+    }
+    if (this.moduleSupplied != null) {
+      json[r'module_supplied'] = this.moduleSupplied;
+    } else {
+      json[r'module_supplied'] = null;
+    }
+    if (this.moduleBorrowed != null) {
+      json[r'module_borrowed'] = this.moduleBorrowed;
+    } else {
+      json[r'module_borrowed'] = null;
+    }
     return json;
   }
 
@@ -64,6 +115,9 @@ class AssetConfig {
       return AssetConfig(
         assetId: mapValueOfType<String>(json, r'asset_id')!,
         price: mapValueOfType<String>(json, r'price')!,
+        moduleAvailable: mapValueOfType<String>(json, r'module_available'),
+        moduleSupplied: mapValueOfType<String>(json, r'module_supplied'),
+        moduleBorrowed: mapValueOfType<String>(json, r'module_borrowed'),
       );
     }
     return null;

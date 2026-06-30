@@ -9,7 +9,9 @@ import 'package:dora_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
-**kind** | [**BondKind**](BondKind.md) |  | 
+**kind** | [**CouponKind**](CouponKind.md) |  | 
+**couponKind** | [**CouponKind**](CouponKind.md) |  | [optional] 
+**bondKind** | [**BondKind**](BondKind.md) |  | [optional] 
 **couponStartAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | 
 **finalCouponAt** | [**DateTime**](DateTime.md) |  | [optional] 

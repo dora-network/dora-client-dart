@@ -57,6 +57,7 @@ Method | HTTP request | Description
 [**getPLForSelfByAccount**](DefaultApi.md#getplforselfbyaccount) | **GET** /v1/pl/self | Get account-by-account PL breakdown for the logged in user
 [**getPoolPrice**](DefaultApi.md#getpoolprice) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
 [**getRealizedPnlSettlements**](DefaultApi.md#getrealizedpnlsettlements) | **GET** /v1/realized_pnl_settlements | Get realized P&L settlements with filters
+[**getTopTradersByPnL**](DefaultApi.md#gettoptradersbypnl) | **GET** /v1/user/ranking | Get top traders by PnL
 [**getTradeById**](DefaultApi.md#gettradebyid) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 [**getTrades**](DefaultApi.md#gettrades) | **GET** /v1/trades | Get a filtered, paginated list of trades
 [**getTransactionById**](DefaultApi.md#gettransactionbyid) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
@@ -2439,6 +2440,61 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getTopTradersByPnL**
+> GetPnLRankingResponse getTopTradersByPnL(start, end, limit)
+
+Get top traders by PnL
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final start = 2013-10-20T19:20:30+01:00; // DateTime | 
+final end = 2013-10-20T19:20:30+01:00; // DateTime | 
+final limit = 56; // int | 
+
+try {
+    final result = api_instance.getTopTradersByPnL(start, end, limit);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getTopTradersByPnL: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start** | **DateTime**|  | 
+ **end** | **DateTime**|  | 
+ **limit** | **int**|  | [optional] 
+
+### Return type
+
+[**GetPnLRankingResponse**](GetPnLRankingResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getTradeById**
 > TradeResponseEnvelope getTradeById(tradeId)
 
@@ -4094,7 +4150,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listOrders**
-> ListOrdersResponseEnvelope listOrders(orderBookId, kind, status, side, from, to, page, limit)
+> ListOrdersResponseEnvelope listOrders(userId, orderBookId, kind, status, side, from, to, page, limit)
 
 List all orders
 
@@ -4113,6 +4169,7 @@ import 'package:dora_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by user ID (only allowed if the user has copy trading enabled)
 final orderBookId = []; // List<String> | 
 final kind = []; // List<OrderKind> | 
 final status = []; // List<OrderStatus> | 
@@ -4123,7 +4180,7 @@ final page = 56; // int |
 final limit = 56; // int | 
 
 try {
-    final result = api_instance.listOrders(orderBookId, kind, status, side, from, to, page, limit);
+    final result = api_instance.listOrders(userId, orderBookId, kind, status, side, from, to, page, limit);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->listOrders: $e\n');
@@ -4134,6 +4191,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **userId** | **String**| Filter by user ID (only allowed if the user has copy trading enabled) | [optional] 
  **orderBookId** | [**List<String>**](String.md)|  | [optional] [default to const []]
  **kind** | [**List<OrderKind>**](OrderKind.md)|  | [optional] [default to const []]
  **status** | [**List<OrderStatus>**](OrderStatus.md)|  | [optional] [default to const []]

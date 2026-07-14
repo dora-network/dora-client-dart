@@ -19,7 +19,6 @@ Method | HTTP request | Description
 [**createAPIKeyForUser**](DefaultApi.md#createapikeyforuser) | **POST** /v1/user/apikey | Create apikey for a user
 [**createAPIKeyForUserID**](DefaultApi.md#createapikeyforuserid) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
 [**createConditionalOrder**](DefaultApi.md#createconditionalorder) | **POST** /v1/orders/conditional | Create a new conditional orders
-[**createNewIsolatedAccountV2**](DefaultApi.md#createnewisolatedaccountv2) | **POST** /v2/accounts/new_isolated | Create a new isolated account for a user transferring available assets into the account
 [**createOrder**](DefaultApi.md#createorder) | **POST** /v1/orders | Create a new order
 [**createUser**](DefaultApi.md#createuser) | **POST** /v1/integrators/user | Create a new user
 [**deleteUser**](DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
@@ -34,6 +33,7 @@ Method | HTTP request | Description
 [**getAssetsStream**](DefaultApi.md#getassetsstream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 [**getCandleData**](DefaultApi.md#getcandledata) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
 [**getCouponPaymentsByAssetId**](DefaultApi.md#getcouponpaymentsbyassetid) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
+[**getDepositInstructions**](DefaultApi.md#getdepositinstructions) | **GET** /v1/web3/deposit-instructions | Get per-chain instructions for depositing USDC into the Dora vault
 [**getL1Depth**](DefaultApi.md#getl1depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
 [**getL2Depth**](DefaultApi.md#getl2depth) | **GET** /v1/orderbooks/{order_book_id}/L2 | Get the aggregated price levels for a specific orderbook (L2 market depth)
 [**getL3Depth**](DefaultApi.md#getl3depth) | **GET** /v1/orderbooks/{order_book_id}/L3 | Get all open orders for a specific orderbook (L3 market depth)
@@ -89,6 +89,7 @@ Method | HTTP request | Description
 [**liquiditySubtract**](DefaultApi.md#liquiditysubtract) | **POST** /v1/liquidity/pool/{pool_id}/remove | Subtract liquidity from a pool
 [**listAccountsSelfV2**](DefaultApi.md#listaccountsselfv2) | **GET** /v2/user/self/accounts | List all accounts for the authenticated user
 [**listAssets**](DefaultApi.md#listassets) | **GET** /v1/assets | List assets
+[**listDeposits**](DefaultApi.md#listdeposits) | **GET** /v1/web3/deposits | List USDC deposits
 [**listOrderBooks**](DefaultApi.md#listorderbooks) | **GET** /v1/orderbooks | List order books
 [**listOrders**](DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
 [**listPositionAccountsSelf**](DefaultApi.md#listpositionaccountsself) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
@@ -626,57 +627,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateConditionalOrderResponseEnvelope**](CreateConditionalOrderResponseEnvelope.md)
-
-### Authorization
-
-[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **createNewIsolatedAccountV2**
-> NewIsolatedAccountResponseV2Envelope createNewIsolatedAccountV2(newIsolatedAccountRequestV2)
-
-Create a new isolated account for a user transferring available assets into the account
-
-### Example
-```dart
-import 'package:dora_client/api.dart';
-// TODO Configure API key authorization: apiKeyAuthHeader
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
-// TODO Configure HTTP Bearer authorization: bearerAuth
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
-
-final api_instance = DefaultApi();
-final newIsolatedAccountRequestV2 = NewIsolatedAccountRequestV2(); // NewIsolatedAccountRequestV2 | 
-
-try {
-    final result = api_instance.createNewIsolatedAccountV2(newIsolatedAccountRequestV2);
-    print(result);
-} catch (e) {
-    print('Exception when calling DefaultApi->createNewIsolatedAccountV2: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **newIsolatedAccountRequestV2** | [**NewIsolatedAccountRequestV2**](NewIsolatedAccountRequestV2.md)|  | 
-
-### Return type
-
-[**NewIsolatedAccountResponseV2Envelope**](NewIsolatedAccountResponseV2Envelope.md)
 
 ### Authorization
 
@@ -1341,6 +1291,65 @@ Name | Type | Description  | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getDepositInstructions**
+> DepositInstructionsResponseEnvelope getDepositInstructions(quantity, ownerAddress, nonce, clientReferenceId)
+
+Get per-chain instructions for depositing USDC into the Dora vault
+
+Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final quantity = quantity_example; // String | Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places.
+final ownerAddress = ownerAddress_example; // String | The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner.
+final nonce = nonce_example; // String | The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain.
+final clientReferenceId = clientReferenceId_example; // String | Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument.
+
+try {
+    final result = api_instance.getDepositInstructions(quantity, ownerAddress, nonce, clientReferenceId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getDepositInstructions: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **quantity** | **String**| Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places. | 
+ **ownerAddress** | **String**| The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner. | 
+ **nonce** | **String**| The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain. | 
+ **clientReferenceId** | **String**| Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument. | [optional] 
+
+### Return type
+
+[**DepositInstructionsResponseEnvelope**](DepositInstructionsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -4090,6 +4099,63 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **listDeposits**
+> ListDepositsResponseEnvelope listDeposits(userId, page, limit)
+
+List USDC deposits
+
+Lists USDC deposits ordered by observed_at descending. Admin users may list deposits for any user (or all users); non-admin users may only list their own deposits.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by user ID. Non-admin callers may only specify their own user ID.
+final page = 789; // int | 
+final limit = 789; // int | 
+
+try {
+    final result = api_instance.listDeposits(userId, page, limit);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listDeposits: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**| Filter by user ID. Non-admin callers may only specify their own user ID. | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **limit** | **int**|  | [optional] [default to 50]
+
+### Return type
+
+[**ListDepositsResponseEnvelope**](ListDepositsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **listOrderBooks**
 > ListOrderbookResponseEnvelope listOrderBooks(status, baseAssetId, quoteAssetId, page, limit)
 
@@ -4169,7 +4235,7 @@ import 'package:dora_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = DefaultApi();
-final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by user ID (only allowed if the user has copy trading enabled)
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant)
 final orderBookId = []; // List<String> | 
 final kind = []; // List<OrderKind> | 
 final status = []; // List<OrderStatus> | 
@@ -4191,7 +4257,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String**| Filter by user ID (only allowed if the user has copy trading enabled) | [optional] 
+ **userId** | **String**| Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant) | [optional] 
  **orderBookId** | [**List<String>**](String.md)|  | [optional] [default to const []]
  **kind** | [**List<OrderKind>**](OrderKind.md)|  | [optional] [default to const []]
  **status** | [**List<OrderStatus>**](OrderStatus.md)|  | [optional] [default to const []]

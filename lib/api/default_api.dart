@@ -595,59 +595,6 @@ class DefaultApi {
     return null;
   }
 
-  /// Create a new isolated account for a user transferring available assets into the account
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [NewIsolatedAccountRequestV2] newIsolatedAccountRequestV2 (required):
-  Future<Response> createNewIsolatedAccountV2WithHttpInfo(NewIsolatedAccountRequestV2 newIsolatedAccountRequestV2, { Future<void>? abortTrigger, }) async {
-    // ignore: prefer_const_declarations
-    final path = r'/v2/accounts/new_isolated';
-
-    // ignore: prefer_final_locals
-    Object? postBody = newIsolatedAccountRequestV2;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    const contentTypes = <String>['application/json'];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes.first,
-      abortTrigger: abortTrigger,
-    );
-  }
-
-  /// Create a new isolated account for a user transferring available assets into the account
-  ///
-  /// Parameters:
-  ///
-  /// * [NewIsolatedAccountRequestV2] newIsolatedAccountRequestV2 (required):
-  Future<NewIsolatedAccountResponseV2Envelope?> createNewIsolatedAccountV2(NewIsolatedAccountRequestV2 newIsolatedAccountRequestV2, { Future<void>? abortTrigger, }) async {
-    final response = await createNewIsolatedAccountV2WithHttpInfo(newIsolatedAccountRequestV2, abortTrigger: abortTrigger,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'NewIsolatedAccountResponseV2Envelope',) as NewIsolatedAccountResponseV2Envelope;
-    
-    }
-    return null;
-  }
-
   /// Create a new order
   ///
   /// Note: This method returns the HTTP [Response].
@@ -1429,6 +1376,90 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListCouponPaymentsResponseEnvelope',) as ListCouponPaymentsResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get per-chain instructions for depositing USDC into the Dora vault
+  ///
+  /// Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] quantity (required):
+  ///   Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places.
+  ///
+  /// * [String] ownerAddress (required):
+  ///   The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner.
+  ///
+  /// * [String] nonce (required):
+  ///   The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain.
+  ///
+  /// * [String] clientReferenceId:
+  ///   Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument.
+  Future<Response> getDepositInstructionsWithHttpInfo(String quantity, String ownerAddress, String nonce, { String? clientReferenceId, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/deposit-instructions';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_queryParams('', 'quantity', quantity));
+      queryParams.addAll(_queryParams('', 'owner_address', ownerAddress));
+      queryParams.addAll(_queryParams('', 'nonce', nonce));
+    if (clientReferenceId != null) {
+      queryParams.addAll(_queryParams('', 'client_reference_id', clientReferenceId));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get per-chain instructions for depositing USDC into the Dora vault
+  ///
+  /// Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] quantity (required):
+  ///   Human-decimal USDC quantity to deposit, e.g. '100.50'. Must be positive, with at most 6 decimal places.
+  ///
+  /// * [String] ownerAddress (required):
+  ///   The user's wallet address as a 0x-prefixed 20-byte hex string. Used as the permit owner.
+  ///
+  /// * [String] nonce (required):
+  ///   The owner's current USDC permit nonce (read client-side), as a non-negative decimal string. It belongs to the single supported chain.
+  ///
+  /// * [String] clientReferenceId:
+  ///   Optional client-supplied reference as a hex string (0x prefix optional), at most 32 bytes. Left-aligned into the deposit call's bytes32 argument.
+  Future<DepositInstructionsResponseEnvelope?> getDepositInstructions(String quantity, String ownerAddress, String nonce, { String? clientReferenceId, Future<void>? abortTrigger, }) async {
+    final response = await getDepositInstructionsWithHttpInfo(quantity, ownerAddress, nonce, clientReferenceId: clientReferenceId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DepositInstructionsResponseEnvelope',) as DepositInstructionsResponseEnvelope;
     
     }
     return null;
@@ -4805,6 +4836,83 @@ class DefaultApi {
     return null;
   }
 
+  /// List USDC deposits
+  ///
+  /// Lists USDC deposits ordered by observed_at descending. Admin users may list deposits for any user (or all users); non-admin users may only list their own deposits.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId:
+  ///   Filter by user ID. Non-admin callers may only specify their own user ID.
+  ///
+  /// * [int] page:
+  ///
+  /// * [int] limit:
+  Future<Response> listDepositsWithHttpInfo({ String? userId, int? page, int? limit, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/deposits';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (userId != null) {
+      queryParams.addAll(_queryParams('', 'user_id', userId));
+    }
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List USDC deposits
+  ///
+  /// Lists USDC deposits ordered by observed_at descending. Admin users may list deposits for any user (or all users); non-admin users may only list their own deposits.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId:
+  ///   Filter by user ID. Non-admin callers may only specify their own user ID.
+  ///
+  /// * [int] page:
+  ///
+  /// * [int] limit:
+  Future<ListDepositsResponseEnvelope?> listDeposits({ String? userId, int? page, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await listDepositsWithHttpInfo(userId: userId, page: page, limit: limit, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListDepositsResponseEnvelope',) as ListDepositsResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// List order books
   ///
   /// Note: This method returns the HTTP [Response].
@@ -4897,7 +5005,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId:
-  ///   Filter by user ID (only allowed if the user has copy trading enabled)
+  ///   Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant)
   ///
   /// * [List<String>] orderBookId:
   ///
@@ -4973,7 +5081,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [String] userId:
-  ///   Filter by user ID (only allowed if the user has copy trading enabled)
+  ///   Filter by user ID (only allowed if the user has copy trading enabled, or if the requester is an Admin or Integrator within the same tenant)
   ///
   /// * [List<String>] orderBookId:
   ///

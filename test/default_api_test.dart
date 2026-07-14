@@ -91,13 +91,6 @@ void main() {
       // TODO
     });
 
-    // Create a new isolated account for a user transferring available assets into the account
-    //
-    //Future<NewIsolatedAccountResponseV2Envelope> createNewIsolatedAccountV2(NewIsolatedAccountRequestV2 newIsolatedAccountRequestV2) async
-    test('test createNewIsolatedAccountV2', () async {
-      // TODO
-    });
-
     // Create a new order
     //
     //Future<CreateOrderResponseEnvelope> createOrder(CreateOrderRequest createOrderRequest) async
@@ -193,6 +186,15 @@ void main() {
     //
     //Future<ListCouponPaymentsResponseEnvelope> getCouponPaymentsByAssetId(String assetId) async
     test('test getCouponPaymentsByAssetId', () async {
+      // TODO
+    });
+
+    // Get per-chain instructions for depositing USDC into the Dora vault
+    //
+    // Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+    //
+    //Future<DepositInstructionsResponseEnvelope> getDepositInstructions(String quantity, String ownerAddress, String nonce, { String clientReferenceId }) async
+    test('test getDepositInstructions', () async {
       // TODO
     });
 
@@ -588,6 +590,15 @@ void main() {
     //
     //Future<ResponseEnvelopeOfListAssets> listAssets({ DateTime createdAfter, DateTime createdBefore, AssetKind assetKind, bool canAddLiquidity, bool canDirectBorrow, bool canOnboard, bool canTrade, bool canVirtualBorrow, int page, int limit }) async
     test('test listAssets', () async {
+      // TODO
+    });
+
+    // List USDC deposits
+    //
+    // Lists USDC deposits ordered by observed_at descending. Admin users may list deposits for any user (or all users); non-admin users may only list their own deposits.
+    //
+    //Future<ListDepositsResponseEnvelope> listDeposits({ String userId, int page, int limit }) async
+    test('test listDeposits', () async {
       // TODO
     });
 

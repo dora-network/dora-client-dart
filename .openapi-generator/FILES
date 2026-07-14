@@ -54,6 +54,12 @@ doc/CurrentLeverageAccruedInterest.md
 doc/CurrentLeverageAccruedInterestResponseEnvelope.md
 doc/DefaultApi.md
 doc/DefundUserRequest.md
+doc/DepositArgs.md
+doc/DepositCall.md
+doc/DepositInstructionForChain.md
+doc/DepositInstructionsResponse.md
+doc/DepositInstructionsResponseEnvelope.md
+doc/DepositResponse.md
 doc/FundUser.md
 doc/FundUserRequest.md
 doc/FundUserResponseEnvelope.md
@@ -87,6 +93,7 @@ doc/ListAssetPriceResponseEnvelope.md
 doc/ListAssetYieldResponseEnvelope.md
 doc/ListCandlesResponseEnvelope.md
 doc/ListCouponPaymentsResponseEnvelope.md
+doc/ListDepositsResponseEnvelope.md
 doc/ListOrderBookDepthResponseEnvelope.md
 doc/ListOrderbookResponseEnvelope.md
 doc/ListOrdersResponseEnvelope.md
@@ -128,6 +135,9 @@ doc/PLSummary.md
 doc/PayLeverageAccruedInterest.md
 doc/PayLeverageAccruedInterestRequest.md
 doc/PayLeverageAccruedInterestResponseEnvelope.md
+doc/PermitDomain.md
+doc/PermitMessage.md
+doc/PermitTypedData.md
 doc/PnLRankingResponse.md
 doc/PoolPrice.md
 doc/PoolPriceResponseEnvelope.md
@@ -185,6 +195,7 @@ doc/TransferBalancesRequest.md
 doc/TransferBalancesResponseEnvelope.md
 doc/TransformedAssets.md
 doc/TriggerType.md
+doc/TypedDataField.md
 doc/UnitePositionRequest.md
 doc/UnitePositionResponseEnvelope.md
 doc/UnitedPosition.md
@@ -212,6 +223,7 @@ doc/UserValue.md
 doc/UserValueResponseEnvelope.md
 doc/ValidateSubmitOrderRequest.md
 doc/ValidateSubmitOrderResponse.md
+doc/Web3EventStatus.md
 doc/Withdraw.md
 doc/WithdrawRequest.md
 doc/WithdrawResponseEnvelope.md
@@ -281,6 +293,12 @@ lib/model/create_order_response_envelope.dart
 lib/model/current_leverage_accrued_interest.dart
 lib/model/current_leverage_accrued_interest_response_envelope.dart
 lib/model/defund_user_request.dart
+lib/model/deposit_args.dart
+lib/model/deposit_call.dart
+lib/model/deposit_instruction_for_chain.dart
+lib/model/deposit_instructions_response.dart
+lib/model/deposit_instructions_response_envelope.dart
+lib/model/deposit_response.dart
 lib/model/fund_user.dart
 lib/model/fund_user_request.dart
 lib/model/fund_user_response_envelope.dart
@@ -314,6 +332,7 @@ lib/model/list_asset_price_response_envelope.dart
 lib/model/list_asset_yield_response_envelope.dart
 lib/model/list_candles_response_envelope.dart
 lib/model/list_coupon_payments_response_envelope.dart
+lib/model/list_deposits_response_envelope.dart
 lib/model/list_order_book_depth_response_envelope.dart
 lib/model/list_orderbook_response_envelope.dart
 lib/model/list_orders_response_envelope.dart
@@ -351,6 +370,9 @@ lib/model/orderbook_stats_response_envelope.dart
 lib/model/pay_leverage_accrued_interest.dart
 lib/model/pay_leverage_accrued_interest_request.dart
 lib/model/pay_leverage_accrued_interest_response_envelope.dart
+lib/model/permit_domain.dart
+lib/model/permit_message.dart
+lib/model/permit_typed_data.dart
 lib/model/pl_account.dart
 lib/model/pl_asset.dart
 lib/model/pl_response_envelope.dart
@@ -412,6 +434,7 @@ lib/model/transfer_balances_request.dart
 lib/model/transfer_balances_response_envelope.dart
 lib/model/transformed_assets.dart
 lib/model/trigger_type.dart
+lib/model/typed_data_field.dart
 lib/model/unite_position_request.dart
 lib/model/unite_position_response_envelope.dart
 lib/model/united_position.dart
@@ -439,6 +462,7 @@ lib/model/user_value.dart
 lib/model/user_value_response_envelope.dart
 lib/model/validate_submit_order_request.dart
 lib/model/validate_submit_order_response.dart
+lib/model/web3_event_status.dart
 lib/model/withdraw.dart
 lib/model/withdraw_request.dart
 lib/model/withdraw_response_envelope.dart
@@ -499,6 +523,12 @@ test/current_leverage_accrued_interest_response_envelope_test.dart
 test/current_leverage_accrued_interest_test.dart
 test/default_api_test.dart
 test/defund_user_request_test.dart
+test/deposit_args_test.dart
+test/deposit_call_test.dart
+test/deposit_instruction_for_chain_test.dart
+test/deposit_instructions_response_envelope_test.dart
+test/deposit_instructions_response_test.dart
+test/deposit_response_test.dart
 test/fund_user_request_test.dart
 test/fund_user_response_envelope_test.dart
 test/fund_user_test.dart
@@ -532,6 +562,7 @@ test/list_asset_price_response_envelope_test.dart
 test/list_asset_yield_response_envelope_test.dart
 test/list_candles_response_envelope_test.dart
 test/list_coupon_payments_response_envelope_test.dart
+test/list_deposits_response_envelope_test.dart
 test/list_order_book_depth_response_envelope_test.dart
 test/list_orderbook_response_envelope_test.dart
 test/list_orders_response_envelope_test.dart
@@ -569,6 +600,9 @@ test/orderbook_stats_test.dart
 test/pay_leverage_accrued_interest_request_test.dart
 test/pay_leverage_accrued_interest_response_envelope_test.dart
 test/pay_leverage_accrued_interest_test.dart
+test/permit_domain_test.dart
+test/permit_message_test.dart
+test/permit_typed_data_test.dart
 test/pl_account_test.dart
 test/pl_asset_test.dart
 test/pl_response_envelope_test.dart
@@ -630,6 +664,7 @@ test/transfer_balances_request_test.dart
 test/transfer_balances_response_envelope_test.dart
 test/transformed_assets_test.dart
 test/trigger_type_test.dart
+test/typed_data_field_test.dart
 test/unite_position_request_test.dart
 test/unite_position_response_envelope_test.dart
 test/united_position_test.dart
@@ -657,6 +692,7 @@ test/user_value_response_envelope_test.dart
 test/user_value_test.dart
 test/validate_submit_order_request_test.dart
 test/validate_submit_order_response_test.dart
+test/web3_event_status_test.dart
 test/withdraw_request_test.dart
 test/withdraw_response_envelope_test.dart
 test/withdraw_test.dart

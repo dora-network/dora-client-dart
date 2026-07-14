@@ -285,6 +285,18 @@ class ApiClient {
           return CurrentLeverageAccruedInterestResponseEnvelope.fromJson(value);
         case 'DefundUserRequest':
           return DefundUserRequest.fromJson(value);
+        case 'DepositArgs':
+          return DepositArgs.fromJson(value);
+        case 'DepositCall':
+          return DepositCall.fromJson(value);
+        case 'DepositInstructionForChain':
+          return DepositInstructionForChain.fromJson(value);
+        case 'DepositInstructionsResponse':
+          return DepositInstructionsResponse.fromJson(value);
+        case 'DepositInstructionsResponseEnvelope':
+          return DepositInstructionsResponseEnvelope.fromJson(value);
+        case 'DepositResponse':
+          return DepositResponse.fromJson(value);
         case 'FundUser':
           return FundUser.fromJson(value);
         case 'FundUserRequest':
@@ -351,6 +363,8 @@ class ApiClient {
           return ListCandlesResponseEnvelope.fromJson(value);
         case 'ListCouponPaymentsResponseEnvelope':
           return ListCouponPaymentsResponseEnvelope.fromJson(value);
+        case 'ListDepositsResponseEnvelope':
+          return ListDepositsResponseEnvelope.fromJson(value);
         case 'ListOrderBookDepthResponseEnvelope':
           return ListOrderBookDepthResponseEnvelope.fromJson(value);
         case 'ListOrderbookResponseEnvelope':
@@ -433,6 +447,12 @@ class ApiClient {
           return PayLeverageAccruedInterestRequest.fromJson(value);
         case 'PayLeverageAccruedInterestResponseEnvelope':
           return PayLeverageAccruedInterestResponseEnvelope.fromJson(value);
+        case 'PermitDomain':
+          return PermitDomain.fromJson(value);
+        case 'PermitMessage':
+          return PermitMessage.fromJson(value);
+        case 'PermitTypedData':
+          return PermitTypedData.fromJson(value);
         case 'PnLRankingResponse':
           return PnLRankingResponse.fromJson(value);
         case 'PoolPrice':
@@ -547,6 +567,8 @@ class ApiClient {
           return TransformedAssets.fromJson(value);
         case 'TriggerType':
           return TriggerTypeTypeTransformer().decode(value);
+        case 'TypedDataField':
+          return TypedDataField.fromJson(value);
         case 'UnitePositionRequest':
           return UnitePositionRequest.fromJson(value);
         case 'UnitePositionResponseEnvelope':
@@ -601,6 +623,8 @@ class ApiClient {
           return ValidateSubmitOrderRequest.fromJson(value);
         case 'ValidateSubmitOrderResponse':
           return ValidateSubmitOrderResponse.fromJson(value);
+        case 'Web3EventStatus':
+          return Web3EventStatusTypeTransformer().decode(value);
         case 'Withdraw':
           return Withdraw.fromJson(value);
         case 'WithdrawRequest':

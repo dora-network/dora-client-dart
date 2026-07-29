@@ -307,6 +307,8 @@ class ApiClient {
           return GetAssetByIDResponseEnvelope.fromJson(value);
         case 'GetAssetYTMByIDResponseEnvelope':
           return GetAssetYTMByIDResponseEnvelope.fromJson(value);
+        case 'GetCopyTradersResponse':
+          return GetCopyTradersResponse.fromJson(value);
         case 'GetPnLRankingResponse':
           return GetPnLRankingResponse.fromJson(value);
         case 'GetRealizedPnlSettlementsResponseEnvelope':
@@ -481,6 +483,12 @@ class ApiClient {
           return RealizedPnlSettlement.fromJson(value);
         case 'RealizedPnlSettlements':
           return RealizedPnlSettlements.fromJson(value);
+        case 'RepayUSDRequest':
+          return RepayUSDRequest.fromJson(value);
+        case 'RepayUSDResponseEnvelope':
+          return RepayUSDResponseEnvelope.fromJson(value);
+        case 'RepayUSDResult':
+          return RepayUSDResult.fromJson(value);
         case 'ResponseEnvelope':
           return ResponseEnvelope.fromJson(value);
         case 'ResponseEnvelopeOfListAssets':

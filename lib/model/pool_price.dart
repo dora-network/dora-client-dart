@@ -15,36 +15,36 @@ class PoolPrice {
   PoolPrice({
     required this.poolId,
     required this.price,
-    required this.timestamp,
+    required this.time,
   });
 
   String poolId;
 
   String price;
 
-  DateTime timestamp;
+  DateTime time;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PoolPrice &&
     other.poolId == poolId &&
     other.price == price &&
-    other.timestamp == timestamp;
+    other.time == time;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (poolId.hashCode) +
     (price.hashCode) +
-    (timestamp.hashCode);
+    (time.hashCode);
 
   @override
-  String toString() => 'PoolPrice[poolId=$poolId, price=$price, timestamp=$timestamp]';
+  String toString() => 'PoolPrice[poolId=$poolId, price=$price, time=$time]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'pool_id'] = this.poolId;
       json[r'price'] = this.price;
-      json[r'timestamp'] = this.timestamp.toUtc().toIso8601String();
+      json[r'time'] = this.time.toUtc().toIso8601String();
     return json;
   }
 
@@ -63,15 +63,15 @@ class PoolPrice {
         assert(json[r'pool_id'] != null, 'Required key "PoolPrice[pool_id]" has a null value in JSON.');
         assert(json.containsKey(r'price'), 'Required key "PoolPrice[price]" is missing from JSON.');
         assert(json[r'price'] != null, 'Required key "PoolPrice[price]" has a null value in JSON.');
-        assert(json.containsKey(r'timestamp'), 'Required key "PoolPrice[timestamp]" is missing from JSON.');
-        assert(json[r'timestamp'] != null, 'Required key "PoolPrice[timestamp]" has a null value in JSON.');
+        assert(json.containsKey(r'time'), 'Required key "PoolPrice[time]" is missing from JSON.');
+        assert(json[r'time'] != null, 'Required key "PoolPrice[time]" has a null value in JSON.');
         return true;
       }());
 
       return PoolPrice(
         poolId: mapValueOfType<String>(json, r'pool_id')!,
         price: mapValueOfType<String>(json, r'price')!,
-        timestamp: mapDateTime(json, r'timestamp', r'')!,
+        time: mapDateTime(json, r'time', r'')!,
       );
     }
     return null;
@@ -121,7 +121,7 @@ class PoolPrice {
   static const requiredKeys = <String>{
     'pool_id',
     'price',
-    'timestamp',
+    'time',
   };
 }
 

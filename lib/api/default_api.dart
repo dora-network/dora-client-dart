@@ -1120,6 +1120,8 @@ class DefaultApi {
 
   /// Get yield chart data for an asset
   ///
+  /// Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
@@ -1163,6 +1165,8 @@ class DefaultApi {
   }
 
   /// Get yield chart data for an asset
+  ///
+  /// Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
   ///
   /// Parameters:
   ///
@@ -1322,6 +1326,70 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListCandlesResponseEnvelope',) as ListCandlesResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get list of user IDs with copy trading enabled
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [int] page:
+  ///
+  /// * [int] limit:
+  Future<Response> getCopyTradersWithHttpInfo({ int? page, int? limit, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/copy_traders';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get list of user IDs with copy trading enabled
+  ///
+  /// Parameters:
+  ///
+  /// * [int] page:
+  ///
+  /// * [int] limit:
+  Future<GetCopyTradersResponse?> getCopyTraders({ int? page, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await getCopyTradersWithHttpInfo(page: page, limit: limit, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetCopyTradersResponse',) as GetCopyTradersResponse;
     
     }
     return null;
@@ -2072,6 +2140,8 @@ class DefaultApi {
 
   /// Get order by ID
   ///
+  /// Get details of a specific order. Traders can only view their own orders. Admins can view any order. Integrators can view orders for users within their tenant.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
@@ -2105,6 +2175,8 @@ class DefaultApi {
   }
 
   /// Get order by ID
+  ///
+  /// Get details of a specific order. Traders can only view their own orders. Admins can view any order. Integrators can view orders for users within their tenant.
   ///
   /// Parameters:
   ///
@@ -2709,16 +2781,27 @@ class DefaultApi {
 
   /// Get top traders by PnL
   ///
+  /// Returns user PnL ranking for the provided time range. By default only users with allow_copy_trading=true are included. Set all=true to include all users; this requires an admin role.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
   ///
   /// * [DateTime] start (required):
+  ///   Start timestamp (inclusive) in RFC3339 format.
   ///
   /// * [DateTime] end (required):
+  ///   End timestamp (exclusive) in RFC3339 format.
+  ///
+  /// * [int] page:
+  ///   1-based page number for pagination.
   ///
   /// * [int] limit:
-  Future<Response> getTopTradersByPnLWithHttpInfo(DateTime start, DateTime end, { int? limit, Future<void>? abortTrigger, }) async {
+  ///   Number of records per page (max 100). Defaults to 100.
+  ///
+  /// * [bool] all:
+  ///   When true, includes users with allow_copy_trading=false. Requires admin role.
+  Future<Response> getTopTradersByPnLWithHttpInfo(DateTime start, DateTime end, { int? page, int? limit, bool? all, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/user/ranking';
 
@@ -2731,8 +2814,14 @@ class DefaultApi {
 
       queryParams.addAll(_queryParams('', 'start', start));
       queryParams.addAll(_queryParams('', 'end', end));
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
     if (limit != null) {
       queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (all != null) {
+      queryParams.addAll(_queryParams('', 'all', all));
     }
 
     const contentTypes = <String>[];
@@ -2752,15 +2841,26 @@ class DefaultApi {
 
   /// Get top traders by PnL
   ///
+  /// Returns user PnL ranking for the provided time range. By default only users with allow_copy_trading=true are included. Set all=true to include all users; this requires an admin role.
+  ///
   /// Parameters:
   ///
   /// * [DateTime] start (required):
+  ///   Start timestamp (inclusive) in RFC3339 format.
   ///
   /// * [DateTime] end (required):
+  ///   End timestamp (exclusive) in RFC3339 format.
+  ///
+  /// * [int] page:
+  ///   1-based page number for pagination.
   ///
   /// * [int] limit:
-  Future<GetPnLRankingResponse?> getTopTradersByPnL(DateTime start, DateTime end, { int? limit, Future<void>? abortTrigger, }) async {
-    final response = await getTopTradersByPnLWithHttpInfo(start, end, limit: limit, abortTrigger: abortTrigger,);
+  ///   Number of records per page (max 100). Defaults to 100.
+  ///
+  /// * [bool] all:
+  ///   When true, includes users with allow_copy_trading=false. Requires admin role.
+  Future<GetPnLRankingResponse?> getTopTradersByPnL(DateTime start, DateTime end, { int? page, int? limit, bool? all, Future<void>? abortTrigger, }) async {
+    final response = await getTopTradersByPnLWithHttpInfo(start, end, page: page, limit: limit, all: all, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -5268,6 +5368,59 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WithdrawalInitiationResponseEnvelope',) as WithdrawalInitiationResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Repay borrowed USD, then accrue and pay leverage interest
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [RepayUSDRequest] repayUSDRequest (required):
+  Future<Response> repayUSDWithHttpInfo(RepayUSDRequest repayUSDRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/positions/repay_usd';
+
+    // ignore: prefer_final_locals
+    Object? postBody = repayUSDRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Repay borrowed USD, then accrue and pay leverage interest
+  ///
+  /// Parameters:
+  ///
+  /// * [RepayUSDRequest] repayUSDRequest (required):
+  Future<RepayUSDResponseEnvelope?> repayUSD(RepayUSDRequest repayUSDRequest, { Future<void>? abortTrigger, }) async {
+    final response = await repayUSDWithHttpInfo(repayUSDRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RepayUSDResponseEnvelope',) as RepayUSDResponseEnvelope;
     
     }
     return null;

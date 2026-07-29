@@ -163,6 +163,8 @@ void main() {
 
     // Get yield chart data for an asset
     //
+    // Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
+    //
     //Future<ListAssetYieldResponseEnvelope> getAssetYieldData(String assetId, DateTime start, DateTime end, AssetYieldResolution resolution) async
     test('test getAssetYieldData', () async {
       // TODO
@@ -179,6 +181,13 @@ void main() {
     //
     //Future<ListCandlesResponseEnvelope> getCandleData(String orderBookId, DateTime start, DateTime end, { CandleResolution resolution }) async
     test('test getCandleData', () async {
+      // TODO
+    });
+
+    // Get list of user IDs with copy trading enabled
+    //
+    //Future<GetCopyTradersResponse> getCopyTraders({ int page, int limit }) async
+    test('test getCopyTraders', () async {
       // TODO
     });
 
@@ -284,6 +293,8 @@ void main() {
 
     // Get order by ID
     //
+    // Get details of a specific order. Traders can only view their own orders. Admins can view any order. Integrators can view orders for users within their tenant.
+    //
     //Future<OrderResponseEnvelope> getOrderById(String orderId) async
     test('test getOrderById', () async {
       // TODO
@@ -361,7 +372,9 @@ void main() {
 
     // Get top traders by PnL
     //
-    //Future<GetPnLRankingResponse> getTopTradersByPnL(DateTime start, DateTime end, { int limit }) async
+    // Returns user PnL ranking for the provided time range. By default only users with allow_copy_trading=true are included. Set all=true to include all users; this requires an admin role.
+    //
+    //Future<GetPnLRankingResponse> getTopTradersByPnL(DateTime start, DateTime end, { int page, int limit, bool all }) async
     test('test getTopTradersByPnL', () async {
       // TODO
     });
@@ -636,6 +649,13 @@ void main() {
     //
     //Future<WithdrawalInitiationResponseEnvelope> rejectLedgerWithdrawRequest(String withdrawalId, WithdrawalRequestReason withdrawalRequestReason) async
     test('test rejectLedgerWithdrawRequest', () async {
+      // TODO
+    });
+
+    // Repay borrowed USD, then accrue and pay leverage interest
+    //
+    //Future<RepayUSDResponseEnvelope> repayUSD(RepayUSDRequest repayUSDRequest) async
+    test('test repayUSD', () async {
       // TODO
     });
 

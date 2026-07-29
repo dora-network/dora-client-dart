@@ -11,23 +11,13 @@
 import 'package:dora_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for PoolPrice
+// tests for RepayUSDRequest
 void main() {
-  // final instance = PoolPrice();
+  // final instance = RepayUSDRequest();
 
-  group('test PoolPrice', () {
-    // String poolId
-    test('to test the property `poolId`', () async {
-      // TODO
-    });
-
-    // String price
-    test('to test the property `price`', () async {
-      // TODO
-    });
-
-    // DateTime time
-    test('to test the property `time`', () async {
+  group('test RepayUSDRequest', () {
+    // String positionId
+    test('to test the property `positionId`', () async {
       // TODO
     });
 

@@ -26,12 +26,16 @@ class Web3EventStatus {
   static const PENDING = Web3EventStatus._(r'PENDING');
   static const FINALIZED = Web3EventStatus._(r'FINALIZED');
   static const ORPHANED = Web3EventStatus._(r'ORPHANED');
+  static const USER_NOT_EXIST = Web3EventStatus._(r'USER_NOT_EXIST');
+  static const DUST = Web3EventStatus._(r'DUST');
 
   /// List of all possible values in this [enum][Web3EventStatus].
   static const values = <Web3EventStatus>[
     PENDING,
     FINALIZED,
     ORPHANED,
+    USER_NOT_EXIST,
+    DUST,
   ];
 
   static Web3EventStatus? fromJson(dynamic value) => Web3EventStatusTypeTransformer().decode(value);
@@ -73,6 +77,8 @@ class Web3EventStatusTypeTransformer {
         case r'PENDING': return Web3EventStatus.PENDING;
         case r'FINALIZED': return Web3EventStatus.FINALIZED;
         case r'ORPHANED': return Web3EventStatus.ORPHANED;
+        case r'USER_NOT_EXIST': return Web3EventStatus.USER_NOT_EXIST;
+        case r'DUST': return Web3EventStatus.DUST;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

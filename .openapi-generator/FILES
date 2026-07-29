@@ -65,6 +65,7 @@ doc/FundUserRequest.md
 doc/FundUserResponseEnvelope.md
 doc/GetAssetByIDResponseEnvelope.md
 doc/GetAssetYTMByIDResponseEnvelope.md
+doc/GetCopyTradersResponse.md
 doc/GetPnLRankingResponse.md
 doc/GetRealizedPnlSettlementsResponseEnvelope.md
 doc/GetTopOfBookResponseEnvelope.md
@@ -152,6 +153,9 @@ doc/PositionType.md
 doc/PriceLevel.md
 doc/RealizedPnlSettlement.md
 doc/RealizedPnlSettlements.md
+doc/RepayUSDRequest.md
+doc/RepayUSDResponseEnvelope.md
+doc/RepayUSDResult.md
 doc/ResponseEnvelope.md
 doc/ResponseEnvelopeOfListAssets.md
 doc/RevokeAPIKeyData.md
@@ -304,6 +308,7 @@ lib/model/fund_user_request.dart
 lib/model/fund_user_response_envelope.dart
 lib/model/get_asset_by_id_response_envelope.dart
 lib/model/get_asset_ytmby_id_response_envelope.dart
+lib/model/get_copy_traders_response.dart
 lib/model/get_pn_l_ranking_response.dart
 lib/model/get_realized_pnl_settlements_response_envelope.dart
 lib/model/get_top_of_book_response_envelope.dart
@@ -391,6 +396,9 @@ lib/model/position_type.dart
 lib/model/price_level.dart
 lib/model/realized_pnl_settlement.dart
 lib/model/realized_pnl_settlements.dart
+lib/model/repay_usd_request.dart
+lib/model/repay_usd_response_envelope.dart
+lib/model/repay_usd_result.dart
 lib/model/response_envelope.dart
 lib/model/response_envelope_of_list_assets.dart
 lib/model/revoke_api_key_data.dart
@@ -534,6 +542,7 @@ test/fund_user_response_envelope_test.dart
 test/fund_user_test.dart
 test/get_asset_by_id_response_envelope_test.dart
 test/get_asset_ytmby_id_response_envelope_test.dart
+test/get_copy_traders_response_test.dart
 test/get_pn_l_ranking_response_test.dart
 test/get_realized_pnl_settlements_response_envelope_test.dart
 test/get_top_of_book_response_envelope_test.dart
@@ -621,6 +630,9 @@ test/position_type_test.dart
 test/price_level_test.dart
 test/realized_pnl_settlement_test.dart
 test/realized_pnl_settlements_test.dart
+test/repay_usd_request_test.dart
+test/repay_usd_response_envelope_test.dart
+test/repay_usd_result_test.dart
 test/response_envelope_of_list_assets_test.dart
 test/response_envelope_test.dart
 test/revoke_api_key_data_test.dart

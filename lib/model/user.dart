@@ -19,6 +19,7 @@ class User {
     required this.email,
     required this.firstName,
     required this.lastName,
+    required this.userName,
     required this.countryOfDomicile,
     required this.nativeAssetId,
     this.photoUrl,
@@ -61,6 +62,8 @@ class User {
   String firstName;
 
   String lastName;
+
+  String userName;
 
   CountryCode countryOfDomicile;
 
@@ -142,6 +145,7 @@ class User {
     other.email == email &&
     other.firstName == firstName &&
     other.lastName == lastName &&
+    other.userName == userName &&
     other.countryOfDomicile == countryOfDomicile &&
     other.nativeAssetId == nativeAssetId &&
     other.photoUrl == photoUrl &&
@@ -169,6 +173,7 @@ class User {
     (email.hashCode) +
     (firstName.hashCode) +
     (lastName.hashCode) +
+    (userName.hashCode) +
     (countryOfDomicile.hashCode) +
     (nativeAssetId.hashCode) +
     (photoUrl == null ? 0 : photoUrl!.hashCode) +
@@ -188,7 +193,7 @@ class User {
     (allowCopyTrading.hashCode);
 
   @override
-  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, firstName=$firstName, lastName=$lastName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications, allowCopyTrading=$allowCopyTrading]';
+  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, firstName=$firstName, lastName=$lastName, userName=$userName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications, allowCopyTrading=$allowCopyTrading]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -206,6 +211,7 @@ class User {
       json[r'email'] = this.email;
       json[r'first_name'] = this.firstName;
       json[r'last_name'] = this.lastName;
+      json[r'user_name'] = this.userName;
       json[r'country_of_domicile'] = this.countryOfDomicile;
       json[r'native_asset_id'] = this.nativeAssetId;
     if (this.photoUrl != null) {
@@ -269,6 +275,8 @@ class User {
         assert(json[r'first_name'] != null, 'Required key "User[first_name]" has a null value in JSON.');
         assert(json.containsKey(r'last_name'), 'Required key "User[last_name]" is missing from JSON.');
         assert(json[r'last_name'] != null, 'Required key "User[last_name]" has a null value in JSON.');
+        assert(json.containsKey(r'user_name'), 'Required key "User[user_name]" is missing from JSON.');
+        assert(json[r'user_name'] != null, 'Required key "User[user_name]" has a null value in JSON.');
         assert(json.containsKey(r'country_of_domicile'), 'Required key "User[country_of_domicile]" is missing from JSON.');
         assert(json[r'country_of_domicile'] != null, 'Required key "User[country_of_domicile]" has a null value in JSON.');
         assert(json.containsKey(r'native_asset_id'), 'Required key "User[native_asset_id]" is missing from JSON.');
@@ -301,6 +309,7 @@ class User {
         email: mapValueOfType<String>(json, r'email')!,
         firstName: mapValueOfType<String>(json, r'first_name')!,
         lastName: mapValueOfType<String>(json, r'last_name')!,
+        userName: mapValueOfType<String>(json, r'user_name')!,
         countryOfDomicile: CountryCode.fromJson(json[r'country_of_domicile'])!,
         nativeAssetId: mapValueOfType<String>(json, r'native_asset_id')!,
         photoUrl: mapValueOfType<String>(json, r'photo_url'),
@@ -369,6 +378,7 @@ class User {
     'email',
     'first_name',
     'last_name',
+    'user_name',
     'country_of_domicile',
     'native_asset_id',
     'roles',

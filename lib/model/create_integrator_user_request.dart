@@ -16,6 +16,7 @@ class CreateIntegratorUserRequest {
     this.email,
     this.firstName,
     this.lastName,
+    this.userName,
     this.countryOfDomicile,
     this.nativeAssetId,
     this.photoUrl,
@@ -54,8 +55,17 @@ class CreateIntegratorUserRequest {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
+  String? userName;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   CountryCode? countryOfDomicile;
 
+  /// Optional: the user's native asset ID. Must be a CURRENCY asset; defaults to USD. The USDC asset is never allowed for integrator-created users.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -101,6 +111,7 @@ class CreateIntegratorUserRequest {
     other.email == email &&
     other.firstName == firstName &&
     other.lastName == lastName &&
+    other.userName == userName &&
     other.countryOfDomicile == countryOfDomicile &&
     other.nativeAssetId == nativeAssetId &&
     other.photoUrl == photoUrl &&
@@ -114,6 +125,7 @@ class CreateIntegratorUserRequest {
     (email == null ? 0 : email!.hashCode) +
     (firstName == null ? 0 : firstName!.hashCode) +
     (lastName == null ? 0 : lastName!.hashCode) +
+    (userName == null ? 0 : userName!.hashCode) +
     (countryOfDomicile == null ? 0 : countryOfDomicile!.hashCode) +
     (nativeAssetId == null ? 0 : nativeAssetId!.hashCode) +
     (photoUrl == null ? 0 : photoUrl!.hashCode) +
@@ -122,7 +134,7 @@ class CreateIntegratorUserRequest {
     (timezone == null ? 0 : timezone!.hashCode);
 
   @override
-  String toString() => 'CreateIntegratorUserRequest[email=$email, firstName=$firstName, lastName=$lastName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, timezone=$timezone]';
+  String toString() => 'CreateIntegratorUserRequest[email=$email, firstName=$firstName, lastName=$lastName, userName=$userName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, timezone=$timezone]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -140,6 +152,11 @@ class CreateIntegratorUserRequest {
       json[r'last_name'] = this.lastName;
     } else {
       json[r'last_name'] = null;
+    }
+    if (this.userName != null) {
+      json[r'user_name'] = this.userName;
+    } else {
+      json[r'user_name'] = null;
     }
     if (this.countryOfDomicile != null) {
       json[r'country_of_domicile'] = this.countryOfDomicile;
@@ -192,6 +209,7 @@ class CreateIntegratorUserRequest {
         email: mapValueOfType<String>(json, r'email'),
         firstName: mapValueOfType<String>(json, r'first_name'),
         lastName: mapValueOfType<String>(json, r'last_name'),
+        userName: mapValueOfType<String>(json, r'user_name'),
         countryOfDomicile: CountryCode.fromJson(json[r'country_of_domicile']),
         nativeAssetId: mapValueOfType<String>(json, r'native_asset_id'),
         photoUrl: mapValueOfType<String>(json, r'photo_url'),

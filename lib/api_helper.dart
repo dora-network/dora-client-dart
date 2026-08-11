@@ -97,6 +97,12 @@ String parameterToString(dynamic value) {
   if (value is Side) {
     return SideTypeTransformer().encode(value).toString();
   }
+  if (value is TradingChallengeStatus) {
+    return TradingChallengeStatusTypeTransformer().encode(value).toString();
+  }
+  if (value is TradingChallengeType) {
+    return TradingChallengeTypeTypeTransformer().encode(value).toString();
+  }
   if (value is TransactionKind) {
     return TransactionKindTypeTransformer().encode(value).toString();
   }

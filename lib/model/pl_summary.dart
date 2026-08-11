@@ -18,6 +18,8 @@ class PLSummary {
     required this.available,
     required this.health,
     required this.ltv,
+    required this.realizedPl,
+    required this.unrealizedPl,
   });
 
   /// The leverage used to obtain the position on the isolated account
@@ -31,13 +33,21 @@ class PLSummary {
 
   String ltv;
 
+  /// The realized profit or loss since account inception
+  String realizedPl;
+
+  /// The unrealized profit or loss for the account's current open positions
+  String unrealizedPl;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is PLSummary &&
     other.leverage == leverage &&
     other.accountEquity == accountEquity &&
     other.available == available &&
     other.health == health &&
-    other.ltv == ltv;
+    other.ltv == ltv &&
+    other.realizedPl == realizedPl &&
+    other.unrealizedPl == unrealizedPl;
 
   @override
   int get hashCode =>
@@ -46,10 +56,12 @@ class PLSummary {
     (accountEquity.hashCode) +
     (available.hashCode) +
     (health.hashCode) +
-    (ltv.hashCode);
+    (ltv.hashCode) +
+    (realizedPl.hashCode) +
+    (unrealizedPl.hashCode);
 
   @override
-  String toString() => 'PLSummary[leverage=$leverage, accountEquity=$accountEquity, available=$available, health=$health, ltv=$ltv]';
+  String toString() => 'PLSummary[leverage=$leverage, accountEquity=$accountEquity, available=$available, health=$health, ltv=$ltv, realizedPl=$realizedPl, unrealizedPl=$unrealizedPl]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -58,6 +70,8 @@ class PLSummary {
       json[r'available'] = this.available;
       json[r'health'] = this.health;
       json[r'ltv'] = this.ltv;
+      json[r'realized_pl'] = this.realizedPl;
+      json[r'unrealized_pl'] = this.unrealizedPl;
     return json;
   }
 
@@ -82,6 +96,10 @@ class PLSummary {
         assert(json[r'health'] != null, 'Required key "PLSummary[health]" has a null value in JSON.');
         assert(json.containsKey(r'ltv'), 'Required key "PLSummary[ltv]" is missing from JSON.');
         assert(json[r'ltv'] != null, 'Required key "PLSummary[ltv]" has a null value in JSON.');
+        assert(json.containsKey(r'realized_pl'), 'Required key "PLSummary[realized_pl]" is missing from JSON.');
+        assert(json[r'realized_pl'] != null, 'Required key "PLSummary[realized_pl]" has a null value in JSON.');
+        assert(json.containsKey(r'unrealized_pl'), 'Required key "PLSummary[unrealized_pl]" is missing from JSON.');
+        assert(json[r'unrealized_pl'] != null, 'Required key "PLSummary[unrealized_pl]" has a null value in JSON.');
         return true;
       }());
 
@@ -91,6 +109,8 @@ class PLSummary {
         available: mapValueOfType<String>(json, r'available')!,
         health: mapValueOfType<String>(json, r'health')!,
         ltv: mapValueOfType<String>(json, r'ltv')!,
+        realizedPl: mapValueOfType<String>(json, r'realized_pl')!,
+        unrealizedPl: mapValueOfType<String>(json, r'unrealized_pl')!,
       );
     }
     return null;
@@ -143,6 +163,8 @@ class PLSummary {
     'available',
     'health',
     'ltv',
+    'realized_pl',
+    'unrealized_pl',
   };
 }
 

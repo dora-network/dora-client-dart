@@ -18,7 +18,7 @@ class GetCopyTradersResponse {
     required this.metadata,
   });
 
-  List<String> data;
+  List<CopyTrader> data;
 
   /// The error message. Present for error (non-2xx) responses.
   ///
@@ -77,9 +77,7 @@ class GetCopyTradersResponse {
       }());
 
       return GetCopyTradersResponse(
-        data: json[r'data'] is Iterable
-            ? (json[r'data'] as Iterable).cast<String>().toList(growable: false)
-            : const [],
+        data: CopyTrader.listFromJson(json[r'data']),
         error: mapValueOfType<String>(json, r'error'),
         metadata: Metadata.fromJson(json[r'metadata'])!,
       );

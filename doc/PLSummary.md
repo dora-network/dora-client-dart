@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **available** | **String** |  | 
 **health** | **String** |  | 
 **ltv** | **String** |  | 
+**realizedPl** | **String** | The realized profit or loss since account inception | 
+**unrealizedPl** | **String** | The unrealized profit or loss for the account's current open positions | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -52,14 +52,13 @@ import 'package:dora_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = DefaultApi();
-final withdrawalId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final withdrawalRequestReason = WithdrawalRequestReason(); // WithdrawalRequestReason | 
+final addTradingChallengeUsersRequest = AddTradingChallengeUsersRequest(); // AddTradingChallengeUsersRequest | 
 
 try {
-    final result = api_instance.approveLedgerWithdrawRequest(withdrawalId, withdrawalRequestReason);
+    final result = api_instance.addTradingChallengeUsers(addTradingChallengeUsersRequest);
     print(result);
 } catch (e) {
-    print('Exception when calling DefaultApi->approveLedgerWithdrawRequest: $e\n');
+    print('Exception when calling DefaultApi->addTradingChallengeUsers: $e\n');
 }
 
 ```
@@ -70,17 +69,20 @@ All URIs are relative to *https://staging.dora.co*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultApi* | [**addTradingChallengeUsers**](doc//DefaultApi.md#addtradingchallengeusers) | **PUT** /v1/trading_challenges/add_users | Add users to a trading challenge
 *DefaultApi* | [**approveLedgerWithdrawRequest**](doc//DefaultApi.md#approveledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
 *DefaultApi* | [**cancelAllOpenOrders**](doc//DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
 *DefaultApi* | [**cancelLedgerWithdrawRequest**](doc//DefaultApi.md#cancelledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 *DefaultApi* | [**cancelOrderById**](doc//DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 *DefaultApi* | [**claimLeverageGetAccruedInterest**](doc//DefaultApi.md#claimleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
+*DefaultApi* | [**claimTradingChallengePrize**](doc//DefaultApi.md#claimtradingchallengeprize) | **POST** /v1/trading_challenges/{trading_challenge_id}/claim | Claim challenge prize
 *DefaultApi* | [**closeIsolatedAccountV2**](doc//DefaultApi.md#closeisolatedaccountv2) | **POST** /v2/accounts/close | Close an isolated account, repaying the borrowed
 *DefaultApi* | [**closeIsolatedPosition**](doc//DefaultApi.md#closeisolatedposition) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 *DefaultApi* | [**createAPIKeyForUser**](doc//DefaultApi.md#createapikeyforuser) | **POST** /v1/user/apikey | Create apikey for a user
 *DefaultApi* | [**createAPIKeyForUserID**](doc//DefaultApi.md#createapikeyforuserid) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
 *DefaultApi* | [**createConditionalOrder**](doc//DefaultApi.md#createconditionalorder) | **POST** /v1/orders/conditional | Create a new conditional orders
 *DefaultApi* | [**createOrder**](doc//DefaultApi.md#createorder) | **POST** /v1/orders | Create a new order
+*DefaultApi* | [**createTradingChallenge**](doc//DefaultApi.md#createtradingchallenge) | **POST** /v1/trading_challenges | Create a trading challenge
 *DefaultApi* | [**createUser**](doc//DefaultApi.md#createuser) | **POST** /v1/integrators/user | Create a new user
 *DefaultApi* | [**deleteUser**](doc//DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
 *DefaultApi* | [**getAPIKeysForUserID**](doc//DefaultApi.md#getapikeysforuserid) | **GET** /v1/user/{user_id}/apikey | Get user's api keys: admin or integrator only
@@ -93,7 +95,9 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getAssetYieldData**](doc//DefaultApi.md#getassetyielddata) | **GET** /v1/charts/{asset_id}/yield | Get yield chart data for an asset
 *DefaultApi* | [**getAssetsStream**](doc//DefaultApi.md#getassetsstream) | **GET** /v1/assets/stream | Get all inserts or updates for assets
 *DefaultApi* | [**getCandleData**](doc//DefaultApi.md#getcandledata) | **GET** /v1/charts/{order_book_id}/candle | Get candlestick data for an orderbook
-*DefaultApi* | [**getCopyTraders**](doc//DefaultApi.md#getcopytraders) | **GET** /v1/user/copy_traders | Get list of user IDs with copy trading enabled
+*DefaultApi* | [**getCashReserveByUserID**](doc//DefaultApi.md#getcashreservebyuserid) | **GET** /v1/accounts/{user_id}/cash_reserve | Get the minimum USD cash reserve requirement for the given user
+*DefaultApi* | [**getCashReserveSelf**](doc//DefaultApi.md#getcashreserveself) | **GET** /v1/accounts/self/cash_reserve | Get the minimum USD cash reserve requirement for the logged in user
+*DefaultApi* | [**getCopyTraders**](doc//DefaultApi.md#getcopytraders) | **GET** /v1/user/copy_traders | Get list of users with copy trading enabled
 *DefaultApi* | [**getCouponPaymentsByAssetId**](doc//DefaultApi.md#getcouponpaymentsbyassetid) | **GET** /v1/assets/{asset_id}/coupon_payments | Get coupon payments for a bond asset
 *DefaultApi* | [**getDepositInstructions**](doc//DefaultApi.md#getdepositinstructions) | **GET** /v1/web3/deposit-instructions | Get per-chain instructions for depositing USDC into the Dora vault
 *DefaultApi* | [**getL1Depth**](doc//DefaultApi.md#getl1depth) | **GET** /v1/orderbooks/{order_book_id}/L1 | Get the top price levels for a specific orderbook (L1 market depth)
@@ -122,6 +126,9 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getTopTradersByPnL**](doc//DefaultApi.md#gettoptradersbypnl) | **GET** /v1/user/ranking | Get top traders by PnL
 *DefaultApi* | [**getTradeById**](doc//DefaultApi.md#gettradebyid) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 *DefaultApi* | [**getTrades**](doc//DefaultApi.md#gettrades) | **GET** /v1/trades | Get a filtered, paginated list of trades
+*DefaultApi* | [**getTradingChallengeByID**](doc//DefaultApi.md#gettradingchallengebyid) | **GET** /v1/trading_challenges/{trading_challenge_id} | Get trading challenge by ID
+*DefaultApi* | [**getTradingChallengeDailySnapshots**](doc//DefaultApi.md#gettradingchallengedailysnapshots) | **GET** /v1/trading_challenges/{trading_challenge_id}/daily_snapshots | Get trading challenge daily snapshots
+*DefaultApi* | [**getTradingChallengeResults**](doc//DefaultApi.md#gettradingchallengeresults) | **GET** /v1/trading_challenges/{trading_challenge_id}/results | Get trading challenge results
 *DefaultApi* | [**getTransactionById**](doc//DefaultApi.md#gettransactionbyid) | **GET** /v1/transactions/{transaction_id} | Get a transaction by ID
 *DefaultApi* | [**getTransactions**](doc//DefaultApi.md#gettransactions) | **GET** /v1/transactions | Get a filtered, paginated list of transactions
 *DefaultApi* | [**getTransactionsSettlements**](doc//DefaultApi.md#gettransactionssettlements) | **GET** /v1/transactions/settlements | Get transactions settlements with filters
@@ -155,8 +162,10 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**listOrderBooks**](doc//DefaultApi.md#listorderbooks) | **GET** /v1/orderbooks | List order books
 *DefaultApi* | [**listOrders**](doc//DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
 *DefaultApi* | [**listPositionAccountsSelf**](doc//DefaultApi.md#listpositionaccountsself) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
+*DefaultApi* | [**listTradingChallenges**](doc//DefaultApi.md#listtradingchallenges) | **GET** /v1/trading_challenges | List trading challenges
 *DefaultApi* | [**payLeverageGetAccruedInterest**](doc//DefaultApi.md#payleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 *DefaultApi* | [**rejectLedgerWithdrawRequest**](doc//DefaultApi.md#rejectledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
+*DefaultApi* | [**removeTradingChallengeUsers**](doc//DefaultApi.md#removetradingchallengeusers) | **PUT** /v1/trading_challenges/remove_users | Remove users from a trading challenge
 *DefaultApi* | [**repayUSD**](doc//DefaultApi.md#repayusd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
 *DefaultApi* | [**revokeAPIKeyForUser**](doc//DefaultApi.md#revokeapikeyforuser) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 *DefaultApi* | [**revokeAPIKeyForUserID**](doc//DefaultApi.md#revokeapikeyforuserid) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
@@ -186,6 +195,7 @@ Class | Method | HTTP request | Description
  - [AccountPortfolioV2](doc//AccountPortfolioV2.md)
  - [AccountSummaryV2](doc//AccountSummaryV2.md)
  - [AccountV2](doc//AccountV2.md)
+ - [AddTradingChallengeUsersRequest](doc//AddTradingChallengeUsersRequest.md)
  - [AllPositions](doc//AllPositions.md)
  - [AllPositionsResponseEnvelope](doc//AllPositionsResponseEnvelope.md)
  - [AllWithdrawalInitiationsResponseEnvelope](doc//AllWithdrawalInitiationsResponseEnvelope.md)
@@ -205,14 +215,20 @@ Class | Method | HTTP request | Description
  - [CancelOrderResponseEnvelope](doc//CancelOrderResponseEnvelope.md)
  - [Candle](doc//Candle.md)
  - [CandleResolution](doc//CandleResolution.md)
+ - [CashReserveBreakdown](doc//CashReserveBreakdown.md)
+ - [CashReserveResponse](doc//CashReserveResponse.md)
+ - [CashReserveResponseEnvelope](doc//CashReserveResponseEnvelope.md)
  - [ClaimLeverageAccruedInterest](doc//ClaimLeverageAccruedInterest.md)
  - [ClaimLeverageAccruedInterestRequest](doc//ClaimLeverageAccruedInterestRequest.md)
  - [ClaimLeverageAccruedInterestResponseEnvelope](doc//ClaimLeverageAccruedInterestResponseEnvelope.md)
+ - [ClaimTradingChallengeResponse](doc//ClaimTradingChallengeResponse.md)
+ - [ClaimTradingChallengeResponseEnvelope](doc//ClaimTradingChallengeResponseEnvelope.md)
  - [CloseAccountRequest](doc//CloseAccountRequest.md)
  - [ClosePositionRequest](doc//ClosePositionRequest.md)
  - [ClosePositionResp](doc//ClosePositionResp.md)
  - [ClosePositionResponseEnvelope](doc//ClosePositionResponseEnvelope.md)
  - [Collateral](doc//Collateral.md)
+ - [CopyTrader](doc//CopyTrader.md)
  - [CountryCode](doc//CountryCode.md)
  - [CouponKind](doc//CouponKind.md)
  - [CouponPayment](doc//CouponPayment.md)
@@ -226,6 +242,7 @@ Class | Method | HTTP request | Description
  - [CreateOrUpdateUserResponse](doc//CreateOrUpdateUserResponse.md)
  - [CreateOrderRequest](doc//CreateOrderRequest.md)
  - [CreateOrderResponseEnvelope](doc//CreateOrderResponseEnvelope.md)
+ - [CreateTradingChallengeRequest](doc//CreateTradingChallengeRequest.md)
  - [CurrentLeverageAccruedInterest](doc//CurrentLeverageAccruedInterest.md)
  - [CurrentLeverageAccruedInterestResponseEnvelope](doc//CurrentLeverageAccruedInterestResponseEnvelope.md)
  - [DefundUserRequest](doc//DefundUserRequest.md)
@@ -328,6 +345,7 @@ Class | Method | HTTP request | Description
  - [PriceLevel](doc//PriceLevel.md)
  - [RealizedPnlSettlement](doc//RealizedPnlSettlement.md)
  - [RealizedPnlSettlements](doc//RealizedPnlSettlements.md)
+ - [RemoveTradingChallengeUsersRequest](doc//RemoveTradingChallengeUsersRequest.md)
  - [RepayUSDRequest](doc//RepayUSDRequest.md)
  - [RepayUSDResponseEnvelope](doc//RepayUSDResponseEnvelope.md)
  - [RepayUSDResult](doc//RepayUSDResult.md)
@@ -359,6 +377,15 @@ Class | Method | HTTP request | Description
  - [Trade](doc//Trade.md)
  - [TradeRequestError](doc//TradeRequestError.md)
  - [TradeResponseEnvelope](doc//TradeResponseEnvelope.md)
+ - [TradingChallenge](doc//TradingChallenge.md)
+ - [TradingChallengeDailySnapshot](doc//TradingChallengeDailySnapshot.md)
+ - [TradingChallengeDailySnapshotsResponseEnvelope](doc//TradingChallengeDailySnapshotsResponseEnvelope.md)
+ - [TradingChallengeListResponseEnvelope](doc//TradingChallengeListResponseEnvelope.md)
+ - [TradingChallengeResponseEnvelope](doc//TradingChallengeResponseEnvelope.md)
+ - [TradingChallengeResult](doc//TradingChallengeResult.md)
+ - [TradingChallengeResultsResponseEnvelope](doc//TradingChallengeResultsResponseEnvelope.md)
+ - [TradingChallengeStatus](doc//TradingChallengeStatus.md)
+ - [TradingChallengeType](doc//TradingChallengeType.md)
  - [Transaction](doc//Transaction.md)
  - [TransactionInternalTransfer](doc//TransactionInternalTransfer.md)
  - [TransactionKind](doc//TransactionKind.md)

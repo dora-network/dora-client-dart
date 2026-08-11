@@ -199,6 +199,8 @@ class ApiClient {
           return AccountSummaryV2.fromJson(value);
         case 'AccountV2':
           return AccountV2.fromJson(value);
+        case 'AddTradingChallengeUsersRequest':
+          return AddTradingChallengeUsersRequest.fromJson(value);
         case 'AllPositions':
           return AllPositions.fromJson(value);
         case 'AllPositionsResponseEnvelope':
@@ -237,12 +239,22 @@ class ApiClient {
           return Candle.fromJson(value);
         case 'CandleResolution':
           return CandleResolutionTypeTransformer().decode(value);
+        case 'CashReserveBreakdown':
+          return CashReserveBreakdown.fromJson(value);
+        case 'CashReserveResponse':
+          return CashReserveResponse.fromJson(value);
+        case 'CashReserveResponseEnvelope':
+          return CashReserveResponseEnvelope.fromJson(value);
         case 'ClaimLeverageAccruedInterest':
           return ClaimLeverageAccruedInterest.fromJson(value);
         case 'ClaimLeverageAccruedInterestRequest':
           return ClaimLeverageAccruedInterestRequest.fromJson(value);
         case 'ClaimLeverageAccruedInterestResponseEnvelope':
           return ClaimLeverageAccruedInterestResponseEnvelope.fromJson(value);
+        case 'ClaimTradingChallengeResponse':
+          return ClaimTradingChallengeResponse.fromJson(value);
+        case 'ClaimTradingChallengeResponseEnvelope':
+          return ClaimTradingChallengeResponseEnvelope.fromJson(value);
         case 'CloseAccountRequest':
           return CloseAccountRequest.fromJson(value);
         case 'ClosePositionRequest':
@@ -253,6 +265,8 @@ class ApiClient {
           return ClosePositionResponseEnvelope.fromJson(value);
         case 'Collateral':
           return Collateral.fromJson(value);
+        case 'CopyTrader':
+          return CopyTrader.fromJson(value);
         case 'CountryCode':
           return CountryCodeTypeTransformer().decode(value);
         case 'CouponKind':
@@ -279,6 +293,8 @@ class ApiClient {
           return CreateOrderRequest.fromJson(value);
         case 'CreateOrderResponseEnvelope':
           return CreateOrderResponseEnvelope.fromJson(value);
+        case 'CreateTradingChallengeRequest':
+          return CreateTradingChallengeRequest.fromJson(value);
         case 'CurrentLeverageAccruedInterest':
           return CurrentLeverageAccruedInterest.fromJson(value);
         case 'CurrentLeverageAccruedInterestResponseEnvelope':
@@ -483,6 +499,8 @@ class ApiClient {
           return RealizedPnlSettlement.fromJson(value);
         case 'RealizedPnlSettlements':
           return RealizedPnlSettlements.fromJson(value);
+        case 'RemoveTradingChallengeUsersRequest':
+          return RemoveTradingChallengeUsersRequest.fromJson(value);
         case 'RepayUSDRequest':
           return RepayUSDRequest.fromJson(value);
         case 'RepayUSDResponseEnvelope':
@@ -545,6 +563,24 @@ class ApiClient {
           return TradeRequestError.fromJson(value);
         case 'TradeResponseEnvelope':
           return TradeResponseEnvelope.fromJson(value);
+        case 'TradingChallenge':
+          return TradingChallenge.fromJson(value);
+        case 'TradingChallengeDailySnapshot':
+          return TradingChallengeDailySnapshot.fromJson(value);
+        case 'TradingChallengeDailySnapshotsResponseEnvelope':
+          return TradingChallengeDailySnapshotsResponseEnvelope.fromJson(value);
+        case 'TradingChallengeListResponseEnvelope':
+          return TradingChallengeListResponseEnvelope.fromJson(value);
+        case 'TradingChallengeResponseEnvelope':
+          return TradingChallengeResponseEnvelope.fromJson(value);
+        case 'TradingChallengeResult':
+          return TradingChallengeResult.fromJson(value);
+        case 'TradingChallengeResultsResponseEnvelope':
+          return TradingChallengeResultsResponseEnvelope.fromJson(value);
+        case 'TradingChallengeStatus':
+          return TradingChallengeStatusTypeTransformer().decode(value);
+        case 'TradingChallengeType':
+          return TradingChallengeTypeTypeTransformer().decode(value);
         case 'Transaction':
           return Transaction.fromJson(value);
         case 'TransactionInternalTransfer':

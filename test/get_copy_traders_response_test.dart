@@ -16,7 +16,7 @@ void main() {
   // final instance = GetCopyTradersResponse();
 
   group('test GetCopyTradersResponse', () {
-    // List<String> data (default value: const [])
+    // List<CopyTrader> data (default value: const [])
     test('to test the property `data`', () async {
       // TODO
     });

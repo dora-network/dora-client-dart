@@ -16,6 +16,59 @@ class DefaultApi {
 
   final ApiClient apiClient;
 
+  /// Add users to a trading challenge
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [AddTradingChallengeUsersRequest] addTradingChallengeUsersRequest (required):
+  Future<Response> addTradingChallengeUsersWithHttpInfo(AddTradingChallengeUsersRequest addTradingChallengeUsersRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/add_users';
+
+    // ignore: prefer_final_locals
+    Object? postBody = addTradingChallengeUsersRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Add users to a trading challenge
+  ///
+  /// Parameters:
+  ///
+  /// * [AddTradingChallengeUsersRequest] addTradingChallengeUsersRequest (required):
+  Future<TradingChallengeResponseEnvelope?> addTradingChallengeUsers(AddTradingChallengeUsersRequest addTradingChallengeUsersRequest, { Future<void>? abortTrigger, }) async {
+    final response = await addTradingChallengeUsersWithHttpInfo(addTradingChallengeUsersRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeResponseEnvelope',) as TradingChallengeResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Approve a pending withdrawal request
   ///
   /// Approve a pending withdrawal request, allowing the transfer of assets to the outside world to proceed. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
@@ -320,6 +373,60 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ClaimLeverageAccruedInterestResponseEnvelope',) as ClaimLeverageAccruedInterestResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Claim challenge prize
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<Response> claimTradingChallengePrizeWithHttpInfo(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/{trading_challenge_id}/claim'
+      .replaceAll('{trading_challenge_id}', tradingChallengeId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Claim challenge prize
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<ClaimTradingChallengeResponseEnvelope?> claimTradingChallengePrize(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    final response = await claimTradingChallengePrizeWithHttpInfo(tradingChallengeId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ClaimTradingChallengeResponseEnvelope',) as ClaimTradingChallengeResponseEnvelope;
     
     }
     return null;
@@ -643,6 +750,59 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CreateOrderResponseEnvelope',) as CreateOrderResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Create a trading challenge
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateTradingChallengeRequest] createTradingChallengeRequest (required):
+  Future<Response> createTradingChallengeWithHttpInfo(CreateTradingChallengeRequest createTradingChallengeRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges';
+
+    // ignore: prefer_final_locals
+    Object? postBody = createTradingChallengeRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Create a trading challenge
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateTradingChallengeRequest] createTradingChallengeRequest (required):
+  Future<TradingChallengeResponseEnvelope?> createTradingChallenge(CreateTradingChallengeRequest createTradingChallengeRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createTradingChallengeWithHttpInfo(createTradingChallengeRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeResponseEnvelope',) as TradingChallengeResponseEnvelope;
     
     }
     return null;
@@ -1331,7 +1491,114 @@ class DefaultApi {
     return null;
   }
 
-  /// Get list of user IDs with copy trading enabled
+  /// Get the minimum USD cash reserve requirement for the given user
+  ///
+  /// Returns the user's available Global Account USD balance alongside their minimum cash reserve requirement and its breakdown. While available_usd is below required_usd the user may not open new leveraged positions, submit buy orders, transfer assets out of their Global Account or withdraw.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<Response> getCashReserveByUserIDWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/accounts/{user_id}/cash_reserve'
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get the minimum USD cash reserve requirement for the given user
+  ///
+  /// Returns the user's available Global Account USD balance alongside their minimum cash reserve requirement and its breakdown. While available_usd is below required_usd the user may not open new leveraged positions, submit buy orders, transfer assets out of their Global Account or withdraw.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<CashReserveResponseEnvelope?> getCashReserveByUserID(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await getCashReserveByUserIDWithHttpInfo(userId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CashReserveResponseEnvelope',) as CashReserveResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get the minimum USD cash reserve requirement for the logged in user
+  ///
+  /// Returns the user's available Global Account USD balance alongside their minimum cash reserve requirement and its breakdown. While available_usd is below required_usd the user may not open new leveraged positions, submit buy orders, transfer assets out of their Global Account or withdraw.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getCashReserveSelfWithHttpInfo({ Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/accounts/self/cash_reserve';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get the minimum USD cash reserve requirement for the logged in user
+  ///
+  /// Returns the user's available Global Account USD balance alongside their minimum cash reserve requirement and its breakdown. While available_usd is below required_usd the user may not open new leveraged positions, submit buy orders, transfer assets out of their Global Account or withdraw.
+  Future<CashReserveResponseEnvelope?> getCashReserveSelf({ Future<void>? abortTrigger, }) async {
+    final response = await getCashReserveSelfWithHttpInfo(abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'CashReserveResponseEnvelope',) as CashReserveResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get list of users with copy trading enabled
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -1373,7 +1640,7 @@ class DefaultApi {
     );
   }
 
-  /// Get list of user IDs with copy trading enabled
+  /// Get list of users with copy trading enabled
   ///
   /// Parameters:
   ///
@@ -1451,7 +1718,7 @@ class DefaultApi {
 
   /// Get per-chain instructions for depositing USDC into the Dora vault
   ///
-  /// Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+  /// Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry. Restricted to DORA tenant users whose native asset is USDC.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -1503,7 +1770,7 @@ class DefaultApi {
 
   /// Get per-chain instructions for depositing USDC into the Dora vault
   ///
-  /// Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+  /// Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry. Restricted to DORA tenant users whose native asset is USDC.
   ///
   /// Parameters:
   ///
@@ -3015,6 +3282,178 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListTradeResponseEnvelope',) as ListTradeResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get trading challenge by ID
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<Response> getTradingChallengeByIDWithHttpInfo(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/{trading_challenge_id}'
+      .replaceAll('{trading_challenge_id}', tradingChallengeId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get trading challenge by ID
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<TradingChallengeResponseEnvelope?> getTradingChallengeByID(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    final response = await getTradingChallengeByIDWithHttpInfo(tradingChallengeId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeResponseEnvelope',) as TradingChallengeResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get trading challenge daily snapshots
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<Response> getTradingChallengeDailySnapshotsWithHttpInfo(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/{trading_challenge_id}/daily_snapshots'
+      .replaceAll('{trading_challenge_id}', tradingChallengeId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get trading challenge daily snapshots
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<TradingChallengeDailySnapshotsResponseEnvelope?> getTradingChallengeDailySnapshots(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    final response = await getTradingChallengeDailySnapshotsWithHttpInfo(tradingChallengeId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeDailySnapshotsResponseEnvelope',) as TradingChallengeDailySnapshotsResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get trading challenge results
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  ///
+  /// * [String] board:
+  ///   Leaderboard board selector. Defaults to TOP_PNL.
+  Future<Response> getTradingChallengeResultsWithHttpInfo(String tradingChallengeId, { String? board, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/{trading_challenge_id}/results'
+      .replaceAll('{trading_challenge_id}', tradingChallengeId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (board != null) {
+      queryParams.addAll(_queryParams('', 'board', board));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get trading challenge results
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  ///
+  /// * [String] board:
+  ///   Leaderboard board selector. Defaults to TOP_PNL.
+  Future<TradingChallengeResultsResponseEnvelope?> getTradingChallengeResults(String tradingChallengeId, { String? board, Future<void>? abortTrigger, }) async {
+    final response = await getTradingChallengeResultsWithHttpInfo(tradingChallengeId, board: board, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeResultsResponseEnvelope',) as TradingChallengeResultsResponseEnvelope;
     
     }
     return null;
@@ -5258,6 +5697,91 @@ class DefaultApi {
     return null;
   }
 
+  /// List trading challenges
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tenantId:
+  ///
+  /// * [TradingChallengeType] type:
+  ///
+  /// * [TradingChallengeStatus] status:
+  ///
+  /// * [DateTime] start:
+  ///
+  /// * [DateTime] end:
+  Future<Response> listTradingChallengesWithHttpInfo({ String? tenantId, TradingChallengeType? type, TradingChallengeStatus? status, DateTime? start, DateTime? end, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (tenantId != null) {
+      queryParams.addAll(_queryParams('', 'tenant_id', tenantId));
+    }
+    if (type != null) {
+      queryParams.addAll(_queryParams('', 'type', type));
+    }
+    if (status != null) {
+      queryParams.addAll(_queryParams('', 'status', status));
+    }
+    if (start != null) {
+      queryParams.addAll(_queryParams('', 'start', start));
+    }
+    if (end != null) {
+      queryParams.addAll(_queryParams('', 'end', end));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List trading challenges
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tenantId:
+  ///
+  /// * [TradingChallengeType] type:
+  ///
+  /// * [TradingChallengeStatus] status:
+  ///
+  /// * [DateTime] start:
+  ///
+  /// * [DateTime] end:
+  Future<TradingChallengeListResponseEnvelope?> listTradingChallenges({ String? tenantId, TradingChallengeType? type, TradingChallengeStatus? status, DateTime? start, DateTime? end, Future<void>? abortTrigger, }) async {
+    final response = await listTradingChallengesWithHttpInfo(tenantId: tenantId, type: type, status: status, start: start, end: end, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeListResponseEnvelope',) as TradingChallengeListResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Pay current accrued leverage interest for a specific user
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5368,6 +5892,59 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WithdrawalInitiationResponseEnvelope',) as WithdrawalInitiationResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Remove users from a trading challenge
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [RemoveTradingChallengeUsersRequest] removeTradingChallengeUsersRequest (required):
+  Future<Response> removeTradingChallengeUsersWithHttpInfo(RemoveTradingChallengeUsersRequest removeTradingChallengeUsersRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/remove_users';
+
+    // ignore: prefer_final_locals
+    Object? postBody = removeTradingChallengeUsersRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Remove users from a trading challenge
+  ///
+  /// Parameters:
+  ///
+  /// * [RemoveTradingChallengeUsersRequest] removeTradingChallengeUsersRequest (required):
+  Future<TradingChallengeResponseEnvelope?> removeTradingChallengeUsers(RemoveTradingChallengeUsersRequest removeTradingChallengeUsersRequest, { Future<void>? abortTrigger, }) async {
+    final response = await removeTradingChallengeUsersWithHttpInfo(removeTradingChallengeUsersRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeResponseEnvelope',) as TradingChallengeResponseEnvelope;
     
     }
     return null;

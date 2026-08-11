@@ -42,6 +42,18 @@ void main() {
       // TODO
     });
 
+    // The realized profit or loss since account inception
+    // String realizedPl
+    test('to test the property `realizedPl`', () async {
+      // TODO
+    });
+
+    // The unrealized profit or loss for the account's current open positions
+    // String unrealizedPl
+    test('to test the property `unrealizedPl`', () async {
+      // TODO
+    });
+
 
   });
 

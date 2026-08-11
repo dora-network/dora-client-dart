@@ -31,11 +31,17 @@ void main() {
       // TODO
     });
 
+    // String userName
+    test('to test the property `userName`', () async {
+      // TODO
+    });
+
     // CountryCode countryOfDomicile
     test('to test the property `countryOfDomicile`', () async {
       // TODO
     });
 
+    // Optional: the user's native asset ID. Must be a CURRENCY asset; defaults to USD. The USDC asset is never allowed for integrator-created users.
     // String nativeAssetId
     test('to test the property `nativeAssetId`', () async {
       // TODO

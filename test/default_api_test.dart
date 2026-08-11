@@ -17,6 +17,13 @@ void main() {
   // final instance = DefaultApi();
 
   group('tests for DefaultApi', () {
+    // Add users to a trading challenge
+    //
+    //Future<TradingChallengeResponseEnvelope> addTradingChallengeUsers(AddTradingChallengeUsersRequest addTradingChallengeUsersRequest) async
+    test('test addTradingChallengeUsers', () async {
+      // TODO
+    });
+
     // Approve a pending withdrawal request
     //
     // Approve a pending withdrawal request, allowing the transfer of assets to the outside world to proceed. Note that this does not interact with any external systems; it simply updates the status of the withdrawal request in the ledger. Actual transfer of assets must be handled separately.
@@ -53,6 +60,13 @@ void main() {
     //
     //Future<ClaimLeverageAccruedInterestResponseEnvelope> claimLeverageGetAccruedInterest(ClaimLeverageAccruedInterestRequest claimLeverageAccruedInterestRequest) async
     test('test claimLeverageGetAccruedInterest', () async {
+      // TODO
+    });
+
+    // Claim challenge prize
+    //
+    //Future<ClaimTradingChallengeResponseEnvelope> claimTradingChallengePrize(String tradingChallengeId) async
+    test('test claimTradingChallengePrize', () async {
       // TODO
     });
 
@@ -95,6 +109,13 @@ void main() {
     //
     //Future<CreateOrderResponseEnvelope> createOrder(CreateOrderRequest createOrderRequest) async
     test('test createOrder', () async {
+      // TODO
+    });
+
+    // Create a trading challenge
+    //
+    //Future<TradingChallengeResponseEnvelope> createTradingChallenge(CreateTradingChallengeRequest createTradingChallengeRequest) async
+    test('test createTradingChallenge', () async {
       // TODO
     });
 
@@ -184,7 +205,25 @@ void main() {
       // TODO
     });
 
-    // Get list of user IDs with copy trading enabled
+    // Get the minimum USD cash reserve requirement for the given user
+    //
+    // Returns the user's available Global Account USD balance alongside their minimum cash reserve requirement and its breakdown. While available_usd is below required_usd the user may not open new leveraged positions, submit buy orders, transfer assets out of their Global Account or withdraw.
+    //
+    //Future<CashReserveResponseEnvelope> getCashReserveByUserID(String userId) async
+    test('test getCashReserveByUserID', () async {
+      // TODO
+    });
+
+    // Get the minimum USD cash reserve requirement for the logged in user
+    //
+    // Returns the user's available Global Account USD balance alongside their minimum cash reserve requirement and its breakdown. While available_usd is below required_usd the user may not open new leveraged positions, submit buy orders, transfer assets out of their Global Account or withdraw.
+    //
+    //Future<CashReserveResponseEnvelope> getCashReserveSelf() async
+    test('test getCashReserveSelf', () async {
+      // TODO
+    });
+
+    // Get list of users with copy trading enabled
     //
     //Future<GetCopyTradersResponse> getCopyTraders({ int page, int limit }) async
     test('test getCopyTraders', () async {
@@ -200,7 +239,7 @@ void main() {
 
     // Get per-chain instructions for depositing USDC into the Dora vault
     //
-    // Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry.
+    // Returns everything the caller needs to deposit USDC into the Dora vault with a single signature and a single transaction: an EIP-712 (EIP-2612 permit) typed-data payload to sign with eth_signTypedData_v4, and the descriptor of the vault deposit() call. The client splits the permit signature into v/r/s and ABI-encodes the deposit function with the returned args plus (v, r, s); no separate approve transaction is needed. Only a single chain is currently supported: the provided nonce belongs to it, and the chains array holds at most one entry. Restricted to DORA tenant users whose native asset is USDC.
     //
     //Future<DepositInstructionsResponseEnvelope> getDepositInstructions(String quantity, String ownerAddress, String nonce, { String clientReferenceId }) async
     test('test getDepositInstructions', () async {
@@ -390,6 +429,27 @@ void main() {
     //
     //Future<ListTradeResponseEnvelope> getTrades({ List<String> orderBookIds, List<String> userIds, DateTime start, DateTime end, int page, int limit }) async
     test('test getTrades', () async {
+      // TODO
+    });
+
+    // Get trading challenge by ID
+    //
+    //Future<TradingChallengeResponseEnvelope> getTradingChallengeByID(String tradingChallengeId) async
+    test('test getTradingChallengeByID', () async {
+      // TODO
+    });
+
+    // Get trading challenge daily snapshots
+    //
+    //Future<TradingChallengeDailySnapshotsResponseEnvelope> getTradingChallengeDailySnapshots(String tradingChallengeId) async
+    test('test getTradingChallengeDailySnapshots', () async {
+      // TODO
+    });
+
+    // Get trading challenge results
+    //
+    //Future<TradingChallengeResultsResponseEnvelope> getTradingChallengeResults(String tradingChallengeId, { String board }) async
+    test('test getTradingChallengeResults', () async {
       // TODO
     });
 
@@ -636,6 +696,13 @@ void main() {
       // TODO
     });
 
+    // List trading challenges
+    //
+    //Future<TradingChallengeListResponseEnvelope> listTradingChallenges({ String tenantId, TradingChallengeType type, TradingChallengeStatus status, DateTime start, DateTime end }) async
+    test('test listTradingChallenges', () async {
+      // TODO
+    });
+
     // Pay current accrued leverage interest for a specific user
     //
     //Future<PayLeverageAccruedInterestResponseEnvelope> payLeverageGetAccruedInterest(PayLeverageAccruedInterestRequest payLeverageAccruedInterestRequest) async
@@ -649,6 +716,13 @@ void main() {
     //
     //Future<WithdrawalInitiationResponseEnvelope> rejectLedgerWithdrawRequest(String withdrawalId, WithdrawalRequestReason withdrawalRequestReason) async
     test('test rejectLedgerWithdrawRequest', () async {
+      // TODO
+    });
+
+    // Remove users from a trading challenge
+    //
+    //Future<TradingChallengeResponseEnvelope> removeTradingChallengeUsers(RemoveTradingChallengeUsersRequest removeTradingChallengeUsersRequest) async
+    test('test removeTradingChallengeUsers', () async {
       // TODO
     });
 

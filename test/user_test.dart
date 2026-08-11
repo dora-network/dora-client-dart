@@ -46,6 +46,11 @@ void main() {
       // TODO
     });
 
+    // String userName
+    test('to test the property `userName`', () async {
+      // TODO
+    });
+
     // CountryCode countryOfDomicile
     test('to test the property `countryOfDomicile`', () async {
       // TODO

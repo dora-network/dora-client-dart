@@ -138,6 +138,12 @@ void main() {
       // TODO
     });
 
+    // When the user completed KYC. Omitted/null if KYC has not been completed. Set via POST /v1/integrators/user/{user_id}/kyc.
+    // DateTime kycCompletedAt
+    test('to test the property `kycCompletedAt`', () async {
+      // TODO
+    });
+
 
   });
 

@@ -121,6 +121,7 @@ Method | HTTP request | Description
 [**transferAvailableBalances**](DefaultApi.md#transferavailablebalances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user's accounts (e.g. global to isolated position)
 [**updateUserConfig**](DefaultApi.md#updateuserconfig) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 [**updateUserConfigSelf**](DefaultApi.md#updateuserconfigself) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
+[**updateUserKYC**](DefaultApi.md#updateuserkyc) | **POST** /v1/integrators/user/{user_id}/kyc | Set or clear a user's KYC completion timestamp
 [**validateSubmitOrder**](DefaultApi.md#validatesubmitorder) | **POST** /v1/orders/validate | Validate submit order request data
 [**verifyUser**](DefaultApi.md#verifyuser) | **PUT** /v1/user/{user_id}/verify | Verify a user by ID
 
@@ -4701,7 +4702,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listOrders**
-> ListOrdersResponseEnvelope listOrders(userId, orderBookId, kind, status, side, from, to, page, limit)
+> ListOrdersResponseEnvelope listOrders(userId, orderBookId, kind, status, side, from, to, page, limit, clientOrderId)
 
 List all orders
 
@@ -4729,9 +4730,10 @@ final from = 2013-10-20T19:20:30+01:00; // DateTime |
 final to = 2013-10-20T19:20:30+01:00; // DateTime | 
 final page = 56; // int | 
 final limit = 56; // int | 
+final clientOrderId = clientOrderId_example; // String | Filter by client order ID prefix (max 256 characters)
 
 try {
-    final result = api_instance.listOrders(userId, orderBookId, kind, status, side, from, to, page, limit);
+    final result = api_instance.listOrders(userId, orderBookId, kind, status, side, from, to, page, limit, clientOrderId);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->listOrders: $e\n');
@@ -4751,6 +4753,7 @@ Name | Type | Description  | Notes
  **to** | **DateTime**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **limit** | **int**|  | [optional] [default to 100]
+ **clientOrderId** | **String**| Filter by client order ID prefix (max 256 characters) | [optional] 
 
 ### Return type
 
@@ -5749,6 +5752,59 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserUpdatedResponseEnvelope**](UserUpdatedResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateUserKYC**
+> UpdateUserKYCResponseEnvelope updateUserKYC(userId, updateUserKYCRequest)
+
+Set or clear a user's KYC completion timestamp
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final updateUserKYCRequest = UpdateUserKYCRequest(); // UpdateUserKYCRequest | 
+
+try {
+    final result = api_instance.updateUserKYC(userId, updateUserKYCRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->updateUserKYC: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+ **updateUserKYCRequest** | [**UpdateUserKYCRequest**](UpdateUserKYCRequest.md)|  | 
+
+### Return type
+
+[**UpdateUserKYCResponseEnvelope**](UpdateUserKYCResponseEnvelope.md)
 
 ### Authorization
 

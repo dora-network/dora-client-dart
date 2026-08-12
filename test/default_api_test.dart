@@ -684,7 +684,7 @@ void main() {
 
     // List all orders
     //
-    //Future<ListOrdersResponseEnvelope> listOrders({ String userId, List<String> orderBookId, List<OrderKind> kind, List<OrderStatus> status, Side side, DateTime from, DateTime to, int page, int limit }) async
+    //Future<ListOrdersResponseEnvelope> listOrders({ String userId, List<String> orderBookId, List<OrderKind> kind, List<OrderStatus> status, Side side, DateTime from, DateTime to, int page, int limit, String clientOrderId }) async
     test('test listOrders', () async {
       // TODO
     });
@@ -830,6 +830,13 @@ void main() {
     //
     //Future<UserUpdatedResponseEnvelope> updateUserConfigSelf(UpdateUserConfigRequest updateUserConfigRequest) async
     test('test updateUserConfigSelf', () async {
+      // TODO
+    });
+
+    // Set or clear a user's KYC completion timestamp
+    //
+    //Future<UpdateUserKYCResponseEnvelope> updateUserKYC(String userId, UpdateUserKYCRequest updateUserKYCRequest) async
+    test('test updateUserKYC', () async {
       // TODO
     });
 

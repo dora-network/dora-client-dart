@@ -225,6 +225,9 @@ doc/UpdateFieldBoolean.md
 doc/UpdateFieldString.md
 doc/UpdateRolesString.md
 doc/UpdateUserConfigRequest.md
+doc/UpdateUserKYCRequest.md
+doc/UpdateUserKYCResponse.md
+doc/UpdateUserKYCResponseEnvelope.md
 doc/User.md
 doc/UserBalanceResponseEnvelope.md
 doc/UserConfig.md
@@ -486,6 +489,9 @@ lib/model/update_field_boolean.dart
 lib/model/update_field_string.dart
 lib/model/update_roles_string.dart
 lib/model/update_user_config_request.dart
+lib/model/update_user_kyc_request.dart
+lib/model/update_user_kyc_response.dart
+lib/model/update_user_kyc_response_envelope.dart
 lib/model/user.dart
 lib/model/user_balance_response_envelope.dart
 lib/model/user_config.dart
@@ -738,6 +744,9 @@ test/update_field_boolean_test.dart
 test/update_field_string_test.dart
 test/update_roles_string_test.dart
 test/update_user_config_request_test.dart
+test/update_user_kyc_request_test.dart
+test/update_user_kyc_response_envelope_test.dart
+test/update_user_kyc_response_test.dart
 test/user_balance_response_envelope_test.dart
 test/user_config_response_envelope_test.dart
 test/user_config_test.dart

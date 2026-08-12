@@ -5561,7 +5561,10 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<Response> listOrdersWithHttpInfo({ String? userId, List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, Future<void>? abortTrigger, }) async {
+  ///
+  /// * [String] clientOrderId:
+  ///   Filter by client order ID prefix (max 256 characters)
+  Future<Response> listOrdersWithHttpInfo({ String? userId, List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, String? clientOrderId, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/orders';
 
@@ -5598,6 +5601,9 @@ class DefaultApi {
     }
     if (limit != null) {
       queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (clientOrderId != null) {
+      queryParams.addAll(_queryParams('', 'client_order_id', clientOrderId));
     }
 
     const contentTypes = <String>[];
@@ -5637,8 +5643,11 @@ class DefaultApi {
   /// * [int] page:
   ///
   /// * [int] limit:
-  Future<ListOrdersResponseEnvelope?> listOrders({ String? userId, List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, Future<void>? abortTrigger, }) async {
-    final response = await listOrdersWithHttpInfo(userId: userId, orderBookId: orderBookId, kind: kind, status: status, side: side, from: from, to: to, page: page, limit: limit, abortTrigger: abortTrigger,);
+  ///
+  /// * [String] clientOrderId:
+  ///   Filter by client order ID prefix (max 256 characters)
+  Future<ListOrdersResponseEnvelope?> listOrders({ String? userId, List<String>? orderBookId, List<OrderKind>? kind, List<OrderStatus>? status, Side? side, DateTime? from, DateTime? to, int? page, int? limit, String? clientOrderId, Future<void>? abortTrigger, }) async {
+    final response = await listOrdersWithHttpInfo(userId: userId, orderBookId: orderBookId, kind: kind, status: status, side: side, from: from, to: to, page: page, limit: limit, clientOrderId: clientOrderId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -6813,6 +6822,64 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserUpdatedResponseEnvelope',) as UserUpdatedResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Set or clear a user's KYC completion timestamp
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [UpdateUserKYCRequest] updateUserKYCRequest (required):
+  Future<Response> updateUserKYCWithHttpInfo(String userId, UpdateUserKYCRequest updateUserKYCRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/integrators/user/{user_id}/kyc'
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = updateUserKYCRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Set or clear a user's KYC completion timestamp
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [UpdateUserKYCRequest] updateUserKYCRequest (required):
+  Future<UpdateUserKYCResponseEnvelope?> updateUserKYC(String userId, UpdateUserKYCRequest updateUserKYCRequest, { Future<void>? abortTrigger, }) async {
+    final response = await updateUserKYCWithHttpInfo(userId, updateUserKYCRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UpdateUserKYCResponseEnvelope',) as UpdateUserKYCResponseEnvelope;
     
     }
     return null;

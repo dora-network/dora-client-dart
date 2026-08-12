@@ -627,6 +627,12 @@ class ApiClient {
           return UpdateRolesString.fromJson(value);
         case 'UpdateUserConfigRequest':
           return UpdateUserConfigRequest.fromJson(value);
+        case 'UpdateUserKYCRequest':
+          return UpdateUserKYCRequest.fromJson(value);
+        case 'UpdateUserKYCResponse':
+          return UpdateUserKYCResponse.fromJson(value);
+        case 'UpdateUserKYCResponseEnvelope':
+          return UpdateUserKYCResponseEnvelope.fromJson(value);
         case 'User':
           return User.fromJson(value);
         case 'UserBalanceResponseEnvelope':

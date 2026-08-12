@@ -37,6 +37,7 @@ class User {
     required this.allowDepositWithdrawalNotifications,
     required this.allowOrdersNotifications,
     required this.allowCopyTrading,
+    this.kycCompletedAt,
   });
 
   String id;
@@ -137,6 +138,15 @@ class User {
 
   bool allowCopyTrading;
 
+  /// When the user completed KYC. Omitted/null if KYC has not been completed. Set via POST /v1/integrators/user/{user_id}/kyc.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  DateTime? kycCompletedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is User &&
     other.id == id &&
@@ -162,7 +172,8 @@ class User {
     other.allowLiquidationsNotifications == allowLiquidationsNotifications &&
     other.allowDepositWithdrawalNotifications == allowDepositWithdrawalNotifications &&
     other.allowOrdersNotifications == allowOrdersNotifications &&
-    other.allowCopyTrading == allowCopyTrading;
+    other.allowCopyTrading == allowCopyTrading &&
+    other.kycCompletedAt == kycCompletedAt;
 
   @override
   int get hashCode =>
@@ -190,10 +201,11 @@ class User {
     (allowLiquidationsNotifications.hashCode) +
     (allowDepositWithdrawalNotifications.hashCode) +
     (allowOrdersNotifications.hashCode) +
-    (allowCopyTrading.hashCode);
+    (allowCopyTrading.hashCode) +
+    (kycCompletedAt == null ? 0 : kycCompletedAt!.hashCode);
 
   @override
-  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, firstName=$firstName, lastName=$lastName, userName=$userName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications, allowCopyTrading=$allowCopyTrading]';
+  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, firstName=$firstName, lastName=$lastName, userName=$userName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications, allowCopyTrading=$allowCopyTrading, kycCompletedAt=$kycCompletedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -253,6 +265,11 @@ class User {
       json[r'allow_deposit_withdrawal_notifications'] = this.allowDepositWithdrawalNotifications;
       json[r'allow_orders_notifications'] = this.allowOrdersNotifications;
       json[r'allow_copy_trading'] = this.allowCopyTrading;
+    if (this.kycCompletedAt != null) {
+      json[r'kyc_completed_at'] = this.kycCompletedAt!.toUtc().toIso8601String();
+    } else {
+      json[r'kyc_completed_at'] = null;
+    }
     return json;
   }
 
@@ -327,6 +344,7 @@ class User {
         allowDepositWithdrawalNotifications: mapValueOfType<bool>(json, r'allow_deposit_withdrawal_notifications')!,
         allowOrdersNotifications: mapValueOfType<bool>(json, r'allow_orders_notifications')!,
         allowCopyTrading: mapValueOfType<bool>(json, r'allow_copy_trading')!,
+        kycCompletedAt: mapDateTime(json, r'kyc_completed_at', r''),
       );
     }
     return null;

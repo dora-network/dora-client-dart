@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **status** | **String** |  | [optional] 
 **crown** | **String** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
+**deactivationStatus** | **String** |  | [optional] 
 **currentDayDailyVolume** | **String** |  | [optional] 
 **currentDayDailyPnl** | **String** |  | [optional] 
 **currentDayTradingDate** | [**DateTime**](DateTime.md) |  | [optional] 

@@ -36,6 +36,16 @@ void main() {
       // TODO
     });
 
+    // BondRunStatus bondRunStatus
+    test('to test the property `bondRunStatus`', () async {
+      // TODO
+    });
+
+    // CreditRating creditRating
+    test('to test the property `creditRating`', () async {
+      // TODO
+    });
+
     // DateTime couponStartAt
     test('to test the property `couponStartAt`', () async {
       // TODO

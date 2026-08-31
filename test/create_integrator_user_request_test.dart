@@ -67,6 +67,12 @@ void main() {
       // TODO
     });
 
+    // Optional: sign the new user up for this trading challenge. This creates a PENDING registration request that an admin, the tenant's integrator or one of the challenge's managers must approve before the user is actually enrolled. The challenge must belong to the new user's tenant and still be open for entries, otherwise the whole sign-up fails.
+    // String challengeId
+    test('to test the property `challengeId`', () async {
+      // TODO
+    });
+
 
   });
 

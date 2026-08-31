@@ -47,6 +47,11 @@ class TransactionKind {
   static const DE_COLLATERALIZE = TransactionKind._(r'DE-COLLATERALIZE');
   static const COUPON_PAYMENT = TransactionKind._(r'COUPON_PAYMENT');
   static const INTERNAL_TRANSFER = TransactionKind._(r'INTERNAL_TRANSFER');
+  static const ISOLATE_AVAILABLE = TransactionKind._(r'ISOLATE_AVAILABLE');
+  static const BORROW = TransactionKind._(r'BORROW');
+  static const TRADING_CHALLENGE_DEPOSIT = TransactionKind._(r'TRADING_CHALLENGE_DEPOSIT');
+  static const TRADING_CHALLENGE_WITHDRAW = TransactionKind._(r'TRADING_CHALLENGE_WITHDRAW');
+  static const TRADING_FEE = TransactionKind._(r'TRADING_FEE');
 
   /// List of all possible values in this [enum][TransactionKind].
   static const values = <TransactionKind>[
@@ -74,6 +79,11 @@ class TransactionKind {
     DE_COLLATERALIZE,
     COUPON_PAYMENT,
     INTERNAL_TRANSFER,
+    ISOLATE_AVAILABLE,
+    BORROW,
+    TRADING_CHALLENGE_DEPOSIT,
+    TRADING_CHALLENGE_WITHDRAW,
+    TRADING_FEE,
   ];
 
   static TransactionKind? fromJson(dynamic value) => TransactionKindTypeTransformer().decode(value);
@@ -136,6 +146,11 @@ class TransactionKindTypeTransformer {
         case r'DE-COLLATERALIZE': return TransactionKind.DE_COLLATERALIZE;
         case r'COUPON_PAYMENT': return TransactionKind.COUPON_PAYMENT;
         case r'INTERNAL_TRANSFER': return TransactionKind.INTERNAL_TRANSFER;
+        case r'ISOLATE_AVAILABLE': return TransactionKind.ISOLATE_AVAILABLE;
+        case r'BORROW': return TransactionKind.BORROW;
+        case r'TRADING_CHALLENGE_DEPOSIT': return TransactionKind.TRADING_CHALLENGE_DEPOSIT;
+        case r'TRADING_CHALLENGE_WITHDRAW': return TransactionKind.TRADING_CHALLENGE_WITHDRAW;
+        case r'TRADING_FEE': return TransactionKind.TRADING_FEE;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -31,6 +31,12 @@ void main() {
       // TODO
     });
 
+    // Cumulative realized PnL across the user's full trading lifetime.
+    // String realizedPnl
+    test('to test the property `realizedPnl`', () async {
+      // TODO
+    });
+
     // int totalTrades
     test('to test the property `totalTrades`', () async {
       // TODO
@@ -48,6 +54,36 @@ void main() {
 
     // String winRate
     test('to test the property `winRate`', () async {
+      // TODO
+    });
+
+    // Executed trading volume for the current UTC day.
+    // String dailyTradingVolume
+    test('to test the property `dailyTradingVolume`', () async {
+      // TODO
+    });
+
+    // Cumulative executed trading volume across all UTC trading days.
+    // String totalTradingVolume
+    test('to test the property `totalTradingVolume`', () async {
+      // TODO
+    });
+
+    // Number of distinct UTC days on which the user has at least one executed fill.
+    // int activeTradingDays
+    test('to test the property `activeTradingDays`', () async {
+      // TODO
+    });
+
+    // True once the user has traded on at least 5 distinct UTC days.
+    // bool activated
+    test('to test the property `activated`', () async {
+      // TODO
+    });
+
+    // Whether the user is currently considered KYC/verification approved.
+    // bool kycApproved
+    test('to test the property `kycApproved`', () async {
       // TODO
     });
 

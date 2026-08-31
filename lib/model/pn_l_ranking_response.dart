@@ -16,10 +16,16 @@ class PnLRankingResponse {
     required this.userId,
     required this.firstName,
     required this.totalPnl,
+    required this.realizedPnl,
     required this.totalTrades,
     required this.winningTrades,
     required this.losingTrades,
     required this.winRate,
+    required this.dailyTradingVolume,
+    required this.totalTradingVolume,
+    required this.activeTradingDays,
+    required this.activated,
+    required this.kycApproved,
   });
 
   String userId;
@@ -27,6 +33,9 @@ class PnLRankingResponse {
   String firstName;
 
   String totalPnl;
+
+  /// Cumulative realized PnL across the user's full trading lifetime.
+  String realizedPnl;
 
   int totalTrades;
 
@@ -36,15 +45,36 @@ class PnLRankingResponse {
 
   String winRate;
 
+  /// Executed trading volume for the current UTC day.
+  String dailyTradingVolume;
+
+  /// Cumulative executed trading volume across all UTC trading days.
+  String totalTradingVolume;
+
+  /// Number of distinct UTC days on which the user has at least one executed fill.
+  int activeTradingDays;
+
+  /// True once the user has traded on at least 5 distinct UTC days.
+  bool activated;
+
+  /// Whether the user is currently considered KYC/verification approved.
+  bool kycApproved;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is PnLRankingResponse &&
     other.userId == userId &&
     other.firstName == firstName &&
     other.totalPnl == totalPnl &&
+    other.realizedPnl == realizedPnl &&
     other.totalTrades == totalTrades &&
     other.winningTrades == winningTrades &&
     other.losingTrades == losingTrades &&
-    other.winRate == winRate;
+    other.winRate == winRate &&
+    other.dailyTradingVolume == dailyTradingVolume &&
+    other.totalTradingVolume == totalTradingVolume &&
+    other.activeTradingDays == activeTradingDays &&
+    other.activated == activated &&
+    other.kycApproved == kycApproved;
 
   @override
   int get hashCode =>
@@ -52,23 +82,35 @@ class PnLRankingResponse {
     (userId.hashCode) +
     (firstName.hashCode) +
     (totalPnl.hashCode) +
+    (realizedPnl.hashCode) +
     (totalTrades.hashCode) +
     (winningTrades.hashCode) +
     (losingTrades.hashCode) +
-    (winRate.hashCode);
+    (winRate.hashCode) +
+    (dailyTradingVolume.hashCode) +
+    (totalTradingVolume.hashCode) +
+    (activeTradingDays.hashCode) +
+    (activated.hashCode) +
+    (kycApproved.hashCode);
 
   @override
-  String toString() => 'PnLRankingResponse[userId=$userId, firstName=$firstName, totalPnl=$totalPnl, totalTrades=$totalTrades, winningTrades=$winningTrades, losingTrades=$losingTrades, winRate=$winRate]';
+  String toString() => 'PnLRankingResponse[userId=$userId, firstName=$firstName, totalPnl=$totalPnl, realizedPnl=$realizedPnl, totalTrades=$totalTrades, winningTrades=$winningTrades, losingTrades=$losingTrades, winRate=$winRate, dailyTradingVolume=$dailyTradingVolume, totalTradingVolume=$totalTradingVolume, activeTradingDays=$activeTradingDays, activated=$activated, kycApproved=$kycApproved]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'user_id'] = this.userId;
       json[r'first_name'] = this.firstName;
       json[r'total_pnl'] = this.totalPnl;
+      json[r'realized_pnl'] = this.realizedPnl;
       json[r'total_trades'] = this.totalTrades;
       json[r'winning_trades'] = this.winningTrades;
       json[r'losing_trades'] = this.losingTrades;
       json[r'win_rate'] = this.winRate;
+      json[r'daily_trading_volume'] = this.dailyTradingVolume;
+      json[r'total_trading_volume'] = this.totalTradingVolume;
+      json[r'active_trading_days'] = this.activeTradingDays;
+      json[r'activated'] = this.activated;
+      json[r'kyc_approved'] = this.kycApproved;
     return json;
   }
 
@@ -89,6 +131,8 @@ class PnLRankingResponse {
         assert(json[r'first_name'] != null, 'Required key "PnLRankingResponse[first_name]" has a null value in JSON.');
         assert(json.containsKey(r'total_pnl'), 'Required key "PnLRankingResponse[total_pnl]" is missing from JSON.');
         assert(json[r'total_pnl'] != null, 'Required key "PnLRankingResponse[total_pnl]" has a null value in JSON.');
+        assert(json.containsKey(r'realized_pnl'), 'Required key "PnLRankingResponse[realized_pnl]" is missing from JSON.');
+        assert(json[r'realized_pnl'] != null, 'Required key "PnLRankingResponse[realized_pnl]" has a null value in JSON.');
         assert(json.containsKey(r'total_trades'), 'Required key "PnLRankingResponse[total_trades]" is missing from JSON.');
         assert(json[r'total_trades'] != null, 'Required key "PnLRankingResponse[total_trades]" has a null value in JSON.');
         assert(json.containsKey(r'winning_trades'), 'Required key "PnLRankingResponse[winning_trades]" is missing from JSON.');
@@ -97,6 +141,16 @@ class PnLRankingResponse {
         assert(json[r'losing_trades'] != null, 'Required key "PnLRankingResponse[losing_trades]" has a null value in JSON.');
         assert(json.containsKey(r'win_rate'), 'Required key "PnLRankingResponse[win_rate]" is missing from JSON.');
         assert(json[r'win_rate'] != null, 'Required key "PnLRankingResponse[win_rate]" has a null value in JSON.');
+        assert(json.containsKey(r'daily_trading_volume'), 'Required key "PnLRankingResponse[daily_trading_volume]" is missing from JSON.');
+        assert(json[r'daily_trading_volume'] != null, 'Required key "PnLRankingResponse[daily_trading_volume]" has a null value in JSON.');
+        assert(json.containsKey(r'total_trading_volume'), 'Required key "PnLRankingResponse[total_trading_volume]" is missing from JSON.');
+        assert(json[r'total_trading_volume'] != null, 'Required key "PnLRankingResponse[total_trading_volume]" has a null value in JSON.');
+        assert(json.containsKey(r'active_trading_days'), 'Required key "PnLRankingResponse[active_trading_days]" is missing from JSON.');
+        assert(json[r'active_trading_days'] != null, 'Required key "PnLRankingResponse[active_trading_days]" has a null value in JSON.');
+        assert(json.containsKey(r'activated'), 'Required key "PnLRankingResponse[activated]" is missing from JSON.');
+        assert(json[r'activated'] != null, 'Required key "PnLRankingResponse[activated]" has a null value in JSON.');
+        assert(json.containsKey(r'kyc_approved'), 'Required key "PnLRankingResponse[kyc_approved]" is missing from JSON.');
+        assert(json[r'kyc_approved'] != null, 'Required key "PnLRankingResponse[kyc_approved]" has a null value in JSON.');
         return true;
       }());
 
@@ -104,10 +158,16 @@ class PnLRankingResponse {
         userId: mapValueOfType<String>(json, r'user_id')!,
         firstName: mapValueOfType<String>(json, r'first_name')!,
         totalPnl: mapValueOfType<String>(json, r'total_pnl')!,
+        realizedPnl: mapValueOfType<String>(json, r'realized_pnl')!,
         totalTrades: mapValueOfType<int>(json, r'total_trades')!,
         winningTrades: mapValueOfType<int>(json, r'winning_trades')!,
         losingTrades: mapValueOfType<int>(json, r'losing_trades')!,
         winRate: mapValueOfType<String>(json, r'win_rate')!,
+        dailyTradingVolume: mapValueOfType<String>(json, r'daily_trading_volume')!,
+        totalTradingVolume: mapValueOfType<String>(json, r'total_trading_volume')!,
+        activeTradingDays: mapValueOfType<int>(json, r'active_trading_days')!,
+        activated: mapValueOfType<bool>(json, r'activated')!,
+        kycApproved: mapValueOfType<bool>(json, r'kyc_approved')!,
       );
     }
     return null;
@@ -158,10 +218,16 @@ class PnLRankingResponse {
     'user_id',
     'first_name',
     'total_pnl',
+    'realized_pnl',
     'total_trades',
     'winning_trades',
     'losing_trades',
     'win_rate',
+    'daily_trading_volume',
+    'total_trading_volume',
+    'active_trading_days',
+    'activated',
+    'kyc_approved',
   };
 }
 

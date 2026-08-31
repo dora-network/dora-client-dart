@@ -23,6 +23,7 @@ class CreateIntegratorUserRequest {
     this.provider,
     this.providerId,
     this.timezone,
+    this.challengeId,
   });
 
   ///
@@ -106,6 +107,15 @@ class CreateIntegratorUserRequest {
   ///
   String? timezone;
 
+  /// Optional: sign the new user up for this trading challenge. This creates a PENDING registration request that an admin, the tenant's integrator or one of the challenge's managers must approve before the user is actually enrolled. The challenge must belong to the new user's tenant and still be open for entries, otherwise the whole sign-up fails.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? challengeId;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateIntegratorUserRequest &&
     other.email == email &&
@@ -117,7 +127,8 @@ class CreateIntegratorUserRequest {
     other.photoUrl == photoUrl &&
     other.provider == provider &&
     other.providerId == providerId &&
-    other.timezone == timezone;
+    other.timezone == timezone &&
+    other.challengeId == challengeId;
 
   @override
   int get hashCode =>
@@ -131,10 +142,11 @@ class CreateIntegratorUserRequest {
     (photoUrl == null ? 0 : photoUrl!.hashCode) +
     (provider == null ? 0 : provider!.hashCode) +
     (providerId == null ? 0 : providerId!.hashCode) +
-    (timezone == null ? 0 : timezone!.hashCode);
+    (timezone == null ? 0 : timezone!.hashCode) +
+    (challengeId == null ? 0 : challengeId!.hashCode);
 
   @override
-  String toString() => 'CreateIntegratorUserRequest[email=$email, firstName=$firstName, lastName=$lastName, userName=$userName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, timezone=$timezone]';
+  String toString() => 'CreateIntegratorUserRequest[email=$email, firstName=$firstName, lastName=$lastName, userName=$userName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, timezone=$timezone, challengeId=$challengeId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -188,6 +200,11 @@ class CreateIntegratorUserRequest {
     } else {
       json[r'timezone'] = null;
     }
+    if (this.challengeId != null) {
+      json[r'challenge_id'] = this.challengeId;
+    } else {
+      json[r'challenge_id'] = null;
+    }
     return json;
   }
 
@@ -216,6 +233,7 @@ class CreateIntegratorUserRequest {
         provider: mapValueOfType<String>(json, r'provider'),
         providerId: mapValueOfType<String>(json, r'provider_id'),
         timezone: mapValueOfType<String>(json, r'timezone'),
+        challengeId: mapValueOfType<String>(json, r'challenge_id'),
       );
     }
     return null;

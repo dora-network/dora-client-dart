@@ -27,6 +27,7 @@ class TradingChallengeResult {
     this.status,
     this.crown,
     this.createdAt,
+    this.deactivationStatus,
     this.currentDayDailyVolume,
     this.currentDayDailyPnl,
     this.currentDayTradingDate,
@@ -133,6 +134,8 @@ class TradingChallengeResult {
   ///
   DateTime? createdAt;
 
+  TradingChallengeResultDeactivationStatusEnum? deactivationStatus;
+
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -181,6 +184,7 @@ class TradingChallengeResult {
     other.status == status &&
     other.crown == crown &&
     other.createdAt == createdAt &&
+    other.deactivationStatus == deactivationStatus &&
     other.currentDayDailyVolume == currentDayDailyVolume &&
     other.currentDayDailyPnl == currentDayDailyPnl &&
     other.currentDayTradingDate == currentDayTradingDate &&
@@ -203,13 +207,14 @@ class TradingChallengeResult {
     (status == null ? 0 : status!.hashCode) +
     (crown == null ? 0 : crown!.hashCode) +
     (createdAt == null ? 0 : createdAt!.hashCode) +
+    (deactivationStatus == null ? 0 : deactivationStatus!.hashCode) +
     (currentDayDailyVolume == null ? 0 : currentDayDailyVolume!.hashCode) +
     (currentDayDailyPnl == null ? 0 : currentDayDailyPnl!.hashCode) +
     (currentDayTradingDate == null ? 0 : currentDayTradingDate!.hashCode) +
     (cumTrades == null ? 0 : cumTrades!.hashCode);
 
   @override
-  String toString() => 'TradingChallengeResult[tradingChallengeId=$tradingChallengeId, userId=$userId, userName=$userName, cumVolume=$cumVolume, cumPnl=$cumPnl, pnlPct=$pnlPct, calendarDaysSinceStart=$calendarDaysSinceStart, activeDays=$activeDays, compliantDays=$compliantDays, crownEligible=$crownEligible, claimEligible=$claimEligible, status=$status, crown=$crown, createdAt=$createdAt, currentDayDailyVolume=$currentDayDailyVolume, currentDayDailyPnl=$currentDayDailyPnl, currentDayTradingDate=$currentDayTradingDate, cumTrades=$cumTrades]';
+  String toString() => 'TradingChallengeResult[tradingChallengeId=$tradingChallengeId, userId=$userId, userName=$userName, cumVolume=$cumVolume, cumPnl=$cumPnl, pnlPct=$pnlPct, calendarDaysSinceStart=$calendarDaysSinceStart, activeDays=$activeDays, compliantDays=$compliantDays, crownEligible=$crownEligible, claimEligible=$claimEligible, status=$status, crown=$crown, createdAt=$createdAt, deactivationStatus=$deactivationStatus, currentDayDailyVolume=$currentDayDailyVolume, currentDayDailyPnl=$currentDayDailyPnl, currentDayTradingDate=$currentDayTradingDate, cumTrades=$cumTrades]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -283,6 +288,11 @@ class TradingChallengeResult {
     } else {
       json[r'created_at'] = null;
     }
+    if (this.deactivationStatus != null) {
+      json[r'deactivation_status'] = this.deactivationStatus;
+    } else {
+      json[r'deactivation_status'] = null;
+    }
     if (this.currentDayDailyVolume != null) {
       json[r'current_day_daily_volume'] = this.currentDayDailyVolume;
     } else {
@@ -335,6 +345,7 @@ class TradingChallengeResult {
         status: TradingChallengeResultStatusEnum.fromJson(json[r'status']),
         crown: TradingChallengeResultCrownEnum.fromJson(json[r'crown']),
         createdAt: mapDateTime(json, r'created_at', r''),
+        deactivationStatus: TradingChallengeResultDeactivationStatusEnum.fromJson(json[r'deactivation_status']),
         currentDayDailyVolume: mapValueOfType<String>(json, r'current_day_daily_volume'),
         currentDayDailyPnl: mapValueOfType<String>(json, r'current_day_daily_pnl'),
         currentDayTradingDate: mapDateTime(json, r'current_day_trading_date', r''),
@@ -408,6 +419,7 @@ class TradingChallengeResultStatusEnum {
   static const BUSTED = TradingChallengeResultStatusEnum._(r'BUSTED');
   static const COMPLETED = TradingChallengeResultStatusEnum._(r'COMPLETED');
   static const PRIZE_CLAIMED = TradingChallengeResultStatusEnum._(r'PRIZE_CLAIMED');
+  static const TERMINATED = TradingChallengeResultStatusEnum._(r'TERMINATED');
 
   /// List of all possible values in this [enum][TradingChallengeResultStatusEnum].
   static const values = <TradingChallengeResultStatusEnum>[
@@ -417,6 +429,7 @@ class TradingChallengeResultStatusEnum {
     BUSTED,
     COMPLETED,
     PRIZE_CLAIMED,
+    TERMINATED,
   ];
 
   static TradingChallengeResultStatusEnum? fromJson(dynamic value) => TradingChallengeResultStatusEnumTypeTransformer().decode(value);
@@ -461,6 +474,7 @@ class TradingChallengeResultStatusEnumTypeTransformer {
         case r'BUSTED': return TradingChallengeResultStatusEnum.BUSTED;
         case r'COMPLETED': return TradingChallengeResultStatusEnum.COMPLETED;
         case r'PRIZE_CLAIMED': return TradingChallengeResultStatusEnum.PRIZE_CLAIMED;
+        case r'TERMINATED': return TradingChallengeResultStatusEnum.TERMINATED;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -498,6 +512,7 @@ class TradingChallengeResultCrownEnum {
   static const IRON_GOLD = TradingChallengeResultCrownEnum._(r'IRON_GOLD');
   static const IRON_SILVER = TradingChallengeResultCrownEnum._(r'IRON_SILVER');
   static const IRON_BRONZE = TradingChallengeResultCrownEnum._(r'IRON_BRONZE');
+  static const CASH_CROWN = TradingChallengeResultCrownEnum._(r'CASH_CROWN');
 
   /// List of all possible values in this [enum][TradingChallengeResultCrownEnum].
   static const values = <TradingChallengeResultCrownEnum>[
@@ -511,6 +526,7 @@ class TradingChallengeResultCrownEnum {
     IRON_GOLD,
     IRON_SILVER,
     IRON_BRONZE,
+    CASH_CROWN,
   ];
 
   static TradingChallengeResultCrownEnum? fromJson(dynamic value) => TradingChallengeResultCrownEnumTypeTransformer().decode(value);
@@ -559,6 +575,7 @@ class TradingChallengeResultCrownEnumTypeTransformer {
         case r'IRON_GOLD': return TradingChallengeResultCrownEnum.IRON_GOLD;
         case r'IRON_SILVER': return TradingChallengeResultCrownEnum.IRON_SILVER;
         case r'IRON_BRONZE': return TradingChallengeResultCrownEnum.IRON_BRONZE;
+        case r'CASH_CROWN': return TradingChallengeResultCrownEnum.CASH_CROWN;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -570,6 +587,80 @@ class TradingChallengeResultCrownEnumTypeTransformer {
 
   /// Singleton [TradingChallengeResultCrownEnumTypeTransformer] instance.
   static TradingChallengeResultCrownEnumTypeTransformer? _instance;
+}
+
+
+
+class TradingChallengeResultDeactivationStatusEnum {
+  /// Instantiate a new enum with the provided [value].
+  const TradingChallengeResultDeactivationStatusEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value;
+
+  String toJson() => value;
+
+  static const ACTIVE = TradingChallengeResultDeactivationStatusEnum._(r'ACTIVE');
+  static const DEACTIVATED = TradingChallengeResultDeactivationStatusEnum._(r'DEACTIVATED');
+
+  /// List of all possible values in this [enum][TradingChallengeResultDeactivationStatusEnum].
+  static const values = <TradingChallengeResultDeactivationStatusEnum>[
+    ACTIVE,
+    DEACTIVATED,
+  ];
+
+  static TradingChallengeResultDeactivationStatusEnum? fromJson(dynamic value) => TradingChallengeResultDeactivationStatusEnumTypeTransformer().decode(value);
+
+  static List<TradingChallengeResultDeactivationStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <TradingChallengeResultDeactivationStatusEnum>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = TradingChallengeResultDeactivationStatusEnum.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+}
+
+/// Transformation class that can [encode] an instance of [TradingChallengeResultDeactivationStatusEnum] to String,
+/// and [decode] dynamic data back to [TradingChallengeResultDeactivationStatusEnum].
+class TradingChallengeResultDeactivationStatusEnumTypeTransformer {
+  factory TradingChallengeResultDeactivationStatusEnumTypeTransformer() => _instance ??= const TradingChallengeResultDeactivationStatusEnumTypeTransformer._();
+
+  const TradingChallengeResultDeactivationStatusEnumTypeTransformer._();
+
+  String encode(TradingChallengeResultDeactivationStatusEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a TradingChallengeResultDeactivationStatusEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  TradingChallengeResultDeactivationStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data) {
+        case r'ACTIVE': return TradingChallengeResultDeactivationStatusEnum.ACTIVE;
+        case r'DEACTIVATED': return TradingChallengeResultDeactivationStatusEnum.DEACTIVATED;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [TradingChallengeResultDeactivationStatusEnumTypeTransformer] instance.
+  static TradingChallengeResultDeactivationStatusEnumTypeTransformer? _instance;
 }
 
 

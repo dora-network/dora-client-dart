@@ -27,6 +27,7 @@ doc/BalanceTransfer.md
 doc/BalancesResponse.md
 doc/Bond.md
 doc/BondKind.md
+doc/BondRunStatus.md
 doc/CancelOrderResponseEnvelope.md
 doc/Candle.md
 doc/CandleResolution.md
@@ -58,6 +59,7 @@ doc/CreateOrUpdateUserResponse.md
 doc/CreateOrderRequest.md
 doc/CreateOrderResponseEnvelope.md
 doc/CreateTradingChallengeRequest.md
+doc/CreditRating.md
 doc/CurrentLeverageAccruedInterest.md
 doc/CurrentLeverageAccruedInterestResponseEnvelope.md
 doc/DefaultApi.md
@@ -167,6 +169,7 @@ doc/RepayUSDResponseEnvelope.md
 doc/RepayUSDResult.md
 doc/ResponseEnvelope.md
 doc/ResponseEnvelopeOfListAssets.md
+doc/ReviewTradingChallengeRegistrationRequest.md
 doc/RevokeAPIKeyData.md
 doc/RevokeAPIKeyResponseEnvelope.md
 doc/SettleLeverageAccruedInterest.md
@@ -190,6 +193,8 @@ doc/Supply.md
 doc/SupplyRequest.md
 doc/SupplyResponseEnvelope.md
 doc/TenantRestrictions.md
+doc/TerminateTradingChallengeResponse.md
+doc/TerminateTradingChallengeResponseEnvelope.md
 doc/Trade.md
 doc/TradeRequestError.md
 doc/TradeResponseEnvelope.md
@@ -197,6 +202,9 @@ doc/TradingChallenge.md
 doc/TradingChallengeDailySnapshot.md
 doc/TradingChallengeDailySnapshotsResponseEnvelope.md
 doc/TradingChallengeListResponseEnvelope.md
+doc/TradingChallengeRegistrationRequest.md
+doc/TradingChallengeRegistrationRequestListResponseEnvelope.md
+doc/TradingChallengeRegistrationRequestResponseEnvelope.md
 doc/TradingChallengeResponseEnvelope.md
 doc/TradingChallengeResult.md
 doc/TradingChallengeResultsResponseEnvelope.md
@@ -222,8 +230,12 @@ doc/UnitePositionRequest.md
 doc/UnitePositionResponseEnvelope.md
 doc/UnitedPosition.md
 doc/UpdateFieldBoolean.md
+doc/UpdateFieldDateTime.md
+doc/UpdateFieldDecimal.md
+doc/UpdateFieldInteger.md
 doc/UpdateFieldString.md
 doc/UpdateRolesString.md
+doc/UpdateTradingChallengeRequest.md
 doc/UpdateUserConfigRequest.md
 doc/UpdateUserKYCRequest.md
 doc/UpdateUserKYCResponse.md
@@ -236,6 +248,9 @@ doc/UserCouponPayment.md
 doc/UserCouponPaymentAssetSummary.md
 doc/UserCouponPaymentsResponseData.md
 doc/UserCreatedResponseEnvelope.md
+doc/UserDeactivation.md
+doc/UserDeactivationListResponseEnvelope.md
+doc/UserDeactivationResponseEnvelope.md
 doc/UserDeletedResponseEnvelope.md
 doc/UserEnvelope.md
 doc/UserExistsResponse.md
@@ -292,6 +307,7 @@ lib/model/balance_transfer.dart
 lib/model/balances_response.dart
 lib/model/bond.dart
 lib/model/bond_kind.dart
+lib/model/bond_run_status.dart
 lib/model/cancel_order_response_envelope.dart
 lib/model/candle.dart
 lib/model/candle_resolution.dart
@@ -323,6 +339,7 @@ lib/model/create_or_update_user_response.dart
 lib/model/create_order_request.dart
 lib/model/create_order_response_envelope.dart
 lib/model/create_trading_challenge_request.dart
+lib/model/credit_rating.dart
 lib/model/current_leverage_accrued_interest.dart
 lib/model/current_leverage_accrued_interest_response_envelope.dart
 lib/model/defund_user_request.dart
@@ -431,6 +448,7 @@ lib/model/repay_usd_response_envelope.dart
 lib/model/repay_usd_result.dart
 lib/model/response_envelope.dart
 lib/model/response_envelope_of_list_assets.dart
+lib/model/review_trading_challenge_registration_request.dart
 lib/model/revoke_api_key_data.dart
 lib/model/revoke_api_key_response_envelope.dart
 lib/model/settle_leverage_accrued_interest.dart
@@ -454,6 +472,8 @@ lib/model/supply.dart
 lib/model/supply_request.dart
 lib/model/supply_response_envelope.dart
 lib/model/tenant_restrictions.dart
+lib/model/terminate_trading_challenge_response.dart
+lib/model/terminate_trading_challenge_response_envelope.dart
 lib/model/trade.dart
 lib/model/trade_request_error.dart
 lib/model/trade_response_envelope.dart
@@ -461,6 +481,9 @@ lib/model/trading_challenge.dart
 lib/model/trading_challenge_daily_snapshot.dart
 lib/model/trading_challenge_daily_snapshots_response_envelope.dart
 lib/model/trading_challenge_list_response_envelope.dart
+lib/model/trading_challenge_registration_request.dart
+lib/model/trading_challenge_registration_request_list_response_envelope.dart
+lib/model/trading_challenge_registration_request_response_envelope.dart
 lib/model/trading_challenge_response_envelope.dart
 lib/model/trading_challenge_result.dart
 lib/model/trading_challenge_results_response_envelope.dart
@@ -486,8 +509,12 @@ lib/model/unite_position_request.dart
 lib/model/unite_position_response_envelope.dart
 lib/model/united_position.dart
 lib/model/update_field_boolean.dart
+lib/model/update_field_date_time.dart
+lib/model/update_field_decimal.dart
+lib/model/update_field_integer.dart
 lib/model/update_field_string.dart
 lib/model/update_roles_string.dart
+lib/model/update_trading_challenge_request.dart
 lib/model/update_user_config_request.dart
 lib/model/update_user_kyc_request.dart
 lib/model/update_user_kyc_response.dart
@@ -500,6 +527,9 @@ lib/model/user_coupon_payment.dart
 lib/model/user_coupon_payment_asset_summary.dart
 lib/model/user_coupon_payments_response_data.dart
 lib/model/user_created_response_envelope.dart
+lib/model/user_deactivation.dart
+lib/model/user_deactivation_list_response_envelope.dart
+lib/model/user_deactivation_response_envelope.dart
 lib/model/user_deleted_response_envelope.dart
 lib/model/user_envelope.dart
 lib/model/user_exists_response.dart
@@ -545,6 +575,7 @@ test/asset_ytm_test.dart
 test/balance_transfer_test.dart
 test/balances_response_test.dart
 test/bond_kind_test.dart
+test/bond_run_status_test.dart
 test/bond_test.dart
 test/cancel_order_response_envelope_test.dart
 test/candle_resolution_test.dart
@@ -577,6 +608,7 @@ test/create_or_update_user_response_test.dart
 test/create_order_request_test.dart
 test/create_order_response_envelope_test.dart
 test/create_trading_challenge_request_test.dart
+test/credit_rating_test.dart
 test/current_leverage_accrued_interest_response_envelope_test.dart
 test/current_leverage_accrued_interest_test.dart
 test/default_api_test.dart
@@ -686,6 +718,7 @@ test/repay_usd_response_envelope_test.dart
 test/repay_usd_result_test.dart
 test/response_envelope_of_list_assets_test.dart
 test/response_envelope_test.dart
+test/review_trading_challenge_registration_request_test.dart
 test/revoke_api_key_data_test.dart
 test/revoke_api_key_response_envelope_test.dart
 test/settle_leverage_accrued_interest_request_test.dart
@@ -709,12 +742,17 @@ test/supply_request_test.dart
 test/supply_response_envelope_test.dart
 test/supply_test.dart
 test/tenant_restrictions_test.dart
+test/terminate_trading_challenge_response_envelope_test.dart
+test/terminate_trading_challenge_response_test.dart
 test/trade_request_error_test.dart
 test/trade_response_envelope_test.dart
 test/trade_test.dart
 test/trading_challenge_daily_snapshot_test.dart
 test/trading_challenge_daily_snapshots_response_envelope_test.dart
 test/trading_challenge_list_response_envelope_test.dart
+test/trading_challenge_registration_request_list_response_envelope_test.dart
+test/trading_challenge_registration_request_response_envelope_test.dart
+test/trading_challenge_registration_request_test.dart
 test/trading_challenge_response_envelope_test.dart
 test/trading_challenge_result_test.dart
 test/trading_challenge_results_response_envelope_test.dart
@@ -741,8 +779,12 @@ test/unite_position_request_test.dart
 test/unite_position_response_envelope_test.dart
 test/united_position_test.dart
 test/update_field_boolean_test.dart
+test/update_field_date_time_test.dart
+test/update_field_decimal_test.dart
+test/update_field_integer_test.dart
 test/update_field_string_test.dart
 test/update_roles_string_test.dart
+test/update_trading_challenge_request_test.dart
 test/update_user_config_request_test.dart
 test/update_user_kyc_request_test.dart
 test/update_user_kyc_response_envelope_test.dart
@@ -754,6 +796,9 @@ test/user_coupon_payment_asset_summary_test.dart
 test/user_coupon_payment_test.dart
 test/user_coupon_payments_response_data_test.dart
 test/user_created_response_envelope_test.dart
+test/user_deactivation_list_response_envelope_test.dart
+test/user_deactivation_response_envelope_test.dart
+test/user_deactivation_test.dart
 test/user_deleted_response_envelope_test.dart
 test/user_envelope_test.dart
 test/user_exists_response_test.dart

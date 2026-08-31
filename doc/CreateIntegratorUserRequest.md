@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **provider** | **String** |  | [optional] 
 **providerId** | **String** |  | [optional] 
 **timezone** | **String** |  | [optional] 
+**challengeId** | **String** | Optional: sign the new user up for this trading challenge. This creates a PENDING registration request that an admin, the tenant's integrator or one of the challenge's managers must approve before the user is actually enrolled. The challenge must belong to the new user's tenant and still be open for entries, otherwise the whole sign-up fails. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

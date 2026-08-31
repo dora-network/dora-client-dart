@@ -81,6 +81,12 @@ void main() {
       // TODO
     });
 
+    // Competition IDs this user is explicitly allowed to manage when they have COMPETITION_MANAGER role. Empty means no competition-management access.
+    // List<String> managedCompetitionIds (default value: const [])
+    test('to test the property `managedCompetitionIds`', () async {
+      // TODO
+    });
+
     // User's timezone, e.g., 'America/New_York', or an offset.
     // String timezone
     test('to test the property `timezone`', () async {

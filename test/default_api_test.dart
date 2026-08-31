@@ -19,6 +19,8 @@ void main() {
   group('tests for DefaultApi', () {
     // Add users to a trading challenge
     //
+    // Add existing users to a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids. A user must have an empty ledger to join: deposits and withdrawals are barred from enrolment until the challenge is over, so that challenge credits are the only thing a participant holds and the teardown sweep cannot destroy funds of their own.
+    //
     //Future<TradingChallengeResponseEnvelope> addTradingChallengeUsers(AddTradingChallengeUsersRequest addTradingChallengeUsersRequest) async
     test('test addTradingChallengeUsers', () async {
       // TODO
@@ -30,6 +32,15 @@ void main() {
     //
     //Future<WithdrawalInitiationResponseEnvelope> approveLedgerWithdrawRequest(String withdrawalId, { WithdrawalRequestReason withdrawalRequestReason }) async
     test('test approveLedgerWithdrawRequest', () async {
+      // TODO
+    });
+
+    // Approve a trading challenge registration request
+    //
+    // Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only). Enrolment runs the same checks as add_users, so a challenge that filled up, now overlaps another of the user's challenges, or whose applicant no longer has an empty ledger is rejected with a 409 and the request stays open.
+    //
+    //Future<TradingChallengeRegistrationRequestResponseEnvelope> approveTradingChallengeRegistrationRequest(String requestId, { ReviewTradingChallengeRegistrationRequest reviewTradingChallengeRegistrationRequest }) async
+    test('test approveTradingChallengeRegistrationRequest', () async {
       // TODO
     });
 
@@ -64,6 +75,8 @@ void main() {
     });
 
     // Claim challenge prize
+    //
+    // Claim the prize of a challenge the caller is eligible for. A TOURNAMENT claim credits the prize matching the crown and reactivates the account. A CASH claim winds the account down, sweeps every remaining challenge credit and awards the CASH_CROWN: the account is left deactivated with a zero balance, and the reward is redeemed out of band. Both mark the participation PRIZE_CLAIMED.
     //
     //Future<ClaimTradingChallengeResponseEnvelope> claimTradingChallengePrize(String tradingChallengeId) async
     test('test claimTradingChallengePrize', () async {
@@ -113,6 +126,8 @@ void main() {
     });
 
     // Create a trading challenge
+    //
+    // Create a new trading challenge. Allowed for ADMIN and INTEGRATOR only.
     //
     //Future<TradingChallengeResponseEnvelope> createTradingChallenge(CreateTradingChallengeRequest createTradingChallengeRequest) async
     test('test createTradingChallenge', () async {
@@ -434,6 +449,8 @@ void main() {
 
     // Get trading challenge by ID
     //
+    // Fetch one trading challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
+    //
     //Future<TradingChallengeResponseEnvelope> getTradingChallengeByID(String tradingChallengeId) async
     test('test getTradingChallengeByID', () async {
       // TODO
@@ -441,12 +458,16 @@ void main() {
 
     // Get trading challenge daily snapshots
     //
+    // List participant daily snapshots for a challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
+    //
     //Future<TradingChallengeDailySnapshotsResponseEnvelope> getTradingChallengeDailySnapshots(String tradingChallengeId) async
     test('test getTradingChallengeDailySnapshots', () async {
       // TODO
     });
 
     // Get trading challenge results
+    //
+    // List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
     //
     //Future<TradingChallengeResultsResponseEnvelope> getTradingChallengeResults(String tradingChallengeId, { String board }) async
     test('test getTradingChallengeResults', () async {
@@ -492,6 +513,15 @@ void main() {
     //
     //Future<StreamUserCouponPaymentsResponse> getUserCouponPaymentsStream(String userId) async
     test('test getUserCouponPaymentsStream', () async {
+      // TODO
+    });
+
+    // Get the latest account deactivation request for a user
+    //
+    // Returns the user's latest deactivation request, i.e. their current deactivation status. Integrators may only request users belonging to their own tenant.
+    //
+    //Future<UserDeactivationResponseEnvelope> getUserDeactivation(String userId) async
+    test('test getUserDeactivation', () async {
       // TODO
     });
 
@@ -696,10 +726,30 @@ void main() {
       // TODO
     });
 
+    // List trading challenge registration requests
+    //
+    // The review queue. Admins see every tenant and may filter to one, an integrator is pinned to their own tenant, and a competition manager only sees the requests of the challenges assigned to them.
+    //
+    //Future<TradingChallengeRegistrationRequestListResponseEnvelope> listTradingChallengeRegistrationRequests({ String tradingChallengeId, String userId, String status, String tenantId, int limit, int offset }) async
+    test('test listTradingChallengeRegistrationRequests', () async {
+      // TODO
+    });
+
     // List trading challenges
+    //
+    // List trading challenges. COMPETITION_MANAGER callers only receive challenges present in their managed_competition_ids.
     //
     //Future<TradingChallengeListResponseEnvelope> listTradingChallenges({ String tenantId, TradingChallengeType type, TradingChallengeStatus status, DateTime start, DateTime end }) async
     test('test listTradingChallenges', () async {
+      // TODO
+    });
+
+    // Get the current deactivation status across all users
+    //
+    // Returns each user's latest deactivation request, i.e. their current status. Users with no deactivation history are absent. Ordered by request creation time, newest first. Integrators only see users of their own tenant, unless that tenant is global.
+    //
+    //Future<UserDeactivationListResponseEnvelope> listUserDeactivations({ String status, String tenantId, String tradingChallengeId, String userIds }) async
+    test('test listUserDeactivations', () async {
       // TODO
     });
 
@@ -719,7 +769,18 @@ void main() {
       // TODO
     });
 
+    // Reject a trading challenge registration request
+    //
+    // Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only).
+    //
+    //Future<TradingChallengeRegistrationRequestResponseEnvelope> rejectTradingChallengeRegistrationRequest(String requestId, { ReviewTradingChallengeRegistrationRequest reviewTradingChallengeRegistrationRequest }) async
+    test('test rejectTradingChallengeRegistrationRequest', () async {
+      // TODO
+    });
+
     // Remove users from a trading challenge
+    //
+    // Remove users from a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids.
     //
     //Future<TradingChallengeResponseEnvelope> removeTradingChallengeUsers(RemoveTradingChallengeUsersRequest removeTradingChallengeUsersRequest) async
     test('test removeTradingChallengeUsers', () async {
@@ -805,6 +866,24 @@ void main() {
       // TODO
     });
 
+    // Leave a trading challenge
+    //
+    // Convenience alias that terminates the caller's own participation; redirects to /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate. End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+    //
+    //Future<TerminateTradingChallengeResponseEnvelope> terminateOwnTradingChallengeParticipation(String tradingChallengeId) async
+    test('test terminateOwnTradingChallengeParticipation', () async {
+      // TODO
+    });
+
+    // Terminate a participation in a trading challenge
+    //
+    // End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+    //
+    //Future<TerminateTradingChallengeResponseEnvelope> terminateTradingChallengeParticipation(String tradingChallengeId, String userId) async
+    test('test terminateTradingChallengeParticipation', () async {
+      // TODO
+    });
+
     // Transfer available balance between a user's accounts
     //
     //Future<TransferAccountBalancesResponseEnvelope> transferAccountBalancesV2(TransferAccountBalancesRequest transferAccountBalancesRequest) async
@@ -816,6 +895,15 @@ void main() {
     //
     //Future<TransferBalancesResponseEnvelope> transferAvailableBalances(TransferBalancesRequest transferBalancesRequest) async
     test('test transferAvailableBalances', () async {
+      // TODO
+    });
+
+    // Update a trading challenge
+    //
+    // Partially update a trading challenge: a field that is absent from the body is left unchanged. Which fields may be updated depends on the challenge status. PENDING accepts every field. ACTIVE accepts only name, max_users, end and the three prize quantities, because participants are already funded and being measured. COMPLETED accepts none. A request that touches a field the current status does not allow is rejected as a whole with 409. ADMIN may update any challenge, INTEGRATOR only challenges of its own tenant, and COMPETITION_MANAGER only assigned challenge IDs.
+    //
+    //Future<TradingChallengeResponseEnvelope> updateTradingChallenge(String tradingChallengeId, UpdateTradingChallengeRequest updateTradingChallengeRequest) async
+    test('test updateTradingChallenge', () async {
       // TODO
     });
 

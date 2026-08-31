@@ -26,6 +26,7 @@ class User {
     this.provider,
     this.providerId,
     this.roles = const [],
+    this.managedCompetitionIds = const [],
     this.timezone,
     this.timezoneOffset,
     this.verifiedAt,
@@ -96,6 +97,9 @@ class User {
 
   List<UserRole> roles;
 
+  /// Competition IDs this user is explicitly allowed to manage when they have COMPETITION_MANAGER role. Empty means no competition-management access.
+  List<String> managedCompetitionIds;
+
   /// User's timezone, e.g., 'America/New_York', or an offset.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -162,6 +166,7 @@ class User {
     other.provider == provider &&
     other.providerId == providerId &&
     _deepEquality.equals(other.roles, roles) &&
+    _deepEquality.equals(other.managedCompetitionIds, managedCompetitionIds) &&
     other.timezone == timezone &&
     other.timezoneOffset == timezoneOffset &&
     other.verifiedAt == verifiedAt &&
@@ -191,6 +196,7 @@ class User {
     (provider == null ? 0 : provider!.hashCode) +
     (providerId == null ? 0 : providerId!.hashCode) +
     (roles.hashCode) +
+    (managedCompetitionIds.hashCode) +
     (timezone == null ? 0 : timezone!.hashCode) +
     (timezoneOffset == null ? 0 : timezoneOffset!.hashCode) +
     (verifiedAt == null ? 0 : verifiedAt!.hashCode) +
@@ -205,7 +211,7 @@ class User {
     (kycCompletedAt == null ? 0 : kycCompletedAt!.hashCode);
 
   @override
-  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, firstName=$firstName, lastName=$lastName, userName=$userName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications, allowCopyTrading=$allowCopyTrading, kycCompletedAt=$kycCompletedAt]';
+  String toString() => 'User[id=$id, closedAt=$closedAt, disabledAt=$disabledAt, email=$email, firstName=$firstName, lastName=$lastName, userName=$userName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, roles=$roles, managedCompetitionIds=$managedCompetitionIds, timezone=$timezone, timezoneOffset=$timezoneOffset, verifiedAt=$verifiedAt, showTutorialCards=$showTutorialCards, notificationsEnabled=$notificationsEnabled, tenantId=$tenantId, allowEmailNotifications=$allowEmailNotifications, allowLiquidationsNotifications=$allowLiquidationsNotifications, allowDepositWithdrawalNotifications=$allowDepositWithdrawalNotifications, allowOrdersNotifications=$allowOrdersNotifications, allowCopyTrading=$allowCopyTrading, kycCompletedAt=$kycCompletedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -242,6 +248,7 @@ class User {
       json[r'provider_id'] = null;
     }
       json[r'roles'] = this.roles;
+      json[r'managed_competition_ids'] = this.managedCompetitionIds;
     if (this.timezone != null) {
       json[r'timezone'] = this.timezone;
     } else {
@@ -333,6 +340,9 @@ class User {
         provider: mapValueOfType<String>(json, r'provider'),
         providerId: mapValueOfType<String>(json, r'provider_id'),
         roles: UserRole.listFromJson(json[r'roles']),
+        managedCompetitionIds: json[r'managed_competition_ids'] is Iterable
+            ? (json[r'managed_competition_ids'] as Iterable).cast<String>().toList(growable: false)
+            : const [],
         timezone: mapValueOfType<String>(json, r'timezone'),
         timezoneOffset: mapValueOfType<int>(json, r'timezone_offset'),
         verifiedAt: mapDateTime(json, r'verified_at', r''),

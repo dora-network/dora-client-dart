@@ -18,6 +18,8 @@ class DefaultApi {
 
   /// Add users to a trading challenge
   ///
+  /// Add existing users to a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids. A user must have an empty ledger to join: deposits and withdrawals are barred from enrolment until the challenge is over, so that challenge credits are the only thing a participant holds and the teardown sweep cannot destroy funds of their own.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
@@ -50,6 +52,8 @@ class DefaultApi {
   }
 
   /// Add users to a trading challenge
+  ///
+  /// Add existing users to a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids. A user must have an empty ledger to join: deposits and withdrawals are barred from enrolment until the challenge is over, so that challenge credits are the only thing a participant holds and the teardown sweep cannot destroy funds of their own.
   ///
   /// Parameters:
   ///
@@ -126,6 +130,68 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WithdrawalInitiationResponseEnvelope',) as WithdrawalInitiationResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Approve a trading challenge registration request
+  ///
+  /// Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only). Enrolment runs the same checks as add_users, so a challenge that filled up, now overlaps another of the user's challenges, or whose applicant no longer has an empty ledger is rejected with a 409 and the request stays open.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] requestId (required):
+  ///
+  /// * [ReviewTradingChallengeRegistrationRequest] reviewTradingChallengeRegistrationRequest:
+  Future<Response> approveTradingChallengeRegistrationRequestWithHttpInfo(String requestId, { ReviewTradingChallengeRegistrationRequest? reviewTradingChallengeRegistrationRequest, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/registration_requests/{request_id}/approve'
+      .replaceAll('{request_id}', requestId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = reviewTradingChallengeRegistrationRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Approve a trading challenge registration request
+  ///
+  /// Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only). Enrolment runs the same checks as add_users, so a challenge that filled up, now overlaps another of the user's challenges, or whose applicant no longer has an empty ledger is rejected with a 409 and the request stays open.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] requestId (required):
+  ///
+  /// * [ReviewTradingChallengeRegistrationRequest] reviewTradingChallengeRegistrationRequest:
+  Future<TradingChallengeRegistrationRequestResponseEnvelope?> approveTradingChallengeRegistrationRequest(String requestId, { ReviewTradingChallengeRegistrationRequest? reviewTradingChallengeRegistrationRequest, Future<void>? abortTrigger, }) async {
+    final response = await approveTradingChallengeRegistrationRequestWithHttpInfo(requestId, reviewTradingChallengeRegistrationRequest: reviewTradingChallengeRegistrationRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeRegistrationRequestResponseEnvelope',) as TradingChallengeRegistrationRequestResponseEnvelope;
     
     }
     return null;
@@ -380,6 +446,8 @@ class DefaultApi {
 
   /// Claim challenge prize
   ///
+  /// Claim the prize of a challenge the caller is eligible for. A TOURNAMENT claim credits the prize matching the crown and reactivates the account. A CASH claim winds the account down, sweeps every remaining challenge credit and awards the CASH_CROWN: the account is left deactivated with a zero balance, and the reward is redeemed out of band. Both mark the participation PRIZE_CLAIMED.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
@@ -413,6 +481,8 @@ class DefaultApi {
   }
 
   /// Claim challenge prize
+  ///
+  /// Claim the prize of a challenge the caller is eligible for. A TOURNAMENT claim credits the prize matching the crown and reactivates the account. A CASH claim winds the account down, sweeps every remaining challenge credit and awards the CASH_CROWN: the account is left deactivated with a zero balance, and the reward is redeemed out of band. Both mark the participation PRIZE_CLAIMED.
   ///
   /// Parameters:
   ///
@@ -757,6 +827,8 @@ class DefaultApi {
 
   /// Create a trading challenge
   ///
+  /// Create a new trading challenge. Allowed for ADMIN and INTEGRATOR only.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
@@ -789,6 +861,8 @@ class DefaultApi {
   }
 
   /// Create a trading challenge
+  ///
+  /// Create a new trading challenge. Allowed for ADMIN and INTEGRATOR only.
   ///
   /// Parameters:
   ///
@@ -3289,6 +3363,8 @@ class DefaultApi {
 
   /// Get trading challenge by ID
   ///
+  /// Fetch one trading challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
@@ -3323,6 +3399,8 @@ class DefaultApi {
 
   /// Get trading challenge by ID
   ///
+  /// Fetch one trading challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
+  ///
   /// Parameters:
   ///
   /// * [String] tradingChallengeId (required):
@@ -3342,6 +3420,8 @@ class DefaultApi {
   }
 
   /// Get trading challenge daily snapshots
+  ///
+  /// List participant daily snapshots for a challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -3377,6 +3457,8 @@ class DefaultApi {
 
   /// Get trading challenge daily snapshots
   ///
+  /// List participant daily snapshots for a challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
+  ///
   /// Parameters:
   ///
   /// * [String] tradingChallengeId (required):
@@ -3396,6 +3478,8 @@ class DefaultApi {
   }
 
   /// Get trading challenge results
+  ///
+  /// List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -3437,6 +3521,8 @@ class DefaultApi {
   }
 
   /// Get trading challenge results
+  ///
+  /// List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
   ///
   /// Parameters:
   ///
@@ -3913,6 +3999,64 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'StreamUserCouponPaymentsResponse',) as StreamUserCouponPaymentsResponse;
+    
+    }
+    return null;
+  }
+
+  /// Get the latest account deactivation request for a user
+  ///
+  /// Returns the user's latest deactivation request, i.e. their current deactivation status. Integrators may only request users belonging to their own tenant.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<Response> getUserDeactivationWithHttpInfo(String userId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/{user_id}/deactivation'
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get the latest account deactivation request for a user
+  ///
+  /// Returns the user's latest deactivation request, i.e. their current deactivation status. Integrators may only request users belonging to their own tenant.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId (required):
+  Future<UserDeactivationResponseEnvelope?> getUserDeactivation(String userId, { Future<void>? abortTrigger, }) async {
+    final response = await getUserDeactivationWithHttpInfo(userId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserDeactivationResponseEnvelope',) as UserDeactivationResponseEnvelope;
     
     }
     return null;
@@ -5706,7 +5850,117 @@ class DefaultApi {
     return null;
   }
 
+  /// List trading challenge registration requests
+  ///
+  /// The review queue. Admins see every tenant and may filter to one, an integrator is pinned to their own tenant, and a competition manager only sees the requests of the challenges assigned to them.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId:
+  ///   Only requests for this challenge.
+  ///
+  /// * [String] userId:
+  ///   Only requests from this user.
+  ///
+  /// * [String] status:
+  ///   Only requests in this state.
+  ///
+  /// * [String] tenantId:
+  ///   Admins only; an integrator may only name their own tenant.
+  ///
+  /// * [int] limit:
+  ///   Page size, capped at 1000.
+  ///
+  /// * [int] offset:
+  ///   Rows to skip.
+  Future<Response> listTradingChallengeRegistrationRequestsWithHttpInfo({ String? tradingChallengeId, String? userId, String? status, String? tenantId, int? limit, int? offset, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/registration_requests';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (tradingChallengeId != null) {
+      queryParams.addAll(_queryParams('', 'trading_challenge_id', tradingChallengeId));
+    }
+    if (userId != null) {
+      queryParams.addAll(_queryParams('', 'user_id', userId));
+    }
+    if (status != null) {
+      queryParams.addAll(_queryParams('', 'status', status));
+    }
+    if (tenantId != null) {
+      queryParams.addAll(_queryParams('', 'tenant_id', tenantId));
+    }
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (offset != null) {
+      queryParams.addAll(_queryParams('', 'offset', offset));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List trading challenge registration requests
+  ///
+  /// The review queue. Admins see every tenant and may filter to one, an integrator is pinned to their own tenant, and a competition manager only sees the requests of the challenges assigned to them.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId:
+  ///   Only requests for this challenge.
+  ///
+  /// * [String] userId:
+  ///   Only requests from this user.
+  ///
+  /// * [String] status:
+  ///   Only requests in this state.
+  ///
+  /// * [String] tenantId:
+  ///   Admins only; an integrator may only name their own tenant.
+  ///
+  /// * [int] limit:
+  ///   Page size, capped at 1000.
+  ///
+  /// * [int] offset:
+  ///   Rows to skip.
+  Future<TradingChallengeRegistrationRequestListResponseEnvelope?> listTradingChallengeRegistrationRequests({ String? tradingChallengeId, String? userId, String? status, String? tenantId, int? limit, int? offset, Future<void>? abortTrigger, }) async {
+    final response = await listTradingChallengeRegistrationRequestsWithHttpInfo(tradingChallengeId: tradingChallengeId, userId: userId, status: status, tenantId: tenantId, limit: limit, offset: offset, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeRegistrationRequestListResponseEnvelope',) as TradingChallengeRegistrationRequestListResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// List trading challenges
+  ///
+  /// List trading challenges. COMPETITION_MANAGER callers only receive challenges present in their managed_competition_ids.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -5765,6 +6019,8 @@ class DefaultApi {
 
   /// List trading challenges
   ///
+  /// List trading challenges. COMPETITION_MANAGER callers only receive challenges present in their managed_competition_ids.
+  ///
   /// Parameters:
   ///
   /// * [String] tenantId:
@@ -5786,6 +6042,96 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeListResponseEnvelope',) as TradingChallengeListResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get the current deactivation status across all users
+  ///
+  /// Returns each user's latest deactivation request, i.e. their current status. Users with no deactivation history are absent. Ordered by request creation time, newest first. Integrators only see users of their own tenant, unless that tenant is global.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] status:
+  ///   Only return users whose latest request has this status.
+  ///
+  /// * [String] tenantId:
+  ///   Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant.
+  ///
+  /// * [String] tradingChallengeId:
+  ///   Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids.
+  ///
+  /// * [String] userIds:
+  ///   Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id.
+  Future<Response> listUserDeactivationsWithHttpInfo({ String? status, String? tenantId, String? tradingChallengeId, String? userIds, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/user/deactivations';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (status != null) {
+      queryParams.addAll(_queryParams('', 'status', status));
+    }
+    if (tenantId != null) {
+      queryParams.addAll(_queryParams('', 'tenant_id', tenantId));
+    }
+    if (tradingChallengeId != null) {
+      queryParams.addAll(_queryParams('', 'trading_challenge_id', tradingChallengeId));
+    }
+    if (userIds != null) {
+      queryParams.addAll(_queryParams('', 'user_ids', userIds));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get the current deactivation status across all users
+  ///
+  /// Returns each user's latest deactivation request, i.e. their current status. Users with no deactivation history are absent. Ordered by request creation time, newest first. Integrators only see users of their own tenant, unless that tenant is global.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] status:
+  ///   Only return users whose latest request has this status.
+  ///
+  /// * [String] tenantId:
+  ///   Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant.
+  ///
+  /// * [String] tradingChallengeId:
+  ///   Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids.
+  ///
+  /// * [String] userIds:
+  ///   Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id.
+  Future<UserDeactivationListResponseEnvelope?> listUserDeactivations({ String? status, String? tenantId, String? tradingChallengeId, String? userIds, Future<void>? abortTrigger, }) async {
+    final response = await listUserDeactivationsWithHttpInfo(status: status, tenantId: tenantId, tradingChallengeId: tradingChallengeId, userIds: userIds, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'UserDeactivationListResponseEnvelope',) as UserDeactivationListResponseEnvelope;
     
     }
     return null;
@@ -5906,7 +6252,71 @@ class DefaultApi {
     return null;
   }
 
+  /// Reject a trading challenge registration request
+  ///
+  /// Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] requestId (required):
+  ///
+  /// * [ReviewTradingChallengeRegistrationRequest] reviewTradingChallengeRegistrationRequest:
+  Future<Response> rejectTradingChallengeRegistrationRequestWithHttpInfo(String requestId, { ReviewTradingChallengeRegistrationRequest? reviewTradingChallengeRegistrationRequest, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/registration_requests/{request_id}/reject'
+      .replaceAll('{request_id}', requestId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = reviewTradingChallengeRegistrationRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Reject a trading challenge registration request
+  ///
+  /// Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] requestId (required):
+  ///
+  /// * [ReviewTradingChallengeRegistrationRequest] reviewTradingChallengeRegistrationRequest:
+  Future<TradingChallengeRegistrationRequestResponseEnvelope?> rejectTradingChallengeRegistrationRequest(String requestId, { ReviewTradingChallengeRegistrationRequest? reviewTradingChallengeRegistrationRequest, Future<void>? abortTrigger, }) async {
+    final response = await rejectTradingChallengeRegistrationRequestWithHttpInfo(requestId, reviewTradingChallengeRegistrationRequest: reviewTradingChallengeRegistrationRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeRegistrationRequestResponseEnvelope',) as TradingChallengeRegistrationRequestResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Remove users from a trading challenge
+  ///
+  /// Remove users from a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -5940,6 +6350,8 @@ class DefaultApi {
   }
 
   /// Remove users from a trading challenge
+  ///
+  /// Remove users from a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids.
   ///
   /// Parameters:
   ///
@@ -6610,6 +7022,127 @@ class DefaultApi {
     return null;
   }
 
+  /// Leave a trading challenge
+  ///
+  /// Convenience alias that terminates the caller's own participation; redirects to /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate. End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<Response> terminateOwnTradingChallengeParticipationWithHttpInfo(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/{trading_challenge_id}/participants/self/terminate'
+      .replaceAll('{trading_challenge_id}', tradingChallengeId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Leave a trading challenge
+  ///
+  /// Convenience alias that terminates the caller's own participation; redirects to /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate. End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<TerminateTradingChallengeResponseEnvelope?> terminateOwnTradingChallengeParticipation(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    final response = await terminateOwnTradingChallengeParticipationWithHttpInfo(tradingChallengeId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TerminateTradingChallengeResponseEnvelope',) as TerminateTradingChallengeResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Terminate a participation in a trading challenge
+  ///
+  /// End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  ///
+  /// * [String] userId (required):
+  Future<Response> terminateTradingChallengeParticipationWithHttpInfo(String tradingChallengeId, String userId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate'
+      .replaceAll('{trading_challenge_id}', tradingChallengeId)
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Terminate a participation in a trading challenge
+  ///
+  /// End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  ///
+  /// * [String] userId (required):
+  Future<TerminateTradingChallengeResponseEnvelope?> terminateTradingChallengeParticipation(String tradingChallengeId, String userId, { Future<void>? abortTrigger, }) async {
+    final response = await terminateTradingChallengeParticipationWithHttpInfo(tradingChallengeId, userId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TerminateTradingChallengeResponseEnvelope',) as TerminateTradingChallengeResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Transfer available balance between a user's accounts
   ///
   /// Note: This method returns the HTTP [Response].
@@ -6711,6 +7244,68 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TransferBalancesResponseEnvelope',) as TransferBalancesResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Update a trading challenge
+  ///
+  /// Partially update a trading challenge: a field that is absent from the body is left unchanged. Which fields may be updated depends on the challenge status. PENDING accepts every field. ACTIVE accepts only name, max_users, end and the three prize quantities, because participants are already funded and being measured. COMPLETED accepts none. A request that touches a field the current status does not allow is rejected as a whole with 409. ADMIN may update any challenge, INTEGRATOR only challenges of its own tenant, and COMPETITION_MANAGER only assigned challenge IDs.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  ///
+  /// * [UpdateTradingChallengeRequest] updateTradingChallengeRequest (required):
+  Future<Response> updateTradingChallengeWithHttpInfo(String tradingChallengeId, UpdateTradingChallengeRequest updateTradingChallengeRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/{trading_challenge_id}'
+      .replaceAll('{trading_challenge_id}', tradingChallengeId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = updateTradingChallengeRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Update a trading challenge
+  ///
+  /// Partially update a trading challenge: a field that is absent from the body is left unchanged. Which fields may be updated depends on the challenge status. PENDING accepts every field. ACTIVE accepts only name, max_users, end and the three prize quantities, because participants are already funded and being measured. COMPLETED accepts none. A request that touches a field the current status does not allow is rejected as a whole with 409. ADMIN may update any challenge, INTEGRATOR only challenges of its own tenant, and COMPETITION_MANAGER only assigned challenge IDs.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  ///
+  /// * [UpdateTradingChallengeRequest] updateTradingChallengeRequest (required):
+  Future<TradingChallengeResponseEnvelope?> updateTradingChallenge(String tradingChallengeId, UpdateTradingChallengeRequest updateTradingChallengeRequest, { Future<void>? abortTrigger, }) async {
+    final response = await updateTradingChallengeWithHttpInfo(tradingChallengeId, updateTradingChallengeRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeResponseEnvelope',) as TradingChallengeResponseEnvelope;
     
     }
     return null;

@@ -11,6 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addTradingChallengeUsers**](DefaultApi.md#addtradingchallengeusers) | **PUT** /v1/trading_challenges/add_users | Add users to a trading challenge
 [**approveLedgerWithdrawRequest**](DefaultApi.md#approveledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
+[**approveTradingChallengeRegistrationRequest**](DefaultApi.md#approvetradingchallengeregistrationrequest) | **POST** /v1/trading_challenges/registration_requests/{request_id}/approve | Approve a trading challenge registration request
 [**cancelAllOpenOrders**](DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
 [**cancelLedgerWithdrawRequest**](DefaultApi.md#cancelledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 [**cancelOrderById**](DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
@@ -75,6 +76,7 @@ Method | HTTP request | Description
 [**getTransactionsStream**](DefaultApi.md#gettransactionsstream) | **GET** /v1/transactions/stream | Get transactions since a specific time, and open a stream for further updates
 [**getUserById**](DefaultApi.md#getuserbyid) | **GET** /v1/user/{user_id} | Get user by ID (admin only)
 [**getUserCouponPaymentsStream**](DefaultApi.md#getusercouponpaymentsstream) | **GET** /v1/user/{user_id}/coupon_payments/stream | Stream user's coupon payment accruals in real time
+[**getUserDeactivation**](DefaultApi.md#getuserdeactivation) | **GET** /v1/user/{user_id}/deactivation | Get the latest account deactivation request for a user
 [**getUserLedgerStream**](DefaultApi.md#getuserledgerstream) | **GET** /v1/user/{user_id}/ledger/stream | Get a snapshot of user's ledger updates since a specific time, and opens a stream for further updates
 [**getUserLeverageAccruedInterestStream**](DefaultApi.md#getuserleverageaccruedintereststream) | **GET** /v1/user/{user_id}/leverage/accrued_interest/stream | Stream user's current leverage accrued interest in real time
 [**getUserOrderUpdatesStream**](DefaultApi.md#getuserorderupdatesstream) | **GET** /v1/user/{user_id}/orders/{order_book_id}/updates/stream | Get a snapshot of user's order updates for the given order book since a specific time, and opens a stream for further updates
@@ -102,9 +104,12 @@ Method | HTTP request | Description
 [**listOrderBooks**](DefaultApi.md#listorderbooks) | **GET** /v1/orderbooks | List order books
 [**listOrders**](DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
 [**listPositionAccountsSelf**](DefaultApi.md#listpositionaccountsself) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
+[**listTradingChallengeRegistrationRequests**](DefaultApi.md#listtradingchallengeregistrationrequests) | **GET** /v1/trading_challenges/registration_requests | List trading challenge registration requests
 [**listTradingChallenges**](DefaultApi.md#listtradingchallenges) | **GET** /v1/trading_challenges | List trading challenges
+[**listUserDeactivations**](DefaultApi.md#listuserdeactivations) | **GET** /v1/user/deactivations | Get the current deactivation status across all users
 [**payLeverageGetAccruedInterest**](DefaultApi.md#payleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 [**rejectLedgerWithdrawRequest**](DefaultApi.md#rejectledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
+[**rejectTradingChallengeRegistrationRequest**](DefaultApi.md#rejecttradingchallengeregistrationrequest) | **POST** /v1/trading_challenges/registration_requests/{request_id}/reject | Reject a trading challenge registration request
 [**removeTradingChallengeUsers**](DefaultApi.md#removetradingchallengeusers) | **PUT** /v1/trading_challenges/remove_users | Remove users from a trading challenge
 [**repayUSD**](DefaultApi.md#repayusd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
 [**revokeAPIKeyForUser**](DefaultApi.md#revokeapikeyforuser) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
@@ -117,8 +122,11 @@ Method | HTTP request | Description
 [**streamOrderBookBalances**](DefaultApi.md#streamorderbookbalances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 [**streamOrderbookOpenOrders**](DefaultApi.md#streamorderbookopenorders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 [**streamTrades**](DefaultApi.md#streamtrades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+[**terminateOwnTradingChallengeParticipation**](DefaultApi.md#terminateowntradingchallengeparticipation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/self/terminate | Leave a trading challenge
+[**terminateTradingChallengeParticipation**](DefaultApi.md#terminatetradingchallengeparticipation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate | Terminate a participation in a trading challenge
 [**transferAccountBalancesV2**](DefaultApi.md#transferaccountbalancesv2) | **POST** /v2/accounts/transfer_balances | Transfer available balance between a user's accounts
 [**transferAvailableBalances**](DefaultApi.md#transferavailablebalances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user's accounts (e.g. global to isolated position)
+[**updateTradingChallenge**](DefaultApi.md#updatetradingchallenge) | **PUT** /v1/trading_challenges/{trading_challenge_id} | Update a trading challenge
 [**updateUserConfig**](DefaultApi.md#updateuserconfig) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 [**updateUserConfigSelf**](DefaultApi.md#updateuserconfigself) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
 [**updateUserKYC**](DefaultApi.md#updateuserkyc) | **POST** /v1/integrators/user/{user_id}/kyc | Set or clear a user's KYC completion timestamp
@@ -130,6 +138,8 @@ Method | HTTP request | Description
 > TradingChallengeResponseEnvelope addTradingChallengeUsers(addTradingChallengeUsersRequest)
 
 Add users to a trading challenge
+
+Add existing users to a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids. A user must have an empty ledger to join: deposits and withdrawals are barred from enrolment until the challenge is over, so that challenge credits are the only thing a participant holds and the teardown sweep cannot destroy funds of their own.
 
 ### Example
 ```dart
@@ -220,6 +230,61 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**WithdrawalInitiationResponseEnvelope**](WithdrawalInitiationResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **approveTradingChallengeRegistrationRequest**
+> TradingChallengeRegistrationRequestResponseEnvelope approveTradingChallengeRegistrationRequest(requestId, reviewTradingChallengeRegistrationRequest)
+
+Approve a trading challenge registration request
+
+Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only). Enrolment runs the same checks as add_users, so a challenge that filled up, now overlaps another of the user's challenges, or whose applicant no longer has an empty ledger is rejected with a 409 and the request stays open.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final requestId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final reviewTradingChallengeRegistrationRequest = ReviewTradingChallengeRegistrationRequest(); // ReviewTradingChallengeRegistrationRequest | 
+
+try {
+    final result = api_instance.approveTradingChallengeRegistrationRequest(requestId, reviewTradingChallengeRegistrationRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->approveTradingChallengeRegistrationRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **requestId** | **String**|  | 
+ **reviewTradingChallengeRegistrationRequest** | [**ReviewTradingChallengeRegistrationRequest**](ReviewTradingChallengeRegistrationRequest.md)|  | [optional] 
+
+### Return type
+
+[**TradingChallengeRegistrationRequestResponseEnvelope**](TradingChallengeRegistrationRequestResponseEnvelope.md)
 
 ### Authorization
 
@@ -450,6 +515,8 @@ Name | Type | Description  | Notes
 > ClaimTradingChallengeResponseEnvelope claimTradingChallengePrize(tradingChallengeId)
 
 Claim challenge prize
+
+Claim the prize of a challenge the caller is eligible for. A TOURNAMENT claim credits the prize matching the crown and reactivates the account. A CASH claim winds the account down, sweeps every remaining challenge credit and awards the CASH_CROWN: the account is left deactivated with a zero balance, and the reward is redeemed out of band. Both mark the participation PRIZE_CLAIMED.
 
 ### Example
 ```dart
@@ -809,6 +876,8 @@ Name | Type | Description  | Notes
 > TradingChallengeResponseEnvelope createTradingChallenge(createTradingChallengeRequest)
 
 Create a trading challenge
+
+Create a new trading challenge. Allowed for ADMIN and INTEGRATOR only.
 
 ### Example
 ```dart
@@ -2942,6 +3011,8 @@ Name | Type | Description  | Notes
 
 Get trading challenge by ID
 
+Fetch one trading challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
+
 ### Example
 ```dart
 import 'package:dora_client/api.dart';
@@ -2993,6 +3064,8 @@ Name | Type | Description  | Notes
 
 Get trading challenge daily snapshots
 
+List participant daily snapshots for a challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
+
 ### Example
 ```dart
 import 'package:dora_client/api.dart';
@@ -3043,6 +3116,8 @@ Name | Type | Description  | Notes
 > TradingChallengeResultsResponseEnvelope getTradingChallengeResults(tradingChallengeId, board)
 
 Get trading challenge results
+
+List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
 
 ### Example
 ```dart
@@ -3148,7 +3223,7 @@ final userIds = []; // List<String> |
 final txKinds = []; // List<TransactionKind> | 
 final start = 2013-10-20T19:20:30+01:00; // DateTime | 
 final end = 2013-10-20T19:20:30+01:00; // DateTime | 
-final tenantId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final tenantId = tenantId_example; // String | 
 final page = 56; // int | 
 final limit = 56; // int | 
 
@@ -3384,6 +3459,59 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [apiKeyAuthQuery](../README.md#apiKeyAuthQuery)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUserDeactivation**
+> UserDeactivationResponseEnvelope getUserDeactivation(userId)
+
+Get the latest account deactivation request for a user
+
+Returns the user's latest deactivation request, i.e. their current deactivation status. Integrators may only request users belonging to their own tenant.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getUserDeactivation(userId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getUserDeactivation: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**|  | 
+
+### Return type
+
+[**UserDeactivationResponseEnvelope**](UserDeactivationResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -4817,10 +4945,75 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **listTradingChallengeRegistrationRequests**
+> TradingChallengeRegistrationRequestListResponseEnvelope listTradingChallengeRegistrationRequests(tradingChallengeId, userId, status, tenantId, limit, offset)
+
+List trading challenge registration requests
+
+The review queue. Admins see every tenant and may filter to one, an integrator is pinned to their own tenant, and a competition manager only sees the requests of the challenges assigned to them.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final tradingChallengeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Only requests for this challenge.
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Only requests from this user.
+final status = status_example; // String | Only requests in this state.
+final tenantId = tenantId_example; // String | Admins only; an integrator may only name their own tenant.
+final limit = 56; // int | Page size, capped at 1000.
+final offset = 56; // int | Rows to skip.
+
+try {
+    final result = api_instance.listTradingChallengeRegistrationRequests(tradingChallengeId, userId, status, tenantId, limit, offset);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listTradingChallengeRegistrationRequests: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tradingChallengeId** | **String**| Only requests for this challenge. | [optional] 
+ **userId** | **String**| Only requests from this user. | [optional] 
+ **status** | **String**| Only requests in this state. | [optional] 
+ **tenantId** | **String**| Admins only; an integrator may only name their own tenant. | [optional] 
+ **limit** | **int**| Page size, capped at 1000. | [optional] [default to 100]
+ **offset** | **int**| Rows to skip. | [optional] [default to 0]
+
+### Return type
+
+[**TradingChallengeRegistrationRequestListResponseEnvelope**](TradingChallengeRegistrationRequestListResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **listTradingChallenges**
 > TradingChallengeListResponseEnvelope listTradingChallenges(tenantId, type, status, start, end)
 
 List trading challenges
+
+List trading challenges. COMPETITION_MANAGER callers only receive challenges present in their managed_competition_ids.
 
 ### Example
 ```dart
@@ -4864,6 +5057,65 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TradingChallengeListResponseEnvelope**](TradingChallengeListResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listUserDeactivations**
+> UserDeactivationListResponseEnvelope listUserDeactivations(status, tenantId, tradingChallengeId, userIds)
+
+Get the current deactivation status across all users
+
+Returns each user's latest deactivation request, i.e. their current status. Users with no deactivation history are absent. Ordered by request creation time, newest first. Integrators only see users of their own tenant, unless that tenant is global.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final status = status_example; // String | Only return users whose latest request has this status.
+final tenantId = tenantId_example; // String | Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant.
+final tradingChallengeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids.
+final userIds = userIds_example; // String | Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id.
+
+try {
+    final result = api_instance.listUserDeactivations(status, tenantId, tradingChallengeId, userIds);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listUserDeactivations: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | **String**| Only return users whose latest request has this status. | [optional] 
+ **tenantId** | **String**| Only return users belonging to this tenant. At most one of tenant_id, trading_challenge_id and user_ids may be passed; combining them is rejected. An integrator whose tenant is not global may only pass their own tenant. | [optional] 
+ **tradingChallengeId** | **String**| Only return participants of this trading challenge. Mutually exclusive with tenant_id and user_ids. | [optional] 
+ **userIds** | **String**| Comma-separated user IDs to return. Mutually exclusive with tenant_id and trading_challenge_id. | [optional] 
+
+### Return type
+
+[**UserDeactivationListResponseEnvelope**](UserDeactivationListResponseEnvelope.md)
 
 ### Authorization
 
@@ -4982,10 +5234,67 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **rejectTradingChallengeRegistrationRequest**
+> TradingChallengeRegistrationRequestResponseEnvelope rejectTradingChallengeRegistrationRequest(requestId, reviewTradingChallengeRegistrationRequest)
+
+Reject a trading challenge registration request
+
+Accessible to admins (any challenge), integrators (their own tenant only) and competition managers (their assigned challenges only).
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final requestId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final reviewTradingChallengeRegistrationRequest = ReviewTradingChallengeRegistrationRequest(); // ReviewTradingChallengeRegistrationRequest | 
+
+try {
+    final result = api_instance.rejectTradingChallengeRegistrationRequest(requestId, reviewTradingChallengeRegistrationRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->rejectTradingChallengeRegistrationRequest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **requestId** | **String**|  | 
+ **reviewTradingChallengeRegistrationRequest** | [**ReviewTradingChallengeRegistrationRequest**](ReviewTradingChallengeRegistrationRequest.md)|  | [optional] 
+
+### Return type
+
+[**TradingChallengeRegistrationRequestResponseEnvelope**](TradingChallengeRegistrationRequestResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **removeTradingChallengeUsers**
 > TradingChallengeResponseEnvelope removeTradingChallengeUsers(removeTradingChallengeUsersRequest)
 
 Remove users from a trading challenge
+
+Remove users from a trading challenge. For COMPETITION_MANAGER, the challenge must be assigned in managed_competition_ids.
 
 ### Example
 ```dart
@@ -5558,6 +5867,114 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **terminateOwnTradingChallengeParticipation**
+> TerminateTradingChallengeResponseEnvelope terminateOwnTradingChallengeParticipation(tradingChallengeId)
+
+Leave a trading challenge
+
+Convenience alias that terminates the caller's own participation; redirects to /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate. End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final tradingChallengeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.terminateOwnTradingChallengeParticipation(tradingChallengeId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->terminateOwnTradingChallengeParticipation: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tradingChallengeId** | **String**|  | 
+
+### Return type
+
+[**TerminateTradingChallengeResponseEnvelope**](TerminateTradingChallengeResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **terminateTradingChallengeParticipation**
+> TerminateTradingChallengeResponseEnvelope terminateTradingChallengeParticipation(tradingChallengeId, userId)
+
+Terminate a participation in a trading challenge
+
+End a participant's run in a challenge before its own rules would: the participant leaves, or an operator removes them. No prize is paid, even to a participant who could have claimed one -- claim the prize first if that is what you want. The account is wound down, every remaining challenge credit is swept, and the participation is marked TERMINATED and frozen: from then on it takes no further daily snapshots and never appears in the results ranking again. The user is left deactivated with no challenge balance, and is free to register for another challenge. Participants may only terminate their own run; terminating someone else's requires admin, integrator (same tenant) or challenge manager (assigned challenge) rights.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final tradingChallengeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.terminateTradingChallengeParticipation(tradingChallengeId, userId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->terminateTradingChallengeParticipation: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tradingChallengeId** | **String**|  | 
+ **userId** | **String**|  | 
+
+### Return type
+
+[**TerminateTradingChallengeResponseEnvelope**](TerminateTradingChallengeResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **transferAccountBalancesV2**
 > TransferAccountBalancesResponseEnvelope transferAccountBalancesV2(transferAccountBalancesRequest)
 
@@ -5648,6 +6065,61 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TransferBalancesResponseEnvelope**](TransferBalancesResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateTradingChallenge**
+> TradingChallengeResponseEnvelope updateTradingChallenge(tradingChallengeId, updateTradingChallengeRequest)
+
+Update a trading challenge
+
+Partially update a trading challenge: a field that is absent from the body is left unchanged. Which fields may be updated depends on the challenge status. PENDING accepts every field. ACTIVE accepts only name, max_users, end and the three prize quantities, because participants are already funded and being measured. COMPLETED accepts none. A request that touches a field the current status does not allow is rejected as a whole with 409. ADMIN may update any challenge, INTEGRATOR only challenges of its own tenant, and COMPETITION_MANAGER only assigned challenge IDs.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final tradingChallengeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final updateTradingChallengeRequest = UpdateTradingChallengeRequest(); // UpdateTradingChallengeRequest | 
+
+try {
+    final result = api_instance.updateTradingChallenge(tradingChallengeId, updateTradingChallengeRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->updateTradingChallenge: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tradingChallengeId** | **String**|  | 
+ **updateTradingChallengeRequest** | [**UpdateTradingChallengeRequest**](UpdateTradingChallengeRequest.md)|  | 
+
+### Return type
+
+[**TradingChallengeResponseEnvelope**](TradingChallengeResponseEnvelope.md)
 
 ### Authorization
 

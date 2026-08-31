@@ -30,6 +30,8 @@ class UserRole {
   static const LIQUIDITY_PROVIDER = UserRole._(r'LIQUIDITY_PROVIDER');
   static const TRADER = UserRole._(r'TRADER');
   static const INTEGRATOR = UserRole._(r'INTEGRATOR');
+  static const INDEXER = UserRole._(r'INDEXER');
+  static const COMPETITION_MANAGER = UserRole._(r'COMPETITION_MANAGER');
 
   /// List of all possible values in this [enum][UserRole].
   static const values = <UserRole>[
@@ -40,6 +42,8 @@ class UserRole {
     LIQUIDITY_PROVIDER,
     TRADER,
     INTEGRATOR,
+    INDEXER,
+    COMPETITION_MANAGER,
   ];
 
   static UserRole? fromJson(dynamic value) => UserRoleTypeTransformer().decode(value);
@@ -85,6 +89,8 @@ class UserRoleTypeTransformer {
         case r'LIQUIDITY_PROVIDER': return UserRole.LIQUIDITY_PROVIDER;
         case r'TRADER': return UserRole.TRADER;
         case r'INTEGRATOR': return UserRole.INTEGRATOR;
+        case r'INDEXER': return UserRole.INDEXER;
+        case r'COMPETITION_MANAGER': return UserRole.COMPETITION_MANAGER;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

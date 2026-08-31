@@ -64,6 +64,9 @@ String parameterToString(dynamic value) {
   if (value is BondKind) {
     return BondKindTypeTransformer().encode(value).toString();
   }
+  if (value is BondRunStatus) {
+    return BondRunStatusTypeTransformer().encode(value).toString();
+  }
   if (value is CandleResolution) {
     return CandleResolutionTypeTransformer().encode(value).toString();
   }
@@ -72,6 +75,9 @@ String parameterToString(dynamic value) {
   }
   if (value is CouponKind) {
     return CouponKindTypeTransformer().encode(value).toString();
+  }
+  if (value is CreditRating) {
+    return CreditRatingTypeTransformer().encode(value).toString();
   }
   if (value is LeverageType) {
     return LeverageTypeTypeTransformer().encode(value).toString();

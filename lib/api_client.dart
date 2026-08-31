@@ -233,6 +233,8 @@ class ApiClient {
           return Bond.fromJson(value);
         case 'BondKind':
           return BondKindTypeTransformer().decode(value);
+        case 'BondRunStatus':
+          return BondRunStatusTypeTransformer().decode(value);
         case 'CancelOrderResponseEnvelope':
           return CancelOrderResponseEnvelope.fromJson(value);
         case 'Candle':
@@ -295,6 +297,8 @@ class ApiClient {
           return CreateOrderResponseEnvelope.fromJson(value);
         case 'CreateTradingChallengeRequest':
           return CreateTradingChallengeRequest.fromJson(value);
+        case 'CreditRating':
+          return CreditRatingTypeTransformer().decode(value);
         case 'CurrentLeverageAccruedInterest':
           return CurrentLeverageAccruedInterest.fromJson(value);
         case 'CurrentLeverageAccruedInterestResponseEnvelope':
@@ -511,6 +515,8 @@ class ApiClient {
           return ResponseEnvelope.fromJson(value);
         case 'ResponseEnvelopeOfListAssets':
           return ResponseEnvelopeOfListAssets.fromJson(value);
+        case 'ReviewTradingChallengeRegistrationRequest':
+          return ReviewTradingChallengeRegistrationRequest.fromJson(value);
         case 'RevokeAPIKeyData':
           return RevokeAPIKeyData.fromJson(value);
         case 'RevokeAPIKeyResponseEnvelope':
@@ -557,6 +563,10 @@ class ApiClient {
           return SupplyResponseEnvelope.fromJson(value);
         case 'TenantRestrictions':
           return TenantRestrictions.fromJson(value);
+        case 'TerminateTradingChallengeResponse':
+          return TerminateTradingChallengeResponse.fromJson(value);
+        case 'TerminateTradingChallengeResponseEnvelope':
+          return TerminateTradingChallengeResponseEnvelope.fromJson(value);
         case 'Trade':
           return Trade.fromJson(value);
         case 'TradeRequestError':
@@ -571,6 +581,12 @@ class ApiClient {
           return TradingChallengeDailySnapshotsResponseEnvelope.fromJson(value);
         case 'TradingChallengeListResponseEnvelope':
           return TradingChallengeListResponseEnvelope.fromJson(value);
+        case 'TradingChallengeRegistrationRequest':
+          return TradingChallengeRegistrationRequest.fromJson(value);
+        case 'TradingChallengeRegistrationRequestListResponseEnvelope':
+          return TradingChallengeRegistrationRequestListResponseEnvelope.fromJson(value);
+        case 'TradingChallengeRegistrationRequestResponseEnvelope':
+          return TradingChallengeRegistrationRequestResponseEnvelope.fromJson(value);
         case 'TradingChallengeResponseEnvelope':
           return TradingChallengeResponseEnvelope.fromJson(value);
         case 'TradingChallengeResult':
@@ -621,10 +637,18 @@ class ApiClient {
           return UnitedPosition.fromJson(value);
         case 'UpdateFieldBoolean':
           return UpdateFieldBoolean.fromJson(value);
+        case 'UpdateFieldDateTime':
+          return UpdateFieldDateTime.fromJson(value);
+        case 'UpdateFieldDecimal':
+          return UpdateFieldDecimal.fromJson(value);
+        case 'UpdateFieldInteger':
+          return UpdateFieldInteger.fromJson(value);
         case 'UpdateFieldString':
           return UpdateFieldString.fromJson(value);
         case 'UpdateRolesString':
           return UpdateRolesString.fromJson(value);
+        case 'UpdateTradingChallengeRequest':
+          return UpdateTradingChallengeRequest.fromJson(value);
         case 'UpdateUserConfigRequest':
           return UpdateUserConfigRequest.fromJson(value);
         case 'UpdateUserKYCRequest':
@@ -649,6 +673,12 @@ class ApiClient {
           return UserCouponPaymentsResponseData.fromJson(value);
         case 'UserCreatedResponseEnvelope':
           return UserCreatedResponseEnvelope.fromJson(value);
+        case 'UserDeactivation':
+          return UserDeactivation.fromJson(value);
+        case 'UserDeactivationListResponseEnvelope':
+          return UserDeactivationListResponseEnvelope.fromJson(value);
+        case 'UserDeactivationResponseEnvelope':
+          return UserDeactivationResponseEnvelope.fromJson(value);
         case 'UserDeletedResponseEnvelope':
           return UserDeletedResponseEnvelope.fromJson(value);
         case 'UserEnvelope':

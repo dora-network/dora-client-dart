@@ -17,6 +17,8 @@ class Bond {
     required this.kind,
     this.couponKind,
     this.bondKind,
+    this.bondRunStatus,
+    this.creditRating,
     this.couponStartAt,
     required this.createdAt,
     this.finalCouponAt,
@@ -49,6 +51,22 @@ class Bond {
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
   BondKind? bondKind;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  BondRunStatus? bondRunStatus;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  CreditRating? creditRating;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -106,6 +124,8 @@ class Bond {
     other.kind == kind &&
     other.couponKind == couponKind &&
     other.bondKind == bondKind &&
+    other.bondRunStatus == bondRunStatus &&
+    other.creditRating == creditRating &&
     other.couponStartAt == couponStartAt &&
     other.createdAt == createdAt &&
     other.finalCouponAt == finalCouponAt &&
@@ -125,6 +145,8 @@ class Bond {
     (kind.hashCode) +
     (couponKind == null ? 0 : couponKind!.hashCode) +
     (bondKind == null ? 0 : bondKind!.hashCode) +
+    (bondRunStatus == null ? 0 : bondRunStatus!.hashCode) +
+    (creditRating == null ? 0 : creditRating!.hashCode) +
     (couponStartAt == null ? 0 : couponStartAt!.hashCode) +
     (createdAt.hashCode) +
     (finalCouponAt == null ? 0 : finalCouponAt!.hashCode) +
@@ -138,7 +160,7 @@ class Bond {
     (nextCouponPayment == null ? 0 : nextCouponPayment!.hashCode);
 
   @override
-  String toString() => 'Bond[id=$id, kind=$kind, couponKind=$couponKind, bondKind=$bondKind, couponStartAt=$couponStartAt, createdAt=$createdAt, finalCouponAt=$finalCouponAt, isin=$isin, issuedAt=$issuedAt, issuer=$issuer, maturityAt=$maturityAt, principalValue=$principalValue, paymentsPerYear=$paymentsPerYear, paymentsEvery=$paymentsEvery, nextCouponPayment=$nextCouponPayment]';
+  String toString() => 'Bond[id=$id, kind=$kind, couponKind=$couponKind, bondKind=$bondKind, bondRunStatus=$bondRunStatus, creditRating=$creditRating, couponStartAt=$couponStartAt, createdAt=$createdAt, finalCouponAt=$finalCouponAt, isin=$isin, issuedAt=$issuedAt, issuer=$issuer, maturityAt=$maturityAt, principalValue=$principalValue, paymentsPerYear=$paymentsPerYear, paymentsEvery=$paymentsEvery, nextCouponPayment=$nextCouponPayment]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -153,6 +175,16 @@ class Bond {
       json[r'bond_kind'] = this.bondKind;
     } else {
       json[r'bond_kind'] = null;
+    }
+    if (this.bondRunStatus != null) {
+      json[r'bond_run_status'] = this.bondRunStatus;
+    } else {
+      json[r'bond_run_status'] = null;
+    }
+    if (this.creditRating != null) {
+      json[r'credit_rating'] = this.creditRating;
+    } else {
+      json[r'credit_rating'] = null;
     }
     if (this.couponStartAt != null) {
       json[r'coupon_start_at'] = this.couponStartAt!.toUtc().toIso8601String();
@@ -221,6 +253,8 @@ class Bond {
         kind: CouponKind.fromJson(json[r'kind'])!,
         couponKind: CouponKind.fromJson(json[r'coupon_kind']),
         bondKind: BondKind.fromJson(json[r'bond_kind']),
+        bondRunStatus: BondRunStatus.fromJson(json[r'bond_run_status']),
+        creditRating: CreditRating.fromJson(json[r'credit_rating']),
         couponStartAt: mapDateTime(json, r'coupon_start_at', r''),
         createdAt: mapDateTime(json, r'created_at', r'')!,
         finalCouponAt: mapDateTime(json, r'final_coupon_at', r''),

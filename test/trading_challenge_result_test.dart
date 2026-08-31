@@ -86,6 +86,11 @@ void main() {
       // TODO
     });
 
+    // String deactivationStatus
+    test('to test the property `deactivationStatus`', () async {
+      // TODO
+    });
+
     // String currentDayDailyVolume
     test('to test the property `currentDayDailyVolume`', () async {
       // TODO

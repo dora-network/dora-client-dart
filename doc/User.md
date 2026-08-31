@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **provider** | **String** |  | [optional] 
 **providerId** | **String** |  | [optional] 
 **roles** | [**List<UserRole>**](UserRole.md) |  | [default to const []]
+**managedCompetitionIds** | **List<String>** | Competition IDs this user is explicitly allowed to manage when they have COMPETITION_MANAGER role. Empty means no competition-management access. | [optional] [default to const []]
 **timezone** | **String** | User's timezone, e.g., 'America/New_York', or an offset. | [optional] 
 **timezoneOffset** | **int** | timezone offset in seconds | [optional] 
 **verifiedAt** | [**DateTime**](DateTime.md) |  | [optional] 

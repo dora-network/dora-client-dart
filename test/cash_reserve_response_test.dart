@@ -46,6 +46,18 @@ void main() {
       // TODO
     });
 
+    // How much more traded USD notional the user can add to the current settlement period before the reserve stops being covered, for an order that borrows nothing. Null means the fee leg does not constrain the user, because the guard is disabled or the trading fee volume cap is zero.
+    // String maxVolumeUsd
+    test('to test the property `maxVolumeUsd`', () async {
+      // TODO
+    });
+
+    // How much more the user can borrow before the reserve stops being covered, for an order that adds no traded volume. Null means the borrow leg does not constrain the user, because the guard is disabled or the borrowed fraction is zero. The two caps are single axis: a leveraged order consumes both at once and is admissible when notional/max_volume_usd + borrowed/max_borrow_usd <= 1.
+    // String maxBorrowUsd
+    test('to test the property `maxBorrowUsd`', () async {
+      // TODO
+    });
+
     // CashReserveBreakdown breakdown
     test('to test the property `breakdown`', () async {
       // TODO

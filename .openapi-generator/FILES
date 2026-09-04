@@ -70,6 +70,8 @@ doc/DepositInstructionForChain.md
 doc/DepositInstructionsResponse.md
 doc/DepositInstructionsResponseEnvelope.md
 doc/DepositResponse.md
+doc/FeeQuoteResponse.md
+doc/FeeQuoteResponseEnvelope.md
 doc/FundUser.md
 doc/FundUserRequest.md
 doc/FundUserResponseEnvelope.md
@@ -349,6 +351,8 @@ lib/model/deposit_instruction_for_chain.dart
 lib/model/deposit_instructions_response.dart
 lib/model/deposit_instructions_response_envelope.dart
 lib/model/deposit_response.dart
+lib/model/fee_quote_response.dart
+lib/model/fee_quote_response_envelope.dart
 lib/model/fund_user.dart
 lib/model/fund_user_request.dart
 lib/model/fund_user_response_envelope.dart
@@ -619,6 +623,8 @@ test/deposit_instruction_for_chain_test.dart
 test/deposit_instructions_response_envelope_test.dart
 test/deposit_instructions_response_test.dart
 test/deposit_response_test.dart
+test/fee_quote_response_envelope_test.dart
+test/fee_quote_response_test.dart
 test/fund_user_request_test.dart
 test/fund_user_response_envelope_test.dart
 test/fund_user_test.dart

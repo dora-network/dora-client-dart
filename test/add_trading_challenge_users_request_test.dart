@@ -21,8 +21,15 @@ void main() {
       // TODO
     });
 
+    // List of user IDs to add. Provide exactly one of users or emails.
     // List<String> users (default value: const [])
     test('to test the property `users`', () async {
+      // TODO
+    });
+
+    // List of user emails to add. Provide exactly one of users or emails.
+    // List<String> emails (default value: const [])
+    test('to test the property `emails`', () async {
       // TODO
     });
 

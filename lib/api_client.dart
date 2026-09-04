@@ -317,6 +317,10 @@ class ApiClient {
           return DepositInstructionsResponseEnvelope.fromJson(value);
         case 'DepositResponse':
           return DepositResponse.fromJson(value);
+        case 'FeeQuoteResponse':
+          return FeeQuoteResponse.fromJson(value);
+        case 'FeeQuoteResponseEnvelope':
+          return FeeQuoteResponseEnvelope.fromJson(value);
         case 'FundUser':
           return FundUser.fromJson(value);
         case 'FundUserRequest':

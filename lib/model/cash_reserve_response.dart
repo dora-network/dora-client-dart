@@ -18,6 +18,8 @@ class CashReserveResponse {
     required this.committedUsd,
     required this.requiredUsd,
     required this.satisfied,
+    required this.maxVolumeUsd,
+    required this.maxBorrowUsd,
     required this.breakdown,
   });
 
@@ -36,6 +38,12 @@ class CashReserveResponse {
   /// Whether available_usd minus committed_usd is at least required_usd.
   bool satisfied;
 
+  /// How much more traded USD notional the user can add to the current settlement period before the reserve stops being covered, for an order that borrows nothing. Null means the fee leg does not constrain the user, because the guard is disabled or the trading fee volume cap is zero.
+  String maxVolumeUsd;
+
+  /// How much more the user can borrow before the reserve stops being covered, for an order that adds no traded volume. Null means the borrow leg does not constrain the user, because the guard is disabled or the borrowed fraction is zero. The two caps are single axis: a leveraged order consumes both at once and is admissible when notional/max_volume_usd + borrowed/max_borrow_usd <= 1.
+  String maxBorrowUsd;
+
   CashReserveBreakdown breakdown;
 
   @override
@@ -45,6 +53,8 @@ class CashReserveResponse {
     other.committedUsd == committedUsd &&
     other.requiredUsd == requiredUsd &&
     other.satisfied == satisfied &&
+    other.maxVolumeUsd == maxVolumeUsd &&
+    other.maxBorrowUsd == maxBorrowUsd &&
     other.breakdown == breakdown;
 
   @override
@@ -55,10 +65,12 @@ class CashReserveResponse {
     (committedUsd.hashCode) +
     (requiredUsd.hashCode) +
     (satisfied.hashCode) +
+    (maxVolumeUsd.hashCode) +
+    (maxBorrowUsd.hashCode) +
     (breakdown.hashCode);
 
   @override
-  String toString() => 'CashReserveResponse[enforced=$enforced, availableUsd=$availableUsd, committedUsd=$committedUsd, requiredUsd=$requiredUsd, satisfied=$satisfied, breakdown=$breakdown]';
+  String toString() => 'CashReserveResponse[enforced=$enforced, availableUsd=$availableUsd, committedUsd=$committedUsd, requiredUsd=$requiredUsd, satisfied=$satisfied, maxVolumeUsd=$maxVolumeUsd, maxBorrowUsd=$maxBorrowUsd, breakdown=$breakdown]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -67,6 +79,8 @@ class CashReserveResponse {
       json[r'committed_usd'] = this.committedUsd;
       json[r'required_usd'] = this.requiredUsd;
       json[r'satisfied'] = this.satisfied;
+      json[r'max_volume_usd'] = this.maxVolumeUsd;
+      json[r'max_borrow_usd'] = this.maxBorrowUsd;
       json[r'breakdown'] = this.breakdown;
     return json;
   }
@@ -92,6 +106,10 @@ class CashReserveResponse {
         assert(json[r'required_usd'] != null, 'Required key "CashReserveResponse[required_usd]" has a null value in JSON.');
         assert(json.containsKey(r'satisfied'), 'Required key "CashReserveResponse[satisfied]" is missing from JSON.');
         assert(json[r'satisfied'] != null, 'Required key "CashReserveResponse[satisfied]" has a null value in JSON.');
+        assert(json.containsKey(r'max_volume_usd'), 'Required key "CashReserveResponse[max_volume_usd]" is missing from JSON.');
+        assert(json[r'max_volume_usd'] != null, 'Required key "CashReserveResponse[max_volume_usd]" has a null value in JSON.');
+        assert(json.containsKey(r'max_borrow_usd'), 'Required key "CashReserveResponse[max_borrow_usd]" is missing from JSON.');
+        assert(json[r'max_borrow_usd'] != null, 'Required key "CashReserveResponse[max_borrow_usd]" has a null value in JSON.');
         assert(json.containsKey(r'breakdown'), 'Required key "CashReserveResponse[breakdown]" is missing from JSON.');
         assert(json[r'breakdown'] != null, 'Required key "CashReserveResponse[breakdown]" has a null value in JSON.');
         return true;
@@ -103,6 +121,8 @@ class CashReserveResponse {
         committedUsd: mapValueOfType<String>(json, r'committed_usd')!,
         requiredUsd: mapValueOfType<String>(json, r'required_usd')!,
         satisfied: mapValueOfType<bool>(json, r'satisfied')!,
+        maxVolumeUsd: mapValueOfType<String>(json, r'max_volume_usd')!,
+        maxBorrowUsd: mapValueOfType<String>(json, r'max_borrow_usd')!,
         breakdown: CashReserveBreakdown.fromJson(json[r'breakdown'])!,
       );
     }
@@ -156,6 +176,8 @@ class CashReserveResponse {
     'committed_usd',
     'required_usd',
     'satisfied',
+    'max_volume_usd',
+    'max_borrow_usd',
     'breakdown',
   };
 }

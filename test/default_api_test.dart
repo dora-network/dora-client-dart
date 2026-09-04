@@ -581,6 +581,15 @@ void main() {
       // TODO
     });
 
+    // Estimate the network fee to withdraw USDC via web3
+    //
+    // Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+    //
+    //Future<FeeQuoteResponseEnvelope> getWithdrawalFeeQuote(String to, String quantity) async
+    test('test getWithdrawalFeeQuote', () async {
+      // TODO
+    });
+
     // Deposit assets into this user's account from the outside world
     //
     // Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.

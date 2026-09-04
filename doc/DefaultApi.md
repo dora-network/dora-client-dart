@@ -85,6 +85,7 @@ Method | HTTP request | Description
 [**getUserTransactionsStream**](DefaultApi.md#getusertransactionsstream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 [**getUsers**](DefaultApi.md#getusers) | **GET** /v1/user | Get all users (admin only)
 [**getUsersAPIKeys**](DefaultApi.md#getusersapikeys) | **GET** /v1/user/apikey | Get user's api keys
+[**getWithdrawalFeeQuote**](DefaultApi.md#getwithdrawalfeequote) | **GET** /v1/web3/withdrawals/fee-quote | Estimate the network fee to withdraw USDC via web3
 [**ledgerDeposit**](DefaultApi.md#ledgerdeposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user's account from the outside world
 [**ledgerWithdraw**](DefaultApi.md#ledgerwithdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
 [**ledgerWithdrawRequest**](DefaultApi.md#ledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{user_id} | Initiate a withdrawal request for this user to the outside world
@@ -3898,6 +3899,61 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**APIKeyResponseEnvelope**](APIKeyResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getWithdrawalFeeQuote**
+> FeeQuoteResponseEnvelope getWithdrawalFeeQuote(to, quantity)
+
+Estimate the network fee to withdraw USDC via web3
+
+Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final to = to_example; // String | The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.
+final quantity = quantity_example; // String | Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.
+
+try {
+    final result = api_instance.getWithdrawalFeeQuote(to, quantity);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getWithdrawalFeeQuote: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **to** | **String**| The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address. | 
+ **quantity** | **String**| Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive. | 
+
+### Return type
+
+[**FeeQuoteResponseEnvelope**](FeeQuoteResponseEnvelope.md)
 
 ### Authorization
 

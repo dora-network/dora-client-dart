@@ -28,7 +28,7 @@ void main() {
       // TODO
     });
 
-    // Estimated trading fees for the current settlement period, capped at a configured fraction (1% by default) of the user's traded USD volume since 00:00:00 UTC.
+    // Estimated trading fees for the current settlement period, capped at a configured fraction (1% by default) of the user's traded USD volume since 00:00:00 UTC plus the USD notional their open orders are still going to trade.
     // String estimatedFees
     test('to test the property `estimatedFees`', () async {
       // TODO

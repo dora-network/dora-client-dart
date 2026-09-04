@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **completedPac** | **String** | Completed PAC (partially accrued coupon) obligations the user owes, in USD. | 
 **outstandingLai** | **String** | Outstanding LAI (leverage accrued interest) the user owes, in USD. | 
-**estimatedFees** | **String** | Estimated trading fees for the current settlement period, capped at a configured fraction (1% by default) of the user's traded USD volume since 00:00:00 UTC. | 
+**estimatedFees** | **String** | Estimated trading fees for the current settlement period, capped at a configured fraction (1% by default) of the user's traded USD volume since 00:00:00 UTC plus the USD notional their open orders are still going to trade. | 
 **borrowedPortion** | **String** | Configured fraction (10% by default) of the user's total outstanding borrowed value, in USD. | 
 **floor** | **String** | Configured absolute minimum requirement, in USD. | 
 **total** | **String** | The amount of USD the user must keep available in their Global Account. | 

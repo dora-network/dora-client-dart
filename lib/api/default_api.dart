@@ -4562,6 +4562,74 @@ class DefaultApi {
     return null;
   }
 
+  /// Estimate the network fee to withdraw USDC via web3
+  ///
+  /// Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] to (required):
+  ///   The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.
+  ///
+  /// * [String] quantity (required):
+  ///   Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.
+  Future<Response> getWithdrawalFeeQuoteWithHttpInfo(String to, String quantity, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/withdrawals/fee-quote';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_queryParams('', 'to', to));
+      queryParams.addAll(_queryParams('', 'quantity', quantity));
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Estimate the network fee to withdraw USDC via web3
+  ///
+  /// Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] to (required):
+  ///   The destination wallet address as a 0x-prefixed 20-byte hex string. Must not be the zero address.
+  ///
+  /// * [String] quantity (required):
+  ///   Human-decimal USDC quantity to withdraw, e.g. '100.50'. Must be positive.
+  Future<FeeQuoteResponseEnvelope?> getWithdrawalFeeQuote(String to, String quantity, { Future<void>? abortTrigger, }) async {
+    final response = await getWithdrawalFeeQuoteWithHttpInfo(to, quantity, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'FeeQuoteResponseEnvelope',) as FeeQuoteResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Deposit assets into this user's account from the outside world
   ///
   /// Deposit assets into this user's account from the outside world. Note that this does not interact with any external systems; it simply adds the amount to the user's available balance in the ledger. Actual transfer of assets must be handled separately.

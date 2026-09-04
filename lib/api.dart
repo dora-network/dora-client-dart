@@ -97,6 +97,8 @@ part 'model/deposit_instruction_for_chain.dart';
 part 'model/deposit_instructions_response.dart';
 part 'model/deposit_instructions_response_envelope.dart';
 part 'model/deposit_response.dart';
+part 'model/fee_quote_response.dart';
+part 'model/fee_quote_response_envelope.dart';
 part 'model/fund_user.dart';
 part 'model/fund_user_request.dart';
 part 'model/fund_user_response_envelope.dart';

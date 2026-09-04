@@ -15,30 +15,38 @@ class RemoveTradingChallengeUsersRequest {
   RemoveTradingChallengeUsersRequest({
     required this.tradingChallengeId,
     this.users = const [],
+    this.emails = const [],
   });
 
   String tradingChallengeId;
 
+  /// List of user IDs to remove. Provide exactly one of users or emails.
   List<String> users;
+
+  /// List of user emails to remove. Provide exactly one of users or emails.
+  List<String> emails;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is RemoveTradingChallengeUsersRequest &&
     other.tradingChallengeId == tradingChallengeId &&
-    _deepEquality.equals(other.users, users);
+    _deepEquality.equals(other.users, users) &&
+    _deepEquality.equals(other.emails, emails);
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (tradingChallengeId.hashCode) +
-    (users.hashCode);
+    (users.hashCode) +
+    (emails.hashCode);
 
   @override
-  String toString() => 'RemoveTradingChallengeUsersRequest[tradingChallengeId=$tradingChallengeId, users=$users]';
+  String toString() => 'RemoveTradingChallengeUsersRequest[tradingChallengeId=$tradingChallengeId, users=$users, emails=$emails]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'trading_challenge_id'] = this.tradingChallengeId;
       json[r'users'] = this.users;
+      json[r'emails'] = this.emails;
     return json;
   }
 
@@ -55,8 +63,6 @@ class RemoveTradingChallengeUsersRequest {
       assert(() {
         assert(json.containsKey(r'trading_challenge_id'), 'Required key "RemoveTradingChallengeUsersRequest[trading_challenge_id]" is missing from JSON.');
         assert(json[r'trading_challenge_id'] != null, 'Required key "RemoveTradingChallengeUsersRequest[trading_challenge_id]" has a null value in JSON.');
-        assert(json.containsKey(r'users'), 'Required key "RemoveTradingChallengeUsersRequest[users]" is missing from JSON.');
-        assert(json[r'users'] != null, 'Required key "RemoveTradingChallengeUsersRequest[users]" has a null value in JSON.');
         return true;
       }());
 
@@ -64,6 +70,9 @@ class RemoveTradingChallengeUsersRequest {
         tradingChallengeId: mapValueOfType<String>(json, r'trading_challenge_id')!,
         users: json[r'users'] is Iterable
             ? (json[r'users'] as Iterable).cast<String>().toList(growable: false)
+            : const [],
+        emails: json[r'emails'] is Iterable
+            ? (json[r'emails'] as Iterable).cast<String>().toList(growable: false)
             : const [],
       );
     }
@@ -113,7 +122,6 @@ class RemoveTradingChallengeUsersRequest {
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
     'trading_challenge_id',
-    'users',
   };
 }
 

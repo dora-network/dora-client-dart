@@ -22,9 +22,9 @@ void main() {
       // TODO
     });
 
-    // Maximum allowed deposit for the tenant.
-    // String depositLimit
-    test('to test the property `depositLimit`', () async {
+    // Maximum allowed deposit for the tenant per day.
+    // String dailyDepositLimit
+    test('to test the property `dailyDepositLimit`', () async {
       // TODO
     });
 

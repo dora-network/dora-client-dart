@@ -33,6 +33,8 @@ class TradingChallenge {
     this.lastProcessedAt,
     this.users = const [],
     required this.usersCount,
+    this.qr,
+    this.worstCaseExposure,
   });
 
   String id;
@@ -88,6 +90,23 @@ class TradingChallenge {
 
   int usersCount;
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  TradingChallengeQR? qr;
+
+  /// For QR_PROMO, max_users multiplied by initial_user_balance plus max_reward_amount.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? worstCaseExposure;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is TradingChallenge &&
     other.id == id &&
@@ -109,7 +128,9 @@ class TradingChallenge {
     other.createdAt == createdAt &&
     other.lastProcessedAt == lastProcessedAt &&
     _deepEquality.equals(other.users, users) &&
-    other.usersCount == usersCount;
+    other.usersCount == usersCount &&
+    other.qr == qr &&
+    other.worstCaseExposure == worstCaseExposure;
 
   @override
   int get hashCode =>
@@ -133,10 +154,12 @@ class TradingChallenge {
     (createdAt.hashCode) +
     (lastProcessedAt == null ? 0 : lastProcessedAt!.hashCode) +
     (users.hashCode) +
-    (usersCount.hashCode);
+    (usersCount.hashCode) +
+    (qr == null ? 0 : qr!.hashCode) +
+    (worstCaseExposure == null ? 0 : worstCaseExposure!.hashCode);
 
   @override
-  String toString() => 'TradingChallenge[id=$id, name=$name, tenantId=$tenantId, type=$type, status=$status, maxUsers=$maxUsers, startAt=$startAt, endAt=$endAt, initialUserBalance=$initialUserBalance, goldPrizeQuantity=$goldPrizeQuantity, silverPrizeQuantity=$silverPrizeQuantity, bronzePrizeQuantity=$bronzePrizeQuantity, pnlCondition=$pnlCondition, totalVolumeCondition=$totalVolumeCondition, avgDailyVolumeCondition=$avgDailyVolumeCondition, minimumEquityPercentageCondition=$minimumEquityPercentageCondition, createdAt=$createdAt, lastProcessedAt=$lastProcessedAt, users=$users, usersCount=$usersCount]';
+  String toString() => 'TradingChallenge[id=$id, name=$name, tenantId=$tenantId, type=$type, status=$status, maxUsers=$maxUsers, startAt=$startAt, endAt=$endAt, initialUserBalance=$initialUserBalance, goldPrizeQuantity=$goldPrizeQuantity, silverPrizeQuantity=$silverPrizeQuantity, bronzePrizeQuantity=$bronzePrizeQuantity, pnlCondition=$pnlCondition, totalVolumeCondition=$totalVolumeCondition, avgDailyVolumeCondition=$avgDailyVolumeCondition, minimumEquityPercentageCondition=$minimumEquityPercentageCondition, createdAt=$createdAt, lastProcessedAt=$lastProcessedAt, users=$users, usersCount=$usersCount, qr=$qr, worstCaseExposure=$worstCaseExposure]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -168,6 +191,16 @@ class TradingChallenge {
     }
       json[r'users'] = this.users;
       json[r'users_count'] = this.usersCount;
+    if (this.qr != null) {
+      json[r'qr'] = this.qr;
+    } else {
+      json[r'qr'] = null;
+    }
+    if (this.worstCaseExposure != null) {
+      json[r'worst_case_exposure'] = this.worstCaseExposure;
+    } else {
+      json[r'worst_case_exposure'] = null;
+    }
     return json;
   }
 
@@ -242,6 +275,8 @@ class TradingChallenge {
             ? (json[r'users'] as Iterable).cast<String>().toList(growable: false)
             : const [],
         usersCount: mapValueOfType<int>(json, r'users_count')!,
+        qr: TradingChallengeQR.fromJson(json[r'qr']),
+        worstCaseExposure: mapValueOfType<String>(json, r'worst_case_exposure'),
       );
     }
     return null;

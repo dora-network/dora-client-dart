@@ -9,7 +9,7 @@ import 'package:dora_client/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tenantId** | **String** | Tenant ID | 
-**depositLimit** | **String** | Maximum allowed deposit for the tenant. | 
+**dailyDepositLimit** | **String** | Maximum allowed deposit for the tenant per day. | 
 **tradeLimit** | **String** | Maximum allowed trade amount for the tenant. | 
 **updatedAt** | [**DateTime**](DateTime.md) | Last update timestamp for the restrictions. | 
 

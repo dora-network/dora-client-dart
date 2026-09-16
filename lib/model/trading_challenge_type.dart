@@ -25,11 +25,13 @@ class TradingChallengeType {
 
   static const TOURNAMENT = TradingChallengeType._(r'TOURNAMENT');
   static const CASH = TradingChallengeType._(r'CASH');
+  static const QR_PROMO = TradingChallengeType._(r'QR_PROMO');
 
   /// List of all possible values in this [enum][TradingChallengeType].
   static const values = <TradingChallengeType>[
     TOURNAMENT,
     CASH,
+    QR_PROMO,
   ];
 
   static TradingChallengeType? fromJson(dynamic value) => TradingChallengeTypeTypeTransformer().decode(value);
@@ -70,6 +72,7 @@ class TradingChallengeTypeTypeTransformer {
       switch (data) {
         case r'TOURNAMENT': return TradingChallengeType.TOURNAMENT;
         case r'CASH': return TradingChallengeType.CASH;
+        case r'QR_PROMO': return TradingChallengeType.QR_PROMO;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

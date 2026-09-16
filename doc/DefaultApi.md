@@ -12,21 +12,27 @@ Method | HTTP request | Description
 [**addTradingChallengeUsers**](DefaultApi.md#addtradingchallengeusers) | **PUT** /v1/trading_challenges/add_users | Add users to a trading challenge
 [**approveLedgerWithdrawRequest**](DefaultApi.md#approveledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/approve | Approve a pending withdrawal request
 [**approveTradingChallengeRegistrationRequest**](DefaultApi.md#approvetradingchallengeregistrationrequest) | **POST** /v1/trading_challenges/registration_requests/{request_id}/approve | Approve a trading challenge registration request
+[**assignAffiliateReferral**](DefaultApi.md#assignaffiliatereferral) | **POST** /v1/affiliate_referrals/self | Assign your affiliate referrer
 [**cancelAllOpenOrders**](DefaultApi.md#cancelallopenorders) | **DELETE** /v1/orders | Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
 [**cancelLedgerWithdrawRequest**](DefaultApi.md#cancelledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/cancel | Cancel a pending withdrawal request
 [**cancelOrderById**](DefaultApi.md#cancelorderbyid) | **DELETE** /v1/orders/{order_id} | Cancel an order by ID
 [**claimLeverageGetAccruedInterest**](DefaultApi.md#claimleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/claim | Claim current accrued leverage interest for a specific user
+[**claimPromoLink**](DefaultApi.md#claimpromolink) | **POST** /v1/promo/claim/{token} | Claim a public QR promotion link
 [**claimTradingChallengePrize**](DefaultApi.md#claimtradingchallengeprize) | **POST** /v1/trading_challenges/{trading_challenge_id}/claim | Claim challenge prize
 [**closeIsolatedAccountV2**](DefaultApi.md#closeisolatedaccountv2) | **POST** /v2/accounts/close | Close an isolated account, repaying the borrowed
 [**closeIsolatedPosition**](DefaultApi.md#closeisolatedposition) | **POST** /v1/positions/close | Close isolated positions, repaying the borrowed
 [**createAPIKeyForUser**](DefaultApi.md#createapikeyforuser) | **POST** /v1/user/apikey | Create apikey for a user
 [**createAPIKeyForUserID**](DefaultApi.md#createapikeyforuserid) | **POST** /v1/user/{user_id}/apikey | Create apikey for a user
+[**createAffiliateProgram**](DefaultApi.md#createaffiliateprogram) | **POST** /v1/affiliate_programs | Create an affiliate program
 [**createConditionalOrder**](DefaultApi.md#createconditionalorder) | **POST** /v1/orders/conditional | Create a new conditional orders
 [**createOrder**](DefaultApi.md#createorder) | **POST** /v1/orders | Create a new order
 [**createTradingChallenge**](DefaultApi.md#createtradingchallenge) | **POST** /v1/trading_challenges | Create a trading challenge
 [**createUser**](DefaultApi.md#createuser) | **POST** /v1/integrators/user | Create a new user
+[**createWithdrawal**](DefaultApi.md#createwithdrawal) | **POST** /v1/web3/withdrawals | Create a USDC withdrawal request
 [**deleteUser**](DefaultApi.md#deleteuser) | **DELETE** /v1/user/{user_id} | Delete user by ID
+[**exportPromoLinksCSV**](DefaultApi.md#exportpromolinkscsv) | **GET** /v1/link_batches/{batch_id}/links.csv | Export promotional links as CSV
 [**getAPIKeysForUserID**](DefaultApi.md#getapikeysforuserid) | **GET** /v1/user/{user_id}/apikey | Get user's api keys: admin or integrator only
+[**getAffiliateProgram**](DefaultApi.md#getaffiliateprogram) | **GET** /v1/affiliate_programs/{program_id} | Get an affiliate program
 [**getAllAssetPrices**](DefaultApi.md#getallassetprices) | **GET** /v1/price | Get the current price of all assets
 [**getAllPositions**](DefaultApi.md#getallpositions) | **GET** /v1/ledger/positions | Get all users' positions
 [**getAllWithdrawalRequests**](DefaultApi.md#getallwithdrawalrequests) | **GET** /v1/ledger/withdraw/requests | Get all withdrawal requests
@@ -63,6 +69,7 @@ Method | HTTP request | Description
 [**getOrderbookTop**](DefaultApi.md#getorderbooktop) | **GET** /v1/orderbooks/{order_book_id}/top | Get the top price levels for a specific orderbook (L1 market depth)
 [**getPLForSelfByAccount**](DefaultApi.md#getplforselfbyaccount) | **GET** /v1/pl/self | Get account-by-account PL breakdown for the logged in user
 [**getPoolPrice**](DefaultApi.md#getpoolprice) | **GET** /v1/price/pool/{pool_id} | Get the current price of a pool
+[**getPromoAttribution**](DefaultApi.md#getpromoattribution) | **GET** /v1/trading_challenges/{trading_challenge_id}/attribution | Get promotional source attribution
 [**getRealizedPnlSettlements**](DefaultApi.md#getrealizedpnlsettlements) | **GET** /v1/realized_pnl_settlements | Get realized P&L settlements with filters
 [**getTopTradersByPnL**](DefaultApi.md#gettoptradersbypnl) | **GET** /v1/user/ranking | Get top traders by PnL
 [**getTradeById**](DefaultApi.md#gettradebyid) | **GET** /v1/trades/{trade_id} | Get a trade by ID
@@ -85,7 +92,9 @@ Method | HTTP request | Description
 [**getUserTransactionsStream**](DefaultApi.md#getusertransactionsstream) | **GET** /v1/user/{user_id}/transactions/stream | Get a snapshot of user's executed transactions since a specific time, and opens a stream for further updates
 [**getUsers**](DefaultApi.md#getusers) | **GET** /v1/user | Get all users (admin only)
 [**getUsersAPIKeys**](DefaultApi.md#getusersapikeys) | **GET** /v1/user/apikey | Get user's api keys
+[**getWithdrawal**](DefaultApi.md#getwithdrawal) | **GET** /v1/web3/withdrawals/{withdrawal_id} | Get a USDC withdrawal by ID
 [**getWithdrawalFeeQuote**](DefaultApi.md#getwithdrawalfeequote) | **GET** /v1/web3/withdrawals/fee-quote | Estimate the network fee to withdraw USDC via web3
+[**issuePromoLinkBatch**](DefaultApi.md#issuepromolinkbatch) | **POST** /v1/trading_challenges/{trading_challenge_id}/link_batches | Issue a promotional link batch
 [**ledgerDeposit**](DefaultApi.md#ledgerdeposit) | **POST** /v1/ledger/deposit/{user_id} | Deposit assets into this user's account from the outside world
 [**ledgerWithdraw**](DefaultApi.md#ledgerwithdraw) | **POST** /v1/ledger/withdraw/{user_id} | Withdraw assets from this user to the outside world
 [**ledgerWithdrawRequest**](DefaultApi.md#ledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{user_id} | Initiate a withdrawal request for this user to the outside world
@@ -100,21 +109,34 @@ Method | HTTP request | Description
 [**liquidityAdd**](DefaultApi.md#liquidityadd) | **POST** /v1/liquidity/pool/{pool_id}/add | Add liquidity to a pool
 [**liquiditySubtract**](DefaultApi.md#liquiditysubtract) | **POST** /v1/liquidity/pool/{pool_id}/remove | Subtract liquidity from a pool
 [**listAccountsSelfV2**](DefaultApi.md#listaccountsselfv2) | **GET** /v2/user/self/accounts | List all accounts for the authenticated user
+[**listAffiliateCashFlows**](DefaultApi.md#listaffiliatecashflows) | **GET** /v1/affiliate_programs/{program_id}/referrals/{user_id}/cash_flows | List a referred user's customer cash flows
+[**listAffiliatePrograms**](DefaultApi.md#listaffiliateprograms) | **GET** /v1/affiliate_programs | List affiliate programs
+[**listAffiliateReferrals**](DefaultApi.md#listaffiliatereferrals) | **GET** /v1/affiliate_programs/{program_id}/referrals | List referred users and activity
+[**listAffiliateReferrers**](DefaultApi.md#listaffiliatereferrers) | **GET** /v1/affiliate_programs/{program_id}/referrers | List program referrers
 [**listAssets**](DefaultApi.md#listassets) | **GET** /v1/assets | List assets
 [**listDeposits**](DefaultApi.md#listdeposits) | **GET** /v1/web3/deposits | List USDC deposits
 [**listOrderBooks**](DefaultApi.md#listorderbooks) | **GET** /v1/orderbooks | List order books
 [**listOrders**](DefaultApi.md#listorders) | **GET** /v1/orders | List all orders
+[**listOwnAffiliateMemberships**](DefaultApi.md#listownaffiliatememberships) | **GET** /v1/affiliate_referrers/self | List your affiliate memberships
 [**listPositionAccountsSelf**](DefaultApi.md#listpositionaccountsself) | **GET** /v1/user/self/position_accounts | List all position accounts for the authenticated user
+[**listPromoLinkBatches**](DefaultApi.md#listpromolinkbatches) | **GET** /v1/trading_challenges/{trading_challenge_id}/link_batches | List promotional link batches
+[**listPromoLinks**](DefaultApi.md#listpromolinks) | **GET** /v1/link_batches/{batch_id}/links | List promotional links
 [**listTradingChallengeRegistrationRequests**](DefaultApi.md#listtradingchallengeregistrationrequests) | **GET** /v1/trading_challenges/registration_requests | List trading challenge registration requests
 [**listTradingChallenges**](DefaultApi.md#listtradingchallenges) | **GET** /v1/trading_challenges | List trading challenges
 [**listUserDeactivations**](DefaultApi.md#listuserdeactivations) | **GET** /v1/user/deactivations | Get the current deactivation status across all users
+[**listWithdrawals**](DefaultApi.md#listwithdrawals) | **GET** /v1/web3/withdrawals | List USDC withdrawals
+[**lookupAffiliateCode**](DefaultApi.md#lookupaffiliatecode) | **GET** /v1/affiliate_codes/{code} | Look up a reusable referral code
 [**payLeverageGetAccruedInterest**](DefaultApi.md#payleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
+[**registerAffiliateReferrer**](DefaultApi.md#registeraffiliatereferrer) | **POST** /v1/affiliate_programs/{program_id}/referrers | Register an existing user as a referrer
 [**rejectLedgerWithdrawRequest**](DefaultApi.md#rejectledgerwithdrawrequest) | **POST** /v1/ledger/withdraw/requests/{withdrawal_id}/reject | Reject a pending withdrawal request
 [**rejectTradingChallengeRegistrationRequest**](DefaultApi.md#rejecttradingchallengeregistrationrequest) | **POST** /v1/trading_challenges/registration_requests/{request_id}/reject | Reject a trading challenge registration request
 [**removeTradingChallengeUsers**](DefaultApi.md#removetradingchallengeusers) | **PUT** /v1/trading_challenges/remove_users | Remove users from a trading challenge
+[**renderPromoLinkQR**](DefaultApi.md#renderpromolinkqr) | **GET** /v1/promo_links/{link_id}/qr | Render a promotional link QR code
 [**repayUSD**](DefaultApi.md#repayusd) | **POST** /v1/positions/repay_usd | Repay borrowed USD, then accrue and pay leverage interest
+[**resolvePromoClaim**](DefaultApi.md#resolvepromoclaim) | **GET** /v1/promo/claim/{token} | Resolve a public QR promotion claim link
 [**revokeAPIKeyForUser**](DefaultApi.md#revokeapikeyforuser) | **PUT** /v1/user/apikey/{key_id}/revoke | Revoke apikey for a user
 [**revokeAPIKeyForUserID**](DefaultApi.md#revokeapikeyforuserid) | **PUT** /v1/user/{user_id}/apikey/{key_id}/revoke | Revoke apikey for a user: admin or integrator only
+[**revokePromoLink**](DefaultApi.md#revokepromolink) | **POST** /v1/promo_links/{link_id}/revoke | Revoke a promotional link
 [**settleLeverageAccruedInterest**](DefaultApi.md#settleleverageaccruedinterest) | **POST** /v1/leverage/accrued_interest/settle | Settle current accrued leverage interest for a specific user
 [**settleRealizedPnlRecord**](DefaultApi.md#settlerealizedpnlrecord) | **PUT** /v1/realized_pnl_settlements/{settlement_id} | Mark a realized P&L settlement as settled
 [**settleTransactionsSettlements**](DefaultApi.md#settletransactionssettlements) | **PUT** /v1/transactions/settlements | Settle multiple transactions settlements in batch
@@ -127,6 +149,7 @@ Method | HTTP request | Description
 [**terminateTradingChallengeParticipation**](DefaultApi.md#terminatetradingchallengeparticipation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate | Terminate a participation in a trading challenge
 [**transferAccountBalancesV2**](DefaultApi.md#transferaccountbalancesv2) | **POST** /v2/accounts/transfer_balances | Transfer available balance between a user's accounts
 [**transferAvailableBalances**](DefaultApi.md#transferavailablebalances) | **POST** /v1/positions/transfer_balances | Transfer available balance between a user's accounts (e.g. global to isolated position)
+[**updateAffiliateProgram**](DefaultApi.md#updateaffiliateprogram) | **PUT** /v1/affiliate_programs/{program_id} | Update an affiliate program
 [**updateTradingChallenge**](DefaultApi.md#updatetradingchallenge) | **PUT** /v1/trading_challenges/{trading_challenge_id} | Update a trading challenge
 [**updateUserConfig**](DefaultApi.md#updateuserconfig) | **PUT** /v1/user/{user_id}/config | Update user configuration by ID
 [**updateUserConfigSelf**](DefaultApi.md#updateuserconfigself) | **PUT** /v1/user/config/self | Update user configuration for the authenticated user
@@ -286,6 +309,59 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TradingChallengeRegistrationRequestResponseEnvelope**](TradingChallengeRegistrationRequestResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **assignAffiliateReferral**
+> AffiliateAttributionEnvelope assignAffiliateReferral(assignAffiliateReferralRequest)
+
+Assign your affiliate referrer
+
+Authenticated existing users may assign a referral code once, within their own tenant. No user_id or tenant_id override is accepted. New assignments reject self-referral and require an active program. Repeating the same code returns the original assignment without changing its timestamp; changing the code returns 409. Only activity from assignment onward counts. This does not change signup_source.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final assignAffiliateReferralRequest = AssignAffiliateReferralRequest(); // AssignAffiliateReferralRequest | 
+
+try {
+    final result = api_instance.assignAffiliateReferral(assignAffiliateReferralRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->assignAffiliateReferral: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assignAffiliateReferralRequest** | [**AssignAffiliateReferralRequest**](AssignAffiliateReferralRequest.md)|  | 
+
+### Return type
+
+[**AffiliateAttributionEnvelope**](AffiliateAttributionEnvelope.md)
 
 ### Authorization
 
@@ -504,6 +580,49 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **claimPromoLink**
+> PromoClaimResponseEnvelope claimPromoLink(token, claimPromoLinkRequest)
+
+Claim a public QR promotion link
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final token = token_example; // String | Opaque bearer claim token
+final claimPromoLinkRequest = ClaimPromoLinkRequest(); // ClaimPromoLinkRequest | 
+
+try {
+    final result = api_instance.claimPromoLink(token, claimPromoLinkRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->claimPromoLink: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **String**| Opaque bearer claim token | 
+ **claimPromoLinkRequest** | [**ClaimPromoLinkRequest**](ClaimPromoLinkRequest.md)|  | 
+
+### Return type
+
+[**PromoClaimResponseEnvelope**](PromoClaimResponseEnvelope.md)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 
@@ -771,6 +890,59 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **createAffiliateProgram**
+> AffiliateProgramEnvelope createAffiliateProgram(createAffiliateProgramRequest)
+
+Create an affiliate program
+
+ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. tenant_id is required. Set is_active to true to create an active program.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final createAffiliateProgramRequest = CreateAffiliateProgramRequest(); // CreateAffiliateProgramRequest | 
+
+try {
+    final result = api_instance.createAffiliateProgram(createAffiliateProgramRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->createAffiliateProgram: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createAffiliateProgramRequest** | [**CreateAffiliateProgramRequest**](CreateAffiliateProgramRequest.md)|  | 
+
+### Return type
+
+[**AffiliateProgramEnvelope**](AffiliateProgramEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **createConditionalOrder**
 > CreateConditionalOrderResponseEnvelope createConditionalOrder(createConditionalOrderRequest)
 
@@ -977,6 +1149,59 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **createWithdrawal**
+> WithdrawalResponseEnvelope createWithdrawal(createWithdrawalRequest)
+
+Create a USDC withdrawal request
+
+Reserves the requested quantity against the caller's available balance (moving it to pending_withdrawal) and creates a PENDING withdrawal. No fee quote is required and no fee is reserved: the withdrawal's fee is quoted and locked later, as part of approval. Idempotent on withdrawal_id: a repeat request carrying the same to_address and quantity reserves nothing further and returns the existing withdrawal with 200. Reusing a withdrawal_id with a different to_address or quantity is a conflict (409), not a replay, and reserves nothing. Restricted to DORA tenant users whose native asset is USDC.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final createWithdrawalRequest = CreateWithdrawalRequest(); // CreateWithdrawalRequest | 
+
+try {
+    final result = api_instance.createWithdrawal(createWithdrawalRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->createWithdrawal: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createWithdrawalRequest** | [**CreateWithdrawalRequest**](CreateWithdrawalRequest.md)|  | 
+
+### Return type
+
+[**WithdrawalResponseEnvelope**](WithdrawalResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **deleteUser**
 > UserDeletedResponseEnvelope deleteUser(userId)
 
@@ -1028,6 +1253,59 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **exportPromoLinksCSV**
+> String exportPromoLinksCSV(batchId)
+
+Export promotional links as CSV
+
+Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final batchId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.exportPromoLinksCSV(batchId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->exportPromoLinksCSV: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batchId** | **String**|  | 
+
+### Return type
+
+**String**
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getAPIKeysForUserID**
 > APIKeyResponseEnvelope getAPIKeysForUserID(userId)
 
@@ -1067,6 +1345,59 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**APIKeyResponseEnvelope**](APIKeyResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getAffiliateProgram**
+> AffiliateProgramEnvelope getAffiliateProgram(programId)
+
+Get an affiliate program
+
+ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. 
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final programId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getAffiliateProgram(programId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getAffiliateProgram: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **programId** | **String**|  | 
+
+### Return type
+
+[**AffiliateProgramEnvelope**](AffiliateProgramEnvelope.md)
 
 ### Authorization
 
@@ -1453,6 +1784,8 @@ No authorization required
 > ListCandlesResponseEnvelope getCandleData(orderBookId, start, end, resolution)
 
 Get candlestick data for an orderbook
+
+Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
 
 ### Example
 ```dart
@@ -2779,6 +3112,59 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getPromoAttribution**
+> PromoAttributionResponse getPromoAttribution(tradingChallengeId)
+
+Get promotional source attribution
+
+Return the QR source funnel and decimal totals in one bounded aggregate query. ADMIN and same-tenant INTEGRATOR only.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final tradingChallengeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.getPromoAttribution(tradingChallengeId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getPromoAttribution: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tradingChallengeId** | **String**|  | 
+
+### Return type
+
+[**PromoAttributionResponse**](PromoAttributionResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getRealizedPnlSettlements**
 > GetRealizedPnlSettlementsResponseEnvelope getRealizedPnlSettlements(userId, tenantId, positionId, createdAfter, createdBefore, settledAfter, settledBefore, isSettled)
 
@@ -3911,12 +4297,65 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getWithdrawal**
+> WithdrawalResponseEnvelope getWithdrawal(withdrawalId)
+
+Get a USDC withdrawal by ID
+
+Returns a single USDC withdrawal. A caller may read its own withdrawals; admins may read any user's.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final withdrawalId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | The withdrawal ID.
+
+try {
+    final result = api_instance.getWithdrawal(withdrawalId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getWithdrawal: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **withdrawalId** | **String**| The withdrawal ID. | 
+
+### Return type
+
+[**WithdrawalResponseEnvelope**](WithdrawalResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getWithdrawalFeeQuote**
 > FeeQuoteResponseEnvelope getWithdrawalFeeQuote(to, quantity)
 
 Estimate the network fee to withdraw USDC via web3
 
-Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
 
 ### Example
 ```dart
@@ -3962,6 +4401,63 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **issuePromoLinkBatch**
+> IssuePromoLinkBatchResponse issuePromoLinkBatch(tradingChallengeId, idempotencyKey, issuePromoLinkBatchRequest)
+
+Issue a promotional link batch
+
+Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final tradingChallengeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final idempotencyKey = idempotencyKey_example; // String | 
+final issuePromoLinkBatchRequest = IssuePromoLinkBatchRequest(); // IssuePromoLinkBatchRequest | 
+
+try {
+    final result = api_instance.issuePromoLinkBatch(tradingChallengeId, idempotencyKey, issuePromoLinkBatchRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->issuePromoLinkBatch: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tradingChallengeId** | **String**|  | 
+ **idempotencyKey** | **String**|  | 
+ **issuePromoLinkBatchRequest** | [**IssuePromoLinkBatchRequest**](IssuePromoLinkBatchRequest.md)|  | 
+
+### Return type
+
+[**IssuePromoLinkBatchResponse**](IssuePromoLinkBatchResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -4710,6 +5206,240 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **listAffiliateCashFlows**
+> AffiliateCashFlowReportEnvelope listAffiliateCashFlows(programId, userId, limit, page)
+
+List a referred user's customer cash flows
+
+Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. Currency EXTERNAL_DEPOSIT and EXTERNAL_WITHDRAW ledger events only. Pending withdrawals and promotional credits are excluded. Amounts are positive native asset units identified by asset_symbol. The date is when the completed movement was recorded in the ledger. Only events at or after the user's referral assignment are included.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final programId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final limit = 56; // int | 
+final page = 56; // int | One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+
+try {
+    final result = api_instance.listAffiliateCashFlows(programId, userId, limit, page);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listAffiliateCashFlows: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **programId** | **String**|  | 
+ **userId** | **String**|  | 
+ **limit** | **int**|  | [optional] [default to 100]
+ **page** | **int**| One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending. | [optional] [default to 1]
+
+### Return type
+
+[**AffiliateCashFlowReportEnvelope**](AffiliateCashFlowReportEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listAffiliatePrograms**
+> AffiliateProgramListEnvelope listAffiliatePrograms(tenantId, limit, page)
+
+List affiliate programs
+
+ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Admins without a tenant filter list all tenants. Inactive programs are included.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final tenantId = tenantId_example; // String | Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+final limit = 56; // int | 
+final page = 56; // int | One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+
+try {
+    final result = api_instance.listAffiliatePrograms(tenantId, limit, page);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listAffiliatePrograms: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenantId** | **String**| Integrators default to their own tenant and cannot select another. Admins may select any tenant. | [optional] 
+ **limit** | **int**|  | [optional] [default to 100]
+ **page** | **int**| One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending. | [optional] [default to 1]
+
+### Return type
+
+[**AffiliateProgramListEnvelope**](AffiliateProgramListEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listAffiliateReferrals**
+> AffiliateReferralReportEnvelope listAffiliateReferrals(programId, date, referrerId, limit, page)
+
+List referred users and activity
+
+Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. date defaults to the current UTC day. Daily volume and realized PnL use the selected UTC day; monthly volume and realized PnL use its UTC calendar month. Trade activity, PnL and currency cash-flow counts/dates include only events at or after attributed_at. Signup and KYC fields describe the user profile. Promotional and trading-challenge credits, non-currency assets, pending and rejected withdrawals are excluded from customer cash flows. Discord status is unknown until an integration exists.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final programId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final date = 2013-10-20; // DateTime | 
+final referrerId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final limit = 56; // int | 
+final page = 56; // int | One-based page; the resulting offset must not exceed 2147483647. Results sort by attribution created_at then user_id descending.
+
+try {
+    final result = api_instance.listAffiliateReferrals(programId, date, referrerId, limit, page);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listAffiliateReferrals: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **programId** | **String**|  | 
+ **date** | **DateTime**|  | [optional] 
+ **referrerId** | **String**|  | [optional] 
+ **limit** | **int**|  | [optional] [default to 100]
+ **page** | **int**| One-based page; the resulting offset must not exceed 2147483647. Results sort by attribution created_at then user_id descending. | [optional] [default to 1]
+
+### Return type
+
+[**AffiliateReferralReportEnvelope**](AffiliateReferralReportEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listAffiliateReferrers**
+> AffiliateReferrerListEnvelope listAffiliateReferrers(programId, limit, page)
+
+List program referrers
+
+ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final programId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final limit = 56; // int | 
+final page = 56; // int | One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+
+try {
+    final result = api_instance.listAffiliateReferrers(programId, limit, page);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listAffiliateReferrers: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **programId** | **String**|  | 
+ **limit** | **int**|  | [optional] [default to 100]
+ **page** | **int**| One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending. | [optional] [default to 1]
+
+### Return type
+
+[**AffiliateReferrerListEnvelope**](AffiliateReferrerListEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **listAssets**
 > ResponseEnvelopeOfListAssets listAssets(createdAfter, createdBefore, assetKind, canAddLiquidity, canDirectBorrow, canOnboard, canTrade, canVirtualBorrow, page, limit)
 
@@ -4954,6 +5684,61 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **listOwnAffiliateMemberships**
+> AffiliateMembershipListEnvelope listOwnAffiliateMemberships(limit, page)
+
+List your affiliate memberships
+
+Returns only the authenticated user's memberships and reusable codes, including inactive programs.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final limit = 56; // int | 
+final page = 56; // int | One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+
+try {
+    final result = api_instance.listOwnAffiliateMemberships(limit, page);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listOwnAffiliateMemberships: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int**|  | [optional] [default to 100]
+ **page** | **int**| One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending. | [optional] [default to 1]
+
+### Return type
+
+[**AffiliateMembershipListEnvelope**](AffiliateMembershipListEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **listPositionAccountsSelf**
 > ListPositionAccountsResponseEnvelope listPositionAccountsSelf()
 
@@ -4989,6 +5774,120 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ListPositionAccountsResponseEnvelope**](ListPositionAccountsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listPromoLinkBatches**
+> PromoLinkBatchListResponse listPromoLinkBatches(tradingChallengeId)
+
+List promotional link batches
+
+Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final tradingChallengeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.listPromoLinkBatches(tradingChallengeId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listPromoLinkBatches: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tradingChallengeId** | **String**|  | 
+
+### Return type
+
+[**PromoLinkBatchListResponse**](PromoLinkBatchListResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listPromoLinks**
+> PromoLinkListResponse listPromoLinks(batchId, limit, cursor, status, reveal)
+
+List promotional links
+
+Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final batchId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final limit = 56; // int | 
+final cursor = cursor_example; // String | 
+final status = ; // PromoLinkStatus | 
+final reveal = true; // bool | 
+
+try {
+    final result = api_instance.listPromoLinks(batchId, limit, cursor, status, reveal);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listPromoLinks: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batchId** | **String**|  | 
+ **limit** | **int**|  | [optional] [default to 100]
+ **cursor** | **String**|  | [optional] 
+ **status** | [**PromoLinkStatus**](.md)|  | [optional] 
+ **reveal** | **bool**|  | [optional] [default to false]
+
+### Return type
+
+[**PromoLinkListResponse**](PromoLinkListResponse.md)
 
 ### Authorization
 
@@ -5184,6 +6083,120 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **listWithdrawals**
+> ListWithdrawalsResponseEnvelope listWithdrawals(userId, status, page, limit)
+
+List USDC withdrawals
+
+Lists USDC withdrawals ordered by created_at descending. Non-admin callers are always scoped to their own withdrawals. Admin callers get every user's withdrawals by default, and may narrow to one user with `user_id`.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final userId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by user ID. Non-admin callers may only specify their own user ID.
+final status = ; // Web3WithdrawalStatus | Filter by withdrawal status.
+final page = 789; // int | 
+final limit = 789; // int | 
+
+try {
+    final result = api_instance.listWithdrawals(userId, status, page, limit);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->listWithdrawals: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**| Filter by user ID. Non-admin callers may only specify their own user ID. | [optional] 
+ **status** | [**Web3WithdrawalStatus**](.md)| Filter by withdrawal status. | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **limit** | **int**|  | [optional] [default to 50]
+
+### Return type
+
+[**ListWithdrawalsResponseEnvelope**](ListWithdrawalsResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **lookupAffiliateCode**
+> AffiliateReferrerEnvelope lookupAffiliateCode(code, tenantId)
+
+Look up a reusable referral code
+
+ADMIN or INTEGRATOR required, within tenant permissions. Admins must supply tenant_id. Case-insensitive lookup requires an active program and never consumes the code. Attribution happens separately at signup or through POST /v1/affiliate_referrals/self.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final code = code_example; // String | 
+final tenantId = tenantId_example; // String | Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+
+try {
+    final result = api_instance.lookupAffiliateCode(code, tenantId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->lookupAffiliateCode: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **code** | **String**|  | 
+ **tenantId** | **String**| Integrators default to their own tenant and cannot select another. Admins may select any tenant. | [optional] 
+
+### Return type
+
+[**AffiliateReferrerEnvelope**](AffiliateReferrerEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **payLeverageGetAccruedInterest**
 > PayLeverageAccruedInterestResponseEnvelope payLeverageGetAccruedInterest(payLeverageAccruedInterestRequest)
 
@@ -5223,6 +6236,61 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PayLeverageAccruedInterestResponseEnvelope**](PayLeverageAccruedInterestResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **registerAffiliateReferrer**
+> AffiliateReferrerEnvelope registerAffiliateReferrer(programId, registerAffiliateReferrerRequest)
+
+Register an existing user as a referrer
+
+ADMIN or INTEGRATOR required, within tenant permissions. Accepts an optional custom referral_code and generates one when omitted or empty. Codes are stored uppercase and globally unique. Duplicate membership or code returns 409. Users may supply the code at signup or assign it later through POST /v1/affiliate_referrals/self.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final programId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final registerAffiliateReferrerRequest = RegisterAffiliateReferrerRequest(); // RegisterAffiliateReferrerRequest | 
+
+try {
+    final result = api_instance.registerAffiliateReferrer(programId, registerAffiliateReferrerRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->registerAffiliateReferrer: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **programId** | **String**|  | 
+ **registerAffiliateReferrerRequest** | [**RegisterAffiliateReferrerRequest**](RegisterAffiliateReferrerRequest.md)|  | 
+
+### Return type
+
+[**AffiliateReferrerEnvelope**](AffiliateReferrerEnvelope.md)
 
 ### Authorization
 
@@ -5398,6 +6466,65 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **renderPromoLinkQR**
+> String renderPromoLinkQR(linkId, size, format, ec)
+
+Render a promotional link QR code
+
+Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final linkId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final size = 56; // int | 
+final format = format_example; // String | 
+final ec = ec_example; // String | 
+
+try {
+    final result = api_instance.renderPromoLinkQR(linkId, size, format, ec);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->renderPromoLinkQR: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **linkId** | **String**|  | 
+ **size** | **int**|  | [optional] [default to 512]
+ **format** | **String**|  | [optional] [default to 'png']
+ **ec** | **String**|  | [optional] [default to 'M']
+
+### Return type
+
+**String**
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: image/png
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **repayUSD**
 > RepayUSDResponseEnvelope repayUSD(repayUSDRequest)
 
@@ -5445,6 +6572,47 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **resolvePromoClaim**
+> PromoClaimResponseEnvelope resolvePromoClaim(token)
+
+Resolve a public QR promotion claim link
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final token = token_example; // String | Opaque bearer claim token
+
+try {
+    final result = api_instance.resolvePromoClaim(token);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->resolvePromoClaim: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **String**| Opaque bearer claim token | 
+
+### Return type
+
+[**PromoClaimResponseEnvelope**](PromoClaimResponseEnvelope.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -5549,6 +6717,61 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **revokePromoLink**
+> RevokePromoLinkResponse revokePromoLink(linkId, revokePromoLinkRequest)
+
+Revoke a promotional link
+
+Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final linkId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final revokePromoLinkRequest = RevokePromoLinkRequest(); // RevokePromoLinkRequest | 
+
+try {
+    final result = api_instance.revokePromoLink(linkId, revokePromoLinkRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->revokePromoLink: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **linkId** | **String**|  | 
+ **revokePromoLinkRequest** | [**RevokePromoLinkRequest**](RevokePromoLinkRequest.md)|  | 
+
+### Return type
+
+[**RevokePromoLinkResponse**](RevokePromoLinkResponse.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -6121,6 +7344,61 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TransferBalancesResponseEnvelope**](TransferBalancesResponseEnvelope.md)
+
+### Authorization
+
+[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateAffiliateProgram**
+> AffiliateProgramEnvelope updateAffiliateProgram(programId, updateAffiliateProgramRequest)
+
+Update an affiliate program
+
+ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Omitted and null fields are preserved. Fields accept direct values or {update, value} objects. Tenant ownership cannot be changed. Deactivation preserves codes and registrations.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuthHeader
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = DefaultApi();
+final programId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final updateAffiliateProgramRequest = UpdateAffiliateProgramRequest(); // UpdateAffiliateProgramRequest | 
+
+try {
+    final result = api_instance.updateAffiliateProgram(programId, updateAffiliateProgramRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->updateAffiliateProgram: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **programId** | **String**|  | 
+ **updateAffiliateProgramRequest** | [**UpdateAffiliateProgramRequest**](UpdateAffiliateProgramRequest.md)|  | 
+
+### Return type
+
+[**AffiliateProgramEnvelope**](AffiliateProgramEnvelope.md)
 
 ### Authorization
 

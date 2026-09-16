@@ -92,6 +92,12 @@ void main() {
       // TODO
     });
 
+    // Required for QR_PROMO and rejected for other challenge types. QR_PROMO requests must omit users.
+    // CreateTradingChallengeQRRequest qr
+    test('to test the property `qr`', () async {
+      // TODO
+    });
+
 
   });
 

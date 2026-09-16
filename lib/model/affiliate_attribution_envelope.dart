@@ -1,0 +1,117 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.18
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
+part of openapi.api;
+
+class AffiliateAttributionEnvelope {
+  /// Returns a new [AffiliateAttributionEnvelope] instance.
+  AffiliateAttributionEnvelope({
+    required this.data,
+    required this.metadata,
+  });
+
+  AffiliateAttribution data;
+
+  Metadata metadata;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is AffiliateAttributionEnvelope &&
+    other.data == data &&
+    other.metadata == metadata;
+
+  @override
+  int get hashCode =>
+    // ignore: unnecessary_parenthesis
+    (data.hashCode) +
+    (metadata.hashCode);
+
+  @override
+  String toString() => 'AffiliateAttributionEnvelope[data=$data, metadata=$metadata]';
+
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+      json[r'data'] = this.data;
+      json[r'metadata'] = this.metadata;
+    return json;
+  }
+
+  /// Returns a new [AffiliateAttributionEnvelope] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static AffiliateAttributionEnvelope? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        assert(json.containsKey(r'data'), 'Required key "AffiliateAttributionEnvelope[data]" is missing from JSON.');
+        assert(json[r'data'] != null, 'Required key "AffiliateAttributionEnvelope[data]" has a null value in JSON.');
+        assert(json.containsKey(r'metadata'), 'Required key "AffiliateAttributionEnvelope[metadata]" is missing from JSON.');
+        assert(json[r'metadata'] != null, 'Required key "AffiliateAttributionEnvelope[metadata]" has a null value in JSON.');
+        return true;
+      }());
+
+      return AffiliateAttributionEnvelope(
+        data: AffiliateAttribution.fromJson(json[r'data'])!,
+        metadata: Metadata.fromJson(json[r'metadata'])!,
+      );
+    }
+    return null;
+  }
+
+  static List<AffiliateAttributionEnvelope> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <AffiliateAttributionEnvelope>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = AffiliateAttributionEnvelope.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, AffiliateAttributionEnvelope> mapFromJson(dynamic json) {
+    final map = <String, AffiliateAttributionEnvelope>{};
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = AffiliateAttributionEnvelope.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
+    }
+    return map;
+  }
+
+  // maps a json object with a list of AffiliateAttributionEnvelope-objects as value to a dart map
+  static Map<String, List<AffiliateAttributionEnvelope>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<AffiliateAttributionEnvelope>>{};
+    if (json is Map && json.isNotEmpty) {
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
+      for (final entry in json.entries) {
+        map[entry.key] = AffiliateAttributionEnvelope.listFromJson(entry.value, growable: growable,);
+      }
+    }
+    return map;
+  }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'data',
+    'metadata',
+  };
+}
+

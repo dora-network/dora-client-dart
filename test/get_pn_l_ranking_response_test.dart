@@ -16,7 +16,7 @@ void main() {
   // final instance = GetPnLRankingResponse();
 
   group('test GetPnLRankingResponse', () {
-    // List<PnLRankingResponse> data (default value: const [])
+    // PnLRankingResponses data
     test('to test the property `data`', () async {
       // TODO
     });

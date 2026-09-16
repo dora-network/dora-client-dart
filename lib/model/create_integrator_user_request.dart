@@ -13,6 +13,8 @@ part of openapi.api;
 class CreateIntegratorUserRequest {
   /// Returns a new [CreateIntegratorUserRequest] instance.
   CreateIntegratorUserRequest({
+    this.referralCode,
+    this.signupSource,
     this.email,
     this.firstName,
     this.lastName,
@@ -25,6 +27,24 @@ class CreateIntegratorUserRequest {
     this.timezone,
     this.challengeId,
   });
+
+  /// Optional affiliate code, normalized to uppercase. Accepted only when creating a new account in the program owning tenant. One immutable attribution per user account; a later signup/linking call cannot add or replace it. Invalid or inactive codes fail signup atomically. Independent of QR acquisition attribution. Existing unassigned users can instead use POST /v1/affiliate_referrals/self; earlier activity is excluded.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? referralCode;
+
+  /// Optional client-reported HTTP(S) signup site URL, used only with referral_code. When omitted, a valid HTTP(S) Origin header is used; other origins are ignored. Only the hostname is stored, without path, query, credentials or fragment. Unknown if neither supplies a usable hostname. Ignored when referral_code is empty. It does not select or authenticate the tenant.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? signupSource;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -118,6 +138,8 @@ class CreateIntegratorUserRequest {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateIntegratorUserRequest &&
+    other.referralCode == referralCode &&
+    other.signupSource == signupSource &&
     other.email == email &&
     other.firstName == firstName &&
     other.lastName == lastName &&
@@ -133,6 +155,8 @@ class CreateIntegratorUserRequest {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
+    (referralCode == null ? 0 : referralCode!.hashCode) +
+    (signupSource == null ? 0 : signupSource!.hashCode) +
     (email == null ? 0 : email!.hashCode) +
     (firstName == null ? 0 : firstName!.hashCode) +
     (lastName == null ? 0 : lastName!.hashCode) +
@@ -146,10 +170,20 @@ class CreateIntegratorUserRequest {
     (challengeId == null ? 0 : challengeId!.hashCode);
 
   @override
-  String toString() => 'CreateIntegratorUserRequest[email=$email, firstName=$firstName, lastName=$lastName, userName=$userName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, timezone=$timezone, challengeId=$challengeId]';
+  String toString() => 'CreateIntegratorUserRequest[referralCode=$referralCode, signupSource=$signupSource, email=$email, firstName=$firstName, lastName=$lastName, userName=$userName, countryOfDomicile=$countryOfDomicile, nativeAssetId=$nativeAssetId, photoUrl=$photoUrl, provider=$provider, providerId=$providerId, timezone=$timezone, challengeId=$challengeId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (this.referralCode != null) {
+      json[r'referral_code'] = this.referralCode;
+    } else {
+      json[r'referral_code'] = null;
+    }
+    if (this.signupSource != null) {
+      json[r'signup_source'] = this.signupSource;
+    } else {
+      json[r'signup_source'] = null;
+    }
     if (this.email != null) {
       json[r'email'] = this.email;
     } else {
@@ -223,6 +257,8 @@ class CreateIntegratorUserRequest {
       }());
 
       return CreateIntegratorUserRequest(
+        referralCode: mapValueOfType<String>(json, r'referral_code'),
+        signupSource: mapValueOfType<String>(json, r'signup_source'),
         email: mapValueOfType<String>(json, r'email'),
         firstName: mapValueOfType<String>(json, r'first_name'),
         lastName: mapValueOfType<String>(json, r'last_name'),

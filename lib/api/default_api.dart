@@ -197,6 +197,63 @@ class DefaultApi {
     return null;
   }
 
+  /// Assign your affiliate referrer
+  ///
+  /// Authenticated existing users may assign a referral code once, within their own tenant. No user_id or tenant_id override is accepted. New assignments reject self-referral and require an active program. Repeating the same code returns the original assignment without changing its timestamp; changing the code returns 409. Only activity from assignment onward counts. This does not change signup_source.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [AssignAffiliateReferralRequest] assignAffiliateReferralRequest (required):
+  Future<Response> assignAffiliateReferralWithHttpInfo(AssignAffiliateReferralRequest assignAffiliateReferralRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_referrals/self';
+
+    // ignore: prefer_final_locals
+    Object? postBody = assignAffiliateReferralRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Assign your affiliate referrer
+  ///
+  /// Authenticated existing users may assign a referral code once, within their own tenant. No user_id or tenant_id override is accepted. New assignments reject self-referral and require an active program. Repeating the same code returns the original assignment without changing its timestamp; changing the code returns 409. Only activity from assignment onward counts. This does not change signup_source.
+  ///
+  /// Parameters:
+  ///
+  /// * [AssignAffiliateReferralRequest] assignAffiliateReferralRequest (required):
+  Future<AffiliateAttributionEnvelope?> assignAffiliateReferral(AssignAffiliateReferralRequest assignAffiliateReferralRequest, { Future<void>? abortTrigger, }) async {
+    final response = await assignAffiliateReferralWithHttpInfo(assignAffiliateReferralRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateAttributionEnvelope',) as AffiliateAttributionEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
   ///
   /// Note: This method returns the HTTP [Response].
@@ -439,6 +496,66 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ClaimLeverageAccruedInterestResponseEnvelope',) as ClaimLeverageAccruedInterestResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Claim a public QR promotion link
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] token (required):
+  ///   Opaque bearer claim token
+  ///
+  /// * [ClaimPromoLinkRequest] claimPromoLinkRequest (required):
+  Future<Response> claimPromoLinkWithHttpInfo(String token, ClaimPromoLinkRequest claimPromoLinkRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/promo/claim/{token}'
+      .replaceAll('{token}', token);
+
+    // ignore: prefer_final_locals
+    Object? postBody = claimPromoLinkRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Claim a public QR promotion link
+  ///
+  /// Parameters:
+  ///
+  /// * [String] token (required):
+  ///   Opaque bearer claim token
+  ///
+  /// * [ClaimPromoLinkRequest] claimPromoLinkRequest (required):
+  Future<PromoClaimResponseEnvelope?> claimPromoLink(String token, ClaimPromoLinkRequest claimPromoLinkRequest, { Future<void>? abortTrigger, }) async {
+    final response = await claimPromoLinkWithHttpInfo(token, claimPromoLinkRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PromoClaimResponseEnvelope',) as PromoClaimResponseEnvelope;
     
     }
     return null;
@@ -719,6 +836,63 @@ class DefaultApi {
     return null;
   }
 
+  /// Create an affiliate program
+  ///
+  /// ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. tenant_id is required. Set is_active to true to create an active program.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateAffiliateProgramRequest] createAffiliateProgramRequest (required):
+  Future<Response> createAffiliateProgramWithHttpInfo(CreateAffiliateProgramRequest createAffiliateProgramRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_programs';
+
+    // ignore: prefer_final_locals
+    Object? postBody = createAffiliateProgramRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Create an affiliate program
+  ///
+  /// ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. tenant_id is required. Set is_active to true to create an active program.
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateAffiliateProgramRequest] createAffiliateProgramRequest (required):
+  Future<AffiliateProgramEnvelope?> createAffiliateProgram(CreateAffiliateProgramRequest createAffiliateProgramRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createAffiliateProgramWithHttpInfo(createAffiliateProgramRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateProgramEnvelope',) as AffiliateProgramEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Create a new conditional orders
   ///
   /// Note: This method returns the HTTP [Response].
@@ -935,6 +1109,63 @@ class DefaultApi {
     return null;
   }
 
+  /// Create a USDC withdrawal request
+  ///
+  /// Reserves the requested quantity against the caller's available balance (moving it to pending_withdrawal) and creates a PENDING withdrawal. No fee quote is required and no fee is reserved: the withdrawal's fee is quoted and locked later, as part of approval. Idempotent on withdrawal_id: a repeat request carrying the same to_address and quantity reserves nothing further and returns the existing withdrawal with 200. Reusing a withdrawal_id with a different to_address or quantity is a conflict (409), not a replay, and reserves nothing. Restricted to DORA tenant users whose native asset is USDC.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateWithdrawalRequest] createWithdrawalRequest (required):
+  Future<Response> createWithdrawalWithHttpInfo(CreateWithdrawalRequest createWithdrawalRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/withdrawals';
+
+    // ignore: prefer_final_locals
+    Object? postBody = createWithdrawalRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Create a USDC withdrawal request
+  ///
+  /// Reserves the requested quantity against the caller's available balance (moving it to pending_withdrawal) and creates a PENDING withdrawal. No fee quote is required and no fee is reserved: the withdrawal's fee is quoted and locked later, as part of approval. Idempotent on withdrawal_id: a repeat request carrying the same to_address and quantity reserves nothing further and returns the existing withdrawal with 200. Reusing a withdrawal_id with a different to_address or quantity is a conflict (409), not a replay, and reserves nothing. Restricted to DORA tenant users whose native asset is USDC.
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateWithdrawalRequest] createWithdrawalRequest (required):
+  Future<WithdrawalResponseEnvelope?> createWithdrawal(CreateWithdrawalRequest createWithdrawalRequest, { Future<void>? abortTrigger, }) async {
+    final response = await createWithdrawalWithHttpInfo(createWithdrawalRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WithdrawalResponseEnvelope',) as WithdrawalResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Delete user by ID
   ///
   /// Note: This method returns the HTTP [Response].
@@ -989,6 +1220,64 @@ class DefaultApi {
     return null;
   }
 
+  /// Export promotional links as CSV
+  ///
+  /// Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] batchId (required):
+  Future<Response> exportPromoLinksCSVWithHttpInfo(String batchId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/link_batches/{batch_id}/links.csv'
+      .replaceAll('{batch_id}', batchId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Export promotional links as CSV
+  ///
+  /// Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] batchId (required):
+  Future<String?> exportPromoLinksCSV(String batchId, { Future<void>? abortTrigger, }) async {
+    final response = await exportPromoLinksCSVWithHttpInfo(batchId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String;
+    
+    }
+    return null;
+  }
+
   /// Get user's api keys: admin or integrator only
   ///
   /// Note: This method returns the HTTP [Response].
@@ -1038,6 +1327,64 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'APIKeyResponseEnvelope',) as APIKeyResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get an affiliate program
+  ///
+  /// ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. 
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  Future<Response> getAffiliateProgramWithHttpInfo(String programId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_programs/{program_id}'
+      .replaceAll('{program_id}', programId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get an affiliate program
+  ///
+  /// ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. 
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  Future<AffiliateProgramEnvelope?> getAffiliateProgram(String programId, { Future<void>? abortTrigger, }) async {
+    final response = await getAffiliateProgramWithHttpInfo(programId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateProgramEnvelope',) as AffiliateProgramEnvelope;
     
     }
     return null;
@@ -1495,6 +1842,8 @@ class DefaultApi {
 
   /// Get candlestick data for an orderbook
   ///
+  /// Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
@@ -1540,6 +1889,8 @@ class DefaultApi {
   }
 
   /// Get candlestick data for an orderbook
+  ///
+  /// Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
   ///
   /// Parameters:
   ///
@@ -3009,6 +3360,64 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PoolPriceResponseEnvelope',) as PoolPriceResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Get promotional source attribution
+  ///
+  /// Return the QR source funnel and decimal totals in one bounded aggregate query. ADMIN and same-tenant INTEGRATOR only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<Response> getPromoAttributionWithHttpInfo(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/{trading_challenge_id}/attribution'
+      .replaceAll('{trading_challenge_id}', tradingChallengeId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get promotional source attribution
+  ///
+  /// Return the QR source funnel and decimal totals in one bounded aggregate query. ADMIN and same-tenant INTEGRATOR only.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<PromoAttributionResponse?> getPromoAttribution(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    final response = await getPromoAttributionWithHttpInfo(tradingChallengeId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PromoAttributionResponse',) as PromoAttributionResponse;
     
     }
     return null;
@@ -4562,9 +4971,69 @@ class DefaultApi {
     return null;
   }
 
+  /// Get a USDC withdrawal by ID
+  ///
+  /// Returns a single USDC withdrawal. A caller may read its own withdrawals; admins may read any user's.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] withdrawalId (required):
+  ///   The withdrawal ID.
+  Future<Response> getWithdrawalWithHttpInfo(String withdrawalId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/withdrawals/{withdrawal_id}'
+      .replaceAll('{withdrawal_id}', withdrawalId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get a USDC withdrawal by ID
+  ///
+  /// Returns a single USDC withdrawal. A caller may read its own withdrawals; admins may read any user's.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] withdrawalId (required):
+  ///   The withdrawal ID.
+  Future<WithdrawalResponseEnvelope?> getWithdrawal(String withdrawalId, { Future<void>? abortTrigger, }) async {
+    final response = await getWithdrawalWithHttpInfo(withdrawalId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'WithdrawalResponseEnvelope',) as WithdrawalResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Estimate the network fee to withdraw USDC via web3
   ///
-  /// Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+  /// Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -4606,7 +5075,7 @@ class DefaultApi {
 
   /// Estimate the network fee to withdraw USDC via web3
   ///
-  /// Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+  /// Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
   ///
   /// Parameters:
   ///
@@ -4625,6 +5094,74 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'FeeQuoteResponseEnvelope',) as FeeQuoteResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Issue a promotional link batch
+  ///
+  /// Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  ///
+  /// * [String] idempotencyKey (required):
+  ///
+  /// * [IssuePromoLinkBatchRequest] issuePromoLinkBatchRequest (required):
+  Future<Response> issuePromoLinkBatchWithHttpInfo(String tradingChallengeId, String idempotencyKey, IssuePromoLinkBatchRequest issuePromoLinkBatchRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/{trading_challenge_id}/link_batches'
+      .replaceAll('{trading_challenge_id}', tradingChallengeId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = issuePromoLinkBatchRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    headerParams[r'Idempotency-Key'] = parameterToString(idempotencyKey);
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Issue a promotional link batch
+  ///
+  /// Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  ///
+  /// * [String] idempotencyKey (required):
+  ///
+  /// * [IssuePromoLinkBatchRequest] issuePromoLinkBatchRequest (required):
+  Future<IssuePromoLinkBatchResponse?> issuePromoLinkBatch(String tradingChallengeId, String idempotencyKey, IssuePromoLinkBatchRequest issuePromoLinkBatchRequest, { Future<void>? abortTrigger, }) async {
+    final response = await issuePromoLinkBatchWithHttpInfo(tradingChallengeId, idempotencyKey, issuePromoLinkBatchRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'IssuePromoLinkBatchResponse',) as IssuePromoLinkBatchResponse;
     
     }
     return null;
@@ -5465,6 +6002,329 @@ class DefaultApi {
     return null;
   }
 
+  /// List a referred user's customer cash flows
+  ///
+  /// Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. Currency EXTERNAL_DEPOSIT and EXTERNAL_WITHDRAW ledger events only. Pending withdrawals and promotional credits are excluded. Amounts are positive native asset units identified by asset_symbol. The date is when the completed movement was recorded in the ledger. Only events at or after the user's referral assignment are included.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] page:
+  ///   One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+  Future<Response> listAffiliateCashFlowsWithHttpInfo(String programId, String userId, { int? limit, int? page, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_programs/{program_id}/referrals/{user_id}/cash_flows'
+      .replaceAll('{program_id}', programId)
+      .replaceAll('{user_id}', userId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List a referred user's customer cash flows
+  ///
+  /// Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. Currency EXTERNAL_DEPOSIT and EXTERNAL_WITHDRAW ledger events only. Pending withdrawals and promotional credits are excluded. Amounts are positive native asset units identified by asset_symbol. The date is when the completed movement was recorded in the ledger. Only events at or after the user's referral assignment are included.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  ///
+  /// * [String] userId (required):
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] page:
+  ///   One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+  Future<AffiliateCashFlowReportEnvelope?> listAffiliateCashFlows(String programId, String userId, { int? limit, int? page, Future<void>? abortTrigger, }) async {
+    final response = await listAffiliateCashFlowsWithHttpInfo(programId, userId, limit: limit, page: page, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateCashFlowReportEnvelope',) as AffiliateCashFlowReportEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// List affiliate programs
+  ///
+  /// ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Admins without a tenant filter list all tenants. Inactive programs are included.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tenantId:
+  ///   Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] page:
+  ///   One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+  Future<Response> listAffiliateProgramsWithHttpInfo({ String? tenantId, int? limit, int? page, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_programs';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (tenantId != null) {
+      queryParams.addAll(_queryParams('', 'tenant_id', tenantId));
+    }
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List affiliate programs
+  ///
+  /// ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Admins without a tenant filter list all tenants. Inactive programs are included.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tenantId:
+  ///   Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] page:
+  ///   One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+  Future<AffiliateProgramListEnvelope?> listAffiliatePrograms({ String? tenantId, int? limit, int? page, Future<void>? abortTrigger, }) async {
+    final response = await listAffiliateProgramsWithHttpInfo(tenantId: tenantId, limit: limit, page: page, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateProgramListEnvelope',) as AffiliateProgramListEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// List referred users and activity
+  ///
+  /// Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. date defaults to the current UTC day. Daily volume and realized PnL use the selected UTC day; monthly volume and realized PnL use its UTC calendar month. Trade activity, PnL and currency cash-flow counts/dates include only events at or after attributed_at. Signup and KYC fields describe the user profile. Promotional and trading-challenge credits, non-currency assets, pending and rejected withdrawals are excluded from customer cash flows. Discord status is unknown until an integration exists.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  ///
+  /// * [DateTime] date:
+  ///
+  /// * [String] referrerId:
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] page:
+  ///   One-based page; the resulting offset must not exceed 2147483647. Results sort by attribution created_at then user_id descending.
+  Future<Response> listAffiliateReferralsWithHttpInfo(String programId, { DateTime? date, String? referrerId, int? limit, int? page, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_programs/{program_id}/referrals'
+      .replaceAll('{program_id}', programId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (date != null) {
+      queryParams.addAll(_queryParams('', 'date', date));
+    }
+    if (referrerId != null) {
+      queryParams.addAll(_queryParams('', 'referrer_id', referrerId));
+    }
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List referred users and activity
+  ///
+  /// Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. date defaults to the current UTC day. Daily volume and realized PnL use the selected UTC day; monthly volume and realized PnL use its UTC calendar month. Trade activity, PnL and currency cash-flow counts/dates include only events at or after attributed_at. Signup and KYC fields describe the user profile. Promotional and trading-challenge credits, non-currency assets, pending and rejected withdrawals are excluded from customer cash flows. Discord status is unknown until an integration exists.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  ///
+  /// * [DateTime] date:
+  ///
+  /// * [String] referrerId:
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] page:
+  ///   One-based page; the resulting offset must not exceed 2147483647. Results sort by attribution created_at then user_id descending.
+  Future<AffiliateReferralReportEnvelope?> listAffiliateReferrals(String programId, { DateTime? date, String? referrerId, int? limit, int? page, Future<void>? abortTrigger, }) async {
+    final response = await listAffiliateReferralsWithHttpInfo(programId, date: date, referrerId: referrerId, limit: limit, page: page, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateReferralReportEnvelope',) as AffiliateReferralReportEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// List program referrers
+  ///
+  /// ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] page:
+  ///   One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+  Future<Response> listAffiliateReferrersWithHttpInfo(String programId, { int? limit, int? page, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_programs/{program_id}/referrers'
+      .replaceAll('{program_id}', programId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List program referrers
+  ///
+  /// ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] page:
+  ///   One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+  Future<AffiliateReferrerListEnvelope?> listAffiliateReferrers(String programId, { int? limit, int? page, Future<void>? abortTrigger, }) async {
+    final response = await listAffiliateReferrersWithHttpInfo(programId, limit: limit, page: page, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateReferrerListEnvelope',) as AffiliateReferrerListEnvelope;
+    
+    }
+    return null;
+  }
+
   /// List assets
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5873,6 +6733,76 @@ class DefaultApi {
     return null;
   }
 
+  /// List your affiliate memberships
+  ///
+  /// Returns only the authenticated user's memberships and reusable codes, including inactive programs.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] page:
+  ///   One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+  Future<Response> listOwnAffiliateMembershipsWithHttpInfo({ int? limit, int? page, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_referrers/self';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List your affiliate memberships
+  ///
+  /// Returns only the authenticated user's memberships and reusable codes, including inactive programs.
+  ///
+  /// Parameters:
+  ///
+  /// * [int] limit:
+  ///
+  /// * [int] page:
+  ///   One-based page; the resulting offset must not exceed 2147483647. Results sort by created_at then id descending.
+  Future<AffiliateMembershipListEnvelope?> listOwnAffiliateMemberships({ int? limit, int? page, Future<void>? abortTrigger, }) async {
+    final response = await listOwnAffiliateMembershipsWithHttpInfo(limit: limit, page: page, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateMembershipListEnvelope',) as AffiliateMembershipListEnvelope;
+    
+    }
+    return null;
+  }
+
   /// List all position accounts for the authenticated user
   ///
   /// Note: This method returns the HTTP [Response].
@@ -5913,6 +6843,151 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListPositionAccountsResponseEnvelope',) as ListPositionAccountsResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// List promotional link batches
+  ///
+  /// Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<Response> listPromoLinkBatchesWithHttpInfo(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/{trading_challenge_id}/link_batches'
+      .replaceAll('{trading_challenge_id}', tradingChallengeId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List promotional link batches
+  ///
+  /// Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] tradingChallengeId (required):
+  Future<PromoLinkBatchListResponse?> listPromoLinkBatches(String tradingChallengeId, { Future<void>? abortTrigger, }) async {
+    final response = await listPromoLinkBatchesWithHttpInfo(tradingChallengeId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PromoLinkBatchListResponse',) as PromoLinkBatchListResponse;
+    
+    }
+    return null;
+  }
+
+  /// List promotional links
+  ///
+  /// Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] batchId (required):
+  ///
+  /// * [int] limit:
+  ///
+  /// * [String] cursor:
+  ///
+  /// * [PromoLinkStatus] status:
+  ///
+  /// * [bool] reveal:
+  Future<Response> listPromoLinksWithHttpInfo(String batchId, { int? limit, String? cursor, PromoLinkStatus? status, bool? reveal, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/link_batches/{batch_id}/links'
+      .replaceAll('{batch_id}', batchId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (cursor != null) {
+      queryParams.addAll(_queryParams('', 'cursor', cursor));
+    }
+    if (status != null) {
+      queryParams.addAll(_queryParams('', 'status', status));
+    }
+    if (reveal != null) {
+      queryParams.addAll(_queryParams('', 'reveal', reveal));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List promotional links
+  ///
+  /// Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] batchId (required):
+  ///
+  /// * [int] limit:
+  ///
+  /// * [String] cursor:
+  ///
+  /// * [PromoLinkStatus] status:
+  ///
+  /// * [bool] reveal:
+  Future<PromoLinkListResponse?> listPromoLinks(String batchId, { int? limit, String? cursor, PromoLinkStatus? status, bool? reveal, Future<void>? abortTrigger, }) async {
+    final response = await listPromoLinksWithHttpInfo(batchId, limit: limit, cursor: cursor, status: status, reveal: reveal, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PromoLinkListResponse',) as PromoLinkListResponse;
     
     }
     return null;
@@ -6205,6 +7280,160 @@ class DefaultApi {
     return null;
   }
 
+  /// List USDC withdrawals
+  ///
+  /// Lists USDC withdrawals ordered by created_at descending. Non-admin callers are always scoped to their own withdrawals. Admin callers get every user's withdrawals by default, and may narrow to one user with `user_id`.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId:
+  ///   Filter by user ID. Non-admin callers may only specify their own user ID.
+  ///
+  /// * [Web3WithdrawalStatus] status:
+  ///   Filter by withdrawal status.
+  ///
+  /// * [int] page:
+  ///
+  /// * [int] limit:
+  Future<Response> listWithdrawalsWithHttpInfo({ String? userId, Web3WithdrawalStatus? status, int? page, int? limit, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/web3/withdrawals';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (userId != null) {
+      queryParams.addAll(_queryParams('', 'user_id', userId));
+    }
+    if (status != null) {
+      queryParams.addAll(_queryParams('', 'status', status));
+    }
+    if (page != null) {
+      queryParams.addAll(_queryParams('', 'page', page));
+    }
+    if (limit != null) {
+      queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// List USDC withdrawals
+  ///
+  /// Lists USDC withdrawals ordered by created_at descending. Non-admin callers are always scoped to their own withdrawals. Admin callers get every user's withdrawals by default, and may narrow to one user with `user_id`.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] userId:
+  ///   Filter by user ID. Non-admin callers may only specify their own user ID.
+  ///
+  /// * [Web3WithdrawalStatus] status:
+  ///   Filter by withdrawal status.
+  ///
+  /// * [int] page:
+  ///
+  /// * [int] limit:
+  Future<ListWithdrawalsResponseEnvelope?> listWithdrawals({ String? userId, Web3WithdrawalStatus? status, int? page, int? limit, Future<void>? abortTrigger, }) async {
+    final response = await listWithdrawalsWithHttpInfo(userId: userId, status: status, page: page, limit: limit, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListWithdrawalsResponseEnvelope',) as ListWithdrawalsResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Look up a reusable referral code
+  ///
+  /// ADMIN or INTEGRATOR required, within tenant permissions. Admins must supply tenant_id. Case-insensitive lookup requires an active program and never consumes the code. Attribution happens separately at signup or through POST /v1/affiliate_referrals/self.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] code (required):
+  ///
+  /// * [String] tenantId:
+  ///   Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+  Future<Response> lookupAffiliateCodeWithHttpInfo(String code, { String? tenantId, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_codes/{code}'
+      .replaceAll('{code}', code);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (tenantId != null) {
+      queryParams.addAll(_queryParams('', 'tenant_id', tenantId));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Look up a reusable referral code
+  ///
+  /// ADMIN or INTEGRATOR required, within tenant permissions. Admins must supply tenant_id. Case-insensitive lookup requires an active program and never consumes the code. Attribution happens separately at signup or through POST /v1/affiliate_referrals/self.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] code (required):
+  ///
+  /// * [String] tenantId:
+  ///   Integrators default to their own tenant and cannot select another. Admins may select any tenant.
+  Future<AffiliateReferrerEnvelope?> lookupAffiliateCode(String code, { String? tenantId, Future<void>? abortTrigger, }) async {
+    final response = await lookupAffiliateCodeWithHttpInfo(code, tenantId: tenantId, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateReferrerEnvelope',) as AffiliateReferrerEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Pay current accrued leverage interest for a specific user
   ///
   /// Note: This method returns the HTTP [Response].
@@ -6253,6 +7482,68 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PayLeverageAccruedInterestResponseEnvelope',) as PayLeverageAccruedInterestResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Register an existing user as a referrer
+  ///
+  /// ADMIN or INTEGRATOR required, within tenant permissions. Accepts an optional custom referral_code and generates one when omitted or empty. Codes are stored uppercase and globally unique. Duplicate membership or code returns 409. Users may supply the code at signup or assign it later through POST /v1/affiliate_referrals/self.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  ///
+  /// * [RegisterAffiliateReferrerRequest] registerAffiliateReferrerRequest (required):
+  Future<Response> registerAffiliateReferrerWithHttpInfo(String programId, RegisterAffiliateReferrerRequest registerAffiliateReferrerRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_programs/{program_id}/referrers'
+      .replaceAll('{program_id}', programId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = registerAffiliateReferrerRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Register an existing user as a referrer
+  ///
+  /// ADMIN or INTEGRATOR required, within tenant permissions. Accepts an optional custom referral_code and generates one when omitted or empty. Codes are stored uppercase and globally unique. Duplicate membership or code returns 409. Users may supply the code at signup or assign it later through POST /v1/affiliate_referrals/self.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  ///
+  /// * [RegisterAffiliateReferrerRequest] registerAffiliateReferrerRequest (required):
+  Future<AffiliateReferrerEnvelope?> registerAffiliateReferrer(String programId, RegisterAffiliateReferrerRequest registerAffiliateReferrerRequest, { Future<void>? abortTrigger, }) async {
+    final response = await registerAffiliateReferrerWithHttpInfo(programId, registerAffiliateReferrerRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateReferrerEnvelope',) as AffiliateReferrerEnvelope;
     
     }
     return null;
@@ -6439,6 +7730,86 @@ class DefaultApi {
     return null;
   }
 
+  /// Render a promotional link QR code
+  ///
+  /// Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] linkId (required):
+  ///
+  /// * [int] size:
+  ///
+  /// * [String] format:
+  ///
+  /// * [String] ec:
+  Future<Response> renderPromoLinkQRWithHttpInfo(String linkId, { int? size, String? format, String? ec, Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/promo_links/{link_id}/qr'
+      .replaceAll('{link_id}', linkId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (size != null) {
+      queryParams.addAll(_queryParams('', 'size', size));
+    }
+    if (format != null) {
+      queryParams.addAll(_queryParams('', 'format', format));
+    }
+    if (ec != null) {
+      queryParams.addAll(_queryParams('', 'ec', ec));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Render a promotional link QR code
+  ///
+  /// Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] linkId (required):
+  ///
+  /// * [int] size:
+  ///
+  /// * [String] format:
+  ///
+  /// * [String] ec:
+  Future<String?> renderPromoLinkQR(String linkId, { int? size, String? format, String? ec, Future<void>? abortTrigger, }) async {
+    final response = await renderPromoLinkQRWithHttpInfo(linkId, size: size, format: format, ec: ec, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String;
+    
+    }
+    return null;
+  }
+
   /// Repay borrowed USD, then accrue and pay leverage interest
   ///
   /// Note: This method returns the HTTP [Response].
@@ -6487,6 +7858,62 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RepayUSDResponseEnvelope',) as RepayUSDResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Resolve a public QR promotion claim link
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] token (required):
+  ///   Opaque bearer claim token
+  Future<Response> resolvePromoClaimWithHttpInfo(String token, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/promo/claim/{token}'
+      .replaceAll('{token}', token);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Resolve a public QR promotion claim link
+  ///
+  /// Parameters:
+  ///
+  /// * [String] token (required):
+  ///   Opaque bearer claim token
+  Future<PromoClaimResponseEnvelope?> resolvePromoClaim(String token, { Future<void>? abortTrigger, }) async {
+    final response = await resolvePromoClaimWithHttpInfo(token, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PromoClaimResponseEnvelope',) as PromoClaimResponseEnvelope;
     
     }
     return null;
@@ -6600,6 +8027,68 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RevokeAPIKeyResponseEnvelope',) as RevokeAPIKeyResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Revoke a promotional link
+  ///
+  /// Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] linkId (required):
+  ///
+  /// * [RevokePromoLinkRequest] revokePromoLinkRequest (required):
+  Future<Response> revokePromoLinkWithHttpInfo(String linkId, RevokePromoLinkRequest revokePromoLinkRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/promo_links/{link_id}/revoke'
+      .replaceAll('{link_id}', linkId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = revokePromoLinkRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Revoke a promotional link
+  ///
+  /// Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] linkId (required):
+  ///
+  /// * [RevokePromoLinkRequest] revokePromoLinkRequest (required):
+  Future<RevokePromoLinkResponse?> revokePromoLink(String linkId, RevokePromoLinkRequest revokePromoLinkRequest, { Future<void>? abortTrigger, }) async {
+    final response = await revokePromoLinkWithHttpInfo(linkId, revokePromoLinkRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'RevokePromoLinkResponse',) as RevokePromoLinkResponse;
     
     }
     return null;
@@ -7312,6 +8801,68 @@ class DefaultApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TransferBalancesResponseEnvelope',) as TransferBalancesResponseEnvelope;
+    
+    }
+    return null;
+  }
+
+  /// Update an affiliate program
+  ///
+  /// ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Omitted and null fields are preserved. Fields accept direct values or {update, value} objects. Tenant ownership cannot be changed. Deactivation preserves codes and registrations.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  ///
+  /// * [UpdateAffiliateProgramRequest] updateAffiliateProgramRequest (required):
+  Future<Response> updateAffiliateProgramWithHttpInfo(String programId, UpdateAffiliateProgramRequest updateAffiliateProgramRequest, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/affiliate_programs/{program_id}'
+      .replaceAll('{program_id}', programId);
+
+    // ignore: prefer_final_locals
+    Object? postBody = updateAffiliateProgramRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Update an affiliate program
+  ///
+  /// ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Omitted and null fields are preserved. Fields accept direct values or {update, value} objects. Tenant ownership cannot be changed. Deactivation preserves codes and registrations.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] programId (required):
+  ///
+  /// * [UpdateAffiliateProgramRequest] updateAffiliateProgramRequest (required):
+  Future<AffiliateProgramEnvelope?> updateAffiliateProgram(String programId, UpdateAffiliateProgramRequest updateAffiliateProgramRequest, { Future<void>? abortTrigger, }) async {
+    final response = await updateAffiliateProgramWithHttpInfo(programId, updateAffiliateProgramRequest, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AffiliateProgramEnvelope',) as AffiliateProgramEnvelope;
     
     }
     return null;

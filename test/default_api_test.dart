@@ -44,6 +44,15 @@ void main() {
       // TODO
     });
 
+    // Assign your affiliate referrer
+    //
+    // Authenticated existing users may assign a referral code once, within their own tenant. No user_id or tenant_id override is accepted. New assignments reject self-referral and require an active program. Repeating the same code returns the original assignment without changing its timestamp; changing the code returns 409. Only activity from assignment onward counts. This does not change signup_source.
+    //
+    //Future<AffiliateAttributionEnvelope> assignAffiliateReferral(AssignAffiliateReferralRequest assignAffiliateReferralRequest) async
+    test('test assignAffiliateReferral', () async {
+      // TODO
+    });
+
     // Cancel all open orders, if user passes orderbook or account_id on query params it will cancel all orders on specific orderbook or account, admin can cancel user's orders on specific orderbook
     //
     //Future<ListOrdersResponseEnvelope> cancelAllOpenOrders({ String orderBookId, String userId, String accountId, OrderKind orderKind }) async
@@ -71,6 +80,13 @@ void main() {
     //
     //Future<ClaimLeverageAccruedInterestResponseEnvelope> claimLeverageGetAccruedInterest(ClaimLeverageAccruedInterestRequest claimLeverageAccruedInterestRequest) async
     test('test claimLeverageGetAccruedInterest', () async {
+      // TODO
+    });
+
+    // Claim a public QR promotion link
+    //
+    //Future<PromoClaimResponseEnvelope> claimPromoLink(String token, ClaimPromoLinkRequest claimPromoLinkRequest) async
+    test('test claimPromoLink', () async {
       // TODO
     });
 
@@ -111,6 +127,15 @@ void main() {
       // TODO
     });
 
+    // Create an affiliate program
+    //
+    // ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. tenant_id is required. Set is_active to true to create an active program.
+    //
+    //Future<AffiliateProgramEnvelope> createAffiliateProgram(CreateAffiliateProgramRequest createAffiliateProgramRequest) async
+    test('test createAffiliateProgram', () async {
+      // TODO
+    });
+
     // Create a new conditional orders
     //
     //Future<CreateConditionalOrderResponseEnvelope> createConditionalOrder(CreateConditionalOrderRequest createConditionalOrderRequest) async
@@ -141,6 +166,15 @@ void main() {
       // TODO
     });
 
+    // Create a USDC withdrawal request
+    //
+    // Reserves the requested quantity against the caller's available balance (moving it to pending_withdrawal) and creates a PENDING withdrawal. No fee quote is required and no fee is reserved: the withdrawal's fee is quoted and locked later, as part of approval. Idempotent on withdrawal_id: a repeat request carrying the same to_address and quantity reserves nothing further and returns the existing withdrawal with 200. Reusing a withdrawal_id with a different to_address or quantity is a conflict (409), not a replay, and reserves nothing. Restricted to DORA tenant users whose native asset is USDC.
+    //
+    //Future<WithdrawalResponseEnvelope> createWithdrawal(CreateWithdrawalRequest createWithdrawalRequest) async
+    test('test createWithdrawal', () async {
+      // TODO
+    });
+
     // Delete user by ID
     //
     //Future<UserDeletedResponseEnvelope> deleteUser(String userId) async
@@ -148,10 +182,28 @@ void main() {
       // TODO
     });
 
+    // Export promotional links as CSV
+    //
+    // Stream private claim URLs with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+    //
+    //Future<String> exportPromoLinksCSV(String batchId) async
+    test('test exportPromoLinksCSV', () async {
+      // TODO
+    });
+
     // Get user's api keys: admin or integrator only
     //
     //Future<APIKeyResponseEnvelope> getAPIKeysForUserID(String userId) async
     test('test getAPIKeysForUserID', () async {
+      // TODO
+    });
+
+    // Get an affiliate program
+    //
+    // ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. 
+    //
+    //Future<AffiliateProgramEnvelope> getAffiliateProgram(String programId) async
+    test('test getAffiliateProgram', () async {
       // TODO
     });
 
@@ -214,6 +266,8 @@ void main() {
     });
 
     // Get candlestick data for an orderbook
+    //
+    // Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
     //
     //Future<ListCandlesResponseEnvelope> getCandleData(String orderBookId, DateTime start, DateTime end, { CandleResolution resolution }) async
     test('test getCandleData', () async {
@@ -417,6 +471,15 @@ void main() {
       // TODO
     });
 
+    // Get promotional source attribution
+    //
+    // Return the QR source funnel and decimal totals in one bounded aggregate query. ADMIN and same-tenant INTEGRATOR only.
+    //
+    //Future<PromoAttributionResponse> getPromoAttribution(String tradingChallengeId) async
+    test('test getPromoAttribution', () async {
+      // TODO
+    });
+
     // Get realized P&L settlements with filters
     //
     //Future<GetRealizedPnlSettlementsResponseEnvelope> getRealizedPnlSettlements({ String userId, String tenantId, String positionId, DateTime createdAfter, DateTime createdBefore, DateTime settledAfter, DateTime settledBefore, bool isSettled }) async
@@ -581,12 +644,30 @@ void main() {
       // TODO
     });
 
+    // Get a USDC withdrawal by ID
+    //
+    // Returns a single USDC withdrawal. A caller may read its own withdrawals; admins may read any user's.
+    //
+    //Future<WithdrawalResponseEnvelope> getWithdrawal(String withdrawalId) async
+    test('test getWithdrawal', () async {
+      // TODO
+    });
+
     // Estimate the network fee to withdraw USDC via web3
     //
-    // Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay when they make their withdrawal request. Restricted to DORA tenant users whose native asset is USDC.
+    // Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
     //
     //Future<FeeQuoteResponseEnvelope> getWithdrawalFeeQuote(String to, String quantity) async
     test('test getWithdrawalFeeQuote', () async {
+      // TODO
+    });
+
+    // Issue a promotional link batch
+    //
+    // Atomically reserve QR campaign capacity and create opaque, encrypted promotional links. ADMIN and same-tenant INTEGRATOR only. Exact idempotent replays return 200; first creation returns 201; key reuse with another payload returns 409.
+    //
+    //Future<IssuePromoLinkBatchResponse> issuePromoLinkBatch(String tradingChallengeId, String idempotencyKey, IssuePromoLinkBatchRequest issuePromoLinkBatchRequest) async
+    test('test issuePromoLinkBatch', () async {
       // TODO
     });
 
@@ -698,6 +779,42 @@ void main() {
       // TODO
     });
 
+    // List a referred user's customer cash flows
+    //
+    // Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. Currency EXTERNAL_DEPOSIT and EXTERNAL_WITHDRAW ledger events only. Pending withdrawals and promotional credits are excluded. Amounts are positive native asset units identified by asset_symbol. The date is when the completed movement was recorded in the ledger. Only events at or after the user's referral assignment are included.
+    //
+    //Future<AffiliateCashFlowReportEnvelope> listAffiliateCashFlows(String programId, String userId, { int limit, int page }) async
+    test('test listAffiliateCashFlows', () async {
+      // TODO
+    });
+
+    // List affiliate programs
+    //
+    // ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Admins without a tenant filter list all tenants. Inactive programs are included.
+    //
+    //Future<AffiliateProgramListEnvelope> listAffiliatePrograms({ String tenantId, int limit, int page }) async
+    test('test listAffiliatePrograms', () async {
+      // TODO
+    });
+
+    // List referred users and activity
+    //
+    // Authenticated access. ADMIN can inspect all programs. INTEGRATOR is limited to its own tenant. Other users must be registered referrers and see only their own referrals. Deactivation retains historical reports. date defaults to the current UTC day. Daily volume and realized PnL use the selected UTC day; monthly volume and realized PnL use its UTC calendar month. Trade activity, PnL and currency cash-flow counts/dates include only events at or after attributed_at. Signup and KYC fields describe the user profile. Promotional and trading-challenge credits, non-currency assets, pending and rejected withdrawals are excluded from customer cash flows. Discord status is unknown until an integration exists.
+    //
+    //Future<AffiliateReferralReportEnvelope> listAffiliateReferrals(String programId, { DateTime date, String referrerId, int limit, int page }) async
+    test('test listAffiliateReferrals', () async {
+      // TODO
+    });
+
+    // List program referrers
+    //
+    // ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Includes registrations in inactive programs.
+    //
+    //Future<AffiliateReferrerListEnvelope> listAffiliateReferrers(String programId, { int limit, int page }) async
+    test('test listAffiliateReferrers', () async {
+      // TODO
+    });
+
     // List assets
     //
     //Future<ResponseEnvelopeOfListAssets> listAssets({ DateTime createdAfter, DateTime createdBefore, AssetKind assetKind, bool canAddLiquidity, bool canDirectBorrow, bool canOnboard, bool canTrade, bool canVirtualBorrow, int page, int limit }) async
@@ -728,10 +845,37 @@ void main() {
       // TODO
     });
 
+    // List your affiliate memberships
+    //
+    // Returns only the authenticated user's memberships and reusable codes, including inactive programs.
+    //
+    //Future<AffiliateMembershipListEnvelope> listOwnAffiliateMemberships({ int limit, int page }) async
+    test('test listOwnAffiliateMemberships', () async {
+      // TODO
+    });
+
     // List all position accounts for the authenticated user
     //
     //Future<ListPositionAccountsResponseEnvelope> listPositionAccountsSelf() async
     test('test listPositionAccountsSelf', () async {
+      // TODO
+    });
+
+    // List promotional link batches
+    //
+    // Return source metadata and ISSUED, CLAIMED, and REVOKED counts for each batch. ADMIN and same-tenant INTEGRATOR only.
+    //
+    //Future<PromoLinkBatchListResponse> listPromoLinkBatches(String tradingChallengeId) async
+    test('test listPromoLinkBatches', () async {
+      // TODO
+    });
+
+    // List promotional links
+    //
+    // Keyset-paginated batch links. URLs are omitted by default and decrypted only when reveal=true. ADMIN and same-tenant INTEGRATOR only.
+    //
+    //Future<PromoLinkListResponse> listPromoLinks(String batchId, { int limit, String cursor, PromoLinkStatus status, bool reveal }) async
+    test('test listPromoLinks', () async {
       // TODO
     });
 
@@ -762,10 +906,37 @@ void main() {
       // TODO
     });
 
+    // List USDC withdrawals
+    //
+    // Lists USDC withdrawals ordered by created_at descending. Non-admin callers are always scoped to their own withdrawals. Admin callers get every user's withdrawals by default, and may narrow to one user with `user_id`.
+    //
+    //Future<ListWithdrawalsResponseEnvelope> listWithdrawals({ String userId, Web3WithdrawalStatus status, int page, int limit }) async
+    test('test listWithdrawals', () async {
+      // TODO
+    });
+
+    // Look up a reusable referral code
+    //
+    // ADMIN or INTEGRATOR required, within tenant permissions. Admins must supply tenant_id. Case-insensitive lookup requires an active program and never consumes the code. Attribution happens separately at signup or through POST /v1/affiliate_referrals/self.
+    //
+    //Future<AffiliateReferrerEnvelope> lookupAffiliateCode(String code, { String tenantId }) async
+    test('test lookupAffiliateCode', () async {
+      // TODO
+    });
+
     // Pay current accrued leverage interest for a specific user
     //
     //Future<PayLeverageAccruedInterestResponseEnvelope> payLeverageGetAccruedInterest(PayLeverageAccruedInterestRequest payLeverageAccruedInterestRequest) async
     test('test payLeverageGetAccruedInterest', () async {
+      // TODO
+    });
+
+    // Register an existing user as a referrer
+    //
+    // ADMIN or INTEGRATOR required, within tenant permissions. Accepts an optional custom referral_code and generates one when omitted or empty. Codes are stored uppercase and globally unique. Duplicate membership or code returns 409. Users may supply the code at signup or assign it later through POST /v1/affiliate_referrals/self.
+    //
+    //Future<AffiliateReferrerEnvelope> registerAffiliateReferrer(String programId, RegisterAffiliateReferrerRequest registerAffiliateReferrerRequest) async
+    test('test registerAffiliateReferrer', () async {
       // TODO
     });
 
@@ -796,10 +967,26 @@ void main() {
       // TODO
     });
 
+    // Render a promotional link QR code
+    //
+    // Render the exact private claim URL as PNG with Cache-Control private, no-store. ADMIN and same-tenant INTEGRATOR only.
+    //
+    //Future<String> renderPromoLinkQR(String linkId, { int size, String format, String ec }) async
+    test('test renderPromoLinkQR', () async {
+      // TODO
+    });
+
     // Repay borrowed USD, then accrue and pay leverage interest
     //
     //Future<RepayUSDResponseEnvelope> repayUSD(RepayUSDRequest repayUSDRequest) async
     test('test repayUSD', () async {
+      // TODO
+    });
+
+    // Resolve a public QR promotion claim link
+    //
+    //Future<PromoClaimResponseEnvelope> resolvePromoClaim(String token) async
+    test('test resolvePromoClaim', () async {
       // TODO
     });
 
@@ -814,6 +1001,15 @@ void main() {
     //
     //Future<RevokeAPIKeyResponseEnvelope> revokeAPIKeyForUserID(String userId, String keyId) async
     test('test revokeAPIKeyForUserID', () async {
+      // TODO
+    });
+
+    // Revoke a promotional link
+    //
+    // Revoke an unclaimed link and return one unit of QR campaign capacity. Repeating an already-revoked request is idempotent; claimed links return 409.
+    //
+    //Future<RevokePromoLinkResponse> revokePromoLink(String linkId, RevokePromoLinkRequest revokePromoLinkRequest) async
+    test('test revokePromoLink', () async {
       // TODO
     });
 
@@ -904,6 +1100,15 @@ void main() {
     //
     //Future<TransferBalancesResponseEnvelope> transferAvailableBalances(TransferBalancesRequest transferBalancesRequest) async
     test('test transferAvailableBalances', () async {
+      // TODO
+    });
+
+    // Update an affiliate program
+    //
+    // ADMIN or INTEGRATOR required. Integrators are restricted to their own tenant; ADMIN overrides other roles. Omitted and null fields are preserved. Fields accept direct values or {update, value} objects. Tenant ownership cannot be changed. Deactivation preserves codes and registrations.
+    //
+    //Future<AffiliateProgramEnvelope> updateAffiliateProgram(String programId, UpdateAffiliateProgramRequest updateAffiliateProgramRequest) async
+    test('test updateAffiliateProgram', () async {
       // TODO
     });
 

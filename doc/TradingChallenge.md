@@ -28,6 +28,8 @@ Name | Type | Description | Notes
 **lastProcessedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **users** | **List<String>** |  | [optional] [default to const []]
 **usersCount** | **int** |  | 
+**qr** | [**TradingChallengeQR**](TradingChallengeQR.md) |  | [optional] 
+**worstCaseExposure** | **String** | For QR_PROMO, max_users multiplied by initial_user_balance plus max_reward_amount. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

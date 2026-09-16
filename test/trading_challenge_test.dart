@@ -117,6 +117,17 @@ void main() {
       // TODO
     });
 
+    // TradingChallengeQR qr
+    test('to test the property `qr`', () async {
+      // TODO
+    });
+
+    // For QR_PROMO, max_users multiplied by initial_user_balance plus max_reward_amount.
+    // String worstCaseExposure
+    test('to test the property `worstCaseExposure`', () async {
+      // TODO
+    });
+
 
   });
 

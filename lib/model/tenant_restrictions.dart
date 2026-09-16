@@ -14,7 +14,7 @@ class TenantRestrictions {
   /// Returns a new [TenantRestrictions] instance.
   TenantRestrictions({
     required this.tenantId,
-    required this.depositLimit,
+    required this.dailyDepositLimit,
     required this.tradeLimit,
     required this.updatedAt,
   });
@@ -22,8 +22,8 @@ class TenantRestrictions {
   /// Tenant ID
   String tenantId;
 
-  /// Maximum allowed deposit for the tenant.
-  String depositLimit;
+  /// Maximum allowed deposit for the tenant per day.
+  String dailyDepositLimit;
 
   /// Maximum allowed trade amount for the tenant.
   String tradeLimit;
@@ -34,7 +34,7 @@ class TenantRestrictions {
   @override
   bool operator ==(Object other) => identical(this, other) || other is TenantRestrictions &&
     other.tenantId == tenantId &&
-    other.depositLimit == depositLimit &&
+    other.dailyDepositLimit == dailyDepositLimit &&
     other.tradeLimit == tradeLimit &&
     other.updatedAt == updatedAt;
 
@@ -42,17 +42,17 @@ class TenantRestrictions {
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (tenantId.hashCode) +
-    (depositLimit.hashCode) +
+    (dailyDepositLimit.hashCode) +
     (tradeLimit.hashCode) +
     (updatedAt.hashCode);
 
   @override
-  String toString() => 'TenantRestrictions[tenantId=$tenantId, depositLimit=$depositLimit, tradeLimit=$tradeLimit, updatedAt=$updatedAt]';
+  String toString() => 'TenantRestrictions[tenantId=$tenantId, dailyDepositLimit=$dailyDepositLimit, tradeLimit=$tradeLimit, updatedAt=$updatedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'tenant_id'] = this.tenantId;
-      json[r'deposit_limit'] = this.depositLimit;
+      json[r'daily_deposit_limit'] = this.dailyDepositLimit;
       json[r'trade_limit'] = this.tradeLimit;
       json[r'updated_at'] = this.updatedAt.toUtc().toIso8601String();
     return json;
@@ -71,8 +71,8 @@ class TenantRestrictions {
       assert(() {
         assert(json.containsKey(r'tenant_id'), 'Required key "TenantRestrictions[tenant_id]" is missing from JSON.');
         assert(json[r'tenant_id'] != null, 'Required key "TenantRestrictions[tenant_id]" has a null value in JSON.');
-        assert(json.containsKey(r'deposit_limit'), 'Required key "TenantRestrictions[deposit_limit]" is missing from JSON.');
-        assert(json[r'deposit_limit'] != null, 'Required key "TenantRestrictions[deposit_limit]" has a null value in JSON.');
+        assert(json.containsKey(r'daily_deposit_limit'), 'Required key "TenantRestrictions[daily_deposit_limit]" is missing from JSON.');
+        assert(json[r'daily_deposit_limit'] != null, 'Required key "TenantRestrictions[daily_deposit_limit]" has a null value in JSON.');
         assert(json.containsKey(r'trade_limit'), 'Required key "TenantRestrictions[trade_limit]" is missing from JSON.');
         assert(json[r'trade_limit'] != null, 'Required key "TenantRestrictions[trade_limit]" has a null value in JSON.');
         assert(json.containsKey(r'updated_at'), 'Required key "TenantRestrictions[updated_at]" is missing from JSON.');
@@ -82,7 +82,7 @@ class TenantRestrictions {
 
       return TenantRestrictions(
         tenantId: mapValueOfType<String>(json, r'tenant_id')!,
-        depositLimit: mapValueOfType<String>(json, r'deposit_limit')!,
+        dailyDepositLimit: mapValueOfType<String>(json, r'daily_deposit_limit')!,
         tradeLimit: mapValueOfType<String>(json, r'trade_limit')!,
         updatedAt: mapDateTime(json, r'updated_at', r'')!,
       );
@@ -133,7 +133,7 @@ class TenantRestrictions {
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
     'tenant_id',
-    'deposit_limit',
+    'daily_deposit_limit',
     'trade_limit',
     'updated_at',
   };

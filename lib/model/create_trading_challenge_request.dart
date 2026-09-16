@@ -28,6 +28,7 @@ class CreateTradingChallengeRequest {
     this.avgDailyVolumeCondition,
     this.minimumEquityPercentageCondition,
     this.users = const [],
+    this.qr,
   });
 
   String tenantId;
@@ -106,6 +107,15 @@ class CreateTradingChallengeRequest {
 
   List<String> users;
 
+  /// Required for QR_PROMO and rejected for other challenge types. QR_PROMO requests must omit users.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  CreateTradingChallengeQRRequest? qr;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateTradingChallengeRequest &&
     other.tenantId == tenantId &&
@@ -122,7 +132,8 @@ class CreateTradingChallengeRequest {
     other.totalVolumeCondition == totalVolumeCondition &&
     other.avgDailyVolumeCondition == avgDailyVolumeCondition &&
     other.minimumEquityPercentageCondition == minimumEquityPercentageCondition &&
-    _deepEquality.equals(other.users, users);
+    _deepEquality.equals(other.users, users) &&
+    other.qr == qr;
 
   @override
   int get hashCode =>
@@ -141,10 +152,11 @@ class CreateTradingChallengeRequest {
     (totalVolumeCondition == null ? 0 : totalVolumeCondition!.hashCode) +
     (avgDailyVolumeCondition == null ? 0 : avgDailyVolumeCondition!.hashCode) +
     (minimumEquityPercentageCondition == null ? 0 : minimumEquityPercentageCondition!.hashCode) +
-    (users.hashCode);
+    (users.hashCode) +
+    (qr == null ? 0 : qr!.hashCode);
 
   @override
-  String toString() => 'CreateTradingChallengeRequest[tenantId=$tenantId, name=$name, type=$type, maxUsers=$maxUsers, start=$start, end=$end, initialUserBalance=$initialUserBalance, goldPrizeQuantity=$goldPrizeQuantity, silverPrizeQuantity=$silverPrizeQuantity, bronzePrizeQuantity=$bronzePrizeQuantity, pnlCondition=$pnlCondition, totalVolumeCondition=$totalVolumeCondition, avgDailyVolumeCondition=$avgDailyVolumeCondition, minimumEquityPercentageCondition=$minimumEquityPercentageCondition, users=$users]';
+  String toString() => 'CreateTradingChallengeRequest[tenantId=$tenantId, name=$name, type=$type, maxUsers=$maxUsers, start=$start, end=$end, initialUserBalance=$initialUserBalance, goldPrizeQuantity=$goldPrizeQuantity, silverPrizeQuantity=$silverPrizeQuantity, bronzePrizeQuantity=$bronzePrizeQuantity, pnlCondition=$pnlCondition, totalVolumeCondition=$totalVolumeCondition, avgDailyVolumeCondition=$avgDailyVolumeCondition, minimumEquityPercentageCondition=$minimumEquityPercentageCondition, users=$users, qr=$qr]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -191,6 +203,11 @@ class CreateTradingChallengeRequest {
       json[r'minimum_equity_percentage_condition'] = null;
     }
       json[r'users'] = this.users;
+    if (this.qr != null) {
+      json[r'qr'] = this.qr;
+    } else {
+      json[r'qr'] = null;
+    }
     return json;
   }
 
@@ -240,6 +257,7 @@ class CreateTradingChallengeRequest {
         users: json[r'users'] is Iterable
             ? (json[r'users'] as Iterable).cast<String>().toList(growable: false)
             : const [],
+        qr: CreateTradingChallengeQRRequest.fromJson(json[r'qr']),
       );
     }
     return null;

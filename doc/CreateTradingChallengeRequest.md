@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **avgDailyVolumeCondition** | **String** |  | [optional] 
 **minimumEquityPercentageCondition** | **int** |  | [optional] 
 **users** | **List<String>** |  | [optional] [default to const []]
+**qr** | [**CreateTradingChallengeQRRequest**](CreateTradingChallengeQRRequest.md) | Required for QR_PROMO and rejected for other challenge types. QR_PROMO requests must omit users. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

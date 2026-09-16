@@ -16,6 +16,18 @@ void main() {
   // final instance = CreateIntegratorUserRequest();
 
   group('test CreateIntegratorUserRequest', () {
+    // Optional affiliate code, normalized to uppercase. Accepted only when creating a new account in the program owning tenant. One immutable attribution per user account; a later signup/linking call cannot add or replace it. Invalid or inactive codes fail signup atomically. Independent of QR acquisition attribution. Existing unassigned users can instead use POST /v1/affiliate_referrals/self; earlier activity is excluded.
+    // String referralCode
+    test('to test the property `referralCode`', () async {
+      // TODO
+    });
+
+    // Optional client-reported HTTP(S) signup site URL, used only with referral_code. When omitted, a valid HTTP(S) Origin header is used; other origins are ignored. Only the hostname is stored, without path, query, credentials or fragment. Unknown if neither supplies a usable hostname. Ignored when referral_code is empty. It does not select or authenticate the tenant.
+    // String signupSource
+    test('to test the property `signupSource`', () async {
+      // TODO
+    });
+
     // String email
     test('to test the property `email`', () async {
       // TODO

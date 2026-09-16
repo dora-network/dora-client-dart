@@ -100,6 +100,15 @@ String parameterToString(dynamic value) {
   if (value is PositionType) {
     return PositionTypeTypeTransformer().encode(value).toString();
   }
+  if (value is PromoClaimState) {
+    return PromoClaimStateTypeTransformer().encode(value).toString();
+  }
+  if (value is PromoLinkStatus) {
+    return PromoLinkStatusTypeTransformer().encode(value).toString();
+  }
+  if (value is PromoSourceType) {
+    return PromoSourceTypeTypeTransformer().encode(value).toString();
+  }
   if (value is Side) {
     return SideTypeTransformer().encode(value).toString();
   }
@@ -120,6 +129,9 @@ String parameterToString(dynamic value) {
   }
   if (value is Web3EventStatus) {
     return Web3EventStatusTypeTransformer().encode(value).toString();
+  }
+  if (value is Web3WithdrawalStatus) {
+    return Web3WithdrawalStatusTypeTransformer().encode(value).toString();
   }
   if (value is WithdrawalStatus) {
     return WithdrawalStatusTypeTransformer().encode(value).toString();

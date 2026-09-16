@@ -201,6 +201,40 @@ class ApiClient {
           return AccountV2.fromJson(value);
         case 'AddTradingChallengeUsersRequest':
           return AddTradingChallengeUsersRequest.fromJson(value);
+        case 'AffiliateAttribution':
+          return AffiliateAttribution.fromJson(value);
+        case 'AffiliateAttributionEnvelope':
+          return AffiliateAttributionEnvelope.fromJson(value);
+        case 'AffiliateCashFlow':
+          return AffiliateCashFlow.fromJson(value);
+        case 'AffiliateCashFlowReport':
+          return AffiliateCashFlowReport.fromJson(value);
+        case 'AffiliateCashFlowReportEnvelope':
+          return AffiliateCashFlowReportEnvelope.fromJson(value);
+        case 'AffiliateError':
+          return AffiliateError.fromJson(value);
+        case 'AffiliateMembership':
+          return AffiliateMembership.fromJson(value);
+        case 'AffiliateMembershipListEnvelope':
+          return AffiliateMembershipListEnvelope.fromJson(value);
+        case 'AffiliateProgram':
+          return AffiliateProgram.fromJson(value);
+        case 'AffiliateProgramEnvelope':
+          return AffiliateProgramEnvelope.fromJson(value);
+        case 'AffiliateProgramListEnvelope':
+          return AffiliateProgramListEnvelope.fromJson(value);
+        case 'AffiliateReferral':
+          return AffiliateReferral.fromJson(value);
+        case 'AffiliateReferralReport':
+          return AffiliateReferralReport.fromJson(value);
+        case 'AffiliateReferralReportEnvelope':
+          return AffiliateReferralReportEnvelope.fromJson(value);
+        case 'AffiliateReferrer':
+          return AffiliateReferrer.fromJson(value);
+        case 'AffiliateReferrerEnvelope':
+          return AffiliateReferrerEnvelope.fromJson(value);
+        case 'AffiliateReferrerListEnvelope':
+          return AffiliateReferrerListEnvelope.fromJson(value);
         case 'AllPositions':
           return AllPositions.fromJson(value);
         case 'AllPositionsResponseEnvelope':
@@ -225,6 +259,8 @@ class ApiClient {
           return AssetYield.fromJson(value);
         case 'AssetYieldResolution':
           return AssetYieldResolutionTypeTransformer().decode(value);
+        case 'AssignAffiliateReferralRequest':
+          return AssignAffiliateReferralRequest.fromJson(value);
         case 'BalanceTransfer':
           return BalanceTransfer.fromJson(value);
         case 'BalancesResponse':
@@ -253,6 +289,8 @@ class ApiClient {
           return ClaimLeverageAccruedInterestRequest.fromJson(value);
         case 'ClaimLeverageAccruedInterestResponseEnvelope':
           return ClaimLeverageAccruedInterestResponseEnvelope.fromJson(value);
+        case 'ClaimPromoLinkRequest':
+          return ClaimPromoLinkRequest.fromJson(value);
         case 'ClaimTradingChallengeResponse':
           return ClaimTradingChallengeResponse.fromJson(value);
         case 'ClaimTradingChallengeResponseEnvelope':
@@ -281,6 +319,8 @@ class ApiClient {
           return CreateAPIKeyRequest.fromJson(value);
         case 'CreateAPIKeyResponseEnvelope':
           return CreateAPIKeyResponseEnvelope.fromJson(value);
+        case 'CreateAffiliateProgramRequest':
+          return CreateAffiliateProgramRequest.fromJson(value);
         case 'CreateConditionalOrderRequest':
           return CreateConditionalOrderRequest.fromJson(value);
         case 'CreateConditionalOrderResponseData':
@@ -295,8 +335,12 @@ class ApiClient {
           return CreateOrderRequest.fromJson(value);
         case 'CreateOrderResponseEnvelope':
           return CreateOrderResponseEnvelope.fromJson(value);
+        case 'CreateTradingChallengeQRRequest':
+          return CreateTradingChallengeQRRequest.fromJson(value);
         case 'CreateTradingChallengeRequest':
           return CreateTradingChallengeRequest.fromJson(value);
+        case 'CreateWithdrawalRequest':
+          return CreateWithdrawalRequest.fromJson(value);
         case 'CreditRating':
           return CreditRatingTypeTransformer().decode(value);
         case 'CurrentLeverageAccruedInterest':
@@ -353,6 +397,14 @@ class ApiClient {
           return IsolatedCollateral.fromJson(value);
         case 'IsolatedPosition':
           return IsolatedPosition.fromJson(value);
+        case 'IssuePromoLinkBatchRequest':
+          return IssuePromoLinkBatchRequest.fromJson(value);
+        case 'IssuePromoLinkBatchResponse':
+          return IssuePromoLinkBatchResponse.fromJson(value);
+        case 'IssuePromoLinkBatchResponseAllOfData':
+          return IssuePromoLinkBatchResponseAllOfData.fromJson(value);
+        case 'IssuedPromoLink':
+          return IssuedPromoLink.fromJson(value);
         case 'LedgerAccountsResponseV2Envelope':
           return LedgerAccountsResponseV2Envelope.fromJson(value);
         case 'LedgerModuleByAssetResponseEnvelope':
@@ -409,6 +461,8 @@ class ApiClient {
           return ListUserCouponPaymentsResponseEnvelope.fromJson(value);
         case 'ListUsersResponseEnvelope':
           return ListUsersResponseEnvelope.fromJson(value);
+        case 'ListWithdrawalsResponseEnvelope':
+          return ListWithdrawalsResponseEnvelope.fromJson(value);
         case 'LiveOrderbook':
           return LiveOrderbook.fromJson(value);
         case 'Margin':
@@ -481,6 +535,10 @@ class ApiClient {
           return PermitTypedData.fromJson(value);
         case 'PnLRankingResponse':
           return PnLRankingResponse.fromJson(value);
+        case 'PnLRankingResponses':
+          return PnLRankingResponses.fromJson(value);
+        case 'PnLRankingSummary':
+          return PnLRankingSummary.fromJson(value);
         case 'PoolPrice':
           return PoolPrice.fromJson(value);
         case 'PoolPriceResponseEnvelope':
@@ -503,10 +561,40 @@ class ApiClient {
           return PositionTypeTypeTransformer().decode(value);
         case 'PriceLevel':
           return PriceLevel.fromJson(value);
+        case 'PromoAttributionResponse':
+          return PromoAttributionResponse.fromJson(value);
+        case 'PromoAttributionResponseAllOfData':
+          return PromoAttributionResponseAllOfData.fromJson(value);
+        case 'PromoAttributionSource':
+          return PromoAttributionSource.fromJson(value);
+        case 'PromoClaimResponseEnvelope':
+          return PromoClaimResponseEnvelope.fromJson(value);
+        case 'PromoClaimResponseEnvelopeAllOfData':
+          return PromoClaimResponseEnvelopeAllOfData.fromJson(value);
+        case 'PromoClaimState':
+          return PromoClaimStateTypeTransformer().decode(value);
+        case 'PromoLinkAdmin':
+          return PromoLinkAdmin.fromJson(value);
+        case 'PromoLinkBatchListResponse':
+          return PromoLinkBatchListResponse.fromJson(value);
+        case 'PromoLinkBatchListResponseAllOfData':
+          return PromoLinkBatchListResponseAllOfData.fromJson(value);
+        case 'PromoLinkBatchSummary':
+          return PromoLinkBatchSummary.fromJson(value);
+        case 'PromoLinkListResponse':
+          return PromoLinkListResponse.fromJson(value);
+        case 'PromoLinkListResponseAllOfData':
+          return PromoLinkListResponseAllOfData.fromJson(value);
+        case 'PromoLinkStatus':
+          return PromoLinkStatusTypeTransformer().decode(value);
+        case 'PromoSourceType':
+          return PromoSourceTypeTypeTransformer().decode(value);
         case 'RealizedPnlSettlement':
           return RealizedPnlSettlement.fromJson(value);
         case 'RealizedPnlSettlements':
           return RealizedPnlSettlements.fromJson(value);
+        case 'RegisterAffiliateReferrerRequest':
+          return RegisterAffiliateReferrerRequest.fromJson(value);
         case 'RemoveTradingChallengeUsersRequest':
           return RemoveTradingChallengeUsersRequest.fromJson(value);
         case 'RepayUSDRequest':
@@ -525,6 +613,12 @@ class ApiClient {
           return RevokeAPIKeyData.fromJson(value);
         case 'RevokeAPIKeyResponseEnvelope':
           return RevokeAPIKeyResponseEnvelope.fromJson(value);
+        case 'RevokePromoLinkRequest':
+          return RevokePromoLinkRequest.fromJson(value);
+        case 'RevokePromoLinkResponse':
+          return RevokePromoLinkResponse.fromJson(value);
+        case 'RevokePromoLinkResponseAllOfData':
+          return RevokePromoLinkResponseAllOfData.fromJson(value);
         case 'SettleLeverageAccruedInterest':
           return SettleLeverageAccruedInterest.fromJson(value);
         case 'SettleLeverageAccruedInterestRequest':
@@ -585,6 +679,8 @@ class ApiClient {
           return TradingChallengeDailySnapshotsResponseEnvelope.fromJson(value);
         case 'TradingChallengeListResponseEnvelope':
           return TradingChallengeListResponseEnvelope.fromJson(value);
+        case 'TradingChallengeQR':
+          return TradingChallengeQR.fromJson(value);
         case 'TradingChallengeRegistrationRequest':
           return TradingChallengeRegistrationRequest.fromJson(value);
         case 'TradingChallengeRegistrationRequestListResponseEnvelope':
@@ -639,6 +735,14 @@ class ApiClient {
           return UnitePositionResponseEnvelope.fromJson(value);
         case 'UnitedPosition':
           return UnitedPosition.fromJson(value);
+        case 'UpdateAffiliateProgramRequest':
+          return UpdateAffiliateProgramRequest.fromJson(value);
+        case 'UpdateAffiliateProgramRequestDescription':
+          return UpdateAffiliateProgramRequestDescription.fromJson(value);
+        case 'UpdateAffiliateProgramRequestIsActive':
+          return UpdateAffiliateProgramRequestIsActive.fromJson(value);
+        case 'UpdateAffiliateProgramRequestName':
+          return UpdateAffiliateProgramRequestName.fromJson(value);
         case 'UpdateFieldBoolean':
           return UpdateFieldBoolean.fromJson(value);
         case 'UpdateFieldDateTime':
@@ -709,6 +813,8 @@ class ApiClient {
           return ValidateSubmitOrderResponse.fromJson(value);
         case 'Web3EventStatus':
           return Web3EventStatusTypeTransformer().decode(value);
+        case 'Web3WithdrawalStatus':
+          return Web3WithdrawalStatusTypeTransformer().decode(value);
         case 'Withdraw':
           return Withdraw.fromJson(value);
         case 'WithdrawRequest':
@@ -721,6 +827,10 @@ class ApiClient {
           return WithdrawalInitiationResponseEnvelope.fromJson(value);
         case 'WithdrawalRequestReason':
           return WithdrawalRequestReason.fromJson(value);
+        case 'WithdrawalResponse':
+          return WithdrawalResponse.fromJson(value);
+        case 'WithdrawalResponseEnvelope':
+          return WithdrawalResponseEnvelope.fromJson(value);
         case 'WithdrawalStatus':
           return WithdrawalStatusTypeTransformer().decode(value);
         default:

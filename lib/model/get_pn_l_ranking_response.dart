@@ -13,12 +13,18 @@ part of openapi.api;
 class GetPnLRankingResponse {
   /// Returns a new [GetPnLRankingResponse] instance.
   GetPnLRankingResponse({
-    this.data = const [],
+    this.data,
     this.error,
     required this.metadata,
   });
 
-  List<PnLRankingResponse> data;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  PnLRankingResponses? data;
 
   /// The error message. Present for error (non-2xx) responses.
   ///
@@ -34,14 +40,14 @@ class GetPnLRankingResponse {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetPnLRankingResponse &&
-    _deepEquality.equals(other.data, data) &&
+    other.data == data &&
     other.error == error &&
     other.metadata == metadata;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (data.hashCode) +
+    (data == null ? 0 : data!.hashCode) +
     (error == null ? 0 : error!.hashCode) +
     (metadata.hashCode);
 
@@ -50,7 +56,11 @@ class GetPnLRankingResponse {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    if (this.data != null) {
       json[r'data'] = this.data;
+    } else {
+      json[r'data'] = null;
+    }
     if (this.error != null) {
       json[r'error'] = this.error;
     } else {
@@ -77,7 +87,7 @@ class GetPnLRankingResponse {
       }());
 
       return GetPnLRankingResponse(
-        data: PnLRankingResponse.listFromJson(json[r'data']),
+        data: PnLRankingResponses.fromJson(json[r'data']),
         error: mapValueOfType<String>(json, r'error'),
         metadata: Metadata.fromJson(json[r'metadata'])!,
       );

@@ -3770,6 +3770,88 @@ class DefaultApi {
     return null;
   }
 
+  /// Get combined results across all trading challenge
+  ///
+  /// List trading challenge leaderboard/results filtered by board, trading_challenge_type, start date and end date across all challenges.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] board (required):
+  ///   Leaderboard board selector.
+  ///
+  /// * [DateTime] start (required):
+  ///   Inclusive start date in YYYY-MM-DD format.
+  ///
+  /// * [DateTime] end (required):
+  ///   Inclusive end date in YYYY-MM-DD format.
+  ///
+  /// * [TradingChallengeType] tradingChallengeType (required):
+  ///   Challenge type to include in aggregation.
+  Future<Response> getTradingChallengeAllResultsWithHttpInfo(String board, DateTime start, DateTime end, TradingChallengeType tradingChallengeType, { Future<void>? abortTrigger, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/trading_challenges/all/results';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_queryParams('', 'board', board));
+      queryParams.addAll(_queryParams('', 'start', start));
+      queryParams.addAll(_queryParams('', 'end', end));
+      queryParams.addAll(_queryParams('', 'trading_challenge_type', tradingChallengeType));
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Get combined results across all trading challenge
+  ///
+  /// List trading challenge leaderboard/results filtered by board, trading_challenge_type, start date and end date across all challenges.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] board (required):
+  ///   Leaderboard board selector.
+  ///
+  /// * [DateTime] start (required):
+  ///   Inclusive start date in YYYY-MM-DD format.
+  ///
+  /// * [DateTime] end (required):
+  ///   Inclusive end date in YYYY-MM-DD format.
+  ///
+  /// * [TradingChallengeType] tradingChallengeType (required):
+  ///   Challenge type to include in aggregation.
+  Future<TradingChallengeAllResultsResponseEnvelope?> getTradingChallengeAllResults(String board, DateTime start, DateTime end, TradingChallengeType tradingChallengeType, { Future<void>? abortTrigger, }) async {
+    final response = await getTradingChallengeAllResultsWithHttpInfo(board, start, end, tradingChallengeType, abortTrigger: abortTrigger,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'TradingChallengeAllResultsResponseEnvelope',) as TradingChallengeAllResultsResponseEnvelope;
+    
+    }
+    return null;
+  }
+
   /// Get trading challenge by ID
   ///
   /// Fetch one trading challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
@@ -3888,7 +3970,7 @@ class DefaultApi {
 
   /// Get trading challenge results
   ///
-  /// List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
+  /// List challenge leaderboard/results. Public endpoint.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -3931,7 +4013,7 @@ class DefaultApi {
 
   /// Get trading challenge results
   ///
-  /// List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
+  /// List challenge leaderboard/results. Public endpoint.
   ///
   /// Parameters:
   ///

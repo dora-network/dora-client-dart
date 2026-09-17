@@ -275,6 +275,8 @@ part 'model/trade.dart';
 part 'model/trade_request_error.dart';
 part 'model/trade_response_envelope.dart';
 part 'model/trading_challenge.dart';
+part 'model/trading_challenge_all_result.dart';
+part 'model/trading_challenge_all_results_response_envelope.dart';
 part 'model/trading_challenge_daily_snapshot.dart';
 part 'model/trading_challenge_daily_snapshots_response_envelope.dart';
 part 'model/trading_challenge_list_response_envelope.dart';

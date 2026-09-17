@@ -74,6 +74,7 @@ Method | HTTP request | Description
 [**getTopTradersByPnL**](DefaultApi.md#gettoptradersbypnl) | **GET** /v1/user/ranking | Get top traders by PnL
 [**getTradeById**](DefaultApi.md#gettradebyid) | **GET** /v1/trades/{trade_id} | Get a trade by ID
 [**getTrades**](DefaultApi.md#gettrades) | **GET** /v1/trades | Get a filtered, paginated list of trades
+[**getTradingChallengeAllResults**](DefaultApi.md#gettradingchallengeallresults) | **GET** /v1/trading_challenges/all/results | Get combined results across all trading challenge
 [**getTradingChallengeByID**](DefaultApi.md#gettradingchallengebyid) | **GET** /v1/trading_challenges/{trading_challenge_id} | Get trading challenge by ID
 [**getTradingChallengeDailySnapshots**](DefaultApi.md#gettradingchallengedailysnapshots) | **GET** /v1/trading_challenges/{trading_challenge_id}/daily_snapshots | Get trading challenge daily snapshots
 [**getTradingChallengeResults**](DefaultApi.md#gettradingchallengeresults) | **GET** /v1/trading_challenges/{trading_challenge_id}/results | Get trading challenge results
@@ -3393,6 +3394,55 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getTradingChallengeAllResults**
+> TradingChallengeAllResultsResponseEnvelope getTradingChallengeAllResults(board, start, end, tradingChallengeType)
+
+Get combined results across all trading challenge
+
+List trading challenge leaderboard/results filtered by board, trading_challenge_type, start date and end date across all challenges.
+
+### Example
+```dart
+import 'package:dora_client/api.dart';
+
+final api_instance = DefaultApi();
+final board = board_example; // String | Leaderboard board selector.
+final start = 2013-10-20; // DateTime | Inclusive start date in YYYY-MM-DD format.
+final end = 2013-10-20; // DateTime | Inclusive end date in YYYY-MM-DD format.
+final tradingChallengeType = ; // TradingChallengeType | Challenge type to include in aggregation.
+
+try {
+    final result = api_instance.getTradingChallengeAllResults(board, start, end, tradingChallengeType);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getTradingChallengeAllResults: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **board** | **String**| Leaderboard board selector. | 
+ **start** | **DateTime**| Inclusive start date in YYYY-MM-DD format. | 
+ **end** | **DateTime**| Inclusive end date in YYYY-MM-DD format. | 
+ **tradingChallengeType** | [**TradingChallengeType**](.md)| Challenge type to include in aggregation. | 
+
+### Return type
+
+[**TradingChallengeAllResultsResponseEnvelope**](TradingChallengeAllResultsResponseEnvelope.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getTradingChallengeByID**
 > TradingChallengeResponseEnvelope getTradingChallengeByID(tradingChallengeId)
 
@@ -3504,21 +3554,11 @@ Name | Type | Description  | Notes
 
 Get trading challenge results
 
-List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
+List challenge leaderboard/results. Public endpoint.
 
 ### Example
 ```dart
 import 'package:dora_client/api.dart';
-// TODO Configure API key authorization: apiKeyAuthHeader
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuthHeader').apiKeyPrefix = 'Bearer';
-// TODO Configure HTTP Bearer authorization: bearerAuth
-// Case 1. Use String Token
-//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
-// Case 2. Use Function which generate token.
-// String yourTokenGeneratorFunction() { ... }
-//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = DefaultApi();
 final tradingChallengeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
@@ -3545,7 +3585,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuthHeader](../README.md#apiKeyAuthHeader), [bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 

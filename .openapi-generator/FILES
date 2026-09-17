@@ -248,6 +248,8 @@ doc/Trade.md
 doc/TradeRequestError.md
 doc/TradeResponseEnvelope.md
 doc/TradingChallenge.md
+doc/TradingChallengeAllResult.md
+doc/TradingChallengeAllResultsResponseEnvelope.md
 doc/TradingChallengeDailySnapshot.md
 doc/TradingChallengeDailySnapshotsResponseEnvelope.md
 doc/TradingChallengeListResponseEnvelope.md
@@ -584,6 +586,8 @@ lib/model/trade.dart
 lib/model/trade_request_error.dart
 lib/model/trade_response_envelope.dart
 lib/model/trading_challenge.dart
+lib/model/trading_challenge_all_result.dart
+lib/model/trading_challenge_all_results_response_envelope.dart
 lib/model/trading_challenge_daily_snapshot.dart
 lib/model/trading_challenge_daily_snapshots_response_envelope.dart
 lib/model/trading_challenge_list_response_envelope.dart
@@ -910,6 +914,8 @@ test/terminate_trading_challenge_response_test.dart
 test/trade_request_error_test.dart
 test/trade_response_envelope_test.dart
 test/trade_test.dart
+test/trading_challenge_all_result_test.dart
+test/trading_challenge_all_results_response_envelope_test.dart
 test/trading_challenge_daily_snapshot_test.dart
 test/trading_challenge_daily_snapshots_response_envelope_test.dart
 test/trading_challenge_list_response_envelope_test.dart

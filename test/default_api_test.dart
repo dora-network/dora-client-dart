@@ -510,6 +510,15 @@ void main() {
       // TODO
     });
 
+    // Get combined results across all trading challenge
+    //
+    // List trading challenge leaderboard/results filtered by board, trading_challenge_type, start date and end date across all challenges.
+    //
+    //Future<TradingChallengeAllResultsResponseEnvelope> getTradingChallengeAllResults(String board, DateTime start, DateTime end, TradingChallengeType tradingChallengeType) async
+    test('test getTradingChallengeAllResults', () async {
+      // TODO
+    });
+
     // Get trading challenge by ID
     //
     // Fetch one trading challenge. COMPETITION_MANAGER can access only assigned challenge IDs.
@@ -530,7 +539,7 @@ void main() {
 
     // Get trading challenge results
     //
-    // List challenge leaderboard/results. COMPETITION_MANAGER can access only assigned challenge IDs.
+    // List challenge leaderboard/results. Public endpoint.
     //
     //Future<TradingChallengeResultsResponseEnvelope> getTradingChallengeResults(String tradingChallengeId, { String board }) async
     test('test getTradingChallengeResults', () async {

@@ -673,6 +673,10 @@ class ApiClient {
           return TradeResponseEnvelope.fromJson(value);
         case 'TradingChallenge':
           return TradingChallenge.fromJson(value);
+        case 'TradingChallengeAllResult':
+          return TradingChallengeAllResult.fromJson(value);
+        case 'TradingChallengeAllResultsResponseEnvelope':
+          return TradingChallengeAllResultsResponseEnvelope.fromJson(value);
         case 'TradingChallengeDailySnapshot':
           return TradingChallengeDailySnapshot.fromJson(value);
         case 'TradingChallengeDailySnapshotsResponseEnvelope':

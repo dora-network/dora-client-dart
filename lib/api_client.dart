@@ -465,6 +465,8 @@ class ApiClient {
           return ListWithdrawalsResponseEnvelope.fromJson(value);
         case 'LiveOrderbook':
           return LiveOrderbook.fromJson(value);
+        case 'LockWithdrawalFeeRequest':
+          return LockWithdrawalFeeRequest.fromJson(value);
         case 'Margin':
           return Margin.fromJson(value);
         case 'Metadata':
@@ -659,6 +661,14 @@ class ApiClient {
           return SupplyRequest.fromJson(value);
         case 'SupplyResponseEnvelope':
           return SupplyResponseEnvelope.fromJson(value);
+        case 'TenantGuaranteeFundHistory':
+          return TenantGuaranteeFundHistory.fromJson(value);
+        case 'TenantGuaranteeFundHistoryResponseEnvelope':
+          return TenantGuaranteeFundHistoryResponseEnvelope.fromJson(value);
+        case 'TenantGuaranteeFundRow':
+          return TenantGuaranteeFundRow.fromJson(value);
+        case 'TenantGuaranteeFundSummary':
+          return TenantGuaranteeFundSummary.fromJson(value);
         case 'TenantRestrictions':
           return TenantRestrictions.fromJson(value);
         case 'TerminateTradingChallengeResponse':

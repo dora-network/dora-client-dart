@@ -16,13 +16,19 @@ void main() {
   // final instance = FeeQuoteResponse();
 
   group('test FeeQuoteResponse', () {
-    // The withdrawal destination address, echoed from the request.
+    // The withdrawal this quote was issued for. The quote token is bound to it and cannot be redeemed against any other withdrawal.
+    // String withdrawalId
+    test('to test the property `withdrawalId`', () async {
+      // TODO
+    });
+
+    // The withdrawal destination address, read from the withdrawal row.
     // String to
     test('to test the property `to`', () async {
       // TODO
     });
 
-    // Human-decimal USDC withdrawal quantity, echoed from the request.
+    // Human-decimal USDC withdrawal quantity, read from the withdrawal row.
     // String quantity
     test('to test the property `quantity`', () async {
       // TODO
@@ -46,7 +52,7 @@ void main() {
       // TODO
     });
 
-    // Signed, TTL-bound quote token to submit with a later withdrawal so the server can validate the fee it was quoted.
+    // Signed, TTL-bound quote token to submit to PUT /v1/web3/withdrawals/{withdrawal_id} so the server can validate the fee it quoted. It names the withdrawal it was issued for.
     // String quoteToken
     test('to test the property `quoteToken`', () async {
       // TODO

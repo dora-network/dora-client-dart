@@ -40,14 +40,13 @@ class TransactionKind {
   static const REPAY = TransactionKind._(r'REPAY');
   static const SUPPLY = TransactionKind._(r'SUPPLY');
   static const WITHDRAW = TransactionKind._(r'WITHDRAW');
-  static const ISOLATE_COLLATERAL = TransactionKind._(r'ISOLATE_COLLATERAL');
+  static const ISOLATE_AVAILABLE = TransactionKind._(r'ISOLATE_AVAILABLE');
   static const ISOLATE_POSITION = TransactionKind._(r'ISOLATE_POSITION');
   static const UNITE_POSITION = TransactionKind._(r'UNITE_POSITION');
   static const COLLATERALIZE = TransactionKind._(r'COLLATERALIZE');
   static const DE_COLLATERALIZE = TransactionKind._(r'DE-COLLATERALIZE');
   static const COUPON_PAYMENT = TransactionKind._(r'COUPON_PAYMENT');
   static const INTERNAL_TRANSFER = TransactionKind._(r'INTERNAL_TRANSFER');
-  static const ISOLATE_AVAILABLE = TransactionKind._(r'ISOLATE_AVAILABLE');
   static const BORROW = TransactionKind._(r'BORROW');
   static const TRADING_CHALLENGE_DEPOSIT = TransactionKind._(r'TRADING_CHALLENGE_DEPOSIT');
   static const TRADING_CHALLENGE_WITHDRAW = TransactionKind._(r'TRADING_CHALLENGE_WITHDRAW');
@@ -72,14 +71,13 @@ class TransactionKind {
     REPAY,
     SUPPLY,
     WITHDRAW,
-    ISOLATE_COLLATERAL,
+    ISOLATE_AVAILABLE,
     ISOLATE_POSITION,
     UNITE_POSITION,
     COLLATERALIZE,
     DE_COLLATERALIZE,
     COUPON_PAYMENT,
     INTERNAL_TRANSFER,
-    ISOLATE_AVAILABLE,
     BORROW,
     TRADING_CHALLENGE_DEPOSIT,
     TRADING_CHALLENGE_WITHDRAW,
@@ -139,14 +137,13 @@ class TransactionKindTypeTransformer {
         case r'REPAY': return TransactionKind.REPAY;
         case r'SUPPLY': return TransactionKind.SUPPLY;
         case r'WITHDRAW': return TransactionKind.WITHDRAW;
-        case r'ISOLATE_COLLATERAL': return TransactionKind.ISOLATE_COLLATERAL;
+        case r'ISOLATE_AVAILABLE': return TransactionKind.ISOLATE_AVAILABLE;
         case r'ISOLATE_POSITION': return TransactionKind.ISOLATE_POSITION;
         case r'UNITE_POSITION': return TransactionKind.UNITE_POSITION;
         case r'COLLATERALIZE': return TransactionKind.COLLATERALIZE;
         case r'DE-COLLATERALIZE': return TransactionKind.DE_COLLATERALIZE;
         case r'COUPON_PAYMENT': return TransactionKind.COUPON_PAYMENT;
         case r'INTERNAL_TRANSFER': return TransactionKind.INTERNAL_TRANSFER;
-        case r'ISOLATE_AVAILABLE': return TransactionKind.ISOLATE_AVAILABLE;
         case r'BORROW': return TransactionKind.BORROW;
         case r'TRADING_CHALLENGE_DEPOSIT': return TransactionKind.TRADING_CHALLENGE_DEPOSIT;
         case r'TRADING_CHALLENGE_WITHDRAW': return TransactionKind.TRADING_CHALLENGE_WITHDRAW;

@@ -13,6 +13,7 @@ part of openapi.api;
 class FeeQuoteResponse {
   /// Returns a new [FeeQuoteResponse] instance.
   FeeQuoteResponse({
+    required this.withdrawalId,
     required this.to,
     required this.quantity,
     required this.fee,
@@ -22,10 +23,13 @@ class FeeQuoteResponse {
     required this.expiresAt,
   });
 
-  /// The withdrawal destination address, echoed from the request.
+  /// The withdrawal this quote was issued for. The quote token is bound to it and cannot be redeemed against any other withdrawal.
+  String withdrawalId;
+
+  /// The withdrawal destination address, read from the withdrawal row.
   String to;
 
-  /// Human-decimal USDC withdrawal quantity, echoed from the request.
+  /// Human-decimal USDC withdrawal quantity, read from the withdrawal row.
   String quantity;
 
   /// The estimated network fee, in human USDC.
@@ -37,7 +41,7 @@ class FeeQuoteResponse {
   /// EVM chain ID the quote was computed for.
   String chainId;
 
-  /// Signed, TTL-bound quote token to submit with a later withdrawal so the server can validate the fee it was quoted.
+  /// Signed, TTL-bound quote token to submit to PUT /v1/web3/withdrawals/{withdrawal_id} so the server can validate the fee it quoted. It names the withdrawal it was issued for.
   String quoteToken;
 
   /// When the quote token expires.
@@ -45,6 +49,7 @@ class FeeQuoteResponse {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is FeeQuoteResponse &&
+    other.withdrawalId == withdrawalId &&
     other.to == to &&
     other.quantity == quantity &&
     other.fee == fee &&
@@ -56,6 +61,7 @@ class FeeQuoteResponse {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
+    (withdrawalId.hashCode) +
     (to.hashCode) +
     (quantity.hashCode) +
     (fee.hashCode) +
@@ -65,10 +71,11 @@ class FeeQuoteResponse {
     (expiresAt.hashCode);
 
   @override
-  String toString() => 'FeeQuoteResponse[to=$to, quantity=$quantity, fee=$fee, feeBaseUnits=$feeBaseUnits, chainId=$chainId, quoteToken=$quoteToken, expiresAt=$expiresAt]';
+  String toString() => 'FeeQuoteResponse[withdrawalId=$withdrawalId, to=$to, quantity=$quantity, fee=$fee, feeBaseUnits=$feeBaseUnits, chainId=$chainId, quoteToken=$quoteToken, expiresAt=$expiresAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+      json[r'withdrawal_id'] = this.withdrawalId;
       json[r'to'] = this.to;
       json[r'quantity'] = this.quantity;
       json[r'fee'] = this.fee;
@@ -90,6 +97,8 @@ class FeeQuoteResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
+        assert(json.containsKey(r'withdrawal_id'), 'Required key "FeeQuoteResponse[withdrawal_id]" is missing from JSON.');
+        assert(json[r'withdrawal_id'] != null, 'Required key "FeeQuoteResponse[withdrawal_id]" has a null value in JSON.');
         assert(json.containsKey(r'to'), 'Required key "FeeQuoteResponse[to]" is missing from JSON.');
         assert(json[r'to'] != null, 'Required key "FeeQuoteResponse[to]" has a null value in JSON.');
         assert(json.containsKey(r'quantity'), 'Required key "FeeQuoteResponse[quantity]" is missing from JSON.');
@@ -108,6 +117,7 @@ class FeeQuoteResponse {
       }());
 
       return FeeQuoteResponse(
+        withdrawalId: mapValueOfType<String>(json, r'withdrawal_id')!,
         to: mapValueOfType<String>(json, r'to')!,
         quantity: mapValueOfType<String>(json, r'quantity')!,
         fee: mapValueOfType<String>(json, r'fee')!,
@@ -162,6 +172,7 @@ class FeeQuoteResponse {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'withdrawal_id',
     'to',
     'quantity',
     'fee',

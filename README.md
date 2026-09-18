@@ -186,6 +186,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**listTradingChallenges**](doc//DefaultApi.md#listtradingchallenges) | **GET** /v1/trading_challenges | List trading challenges
 *DefaultApi* | [**listUserDeactivations**](doc//DefaultApi.md#listuserdeactivations) | **GET** /v1/user/deactivations | Get the current deactivation status across all users
 *DefaultApi* | [**listWithdrawals**](doc//DefaultApi.md#listwithdrawals) | **GET** /v1/web3/withdrawals | List USDC withdrawals
+*DefaultApi* | [**lockWithdrawalFee**](doc//DefaultApi.md#lockwithdrawalfee) | **PUT** /v1/web3/withdrawals/{withdrawal_id} | Lock the network fee for an approved USDC withdrawal
 *DefaultApi* | [**lookupAffiliateCode**](doc//DefaultApi.md#lookupaffiliatecode) | **GET** /v1/affiliate_codes/{code} | Look up a reusable referral code
 *DefaultApi* | [**payLeverageGetAccruedInterest**](doc//DefaultApi.md#payleveragegetaccruedinterest) | **POST** /v1/leverage/accrued_interest/pay | Pay current accrued leverage interest for a specific user
 *DefaultApi* | [**registerAffiliateReferrer**](doc//DefaultApi.md#registeraffiliatereferrer) | **POST** /v1/affiliate_programs/{program_id}/referrers | Register an existing user as a referrer
@@ -206,6 +207,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**streamOrderBookBalances**](doc//DefaultApi.md#streamorderbookbalances) | **GET** /v1/orderbooks/{order_book_id}/balances/stream | Get a snapshot of base and quote balances for an order book and open a stream for real-time updates
 *DefaultApi* | [**streamOrderbookOpenOrders**](doc//DefaultApi.md#streamorderbookopenorders) | **GET** /v1/orderbooks/{order_book_id}/open/stream | Get a snapshot of open orders in an order book and open a stream for real-time updates
 *DefaultApi* | [**streamTrades**](doc//DefaultApi.md#streamtrades) | **GET** /v1/trades/{order_book_id}/stream | Get a snapshot of trades executed on the given order book from a specific date and open a stream for real-time updates
+*DefaultApi* | [**tenantGuaranteeFundHistory**](doc//DefaultApi.md#tenantguaranteefundhistory) | **GET** /v1/tenants/{tenant_id}/guarantee_fund | List guarantee fund ledger rows and totals by transaction kind for a tenant.
 *DefaultApi* | [**terminateOwnTradingChallengeParticipation**](doc//DefaultApi.md#terminateowntradingchallengeparticipation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/self/terminate | Leave a trading challenge
 *DefaultApi* | [**terminateTradingChallengeParticipation**](doc//DefaultApi.md#terminatetradingchallengeparticipation) | **POST** /v1/trading_challenges/{trading_challenge_id}/participants/{user_id}/terminate | Terminate a participation in a trading challenge
 *DefaultApi* | [**transferAccountBalancesV2**](doc//DefaultApi.md#transferaccountbalancesv2) | **POST** /v2/accounts/transfer_balances | Transfer available balance between a user's accounts
@@ -362,6 +364,7 @@ Class | Method | HTTP request | Description
  - [ListUsersResponseEnvelope](doc//ListUsersResponseEnvelope.md)
  - [ListWithdrawalsResponseEnvelope](doc//ListWithdrawalsResponseEnvelope.md)
  - [LiveOrderbook](doc//LiveOrderbook.md)
+ - [LockWithdrawalFeeRequest](doc//LockWithdrawalFeeRequest.md)
  - [Margin](doc//Margin.md)
  - [Metadata](doc//Metadata.md)
  - [ModuleBalance](doc//ModuleBalance.md)
@@ -459,6 +462,10 @@ Class | Method | HTTP request | Description
  - [Supply](doc//Supply.md)
  - [SupplyRequest](doc//SupplyRequest.md)
  - [SupplyResponseEnvelope](doc//SupplyResponseEnvelope.md)
+ - [TenantGuaranteeFundHistory](doc//TenantGuaranteeFundHistory.md)
+ - [TenantGuaranteeFundHistoryResponseEnvelope](doc//TenantGuaranteeFundHistoryResponseEnvelope.md)
+ - [TenantGuaranteeFundRow](doc//TenantGuaranteeFundRow.md)
+ - [TenantGuaranteeFundSummary](doc//TenantGuaranteeFundSummary.md)
  - [TenantRestrictions](doc//TenantRestrictions.md)
  - [TerminateTradingChallengeResponse](doc//TerminateTradingChallengeResponse.md)
  - [TerminateTradingChallengeResponseEnvelope](doc//TerminateTradingChallengeResponseEnvelope.md)

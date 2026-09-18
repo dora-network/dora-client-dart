@@ -144,6 +144,7 @@ doc/ListUserCouponPaymentsResponseEnvelope.md
 doc/ListUsersResponseEnvelope.md
 doc/ListWithdrawalsResponseEnvelope.md
 doc/LiveOrderbook.md
+doc/LockWithdrawalFeeRequest.md
 doc/Margin.md
 doc/Metadata.md
 doc/ModuleBalance.md
@@ -241,6 +242,10 @@ doc/StreamUserCouponPaymentsResponse.md
 doc/Supply.md
 doc/SupplyRequest.md
 doc/SupplyResponseEnvelope.md
+doc/TenantGuaranteeFundHistory.md
+doc/TenantGuaranteeFundHistoryResponseEnvelope.md
+doc/TenantGuaranteeFundRow.md
+doc/TenantGuaranteeFundSummary.md
 doc/TenantRestrictions.md
 doc/TerminateTradingChallengeResponse.md
 doc/TerminateTradingChallengeResponseEnvelope.md
@@ -482,6 +487,7 @@ lib/model/list_user_coupon_payments_response_envelope.dart
 lib/model/list_users_response_envelope.dart
 lib/model/list_withdrawals_response_envelope.dart
 lib/model/live_orderbook.dart
+lib/model/lock_withdrawal_fee_request.dart
 lib/model/margin.dart
 lib/model/metadata.dart
 lib/model/module_balance.dart
@@ -579,6 +585,10 @@ lib/model/stream_user_coupon_payments_response.dart
 lib/model/supply.dart
 lib/model/supply_request.dart
 lib/model/supply_response_envelope.dart
+lib/model/tenant_guarantee_fund_history.dart
+lib/model/tenant_guarantee_fund_history_response_envelope.dart
+lib/model/tenant_guarantee_fund_row.dart
+lib/model/tenant_guarantee_fund_summary.dart
 lib/model/tenant_restrictions.dart
 lib/model/terminate_trading_challenge_response.dart
 lib/model/terminate_trading_challenge_response_envelope.dart
@@ -811,6 +821,7 @@ test/list_user_coupon_payments_response_envelope_test.dart
 test/list_users_response_envelope_test.dart
 test/list_withdrawals_response_envelope_test.dart
 test/live_orderbook_test.dart
+test/lock_withdrawal_fee_request_test.dart
 test/margin_test.dart
 test/metadata_test.dart
 test/module_balance_test.dart
@@ -908,6 +919,10 @@ test/stream_user_coupon_payments_response_test.dart
 test/supply_request_test.dart
 test/supply_response_envelope_test.dart
 test/supply_test.dart
+test/tenant_guarantee_fund_history_response_envelope_test.dart
+test/tenant_guarantee_fund_history_test.dart
+test/tenant_guarantee_fund_row_test.dart
+test/tenant_guarantee_fund_summary_test.dart
 test/tenant_restrictions_test.dart
 test/terminate_trading_challenge_response_envelope_test.dart
 test/terminate_trading_challenge_response_test.dart

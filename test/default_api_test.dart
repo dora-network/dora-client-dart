@@ -251,7 +251,7 @@ void main() {
 
     // Get yield chart data for an asset
     //
-    // Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets.
+    // Returns complete yield buckets starting at `start`; `end` is exclusive and a trailing partial bucket is omitted. Requests are limited to 10,000 complete buckets. Public callers may query only the last month. Authenticated callers may query up to the last six months. If credentials are supplied but invalid, the request is rejected as unauthorized.
     //
     //Future<ListAssetYieldResponseEnvelope> getAssetYieldData(String assetId, DateTime start, DateTime end, AssetYieldResolution resolution) async
     test('test getAssetYieldData', () async {
@@ -267,7 +267,7 @@ void main() {
 
     // Get candlestick data for an orderbook
     //
-    // Returns candle data in the requested [start, end) range for the selected resolution. Responses are capped to the most recent 5,000 candles per request.
+    // Returns candle data in the requested [start, end) range for the selected resolution, capped to the most recent 5,000 candles per request. Public callers may query data from up to the last month, while authenticated callers may query up to the last six months (requests with invalid credentials will be rejected as unauthorized).
     //
     //Future<ListCandlesResponseEnvelope> getCandleData(String orderBookId, DateTime start, DateTime end, { CandleResolution resolution }) async
     test('test getCandleData', () async {
@@ -505,6 +505,8 @@ void main() {
 
     // Get a filtered, paginated list of trades
     //
+    // Role-based date window: public callers are limited to the last month; authenticated callers may query up to the last six months. If `start` is omitted it defaults to the role-based minimum. If credentials are supplied but invalid, the request is rejected as unauthorized.
+    //
     //Future<ListTradeResponseEnvelope> getTrades({ List<String> orderBookIds, List<String> userIds, DateTime start, DateTime end, int page, int limit }) async
     test('test getTrades', () async {
       // TODO
@@ -554,6 +556,8 @@ void main() {
     });
 
     // Get a filtered, paginated list of transactions
+    //
+    // Role-based date window: public callers are limited to the last month; authenticated callers may query up to the last six months. If `start` is omitted it defaults to the role-based minimum. If credentials are supplied but invalid, the request is rejected as unauthorized.
     //
     //Future<ListTransactionsResponseEnvelope> getTransactions({ List<String> pools, List<String> userIds, List<TransactionKind> txKinds, DateTime start, DateTime end, String tenantId, int page, int limit }) async
     test('test getTransactions', () async {
@@ -664,9 +668,9 @@ void main() {
 
     // Estimate the network fee to withdraw USDC via web3
     //
-    // Examines on-chain conditions and simulates a withdrawal transaction to estimate the fee a user needs to pay for a withdrawal. The fee is not charged when the withdrawal is requested; the quote is redeemed later, when the fee is locked as part of approval. Restricted to DORA tenant users whose native asset is USDC.
+    // Examines on-chain conditions and simulates the named withdrawal to estimate the network fee the user must reserve before it can be submitted on-chain. The withdrawal must already exist, belong to the caller, and have been approved by an admin (status APPROVED_WITHOUT_FEE); its destination and quantity are read from the row, not taken from the request. The returned quote token is bound to that one withdrawal and is redeemed at PUT /v1/web3/withdrawals/{withdrawal_id}, which reserves the fee and moves the withdrawal to APPROVED. Restricted to DORA tenant users whose native asset is USDC.
     //
-    //Future<FeeQuoteResponseEnvelope> getWithdrawalFeeQuote(String to, String quantity) async
+    //Future<FeeQuoteResponseEnvelope> getWithdrawalFeeQuote(String withdrawalId) async
     test('test getWithdrawalFeeQuote', () async {
       // TODO
     });
@@ -924,6 +928,15 @@ void main() {
       // TODO
     });
 
+    // Lock the network fee for an approved USDC withdrawal
+    //
+    // Redeems a fee quote against a withdrawal an admin has approved. The quoted fee is reserved on top of the quantity reserved when the request was created, so the same risk checks the request cleared are run again for it: an active trading challenge, a deactivated account, account health, the minimum cash reserve, and overdue coupon payments. A fee that would take the caller below the minimum cash reserve is refused and nothing is reserved.
+    //
+    //Future<WithdrawalResponseEnvelope> lockWithdrawalFee(String withdrawalId, LockWithdrawalFeeRequest lockWithdrawalFeeRequest) async
+    test('test lockWithdrawalFee', () async {
+      // TODO
+    });
+
     // Look up a reusable referral code
     //
     // ADMIN or INTEGRATOR required, within tenant permissions. Admins must supply tenant_id. Case-insensitive lookup requires an active program and never consumes the code. Attribution happens separately at signup or through POST /v1/affiliate_referrals/self.
@@ -1077,6 +1090,15 @@ void main() {
     //
     //Future<List<StreamTradesEntry>> streamTrades(String orderBookId, { DateTime since }) async
     test('test streamTrades', () async {
+      // TODO
+    });
+
+    // List guarantee fund ledger rows and totals by transaction kind for a tenant.
+    //
+    // Returns guarantee fund ledger rows for a tenant filtered by updated_at range and tx_kind, with totals_by_tx_kind summary.
+    //
+    //Future<TenantGuaranteeFundHistoryResponseEnvelope> tenantGuaranteeFundHistory(String tenantId, { DateTime startDate, DateTime endDate, String txKind }) async
+    test('test tenantGuaranteeFundHistory', () async {
       // TODO
     });
 
